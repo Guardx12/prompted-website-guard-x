@@ -242,29 +242,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Emergency Contact Section */}
-      <section className="py-20 bg-card/50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Reputation Crisis?</h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            If you're facing an urgent reputation crisis, don't wait. Contact our emergency response team immediately
-            for rapid intervention and damage control.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-red-600 text-white hover:bg-red-700 px-8 py-4 text-lg font-semibold">
-              Emergency Hotline: +44 20 7946 0999
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg bg-transparent"
-            >
-              Schedule Urgent Call
-            </Button>
-          </div>
-        </div>
-      </section>
-
       <Footer />
     </div>
   )
