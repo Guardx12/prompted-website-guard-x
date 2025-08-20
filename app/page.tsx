@@ -29,33 +29,57 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Tagline */}
-            <p className="text-2xl md:text-3xl lg:text-4xl text-primary font-bold mb-8">Protecting Your Reputation</p>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              Protect & Improve Your <span className="text-primary">Business Reputation</span>
+            </h1>
 
-            {/* Description */}
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
-              Professional reputation management services that monitor, protect, and enhance your online presence. Take
-              control of your digital reputation with our comprehensive solutions.
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
+              We track, score, and protect your business reputation automatically
             </p>
 
-            {/* CTA Button */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold"
-              >
-                Get Started Today
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Link href="/dashboard">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+              <Link href="/pricing">
+                <Button
+                  size="lg"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold"
+                >
+                  Get Started
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
+              <Link href="/how-it-works">
                 <Button
                   variant="outline"
                   size="lg"
                   className="border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg bg-transparent"
                 >
-                  View Dashboard
+                  How It Works
                 </Button>
               </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground mb-2">Monitor</h3>
+                <p className="text-sm text-muted-foreground">Track mentions across the web</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <TrendingUp className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground mb-2">Score</h3>
+                <p className="text-sm text-muted-foreground">Analyze reputation health</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground mb-2">Protect</h3>
+                <p className="text-sm text-muted-foreground">Defend and improve image</p>
+              </div>
             </div>
           </div>
         </div>

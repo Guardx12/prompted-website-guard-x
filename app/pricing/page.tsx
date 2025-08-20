@@ -2,8 +2,7 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { CheckCircle, Star, Shield, TrendingUp, BarChart3, Users, Clock, ArrowRight } from "lucide-react"
+import { CheckCircle, Shield, TrendingUp, Clock, ArrowRight, Building, Crown, Star } from "lucide-react"
 import Link from "next/link"
 
 export default function PricingPage() {
@@ -16,151 +15,193 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Simple <span className="text-primary">Pricing</span>
+              Choose Your <span className="text-primary">Protection Plan</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              One comprehensive plan that includes everything you need to protect and enhance your online reputation.
+              Professional reputation management with per-location pricing
             </p>
           </div>
         </div>
       </section>
 
-      {/* Pricing Card */}
       <section className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative">
-            {/* Popular Badge */}
-            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-              <Badge className="bg-primary text-primary-foreground px-6 py-2 text-sm font-semibold">Most Popular</Badge>
-            </div>
-
-            <Card className="bg-card border-2 border-primary/20 shadow-2xl">
-              <CardHeader className="text-center pb-8 pt-12">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Shield className="w-8 h-8 text-primary" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* New £149 Plan */}
+            <Card className="bg-card border-border">
+              <CardHeader className="text-center pb-8 pt-8">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Star className="w-6 h-6 text-primary" />
                 </div>
-                <CardTitle className="text-3xl font-bold text-foreground mb-2">Professional Plan</CardTitle>
-                <p className="text-muted-foreground mb-8">Complete reputation management solution for your business</p>
+                <CardTitle className="text-2xl font-bold text-foreground mb-2">Basic Plan</CardTitle>
+                <p className="text-muted-foreground mb-6">Essential monitoring</p>
 
-                <div className="mb-8">
-                  <div className="flex items-center justify-center gap-2 mb-2">
-                    <span className="text-5xl md:text-6xl font-bold text-primary">£149</span>
+                <div className="mb-6">
+                  <div className="flex items-center justify-center gap-1 mb-2">
+                    <span className="text-4xl font-bold text-primary">£149</span>
                     <div className="text-left">
-                      <div className="text-muted-foreground text-lg">/month</div>
-                      <div className="text-xs text-muted-foreground">billed monthly</div>
+                      <div className="text-muted-foreground text-sm">/month</div>
                     </div>
                   </div>
-                  <p className="text-sm text-muted-foreground">No setup fees • Cancel anytime</p>
                 </div>
+
+                <ul className="space-y-3 mb-6">
+                  {[
+                    "Basic monitoring",
+                    "Monthly reports",
+                    "Alerts and notifications",
+                    "Sentiment analysis",
+                    "Review response managing",
+                    "Email support",
+                  ].map((feature, index) => (
+                    <li key={index} className="flex items-center gap-3">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm text-foreground">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
 
                 <Button
                   size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-4 text-lg font-semibold mb-4"
+                  variant="outline"
+                  className="border-primary text-primary hover:bg-primary/10 px-8 py-3 text-base font-semibold w-full bg-transparent"
                 >
                   Get Started
-                  <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
-
-                <p className="text-xs text-muted-foreground">
-                  Stripe integration coming soon • Secure payment processing
-                </p>
               </CardHeader>
+            </Card>
 
-              <CardContent className="px-8 pb-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {/* Core Features */}
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                      <Star className="w-5 h-5 text-primary" />
-                      Core Features
-                    </h3>
-                    <ul className="space-y-3">
-                      {[
-                        "24/7 reputation monitoring",
-                        "Real-time alerts & notifications",
-                        "Multi-platform coverage",
-                        "Sentiment analysis",
-                        "Review response management",
-                        "Brand mention tracking",
-                      ].map((feature, index) => (
-                        <li key={index} className="flex items-center gap-3">
-                          <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                          <span className="text-foreground">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+            {/* Business Plan */}
+            <Card className="bg-card border-border">
+              <CardHeader className="text-center pb-8 pt-8">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <TrendingUp className="w-6 h-6 text-primary" />
+                </div>
+                <CardTitle className="text-2xl font-bold text-foreground mb-2">Business Plan</CardTitle>
+                <p className="text-muted-foreground mb-6">For the first location</p>
 
-                  {/* Advanced Features */}
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                      <TrendingUp className="w-5 h-5 text-primary" />
-                      Advanced Features
-                    </h3>
-                    <ul className="space-y-3">
-                      {[
-                        "Reputation recovery campaigns",
-                        "Crisis management support",
-                        "Content suppression strategies",
-                        "Positive content creation",
-                        "Competitor analysis",
-                        "SEO optimization",
-                      ].map((feature, index) => (
-                        <li key={index} className="flex items-center gap-3">
-                          <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                          <span className="text-foreground">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Analytics & Reporting */}
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                      <BarChart3 className="w-5 h-5 text-primary" />
-                      Analytics & Reporting
-                    </h3>
-                    <ul className="space-y-3">
-                      {[
-                        "Comprehensive dashboard",
-                        "Monthly detailed reports",
-                        "Performance metrics",
-                        "ROI tracking",
-                        "Custom analytics",
-                        "Data export capabilities",
-                      ].map((feature, index) => (
-                        <li key={index} className="flex items-center gap-3">
-                          <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                          <span className="text-foreground">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Support & Consultation */}
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                      <Users className="w-5 h-5 text-primary" />
-                      Support & Consultation
-                    </h3>
-                    <ul className="space-y-3">
-                      {[
-                        "Dedicated account manager",
-                        "Expert consultation calls",
-                        "24/7 priority support",
-                        "Strategic planning sessions",
-                        "Implementation guidance",
-                        "Ongoing optimization",
-                      ].map((feature, index) => (
-                        <li key={index} className="flex items-center gap-3">
-                          <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                          <span className="text-foreground">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                <div className="mb-6">
+                  <div className="flex items-center justify-center gap-1 mb-2">
+                    <span className="text-4xl font-bold text-primary">£299</span>
+                    <div className="text-left">
+                      <div className="text-muted-foreground text-sm">/month</div>
+                    </div>
                   </div>
                 </div>
-              </CardContent>
+
+                <ul className="space-y-3 mb-6">
+                  {[
+                    "Advanced reputation monitoring",
+                    "Dashboard login",
+                    "Real-time alerts & notifications",
+                    "Sentiment analysis",
+                    "Review response management",
+                    "Weekly reports",
+                    "Email support & crisis management",
+                  ].map((feature, index) => (
+                    <li key={index} className="flex items-center gap-3">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm text-foreground">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-primary text-primary hover:bg-primary/10 px-8 py-3 text-base font-semibold w-full bg-transparent"
+                >
+                  Get Started
+                </Button>
+              </CardHeader>
+            </Card>
+
+            {/* Additional Locations */}
+            <Card className="bg-card border-border">
+              <CardHeader className="text-center pb-8 pt-8">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Building className="w-6 h-6 text-primary" />
+                </div>
+                <CardTitle className="text-2xl font-bold text-foreground mb-2">Additional Locations</CardTitle>
+                <p className="text-muted-foreground mb-6">Per additional location</p>
+
+                <div className="mb-6">
+                  <div className="flex items-center justify-center gap-1 mb-2">
+                    <span className="text-4xl font-bold text-primary">+£150</span>
+                    <div className="text-left">
+                      <div className="text-muted-foreground text-sm">/month</div>
+                    </div>
+                  </div>
+                </div>
+
+                <ul className="space-y-3 mb-6">
+                  {[
+                    "All features included for each added location",
+                    "Separate monitoring dashboard",
+                    "Location-specific reports",
+                    "Individual alert settings",
+                    "Dedicated support per location",
+                  ].map((feature, index) => (
+                    <li key={index} className="flex items-center gap-3">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm text-foreground">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-primary text-primary hover:bg-primary/10 px-8 py-3 text-base font-semibold w-full bg-transparent"
+                >
+                  Get Started
+                </Button>
+              </CardHeader>
+            </Card>
+          </div>
+
+          {/* Enterprise Section */}
+          <div className="max-w-2xl mx-auto mt-12">
+            <Card className="bg-card border-border">
+              <CardHeader className="text-center pb-8 pt-8">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Crown className="w-8 h-8 text-primary" />
+                </div>
+                <CardTitle className="text-3xl font-bold text-foreground mb-2">Enterprise / Custom Pricing</CardTitle>
+                <p className="text-muted-foreground mb-6">20+ locations</p>
+
+                <div className="mb-6">
+                  <div className="flex items-center justify-center gap-1 mb-2">
+                    <span className="text-2xl font-bold text-primary">Custom</span>
+                    <div className="text-left">
+                      <div className="text-muted-foreground text-sm">Pricing</div>
+                    </div>
+                  </div>
+                </div>
+
+                <ul className="space-y-3 mb-6 max-w-md mx-auto">
+                  {[
+                    "Tailored solutions for larger organizations",
+                    "Unlimited locations available",
+                    "Dedicated support team",
+                    "White-glove onboarding",
+                    "24/7 crisis response",
+                  ].map((feature, index) => (
+                    <li key={index} className="flex items-center gap-3">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm text-foreground">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-primary text-primary hover:bg-primary/10 px-8 py-3 text-base font-semibold bg-transparent"
+                >
+                  Contact Sales
+                </Button>
+              </CardHeader>
             </Card>
           </div>
         </div>
@@ -170,9 +211,9 @@ export default function PricingPage() {
       <section className="py-20 bg-card/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Why Choose Our Professional Plan?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Why Choose Our Professional Plans?</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Everything you need to protect and enhance your reputation, all in one comprehensive package
+              Tailored solutions to protect and enhance your reputation, suitable for businesses of all sizes
             </p>
           </div>
 
@@ -227,8 +268,19 @@ export default function PricingPage() {
           <div className="space-y-6">
             {[
               {
-                question: "Is there a setup fee?",
-                answer: "No, there are no setup fees. You only pay the monthly subscription fee of £149.",
+                question: "How does per-location pricing work?",
+                answer:
+                  "Your first location costs £299/month and includes all our advanced features. Each additional location is only £150/month with the same comprehensive monitoring and support.",
+              },
+              {
+                question: "Do you handle everything online?",
+                answer:
+                  "Yes, everything is handled online. No phone calls or in-person meetings required. You'll have access to our dashboard, email support, and crisis management all through our platform.",
+              },
+              {
+                question: "What's included in the Business Plan?",
+                answer:
+                  "Advanced reputation monitoring, dashboard access, real-time alerts, sentiment analysis, review response management, weekly reports, and email support with crisis management.",
               },
               {
                 question: "Can I cancel anytime?",
@@ -236,18 +288,12 @@ export default function PricingPage() {
                   "Yes, you can cancel your subscription at any time. There are no long-term contracts or cancellation fees.",
               },
               {
+                question: "Is there a setup fee?",
+                answer: "No, there are no setup fees for any of our plans. You only pay the monthly subscription fee.",
+              },
+              {
                 question: "What payment methods do you accept?",
-                answer:
-                  "We're currently integrating Stripe for secure payment processing. Once live, we'll accept all major credit cards and bank transfers.",
-              },
-              {
-                question: "How quickly will I see results?",
-                answer:
-                  "Most clients see initial improvements within 30-60 days, with significant results typically visible within 3-6 months.",
-              },
-              {
-                question: "Do you offer refunds?",
-                answer: "We offer a 30-day money-back guarantee if you're not satisfied with our service.",
+                answer: "We accept all major credit cards through our secure Stripe payment processing system.",
               },
             ].map((faq, index) => (
               <Card key={index} className="bg-card border-border">

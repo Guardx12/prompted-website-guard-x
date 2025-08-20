@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import { Phone } from "lucide-react" // Import Phone component
 
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
@@ -9,13 +10,14 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Mail, Phone, MapPin, Clock, Send, MessageSquare } from "lucide-react"
+import { Mail, Globe, Clock, Send, MessageSquare, Calendar } from "lucide-react"
 import { useState } from "react"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    businessName: "",
     message: "",
   })
 
@@ -24,7 +26,7 @@ export default function ContactPage() {
     // Form submission logic would go here
     console.log("Form submitted:", formData)
     // Reset form
-    setFormData({ name: "", email: "", message: "" })
+    setFormData({ name: "", email: "", businessName: "", message: "" })
     alert("Thank you for your message! We'll get back to you within 24 hours.")
   }
 
@@ -64,7 +66,7 @@ export default function ContactPage() {
             {/* Contact Form */}
             <Card className="bg-card border-border">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold text-foreground">Send Us a Message</CardTitle>
+                <CardTitle className="text-2xl font-bold text-foreground">Send us a message online</CardTitle>
                 <p className="text-muted-foreground">
                   Fill out the form below and we'll get back to you within 24 hours.
                 </p>
@@ -104,6 +106,21 @@ export default function ContactPage() {
                   </div>
 
                   <div className="space-y-2">
+                    <Label htmlFor="businessName" className="text-foreground">
+                      Business Name
+                    </Label>
+                    <Input
+                      id="businessName"
+                      name="businessName"
+                      type="text"
+                      value={formData.businessName}
+                      onChange={handleChange}
+                      className="bg-background border-border text-foreground focus:border-primary focus:ring-primary"
+                      placeholder="Your business name"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
                     <Label htmlFor="message" className="text-foreground">
                       Message *
                     </Label>
@@ -119,14 +136,30 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold"
-                  >
-                    Send Message
-                    <Send className="ml-2 w-5 h-5" />
-                  </Button>
+                  <div className="space-y-3">
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold"
+                    >
+                      Send Message
+                      <Send className="ml-2 w-5 h-5" />
+                    </Button>
+
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="lg"
+                      className="w-full border-primary text-primary hover:bg-primary/10 py-3 text-lg font-semibold bg-transparent"
+                      onClick={() => {
+                        // Placeholder for Calendly integration
+                        alert("Calendly integration coming soon! Please use the contact form above for now.")
+                      }}
+                    >
+                      Book a Free Call
+                      <Calendar className="ml-2 w-5 h-5" />
+                    </Button>
+                  </div>
                 </form>
               </CardContent>
             </Card>
@@ -136,7 +169,9 @@ export default function ContactPage() {
               <Card className="bg-card border-border">
                 <CardHeader>
                   <CardTitle className="text-2xl font-bold text-foreground">Contact Information</CardTitle>
-                  <p className="text-muted-foreground">Get in touch with our reputation management experts.</p>
+                  <p className="text-muted-foreground">
+                    For inquiries or support, please email us at info@guardxnetwork.com.
+                  </p>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="flex items-start gap-4">
@@ -145,33 +180,19 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-foreground mb-1">Email</h3>
-                      <p className="text-muted-foreground">hello@guardx.com</p>
+                      <p className="text-muted-foreground">info@guardxnetwork.com</p>
                       <p className="text-sm text-muted-foreground">We respond within 24 hours</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-6 h-6 text-primary" />
+                      <Globe className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-foreground mb-1">Phone</h3>
-                      <p className="text-muted-foreground">+44 20 7946 0958</p>
-                      <p className="text-sm text-muted-foreground">Monday - Friday, 9AM - 6PM GMT</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-foreground mb-1">Office</h3>
-                      <p className="text-muted-foreground">
-                        123 Business District
-                        <br />
-                        London, UK EC2A 4NE
-                      </p>
+                      <h3 className="text-lg font-semibold text-foreground mb-1">Website</h3>
+                      <p className="text-muted-foreground">www.guardxnetwork.com</p>
+                      <p className="text-sm text-muted-foreground">Visit us online for more information</p>
                     </div>
                   </div>
 
@@ -225,13 +246,18 @@ export default function ContactPage() {
                     <div className="space-y-3">
                       <div className="flex items-center justify-center gap-2 text-muted-foreground">
                         <Phone className="w-4 h-4" />
-                        <span>[Insert phone number once ready]</span>
+                        <span>+44 20 7946 0958</span>
                       </div>
                       <Button
                         variant="outline"
                         className="border-primary text-primary hover:bg-primary/10 bg-transparent"
+                        onClick={() => {
+                          // Placeholder for priority call booking
+                          alert("Priority call booking coming soon! Please call us directly for urgent matters.")
+                        }}
                       >
-                        📅 Request a priority call
+                        Request a Priority Call
+                        <Calendar className="ml-2 w-4 h-4" />
                       </Button>
                     </div>
                   </div>

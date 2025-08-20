@@ -16,7 +16,7 @@ export function Navigation() {
           <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
             <div className="relative w-20 h-12 sm:w-24 sm:h-14 md:w-28 md:h-16 lg:w-32 lg:h-18">
               <Image
-                src="/images/guardx-logo.png"
+                src="/images/guardx-final-logo.jpg"
                 alt="GuardX - Reputation Management"
                 fill
                 className="object-contain"
@@ -39,6 +39,12 @@ export function Navigation() {
             </Link>
             <Link href="/industries" className="text-foreground hover:text-primary transition-colors">
               Industries
+            </Link>
+            <Link href="/how-it-works" className="text-foreground hover:text-primary transition-colors">
+              How It Works
+            </Link>
+            <Link href="/why-this-works" className="text-foreground hover:text-primary transition-colors">
+              Why This Works
             </Link>
             <Link href="/pricing" className="text-foreground hover:text-primary transition-colors">
               Pricing
@@ -91,6 +97,20 @@ export function Navigation() {
                 onClick={() => setIsOpen(false)}
               >
                 Industries
+              </Link>
+              <Link
+                href="/how-it-works"
+                className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                How It Works
+              </Link>
+              <Link
+                href="/why-this-works"
+                className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Why This Works
               </Link>
               <Link
                 href="/pricing"
