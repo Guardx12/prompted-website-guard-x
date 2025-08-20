@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { Shield, Star, TrendingUp, Users, CheckCircle, ArrowRight } from "lucide-react"
+import { Shield, Star, TrendingUp, Users, CheckCircle, ArrowRight, Clock, Award } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
@@ -19,7 +19,7 @@ export default function HomePage() {
             <div className="flex justify-center mb-8">
               <Link href="/" className="block">
                 <Image
-                  src="https://i.imgur.com/Uz3Ge22.jpeg"
+                  src="/images/guardx-final-logo.jpg"
                   alt="GuardX Logo"
                   width={300}
                   height={120}
@@ -30,20 +30,22 @@ export default function HomePage() {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Protect & Improve Your <span className="text-primary">Business Reputation</span>
+              Protect Your Business Reputation Online &{" "}
+              <span className="text-primary">Monitor Mentions and Reviews Easily</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
-              We track, score, and protect your business reputation automatically
+              Monitor, manage, and protect your online reputation 24/7 with automated alerts and professional response
+              management
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <Link href="/pricing">
                 <Button
                   size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold shadow-lg"
                 >
-                  Get Started
+                  Get Started Today
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
@@ -53,9 +55,24 @@ export default function HomePage() {
                   size="lg"
                   className="border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg bg-transparent"
                 >
-                  How It Works
+                  See How It Works
                 </Button>
               </Link>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-primary" />
+                <span>24/7 monitoring & alerts</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Award className="w-4 h-4 text-primary" />
+                <span>Professional reputation management</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-primary" />
+                <span>Automated response system</span>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
@@ -87,6 +104,62 @@ export default function HomePage() {
         {/* Background decoration */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-background">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">How GuardX Works</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Simple, automated reputation management in three easy steps
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold text-primary">1</span>
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-4">We Monitor</h3>
+              <p className="text-muted-foreground">
+                Our system continuously scans the web for mentions of your business across Google, social media, review
+                sites, and news outlets.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold text-primary">2</span>
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-4">We Alert & Report</h3>
+              <p className="text-muted-foreground">
+                Get instant notifications when new reviews or mentions appear. Receive detailed monthly reports with
+                sentiment analysis and trends.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold text-primary">3</span>
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-4">You Improve & Protect</h3>
+              <p className="text-muted-foreground">
+                Use our insights to respond quickly to reviews, address issues, and build a stronger online reputation
+                that drives more business.
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <Link href="/pricing">
+              <Button
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold"
+              >
+                Get Started Today
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -199,7 +272,7 @@ export default function HomePage() {
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold"
               >
-                Get started for £149/month
+                Get Started for £149/month
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
@@ -220,7 +293,7 @@ export default function HomePage() {
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold"
               >
-                View Pricing
+                Get Started Today
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
@@ -230,7 +303,7 @@ export default function HomePage() {
                 size="lg"
                 className="border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg bg-transparent"
               >
-                Contact Us
+                Book a Consultation
               </Button>
             </Link>
           </div>

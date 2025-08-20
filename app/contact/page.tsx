@@ -1,8 +1,6 @@
 "use client"
 
 import type React from "react"
-import { Phone } from "lucide-react" // Import Phone component
-
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -156,7 +154,7 @@ export default function ContactPage() {
                         alert("Calendly integration coming soon! Please use the contact form above for now.")
                       }}
                     >
-                      Book a Free Call
+                      Book a Free Consultation
                       <Calendar className="ml-2 w-5 h-5" />
                     </Button>
                   </div>
@@ -235,31 +233,27 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
 
-              {/* Need Faster Support Card */}
               <Card className="bg-card border-border">
                 <CardContent className="p-6">
                   <div className="text-center">
-                    <h3 className="text-xl font-semibold text-foreground mb-3">Need Faster Support?</h3>
+                    <h3 className="text-xl font-semibold text-foreground mb-3">Priority Support</h3>
                     <p className="text-muted-foreground mb-4">
-                      For time-sensitive concerns, priority assistance can be scheduled during business hours.
+                      For time-sensitive concerns, priority assistance is available through our online channels during
+                      business hours.
                     </p>
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-center gap-2 text-muted-foreground">
-                        <Phone className="w-4 h-4" />
-                        <span>+44 20 7946 0958</span>
-                      </div>
-                      <Button
-                        variant="outline"
-                        className="border-primary text-primary hover:bg-primary/10 bg-transparent"
-                        onClick={() => {
-                          // Placeholder for priority call booking
-                          alert("Priority call booking coming soon! Please call us directly for urgent matters.")
-                        }}
-                      >
-                        Request a Priority Call
-                        <Calendar className="ml-2 w-4 h-4" />
-                      </Button>
-                    </div>
+                    <Button
+                      variant="outline"
+                      className="border-primary text-primary hover:bg-primary/10 bg-transparent"
+                      onClick={() => {
+                        // Placeholder for priority consultation booking
+                        alert(
+                          "Priority consultation booking coming soon! Please use the contact form above for urgent matters.",
+                        )
+                      }}
+                    >
+                      Request Priority Consultation
+                      <Calendar className="ml-2 w-4 h-4" />
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
