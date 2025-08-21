@@ -18,27 +18,36 @@ export default function ContactPage() {
     businessName: "",
     message: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsSubmitting(true)
 
-    const emailBody = `
-New Contact Form Submission:
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
 
-Name: ${formData.name}
-Email: ${formData.email}
-Business Name: ${formData.businessName}
-Message: ${formData.message}
+      const result = await response.json()
 
-Submitted at: ${new Date().toLocaleString()}
-    `.trim()
-
-    const mailtoLink = `mailto:info@guardxnetwork.com?subject=Contact Form Submission from ${formData.name}&body=${encodeURIComponent(emailBody)}`
-    window.location.href = mailtoLink
-
-    // Reset form
-    setFormData({ name: "", email: "", businessName: "", message: "" })
-    alert("Thank you for your message! We'll get back to you within 24 hours.")
+      if (result.success) {
+        setIsSubmitted(true)
+        setFormData({ name: "", email: "", businessName: "", message: "" })
+      } else {
+        alert("There was an error sending your message. Please try again.")
+      }
+    } catch (error) {
+      console.error("Contact form submission error:", error)
+      alert("There was an error sending your message. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -46,6 +55,36 @@ Submitted at: ${new Date().toLocaleString()}
       ...formData,
       [e.target.name]: e.target.value,
     })
+  }
+
+  if (isSubmitted) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <section className="py-20 lg:py-32">
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Card className="bg-card border-border">
+              <CardContent className="p-12 text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Send className="w-8 h-8 text-primary" />
+                </div>
+                <h1 className="text-3xl font-bold text-foreground mb-4">Message Sent!</h1>
+                <p className="text-lg text-muted-foreground mb-6">
+                  Thank you for contacting us. We'll get back to you within 24 hours.
+                </p>
+                <Button
+                  onClick={() => setIsSubmitted(false)}
+                  className="bg-primary text-primary-foreground hover:bg-primary/90"
+                >
+                  Send Another Message
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+        <Footer />
+      </div>
+    )
   }
 
   return (
@@ -150,9 +189,10 @@ Submitted at: ${new Date().toLocaleString()}
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold"
+                      disabled={isSubmitting}
+                      className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold disabled:opacity-50"
                     >
-                      Send Message
+                      {isSubmitting ? "Sending..." : "Send Message"}
                       <Send className="ml-2 w-5 h-5" />
                     </Button>
 
@@ -161,19 +201,33 @@ Submitted at: ${new Date().toLocaleString()}
                       variant="outline"
                       size="lg"
                       className="w-full border-primary text-primary hover:bg-primary/10 py-3 text-lg font-semibold bg-transparent"
-                      onClick={() => {
-                        const emailBody = `
-New Free Consultation Request:
+                      onClick={async () => {
+                        setIsSubmitting(true)
+                        try {
+                          const consultationData = {
+                            name: formData.name || "Not provided",
+                            email: formData.email || "Not provided",
+                            businessName: formData.businessName || "Not provided",
+                            message: "Free consultation request",
+                            type: "consultation",
+                          }
 
-Name: ${formData.name || "Not provided"}
-Email: ${formData.email || "Not provided"}
-Business Name: ${formData.businessName || "Not provided"}
+                          const response = await fetch("/api/contact", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(consultationData),
+                          })
 
-Requested at: ${new Date().toLocaleString()}
-                        `.trim()
-
-                        const mailtoLink = `mailto:info@guardxnetwork.com?subject=Free Consultation Request&body=${encodeURIComponent(emailBody)}`
-                        window.location.href = mailtoLink
+                          if (response.ok) {
+                            alert("Consultation request sent! We'll contact you within 24 hours.")
+                          } else {
+                            alert("Error sending consultation request. Please try again.")
+                          }
+                        } catch (error) {
+                          alert("Error sending consultation request. Please try again.")
+                        } finally {
+                          setIsSubmitting(false)
+                        }
                       }}
                     >
                       Book a Free Consultation
@@ -184,19 +238,33 @@ Requested at: ${new Date().toLocaleString()}
                       variant="outline"
                       size="lg"
                       className="w-full border-primary text-primary hover:bg-primary/10 py-3 text-lg font-semibold bg-transparent"
-                      onClick={() => {
-                        const emailBody = `
-New Automated Setup Request:
+                      onClick={async () => {
+                        setIsSubmitting(true)
+                        try {
+                          const setupData = {
+                            name: formData.name || "Not provided",
+                            email: formData.email || "Not provided",
+                            businessName: formData.businessName || "Not provided",
+                            message: "Automated setup request",
+                            type: "setup",
+                          }
 
-Name: ${formData.name || "Not provided"}
-Email: ${formData.email || "Not provided"}
-Business Name: ${formData.businessName || "Not provided"}
+                          const response = await fetch("/api/contact", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(setupData),
+                          })
 
-Requested at: ${new Date().toLocaleString()}
-                        `.trim()
-
-                        const mailtoLink = `mailto:info@guardxnetwork.com?subject=Automated Setup Request&body=${encodeURIComponent(emailBody)}`
-                        window.location.href = mailtoLink
+                          if (response.ok) {
+                            alert("Setup request sent! We'll begin your automated setup within 24 hours.")
+                          } else {
+                            alert("Error sending setup request. Please try again.")
+                          }
+                        } catch (error) {
+                          alert("Error sending setup request. Please try again.")
+                        } finally {
+                          setIsSubmitting(false)
+                        }
                       }}
                     >
                       Start Automated Setup
