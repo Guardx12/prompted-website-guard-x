@@ -10,17 +10,14 @@ export async function POST(request: NextRequest) {
     const transporter = nodemailer.createTransporter({
       host: "smtp-mail.outlook.com",
       port: 587,
-      secure: false, // true for 465, false for other ports
+      secure: false,
       auth: {
         user: "info@guardxnetwork.com",
         pass: "Bigla1212!",
       },
       tls: {
-        ciphers: "SSLv3",
         rejectUnauthorized: false,
       },
-      debug: true, // Enable debug mode
-      logger: true, // Enable logging
     })
 
     console.log("[v0] Testing SMTP connection...")
@@ -29,6 +26,14 @@ export async function POST(request: NextRequest) {
       console.log("[v0] SMTP connection successful")
     } catch (verifyError) {
       console.error("[v0] SMTP verification failed:", verifyError)
+      return NextResponse.json(
+        {
+          success: false,
+          error: "SMTP connection failed",
+          details: verifyError.message,
+        },
+        { status: 500 },
+      )
     }
 
     const mailOptions = {
