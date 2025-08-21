@@ -1,7 +1,6 @@
 "use client"
 
-import type React from "react"
-
+import { useState } from "react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -10,7 +9,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { useState } from "react"
 import { CheckCircle } from "lucide-react"
 
 export default function OnboardingPage() {
@@ -28,6 +26,10 @@ export default function OnboardingPage() {
     notes: "",
   })
 
+  const handleInputChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }))
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
@@ -35,9 +37,7 @@ export default function OnboardingPage() {
     try {
       const response = await fetch("/api/onboarding", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       })
 
@@ -58,10 +58,6 @@ export default function OnboardingPage() {
     }
   }
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }))
-  }
-
   if (isSubmitted) {
     return (
       <div className="min-h-screen bg-background">
@@ -74,7 +70,9 @@ export default function OnboardingPage() {
                   <CheckCircle className="w-8 h-8 text-primary" />
                 </div>
                 <h1 className="text-3xl font-bold text-foreground mb-4">Thank You!</h1>
-                <p className="text-lg text-muted-foreground mb-6">Thank you! Your submission has been received.</p>
+                <p className="text-lg text-muted-foreground mb-6">
+                  Your submission has been received.
+                </p>
                 <p className="text-sm text-muted-foreground">
                   You should receive a confirmation email at {formData.email} within the next few minutes.
                 </p>
@@ -90,7 +88,6 @@ export default function OnboardingPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-
       <section className="py-20 lg:py-32">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -209,7 +206,7 @@ export default function OnboardingPage() {
                   <Textarea
                     id="keywords"
                     required
-                    placeholder="Enter your company name, brand names, key personnel names, or other keywords you'd like us to monitor..."
+                    placeholder="Enter your company name, brand names, key personnel names, or other keywords..."
                     value={formData.keywords}
                     onChange={(e) => handleInputChange("keywords", e.target.value)}
                     className="mt-1"
@@ -221,7 +218,7 @@ export default function OnboardingPage() {
                   <Label htmlFor="notes">Notes or Special Instructions</Label>
                   <Textarea
                     id="notes"
-                    placeholder="Any specific requirements, concerns, or additional information you'd like to share..."
+                    placeholder="Any specific requirements, concerns, or additional information..."
                     value={formData.notes}
                     onChange={(e) => handleInputChange("notes", e.target.value)}
                     className="mt-1"
