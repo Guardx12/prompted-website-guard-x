@@ -202,14 +202,14 @@ export default function TermsPage() {
                       <p className="text-foreground font-semibold text-lg">GuardX</p>
                       <p className="text-muted-foreground">
                         📧{" "}
-                        <a href="mailto:support@guardx.com" className="text-primary hover:underline">
-                          support@guardx.com
+                        <a href="mailto:info@guardxnetwork.com" className="text-primary hover:underline">
+                          info@guardxnetwork.com
                         </a>
                       </p>
                       <p className="text-muted-foreground">
                         🌐{" "}
                         <Link href="/" className="text-primary hover:underline">
-                          www.guardx.com
+                          www.guardxnetwork.com
                         </Link>
                       </p>
                     </div>

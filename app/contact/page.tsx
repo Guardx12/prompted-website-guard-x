@@ -50,8 +50,7 @@ export default function ContactPage() {
               Get In <span className="text-primary">Touch</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Ready to protect your reputation? Contact our experts today for a free consultation and personalized
-              reputation management strategy.
+              Ready to protect your reputation? Contact our experts today for automated reputation management solutions.
             </p>
           </div>
         </div>
@@ -157,6 +156,19 @@ export default function ContactPage() {
                       Book a Free Consultation
                       <Calendar className="ml-2 w-5 h-5" />
                     </Button>
+
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="w-full border-primary text-primary hover:bg-primary/10 py-3 text-lg font-semibold bg-transparent"
+                      onClick={() => {
+                        // Placeholder for automated onboarding
+                        alert("Automated onboarding coming soon! Please use the contact form above for now.")
+                      }}
+                    >
+                      Start Automated Setup
+                      <Calendar className="ml-2 w-5 h-5" />
+                    </Button>
                   </div>
                 </form>
               </CardContent>
@@ -245,13 +257,13 @@ export default function ContactPage() {
                       variant="outline"
                       className="border-primary text-primary hover:bg-primary/10 bg-transparent"
                       onClick={() => {
-                        // Placeholder for priority consultation booking
+                        // Placeholder for priority online support
                         alert(
-                          "Priority consultation booking coming soon! Please use the contact form above for urgent matters.",
+                          "Priority online support coming soon! Please use the contact form above for urgent matters.",
                         )
                       }}
                     >
-                      Request Priority Consultation
+                      Request Priority Support
                       <Calendar className="ml-2 w-4 h-4" />
                     </Button>
                   </div>

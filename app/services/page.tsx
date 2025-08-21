@@ -26,7 +26,6 @@ import {
   Activity,
   Download,
   UserCheck,
-  Phone,
   Headphones,
   Calendar,
   MapPin,
@@ -293,9 +292,11 @@ export default function ServicesPage() {
                       <FileText className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">Monthly detailed reports</h4>
+                      <h4 className="text-lg font-semibold text-foreground mb-2">
+                        Daily, Weekly, or Monthly detailed reports
+                      </h4>
                       <p className="text-muted-foreground text-sm">
-                        Comprehensive monthly reports with insights and recommendations. Track progress and plan future
+                        Comprehensive detailed reports with insights and recommendations. Track progress and plan future
                         strategies.
                       </p>
                     </div>
@@ -398,13 +399,13 @@ export default function ServicesPage() {
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-5 h-5 text-primary" />
+                      <Headphones className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">Expert consultation calls</h4>
+                      <h4 className="text-lg font-semibold text-foreground mb-2">Automated support system</h4>
                       <p className="text-muted-foreground text-sm">
-                        Regular strategy calls with reputation management experts. Get personalized advice for your
-                        unique challenges.
+                        Automated reputation management with email support. Get personalized guidance for your unique
+                        challenges through our online platform.
                       </p>
                     </div>
                   </div>
@@ -773,7 +774,7 @@ export default function ServicesPage() {
                 size="lg"
                 className="border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg bg-transparent"
               >
-                Schedule Consultation
+                Get Started Online
               </Button>
             </Link>
           </div>

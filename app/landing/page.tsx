@@ -172,7 +172,7 @@ export default function LandingPage() {
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Strategy calls</span>
+                    <span>Automated support</span>
                   </li>
                 </ul>
               </CardContent>

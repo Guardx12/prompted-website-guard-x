@@ -35,12 +35,62 @@ export default function FAQPage() {
           <Card className="bg-card border-border">
             <CardContent className="p-8">
               <Accordion type="single" collapsible className="space-y-4">
+                <AccordionItem value="item-access" className="border-border">
+                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
+                    How do I access my reports?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pt-4">
+                    <p>
+                      You'll receive secure login credentials to access your personalized dashboard with real-time
+                      reputation scores, detailed reports, and monitoring alerts. Reports are also emailed to you
+                      weekly.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-contract" className="border-border">
+                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
+                    Is there a contract?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pt-4">
+                    <p>
+                      No, GuardX operates on a month-to-month basis with no long-term contracts. You can cancel anytime
+                      without penalties or fees.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-updates" className="border-border">
+                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
+                    How often are updates?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pt-4">
+                    <p>
+                      You receive real-time alerts for urgent issues, daily monitoring summaries, and comprehensive
+                      weekly reports. Your dashboard is updated continuously throughout the day.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-cancel" className="border-border">
+                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
+                    Can I cancel anytime?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pt-4">
+                    <p>
+                      Yes, absolutely. You can cancel your £299/month subscription at any time with no cancellation
+                      fees, penalties, or questions asked. Your service continues until the end of your current billing
+                      period.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+
                 <AccordionItem value="item-1" className="border-border">
                   <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
                     Is there a setup fee?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>No, GuardX does not charge setup fees. The only cost is the monthly subscription of £149.</p>
+                    <p>No, GuardX does not charge setup fees. The only cost is the monthly subscription of £299.</p>
                   </AccordionContent>
                 </AccordionItem>
 
@@ -251,8 +301,8 @@ export default function FAQPage() {
                   </div>
                   <h3 className="text-xl font-semibold text-foreground mb-4">Quick Response Guarantee</h3>
                   <p className="text-muted-foreground mb-6">
-                    We respond to all inquiries within 24 hours and provide free consultation calls to discuss your
-                    specific reputation management needs.
+                    We respond to all inquiries within 24 hours and provide automated reputation management solutions to
+                    discuss your specific needs.
                   </p>
                   <div className="grid grid-cols-2 gap-4 text-center">
                     <div>
@@ -260,8 +310,8 @@ export default function FAQPage() {
                       <div className="text-sm text-muted-foreground">Response Time</div>
                     </div>
                     <div>
-                      <div className="text-2xl font-bold text-primary">Free</div>
-                      <div className="text-sm text-muted-foreground">Consultation</div>
+                      <div className="text-2xl font-bold text-primary">Automated</div>
+                      <div className="text-sm text-muted-foreground">Solutions</div>
                     </div>
                   </div>
                 </div>

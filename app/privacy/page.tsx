@@ -1,6 +1,10 @@
+import { Navigation } from "@/components/navigation"
+
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-background">
+      <Navigation />
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-foreground mb-4">Privacy Policy</h1>
@@ -180,8 +184,8 @@ export default function PrivacyPage() {
                 </ul>
                 <p className="text-foreground">
                   To exercise these rights, contact{" "}
-                  <a href="mailto:support@guardx.com" className="text-primary hover:underline">
-                    support@guardx.com
+                  <a href="mailto:info@guardxnetwork.com" className="text-primary hover:underline">
+                    info@guardxnetwork.com
                   </a>
                   .
                 </p>
@@ -233,8 +237,8 @@ export default function PrivacyPage() {
                   <p className="text-foreground font-semibold mb-2">GUARDX Privacy Team</p>
                   <p className="text-foreground">
                     📧{" "}
-                    <a href="mailto:support@guardx.com" className="text-primary hover:underline">
-                      support@guardx.com
+                    <a href="mailto:info@guardxnetwork.com" className="text-primary hover:underline">
+                      info@guardxnetwork.com
                     </a>
                   </p>
                 </div>

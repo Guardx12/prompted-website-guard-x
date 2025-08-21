@@ -198,7 +198,7 @@ export default function WhyThisWorksPage() {
                 size="lg"
                 className="border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg bg-transparent"
               >
-                Schedule a Call
+                Get Started Online
               </Button>
             </Link>
           </div>
