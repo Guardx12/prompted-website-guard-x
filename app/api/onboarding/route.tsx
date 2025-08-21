@@ -10,14 +10,18 @@ export async function POST(request: NextRequest) {
     const transporter = nodemailer.createTransport({
       host: "smtp-mail.outlook.com",
       port: 587,
-      secure: false,
+      secure: false, // Use STARTTLS
       auth: {
         user: "info@guardxnetwork.com",
         pass: "Bigla1212!",
       },
       tls: {
+        ciphers: "SSLv3", // Add specific cipher for Outlook compatibility
         rejectUnauthorized: false,
       },
+      connectionTimeout: 60000,
+      greetingTimeout: 30000,
+      socketTimeout: 60000,
     })
 
     console.log("[v0] Testing SMTP connection...")
