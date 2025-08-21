@@ -1,9 +1,7 @@
 "use client"
 
 import { useState } from "react"
-
 import type React from "react"
-
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -12,29 +10,18 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp"
-import { CheckCircle, Mail, ArrowLeft, Shield } from "lucide-react"
-
-enum OnboardingStep {
-  FORM = "form",
-  VERIFICATION = "verification",
-  SUCCESS = "success",
-}
+import { CheckCircle } from "lucide-react"
 
 export default function OnboardingPage() {
-  const [currentStep, setCurrentStep] = useState<OnboardingStep>(OnboardingStep.FORM)
+  const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isVerifying, setIsVerifying] = useState(false)
-  const [sessionId, setSessionId] = useState<string>("")
-  const [otpCode, setOtpCode] = useState("")
-  const [otpError, setOtpError] = useState("")
   const [formData, setFormData] = useState({
     fullName: "",
     companyName: "",
     companyWebsite: "",
     email: "",
     phone: "",
-    planSelected: "Business",
+    planSelected: "Business Plan (£299/month)",
     numberOfLocations: "1",
     keywords: "",
     notes: "",
@@ -43,10 +30,9 @@ export default function OnboardingPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setOtpError("")
 
     try {
-      const response = await fetch("/api/send-otp", {
+      const response = await fetch("/api/onboarding", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -57,82 +43,14 @@ export default function OnboardingPage() {
       const result = await response.json()
 
       if (result.success) {
-        setSessionId(result.sessionId)
-        setCurrentStep(OnboardingStep.VERIFICATION)
+        setIsSubmitted(true)
       } else {
-        const errorMessage = result.error || "There was an error sending the verification code. Please try again."
-        alert(errorMessage)
-        console.error("OTP sending failed:", result)
+        alert("There was an error submitting your form. Please try again.")
+        console.error("Form submission failed:", result)
       }
     } catch (error) {
-      console.error("OTP sending error:", error)
+      console.error("Form submission error:", error)
       alert("Network error. Please check your connection and try again.")
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  const handleVerifyOTP = async () => {
-    if (otpCode.length !== 6) {
-      setOtpError("Please enter the complete 6-digit code")
-      return
-    }
-
-    setIsVerifying(true)
-    setOtpError("")
-
-    try {
-      const response = await fetch("/api/verify-otp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          sessionId,
-          code: otpCode,
-        }),
-      })
-
-      const result = await response.json()
-
-      if (result.success) {
-        setCurrentStep(OnboardingStep.SUCCESS)
-      } else {
-        setOtpError(result.error || "Invalid verification code. Please try again.")
-      }
-    } catch (error) {
-      console.error("OTP verification error:", error)
-      setOtpError("Network error. Please check your connection and try again.")
-    } finally {
-      setIsVerifying(false)
-    }
-  }
-
-  const handleResendOTP = async () => {
-    setIsSubmitting(true)
-    setOtpError("")
-    setOtpCode("")
-
-    try {
-      const response = await fetch("/api/send-otp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-
-      const result = await response.json()
-
-      if (result.success) {
-        setSessionId(result.sessionId)
-        alert("New verification code sent to your email")
-      } else {
-        setOtpError(result.error || "Failed to resend verification code")
-      }
-    } catch (error) {
-      console.error("Resend OTP error:", error)
-      setOtpError("Network error. Please check your connection and try again.")
     } finally {
       setIsSubmitting(false)
     }
@@ -142,14 +60,7 @@ export default function OnboardingPage() {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
-  const handleBackToForm = () => {
-    setCurrentStep(OnboardingStep.FORM)
-    setOtpCode("")
-    setOtpError("")
-    setSessionId("")
-  }
-
-  if (currentStep === OnboardingStep.SUCCESS) {
+  if (isSubmitted) {
     return (
       <div className="min-h-screen bg-background">
         <Navigation />
@@ -160,122 +71,14 @@ export default function OnboardingPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <CheckCircle className="w-8 h-8 text-primary" />
                 </div>
-                <h1 className="text-3xl font-bold text-foreground mb-4">Email Verified!</h1>
+                <h1 className="text-3xl font-bold text-foreground mb-4">Thank You!</h1>
                 <p className="text-lg text-muted-foreground mb-6">
-                  Thank you! Your email has been verified and your onboarding has been completed.
+                  Your onboarding form has been submitted successfully.
                 </p>
                 <p className="text-sm text-muted-foreground">
                   Our team will review your submission and contact you at {formData.email} within 24 hours to get your
                   GuardX protection started.
                 </p>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-        <Footer />
-      </div>
-    )
-  }
-
-  if (currentStep === OnboardingStep.VERIFICATION) {
-    return (
-      <div className="min-h-screen bg-background">
-        <Navigation />
-        <section className="py-20 lg:py-32">
-          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                Verify Your <span className="text-primary">Email</span>
-              </h1>
-              <p className="text-xl text-muted-foreground">Check your inbox for the verification code</p>
-            </div>
-
-            <Card className="bg-card border-border">
-              <CardHeader>
-                <CardTitle className="text-2xl text-center flex items-center justify-center gap-2">
-                  <Shield className="w-6 h-6 text-primary" />
-                  Email Verification
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-8">
-                <div className="text-center mb-8">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Mail className="w-8 h-8 text-primary" />
-                  </div>
-                  <p className="text-muted-foreground mb-2">We've sent a 6-digit verification code to:</p>
-                  <p className="text-foreground font-semibold text-lg">{formData.email}</p>
-                </div>
-
-                <div className="space-y-6">
-                  <div>
-                    <Label htmlFor="otp" className="text-center block mb-4">
-                      Enter Verification Code
-                    </Label>
-                    <div className="flex justify-center">
-                      <InputOTP
-                        maxLength={6}
-                        value={otpCode}
-                        onChange={(value) => {
-                          setOtpCode(value)
-                          setOtpError("")
-                        }}
-                      >
-                        <InputOTPGroup>
-                          <InputOTPSlot index={0} />
-                          <InputOTPSlot index={1} />
-                          <InputOTPSlot index={2} />
-                          <InputOTPSlot index={3} />
-                          <InputOTPSlot index={4} />
-                          <InputOTPSlot index={5} />
-                        </InputOTPGroup>
-                      </InputOTP>
-                    </div>
-                  </div>
-
-                  {otpError && (
-                    <div className="text-center">
-                      <p className="text-destructive text-sm">{otpError}</p>
-                    </div>
-                  )}
-
-                  <div className="space-y-4">
-                    <Button
-                      onClick={handleVerifyOTP}
-                      size="lg"
-                      disabled={isVerifying || otpCode.length !== 6}
-                      className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold disabled:opacity-50"
-                    >
-                      {isVerifying ? "Verifying..." : "Verify Email"}
-                    </Button>
-
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <Button
-                        onClick={handleBackToForm}
-                        variant="outline"
-                        size="lg"
-                        className="flex-1 border-border text-foreground hover:bg-muted bg-transparent"
-                      >
-                        <ArrowLeft className="w-4 h-4 mr-2" />
-                        Back to Form
-                      </Button>
-
-                      <Button
-                        onClick={handleResendOTP}
-                        variant="outline"
-                        size="lg"
-                        disabled={isSubmitting}
-                        className="flex-1 border-primary text-primary hover:bg-primary/10 bg-transparent"
-                      >
-                        {isSubmitting ? "Sending..." : "Resend Code"}
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div className="text-center text-sm text-muted-foreground">
-                    <p>Didn't receive the code? Check your spam folder or click "Resend Code"</p>
-                    <p className="mt-2">The code will expire in 10 minutes</p>
-                  </div>
-                </div>
               </CardContent>
             </Card>
           </div>
@@ -355,14 +158,14 @@ export default function OnboardingPage() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="phone">Phone Number (Optional)</Label>
+                    <Label htmlFor="phone">Phone Number *</Label>
                     <Input
                       id="phone"
                       type="tel"
+                      required
                       value={formData.phone}
                       onChange={(e) => handleInputChange("phone", e.target.value)}
                       className="mt-1"
-                      placeholder="For account verification only"
                     />
                   </div>
                 </div>
@@ -378,7 +181,7 @@ export default function OnboardingPage() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="Business">Business Plan (£299/month)</SelectItem>
+                        <SelectItem value="Business Plan (£299/month)">Business Plan (£299/month)</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -433,7 +236,7 @@ export default function OnboardingPage() {
                   disabled={isSubmitting}
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold disabled:opacity-50"
                 >
-                  {isSubmitting ? "Sending Verification Code..." : "Continue to Email Verification"}
+                  {isSubmitting ? "Submitting..." : "Submit Onboarding Form"}
                 </Button>
               </form>
             </CardContent>
