@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
 
     console.log("[v0] Attempting to send email with form data:", formData)
 
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       host: "smtp-mail.outlook.com",
       port: 587,
       secure: false,
