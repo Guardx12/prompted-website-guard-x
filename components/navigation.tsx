@@ -28,7 +28,7 @@ export function Navigation() {
             <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
               <div className="relative w-20 h-12 sm:w-24 sm:h-14 md:w-28 md:h-16 lg:w-32 lg:h-18">
                 <Image
-                  src="/images/guardx-final-logo.jpg"
+                  src="/images/guardx-new-logo.jpg"
                   alt="GuardX - Reputation Management"
                   fill
                   className="object-contain"

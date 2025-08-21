@@ -31,11 +31,11 @@ export default function HomePage() {
             {/* Logo */}
             <div className="flex justify-center mb-8">
               <Image
-                src="/images/guardx-final-logo.jpg"
+                src="/images/guardx-new-logo.jpg"
                 alt="GuardX Company Logo"
-                width={400}
-                height={160}
-                className="w-60 md:w-72 lg:w-80 h-auto object-contain"
+                width={350}
+                height={140}
+                className="w-52 md:w-64 lg:w-72 h-auto object-contain"
                 priority
               />
             </div>
