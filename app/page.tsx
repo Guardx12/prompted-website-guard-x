@@ -25,17 +25,17 @@ export default function HomePage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32">
+      <section className="relative pt-6 pb-20 lg:pt-8 lg:pb-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             {/* Logo */}
             <div className="flex justify-center mb-8">
               <Image
-                src="/images/guardx-company-logo.jpg"
+                src="/images/guardx-final-logo.jpg"
                 alt="GuardX Company Logo"
                 width={400}
                 height={160}
-                className="w-80 md:w-96 lg:w-[28rem] h-auto object-contain"
+                className="w-60 md:w-72 lg:w-80 h-auto object-contain"
                 priority
               />
             </div>

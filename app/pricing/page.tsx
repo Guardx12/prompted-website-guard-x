@@ -26,13 +26,8 @@ export default function PricingPage() {
 
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-md mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             <Card className="bg-card border-primary border-2 relative">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <span className="bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold">
-                  Most Popular / Best Value
-                </span>
-              </div>
               <CardHeader className="text-center pb-8 pt-8">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <TrendingUp className="w-8 h-8 text-primary" />
@@ -47,7 +42,6 @@ export default function PricingPage() {
                       <div className="text-muted-foreground text-sm">/month</div>
                     </div>
                   </div>
-                  <p className="text-lg text-muted-foreground font-semibold">+ £149 per additional location</p>
                 </div>
 
                 <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
@@ -82,6 +76,50 @@ export default function PricingPage() {
                   <p>✓ 100% Automated Service</p>
                   <p>✓ Cancel Anytime</p>
                   <p>✓ No Setup Fees</p>
+                </div>
+              </CardHeader>
+            </Card>
+
+            <Card className="bg-card border-border relative">
+              <CardHeader className="text-center pb-8 pt-8">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Shield className="w-8 h-8 text-primary" />
+                </div>
+                <CardTitle className="text-2xl font-bold text-foreground mb-2">Multi-Location Add-On</CardTitle>
+                <p className="text-muted-foreground mb-6">Manage additional business locations</p>
+
+                <div className="mb-6">
+                  <div className="flex items-center justify-center gap-1 mb-2">
+                    <span className="text-4xl font-bold text-primary">£149</span>
+                    <div className="text-left">
+                      <div className="text-muted-foreground text-sm">/month</div>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground">per additional location</p>
+                </div>
+
+                <div className="text-center mb-8">
+                  <p className="text-sm text-muted-foreground max-w-sm mx-auto">
+                    Extend your reputation protection to additional business locations with the same comprehensive
+                    monitoring and support.
+                  </p>
+                </div>
+
+                <Link href="/onboarding">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg font-semibold w-full mb-4 bg-transparent"
+                  >
+                    Add Locations
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
+
+                <div className="space-y-2 text-sm text-muted-foreground">
+                  <p>✓ Same Features as Business Plan</p>
+                  <p>✓ Individual Location Dashboards</p>
+                  <p>✓ Flexible Scaling</p>
                 </div>
               </CardHeader>
             </Card>
@@ -152,7 +190,7 @@ export default function PricingPage() {
               {
                 question: "How does per-location pricing work?",
                 answer:
-                  "Your first location costs £299/month and includes all our advanced features. Each additional location is only £150/month with the same comprehensive monitoring and support.",
+                  "Your first location costs £299/month with our Business Plan and includes all advanced features. Each additional location is £149/month with the same comprehensive monitoring and support through our Multi-Location Add-On.",
               },
               {
                 question: "Do you handle everything online?",

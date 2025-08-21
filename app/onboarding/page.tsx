@@ -30,11 +30,26 @@ export default function OnboardingPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Here you would normally send to your backend
-    // For now, we'll simulate the email sending
-    console.log("Form submitted:", formData)
+    const emailBody = `
+New Onboarding Form Submission:
 
-    // Simulate API call
+Full Name: ${formData.fullName}
+Company Name: ${formData.companyName}
+Company Website: ${formData.companyWebsite}
+Email: ${formData.email}
+Phone: ${formData.phone || "Not provided"}
+Plan Selected: ${formData.planSelected}
+Number of Locations: ${formData.numberOfLocations}
+Keywords/Brand Names: ${formData.keywords}
+Notes: ${formData.notes || "None provided"}
+
+Submitted at: ${new Date().toLocaleString()}
+    `.trim()
+
+    const mailtoLink = `mailto:info@guardxnetwork.com?subject=New Onboarding Form Submission - ${formData.companyName}&body=${encodeURIComponent(emailBody)}`
+    window.location.href = mailtoLink
+
+    // Simulate API call delay before showing success
     setTimeout(() => {
       setIsSubmitted(true)
     }, 1000)
@@ -119,9 +134,9 @@ export default function OnboardingPage() {
                   <Label htmlFor="companyWebsite">Company Website *</Label>
                   <Input
                     id="companyWebsite"
-                    type="url"
+                    type="text"
                     required
-                    placeholder="https://www.yourcompany.com"
+                    placeholder="Enter your website or company URL"
                     value={formData.companyWebsite}
                     onChange={(e) => handleInputChange("companyWebsite", e.target.value)}
                     className="mt-1"
@@ -178,12 +193,11 @@ export default function OnboardingPage() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="1">1 Location</SelectItem>
-                        <SelectItem value="2">2 Locations</SelectItem>
-                        <SelectItem value="3">3 Locations</SelectItem>
-                        <SelectItem value="4">4 Locations</SelectItem>
-                        <SelectItem value="5">5 Locations</SelectItem>
-                        <SelectItem value="6+">6+ Locations</SelectItem>
+                        {Array.from({ length: 100 }, (_, i) => i + 1).map((num) => (
+                          <SelectItem key={num} value={num.toString()}>
+                            {num} Location{num > 1 ? "s" : ""}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </div>

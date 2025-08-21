@@ -21,8 +21,21 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Form submission logic would go here
-    console.log("Form submitted:", formData)
+
+    const emailBody = `
+New Contact Form Submission:
+
+Name: ${formData.name}
+Email: ${formData.email}
+Business Name: ${formData.businessName}
+Message: ${formData.message}
+
+Submitted at: ${new Date().toLocaleString()}
+    `.trim()
+
+    const mailtoLink = `mailto:info@guardxnetwork.com?subject=Contact Form Submission from ${formData.name}&body=${encodeURIComponent(emailBody)}`
+    window.location.href = mailtoLink
+
     // Reset form
     setFormData({ name: "", email: "", businessName: "", message: "" })
     alert("Thank you for your message! We'll get back to you within 24 hours.")
@@ -149,8 +162,18 @@ export default function ContactPage() {
                       size="lg"
                       className="w-full border-primary text-primary hover:bg-primary/10 py-3 text-lg font-semibold bg-transparent"
                       onClick={() => {
-                        // Placeholder for Calendly integration
-                        alert("Calendly integration coming soon! Please use the contact form above for now.")
+                        const emailBody = `
+New Free Consultation Request:
+
+Name: ${formData.name || "Not provided"}
+Email: ${formData.email || "Not provided"}
+Business Name: ${formData.businessName || "Not provided"}
+
+Requested at: ${new Date().toLocaleString()}
+                        `.trim()
+
+                        const mailtoLink = `mailto:info@guardxnetwork.com?subject=Free Consultation Request&body=${encodeURIComponent(emailBody)}`
+                        window.location.href = mailtoLink
                       }}
                     >
                       Book a Free Consultation
@@ -162,8 +185,18 @@ export default function ContactPage() {
                       size="lg"
                       className="w-full border-primary text-primary hover:bg-primary/10 py-3 text-lg font-semibold bg-transparent"
                       onClick={() => {
-                        // Placeholder for automated onboarding
-                        alert("Automated onboarding coming soon! Please use the contact form above for now.")
+                        const emailBody = `
+New Automated Setup Request:
+
+Name: ${formData.name || "Not provided"}
+Email: ${formData.email || "Not provided"}
+Business Name: ${formData.businessName || "Not provided"}
+
+Requested at: ${new Date().toLocaleString()}
+                        `.trim()
+
+                        const mailtoLink = `mailto:info@guardxnetwork.com?subject=Automated Setup Request&body=${encodeURIComponent(emailBody)}`
+                        window.location.href = mailtoLink
                       }}
                     >
                       Start Automated Setup
