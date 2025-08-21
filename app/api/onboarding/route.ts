@@ -1,49 +1,29 @@
-import { type NextRequest, NextResponse } from "next/server"
-import nodemailer from "nodemailer"
+import { Resend } from "resend";
 
-export async function POST(request: NextRequest) {
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+export async function POST(req: Request) {
   try {
-    const formData = await request.json()
+    const { name, email, message } = await req.json();
 
-    const transporter = nodemailer.createTransporter({
-      host: "smtp.office365.com",
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD,
-      },
-    })
+    if (!name || !email || !message) {
+      return new Response(JSON.stringify({ error: "Missing fields" }), { status: 400 });
+    }
 
-    await transporter.verify()
+    console.log("Sending email to info@guardxnetwork.com");
 
-    const emailContent = `
-New GuardX Onboarding Submission
-
-Full Name: ${formData.fullName}
-Company Name: ${formData.companyName}
-Company Website: ${formData.companyWebsite}
-Email Address: ${formData.email}
-Phone Number: ${formData.phone}
-Plan Selected: ${formData.planSelected}
-Number of Locations: ${formData.numberOfLocations}
-Keywords / Brand Names to Monitor: ${formData.keywords}
-Notes / Special Instructions: ${formData.notes || "None"}
-
-Submitted at: ${new Date().toLocaleString()}
-IP Address: ${request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || "Unknown"}
-    `
-
-    await transporter.sendMail({
-      from: process.env.SMTP_USER,
+    await resend.emails.send({
+      from: "Website Form <onboarding@resend.dev>",
       to: "info@guardxnetwork.com",
-      subject: `New GuardX Onboarding - ${formData.companyName}`,
-      text: emailContent,
-    })
+      subject: "New Form Submission",
+      text: `From: ${name} (${email})\n\nMessage:\n${message}`,
+    });
 
-    return NextResponse.json({ success: true })
-  } catch (error) {
-    console.error("Email sending error:", error)
-    return NextResponse.json({ success: false, error: "Failed to send email" }, { status: 500 })
+    console.log("Email sent successfully");
+
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
+  } catch (err) {
+    console.error("Error sending email:", err);
+    return new Response(JSON.stringify({ error: "Failed to send email" }), { status: 500 });
   }
 }
