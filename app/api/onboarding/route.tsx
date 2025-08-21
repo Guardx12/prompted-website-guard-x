@@ -1,82 +1,71 @@
+import nodemailer from "nodemailer"
 import { type NextRequest, NextResponse } from "next/server"
-import { Resend } from "resend"
-
-const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.json()
 
-    const businessEmailContent = `
-      <h2>New Onboarding Form Submission</h2>
-      <p><strong>Full Name:</strong> ${formData.fullName}</p>
-      <p><strong>Company Name:</strong> ${formData.companyName}</p>
-      <p><strong>Company Website:</strong> ${formData.companyWebsite}</p>
-      <p><strong>Email:</strong> ${formData.email}</p>
-      <p><strong>Phone:</strong> ${formData.phone || "Not provided"}</p>
-      <p><strong>Plan Selected:</strong> ${formData.planSelected}</p>
-      <p><strong>Number of Locations:</strong> ${formData.numberOfLocations}</p>
-      <p><strong>Keywords/Brand Names:</strong> ${formData.keywords}</p>
-      <p><strong>Notes:</strong> ${formData.notes || "None provided"}</p>
-      <p><strong>Submitted at:</strong> ${new Date().toLocaleString()}</p>
-    `
-
-    const userEmailContent = `
-      <h2>Welcome to GuardX!</h2>
-      <p>Dear ${formData.fullName},</p>
-      <p>Thank you for onboarding with GuardX. Our team will now set up your account and be in touch shortly.</p>
-      
-      <h3>Your submission details:</h3>
-      <ul>
-        <li><strong>Company:</strong> ${formData.companyName}</li>
-        <li><strong>Plan:</strong> ${formData.planSelected}</li>
-        <li><strong>Locations:</strong> ${formData.numberOfLocations}</li>
-      </ul>
-      
-      <p>We'll contact you at ${formData.email} within 24 hours to complete your setup.</p>
-      
-      <p>Best regards,<br>The GuardX Team</p>
-    `
-
-    try {
-      // Send email to business
-      await resend.emails.send({
-        from: "GuardX Onboarding <noreply@guardxnetwork.com>",
-        to: ["info@guardxnetwork.com"],
-        subject: `New Onboarding: ${formData.companyName}`,
-        html: businessEmailContent,
-      })
-
-      // Send confirmation email to user
-      await resend.emails.send({
-        from: "GuardX Team <noreply@guardxnetwork.com>",
-        to: [formData.email],
-        subject: "Welcome to GuardX - Account Setup in Progress",
-        html: userEmailContent,
-      })
-
-      return NextResponse.json({
-        success: true,
-        message: "Form submitted successfully and emails sent",
-      })
-    } catch (emailError) {
-      console.error("Email sending error:", emailError)
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Form submitted but email delivery failed",
-        },
-        { status: 500 },
-      )
-    }
-  } catch (error) {
-    console.error("Form submission error:", error)
-    return NextResponse.json(
-      {
-        success: false,
-        message: "Failed to submit form",
+    const transporter = nodemailer.createTransport({
+      host: "smtp-mail.outlook.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: "info@guardxnetwork.com",
+        pass: "Bigla1212!",
       },
-      { status: 500 },
-    )
+    })
+
+    await transporter.sendMail({
+      from: "info@guardxnetwork.com",
+      to: "info@guardxnetwork.com",
+      subject: "New Form Submission",
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #d4af37; border-bottom: 2px solid #d4af37; padding-bottom: 10px;">
+            New Form Submission
+          </h2>
+          
+          <div style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #333; margin-top: 0;">Contact Information</h3>
+            <p><strong>Full Name:</strong> ${formData.fullName}</p>
+            <p><strong>Company Name:</strong> ${formData.companyName}</p>
+            <p><strong>Company Website:</strong> ${formData.companyWebsite}</p>
+            <p><strong>Email Address:</strong> ${formData.email}</p>
+            <p><strong>Phone Number:</strong> ${formData.phone || "Not provided"}</p>
+          </div>
+
+          <div style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #333; margin-top: 0;">Service Details</h3>
+            <p><strong>Plan Selected:</strong> ${formData.planSelected}</p>
+            <p><strong>Number of Locations:</strong> ${formData.numberOfLocations}</p>
+          </div>
+
+          <div style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #333; margin-top: 0;">Monitoring Requirements</h3>
+            <p><strong>Keywords / Brand Names to Monitor:</strong></p>
+            <p style="background-color: white; padding: 10px; border-radius: 4px; white-space: pre-wrap;">${formData.keywords}</p>
+            
+            ${
+              formData.notes
+                ? `
+              <p><strong>Notes or Special Instructions:</strong></p>
+              <p style="background-color: white; padding: 10px; border-radius: 4px; white-space: pre-wrap;">${formData.notes}</p>
+            `
+                : ""
+            }
+          </div>
+
+          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 12px;">
+            <p>This email was sent from the GuardX onboarding form.</p>
+            <p>Submission time: ${new Date().toLocaleString()}</p>
+          </div>
+        </div>
+      `,
+    })
+
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    console.error("Error sending email:", error)
+    return NextResponse.json({ success: false, error: "Failed to send email" }, { status: 500 })
   }
 }

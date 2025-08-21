@@ -72,9 +72,7 @@ export default function OnboardingPage() {
                   <CheckCircle className="w-8 h-8 text-primary" />
                 </div>
                 <h1 className="text-3xl font-bold text-foreground mb-4">Thank You!</h1>
-                <p className="text-lg text-muted-foreground mb-6">
-                  Thank you for onboarding with GuardX. Our team will now set up your account and be in touch shortly.
-                </p>
+                <p className="text-lg text-muted-foreground mb-6">Thank you! Your submission has been received.</p>
                 <p className="text-sm text-muted-foreground">
                   You should receive a confirmation email at {formData.email} within the next few minutes.
                 </p>
