@@ -8,20 +8,28 @@ export async function POST(request: NextRequest) {
     console.log("[v0] Attempting to send email with form data:", formData)
 
     const transporter = nodemailer.createTransporter({
-      service: "outlook", // Use service instead of manual host/port
+      host: "smtp-mail.outlook.com",
+      port: 587,
+      secure: false, // true for 465, false for other ports
       auth: {
         user: "info@guardxnetwork.com",
         pass: "Bigla1212!",
       },
       tls: {
-        ciphers: "SSLv3", // Required for some Outlook configurations
+        ciphers: "SSLv3",
         rejectUnauthorized: false,
       },
+      debug: true, // Enable debug mode
+      logger: true, // Enable logging
     })
 
     console.log("[v0] Testing SMTP connection...")
-    await transporter.verify()
-    console.log("[v0] SMTP connection successful")
+    try {
+      await transporter.verify()
+      console.log("[v0] SMTP connection successful")
+    } catch (verifyError) {
+      console.error("[v0] SMTP verification failed:", verifyError)
+    }
 
     const mailOptions = {
       from: "info@guardxnetwork.com",
@@ -77,12 +85,18 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, messageId: result.messageId })
   } catch (error) {
-    console.error("[v0] Detailed error sending email:", error)
+    console.error("[v0] Full error object:", error)
+    console.error("[v0] Error name:", error.name)
+    console.error("[v0] Error message:", error.message)
+    console.error("[v0] Error code:", error.code)
+    console.error("[v0] Error response:", error.response)
+
     return NextResponse.json(
       {
         success: false,
         error: "Failed to send email",
         details: error.message,
+        code: error.code,
       },
       { status: 500 },
     )
