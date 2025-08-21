@@ -46,11 +46,13 @@ export default function OnboardingPage() {
       if (result.success) {
         setIsSubmitted(true)
       } else {
-        alert("There was an error submitting your form. Please try again.")
+        const errorMessage = result.error || "There was an error submitting your form. Please try again."
+        alert(errorMessage)
+        console.error("Form submission failed:", result)
       }
     } catch (error) {
       console.error("Form submission error:", error)
-      alert("There was an error submitting your form. Please try again.")
+      alert("Network error. Please check your connection and try again.")
     } finally {
       setIsSubmitting(false)
     }
