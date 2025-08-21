@@ -15,6 +15,7 @@ import { CheckCircle } from "lucide-react"
 
 export default function OnboardingPage() {
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     fullName: "",
     companyName: "",
@@ -29,30 +30,30 @@ export default function OnboardingPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsSubmitting(true)
 
-    const emailBody = `
-New Onboarding Form Submission:
+    try {
+      const response = await fetch("/api/onboarding", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
 
-Full Name: ${formData.fullName}
-Company Name: ${formData.companyName}
-Company Website: ${formData.companyWebsite}
-Email: ${formData.email}
-Phone: ${formData.phone || "Not provided"}
-Plan Selected: ${formData.planSelected}
-Number of Locations: ${formData.numberOfLocations}
-Keywords/Brand Names: ${formData.keywords}
-Notes: ${formData.notes || "None provided"}
+      const result = await response.json()
 
-Submitted at: ${new Date().toLocaleString()}
-    `.trim()
-
-    const mailtoLink = `mailto:info@guardxnetwork.com?subject=New Onboarding Form Submission - ${formData.companyName}&body=${encodeURIComponent(emailBody)}`
-    window.location.href = mailtoLink
-
-    // Simulate API call delay before showing success
-    setTimeout(() => {
-      setIsSubmitted(true)
-    }, 1000)
+      if (result.success) {
+        setIsSubmitted(true)
+      } else {
+        alert("There was an error submitting your form. Please try again.")
+      }
+    } catch (error) {
+      console.error("Form submission error:", error)
+      alert("There was an error submitting your form. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleInputChange = (field: string, value: string) => {
@@ -231,9 +232,10 @@ Submitted at: ${new Date().toLocaleString()}
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold"
+                  disabled={isSubmitting}
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold disabled:opacity-50"
                 >
-                  Submit Onboarding Form
+                  {isSubmitting ? "Submitting..." : "Submit Onboarding Form"}
                 </Button>
               </form>
             </CardContent>
