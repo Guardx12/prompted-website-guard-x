@@ -2,6 +2,7 @@
 
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import { Button } from "@/components/ui/button"
 
 export default function OnboardingPage() {
   return (
@@ -15,25 +16,13 @@ export default function OnboardingPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               Welcome to <span className="text-primary">GuardX</span>
             </h1>
-            <p className="text-xl text-muted-foreground">
-              Please fill out the onboarding form below to get started.
-            </p>
+            <p className="text-xl text-muted-foreground">Please fill out the onboarding form below to get started.</p>
           </div>
 
-          {/* Google Form Embed */}
-          <div className="mt-8">
-            <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLSfovKqszGwkMe5k2o9dr_JHnevlgeG74Be-oHWa8-0x0k-hAw/viewform?embedded=true"
-              width="100%"
-              height="5215"
-              frameBorder="0"
-              marginHeight={0}
-              marginWidth={0}
-              title="Customer Onboarding Form"
-              style={{ border: "1px solid #ccc", borderRadius: "8px" }}
-            >
-              Loading…
-            </iframe>
+          <div className="mt-8 text-center">
+            <Button size="lg" className="px-8 py-4 text-lg">
+              Get Started
+            </Button>
           </div>
         </div>
       </section>

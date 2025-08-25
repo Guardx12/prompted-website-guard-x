@@ -35,13 +35,13 @@ export default function PricingPage() {
                   Most Popular
                 </Badge>
               </div>
-              <Card className="bg-card border-primary border-2 relative">
-                <CardHeader className="text-center pb-8 pt-8">
+              <Card className="bg-card border-primary border-2 relative h-full">
+                <CardHeader className="text-center pb-8 pt-8 px-6">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                     <TrendingUp className="w-8 h-8 text-primary" />
                   </div>
-                  <CardTitle className="text-3xl font-bold text-foreground mb-2">Business Plan</CardTitle>
-                  <p className="text-muted-foreground mb-6">Perfect for single location businesses</p>
+                  <CardTitle className="text-3xl font-bold text-foreground mb-2 break-words">Business Plan</CardTitle>
+                  <p className="text-muted-foreground mb-6 break-words">Perfect for single location businesses</p>
 
                   <div className="mb-6">
                     <div className="flex items-center justify-center gap-1 mb-2">
@@ -54,42 +54,40 @@ export default function PricingPage() {
 
                   <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
                     {[
-                      "Covers 1 business location",
-                      "Dashboard login for 1 user",
-                      "Daily, weekly, or monthly branded reports",
-                      "Review monitoring & sentiment analysis",
+                      "Reputation monitoring",
+                      "Instant alerts",
+                      "Branded weekly reports",
+                      "Automated review generation (INCLUDED)",
                       "Real-time alerts",
                       "Priority email support",
                       "Extra locations: £149/month each",
                     ].map((feature, index) => (
                       <li key={index} className="flex items-center gap-3">
                         <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                        <span className="text-sm text-foreground">{feature}</span>
+                        <span className="text-sm text-foreground break-words overflow-wrap-break-word">{feature}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <Link href="/onboarding">
-                    <Button
-                      size="lg"
-                      className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold w-full mb-4"
-                    >
-                      Get Started
-                      <ArrowRight className="ml-2 w-5 h-5" />
-                    </Button>
-                  </Link>
+                  <Button
+                    size="lg"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold w-full mb-4"
+                  >
+                    Get Started
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
                 </CardHeader>
               </Card>
             </div>
 
             {/* Growth Plan */}
-            <Card className="bg-card border-border relative">
-              <CardHeader className="text-center pb-8 pt-8">
+            <Card className="bg-card border-border relative h-full">
+              <CardHeader className="text-center pb-8 pt-8 px-6">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Users className="w-8 h-8 text-primary" />
                 </div>
-                <CardTitle className="text-3xl font-bold text-foreground mb-2">Growth Plan</CardTitle>
-                <p className="text-muted-foreground mb-6">For growing teams and businesses</p>
+                <CardTitle className="text-3xl font-bold text-foreground mb-2 break-words">Growth Plan</CardTitle>
+                <p className="text-muted-foreground mb-6 break-words">For growing teams and businesses</p>
 
                 <div className="mb-6">
                   <div className="flex items-center justify-center gap-1 mb-2">
@@ -102,8 +100,7 @@ export default function PricingPage() {
 
                 <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
                   {[
-                    "Covers 1 business location",
-                    "Dashboard login for up to 5 users",
+                    "Everything in Business Plan",
                     "Full reputation score dashboard",
                     "Advanced monitoring across multiple sources",
                     "Automated review collection tools",
@@ -112,32 +109,30 @@ export default function PricingPage() {
                   ].map((feature, index) => (
                     <li key={index} className="flex items-center gap-3">
                       <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm text-foreground">{feature}</span>
+                      <span className="text-sm text-foreground break-words overflow-wrap-break-word">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
-                <Link href="/onboarding">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg font-semibold w-full mb-4 bg-transparent"
-                  >
-                    Get Started
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg font-semibold w-full mb-4 bg-transparent"
+                >
+                  Get Started
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
               </CardHeader>
             </Card>
 
             {/* Enterprise Plan */}
-            <Card className="bg-card border-border relative">
-              <CardHeader className="text-center pb-8 pt-8">
+            <Card className="bg-card border-border relative h-full">
+              <CardHeader className="text-center pb-8 pt-8 px-6">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Shield className="w-8 h-8 text-primary" />
                 </div>
-                <CardTitle className="text-3xl font-bold text-foreground mb-2">Enterprise Plan</CardTitle>
-                <p className="text-muted-foreground mb-6">Tailored for large organizations</p>
+                <CardTitle className="text-3xl font-bold text-foreground mb-2 break-words">Enterprise Plan</CardTitle>
+                <p className="text-muted-foreground mb-6 break-words">Tailored for large organizations</p>
 
                 <div className="mb-6">
                   <div className="flex items-center justify-center gap-1 mb-2">
@@ -156,7 +151,7 @@ export default function PricingPage() {
                   ].map((feature, index) => (
                     <li key={index} className="flex items-center gap-3">
                       <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm text-foreground">{feature}</span>
+                      <span className="text-sm text-foreground break-words overflow-wrap-break-word">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -175,23 +170,61 @@ export default function PricingPage() {
             </Card>
           </div>
 
-          <div className="text-center mt-16">
-            <p className="text-xl font-semibold text-primary mb-8">Protect your reputation today with GuardX.</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
-              <div className="text-center">
-                <p className="text-sm text-muted-foreground">✓ Cancel anytime. No long-term contracts.</p>
-              </div>
-              <div className="text-center">
-                <p className="text-sm text-muted-foreground">✓ Extra locations are easy to add — scale as you grow.</p>
-              </div>
-              <div className="text-center">
-                <p className="text-sm text-muted-foreground">✓ Trusted by businesses who value their reputation.</p>
-              </div>
-              <div className="text-center">
-                <p className="text-sm text-muted-foreground">
-                  ✓ All monitoring and alerts handled securely and professionally.
-                </p>
-              </div>
+          <div className="text-center mt-16 mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4" id="fake-review-protection">
+              Optional Add-On: Fake Review Flagging & Removal
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-12">
+              Proactively identify and remove fake reviews that could harm your business.
+            </p>
+
+            <div className="max-w-2xl mx-auto">
+              <Card className="bg-card border-primary border-2 relative h-full">
+                <CardHeader className="text-center pb-8 pt-8 px-6">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Shield className="w-8 h-8 text-primary" />
+                  </div>
+                  <CardTitle className="text-3xl font-bold text-foreground mb-2 break-words">
+                    Fake Review Protection
+                  </CardTitle>
+                  <p className="text-muted-foreground mb-6 break-words">
+                    Advanced protection against fraudulent reviews
+                  </p>
+
+                  <div className="mb-6">
+                    <div className="flex items-center justify-center gap-1 mb-2">
+                      <span className="text-5xl font-bold text-primary">£499</span>
+                      <div className="text-left">
+                        <div className="text-muted-foreground text-sm">per location</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
+                    {[
+                      "AI-powered fake review detection",
+                      "Professional review flagging service",
+                      "Direct platform removal requests",
+                      "Detailed fraud analysis reports",
+                      "Priority response for urgent cases",
+                      "Works with all major review platforms",
+                    ].map((feature, index) => (
+                      <li key={index} className="flex items-center gap-3">
+                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                        <span className="text-sm text-foreground break-words overflow-wrap-break-word">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Button
+                    size="lg"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold w-full mb-4"
+                  >
+                    Add This Protection
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </CardHeader>
+              </Card>
             </div>
           </div>
         </div>
