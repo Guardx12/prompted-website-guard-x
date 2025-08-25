@@ -8,13 +8,14 @@ import {
   Shield,
   Star,
   TrendingUp,
-  Users,
   CheckCircle,
   ArrowRight,
   Clock,
   Award,
   Eye,
   AlertTriangle,
+  BarChart3,
+  MapPin,
 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
@@ -41,33 +42,37 @@ export default function HomePage() {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Protect Your Brand. <span className="text-primary">Guard Your Reputation.</span>
+              One Bad Review Can <span className="text-primary">Destroy Your Business</span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
-              We monitor, score, and protect your online reputation — so you can focus on running your business.
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-4 leading-relaxed">
+              Every day without protection, negative reviews and damaging content spread across the internet — costing
+              you customers and revenue.
             </p>
+
+            <p className="text-lg text-primary font-semibold mb-8">Every day without protection costs you customers</p>
 
             <div className="flex flex-wrap justify-center items-center gap-6 mb-8 text-sm font-medium">
               <div className="flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full">
                 <Shield className="w-4 h-4 text-primary" />
-                <span className="text-foreground">Trusted by Businesses</span>
+                <span className="text-foreground">24/7 Monitoring</span>
               </div>
               <div className="flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full">
                 <CheckCircle className="w-4 h-4 text-primary" />
-                <span className="text-foreground">Automated & Secure</span>
+                <span className="text-foreground">Instant Alerts</span>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <Button
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold shadow-lg"
-                onClick={() => document.getElementById("pricing-section")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                Get Started – £299/Month
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+              <Link href="/onboarding">
+                <Button
+                  size="lg"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-xl font-bold shadow-lg transform hover:scale-105 transition-all"
+                >
+                  Start Protecting Today
+                  <ArrowRight className="ml-2 w-6 h-6" />
+                </Button>
+              </Link>
               <Link href="/how-it-works">
                 <Button
                   variant="outline"
@@ -80,21 +85,21 @@ export default function HomePage() {
             </div>
 
             <p className="text-sm text-muted-foreground mb-8 font-medium">
-              Sign up today and start protecting your reputation immediately
+              Protection starts immediately — no setup required
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-primary" />
-                <span>24/7 monitoring & alerts</span>
+                <span>Instant threat detection</span>
               </div>
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-primary" />
-                <span>Professional reputation management</span>
+                <span>Weekly reputation reports</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-primary" />
-                <span>Automated response system</span>
+                <span>Crisis response support</span>
               </div>
             </div>
 
@@ -104,21 +109,21 @@ export default function HomePage() {
                   <Shield className="w-8 h-8 text-primary" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">Monitor</h3>
-                <p className="text-sm text-muted-foreground">Track mentions across the web</p>
+                <p className="text-sm text-muted-foreground">Catch threats before they spread</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <TrendingUp className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">Score</h3>
-                <p className="text-sm text-muted-foreground">Analyze reputation health</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">Alert</h3>
+                <p className="text-sm text-muted-foreground">Instant notifications of issues</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-8 h-8 text-primary" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">Protect</h3>
-                <p className="text-sm text-muted-foreground">Defend and improve image</p>
+                <p className="text-sm text-muted-foreground">Defend your reputation 24/7</p>
               </div>
             </div>
           </div>
@@ -130,411 +135,749 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-card/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">How It Works</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Trusted by Smart Business Owners</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Simple, automated reputation management in three easy steps
+              Join hundreds of businesses already protecting their reputation with GuardX
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Shield className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold text-foreground mb-4">Monitor</h3>
-              <p className="text-muted-foreground">
-                We track online mentions of your brand across all platforms and review sites.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <TrendingUp className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold text-foreground mb-4">Score</h3>
-              <p className="text-muted-foreground">
-                You receive a real-time reputation score and detailed insights about your online presence.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold text-foreground mb-4">Protect</h3>
-              <p className="text-muted-foreground">
-                We alert you instantly if something threatens your reputation and help you respond effectively.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <Card className="bg-card border-border">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 text-yellow-500 fill-current" />
+                  ))}
+                </div>
+                <p className="text-foreground mb-4">
+                  "GuardX caught a fake negative review within hours. Saved our restaurant's reputation and probably
+                  thousands in lost revenue."
+                </p>
+                <p className="text-sm text-muted-foreground">— Restaurant Owner, Manchester</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card border-border">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 text-yellow-500 fill-current" />
+                  ))}
+                </div>
+                <p className="text-foreground mb-4">
+                  "The instant alerts are game-changing. We respond to reviews faster than our competitors and it shows
+                  in our ratings."
+                </p>
+                <p className="text-sm text-muted-foreground">— Dental Practice, London</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card border-border">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 text-yellow-500 fill-current" />
+                  ))}
+                </div>
+                <p className="text-foreground mb-4">
+                  "Worth every penny. The weekly reports show exactly how our reputation is improving month after
+                  month."
+                </p>
+                <p className="text-sm text-muted-foreground">— Law Firm, Birmingham</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center">
+            <Link href="/onboarding">
+              <Button
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold"
+              >
+                Join Them Today — £299/Month
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              See How GuardX Protects Businesses Like Yours
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Real results from real businesses using GuardX dashboards and monitoring
+            </p>
+          </div>
+
+          {/* Featured Success Story */}
+          <div className="mb-16">
+            <Card className="bg-card border-border overflow-hidden">
+              <CardContent className="p-0">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                  <div className="p-8">
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="w-3 h-3 bg-primary rounded-full"></div>
+                      <span className="text-sm font-medium text-primary">LOCAL RETAIL SUCCESS</span>
+                    </div>
+                    <h3 className="text-2xl font-bold text-foreground mb-4">From Chaos to Control in 30 Days</h3>
+                    <div className="space-y-4 mb-6">
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-2">Challenge:</h4>
+                        <p className="text-muted-foreground">
+                          Struggled to track online mentions and respond quickly to negative feedback across multiple
+                          platforms.
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-2">Solution:</h4>
+                        <p className="text-muted-foreground">
+                          GuardX dashboards tracked all mentions in real time, categorized by urgency level.
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-2">Results:</h4>
+                        <ul className="space-y-2 text-muted-foreground">
+                          <li className="flex items-center gap-2">
+                            <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                            Urgent mentions flagged within 24 hours
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                            Response time improved by 50%
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                            Positive mentions leveraged for marketing
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <Link href="/onboarding">
+                      <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                        Start Protecting Your Reputation Today
+                        <ArrowRight className="ml-2 w-5 h-5" />
+                      </Button>
+                    </Link>
+                  </div>
+                  <div className="bg-primary/5 p-8 flex items-center justify-center">
+                    <div className="w-full max-w-sm">
+                      <div className="bg-card rounded-lg p-6 border border-border">
+                        <h4 className="text-lg font-semibold text-foreground mb-4">Alert Dashboard</h4>
+                        <div className="space-y-3">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm text-muted-foreground">Urgent Alerts</span>
+                            <div className="flex items-center gap-2">
+                              <div className="w-12 h-2 bg-muted rounded-full overflow-hidden">
+                                <div className="w-2/3 h-full bg-destructive rounded-full"></div>
+                              </div>
+                              <span className="text-sm font-medium">3</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm text-muted-foreground">Response Time</span>
+                            <span className="text-sm font-medium text-primary">&lt; 2hrs</span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm text-muted-foreground">Positive Mentions</span>
+                            <span className="text-sm font-medium text-green-600">+47%</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Additional Success Stories Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {/* Restaurant Success Story */}
+            <Card className="bg-card border-border">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <span className="text-sm font-medium text-yellow-600">RESTAURANT</span>
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-4">Never Miss a Review Again</h3>
+                <p className="text-muted-foreground mb-4">
+                  Negative reviews were going unnoticed on multiple platforms. GuardX's weekly summaries and real-time
+                  alerts changed everything.
+                </p>
+                <div className="space-y-2 mb-6">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span className="text-sm text-muted-foreground">Reduced negative mentions impact</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span className="text-sm text-muted-foreground">Faster response to customer feedback</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span className="text-sm text-muted-foreground">Clear snapshot of online reputation</span>
+                  </div>
+                </div>
+                <div className="bg-primary/5 p-4 rounded-lg mb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm text-muted-foreground">Weekly Summary</span>
+                    <BarChart3 className="w-4 h-4 text-primary" />
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-green-600">+12</div>
+                      <div className="text-xs text-muted-foreground">Positive</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-yellow-600">3</div>
+                      <div className="text-xs text-muted-foreground">Neutral</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-destructive">1</div>
+                      <div className="text-xs text-muted-foreground">Negative</div>
+                    </div>
+                  </div>
+                </div>
+                <Link href="/onboarding">
+                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                    See Your Reputation Score Now
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Gym Success Story */}
+            <Card className="bg-card border-border">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="text-sm font-medium text-blue-600">GYM / FITNESS STUDIO</span>
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-4">Multi-Location Made Simple</h3>
+                <p className="text-muted-foreground mb-4">
+                  Couldn't track multiple locations' online reviews. GuardX's centralized dashboard solved everything.
+                </p>
+                <div className="space-y-2 mb-6">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span className="text-sm text-muted-foreground">100% of urgent mentions flagged</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span className="text-sm text-muted-foreground">Multi-location monitoring simplified</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span className="text-sm text-muted-foreground">
+                      Positive mentions highlighted for social media
+                    </span>
+                  </div>
+                </div>
+                <div className="bg-primary/5 p-4 rounded-lg mb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm text-muted-foreground">Location Overview</span>
+                    <MapPin className="w-4 h-4 text-primary" />
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-muted-foreground">Central Location</span>
+                      <span className="text-xs font-medium text-green-600">4.8★</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-muted-foreground">North Branch</span>
+                      <span className="text-xs font-medium text-green-600">4.6★</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-muted-foreground">South Branch</span>
+                      <span className="text-xs font-medium text-yellow-600">4.2★</span>
+                    </div>
+                  </div>
+                </div>
+                <Link href="/onboarding">
+                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                    Protect Your Gym's Reputation
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Salon Success Story */}
+            <Card className="bg-card border-border">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-3 h-3 bg-pink-500 rounded-full"></div>
+                  <span className="text-sm font-medium text-pink-600">SALON / BEAUTY STUDIO</span>
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-4">Lightning-Fast Response Times</h3>
+                <p className="text-muted-foreground mb-4">
+                  Missed opportunities to respond quickly to feedback. Real-time alerts and categorization changed
+                  everything.
+                </p>
+                <div className="space-y-2 mb-6">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span className="text-sm text-muted-foreground">Immediate alerts for urgent issues</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span className="text-sm text-muted-foreground">Improved customer engagement</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span className="text-sm text-muted-foreground">Clear overview of reputation trends</span>
+                  </div>
+                </div>
+                <div className="bg-primary/5 p-4 rounded-lg mb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm text-muted-foreground">Trend Analysis</span>
+                    <TrendingUp className="w-4 h-4 text-primary" />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground">Positive Trend</span>
+                    <span className="text-xs font-medium text-green-600">↗ +23%</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground">Response Rate</span>
+                    <span className="text-xs font-medium text-primary">98%</span>
+                  </div>
+                </div>
+                <Link href="/onboarding">
+                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                    Start Monitoring Today
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* E-commerce Success Story */}
+            <Card className="bg-card border-border">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <span className="text-sm font-medium text-green-600">E-COMMERCE STORE</span>
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-4">Complete Visibility Achieved</h3>
+                <p className="text-muted-foreground mb-4">
+                  Couldn't easily see all online mentions and reviews in one place. GuardX dashboard centralized
+                  everything.
+                </p>
+                <div className="space-y-2 mb-6">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span className="text-sm text-muted-foreground">
+                      All mentions tracked and categorized automatically
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span className="text-sm text-muted-foreground">Faster response to negative reviews</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span className="text-sm text-muted-foreground">Overall reputation visibility improved</span>
+                  </div>
+                </div>
+                <div className="bg-primary/5 p-4 rounded-lg mb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm text-muted-foreground">Platform Coverage</span>
+                    <Eye className="w-4 h-4 text-primary" />
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div className="flex items-center justify-between">
+                      <span className="text-muted-foreground">Google</span>
+                      <span className="text-green-600">✓</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-muted-foreground">Trustpilot</span>
+                      <span className="text-green-600">✓</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-muted-foreground">Facebook</span>
+                      <span className="text-green-600">✓</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-muted-foreground">Twitter</span>
+                      <span className="text-green-600">✓</span>
+                    </div>
+                  </div>
+                </div>
+                <Link href="/onboarding">
+                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                    See How GuardX Can Help Your Store
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center">
+            <Link href="/onboarding">
+              <Button
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
+              >
+                Start Protecting Your Business — £299/Month
+                <ArrowRight className="ml-2 w-6 h-6" />
+              </Button>
+            </Link>
+            <p className="text-sm text-muted-foreground mt-3">Join these successful businesses today</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-background">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">The Hidden Cost of Bad Reviews</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+              Studies show that just one negative review can cost you up to 30 customers. A single bad review on Google
+              can lose you £10,000+ in revenue this year alone.
+            </p>
+            <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-6 max-w-2xl mx-auto mb-8">
+              <p className="text-lg font-semibold text-foreground mb-2">Without protection, you're vulnerable to:</p>
+              <ul className="text-left space-y-2 text-muted-foreground">
+                <li>• Fake negative reviews from competitors</li>
+                <li>• Angry customers posting before you can respond</li>
+                <li>• Old complaints resurfacing and spreading</li>
+                <li>• Lost customers who never give you a chance</li>
+              </ul>
             </div>
           </div>
 
-          <div className="mb-16">
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-foreground mb-4">See What You'll Get</h3>
-              <p className="text-muted-foreground">Sample reports and dashboards showing the insights you'll receive</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+            <div>
+              <h3 className="text-2xl font-bold text-foreground mb-6">GuardX Stops The Damage</h3>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <span className="font-semibold text-foreground">24/7 Monitoring:</span>
+                    <span className="text-muted-foreground">
+                      {" "}
+                      We watch every review site, social platform, and forum
+                    </span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <span className="font-semibold text-foreground">Instant Alerts:</span>
+                    <span className="text-muted-foreground"> Get notified within minutes of any new mention</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <span className="font-semibold text-foreground">Weekly Reports:</span>
+                    <span className="text-muted-foreground"> Track your reputation score and improvement trends</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <span className="font-semibold text-foreground">Crisis Support:</span>
+                    <span className="text-muted-foreground"> Expert guidance when serious threats emerge</span>
+                  </div>
+                </li>
+              </ul>
             </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Sample Dashboard 1 */}
-              <Card className="bg-card border-border relative">
-                <div className="absolute top-4 right-4 bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">
-                  Sample Report
+            <div className="bg-primary/5 p-8 rounded-lg">
+              <h4 className="text-xl font-bold text-foreground mb-4">ROI Calculator</h4>
+              <div className="space-y-3 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">GuardX monthly cost:</span>
+                  <span className="font-semibold text-foreground">£299</span>
                 </div>
-                <CardContent className="p-6">
-                  <h4 className="text-lg font-semibold text-foreground mb-4">Reputation Score Dashboard</h4>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Overall Score</span>
-                      <div className="flex items-center gap-2">
-                        <div className="w-16 h-2 bg-muted rounded-full overflow-hidden">
-                          <div className="w-4/5 h-full bg-primary rounded-full"></div>
-                        </div>
-                        <span className="text-primary font-bold">8.2/10</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Google Reviews</span>
-                      <div className="flex items-center gap-2">
-                        <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                        <span className="font-medium">4.6 (127 reviews)</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Mentions This Week</span>
-                      <span className="font-medium text-primary">+23</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Sentiment</span>
-                      <span className="font-medium text-green-600">89% Positive</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Sample Dashboard 2 */}
-              <Card className="bg-card border-border relative">
-                <div className="absolute top-4 right-4 bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">
-                  Sample Report
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Revenue saved from 1 prevented bad review:</span>
+                  <span className="font-semibold text-primary">£10,000+</span>
                 </div>
-                <CardContent className="p-6">
-                  <h4 className="text-lg font-semibold text-foreground mb-4">Weekly Activity Report</h4>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                        <CheckCircle className="w-4 h-4 text-green-600" />
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium text-foreground">New 5-star review on Google</p>
-                        <p className="text-xs text-muted-foreground">2 hours ago</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                        <Eye className="w-4 h-4 text-blue-600" />
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium text-foreground">Brand mentioned in industry blog</p>
-                        <p className="text-xs text-muted-foreground">1 day ago</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
-                        <AlertTriangle className="w-4 h-4 text-yellow-600" />
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium text-foreground">Response needed on Trustpilot</p>
-                        <p className="text-xs text-muted-foreground">3 days ago</p>
-                      </div>
-                    </div>
-                    <div className="pt-2 border-t border-border">
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-muted-foreground">This Week's Trend</span>
-                        <div className="flex items-center gap-1 text-green-600">
-                          <TrendingUp className="w-4 h-4" />
-                          <span className="font-medium">+12% improvement</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                <div className="border-t border-border pt-2 flex justify-between">
+                  <span className="text-foreground font-semibold">Monthly ROI:</span>
+                  <span className="font-bold text-primary text-lg">3,244%</span>
+                </div>
+              </div>
             </div>
           </div>
 
           <div className="text-center">
-            <Button
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold"
-              onClick={() => document.getElementById("pricing-section")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              Get Started Today
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            <p className="text-sm text-muted-foreground mt-3">Start protecting your reputation immediately</p>
+            <Link href="/onboarding">
+              <Button
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
+              >
+                Protect Your Revenue — Start Now
+                <ArrowRight className="ml-2 w-6 h-6" />
+              </Button>
+            </Link>
+            <p className="text-sm text-muted-foreground mt-3">One prevented bad review pays for 3+ years of service</p>
           </div>
         </div>
       </section>
 
-      <section id="pricing-section" className="py-20 bg-card/50">
+      <section className="py-20 bg-card/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Choose Your Protection Plan</h2>
-            <p className="text-lg text-muted-foreground">Professional reputation management with transparent pricing</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">See Exactly What You Get</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              See exactly what GuardX provides: sample dashboards, reports, and alerts generated by our platform.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            {/* Main Business Plan */}
-            <Card className="bg-card border-primary border-2 relative">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <TrendingUp className="w-8 h-8 text-primary" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12" id="pricing-section">
+            {/* Sample Dashboard 1 */}
+            <Card className="bg-card border-border relative">
+              <div className="absolute top-4 right-4 bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">
+                Live Dashboard
+              </div>
+              <CardContent className="p-6">
+                <h4 className="text-lg font-semibold text-foreground mb-4">Your Reputation Command Center</h4>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-muted-foreground">Reputation Score</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-16 h-2 bg-muted rounded-full overflow-hidden">
+                        <div className="w-4/5 h-full bg-primary rounded-full"></div>
+                      </div>
+                      <span className="text-primary font-bold">8.2/10</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-muted-foreground">Google Reviews</span>
+                    <div className="flex items-center gap-2">
+                      <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                      <span className="font-medium">4.6 (127 reviews)</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-muted-foreground">Threats Blocked This Month</span>
+                    <span className="font-medium text-primary">7</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-muted-foreground">Response Time</span>
+                    <span className="font-medium text-green-600">&lt; 2 hours</span>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-2">Business Plan</h3>
-                <p className="text-muted-foreground mb-6">Complete reputation protection</p>
+                <p className="text-xs text-muted-foreground mt-4 text-center">
+                  Example data shown for illustration purposes only.
+                </p>
+              </CardContent>
+            </Card>
 
-                <div className="mb-6">
-                  <div className="flex items-center justify-center gap-1 mb-2">
-                    <span className="text-5xl font-bold text-primary">£299</span>
-                    <div className="text-left">
-                      <div className="text-muted-foreground text-sm">/month</div>
+            {/* Sample Dashboard 2 */}
+            <Card className="bg-card border-border relative">
+              <div className="absolute top-4 right-4 bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">
+                Alert Example
+              </div>
+              <CardContent className="p-6">
+                <h4 className="text-lg font-semibold text-foreground mb-4">Instant Threat Alerts</h4>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 p-3 bg-destructive/10 rounded-lg">
+                    <div className="w-8 h-8 bg-destructive/20 rounded-full flex items-center justify-center">
+                      <AlertTriangle className="w-4 h-4 text-destructive" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-foreground">URGENT: New 1-star review</p>
+                      <p className="text-xs text-muted-foreground">Google • 3 minutes ago</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-yellow-500/10 rounded-lg">
+                    <div className="w-8 h-8 bg-yellow-500/20 rounded-full flex items-center justify-center">
+                      <Eye className="w-4 h-4 text-yellow-600" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-foreground">Brand mentioned on Twitter</p>
+                      <p className="text-xs text-muted-foreground">Social Media • 1 hour ago</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-green-500/10 rounded-lg">
+                    <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
+                      <CheckCircle className="w-4 h-4 text-green-600" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-foreground">Positive review response sent</p>
+                      <p className="text-xs text-muted-foreground">Trustpilot • 2 hours ago</p>
                     </div>
                   </div>
                 </div>
+                <p className="text-xs text-muted-foreground mt-4 text-center">
+                  Example data shown for illustration purposes only.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
 
-                <ul className="space-y-3 mb-8 text-left">
-                  {[
-                    "Advanced reputation monitoring",
-                    "Real-time alerts & notifications",
-                    "Reputation score dashboard",
-                    "Review response management",
-                    "Daily, Weekly, or Monthly detailed reports",
-                    "Crisis management support",
-                    "Email support",
-                    "Login access to live reports",
-                  ].map((feature, index) => (
-                    <li key={index} className="flex items-center gap-3">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm text-foreground">{feature}</span>
-                    </li>
-                  ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <Card className="bg-card border-primary hover:border-primary transition-all duration-300 relative transform scale-105">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <div className="bg-primary text-primary-foreground px-6 py-2 rounded-full text-sm font-semibold">
+                  Most Popular
+                </div>
+              </div>
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold text-foreground mb-2">Business Plan</h3>
+                  <div className="mb-4">
+                    <span className="text-4xl font-bold text-primary">£299</span>
+                    <span className="text-muted-foreground">/month</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">Perfect for single location businesses</p>
+                </div>
+
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Covers 1 business location</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Dashboard login included</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Daily, weekly, or monthly branded reports</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Review monitoring & sentiment analysis</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Real-time alerts</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Priority email support</span>
+                  </li>
                 </ul>
 
-                <Link href="/onboarding">
-                  <Button
-                    size="lg"
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg font-semibold w-full"
-                  >
+                <div className="mb-6">
+                  <p className="text-sm text-muted-foreground">Extra locations: £149/month each</p>
+                </div>
+
+                <Link href="/contact">
+                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold">
                     Get Started
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
-
-                <div className="mt-4 space-y-2 text-sm text-muted-foreground">
-                  <p>✓ 100% Automated Service</p>
-                  <p>✓ Cancel Anytime</p>
-                  <p>✓ No Setup Fees</p>
-                </div>
               </CardContent>
             </Card>
 
-            {/* Multi-Location Add-On */}
-            <Card className="bg-card border-border relative">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Users className="w-8 h-8 text-primary" />
+            <Card className="bg-card border-border hover:border-primary/50 transition-all duration-300 relative">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold text-foreground mb-2">Growth Plan</h3>
+                  <div className="mb-4">
+                    <span className="text-4xl font-bold text-primary">£499</span>
+                    <span className="text-muted-foreground">/month</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">Ideal for growing businesses</p>
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-2">Multi-Location Add-On</h3>
-                <p className="text-muted-foreground mb-6">Expand your protection</p>
+
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Covers 1 business location</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Full reputation score dashboard</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Advanced monitoring across multiple sources</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Automated review collection tools</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Priority email support</span>
+                  </li>
+                </ul>
 
                 <div className="mb-6">
-                  <div className="flex items-center justify-center gap-1 mb-2">
-                    <span className="text-5xl font-bold text-primary">£149</span>
-                    <div className="text-left">
-                      <div className="text-muted-foreground text-sm">/month</div>
-                    </div>
-                  </div>
-                  <p className="text-sm text-muted-foreground">per additional location</p>
+                  <p className="text-sm text-muted-foreground">Extra locations: £149/month each</p>
                 </div>
 
-                <div className="mb-8 text-center">
-                  <p className="text-foreground font-medium mb-4">
-                    Manage additional business locations for £149 per month each.
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Perfect for businesses with multiple branches, franchises, or service areas that need comprehensive
-                    reputation monitoring.
-                  </p>
-                </div>
-
-                <Link href="/onboarding">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="border-primary text-primary hover:bg-primary/10 px-8 py-3 text-lg font-semibold w-full bg-transparent"
-                  >
-                    Add Locations
+                <Link href="/contact">
+                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold">
+                    Get Started
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
+              </CardContent>
+            </Card>
 
-                <div className="mt-4 space-y-2 text-sm text-muted-foreground">
-                  <p>✓ Same features as main plan</p>
-                  <p>✓ Separate location tracking</p>
+            {/* Enterprise Plan */}
+            <Card className="bg-card border-border hover:border-primary/50 transition-all duration-300 relative">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold text-foreground mb-2">Enterprise Plan</h3>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-primary">Custom</span>
+                    <span className="text-muted-foreground"> Pricing</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">For businesses with many locations</p>
                 </div>
+
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Tailored for businesses with many locations</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Bespoke reporting and monitoring setup</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Dedicated email/chat account manager</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Contact us for a custom quote</span>
+                  </li>
+                </ul>
+
+                <div className="mb-6">
+                  <p className="text-sm text-muted-foreground">Scalable pricing based on your needs</p>
+                </div>
+
+                <Link href="/contact">
+                  <Button
+                    variant="outline"
+                    className="w-full border-primary text-primary hover:bg-primary/10 py-3 text-lg font-semibold bg-transparent"
+                  >
+                    Contact Us
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           </div>
-        </div>
-      </section>
 
-      {/* Features Section */}
-      <section className="py-20 bg-card/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Why Choose GuardX?</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We provide comprehensive reputation management solutions to protect and enhance your online presence.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="bg-card border-border hover:border-primary/50 transition-colors">
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Shield className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">24/7 Monitoring</h3>
-                <p className="text-muted-foreground">
-                  Continuous monitoring of your online reputation across all platforms.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border-border hover:border-primary/50 transition-colors">
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">Reputation Recovery</h3>
-                <p className="text-muted-foreground">
-                  Strategic campaigns to improve and restore your online reputation.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border-border hover:border-primary/50 transition-colors">
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Star className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">Review Management</h3>
-                <p className="text-muted-foreground">Professional management of reviews across all major platforms.</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border-border hover:border-primary/50 transition-colors">
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">Expert Support</h3>
-                <p className="text-muted-foreground">
-                  Dedicated team of reputation management experts at your service.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Built for businesses that care about reputation
-            </h2>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              GUARDX helps you monitor reviews, respond faster, and present a stronger brand across Google, Trustpilot,
-              Yelp, and more.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Shield className="w-5 h-5 text-primary" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+              <div className="text-sm text-muted-foreground">"Cancel anytime. No long-term contracts."</div>
+              <div className="text-sm text-muted-foreground">
+                "Extra locations are easy to add — scale as you grow."
               </div>
-              <span className="text-foreground font-medium">Real-time review & mention alerts</span>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Users className="w-5 h-5 text-primary" />
+              <div className="text-sm text-muted-foreground">"Trusted by businesses who value their reputation."</div>
+              <div className="text-sm text-muted-foreground">
+                "All monitoring and alerts handled securely and professionally."
               </div>
-              <span className="text-foreground font-medium">Centralised inbox for responses</span>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <TrendingUp className="w-5 h-5 text-primary" />
-              </div>
-              <span className="text-foreground font-medium">Sentiment & trend insights</span>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <CheckCircle className="w-5 h-5 text-primary" />
-              </div>
-              <span className="text-foreground font-medium">Clear, exportable reports</span>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-card/50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Ready to Protect Your Reputation?</h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Don't let negative content damage your business. Start protecting your reputation today.
-          </p>
-
-          <div className="flex flex-wrap justify-center items-center gap-4 mb-8 text-sm">
-            <div className="flex items-center gap-2 bg-background px-4 py-2 rounded-full border border-border">
-              <Shield className="w-4 h-4 text-primary" />
-              <span className="text-foreground font-medium">Automated & Secure</span>
-            </div>
-            <div className="flex items-center gap-2 bg-background px-4 py-2 rounded-full border border-border">
-              <CheckCircle className="w-4 h-4 text-primary" />
-              <span className="text-foreground font-medium">Trusted by Businesses</span>
-            </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold"
-              onClick={() => document.getElementById("pricing-section")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              Get Started Today
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            <Link href="/contact">
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg bg-transparent"
-              >
-                Get Started Online
-              </Button>
-            </Link>
-          </div>
-
-          <p className="text-sm text-muted-foreground mt-4 font-medium">
-            Sign up today and start protecting your reputation immediately
-          </p>
         </div>
       </section>
 

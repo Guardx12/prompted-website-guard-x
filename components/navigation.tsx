@@ -16,7 +16,7 @@ export function Navigation() {
           variant="ghost"
           size="sm"
           className="text-primary-foreground hover:bg-primary-foreground/20"
-          onClick={() => document.getElementById("pricing-section")?.scrollIntoView({ behavior: "smooth" })}
+          onClick={() => (window.location.href = "/onboarding")}
         >
           Protect Your Reputation Now – £299/Month
         </Button>
