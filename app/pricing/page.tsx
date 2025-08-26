@@ -50,6 +50,7 @@ export default function PricingPage() {
                         <div className="text-muted-foreground text-sm">/month</div>
                       </div>
                     </div>
+                    <p className="text-sm text-muted-foreground">Save 20% with annual payment</p>
                   </div>
 
                   <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
@@ -96,6 +97,7 @@ export default function PricingPage() {
                       <div className="text-muted-foreground text-sm">/month</div>
                     </div>
                   </div>
+                  <p className="text-sm text-muted-foreground">Save 20% with annual payment</p>
                 </div>
 
                 <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
@@ -132,13 +134,19 @@ export default function PricingPage() {
                   <Shield className="w-8 h-8 text-primary" />
                 </div>
                 <CardTitle className="text-3xl font-bold text-foreground mb-2 break-words">Enterprise Plan</CardTitle>
-                <p className="text-muted-foreground mb-6 break-words">Tailored for large organizations</p>
+                <p className="text-muted-foreground mb-6 break-words">For clients with 5+ locations</p>
 
                 <div className="mb-6">
                   <div className="flex items-center justify-center gap-1 mb-2">
-                    <span className="text-3xl font-bold text-primary">Custom</span>
+                    <span className="text-2xl font-bold text-primary">Custom pricing</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">Pricing</p>
+                  <p className="text-sm text-muted-foreground">for 5+ locations — contact us</p>
+                </div>
+
+                <div className="mb-6">
+                  <p className="text-sm text-muted-foreground">
+                    We'll create a tailored solution based on your number of locations and needs.
+                  </p>
                 </div>
 
                 <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
@@ -188,7 +196,7 @@ export default function PricingPage() {
                     Fake Review Protection
                   </CardTitle>
                   <p className="text-muted-foreground mb-6 break-words">
-                    Advanced protection against fraudulent reviews
+                    We monitor and remove fake reviews every month to protect your business's online reputation.
                   </p>
 
                   <div className="mb-6">
@@ -196,6 +204,7 @@ export default function PricingPage() {
                       <span className="text-5xl font-bold text-primary">£499</span>
                       <div className="text-left">
                         <div className="text-muted-foreground text-sm">per location</div>
+                        <div className="text-muted-foreground text-xs">per month</div>
                       </div>
                     </div>
                   </div>
@@ -220,7 +229,7 @@ export default function PricingPage() {
                     size="lg"
                     className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold w-full mb-4"
                   >
-                    Add This Protection
+                    Add Fake Review Protection
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </CardHeader>

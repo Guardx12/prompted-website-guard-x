@@ -618,15 +618,15 @@ export default function HomePage() {
               Protect Your Brand from Fake Reviews
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-              GuardX now offers a service to flag and remove fraudulent reviews, ensuring your business maintains its
-              stellar reputation.
+              We monitor and remove fake reviews every month to protect your business's online reputation. Available as
+              an optional add-on for £499 per location per month.
             </p>
             <Link href="/pricing#fake-review-protection">
               <Button
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold"
               >
-                Learn More About This Add-On
+                Add Fake Review Protection
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
@@ -698,6 +698,7 @@ export default function HomePage() {
 
                 <div className="mb-6">
                   <p className="text-sm text-muted-foreground">Extra locations: £149/month each</p>
+                  <p className="text-xs text-primary mt-1">Save 20% with annual payment</p>
                 </div>
 
                 <Link href="/contact">
@@ -746,6 +747,7 @@ export default function HomePage() {
 
                 <div className="mb-6">
                   <p className="text-sm text-muted-foreground">Extra locations: £149/month each</p>
+                  <p className="text-xs text-primary mt-1">Save 20% with annual payment</p>
                 </div>
 
                 <Link href="/contact">
@@ -789,7 +791,10 @@ export default function HomePage() {
                 </ul>
 
                 <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">Scalable pricing based on your needs</p>
+                  <p className="text-sm text-muted-foreground">Custom pricing for 5+ locations — contact us</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    We'll create a tailored solution based on your number of locations and needs.
+                  </p>
                 </div>
 
                 <Link href="/contact">
