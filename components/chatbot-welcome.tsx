@@ -1,66 +1,111 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { MessageCircle, X, Shield, BarChart3, Star, ArrowRight } from "lucide-react"
+import { MessageCircle, X, Shield, ChevronDown, ChevronRight } from "lucide-react"
 
 export function ChatbotWelcome() {
   const [isOpen, setIsOpen] = useState(false)
-  const [currentView, setCurrentView] = useState<"welcome" | "faq">("welcome")
+  const [hasAutoOpened, setHasAutoOpened] = useState(false)
+  const [selectedQuestion, setSelectedQuestion] = useState<number | null>(null)
 
-  const faqs = [
+  useEffect(() => {
+    const currentPath = window.location.pathname
+    const keyPages = ["/", "/pricing"]
+    const isKeyPage = keyPages.includes(currentPath) || currentPath.startsWith("/landing")
+
+    if (isKeyPage && !hasAutoOpened) {
+      const timer = setTimeout(() => {
+        setIsOpen(true)
+        setHasAutoOpened(true)
+      }, 5000)
+
+      return () => clearTimeout(timer)
+    }
+  }, [hasAutoOpened])
+
+  const salesQuestions = [
     {
-      question: "How quickly do you deliver reports?",
+      question: "What services do you offer?",
       answer:
-        "Great question! Our automated reports are delivered within 24-48 hours of setup. Once you're onboarded, you'll receive regular updates according to your chosen plan - weekly for Business and daily for Growth plans.",
-      cta: { text: "Book Consultation", link: "/contact" },
+        "GuardX monitors online reviews, alerts you to negative mentions, and helps remove fake reviews. Protect your reputation effortlessly.",
+      nudge: null,
     },
     {
-      question: "How much does it cost?",
-      answer:
-        "We have flexible pricing! Our Business plan starts at £199/month per location, and our Growth plan is £399/month per location. Both include automated review generation and comprehensive monitoring.",
-      cta: { text: "View Pricing", link: "/pricing" },
+      question: "What are your pricing plans?",
+      answer: (
+        <div className="space-y-2">
+          <div>
+            <strong className="text-[#d4af37]">Business Plan:</strong> £299/month.{" "}
+            <strong>Save 20% with annual payment.</strong>
+          </div>
+          <div>
+            <strong className="text-[#d4af37]">Growth Plan:</strong> £499/month.{" "}
+            <strong>Save 20% with annual payment.</strong>
+          </div>
+          <div>
+            <strong className="text-[#d4af37]">Enterprise Plan:</strong> Custom pricing for 5+ locations — contact us.
+          </div>
+          <div>
+            <strong className="text-[#d4af37]">Fake Review Protection:</strong> £499/month per location.
+          </div>
+        </div>
+      ),
+      nudge: null,
     },
     {
-      question: "Can you improve my online reviews?",
-      answer:
-        "We help generate authentic positive reviews through our automated system and can also help flag and remove fake negative reviews with our optional add-on service (£499 per location).",
-      cta: { text: "Learn More", link: "/contact" },
+      question: "How do I get started?",
+      answer: "Click Get Started below to begin protecting your business.",
+      nudge: null,
     },
     {
-      question: "Is this fully automated?",
-      answer:
-        "Yes! Our core monitoring and review generation services are fully automated. You'll get regular reports and alerts without any manual work required from your end.",
-      cta: { text: "Get Started", link: "/onboarding" },
+      question: "Can I pay annually?",
+      answer: "Yes! <strong>Annual payments give you a 20% discount</strong> on Business and Growth plans.",
+      nudge: null,
     },
     {
-      question: "Do you monitor all review platforms?",
+      question: "How does the service work?",
       answer:
-        "We monitor the major platforms including Google, Facebook, Yelp, Trustpilot, and many others. Our system tracks your reputation across 50+ review sites and social platforms.",
-      cta: { text: "See Full List", link: "/contact" },
-    },
-    {
-      question: "Can I cancel anytime?",
-      answer:
-        "Of course! You can cancel anytime with no fees or penalties. We believe in earning your business every month through great service.",
-      cta: { text: "Start Risk-Free", link: "/onboarding" },
-    },
-    {
-      question: "What's included in the reputation score?",
-      answer:
-        "Your reputation score is calculated from reviews across all monitored platforms, social media mentions, and overall online sentiment. You'll get a clear breakdown of what's affecting your score.",
-      cta: { text: "Book Demo", link: "/contact" },
-    },
-    {
-      question: "Do you help with negative reviews?",
-      answer:
-        "Yes! We alert you immediately to negative reviews so you can respond quickly. Our optional Fake Review Add-On can also help flag and remove illegitimate negative reviews.",
-      cta: { text: "Learn More", link: "/pricing" },
+        "After signing up, we monitor your reputation daily, alert you to mentions, and provide actionable guidance to protect and improve your online image.",
+      nudge: null,
     },
   ]
 
-  const [selectedFaq, setSelectedFaq] = useState<number | null>(null)
+  const faqQuestions = [
+    {
+      question: "What types of businesses do you work with?",
+      answer: "We work with all businesses, from small startups to large enterprises.",
+      nudge: null,
+    },
+    {
+      question: "How long does it take to see results?",
+      answer:
+        "You'll start receiving alerts and insights immediately, with measurable improvements in reputation within 1–3 months.",
+      nudge: null,
+    },
+    {
+      question: "Can I cancel at any time?",
+      answer: "Yes, monthly plans can be canceled at any time. Annual plans offer 20% savings if you pay upfront.",
+      nudge: null,
+    },
+    {
+      question: "What if I have more than 5 locations?",
+      answer: "We'll create a custom plan tailored to your business. Contact us for pricing.",
+      nudge: null,
+    },
+    {
+      question: "How do I contact GuardX?",
+      answer: "You can email us or visit our Contact Us page.",
+      nudge: null,
+    },
+    {
+      question: "Do you help with fake reviews?",
+      answer:
+        "Yes! Our Fake Review Protection service monitors, flags, and helps remove harmful fake reviews. <strong>Pricing is £499/month per location.</strong>",
+      nudge: null,
+    },
+  ]
 
   return (
     <>
@@ -79,7 +124,7 @@ export function ChatbotWelcome() {
       {/* Chat Widget */}
       {isOpen && (
         <div className="fixed bottom-6 right-6 z-50 w-80 max-w-[calc(100vw-2rem)]">
-          <Card className="bg-[#0a0a0a] border-[#2a2a2a] shadow-2xl max-h-[500px] overflow-hidden border-2">
+          <Card className="bg-[#0a0a0a] border-[#2a2a2a] shadow-2xl max-h-[600px] overflow-hidden border-2">
             <div className="flex items-center justify-between p-4 border-b border-[#2a2a2a]">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-[#d4af37] rounded-full flex items-center justify-center shadow-md">
@@ -100,126 +145,116 @@ export function ChatbotWelcome() {
               </Button>
             </div>
 
-            <CardContent className="p-0 overflow-y-auto max-h-[400px]">
-              {currentView === "welcome" && (
-                <div className="p-4">
-                  <div className="mb-4">
-                    <div className="bg-[#d4af37]/10 border border-[#d4af37]/20 rounded-lg p-3 mb-3">
-                      <p className="text-sm text-white">
-                        👋 Hi there! I'm here to help protect your business reputation.
-                      </p>
-                    </div>
-                    <div className="bg-[#d4af37]/10 border border-[#d4af37]/20 rounded-lg p-3">
-                      <p className="text-sm text-white">What would you like to know more about?</p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Button
-                      variant="outline"
-                      className="w-full justify-start text-left h-auto p-3 border-[#2a2a2a] hover:bg-[#d4af37]/10 hover:border-[#d4af37] bg-transparent transition-all duration-200"
-                      onClick={() => setCurrentView("faq")}
-                    >
-                      <Shield className="w-4 h-4 mr-2 text-[#d4af37] flex-shrink-0" />
-                      <div>
-                        <div className="font-medium text-white">24/7 Monitoring</div>
-                        <div className="text-xs text-[#a1a1a1]">Track mentions across all platforms</div>
-                      </div>
-                    </Button>
-
-                    <Button
-                      variant="outline"
-                      className="w-full justify-start text-left h-auto p-3 border-[#2a2a2a] hover:bg-[#d4af37]/10 hover:border-[#d4af37] bg-transparent transition-all duration-200"
-                      onClick={() => setCurrentView("faq")}
-                    >
-                      <BarChart3 className="w-4 h-4 mr-2 text-[#d4af37] flex-shrink-0" />
-                      <div>
-                        <div className="font-medium text-white">Reputation Score Reports</div>
-                        <div className="text-xs text-[#a1a1a1]">Weekly insights & analytics</div>
-                      </div>
-                    </Button>
-
-                    <Button
-                      variant="outline"
-                      className="w-full justify-start text-left h-auto p-3 border-[#2a2a2a] hover:bg-[#d4af37]/10 hover:border-[#d4af37] bg-transparent transition-all duration-200"
-                      onClick={() => setCurrentView("faq")}
-                    >
-                      <Star className="w-4 h-4 mr-2 text-[#d4af37] flex-shrink-0" />
-                      <div>
-                        <div className="font-medium text-white">Review Management</div>
-                        <div className="text-xs text-[#a1a1a1]">Generate & manage customer reviews</div>
-                      </div>
-                    </Button>
-
-                    <Button
-                      variant="outline"
-                      className="w-full justify-center p-3 border-[#2a2a2a] hover:bg-[#d4af37]/10 hover:border-[#d4af37] bg-transparent mt-4 transition-all duration-200"
-                      onClick={() => setCurrentView("faq")}
-                    >
-                      <MessageCircle className="w-4 h-4 mr-2 text-[#d4af37]" />
-                      <span className="font-medium text-white">Common Questions</span>
-                    </Button>
-                  </div>
-
-                  <div className="mt-4 pt-3 border-t border-[#2a2a2a]">
-                    <p className="text-xs text-[#a1a1a1] text-center">
-                      Need immediate help?{" "}
-                      <a
-                        href="/contact"
-                        className="text-[#d4af37] font-medium hover:text-[#f4e4a6] hover:underline transition-colors"
-                      >
-                        Contact our team
-                      </a>
+            <CardContent className="p-0 overflow-y-auto max-h-[500px]">
+              <div className="p-4">
+                <div className="mb-4">
+                  <div className="bg-[#d4af37]/10 border border-[#d4af37]/20 rounded-lg p-3 mb-3">
+                    <p className="text-sm text-white font-medium">
+                      Welcome to GuardX! Protect your business reputation online. Click a question to learn more, or get
+                      started now!
                     </p>
                   </div>
                 </div>
-              )}
 
-              {currentView === "faq" && (
-                <div className="p-4">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setCurrentView("welcome")}
-                      className="p-1 hover:bg-[#1a1a1a] text-[#d4af37]"
+                {/* Sales-focused questions section */}
+                <div className="space-y-2 mb-4">
+                  {salesQuestions.map((item, index) => (
+                    <div
+                      key={`sales-${index}`}
+                      className="border border-[#2a2a2a] rounded-lg hover:border-[#d4af37]/50 transition-colors"
                     >
-                      <ArrowRight className="w-4 h-4 rotate-180" />
-                    </Button>
-                    <h3 className="font-semibold text-white">Frequently Asked Questions</h3>
-                  </div>
+                      <Button
+                        variant="ghost"
+                        className="w-full justify-between text-left p-3 h-auto font-medium hover:bg-[#d4af37]/10 text-white"
+                        onClick={() => setSelectedQuestion(selectedQuestion === index ? null : index)}
+                      >
+                        <span className="text-sm">{item.question}</span>
+                        {selectedQuestion === index ? (
+                          <ChevronDown className="w-4 h-4 text-[#d4af37] flex-shrink-0" />
+                        ) : (
+                          <ChevronRight className="w-4 h-4 text-[#d4af37] flex-shrink-0" />
+                        )}
+                      </Button>
+                      {selectedQuestion === index && (
+                        <div className="px-3 pb-3 border-t border-[#2a2a2a]/50">
+                          <div className="text-sm text-[#a1a1a1] mb-2 leading-relaxed">
+                            {typeof item.answer === "string" ? (
+                              <span dangerouslySetInnerHTML={{ __html: item.answer }} />
+                            ) : (
+                              item.answer
+                            )}
+                          </div>
+                          {item.nudge && (
+                            <div className="text-xs text-[#d4af37] font-medium italic mb-2">{item.nudge}</div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
 
-                  <div className="space-y-3">
-                    {faqs.map((faq, index) => (
+                {/* FAQ section with separator */}
+                <div className="border-t border-[#2a2a2a] pt-4 mb-4">
+                  <h4 className="text-sm font-semibold text-[#d4af37] mb-3">Frequently Asked Questions</h4>
+                  <div className="space-y-2">
+                    {faqQuestions.map((item, index) => (
                       <div
-                        key={index}
+                        key={`faq-${index}`}
                         className="border border-[#2a2a2a] rounded-lg hover:border-[#d4af37]/50 transition-colors"
                       >
                         <Button
                           variant="ghost"
-                          className="w-full justify-start text-left p-3 h-auto font-medium hover:bg-[#d4af37]/10 text-white"
-                          onClick={() => setSelectedFaq(selectedFaq === index ? null : index)}
+                          className="w-full justify-between text-left p-3 h-auto font-medium hover:bg-[#d4af37]/10 text-white"
+                          onClick={() =>
+                            setSelectedQuestion(
+                              selectedQuestion === salesQuestions.length + index ? null : salesQuestions.length + index,
+                            )
+                          }
                         >
-                          {faq.question}
+                          <span className="text-sm">{item.question}</span>
+                          {selectedQuestion === salesQuestions.length + index ? (
+                            <ChevronDown className="w-4 h-4 text-[#d4af37] flex-shrink-0" />
+                          ) : (
+                            <ChevronRight className="w-4 h-4 text-[#d4af37] flex-shrink-0" />
+                          )}
                         </Button>
-                        {selectedFaq === index && (
-                          <div className="px-3 pb-3">
-                            <p className="text-sm text-[#a1a1a1] mb-3">{faq.answer}</p>
-                            <Button
-                              size="sm"
-                              className="bg-[#d4af37] text-black hover:bg-[#b8941f] font-medium shadow-md hover:shadow-lg transition-all duration-200"
-                              onClick={() => window.open(faq.cta.link, "_blank")}
-                            >
-                              {faq.cta.text}
-                              <ArrowRight className="w-3 h-3 ml-1" />
-                            </Button>
+                        {selectedQuestion === salesQuestions.length + index && (
+                          <div className="px-3 pb-3 border-t border-[#2a2a2a]/50">
+                            <div className="text-sm text-[#a1a1a1] mb-2 leading-relaxed">
+                              <span dangerouslySetInnerHTML={{ __html: item.answer }} />
+                            </div>
+                            {item.nudge && (
+                              <div className="text-xs text-[#d4af37] font-medium italic mb-2">{item.nudge}</div>
+                            )}
                           </div>
                         )}
                       </div>
                     ))}
                   </div>
                 </div>
-              )}
+
+                <div className="space-y-2 pt-3 border-t border-[#2a2a2a]">
+                  <Button
+                    className="w-full bg-[#d4af37] text-black hover:bg-[#b8941f] font-semibold shadow-md hover:shadow-lg transition-all duration-200"
+                    onClick={() => (window.location.href = "/onboarding")}
+                  >
+                    Get Started
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="w-full border-[#2a2a2a] hover:bg-[#d4af37]/10 hover:border-[#d4af37] text-white transition-all duration-200 bg-transparent"
+                    onClick={() => (window.location.href = "/contact")}
+                  >
+                    Contact Us
+                  </Button>
+                </div>
+
+                <div className="mt-3">
+                  <p className="text-xs text-[#a1a1a1] text-center">
+                    Trusted by businesses worldwide to protect their reputation
+                  </p>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>
