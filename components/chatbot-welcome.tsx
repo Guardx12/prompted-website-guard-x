@@ -55,6 +55,12 @@ export function ChatbotWelcome() {
       nudge: null,
     },
     {
+      question: "What's the difference between the Business and Growth plans?",
+      answer:
+        "Both plans include full monitoring, alerts, and a complete dashboard. The Business Plan is ideal for smaller businesses with lighter online activity, while the Growth Plan suits medium-sized businesses with a larger customer base or more online reviews. Essentially, the difference is the scale of your online presence, not the features.",
+      nudge: null,
+    },
+    {
       question: "How do I get started?",
       answer: "Click Get Started below to begin protecting your business.",
       nudge: null,
