@@ -617,10 +617,18 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Protect Your Brand from Fake Reviews
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
               We monitor and remove fake reviews every month to protect your business's online reputation. Available as
               an optional add-on for £499 per location per month.
             </p>
+            <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 max-w-2xl mx-auto mb-8">
+              <p className="text-foreground font-medium mb-2">12-Month Commitment Required</p>
+              <p className="text-sm text-muted-foreground">
+                Our Fake Review Removal service requires a 12-month commitment to ensure we can fully remove existing
+                fake reviews and provide ongoing protection against new ones. Removing fake reviews takes time and new
+                fake reviews may continue to appear, so ongoing monitoring is essential for complete protection.
+              </p>
+            </div>
             <Link href="/pricing#fake-review-protection">
               <Button
                 size="lg"

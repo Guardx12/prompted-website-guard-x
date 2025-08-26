@@ -207,6 +207,13 @@ export default function PricingPage() {
                         <div className="text-muted-foreground text-xs">per month</div>
                       </div>
                     </div>
+                    <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mt-4 mb-4">
+                      <p className="text-sm font-medium text-foreground mb-2">12-Month Commitment Required</p>
+                      <p className="text-xs text-muted-foreground">
+                        A one-year commitment is required to allow sufficient time for effective removal of fake reviews
+                        and to continue monitoring your online reputation for ongoing protection.
+                      </p>
+                    </div>
                   </div>
 
                   <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
