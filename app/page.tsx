@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer"
 import { Shield, Star, TrendingUp, CheckCircle, ArrowRight, Clock, Award, Eye, BarChart3, MapPin } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { ChatbotWelcome } from "@/components/chatbot-welcome"
 
 export default function HomePage() {
   return (
@@ -458,17 +459,17 @@ export default function HomePage() {
                 </p>
                 <div className="space-y-2 mb-6">
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">
                       All mentions tracked and categorized automatically
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">Faster response to negative reviews</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">Overall reputation visibility improved</span>
                   </div>
                 </div>
@@ -827,6 +828,7 @@ export default function HomePage() {
       */}
 
       <Footer />
+      <ChatbotWelcome />
     </div>
   )
 }
