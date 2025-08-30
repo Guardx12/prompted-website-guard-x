@@ -530,7 +530,7 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">The Hidden Cost of Bad Reviews</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
               Studies show that just one negative review can cost you up to 30 customers. A single bad review on Google
-              can lose you {pricing.region === "US" ? "$15,000+" : "£10,000+"} in revenue this year alone.
+              can lose you {pricing.convertCurrency("£10,000+")} in revenue this year alone.
             </p>
             <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-6 max-w-2xl mx-auto mb-8">
               <p className="text-lg font-semibold text-foreground mb-2">Without protection, you're vulnerable to:</p>
@@ -589,9 +589,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Revenue saved from 1 prevented bad review:</span>
-                  <span className="font-semibold text-primary">
-                    {pricing.region === "US" ? "$15,000+" : "£10,000+"}
-                  </span>
+                  <span className="font-semibold text-primary">{pricing.convertCurrency("£10,000+")}</span>
                 </div>
                 <div className="border-t border-border pt-2 flex justify-between">
                   <span className="text-foreground font-semibold">Monthly ROI:</span>
