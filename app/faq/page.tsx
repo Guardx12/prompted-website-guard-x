@@ -5,8 +5,11 @@ import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { HelpCircle, MessageSquare, ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { usePricing } from "@/hooks/use-pricing"
 
 export default function FAQPage() {
+  const pricing = usePricing()
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -78,8 +81,8 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      Yes, absolutely. You can cancel your £299/month subscription at any time with no cancellation
-                      fees, penalties, or questions asked.
+                      Yes, absolutely. You can cancel your {pricing.businessPlan.monthly}/month subscription at any time
+                      with no cancellation fees, penalties, or questions asked.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -89,7 +92,10 @@ export default function FAQPage() {
                     Is there a setup fee?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>No, GuardX does not charge setup fees. The only cost is the monthly subscription of £299.</p>
+                    <p>
+                      No, GuardX does not charge setup fees. The only cost is the monthly subscription of{" "}
+                      {pricing.businessPlan.monthly}.
+                    </p>
                   </AccordionContent>
                 </AccordionItem>
 

@@ -5,9 +5,11 @@ import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
+import { usePricing } from "@/hooks/use-pricing"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const pricing = usePricing()
 
   return (
     <>
@@ -18,7 +20,7 @@ export function Navigation() {
           className="text-primary-foreground hover:bg-primary-foreground/20"
           onClick={() => (window.location.href = "/onboarding")}
         >
-          Protect Your Reputation Now – £299/Month
+          Protect Your Reputation Now – {pricing.businessPlan.monthly}/Month
         </Button>
       </div>
 

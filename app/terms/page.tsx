@@ -1,6 +1,9 @@
 import Link from "next/link"
+import { usePricing } from "@/hooks/use-pricing"
 
 export default function TermsPage() {
+  const pricing = usePricing()
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -63,7 +66,10 @@ export default function TermsPage() {
                 <div>
                   <h2 className="text-2xl font-bold text-foreground mb-4">3. Account & Subscription</h2>
                   <ul className="space-y-2 text-muted-foreground">
-                    <li>• Access to certain Services requires a subscription (currently £149/month).</li>
+                    <li>
+                      • Access to certain Services requires a subscription (currently {pricing.businessPlan.monthly}
+                      /month).
+                    </li>
                     <li>• You are responsible for maintaining the confidentiality of your account login details.</li>
                     <li>• Subscription fees are billed in advance and are non-refundable unless otherwise agreed.</li>
                   </ul>

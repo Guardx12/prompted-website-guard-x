@@ -5,8 +5,11 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { CheckCircle, Bell, Users, ArrowRight, Star, BarChart3 } from "lucide-react"
 import Link from "next/link"
+import { usePricing } from "@/hooks/use-pricing"
 
 export default function LandingPage() {
+  const pricing = usePricing()
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -92,7 +95,7 @@ export default function LandingPage() {
               <CardHeader className="pb-4">
                 <CardTitle className="text-xl font-bold text-foreground">Starter</CardTitle>
                 <div className="flex items-center justify-center gap-1 mt-2">
-                  <span className="text-3xl font-bold text-primary">£149</span>
+                  <span className="text-3xl font-bold text-primary">{pricing.convertCurrency("£149")}</span>
                   <span className="text-muted-foreground">/month</span>
                 </div>
               </CardHeader>
@@ -126,7 +129,7 @@ export default function LandingPage() {
                 <CardHeader className="pb-4 pt-8">
                   <CardTitle className="text-xl font-bold text-foreground">Business</CardTitle>
                   <div className="flex items-center justify-center gap-1 mt-2">
-                    <span className="text-3xl font-bold text-primary">£299</span>
+                    <span className="text-3xl font-bold text-primary">{pricing.businessPlan.monthly}</span>
                     <span className="text-muted-foreground">/month</span>
                   </div>
                 </CardHeader>
@@ -155,7 +158,7 @@ export default function LandingPage() {
               <CardHeader className="pb-4">
                 <CardTitle className="text-xl font-bold text-foreground">Growth</CardTitle>
                 <div className="flex items-center justify-center gap-1 mt-2">
-                  <span className="text-3xl font-bold text-primary">£899</span>
+                  <span className="text-3xl font-bold text-primary">{pricing.convertCurrency("£899")}</span>
                   <span className="text-muted-foreground">/month</span>
                 </div>
               </CardHeader>
