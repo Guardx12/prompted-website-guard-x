@@ -105,9 +105,7 @@ export default function HowItWorksPage() {
           <div className="bg-primary/5 border border-primary/20 rounded-lg p-8">
             <h3 className="text-2xl font-bold text-foreground mb-4">Professional Process Summary</h3>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Clients complete the onboarding form and make their payment. We monitor their brand online and provide
-              access to the dashboard, alerts, and reports automatically. Urgent issues are flagged and sent to the
-              client promptly.
+              Client pays, fills the onboarding form, we monitor, and they receive logins and alerts.
             </p>
           </div>
         </div>

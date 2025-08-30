@@ -708,7 +708,7 @@ export default function HomePage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Priority email support within 24 hours</span>
+                    <span className="text-foreground">{pricing.businessPlan.support}</span>
                   </li>
                 </ul>
 
@@ -759,7 +759,7 @@ export default function HomePage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Priority email support within 4 hours</span>
+                    <span className="text-foreground">{pricing.growthPlan.support}</span>
                   </li>
                 </ul>
 
