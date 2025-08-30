@@ -4,11 +4,14 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { MessageCircle, X, Shield, ChevronDown, ChevronRight } from "lucide-react"
+import { usePricing } from "@/hooks/use-pricing"
 
 export function ChatbotWelcome() {
   const [isOpen, setIsOpen] = useState(false)
   const [hasAutoOpened, setHasAutoOpened] = useState(false)
   const [selectedQuestion, setSelectedQuestion] = useState<number | null>(null)
+
+  const pricing = usePricing()
 
   useEffect(() => {
     const currentPath = window.location.pathname
@@ -37,18 +40,19 @@ export function ChatbotWelcome() {
       answer: (
         <div className="space-y-2">
           <div>
-            <strong className="text-[#d4af37]">Business Plan:</strong> £299/month.{" "}
+            <strong className="text-[#d4af37]">Business Plan:</strong> {pricing.businessPlan.monthly}/month.{" "}
             <strong>Save 20% with annual payment.</strong>
           </div>
           <div>
-            <strong className="text-[#d4af37]">Growth Plan:</strong> £499/month.{" "}
+            <strong className="text-[#d4af37]">Growth Plan:</strong> {pricing.growthPlan.monthly}/month.{" "}
             <strong>Save 20% with annual payment.</strong>
           </div>
           <div>
             <strong className="text-[#d4af37]">Enterprise Plan:</strong> Custom pricing for 5+ locations — contact us.
           </div>
           <div>
-            <strong className="text-[#d4af37]">Fake Review Protection:</strong> £499/month per location.
+            <strong className="text-[#d4af37]">Fake Review Protection:</strong> {pricing.fakeRemovalService}/month per
+            location.
           </div>
         </div>
       ),
@@ -57,7 +61,7 @@ export function ChatbotWelcome() {
     {
       question: "What's the difference between the Business and Growth plans?",
       answer:
-        "Both plans include full monitoring, alerts, and a complete dashboard. The Business Plan is ideal for smaller businesses with lighter online activity, while the Growth Plan suits medium-sized businesses with a larger customer base or more online reviews. Essentially, the difference is the scale of your online presence, not the features.",
+        "Both plans include full monitoring, alerts, and a complete dashboard. The Business Plan includes priority email support within 24 hours during business hours and is ideal for smaller businesses. The Growth Plan includes priority email support within 4 hours during business hours and suits medium-sized businesses with higher online activity. The main difference is the support response time and scale of your business needs.",
       nudge: null,
     },
     {
@@ -107,8 +111,13 @@ export function ChatbotWelcome() {
     },
     {
       question: "Do you help with fake reviews?",
+      answer: `Yes! Our Fake Review Protection service monitors, flags, and helps remove harmful fake reviews. <strong>Pricing is ${pricing.fakeRemovalService}/month per location.</strong>`,
+      nudge: null,
+    },
+    {
+      question: "What are your support response times?",
       answer:
-        "Yes! Our Fake Review Protection service monitors, flags, and helps remove harmful fake reviews. <strong>Pricing is £499/month per location.</strong>",
+        "Business Plan customers receive priority email support within 24 hours during business hours. Growth Plan customers receive priority email support within 4 hours during business hours.",
       nudge: null,
     },
   ]

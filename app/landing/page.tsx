@@ -143,7 +143,7 @@ export default function LandingPage() {
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Phone & email support</span>
+                      <span>Priority email support during business hours</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -168,7 +168,7 @@ export default function LandingPage() {
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Priority support</span>
+                    <span>Priority email support within 24 hours during business hours</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />

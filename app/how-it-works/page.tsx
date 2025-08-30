@@ -2,7 +2,7 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Shield, BarChart3, TrendingUp, ArrowRight, ArrowDown } from "lucide-react"
+import { Shield, BarChart3, TrendingUp, ArrowRight, ArrowDown, CheckCircle } from "lucide-react"
 import Link from "next/link"
 
 export default function HowItWorksPage() {
@@ -18,7 +18,7 @@ export default function HowItWorksPage() {
               How <span className="text-primary">GuardX</span> Works
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Simple, automated reputation management in three easy steps
+              Professional reputation management in four simple steps
             </p>
           </div>
         </div>
@@ -31,14 +31,17 @@ export default function HowItWorksPage() {
             {/* Step 1 */}
             <div className="flex flex-col items-center text-center">
               <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                <Shield className="w-10 h-10 text-primary" />
+                <CheckCircle className="w-10 h-10 text-primary" />
               </div>
               <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mb-4">
                 1
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">We Monitor</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                Choose Your Plan & Complete Onboarding
+              </h2>
               <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                We track reviews, mentions, and online reputation for your business locations across the web.
+                Select the protection plan that fits your business needs and complete our streamlined onboarding form.
+                This ensures we have all the information needed to begin monitoring your online reputation immediately.
               </p>
               <ArrowDown className="w-6 h-6 text-primary mt-8" />
             </div>
@@ -46,15 +49,15 @@ export default function HowItWorksPage() {
             {/* Step 2 */}
             <div className="flex flex-col items-center text-center">
               <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                <BarChart3 className="w-10 h-10 text-primary" />
+                <Shield className="w-10 h-10 text-primary" />
               </div>
               <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mb-4">
                 2
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">You Get Alerts & Reports</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">GuardX Monitors Automatically</h2>
               <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                Receive instant notifications and weekly reports. Know exactly what's being said about your business
-                without lifting a finger.
+                Our advanced monitoring system immediately begins tracking your online reputation across all major
+                platforms, review sites, and social media channels. No manual effort required from your team.
               </p>
               <ArrowDown className="w-6 h-6 text-primary mt-8" />
             </div>
@@ -62,23 +65,56 @@ export default function HowItWorksPage() {
             {/* Step 3 */}
             <div className="flex flex-col items-center text-center">
               <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                <TrendingUp className="w-10 h-10 text-primary" />
+                <BarChart3 className="w-10 h-10 text-primary" />
               </div>
               <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mb-4">
                 3
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">You Protect Your Brand Online</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Receive Secure Access & Alerts</h2>
               <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                Use our online tools, review response templates, and support to respond, maintain, and improve your
-                reputation.
+                You receive secure login credentials to your personalized dashboard, along with automated alerts and
+                comprehensive reports. Stay fully informed about your reputation status without any manual monitoring.
+              </p>
+              <ArrowDown className="w-6 h-6 text-primary mt-8" />
+            </div>
+
+            {/* Step 4 */}
+            <div className="flex flex-col items-center text-center">
+              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                <TrendingUp className="w-10 h-10 text-primary" />
+              </div>
+              <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mb-4">
+                4
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                Maintain & Improve Your Reputation
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+                Use our professional tools, response templates, and expert support to effectively manage your online
+                presence. Track improvements over time and maintain a strong, positive reputation that drives business
+                growth.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* Professional Summary Section */}
       <section className="py-20 bg-card/50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="bg-primary/5 border border-primary/20 rounded-lg p-8">
+            <h3 className="text-2xl font-bold text-foreground mb-4">Professional Process Summary</h3>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Clients complete the onboarding form and make their payment. We monitor their brand online and provide
+              access to the dashboard, alerts, and reports automatically. Urgent issues are flagged and sent to the
+              client promptly.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Why This Approach Works</h2>

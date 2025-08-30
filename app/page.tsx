@@ -8,8 +8,11 @@ import { Shield, Star, TrendingUp, CheckCircle, ArrowRight, Clock, Award, Eye, B
 import Link from "next/link"
 import Image from "next/image"
 import { ChatbotWelcome } from "@/components/chatbot-welcome"
+import { usePricing } from "@/hooks/use-pricing"
 
 export default function HomePage() {
+  const pricing = usePricing()
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -186,7 +189,7 @@ export default function HomePage() {
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold"
               >
-                Join Them Today — £299/Month
+                Join Them Today — {pricing.businessPlan.monthly}/Month
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
@@ -512,7 +515,7 @@ export default function HomePage() {
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
               >
-                Start Protecting Your Business — £299/Month
+                Start Protecting Your Business — {pricing.businessPlan.monthly}/Month
                 <ArrowRight className="ml-2 w-6 h-6" />
               </Button>
             </Link>
@@ -524,10 +527,10 @@ export default function HomePage() {
       <section className="py-20 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">The Hidden Cost of Bad Reviews</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">The Hidden Cost of Bad Reviews</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
               Studies show that just one negative review can cost you up to 30 customers. A single bad review on Google
-              can lose you £10,000+ in revenue this year alone.
+              can lose you {pricing.region === "US" ? "$15,000+" : "£10,000+"} in revenue this year alone.
             </p>
             <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-6 max-w-2xl mx-auto mb-8">
               <p className="text-lg font-semibold text-foreground mb-2">Without protection, you're vulnerable to:</p>
@@ -582,11 +585,13 @@ export default function HomePage() {
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">GuardX monthly cost:</span>
-                  <span className="font-semibold text-foreground">£299</span>
+                  <span className="font-semibold text-foreground">{pricing.businessPlan.monthly}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Revenue saved from 1 prevented bad review:</span>
-                  <span className="font-semibold text-primary">£10,000+</span>
+                  <span className="font-semibold text-primary">
+                    {pricing.region === "US" ? "$15,000+" : "£10,000+"}
+                  </span>
                 </div>
                 <div className="border-t border-border pt-2 flex justify-between">
                   <span className="text-foreground font-semibold">Monthly ROI:</span>
@@ -619,7 +624,7 @@ export default function HomePage() {
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
               We monitor and remove fake reviews every month to protect your business's online reputation. Available as
-              an optional add-on for £499 per location per month.
+              an optional add-on for {pricing.fakeRemovalService} per location per month.
             </p>
             <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 max-w-2xl mx-auto mb-8">
               <p className="text-foreground font-medium mb-2">12-Month Commitment Required</p>
@@ -665,8 +670,11 @@ export default function HomePage() {
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold text-foreground mb-2">Business Plan</h3>
                   <div className="mb-4">
-                    <span className="text-4xl font-bold text-primary">£299</span>
+                    <span className="text-4xl font-bold text-primary">{pricing.businessPlan.monthly}</span>
                     <span className="text-muted-foreground">/month</span>
+                    <div className="text-sm text-muted-foreground mt-1">
+                      or {pricing.businessPlan.annual}/year ({pricing.businessPlan.savings})
+                    </div>
                   </div>
                   <p className="text-sm text-muted-foreground">Perfect for single location businesses</p>
                 </div>
@@ -686,7 +694,7 @@ export default function HomePage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Review monitoring & sentiment analysis</span>
+                    <span className="text-foreground">Standard monitoring, logins, alerts</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -700,13 +708,12 @@ export default function HomePage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Priority email support</span>
+                    <span className="text-foreground">Priority email support within 24 hours</span>
                   </li>
                 </ul>
 
                 <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">Extra locations: £149/month each</p>
-                  <p className="text-xs text-primary mt-1">Save 20% with annual payment</p>
+                  <p className="text-sm text-muted-foreground">Extra locations: {pricing.extraLocation}/month each</p>
                 </div>
 
                 <Link href="/contact">
@@ -724,8 +731,11 @@ export default function HomePage() {
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold text-foreground mb-2">Growth Plan</h3>
                   <div className="mb-4">
-                    <span className="text-4xl font-bold text-primary">£499</span>
+                    <span className="text-4xl font-bold text-primary">{pricing.growthPlan.monthly}</span>
                     <span className="text-muted-foreground">/month</span>
+                    <div className="text-sm text-muted-foreground mt-1">
+                      or {pricing.growthPlan.annual}/year ({pricing.growthPlan.savings})
+                    </div>
                   </div>
                   <p className="text-sm text-muted-foreground">Ideal for growing businesses</p>
                 </div>
@@ -741,7 +751,7 @@ export default function HomePage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Advanced monitoring across multiple sources</span>
+                    <span className="text-foreground">Full monitoring, logins, alerts</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -749,13 +759,12 @@ export default function HomePage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Priority email support</span>
+                    <span className="text-foreground">Priority email support within 4 hours</span>
                   </li>
                 </ul>
 
                 <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">Extra locations: £149/month each</p>
-                  <p className="text-xs text-primary mt-1">Save 20% with annual payment</p>
+                  <p className="text-sm text-muted-foreground">Extra locations: {pricing.extraLocation}/month each</p>
                 </div>
 
                 <Link href="/contact">
@@ -775,26 +784,27 @@ export default function HomePage() {
                   <div className="mb-4">
                     <span className="text-3xl font-bold text-primary">Custom</span>
                     <span className="text-muted-foreground"> Pricing</span>
+                    <div className="text-sm text-muted-foreground mt-1">{pricing.enterprisePlan.pricing}</div>
                   </div>
-                  <p className="text-sm text-muted-foreground">For businesses with many locations</p>
+                  <p className="text-sm text-muted-foreground">For businesses with multiple locations</p>
                 </div>
 
                 <ul className="space-y-3 mb-8">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Tailored for businesses with many locations</span>
+                    <span className="text-foreground">Tailored for businesses with multiple locations</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Bespoke reporting and monitoring setup</span>
+                    <span className="text-foreground">Full monitoring, logins, alerts</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Dedicated email/chat account manager</span>
+                    <span className="text-foreground">Premium support, custom features for multiple locations</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Contact us for a custom quote</span>
+                    <span className="text-foreground">Dedicated account manager</span>
                   </li>
                 </ul>
 
@@ -829,6 +839,19 @@ export default function HomePage() {
                 "All monitoring and alerts handled securely and professionally."
               </div>
             </div>
+          </div>
+
+          <div className="text-center">
+            <Link href="/onboarding">
+              <Button
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
+              >
+                Start Protecting Your Business — {pricing.businessPlan.monthly}/Month
+                <ArrowRight className="ml-2 w-6 h-6" />
+              </Button>
+            </Link>
+            <p className="text-sm text-muted-foreground mt-3">Join these successful businesses today</p>
           </div>
         </div>
       </section>

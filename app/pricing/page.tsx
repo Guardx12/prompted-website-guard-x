@@ -1,3 +1,5 @@
+"use client"
+
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -5,8 +7,11 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { CheckCircle, Shield, TrendingUp, Clock, ArrowRight, Users } from "lucide-react"
 import Link from "next/link"
+import { usePricing } from "@/hooks/use-pricing"
 
 export default function PricingPage() {
+  const pricing = usePricing()
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -45,23 +50,26 @@ export default function PricingPage() {
 
                   <div className="mb-6">
                     <div className="flex items-center justify-center gap-1 mb-2">
-                      <span className="text-5xl font-bold text-primary">£299</span>
+                      <span className="text-5xl font-bold text-primary">{pricing.businessPlan.monthly}</span>
                       <div className="text-left">
                         <div className="text-muted-foreground text-sm">/month</div>
                       </div>
                     </div>
-                    <p className="text-sm text-muted-foreground">Save 20% with annual payment</p>
+                    <p className="text-sm text-muted-foreground">
+                      or {pricing.businessPlan.annual}/year • Save 20% when paying annually
+                    </p>
                   </div>
 
                   <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
                     {[
-                      "Reputation monitoring",
-                      "Instant alerts",
-                      "Branded weekly reports",
+                      "Covers 1 business location",
+                      "Dashboard login included",
+                      "Daily, weekly, or monthly branded reports",
+                      "Standard monitoring, logins, alerts",
                       "Automated review generation (INCLUDED)",
                       "Real-time alerts",
-                      "Priority email support",
-                      "Extra locations: £149/month each",
+                      "Priority email support within 24 hours during business hours",
+                      `Extra locations: ${pricing.extraLocation}/month each`,
                     ].map((feature, index) => (
                       <li key={index} className="flex items-center gap-3">
                         <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
@@ -88,26 +96,28 @@ export default function PricingPage() {
                   <Users className="w-8 h-8 text-primary" />
                 </div>
                 <CardTitle className="text-3xl font-bold text-foreground mb-2 break-words">Growth Plan</CardTitle>
-                <p className="text-muted-foreground mb-6 break-words">For growing teams and businesses</p>
+                <p className="text-muted-foreground mb-6 break-words">Ideal for growing businesses</p>
 
                 <div className="mb-6">
                   <div className="flex items-center justify-center gap-1 mb-2">
-                    <span className="text-5xl font-bold text-primary">£499</span>
+                    <span className="text-5xl font-bold text-primary">{pricing.growthPlan.monthly}</span>
                     <div className="text-left">
                       <div className="text-muted-foreground text-sm">/month</div>
                     </div>
                   </div>
-                  <p className="text-sm text-muted-foreground">Save 20% with annual payment</p>
+                  <p className="text-sm text-muted-foreground">
+                    or {pricing.growthPlan.annual}/year • Save 20% when paying annually
+                  </p>
                 </div>
 
                 <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
                   {[
-                    "Everything in Business Plan",
+                    "Covers 1 business location",
                     "Full reputation score dashboard",
-                    "Advanced monitoring across multiple sources",
+                    "Full monitoring, logins, alerts",
                     "Automated review collection tools",
-                    "Priority email support",
-                    "Extra locations: £149/month each",
+                    "Priority email support within 4 hours during business hours",
+                    `Extra locations: ${pricing.extraLocation}/month each`,
                   ].map((feature, index) => (
                     <li key={index} className="flex items-center gap-3">
                       <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
@@ -134,13 +144,14 @@ export default function PricingPage() {
                   <Shield className="w-8 h-8 text-primary" />
                 </div>
                 <CardTitle className="text-3xl font-bold text-foreground mb-2 break-words">Enterprise Plan</CardTitle>
-                <p className="text-muted-foreground mb-6 break-words">For clients with 5+ locations</p>
+                <p className="text-muted-foreground mb-6 break-words">For businesses with multiple locations</p>
 
                 <div className="mb-6">
                   <div className="flex items-center justify-center gap-1 mb-2">
-                    <span className="text-2xl font-bold text-primary">Custom pricing</span>
+                    <span className="text-2xl font-bold text-primary">Custom</span>
+                    <span className="text-muted-foreground"> Pricing</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">for 5+ locations — contact us</p>
+                  <p className="text-sm text-muted-foreground">{pricing.enterprisePlan.pricing}</p>
                 </div>
 
                 <div className="mb-6">
@@ -151,11 +162,10 @@ export default function PricingPage() {
 
                 <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
                   {[
-                    "Tailored for businesses with many locations",
-                    "Bespoke reporting and monitoring setup",
-                    "Unlimited users",
-                    "Dedicated email/chat account manager",
-                    "Contact us for a custom quote",
+                    "Tailored for businesses with multiple locations",
+                    "Full monitoring, logins, alerts",
+                    "Premium support, custom features for multiple locations",
+                    "Dedicated account manager",
                   ].map((feature, index) => (
                     <li key={index} className="flex items-center gap-3">
                       <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
@@ -201,7 +211,7 @@ export default function PricingPage() {
 
                   <div className="mb-6">
                     <div className="flex items-center justify-center gap-1 mb-2">
-                      <span className="text-5xl font-bold text-primary">£499</span>
+                      <span className="text-5xl font-bold text-primary">{pricing.fakeRemovalService}</span>
                       <div className="text-left">
                         <div className="text-muted-foreground text-sm">per location</div>
                         <div className="text-muted-foreground text-xs">per month</div>
@@ -308,13 +318,12 @@ export default function PricingPage() {
             {[
               {
                 question: "How does per-location pricing work?",
-                answer:
-                  "Your first location is included in your chosen plan (Business £299/month or Growth £499/month). Each additional location costs £149/month with the same comprehensive monitoring and support.",
+                answer: `Your first location is included in your chosen plan (Business ${pricing.businessPlan.monthly}/month or Growth ${pricing.growthPlan.monthly}/month). Each additional location costs ${pricing.extraLocation}/month with the same comprehensive monitoring and support.`,
               },
               {
                 question: "What's the difference between Business and Growth plans?",
                 answer:
-                  "The Business Plan covers 1 user and includes essential monitoring features. The Growth Plan supports up to 5 users with advanced monitoring, full reputation dashboard, and automated review collection tools.",
+                  "The Business Plan includes standard monitoring, logins, alerts, and priority email support within 24 hours during business hours. The Growth Plan includes full monitoring, logins, alerts, and priority email support within 4 hours during business hours. The Growth Plan offers faster support response times and more comprehensive monitoring.",
               },
               {
                 question: "Do you handle everything online?",
