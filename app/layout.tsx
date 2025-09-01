@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import "./globals.css"
+import ClickChatbot from "@/components/click-chatbot"
 
 export const metadata: Metadata = {
   title: "GuardX - Protecting Your Reputation",
@@ -29,7 +30,10 @@ html {
 }
         `}</style>
       </head>
-      <body className="min-h-screen bg-background text-foreground antialiased">{children}</body>
+      <body className="min-h-screen bg-background text-foreground antialiased">
+        {children}
+        <ClickChatbot />
+      </body>
     </html>
   )
 }
