@@ -189,7 +189,7 @@ export default function HomePage() {
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold"
               >
-                Join Them Today — {pricing.businessPlan.monthly}/Month
+                Join Them Today — £299/Month
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
@@ -515,7 +515,7 @@ export default function HomePage() {
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
               >
-                Start Protecting Your Business — {pricing.businessPlan.monthly}/Month
+                Start Protecting Your Business — £299/Month
                 <ArrowRight className="ml-2 w-6 h-6" />
               </Button>
             </Link>
@@ -585,11 +585,11 @@ export default function HomePage() {
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">GuardX monthly cost:</span>
-                  <span className="font-semibold text-foreground">{pricing.businessPlan.monthly}</span>
+                  <span className="font-semibold text-foreground">£299</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Revenue saved from 1 prevented bad review:</span>
-                  <span className="font-semibold text-primary">{pricing.convertCurrency("£10,000+")}</span>
+                  <span className="font-semibold text-primary">£10,000+</span>
                 </div>
                 <div className="border-t border-border pt-2 flex justify-between">
                   <span className="text-foreground font-semibold">Monthly ROI:</span>
@@ -668,50 +668,32 @@ export default function HomePage() {
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold text-foreground mb-2">Business Plan</h3>
                   <div className="mb-4">
-                    <span className="text-4xl font-bold text-primary">{pricing.businessPlan.monthly}</span>
+                    <span className="text-4xl font-bold text-primary">£299</span>
                     <span className="text-muted-foreground">/month</span>
-                    <div className="text-sm text-muted-foreground mt-1">
-                      or {pricing.businessPlan.annual}/year ({pricing.businessPlan.savings})
-                    </div>
+                    <div className="text-sm text-muted-foreground mt-1">20% off annual pricing</div>
                   </div>
                   <p className="text-sm text-muted-foreground">Perfect for single location businesses</p>
                 </div>
 
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Covers 1 business location</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Dashboard login included</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Daily, weekly, or monthly branded reports</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Standard monitoring, logins, alerts</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">
-                      <strong>Automated review generation (INCLUDED)</strong>
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Real-time alerts</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">{pricing.businessPlan.support}</span>
-                  </li>
+                <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
+                  {[
+                    "Covers 1 business location",
+                    "Dashboard login included",
+                    "Daily, weekly, or monthly branded reports",
+                    "Standard monitoring, logins, alerts",
+                    "Automated review generation (INCLUDED)",
+                    "Real-time alerts",
+                    "Priority email support within 24 hours during business hours",
+                  ].map((feature, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="text-foreground">{feature}</span>
+                    </li>
+                  ))}
                 </ul>
 
                 <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">Extra locations: {pricing.extraLocation}/month each</p>
+                  <p className="text-sm text-muted-foreground">Extra locations: £299/month each</p>
                 </div>
 
                 <Link href="/contact">
@@ -723,46 +705,37 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            {/* Growth Plan */}
+            {/* Pro / Fake Review Plan */}
             <Card className="bg-card border-border hover:border-primary/50 transition-all duration-300 relative">
               <CardContent className="p-8">
                 <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-foreground mb-2">Growth Plan</h3>
+                  <h3 className="text-2xl font-bold text-foreground mb-2">Pro / Fake Review Plan</h3>
                   <div className="mb-4">
-                    <span className="text-4xl font-bold text-primary">{pricing.growthPlan.monthly}</span>
+                    <span className="text-4xl font-bold text-primary">{pricing.proFakeReviewPlan.monthly}</span>
                     <span className="text-muted-foreground">/month</span>
-                    <div className="text-sm text-muted-foreground mt-1">
-                      or {pricing.growthPlan.annual}/year ({pricing.growthPlan.savings})
-                    </div>
+                    <div className="text-sm text-muted-foreground mt-1">20% off annual pricing</div>
                   </div>
-                  <p className="text-sm text-muted-foreground">Ideal for growing businesses</p>
+                  <p className="text-sm text-muted-foreground">Full monitoring with fake review detection</p>
                 </div>
 
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Covers 1 business location</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Full reputation score dashboard</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Full monitoring, logins, alerts</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Automated review collection tools</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">{pricing.growthPlan.support}</span>
-                  </li>
+                <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
+                  {[
+                    "Covers 1 business location",
+                    "Full monitoring of Google, Trustpilot, and Yelp reviews",
+                    "Instant alerts for negative reviews",
+                    "Weekly branded reports",
+                    "Fake review detection and flagging",
+                    pricing.proFakeReviewPlan.support,
+                  ].map((feature, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="text-foreground">{feature}</span>
+                    </li>
+                  ))}
                 </ul>
 
                 <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">Extra locations: {pricing.extraLocation}/month each</p>
+                  <p className="text-sm text-muted-foreground">Extra locations: £299/month each</p>
                 </div>
 
                 <Link href="/contact">
@@ -787,30 +760,22 @@ export default function HomePage() {
                   <p className="text-sm text-muted-foreground">For businesses with multiple locations</p>
                 </div>
 
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Tailored for businesses with multiple locations</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Full monitoring, logins, alerts</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Premium support, custom features for multiple locations</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Dedicated account manager</span>
-                  </li>
+                <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
+                  {[
+                    "Tailored for businesses with multiple locations",
+                    "Full monitoring, logins, alerts",
+                    "Premium support, custom features for multiple locations",
+                    "Dedicated account manager",
+                  ].map((feature, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="text-foreground">{feature}</span>
+                    </li>
+                  ))}
                 </ul>
 
                 <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">Custom pricing for 5+ locations — contact us</p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    We'll create a tailored solution based on your number of locations and needs.
-                  </p>
+                  <p className="text-sm text-muted-foreground">Extra locations: £299/month each</p>
                 </div>
 
                 <Link href="/contact">
@@ -845,7 +810,7 @@ export default function HomePage() {
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
               >
-                Start Protecting Your Business — {pricing.businessPlan.monthly}/Month
+                Start Protecting Your Business — £299/Month
                 <ArrowRight className="ml-2 w-6 h-6" />
               </Button>
             </Link>

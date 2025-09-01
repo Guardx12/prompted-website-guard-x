@@ -95,7 +95,7 @@ export default function LandingPage() {
               <CardHeader className="pb-4">
                 <CardTitle className="text-xl font-bold text-foreground">Starter</CardTitle>
                 <div className="flex items-center justify-center gap-1 mt-2">
-                  <span className="text-3xl font-bold text-primary">{pricing.convertCurrency("£149")}</span>
+                  <span className="text-3xl font-bold text-primary">£299</span>
                   <span className="text-muted-foreground">/month</span>
                 </div>
               </CardHeader>
@@ -129,7 +129,7 @@ export default function LandingPage() {
                 <CardHeader className="pb-4 pt-8">
                   <CardTitle className="text-xl font-bold text-foreground">Business</CardTitle>
                   <div className="flex items-center justify-center gap-1 mt-2">
-                    <span className="text-3xl font-bold text-primary">{pricing.businessPlan.monthly}</span>
+                    <span className="text-3xl font-bold text-primary">£299</span>
                     <span className="text-muted-foreground">/month</span>
                   </div>
                 </CardHeader>
@@ -153,12 +153,40 @@ export default function LandingPage() {
               </Card>
             </div>
 
+            {/* Pro / Fake Review Plan */}
+            <Card className="bg-card border-border text-center">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-xl font-bold text-foreground">Pro / Fake Review Plan</CardTitle>
+                <div className="flex items-center justify-center gap-1 mt-2">
+                  <span className="text-3xl font-bold text-primary">£499</span>
+                  <span className="text-muted-foreground">/month</span>
+                </div>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <p className="text-muted-foreground mb-4">Full monitoring with fake review detection</p>
+                <ul className="space-y-2 text-sm text-left">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                    <span>Full monitoring of Google, Trustpilot, and Yelp</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                    <span>Instant alerts for negative reviews</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                    <span>Fake review detection and flagging</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
             {/* Growth */}
             <Card className="bg-card border-border text-center">
               <CardHeader className="pb-4">
                 <CardTitle className="text-xl font-bold text-foreground">Growth</CardTitle>
                 <div className="flex items-center justify-center gap-1 mt-2">
-                  <span className="text-3xl font-bold text-primary">{pricing.convertCurrency("£899")}</span>
+                  <span className="text-3xl font-bold text-primary">£899</span>
                   <span className="text-muted-foreground">/month</span>
                 </div>
               </CardHeader>

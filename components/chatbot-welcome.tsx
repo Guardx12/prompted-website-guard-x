@@ -40,12 +40,12 @@ export function ChatbotWelcome() {
       answer: (
         <div className="space-y-2">
           <div>
-            <strong className="text-[#d4af37]">Business Plan:</strong> {pricing.businessPlan.monthly}/month.{" "}
-            <strong>Save 20% with annual payment.</strong>
+            <strong className="text-[#d4af37]">Business Plan:</strong> £299/month.{" "}
+            <strong>20% off annual pricing.</strong>
           </div>
           <div>
-            <strong className="text-[#d4af37]">Growth Plan:</strong> {pricing.growthPlan.monthly}/month.{" "}
-            <strong>Save 20% with annual payment.</strong>
+            <strong className="text-[#d4af37]">Pro / Fake Review Plan:</strong> {pricing.proFakeReviewPlan.monthly}
+            /month. <strong>20% off annual pricing.</strong>
           </div>
           <div>
             <strong className="text-[#d4af37]">Enterprise Plan:</strong> Custom pricing for 5+ locations — contact us.
@@ -59,9 +59,9 @@ export function ChatbotWelcome() {
       nudge: null,
     },
     {
-      question: "What's the difference between the Business and Growth plans?",
+      question: "What's the difference between the Business and Pro / Fake Review plans?",
       answer:
-        "Both plans include full monitoring, alerts, and a complete dashboard. The Business Plan includes priority email support within 24 hours during business hours and is ideal for smaller businesses. The Growth Plan includes priority email support within 4 hours during business hours and suits medium-sized businesses with higher online activity. The main difference is the support response time and scale of your business needs.",
+        "The Business Plan includes full monitoring, alerts, and a complete dashboard with priority email support within 48 hours during business hours. The Pro / Fake Review Plan includes full monitoring of Google, Trustpilot, and Yelp reviews, instant alerts for negative reviews, weekly branded reports, fake review detection and flagging, and priority email support within 24 hours during business hours. The Pro / Fake Review Plan offers faster support response times and specialized fake review protection.",
       nudge: null,
     },
     {
@@ -71,7 +71,7 @@ export function ChatbotWelcome() {
     },
     {
       question: "Can I pay annually?",
-      answer: "Yes! <strong>Annual payments give you a 20% discount</strong> on Business and Growth plans.",
+      answer: "Yes! <strong>Annual payments give you a 20% discount</strong> on Business and Pro / Fake Review plans.",
       nudge: null,
     },
     {
@@ -117,7 +117,7 @@ export function ChatbotWelcome() {
     {
       question: "What are your support response times?",
       answer:
-        "Business Plan customers receive priority email support within 24 hours during business hours. Growth Plan customers receive priority email support within 4 hours during business hours.",
+        "Business Plan customers receive priority email support within 48 hours during business hours. Pro / Fake Review Plan customers receive priority email support within 24 hours during business hours.",
       nudge: null,
     },
   ]

@@ -81,8 +81,8 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      Yes, absolutely. You can cancel your {pricing.businessPlan.monthly}/month subscription at any time
-                      with no cancellation fees, penalties, or questions asked.
+                      Yes, absolutely. You can cancel your £299/month subscription at any time with no cancellation
+                      fees, penalties, or questions asked.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -92,10 +92,7 @@ export default function FAQPage() {
                     Is there a setup fee?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      No, GuardX does not charge setup fees. The only cost is the monthly subscription of{" "}
-                      {pricing.businessPlan.monthly}.
-                    </p>
+                    <p>No, GuardX does not charge setup fees. The only cost is the monthly subscription of £299.</p>
                   </AccordionContent>
                 </AccordionItem>
 

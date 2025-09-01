@@ -50,14 +50,12 @@ export default function PricingPage() {
 
                   <div className="mb-6">
                     <div className="flex items-center justify-center gap-1 mb-2">
-                      <span className="text-5xl font-bold text-primary">{pricing.businessPlan.monthly}</span>
+                      <span className="text-5xl font-bold text-primary">£299</span>
                       <div className="text-left">
                         <div className="text-muted-foreground text-sm">/month</div>
                       </div>
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                      or {pricing.businessPlan.annual}/year • Save 20% when paying annually
-                    </p>
+                    <p className="text-sm text-muted-foreground">20% off annual pricing</p>
                   </div>
 
                   <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
@@ -69,7 +67,7 @@ export default function PricingPage() {
                       "Automated review generation (INCLUDED)",
                       "Real-time alerts",
                       "Priority email support within 24 hours during business hours",
-                      `Extra locations: ${pricing.extraLocation}/month each`,
+                      "Extra locations: £299/month each", // Updated extra location pricing from £149 to £299
                     ].map((feature, index) => (
                       <li key={index} className="flex items-center gap-3">
                         <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
@@ -89,35 +87,44 @@ export default function PricingPage() {
               </Card>
             </div>
 
-            {/* Growth Plan */}
+            {/* Pro / Fake Review Plan */}
             <Card className="bg-card border-border relative h-full">
               <CardHeader className="text-center pb-8 pt-8 px-6">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Users className="w-8 h-8 text-primary" />
                 </div>
-                <CardTitle className="text-3xl font-bold text-foreground mb-2 break-words">Growth Plan</CardTitle>
-                <p className="text-muted-foreground mb-6 break-words">Ideal for growing businesses</p>
+                <CardTitle className="text-3xl font-bold text-foreground mb-2 break-words">
+                  Pro / Fake Review Plan
+                </CardTitle>
+                <p className="text-muted-foreground mb-6 break-words">Full monitoring with fake review detection</p>
 
                 <div className="mb-6">
                   <div className="flex items-center justify-center gap-1 mb-2">
-                    <span className="text-5xl font-bold text-primary">{pricing.growthPlan.monthly}</span>
+                    <span className="text-5xl font-bold text-primary">{pricing.proFakeReviewPlan.monthly}</span>
                     <div className="text-left">
                       <div className="text-muted-foreground text-sm">/month</div>
                     </div>
                   </div>
-                  <p className="text-sm text-muted-foreground">
-                    or {pricing.growthPlan.annual}/year • Save 20% when paying annually
+                  <p className="text-sm text-muted-foreground">20% off annual pricing</p>
+                </div>
+
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-6">
+                  <p className="text-sm font-medium text-foreground mb-2">12-Month Commitment Required</p>
+                  <p className="text-xs text-muted-foreground">
+                    This plan requires a one-year commitment to allow sufficient time for effective removal of fake
+                    reviews and to continue monitoring your online reputation for ongoing protection.
                   </p>
                 </div>
 
                 <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
                   {[
                     "Covers 1 business location",
-                    "Full reputation score dashboard",
-                    "Full monitoring, logins, alerts",
-                    "Automated review collection tools",
-                    "Priority email support within 4 hours during business hours",
-                    `Extra locations: ${pricing.extraLocation}/month each`,
+                    "Full monitoring of Google, Trustpilot, and Yelp reviews",
+                    "Instant alerts for negative reviews",
+                    "Weekly branded reports",
+                    "Fake review detection and flagging",
+                    "Priority email support within 24 hours during business hours",
+                    "Extra locations: £299/month each", // Updated extra location pricing from £149 to £299
                   ].map((feature, index) => (
                     <li key={index} className="flex items-center gap-3">
                       <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
@@ -187,72 +194,6 @@ export default function PricingPage() {
               </CardHeader>
             </Card>
           </div>
-
-          <div className="text-center mt-16 mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4" id="fake-review-protection">
-              Optional Add-On: Fake Review Flagging & Removal
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-12">
-              Proactively identify and remove fake reviews that could harm your business.
-            </p>
-
-            <div className="max-w-2xl mx-auto">
-              <Card className="bg-card border-primary border-2 relative h-full">
-                <CardHeader className="text-center pb-8 pt-8 px-6">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Shield className="w-8 h-8 text-primary" />
-                  </div>
-                  <CardTitle className="text-3xl font-bold text-foreground mb-2 break-words">
-                    Fake Review Protection
-                  </CardTitle>
-                  <p className="text-muted-foreground mb-6 break-words">
-                    We monitor and remove fake reviews every month to protect your business's online reputation.
-                  </p>
-
-                  <div className="mb-6">
-                    <div className="flex items-center justify-center gap-1 mb-2">
-                      <span className="text-5xl font-bold text-primary">{pricing.fakeRemovalService}</span>
-                      <div className="text-left">
-                        <div className="text-muted-foreground text-sm">per location</div>
-                        <div className="text-muted-foreground text-xs">per month</div>
-                      </div>
-                    </div>
-                    <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mt-4 mb-4">
-                      <p className="text-sm font-medium text-foreground mb-2">12-Month Commitment Required</p>
-                      <p className="text-xs text-muted-foreground">
-                        A one-year commitment is required to allow sufficient time for effective removal of fake reviews
-                        and to continue monitoring your online reputation for ongoing protection.
-                      </p>
-                    </div>
-                  </div>
-
-                  <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
-                    {[
-                      "AI-powered fake review detection",
-                      "Professional review flagging service",
-                      "Direct platform removal requests",
-                      "Detailed fraud analysis reports",
-                      "Priority response for urgent cases",
-                      "Works with all major review platforms",
-                    ].map((feature, index) => (
-                      <li key={index} className="flex items-center gap-3">
-                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                        <span className="text-sm text-foreground break-words overflow-wrap-break-word">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Button
-                    size="lg"
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold w-full mb-4"
-                  >
-                    Add Fake Review Protection
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </CardHeader>
-              </Card>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -318,12 +259,12 @@ export default function PricingPage() {
             {[
               {
                 question: "How does per-location pricing work?",
-                answer: `Your first location is included in your chosen plan (Business ${pricing.businessPlan.monthly}/month or Growth ${pricing.growthPlan.monthly}/month). Each additional location costs ${pricing.extraLocation}/month with the same comprehensive monitoring and support.`,
+                answer: `Your first location is included in your chosen plan (Business £299/month or Pro / Fake Review ${pricing.proFakeReviewPlan.monthly}/month). Each additional location costs £299/month with the same comprehensive monitoring and support.`, // Updated extra location pricing from £149 to £299
               },
               {
-                question: "What's the difference between Business and Growth plans?",
+                question: "What's the difference between Business and Pro / Fake Review plans?",
                 answer:
-                  "The Business Plan includes standard monitoring, logins, alerts, and priority email support within 24 hours during business hours. The Growth Plan includes full monitoring, logins, alerts, and priority email support within 4 hours during business hours. The Growth Plan offers faster support response times and more comprehensive monitoring.",
+                  "The Business Plan includes standard monitoring, logins, alerts, and priority email support within 48 hours during business hours. The Pro / Fake Review Plan includes full monitoring of Google, Trustpilot, and Yelp reviews, instant alerts for negative reviews, weekly branded reports, fake review detection and flagging, and priority email support within 24 hours during business hours. The Pro / Fake Review Plan offers faster support response times, more comprehensive monitoring, and specialized fake review protection.",
               },
               {
                 question: "Do you handle everything online?",
