@@ -35,6 +35,86 @@ export default function FAQPage() {
           <Card className="bg-card border-border">
             <CardContent className="p-8">
               <Accordion type="single" collapsible className="space-y-4">
+                <AccordionItem value="item-pricing" className="border-border">
+                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
+                    What are your pricing plans?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pt-4">
+                    <p>
+                      We offer three plans: <strong>Business Plan (£299/month)</strong> for complete reputation
+                      protection with monitoring across Google, Trustpilot, Yelp, Facebook, and many more platforms.{" "}
+                      <strong>Pro/Fake Review Plan (£499/month)</strong> with one-year commitment for advanced fake
+                      review removal. <strong>Enterprise Plan (custom pricing)</strong> for businesses with 5+
+                      locations.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-platforms" className="border-border">
+                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
+                    What platforms do you monitor?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pt-4">
+                    <p>
+                      We monitor Google, Trustpilot, Yelp, Facebook, and many more review platforms to ensure
+                      comprehensive coverage of your online reputation across all major sites where customers leave
+                      reviews.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-locations" className="border-border">
+                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
+                    How does extra location pricing work?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pt-4">
+                    <p>
+                      <strong>Business Plan:</strong> £149/month per additional location. <strong>Pro Plan:</strong>{" "}
+                      £299/month per additional location. <strong>Enterprise Plan:</strong> Custom pricing for
+                      businesses with 5+ locations with volume discounts available.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-reports" className="border-border">
+                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
+                    What's included in the weekly branded reports?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pt-4">
+                    <p>
+                      Your weekly reports include: Overall reputation score with trends, new reviews filtered by
+                      sentiment, review sources breakdown, and highlighted reviews & insights. All reports are
+                      professionally branded with your business information and delivered automatically.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-pro-commitment" className="border-border">
+                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
+                    Why does the Pro plan require a one-year commitment?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pt-4">
+                    <p>
+                      Fake review removal takes time to be effective, and new fake reviews may continue to appear during
+                      the process. The one-year commitment ensures we can provide comprehensive protection and see the
+                      removal process through to completion for maximum effectiveness.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-automated" className="border-border">
+                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
+                    Is everything fully automated?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pt-4">
+                    <p>
+                      Yes, all our services are fully automated. You don't need dashboard access or manual intervention
+                      - we handle monitoring, alerts, reporting, and response management automatically. Simply receive
+                      your weekly branded reports and instant alerts when needed.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+
                 <AccordionItem value="item-access" className="border-border">
                   <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
                     How do I access my reports?
@@ -78,9 +158,10 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      Yes, absolutely. You can cancel your £299/month subscription at any time with no cancellation
-                      fees, penalties, or questions asked. Your service continues until the end of your current billing
-                      period.
+                      <strong>Business Plan:</strong> Yes, cancel anytime with no contracts or penalties.{" "}
+                      <strong>Pro Plan:</strong> One-year commitment required for effective fake review removal.{" "}
+                      <strong>Enterprise Plan:</strong> Terms vary based on your custom agreement. No cancellation fees
+                      for any plan.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -90,18 +171,9 @@ export default function FAQPage() {
                     Is there a setup fee?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>No, GuardX does not charge setup fees. The only cost is the monthly subscription of £299.</p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-2" className="border-border">
-                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
-                    Can I cancel anytime?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      Yes, GuardX subscriptions are flexible, with no long-term contracts. Cancel anytime without
-                      penalties.
+                      No, GuardX does not charge setup fees for any plan. The only costs are the monthly subscription
+                      fees: Business Plan £299/month, Pro Plan £499/month, or custom Enterprise pricing.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -253,6 +325,19 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>Yes, GuardX provides reputation management solutions for businesses worldwide.</p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-enterprise" className="border-border">
+                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
+                    What's included in the Enterprise Plan?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pt-4">
+                    <p>
+                      The Enterprise Plan includes everything in the Business Plan plus multiple location management,
+                      dedicated account manager, custom reporting schedules, priority support & training, and volume
+                      pricing for businesses with 5+ locations.
+                    </p>
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>

@@ -495,7 +495,7 @@ export default function HomePage() {
                     <span className="text-muted-foreground">/month</span>
                   </div>
                   <p className="text-sm text-muted-foreground">Includes fake review removal</p>
-                  <p className="text-xs text-orange-600 font-medium mt-1">One-year commitment required</p>
+                  <p className="text-xs text-blue-600 font-medium mt-1">One-year commitment required</p>
                 </div>
 
                 <ul className="space-y-3 mb-6">
@@ -523,8 +523,8 @@ export default function HomePage() {
                   </li>
                 </ul>
 
-                <div className="mb-6 p-3 bg-orange-50 border border-orange-200 rounded-lg">
-                  <p className="text-xs text-orange-800">
+                <div className="mb-6 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-xs text-blue-800">
                     A one-year commitment is required to allow sufficient time for effective removal of fake reviews and
                     ongoing protection against recurring fake reviews.
                   </p>

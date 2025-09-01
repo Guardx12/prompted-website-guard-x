@@ -25,9 +25,15 @@ export default function PricingPage() {
       </section>
 
       <section className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Business Plan */}
             <Card className="bg-card border-primary border-2 relative">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span className="bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold">
+                  Most Popular
+                </span>
+              </div>
               <CardHeader className="text-center pb-8 pt-8">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <TrendingUp className="w-8 h-8 text-primary" />
@@ -42,18 +48,16 @@ export default function PricingPage() {
                       <div className="text-muted-foreground text-sm">/month</div>
                     </div>
                   </div>
+                  <p className="text-sm text-primary font-medium">20% off annual pricing</p>
                 </div>
 
                 <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
                   {[
-                    "Advanced reputation monitoring",
+                    "Monitoring for Google, Trustpilot, Yelp, Facebook, and many more",
+                    "Weekly branded report included",
                     "Real-time alerts & notifications",
-                    "Reputation score dashboard",
-                    "Review response management",
-                    "Daily, Weekly, or Monthly detailed reports",
-                    "Crisis management support",
-                    "Email support",
-                    "Multi-location support",
+                    "Fully automated service",
+                    "Cancel anytime - no contracts",
                   ].map((feature, index) => (
                     <li key={index} className="flex items-center gap-3">
                       <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
@@ -62,46 +66,72 @@ export default function PricingPage() {
                   ))}
                 </ul>
 
+                <div className="mb-6 p-4 bg-muted/50 rounded-lg">
+                  <p className="text-sm text-muted-foreground mb-2">Extra locations:</p>
+                  <p className="text-lg font-semibold text-foreground">£149/month per additional location</p>
+                </div>
+
                 <Link href="/onboarding">
                   <Button
                     size="lg"
                     className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold w-full mb-4"
                   >
-                    Get Started
+                    Start Protecting Today
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
 
                 <div className="space-y-2 text-sm text-muted-foreground">
-                  <p>✓ 100% Automated Service</p>
                   <p>✓ Cancel Anytime</p>
-                  <p>✓ No Setup Fees</p>
+                  <p>✓ No Ties</p>
+                  <p>✓ Fully Automated</p>
                 </div>
               </CardHeader>
             </Card>
 
+            {/* Pro/Fake Review Plan */}
             <Card className="bg-card border-border relative">
               <CardHeader className="text-center pb-8 pt-8">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Shield className="w-8 h-8 text-primary" />
                 </div>
-                <CardTitle className="text-2xl font-bold text-foreground mb-2">Multi-Location Add-On</CardTitle>
-                <p className="text-muted-foreground mb-6">Manage additional business locations</p>
+                <CardTitle className="text-2xl font-bold text-foreground mb-2">Pro / Fake Review Plan</CardTitle>
+                <p className="text-muted-foreground mb-6">Advanced fake review protection</p>
 
                 <div className="mb-6">
                   <div className="flex items-center justify-center gap-1 mb-2">
-                    <span className="text-4xl font-bold text-primary">£149</span>
+                    <span className="text-4xl font-bold text-primary">£499</span>
                     <div className="text-left">
                       <div className="text-muted-foreground text-sm">/month</div>
                     </div>
                   </div>
-                  <p className="text-sm text-muted-foreground">per additional location</p>
+                  <p className="text-sm text-blue-600 font-medium">One-year commitment required</p>
                 </div>
 
-                <div className="text-center mb-8">
-                  <p className="text-sm text-muted-foreground max-w-sm mx-auto">
-                    Extend your reputation protection to additional business locations with the same comprehensive
-                    monitoring and support.
+                <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
+                  {[
+                    "Monitoring for Google, Trustpilot, Yelp, Facebook, and many more",
+                    "Advanced fake review detection & removal",
+                    "Weekly branded report included",
+                    "Fully automated service",
+                    "Priority crisis management",
+                  ].map((feature, index) => (
+                    <li key={index} className="flex items-center gap-3">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm text-foreground">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mb-6 p-4 bg-muted/50 rounded-lg">
+                  <p className="text-sm text-muted-foreground mb-2">Extra locations:</p>
+                  <p className="text-lg font-semibold text-foreground">£299/month per location</p>
+                </div>
+
+                <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-800">
+                    One-year commitment required as it takes time to remove fake reviews and new fake reviews may
+                    continue to appear.
                   </p>
                 </div>
 
@@ -111,15 +141,71 @@ export default function PricingPage() {
                     size="lg"
                     className="border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg font-semibold w-full mb-4 bg-transparent"
                   >
-                    Add Locations
+                    Get Advanced Protection
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
 
                 <div className="space-y-2 text-sm text-muted-foreground">
-                  <p>✓ Same Features as Business Plan</p>
-                  <p>✓ Individual Location Dashboards</p>
-                  <p>✓ Flexible Scaling</p>
+                  <p>✓ Fake Review Removal</p>
+                  <p>✓ Priority Support</p>
+                  <p>✓ Fully Automated</p>
+                </div>
+              </CardHeader>
+            </Card>
+
+            {/* Enterprise Plan */}
+            <Card className="bg-card border-border relative">
+              <CardHeader className="text-center pb-8 pt-8">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Clock className="w-8 h-8 text-primary" />
+                </div>
+                <CardTitle className="text-2xl font-bold text-foreground mb-2">Enterprise Plan</CardTitle>
+                <p className="text-muted-foreground mb-6">For businesses with 5+ locations</p>
+
+                <div className="mb-6">
+                  <div className="flex items-center justify-center gap-1 mb-2">
+                    <span className="text-3xl font-bold text-primary">Custom</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">Pricing based on your needs</p>
+                </div>
+
+                <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
+                  {[
+                    "Everything in Business Plan",
+                    "Multiple location management",
+                    "Dedicated account manager",
+                    "Custom reporting schedule",
+                    "Priority support & training",
+                  ].map((feature, index) => (
+                    <li key={index} className="flex items-center gap-3">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm text-foreground">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mb-6 p-4 bg-muted/50 rounded-lg">
+                  <p className="text-sm text-muted-foreground text-center">
+                    Perfect for businesses with 5+ locations needing comprehensive reputation management
+                  </p>
+                </div>
+
+                <Link href="/contact">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg font-semibold w-full mb-4 bg-transparent"
+                  >
+                    Contact Us
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
+
+                <div className="space-y-2 text-sm text-muted-foreground">
+                  <p>✓ Fully Automated</p>
+                  <p>✓ Scalable Solution</p>
+                  <p>✓ Dedicated Support</p>
                 </div>
               </CardHeader>
             </Card>
@@ -188,32 +274,43 @@ export default function PricingPage() {
           <div className="space-y-6">
             {[
               {
-                question: "How does per-location pricing work?",
+                question: "What are your pricing plans?",
                 answer:
-                  "Your first location costs £299/month with our Business Plan and includes all advanced features. Each additional location is £149/month with the same comprehensive monitoring and support through our Multi-Location Add-On.",
+                  "We offer three plans: Business Plan (£299/month) for complete reputation protection, Pro/Fake Review Plan (£499/month with one-year commitment) for advanced fake review removal, and Enterprise Plan (custom pricing) for businesses with 5+ locations.",
               },
               {
-                question: "Do you handle everything online?",
+                question: "How does extra location pricing work?",
                 answer:
-                  "Yes, everything is handled online through our automated systems. No phone calls or in-person meetings required. You'll have access to our dashboard, email support, and crisis management all through our platform.",
+                  "Business Plan: £149/month per additional location. Pro/Fake Review Plan: £299/month per additional location. Enterprise Plan: Custom pricing for 5+ locations with volume discounts.",
               },
               {
-                question: "What's included in the Business Plan?",
+                question: "What platforms do you monitor?",
                 answer:
-                  "Advanced reputation monitoring, dashboard access, real-time alerts, sentiment analysis, review response management, daily, weekly, or monthly reports, and email support with crisis management.",
+                  "We monitor Google, Trustpilot, Yelp, Facebook, and many more review platforms to ensure comprehensive coverage of your online reputation across all major sites.",
+              },
+              {
+                question: "What's included in the weekly branded reports?",
+                answer:
+                  "Your weekly reports include overall reputation score with trends, new reviews filtered by sentiment, review sources breakdown, and highlighted reviews & insights - all professionally branded with your business information.",
+              },
+              {
+                question: "Why does the Pro plan require a one-year commitment?",
+                answer:
+                  "Fake review removal takes time to be effective, and new fake reviews may continue to appear. The one-year commitment ensures we can provide comprehensive protection and see the process through to completion.",
+              },
+              {
+                question: "Is everything fully automated?",
+                answer:
+                  "Yes, all our services are fully automated. You don't need dashboard access or manual intervention - we handle monitoring, alerts, reporting, and response management automatically.",
               },
               {
                 question: "Can I cancel anytime?",
                 answer:
-                  "Yes, you can cancel your subscription at any time. There are no long-term contracts or cancellation fees.",
+                  "Business Plan: Yes, cancel anytime with no contracts or penalties. Pro Plan: One-year commitment required. Enterprise Plan: Terms vary based on agreement.",
               },
               {
-                question: "Is there a setup fee?",
+                question: "Are there any setup fees?",
                 answer: "No, there are no setup fees for any of our plans. You only pay the monthly subscription fee.",
-              },
-              {
-                question: "What payment methods do you accept?",
-                answer: "We accept all major credit cards through our secure Stripe payment processing system.",
               },
             ].map((faq, index) => (
               <Card key={index} className="bg-card border-border">
