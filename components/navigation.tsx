@@ -65,7 +65,9 @@ export function Navigation() {
                 Contact
               </Link>
               <Link href="/onboarding">
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Get Started</Button>
+                <Button className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90">
+                  <span className="get-started-text">Get Started Today</span>
+                </Button>
               </Link>
             </div>
 
@@ -139,8 +141,8 @@ export function Navigation() {
                 </Link>
                 <div className="px-3 py-2">
                   <Link href="/onboarding">
-                    <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                      Get Started
+                    <Button className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                      <span className="get-started-text">Get Started Today</span>
                     </Button>
                   </Link>
                 </div>

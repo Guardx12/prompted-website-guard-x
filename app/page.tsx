@@ -50,9 +50,9 @@ export default function HomePage() {
               <Link href="/onboarding">
                 <Button
                   size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-xl font-bold shadow-lg transform hover:scale-105 transition-all"
+                  className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-xl font-bold shadow-lg"
                 >
-                  Start Protecting Today
+                  <span className="get-started-text">Start Protecting Today</span>
                   <ArrowRight className="ml-2 w-6 h-6" />
                 </Button>
               </Link>
@@ -248,9 +248,9 @@ export default function HomePage() {
             <Link href="/onboarding">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
+                className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
               >
-                Start Protecting Today
+                <span className="get-started-text">Start Protecting Today</span>
                 <ArrowRight className="ml-2 w-6 h-6" />
               </Button>
             </Link>
@@ -315,9 +315,9 @@ export default function HomePage() {
             <Link href="/onboarding">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
+                className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
               >
-                Start Protecting Today
+                <span className="get-started-text">Start Protecting Today</span>
                 <ArrowRight className="ml-2 w-6 h-6" />
               </Button>
             </Link>
@@ -405,9 +405,9 @@ export default function HomePage() {
             <Link href="/onboarding">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
+                className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
               >
-                Protect Your Revenue — Start Now
+                <span className="get-started-text">Protect Your Revenue — Start Now</span>
                 <ArrowRight className="ml-2 w-6 h-6" />
               </Button>
             </Link>
@@ -477,8 +477,8 @@ export default function HomePage() {
                 </div>
 
                 <Link href="/onboarding">
-                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold">
-                    Start Protecting Today
+                  <Button className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold">
+                    <span className="get-started-text">Start Protecting Today</span>
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
@@ -540,8 +540,8 @@ export default function HomePage() {
                 </div>
 
                 <Link href="/onboarding">
-                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold">
-                    Start Protecting Today
+                  <Button className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold">
+                    <span className="get-started-text">Start Protecting Today</span>
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
@@ -591,9 +591,9 @@ export default function HomePage() {
                 <Link href="/contact">
                   <Button
                     variant="outline"
-                    className="w-full border-primary text-primary hover:bg-primary/10 py-3 text-lg font-semibold bg-transparent"
+                    className="get-started-btn w-full border-primary text-primary hover:bg-primary/10 py-3 text-lg font-semibold bg-transparent"
                   >
-                    Contact Us
+                    <span className="get-started-text">Contact Us</span>
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
@@ -629,9 +629,9 @@ export default function HomePage() {
             <Link href="/onboarding">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
+                className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
               >
-                Start Protecting Today
+                <span className="get-started-text">Start Protecting Today</span>
                 <ArrowRight className="ml-2 w-6 h-6" />
               </Button>
             </Link>
@@ -773,9 +773,9 @@ export default function HomePage() {
             <Link href="/onboarding">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
+                className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
               >
-                Start Getting Reports Today
+                <span className="get-started-text">Start Getting Reports Today</span>
                 <ArrowRight className="ml-2 w-6 h-6" />
               </Button>
             </Link>

@@ -119,3 +119,88 @@
   font-weight: 600;
   letter-spacing: 0.025em;
 }
+
+/* Pulse animation for Get Started buttons */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6), 0 0 30px rgba(212, 175, 55, 0.4);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes text-flash {
+  0%,
+  90%,
+  100% {
+    opacity: 1;
+  }
+  45%,
+  55% {
+    opacity: 0.8;
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.8);
+  }
+}
+
+/* Enhanced Get Started button class */
+.get-started-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  animation: pulse-glow 4s ease-in-out infinite;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+.get-started-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4), 0 0 30px rgba(212, 175, 55, 0.3);
+  background: linear-gradient(135deg, #f4e4a6, #d4af37);
+}
+
+.get-started-btn:active {
+  transform: translateY(0) scale(1.02);
+}
+
+/* Text animation for Get Started buttons */
+.get-started-text {
+  animation: text-flash 5s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.get-started-btn:hover .get-started-text {
+  color: #000000;
+  font-weight: 700;
+  text-shadow: none;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .get-started-btn {
+    animation: pulse-glow 6s ease-in-out infinite;
+  }
+
+  .get-started-btn:hover {
+    transform: translateY(-1px) scale(1.02);
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .get-started-btn {
+    animation: none;
+  }
+
+  .get-started-text {
+    animation: none;
+  }
+
+  .get-started-btn:hover {
+    transform: none;
+  }
+}
