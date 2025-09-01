@@ -5,11 +5,9 @@ import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
-import { usePricing } from "@/hooks/use-pricing"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
-  const pricing = usePricing()
 
   return (
     <>

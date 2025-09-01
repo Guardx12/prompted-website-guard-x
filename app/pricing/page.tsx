@@ -1,5 +1,3 @@
-"use client"
-
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -7,11 +5,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { CheckCircle, Shield, TrendingUp, Clock, ArrowRight, Users } from "lucide-react"
 import Link from "next/link"
-import { usePricing } from "@/hooks/use-pricing"
 
 export default function PricingPage() {
-  const pricing = usePricing()
-
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -40,147 +35,128 @@ export default function PricingPage() {
                   Most Popular
                 </Badge>
               </div>
-              <Card className="bg-card border-primary border-2 relative h-full">
-                <CardHeader className="text-center pb-8 pt-8 px-6">
+              <Card className="bg-card border-primary border-2 relative">
+                <CardHeader className="text-center pb-8 pt-8">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                     <TrendingUp className="w-8 h-8 text-primary" />
                   </div>
-                  <CardTitle className="text-3xl font-bold text-foreground mb-2 break-words">Business Plan</CardTitle>
-                  <p className="text-muted-foreground mb-6 break-words">Perfect for single location businesses</p>
+                  <CardTitle className="text-3xl font-bold text-foreground mb-2">Business Plan</CardTitle>
+                  <p className="text-muted-foreground mb-6">Perfect for single location businesses</p>
 
                   <div className="mb-6">
                     <div className="flex items-center justify-center gap-1 mb-2">
-                      <span className="text-5xl font-bold text-primary">
-                        {pricing.formatPrice(pricing.businessPlan.monthly)}
-                      </span>
+                      <span className="text-5xl font-bold text-primary">£299</span>
                       <div className="text-left">
                         <div className="text-muted-foreground text-sm">/month</div>
                       </div>
                     </div>
-                    <p className="text-sm text-muted-foreground">{pricing.businessPlan.savings}</p>
                   </div>
 
                   <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
                     {[
                       "Covers 1 business location",
-                      "Dashboard login included",
+                      "Dashboard login for 1 user",
                       "Daily, weekly, or monthly branded reports",
-                      "Standard monitoring, logins, alerts",
-                      "Automated review generation (INCLUDED)",
+                      "Review monitoring & sentiment analysis",
                       "Real-time alerts",
-                      "Priority email support within 24 hours during business hours",
-                      "Extra locations: £299/month each", // Updated extra location pricing from £149 to £299
+                      "Priority email support",
+                      "Extra locations: £149/month each",
                     ].map((feature, index) => (
                       <li key={index} className="flex items-center gap-3">
                         <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                        <span className="text-sm text-foreground break-words overflow-wrap-break-word">{feature}</span>
+                        <span className="text-sm text-foreground">{feature}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <Button
-                    size="lg"
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold w-full mb-4"
-                  >
-                    Get Started
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
+                  <Link href="/onboarding">
+                    <Button
+                      size="lg"
+                      className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold w-full mb-4"
+                    >
+                      Get Started
+                      <ArrowRight className="ml-2 w-5 h-5" />
+                    </Button>
+                  </Link>
                 </CardHeader>
               </Card>
             </div>
 
-            {/* Pro / Fake Review Plan */}
-            <Card className="bg-card border-border relative h-full">
-              <CardHeader className="text-center pb-8 pt-8 px-6">
+            {/* Growth Plan */}
+            <Card className="bg-card border-border relative">
+              <CardHeader className="text-center pb-8 pt-8">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Users className="w-8 h-8 text-primary" />
                 </div>
-                <CardTitle className="text-3xl font-bold text-foreground mb-2 break-words">
-                  Pro / Fake Review Plan
-                </CardTitle>
-                <p className="text-muted-foreground mb-6 break-words">Full monitoring with fake review detection</p>
+                <CardTitle className="text-3xl font-bold text-foreground mb-2">Growth Plan</CardTitle>
+                <p className="text-muted-foreground mb-6">For growing teams and businesses</p>
 
                 <div className="mb-6">
                   <div className="flex items-center justify-center gap-1 mb-2">
-                    <span className="text-5xl font-bold text-primary">
-                      {pricing.formatPrice(pricing.proFakeReviewPlan.monthly)}
-                    </span>
+                    <span className="text-5xl font-bold text-primary">£499</span>
                     <div className="text-left">
                       <div className="text-muted-foreground text-sm">/month</div>
                     </div>
                   </div>
-                  <p className="text-sm text-muted-foreground">{pricing.proFakeReviewPlan.savings}</p>
-                </div>
-
-                <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-6">
-                  <p className="text-sm font-medium text-foreground mb-2">12-Month Commitment Required</p>
-                  <p className="text-xs text-muted-foreground">
-                    This plan requires a one-year commitment to allow sufficient time for effective removal of fake
-                    reviews and to continue monitoring your online reputation for ongoing protection.
-                  </p>
                 </div>
 
                 <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
                   {[
                     "Covers 1 business location",
-                    "Full monitoring of Google, Trustpilot, and Yelp reviews",
-                    "Instant alerts for negative reviews",
-                    "Weekly branded reports",
-                    "Fake review detection and flagging",
-                    "Priority email support within 24 hours during business hours",
-                    "Extra locations: £299/month each", // Updated extra location pricing from £149 to £299
+                    "Dashboard login for up to 5 users",
+                    "Full reputation score dashboard",
+                    "Advanced monitoring across multiple sources",
+                    "Automated review collection tools",
+                    "Priority email support",
+                    "Extra locations: £149/month each",
                   ].map((feature, index) => (
                     <li key={index} className="flex items-center gap-3">
                       <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm text-foreground break-words overflow-wrap-break-word">{feature}</span>
+                      <span className="text-sm text-foreground">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg font-semibold w-full mb-4 bg-transparent"
-                >
-                  Get Started
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
+                <Link href="/onboarding">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg font-semibold w-full mb-4 bg-transparent"
+                  >
+                    Get Started
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
               </CardHeader>
             </Card>
 
             {/* Enterprise Plan */}
-            <Card className="bg-card border-border relative h-full">
-              <CardHeader className="text-center pb-8 pt-8 px-6">
+            <Card className="bg-card border-border relative">
+              <CardHeader className="text-center pb-8 pt-8">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Shield className="w-8 h-8 text-primary" />
                 </div>
-                <CardTitle className="text-3xl font-bold text-foreground mb-2 break-words">Enterprise Plan</CardTitle>
-                <p className="text-muted-foreground mb-6 break-words">For businesses with multiple locations</p>
+                <CardTitle className="text-3xl font-bold text-foreground mb-2">Enterprise Plan</CardTitle>
+                <p className="text-muted-foreground mb-6">Tailored for large organizations</p>
 
                 <div className="mb-6">
                   <div className="flex items-center justify-center gap-1 mb-2">
-                    <span className="text-2xl font-bold text-primary">Custom</span>
-                    <span className="text-muted-foreground"> Pricing</span>
+                    <span className="text-3xl font-bold text-primary">Custom</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">{pricing.enterprisePlan.pricing}</p>
-                </div>
-
-                <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">
-                    We'll create a tailored solution based on your number of locations and needs.
-                  </p>
+                  <p className="text-sm text-muted-foreground">Pricing</p>
                 </div>
 
                 <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
                   {[
-                    "Tailored for businesses with multiple locations",
-                    "Full monitoring, logins, alerts",
-                    "Premium support, custom features for multiple locations",
-                    "Dedicated account manager",
+                    "Tailored for businesses with many locations",
+                    "Bespoke reporting and monitoring setup",
+                    "Unlimited users",
+                    "Dedicated email/chat account manager",
+                    "Contact us for a custom quote",
                   ].map((feature, index) => (
                     <li key={index} className="flex items-center gap-3">
                       <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm text-foreground break-words overflow-wrap-break-word">{feature}</span>
+                      <span className="text-sm text-foreground">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -197,6 +173,26 @@ export default function PricingPage() {
                 </Link>
               </CardHeader>
             </Card>
+          </div>
+
+          <div className="text-center mt-16">
+            <p className="text-xl font-semibold text-primary mb-8">Protect your reputation today with GuardX.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+              <div className="text-center">
+                <p className="text-sm text-muted-foreground">✓ Cancel anytime. No long-term contracts.</p>
+              </div>
+              <div className="text-center">
+                <p className="text-sm text-muted-foreground">✓ Extra locations are easy to add — scale as you grow.</p>
+              </div>
+              <div className="text-center">
+                <p className="text-sm text-muted-foreground">✓ Trusted by businesses who value their reputation.</p>
+              </div>
+              <div className="text-center">
+                <p className="text-sm text-muted-foreground">
+                  ✓ All monitoring and alerts handled securely and professionally.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -263,12 +259,13 @@ export default function PricingPage() {
             {[
               {
                 question: "How does per-location pricing work?",
-                answer: `Your first location is included in your chosen plan (Business ${pricing.formatPrice(pricing.businessPlan.monthly)}/month or Pro / Fake Review ${pricing.formatPrice(pricing.proFakeReviewPlan.monthly)}/month). Each additional location costs ${pricing.formatPrice(pricing.extraLocation)}/month with the same comprehensive monitoring and support.`,
+                answer:
+                  "Your first location is included in your chosen plan (Business £299/month or Growth £499/month). Each additional location costs £149/month with the same comprehensive monitoring and support.",
               },
               {
-                question: "What's the difference between Business and Pro / Fake Review plans?",
+                question: "What's the difference between Business and Growth plans?",
                 answer:
-                  "The Business Plan includes standard monitoring, logins, alerts, and priority email support within 48 hours during business hours. The Pro / Fake Review Plan includes full monitoring of Google, Trustpilot, and Yelp reviews, instant alerts for negative reviews, weekly branded reports, fake review detection and flagging, and priority email support within 24 hours during business hours. The Pro / Fake Review Plan offers faster support response times, more comprehensive monitoring, and specialized fake review protection.",
+                  "The Business Plan covers 1 user and includes essential monitoring features. The Growth Plan supports up to 5 users with advanced monitoring, full reputation dashboard, and automated review collection tools.",
               },
               {
                 question: "Do you handle everything online?",

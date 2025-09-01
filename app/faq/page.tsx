@@ -5,11 +5,8 @@ import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { HelpCircle, MessageSquare, ArrowRight } from "lucide-react"
 import Link from "next/link"
-import { usePricing } from "@/hooks/use-pricing"
 
 export default function FAQPage() {
-  const pricing = usePricing()
-
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -82,7 +79,8 @@ export default function FAQPage() {
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
                       Yes, absolutely. You can cancel your £299/month subscription at any time with no cancellation
-                      fees, penalties, or questions asked.
+                      fees, penalties, or questions asked. Your service continues until the end of your current billing
+                      period.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -93,6 +91,18 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>No, GuardX does not charge setup fees. The only cost is the monthly subscription of £299.</p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-2" className="border-border">
+                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
+                    Can I cancel anytime?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pt-4">
+                    <p>
+                      Yes, GuardX subscriptions are flexible, with no long-term contracts. Cancel anytime without
+                      penalties.
+                    </p>
                   </AccordionContent>
                 </AccordionItem>
 
@@ -117,6 +127,30 @@ export default function FAQPage() {
                   </AccordionContent>
                 </AccordionItem>
 
+                <AccordionItem value="item-5" className="border-border">
+                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
+                    Do you offer refunds?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pt-4">
+                    <p>
+                      GuardX offers a 30-day satisfaction guarantee. If you are not satisfied within the first month, a
+                      full refund is available.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-6" className="border-border">
+                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
+                    Does GuardX write fake reviews?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pt-4">
+                    <p>
+                      GuardX does not post fake reviews. Instead, GuardX helps clients generate genuine positive
+                      feedback from satisfied customers and ensures reviews are managed and responded to professionally.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+
                 <AccordionItem value="item-7" className="border-border">
                   <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
                     Can GuardX remove negative content?
@@ -125,6 +159,18 @@ export default function FAQPage() {
                     <p>
                       Yes. GuardX uses proven strategies to suppress harmful or misleading content and, where possible,
                       works with platforms to request removal of false or defamatory material.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-8" className="border-border">
+                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
+                    Do I get a dedicated account manager?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pt-4">
+                    <p>
+                      Yes, every client receives a dedicated account manager who provides updates, strategy, and
+                      hands-on support.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -182,7 +228,10 @@ export default function FAQPage() {
                     Does GuardX monitor competitors?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>Yes, we can also monitor competitors if required.</p>
+                    <p>
+                      Yes, GuardX offers competitor analysis to benchmark reputation performance and identify
+                      opportunities to stay ahead in your industry.
+                    </p>
                   </AccordionContent>
                 </AccordionItem>
 

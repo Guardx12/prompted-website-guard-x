@@ -5,11 +5,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { CheckCircle, Bell, Users, ArrowRight, Star, BarChart3 } from "lucide-react"
 import Link from "next/link"
-import { usePricing } from "@/hooks/use-pricing"
 
 export default function LandingPage() {
-  const pricing = usePricing()
-
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -95,7 +92,7 @@ export default function LandingPage() {
               <CardHeader className="pb-4">
                 <CardTitle className="text-xl font-bold text-foreground">Starter</CardTitle>
                 <div className="flex items-center justify-center gap-1 mt-2">
-                  <span className="text-3xl font-bold text-primary">£299</span>
+                  <span className="text-3xl font-bold text-primary">£149</span>
                   <span className="text-muted-foreground">/month</span>
                 </div>
               </CardHeader>
@@ -146,40 +143,12 @@ export default function LandingPage() {
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span>Priority email support during business hours</span>
+                      <span>Phone & email support</span>
                     </li>
                   </ul>
                 </CardContent>
               </Card>
             </div>
-
-            {/* Pro / Fake Review Plan */}
-            <Card className="bg-card border-border text-center">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-xl font-bold text-foreground">Pro / Fake Review Plan</CardTitle>
-                <div className="flex items-center justify-center gap-1 mt-2">
-                  <span className="text-3xl font-bold text-primary">£499</span>
-                  <span className="text-muted-foreground">/month</span>
-                </div>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <p className="text-muted-foreground mb-4">Full monitoring with fake review detection</p>
-                <ul className="space-y-2 text-sm text-left">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Full monitoring of Google, Trustpilot, and Yelp</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Instant alerts for negative reviews</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Fake review detection and flagging</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
 
             {/* Growth */}
             <Card className="bg-card border-border text-center">
@@ -199,7 +168,7 @@ export default function LandingPage() {
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Priority email support within 24 hours during business hours</span>
+                    <span>Priority support</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
