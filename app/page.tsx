@@ -189,7 +189,7 @@ export default function HomePage() {
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold"
               >
-                Join Them Today — £299/Month
+                Join Them Today — {pricing.formatPrice(pricing.businessPlan.monthly)}/Month
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
@@ -585,7 +585,9 @@ export default function HomePage() {
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">GuardX monthly cost:</span>
-                  <span className="font-semibold text-foreground">£299</span>
+                  <span className="font-semibold text-foreground">
+                    {pricing.formatPrice(pricing.businessPlan.monthly)}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Revenue saved from 1 prevented bad review:</span>
@@ -622,7 +624,7 @@ export default function HomePage() {
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
               We monitor and remove fake reviews every month to protect your business's online reputation. Available as
-              an optional add-on for {pricing.fakeRemovalService} per location per month.
+              an optional add-on for {pricing.formatPrice(pricing.fakeRemovalService)} per location per month.
             </p>
             <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 max-w-2xl mx-auto mb-8">
               <p className="text-foreground font-medium mb-2">12-Month Commitment Required</p>
@@ -668,9 +670,11 @@ export default function HomePage() {
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold text-foreground mb-2">Business Plan</h3>
                   <div className="mb-4">
-                    <span className="text-4xl font-bold text-primary">£299</span>
+                    <span className="text-4xl font-bold text-primary">
+                      {pricing.formatPrice(pricing.businessPlan.monthly)}
+                    </span>
                     <span className="text-muted-foreground">/month</span>
-                    <div className="text-sm text-muted-foreground mt-1">20% off annual pricing</div>
+                    <div className="text-sm text-muted-foreground mt-1">{pricing.businessPlan.savings}</div>
                   </div>
                   <p className="text-sm text-muted-foreground">Perfect for single location businesses</p>
                 </div>
@@ -693,7 +697,9 @@ export default function HomePage() {
                 </ul>
 
                 <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">Extra locations: £299/month each</p>
+                  <p className="text-sm text-muted-foreground">
+                    Extra locations: {pricing.formatPrice(pricing.extraLocation)}/month each
+                  </p>
                 </div>
 
                 <Link href="/contact">
@@ -711,9 +717,11 @@ export default function HomePage() {
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold text-foreground mb-2">Pro / Fake Review Plan</h3>
                   <div className="mb-4">
-                    <span className="text-4xl font-bold text-primary">{pricing.proFakeReviewPlan.monthly}</span>
+                    <span className="text-4xl font-bold text-primary">
+                      {pricing.formatPrice(pricing.proFakeReviewPlan.monthly)}
+                    </span>
                     <span className="text-muted-foreground">/month</span>
-                    <div className="text-sm text-muted-foreground mt-1">20% off annual pricing</div>
+                    <div className="text-sm text-muted-foreground mt-1">{pricing.proFakeReviewPlan.savings}</div>
                   </div>
                   <p className="text-sm text-muted-foreground">Full monitoring with fake review detection</p>
                 </div>
@@ -735,7 +743,9 @@ export default function HomePage() {
                 </ul>
 
                 <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">Extra locations: £299/month each</p>
+                  <p className="text-sm text-muted-foreground">
+                    Extra locations: {pricing.formatPrice(pricing.extraLocation)}/month each
+                  </p>
                 </div>
 
                 <Link href="/contact">
@@ -775,7 +785,9 @@ export default function HomePage() {
                 </ul>
 
                 <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">Extra locations: £299/month each</p>
+                  <p className="text-sm text-muted-foreground">
+                    Extra locations: {pricing.formatPrice(pricing.extraLocation)}/month each
+                  </p>
                 </div>
 
                 <Link href="/contact">
@@ -810,7 +822,7 @@ export default function HomePage() {
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
               >
-                Start Protecting Your Business — £299/Month
+                Start Protecting Your Business — {pricing.formatPrice(pricing.businessPlan.monthly)}/Month
                 <ArrowRight className="ml-2 w-6 h-6" />
               </Button>
             </Link>

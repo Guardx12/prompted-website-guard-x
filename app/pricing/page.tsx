@@ -50,12 +50,14 @@ export default function PricingPage() {
 
                   <div className="mb-6">
                     <div className="flex items-center justify-center gap-1 mb-2">
-                      <span className="text-5xl font-bold text-primary">£299</span>
+                      <span className="text-5xl font-bold text-primary">
+                        {pricing.formatPrice(pricing.businessPlan.monthly)}
+                      </span>
                       <div className="text-left">
                         <div className="text-muted-foreground text-sm">/month</div>
                       </div>
                     </div>
-                    <p className="text-sm text-muted-foreground">20% off annual pricing</p>
+                    <p className="text-sm text-muted-foreground">{pricing.businessPlan.savings}</p>
                   </div>
 
                   <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
@@ -100,12 +102,14 @@ export default function PricingPage() {
 
                 <div className="mb-6">
                   <div className="flex items-center justify-center gap-1 mb-2">
-                    <span className="text-5xl font-bold text-primary">{pricing.proFakeReviewPlan.monthly}</span>
+                    <span className="text-5xl font-bold text-primary">
+                      {pricing.formatPrice(pricing.proFakeReviewPlan.monthly)}
+                    </span>
                     <div className="text-left">
                       <div className="text-muted-foreground text-sm">/month</div>
                     </div>
                   </div>
-                  <p className="text-sm text-muted-foreground">20% off annual pricing</p>
+                  <p className="text-sm text-muted-foreground">{pricing.proFakeReviewPlan.savings}</p>
                 </div>
 
                 <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-6">
@@ -259,7 +263,7 @@ export default function PricingPage() {
             {[
               {
                 question: "How does per-location pricing work?",
-                answer: `Your first location is included in your chosen plan (Business £299/month or Pro / Fake Review ${pricing.proFakeReviewPlan.monthly}/month). Each additional location costs £299/month with the same comprehensive monitoring and support.`, // Updated extra location pricing from £149 to £299
+                answer: `Your first location is included in your chosen plan (Business ${pricing.formatPrice(pricing.businessPlan.monthly)}/month or Pro / Fake Review ${pricing.formatPrice(pricing.proFakeReviewPlan.monthly)}/month). Each additional location costs ${pricing.formatPrice(pricing.extraLocation)}/month with the same comprehensive monitoring and support.`,
               },
               {
                 question: "What's the difference between Business and Pro / Fake Review plans?",
