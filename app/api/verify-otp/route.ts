@@ -1,6 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { verifyOTP } from "@/lib/otp"
-import { sendOnboardingNotification } from "@/lib/email"
 
 const verificationAttempts = new Map<string, number[]>()
 
@@ -56,20 +55,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: verification.error }, { status: 400 })
     }
 
-    console.log("[v0] OTP verified successfully, sending onboarding notification")
-
-    // Send the onboarding notification email
-    try {
-      await sendOnboardingNotification(verification.formData, ip)
-      console.log("[v0] Onboarding notification sent successfully")
-    } catch (emailError) {
-      console.error("[v0] Failed to send onboarding notification:", emailError)
-      // Don't fail the verification if notification fails
-    }
+    console.log("[v0] OTP verified successfully")
 
     return NextResponse.json({
       success: true,
-      message: "Email verified successfully! Your onboarding has been completed.",
+      message: "Email verified successfully! Please proceed to select your plan.",
     })
   } catch (error) {
     console.error("[v0] OTP verification error:", error)

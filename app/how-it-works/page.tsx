@@ -57,14 +57,14 @@ export default function HowItWorksPage() {
               <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mb-4">
                 2
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Fill Out the Onboarding Form</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Choose Your Plan</h2>
               <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed mb-4">
-                Provide your business details once and you're ready to go.
+                Select the protection plan that fits your business needs and get started immediately.
               </p>
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-2xl">
                 <p className="text-blue-800 font-medium text-sm">
-                  <strong>Why This Helps You:</strong> Set up is effortless – we handle all the technical work, so you
-                  can focus on running your business.
+                  <strong>Why This Helps You:</strong> Simple plan selection gets you protected quickly – we handle all
+                  the technical work, so you can focus on running your business.
                 </p>
               </div>
               <ArrowDown className="w-6 h-6 text-primary mt-8" />

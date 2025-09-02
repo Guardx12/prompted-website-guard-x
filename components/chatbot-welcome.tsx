@@ -251,7 +251,7 @@ export function ChatbotWelcome() {
                 <div className="space-y-2 pt-3 border-t border-[#2a2a2a]">
                   <Button
                     className="w-full bg-[#d4af37] text-black hover:bg-[#b8941f] font-semibold shadow-md hover:shadow-lg transition-all duration-200"
-                    onClick={() => (window.location.href = "/onboarding")}
+                    onClick={() => (window.location.href = "/pricing")}
                   >
                     Get Started
                   </Button>
