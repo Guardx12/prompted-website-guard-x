@@ -258,12 +258,13 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Feedback from Business Owners */}
       <section className="py-20 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">What Our Customers Say</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Feedback from Business Owners</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Real testimonials from business owners who trust GuardX to protect their reputation
+              Real feedback from business owners who understand the importance of reputation protection
             </p>
           </div>
 
@@ -276,21 +277,9 @@ export default function HomePage() {
                   ))}
                 </div>
                 <p className="text-foreground mb-4 font-medium">
-                  "GuardX helped protect my business online – highly recommended!"
-                </p>
-                <p className="text-sm text-muted-foreground">— Small Business Owner</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border-border">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
-                  ))}
-                </div>
-                <p className="text-foreground mb-4 font-medium">
-                  "Instant alerts for negative reviews keep me informed and in control."
+                  "I was spending hours every week checking Google and Yelp for new reviews. This service saves me so
+                  much time – I get instant alerts when something needs my attention and can focus on running my
+                  business."
                 </p>
                 <p className="text-sm text-muted-foreground">— Restaurant Owner</p>
               </CardContent>
@@ -304,9 +293,25 @@ export default function HomePage() {
                   ))}
                 </div>
                 <p className="text-foreground mb-4 font-medium">
-                  "I finally feel confident about my online reputation."
+                  "A competitor left a fake 1-star review that I didn't notice for weeks. Now I get alerts within
+                  minutes of any negative review, so I can respond quickly before it damages my reputation."
                 </p>
                 <p className="text-sm text-muted-foreground">— Retail Manager</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card border-border">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
+                  ))}
+                </div>
+                <p className="text-foreground mb-4 font-medium">
+                  "I missed a negative review on Trustpilot that cost me several bookings. Automated monitoring means I
+                  never miss anything important again. The peace of mind is worth every penny."
+                </p>
+                <p className="text-sm text-muted-foreground">— Boutique Hotel Manager</p>
               </CardContent>
             </Card>
           </div>
