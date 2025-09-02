@@ -1,6 +1,6 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, Shield, TrendingUp, Clock, ArrowRight } from "lucide-react"
 import Link from "next/link"
@@ -26,188 +26,179 @@ export default function PricingPage() {
 
       <section className="py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Business Plan */}
-            <Card className="bg-card border-primary border-2 relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            {/* Business Plan - Most Popular */}
+            <Card className="bg-card border-primary hover:border-primary transition-all duration-300 relative transform scale-105">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <span className="bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold">
+                <div className="bg-primary text-primary-foreground px-6 py-2 rounded-full text-sm font-semibold">
                   Most Popular
-                </span>
+                </div>
               </div>
-              <CardHeader className="text-center pb-8 pt-8">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <TrendingUp className="w-8 h-8 text-primary" />
-                </div>
-                <CardTitle className="text-3xl font-bold text-foreground mb-2">Business Plan</CardTitle>
-                <p className="text-muted-foreground mb-6">Complete reputation protection</p>
-
-                <div className="mb-6">
-                  <div className="flex items-center justify-center gap-1 mb-2">
-                    <span className="text-5xl font-bold text-primary">£299</span>
-                    <div className="text-left">
-                      <div className="text-muted-foreground text-sm">/month</div>
-                    </div>
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold text-foreground mb-2">Business Plan</h3>
+                  <div className="mb-2">
+                    <span className="text-4xl font-bold text-primary">£299</span>
+                    <span className="text-muted-foreground">/month</span>
                   </div>
-                  <p className="text-sm text-primary font-medium">20% off annual pricing</p>
+                  <div className="mb-4">
+                    <span className="text-sm text-green-600 font-medium">Save 20% with annual billing</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">Perfect for single location businesses</p>
                 </div>
 
-                <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
-                  {[
-                    "Monitoring for Google, Trustpilot, Yelp, Facebook, and many more",
-                    "Weekly branded report included",
-                    "Real-time alerts & notifications",
-                    "Fully automated service",
-                    "Cancel anytime - no contracts",
-                  ].map((feature, index) => (
-                    <li key={index} className="flex items-center gap-3">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm text-foreground">{feature}</span>
-                    </li>
-                  ))}
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">
+                      Monitoring for Google, Trustpilot, Yelp, Facebook, and many more platforms
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Instant alerts for negative or urgent reviews</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Automated weekly branded reports</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Fully automated</span>
+                  </li>
                 </ul>
 
-                <div className="mb-6 p-4 bg-muted/50 rounded-lg">
-                  <p className="text-sm text-muted-foreground mb-2">Extra locations:</p>
-                  <p className="text-lg font-semibold text-foreground">£149/month per additional location</p>
+                <div className="mb-6">
+                  <p className="text-sm text-muted-foreground">Extra locations: £149/month each</p>
+                </div>
+
+                <div className="mb-4 space-y-1">
+                  <div className="text-xs text-green-600 font-medium">✓ Cancel Any Time – no contracts</div>
+                  <div className="text-xs text-green-600 font-medium">✓ One Low Monthly Fee – no hidden costs</div>
                 </div>
 
                 <Link href="/onboarding">
-                  <Button
-                    size="lg"
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold w-full mb-4"
-                  >
-                    Start Protecting Today
+                  <Button className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold">
+                    <span className="get-started-text">Start Protecting Today</span>
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
-
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  <p>✓ Cancel Anytime</p>
-                  <p>✓ No Ties</p>
-                  <p>✓ Fully Automated</p>
-                </div>
-              </CardHeader>
+              </CardContent>
             </Card>
 
-            {/* Pro/Fake Review Plan */}
-            <Card className="bg-card border-border relative">
-              <CardHeader className="text-center pb-8 pt-8">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Shield className="w-8 h-8 text-primary" />
-                </div>
-                <CardTitle className="text-2xl font-bold text-foreground mb-2">Pro / Fake Review Plan</CardTitle>
-                <p className="text-muted-foreground mb-6">Advanced fake review protection</p>
-
-                <div className="mb-6">
-                  <div className="flex items-center justify-center gap-1 mb-2">
+            {/* Pro / Fake Review Plan */}
+            <Card className="bg-card border-border hover:border-primary/50 transition-all duration-300 relative">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold text-foreground mb-2">Pro / Fake Review Plan</h3>
+                  <div className="mb-4">
                     <span className="text-4xl font-bold text-primary">£499</span>
-                    <div className="text-left">
-                      <div className="text-muted-foreground text-sm">/month</div>
-                    </div>
+                    <span className="text-muted-foreground">/month</span>
                   </div>
-                  <p className="text-sm text-blue-600 font-medium">One-year commitment required</p>
+                  <p className="text-sm text-muted-foreground">Includes fake review removal</p>
+                  <p className="text-xs text-blue-600 font-medium mt-1">One-year commitment required</p>
                 </div>
 
-                <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
-                  {[
-                    "Monitoring for Google, Trustpilot, Yelp, Facebook, and many more",
-                    "Advanced fake review detection & removal",
-                    "Weekly branded report included",
-                    "Fully automated service",
-                    "Priority crisis management",
-                  ].map((feature, index) => (
-                    <li key={index} className="flex items-center gap-3">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm text-foreground">{feature}</span>
-                    </li>
-                  ))}
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">
+                      Monitoring for Google, Trustpilot, Yelp, Facebook, and many more platforms
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Instant alerts for negative or urgent reviews</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Automated weekly branded reports</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground font-semibold">Fake review flagging and removal</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Fully automated</span>
+                  </li>
                 </ul>
 
-                <div className="mb-6 p-4 bg-muted/50 rounded-lg">
-                  <p className="text-sm text-muted-foreground mb-2">Extra locations:</p>
-                  <p className="text-lg font-semibold text-foreground">£299/month per location</p>
-                </div>
-
-                <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <p className="text-sm text-blue-800">
-                    One-year commitment required as it takes time to remove fake reviews and new fake reviews may
-                    continue to appear.
+                <div className="mb-6 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-xs text-blue-800">
+                    A one-year commitment is required to allow sufficient time for effective removal of fake reviews and
+                    ongoing protection against recurring fake reviews.
                   </p>
                 </div>
 
+                <div className="mb-6">
+                  <p className="text-sm text-muted-foreground">Extra locations: £299/month each</p>
+                </div>
+
+                <div className="mb-4 space-y-1">
+                  <div className="text-xs text-green-600 font-medium">✓ Secure & Private – your data is safe</div>
+                  <div className="text-xs text-green-600 font-medium">✓ Trusted by Small Businesses</div>
+                </div>
+
                 <Link href="/onboarding">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg font-semibold w-full mb-4 bg-transparent"
-                  >
-                    Get Advanced Protection
+                  <Button className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold">
+                    <span className="get-started-text">Start Protecting Today</span>
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
-
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  <p>✓ Fake Review Removal</p>
-                  <p>✓ Priority Support</p>
-                  <p>✓ Fully Automated</p>
-                </div>
-              </CardHeader>
+              </CardContent>
             </Card>
 
             {/* Enterprise Plan */}
-            <Card className="bg-card border-border relative">
-              <CardHeader className="text-center pb-8 pt-8">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Clock className="w-8 h-8 text-primary" />
-                </div>
-                <CardTitle className="text-2xl font-bold text-foreground mb-2">Enterprise Plan</CardTitle>
-                <p className="text-muted-foreground mb-6">For businesses with 5+ locations</p>
-
-                <div className="mb-6">
-                  <div className="flex items-center justify-center gap-1 mb-2">
+            <Card className="bg-card border-border hover:border-primary/50 transition-all duration-300 relative">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold text-foreground mb-2">Enterprise Plan</h3>
+                  <div className="mb-4">
                     <span className="text-3xl font-bold text-primary">Custom</span>
+                    <span className="text-muted-foreground"> Pricing</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">Pricing based on your needs</p>
+                  <p className="text-sm text-muted-foreground">For businesses with 5+ locations</p>
                 </div>
 
-                <ul className="space-y-3 mb-8 text-left max-w-sm mx-auto">
-                  {[
-                    "Everything in Business Plan",
-                    "Multiple location management",
-                    "Dedicated account manager",
-                    "Custom reporting schedule",
-                    "Priority support & training",
-                  ].map((feature, index) => (
-                    <li key={index} className="flex items-center gap-3">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm text-foreground">{feature}</span>
-                    </li>
-                  ))}
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Includes all features in the Business Plan</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Custom monitoring setup</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Dedicated account manager</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Volume discounts available</span>
+                  </li>
                 </ul>
 
-                <div className="mb-6 p-4 bg-muted/50 rounded-lg">
-                  <p className="text-sm text-muted-foreground text-center">
-                    Perfect for businesses with 5+ locations needing comprehensive reputation management
-                  </p>
+                <div className="mb-6">
+                  <p className="text-sm text-muted-foreground">Scalable pricing based on your needs</p>
+                </div>
+
+                <div className="mb-4 space-y-1">
+                  <div className="text-xs text-green-600 font-medium">✓ Protect Your Reputation Instantly</div>
+                  <div className="text-xs text-green-600 font-medium">✓ Dedicated Support Included</div>
                 </div>
 
                 <Link href="/contact">
                   <Button
                     variant="outline"
-                    size="lg"
-                    className="border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg font-semibold w-full mb-4 bg-transparent"
+                    className="get-started-btn w-full border-primary text-primary hover:bg-primary/10 py-3 text-lg font-semibold bg-transparent"
                   >
-                    Contact Us
+                    <span className="get-started-text">Contact Us</span>
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
-
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  <p>✓ Fully Automated</p>
-                  <p>✓ Scalable Solution</p>
-                  <p>✓ Dedicated Support</p>
-                </div>
-              </CardHeader>
+              </CardContent>
             </Card>
           </div>
         </div>
@@ -335,9 +326,9 @@ export default function PricingPage() {
             <Link href="/onboarding">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold"
+                className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold"
               >
-                Start Your Protection Today
+                <span className="get-started-text">Start Your Protection Today</span>
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
