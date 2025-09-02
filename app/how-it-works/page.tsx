@@ -2,7 +2,7 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Shield, BarChart3, TrendingUp, ArrowRight, ArrowDown, ClipboardList, Bell, FileText } from "lucide-react"
+import { Shield, BarChart3, TrendingUp, ArrowRight, ArrowDown, Bell, FileText } from "lucide-react"
 import Link from "next/link"
 
 export default function HowItWorksPage() {
@@ -28,34 +28,13 @@ export default function HowItWorksPage() {
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-16">
-            {/* Step 1 */}
-            <div className="flex flex-col items-center text-center">
-              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                <ClipboardList className="w-10 h-10 text-primary" />
-              </div>
-              <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mb-4">
-                1
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Pick Your Plan</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed mb-4">
-                Choose the plan that fits your business: Business Plan or Pro/Fake Review Plan.
-              </p>
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-2xl">
-                <p className="text-blue-800 font-medium text-sm">
-                  <strong>Why This Helps You:</strong> You know exactly what you're getting. Simple, all-in-one plans
-                  save you time and stress.
-                </p>
-              </div>
-              <ArrowDown className="w-6 h-6 text-primary mt-8" />
-            </div>
-
-            {/* Step 2 */}
+            {/* Step 1 - Previously Step 2 */}
             <div className="flex flex-col items-center text-center">
               <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
                 <FileText className="w-10 h-10 text-primary" />
               </div>
               <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mb-4">
-                2
+                1
               </div>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Choose Your Plan</h2>
               <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed mb-4">
@@ -70,13 +49,13 @@ export default function HowItWorksPage() {
               <ArrowDown className="w-6 h-6 text-primary mt-8" />
             </div>
 
-            {/* Step 3 */}
+            {/* Step 2 - Previously Step 3 */}
             <div className="flex flex-col items-center text-center">
               <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
                 <Shield className="w-10 h-10 text-primary" />
               </div>
               <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mb-4">
-                3
+                2
               </div>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">We Monitor Your Reviews</h2>
               <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed mb-4">
@@ -91,13 +70,13 @@ export default function HowItWorksPage() {
               <ArrowDown className="w-6 h-6 text-primary mt-8" />
             </div>
 
-            {/* Step 4 */}
+            {/* Step 3 - Previously Step 4 */}
             <div className="flex flex-col items-center text-center">
               <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
                 <Bell className="w-10 h-10 text-primary" />
               </div>
               <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mb-4">
-                4
+                3
               </div>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Get Notified Instantly</h2>
               <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed mb-4">
@@ -112,13 +91,13 @@ export default function HowItWorksPage() {
               <ArrowDown className="w-6 h-6 text-primary mt-8" />
             </div>
 
-            {/* Step 5 */}
+            {/* Step 4 - Previously Step 5 */}
             <div className="flex flex-col items-center text-center">
               <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
                 <BarChart3 className="w-10 h-10 text-primary" />
               </div>
               <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mb-4">
-                5
+                4
               </div>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Weekly Branded Reports</h2>
               <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed mb-4">
