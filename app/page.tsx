@@ -47,15 +47,15 @@ export default function HomePage() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <Link href="/pricing">
-                <Button
-                  size="lg"
-                  className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-xl font-bold shadow-lg"
-                >
-                  <span className="get-started-text">Start Protecting Today</span>
-                  <ArrowRight className="ml-2 w-6 h-6" />
-                </Button>
-              </Link>
+              <a
+                href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-xl font-bold shadow-lg rounded-md inline-flex items-center transition-colors"
+              >
+                <span className="get-started-text">Start Protecting Today</span>
+                <ArrowRight className="ml-2 w-6 h-6" />
+              </a>
               <Link href="/how-it-works">
                 <Button
                   variant="outline"
@@ -245,15 +245,15 @@ export default function HomePage() {
           </div>
 
           <div className="text-center">
-            <Link href="/pricing">
-              <Button
-                size="lg"
-                className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
-              >
-                <span className="get-started-text">Start Protecting Today</span>
-                <ArrowRight className="ml-2 w-6 h-6" />
-              </Button>
-            </Link>
+            <a
+              href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold rounded-md inline-flex items-center transition-colors"
+            >
+              <span className="get-started-text">Start Protecting Today</span>
+              <ArrowRight className="ml-2 w-6 h-6" />
+            </a>
           </div>
         </div>
       </section>
@@ -317,15 +317,15 @@ export default function HomePage() {
           </div>
 
           <div className="text-center">
-            <Link href="/pricing">
-              <Button
-                size="lg"
-                className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
-              >
-                <span className="get-started-text">Start Protecting Today</span>
-                <ArrowRight className="ml-2 w-6 h-6" />
-              </Button>
-            </Link>
+            <a
+              href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold rounded-md inline-flex items-center transition-colors"
+            >
+              <span className="get-started-text">Start Protecting Today</span>
+              <ArrowRight className="ml-2 w-6 h-6" />
+            </a>
             <p className="text-sm text-muted-foreground mt-3">Join hundreds of satisfied customers</p>
           </div>
         </div>
@@ -407,15 +407,15 @@ export default function HomePage() {
           </div>
 
           <div className="text-center">
-            <Link href="/pricing">
-              <Button
-                size="lg"
-                className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
-              >
-                <span className="get-started-text">Protect Your Revenue — Start Now</span>
-                <ArrowRight className="ml-2 w-6 h-6" />
-              </Button>
-            </Link>
+            <a
+              href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold rounded-md inline-flex items-center transition-colors"
+            >
+              <span className="get-started-text">Protect Your Revenue — Start Now</span>
+              <ArrowRight className="ml-2 w-6 h-6" />
+            </a>
             <p className="text-sm text-muted-foreground mt-3">One prevented bad review pays for 3+ years of service</p>
           </div>
         </div>
@@ -481,12 +481,15 @@ export default function HomePage() {
                   <div className="text-xs text-green-600 font-medium">✓ One Low Monthly Fee – no hidden costs</div>
                 </div>
 
-                <Link href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00">
-                  <Button className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold">
-                    <span className="get-started-text">Start Protecting Today</span>
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
+                <a
+                  href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold rounded-md inline-flex items-center justify-center transition-colors"
+                >
+                  <span className="get-started-text">Start Protecting Today</span>
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </a>
               </CardContent>
             </Card>
 
@@ -544,12 +547,15 @@ export default function HomePage() {
                   <div className="text-xs text-green-600 font-medium">✓ Trusted by Small Businesses</div>
                 </div>
 
-                <Link href="https://buy.stripe.com/fZufZgcvqao3bU7g2VcIE01">
-                  <Button className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold">
-                    <span className="get-started-text">Start Protecting Today</span>
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
+                <a
+                  href="https://buy.stripe.com/fZufZgcvqao3bU7g2VcIE01"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold rounded-md inline-flex items-center justify-center transition-colors"
+                >
+                  <span className="get-started-text">Start Protecting Today</span>
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </a>
               </CardContent>
             </Card>
 
@@ -631,15 +637,15 @@ export default function HomePage() {
           </div>
 
           <div className="text-center">
-            <Link href="/pricing">
-              <Button
-                size="lg"
-                className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
-              >
-                <span className="get-started-text">Start Protecting Today</span>
-                <ArrowRight className="ml-2 w-6 h-6" />
-              </Button>
-            </Link>
+            <a
+              href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold rounded-md inline-flex items-center transition-colors"
+            >
+              <span className="get-started-text">Start Protecting Today</span>
+              <ArrowRight className="ml-2 w-6 h-6" />
+            </a>
             <p className="text-sm text-muted-foreground mt-3">Protection starts immediately</p>
           </div>
         </div>
@@ -775,15 +781,15 @@ export default function HomePage() {
           </div>
 
           <div className="text-center">
-            <Link href="/pricing">
-              <Button
-                size="lg"
-                className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold"
-              >
-                <span className="get-started-text">Start Getting Reports Today</span>
-                <ArrowRight className="ml-2 w-6 h-6" />
-              </Button>
-            </Link>
+            <a
+              href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold rounded-md inline-flex items-center transition-colors"
+            >
+              <span className="get-started-text">Start Getting Reports Today</span>
+              <ArrowRight className="ml-2 w-6 h-6" />
+            </a>
           </div>
         </div>
       </section>
