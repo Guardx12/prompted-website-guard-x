@@ -16,7 +16,7 @@ export function Navigation() {
           variant="ghost"
           size="sm"
           className="text-primary-foreground hover:bg-primary-foreground/20"
-          onClick={() => (window.location.href = "/onboarding")}
+          onClick={() => (window.location.href = "/pricing")}
         >
           Protect Your Reputation Now – £299/Month
         </Button>
@@ -64,7 +64,7 @@ export function Navigation() {
               <Link href="/contact" className="text-foreground hover:text-primary transition-colors">
                 Contact
               </Link>
-              <Link href="/onboarding">
+              <Link href="/pricing">
                 <Button className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90">
                   <span className="get-started-text">Get Started Today</span>
                 </Button>
@@ -140,7 +140,7 @@ export function Navigation() {
                   Contact
                 </Link>
                 <div className="px-3 py-2">
-                  <Link href="/onboarding">
+                  <Link href="/pricing">
                     <Button className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90">
                       <span className="get-started-text">Get Started Today</span>
                     </Button>

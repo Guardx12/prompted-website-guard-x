@@ -77,7 +77,7 @@ export default function PricingPage() {
                   <div className="text-xs text-green-600 font-medium">✓ One Low Monthly Fee – no hidden costs</div>
                 </div>
 
-                <Link href="/onboarding">
+                <Link href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00">
                   <Button className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold">
                     <span className="get-started-text">Start Protecting Today</span>
                     <ArrowRight className="ml-2 w-5 h-5" />
@@ -140,7 +140,7 @@ export default function PricingPage() {
                   <div className="text-xs text-green-600 font-medium">✓ Trusted by Small Businesses</div>
                 </div>
 
-                <Link href="/onboarding">
+                <Link href="https://buy.stripe.com/fZufZgcvqao3bU7g2VcIE01">
                   <Button className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold">
                     <span className="get-started-text">Start Protecting Today</span>
                     <ArrowRight className="ml-2 w-5 h-5" />
@@ -323,7 +323,7 @@ export default function PricingPage() {
             Join hundreds of businesses that trust GuardX to protect their online reputation.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/onboarding">
+            <Link href="/pricing">
               <Button
                 size="lg"
                 className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold"
