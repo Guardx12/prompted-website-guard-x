@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import { PricingNote } from "@/components/pricing-note"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, Shield, TrendingUp, Clock, ArrowRight } from "lucide-react"
@@ -207,6 +208,8 @@ export default function PricingPage() {
               </CardContent>
             </Card>
           </div>
+
+          <PricingNote />
         </div>
       </section>
 

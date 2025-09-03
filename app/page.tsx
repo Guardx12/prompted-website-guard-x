@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import { PricingNote } from "@/components/pricing-note"
 import { Shield, Star, TrendingUp, CheckCircle, ArrowRight, Clock, Award, AlertTriangle, BarChart3 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
@@ -611,6 +612,8 @@ export default function HomePage() {
               </CardContent>
             </Card>
           </div>
+
+          <PricingNote />
 
           <div className="text-center mb-12">
             <div className="bg-card/50 rounded-lg p-6 mb-8">
