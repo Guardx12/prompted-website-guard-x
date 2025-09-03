@@ -12,9 +12,9 @@ export function PricingNote() {
 
           <div className="space-y-2 text-muted-foreground">
             <p>
-              • <strong className="text-foreground">Multiple locations:</strong> Select your total number of locations
-              in the onboarding form after payment. We'll follow up via email with a payment link for additional
-              locations and gather any necessary details.
+              • <strong className="text-foreground">Multiple locations:</strong> Select the total number of locations in
+              the onboarding form after payment. Payment for extra locations will be collected automatically, and we
+              will follow up via email to gather any necessary details for each location.
             </p>
 
             <p>
