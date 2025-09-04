@@ -14,6 +14,14 @@ export default function HomePage() {
     <div className="min-h-screen bg-background">
       <Navigation />
 
+      <div className="bg-green-500 py-3 text-center">
+        <Link href="/sample-customer-report">
+          <Button className="bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-3 text-lg rounded-lg shadow-lg animate-pulse">
+            View Sample Report
+          </Button>
+        </Link>
+      </div>
+
       {/* Hero Section */}
       <section className="relative pt-6 pb-20 lg:pt-8 lg:pb-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,6 +46,9 @@ export default function HomePage() {
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
               Automated monitoring, instant alerts for negative reviews, AI-drafted review responses, and professional
               weekly reports on your reviews and ratings – set and forget.
+            </p>
+            <p className="text-sm text-muted-foreground max-w-3xl mx-auto mb-8">
+              Respond to reviews faster and smarter – AI drafts the replies for you, ready to send.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm">
@@ -399,6 +410,11 @@ export default function HomePage() {
                     <span className="text-muted-foreground"> Automated responses to reviews</span>
                   </div>
                 </li>
+                <div className="ml-9 mt-1">
+                  <p className="text-sm text-muted-foreground">
+                    Respond to reviews faster and smarter – AI drafts the replies for you, ready to send.
+                  </p>
+                </div>
               </ul>
             </div>
             <div className="bg-primary/5 p-8 rounded-lg">
@@ -484,6 +500,11 @@ export default function HomePage() {
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">AI-drafted review responses</span>
                   </li>
+                  <div className="ml-9 mt-1">
+                    <p className="text-sm text-muted-foreground">
+                      Respond to reviews faster and smarter – AI drafts the replies for you, ready to send.
+                    </p>
+                  </div>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">Fully automated</span>
@@ -543,6 +564,11 @@ export default function HomePage() {
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">AI-drafted review responses</span>
                   </li>
+                  <div className="ml-9 mt-1">
+                    <p className="text-sm text-muted-foreground">
+                      Respond to reviews faster and smarter – AI drafts the replies for you, ready to send.
+                    </p>
+                  </div>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground font-semibold">Fake review flagging and removal</span>
@@ -659,6 +685,9 @@ export default function HomePage() {
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle className="w-4 h-4 text-primary" />
                   <span>AI-drafted review responses</span>
+                </div>
+                <div className="text-xs text-muted-foreground mt-1 ml-6">
+                  Respond to reviews faster and smarter – AI drafts the replies for you, ready to send.
                 </div>
               </div>
             </div>
