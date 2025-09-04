@@ -99,9 +99,11 @@ export default function HowItWorksPage() {
               <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mb-4">
                 4
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Weekly Branded Reports</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                Weekly Reports with GuardX Branding
+              </h2>
               <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed mb-4">
-                Receive clear, easy-to-read reports showing your overall reputation and trends.
+                Receive clear, easy-to-read reports branded by GuardX showing your overall reputation and trends.
               </p>
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-2xl">
                 <p className="text-blue-800 font-medium text-sm">

@@ -78,13 +78,13 @@ export default function FAQPage() {
 
                 <AccordionItem value="item-reports" className="border-border">
                   <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
-                    What's included in the weekly branded reports?
+                    What's included in the weekly reports with GuardX branding?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
                       Your weekly reports include: Overall reputation score with trends, new reviews filtered by
                       sentiment, review sources breakdown, and highlighted reviews & insights. All reports are
-                      professionally branded with your business information and delivered automatically.
+                      professionally branded by GuardX and delivered automatically.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -110,7 +110,7 @@ export default function FAQPage() {
                     <p>
                       Yes, all our services are fully automated. You don't need dashboard access or manual intervention
                       - we handle monitoring, alerts, reporting, and response management automatically. Simply receive
-                      your weekly branded reports and instant alerts when needed.
+                      your weekly reports with GuardX branding and instant alerts when needed.
                     </p>
                   </AccordionContent>
                 </AccordionItem>

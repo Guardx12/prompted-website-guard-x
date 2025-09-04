@@ -38,7 +38,7 @@ const faqSections: FAQSection[] = [
   },
   {
     question: "What features are included?",
-    answer: `**Business Plan:** Monitoring for Google, Trustpilot, Yelp, Facebook, and many more platforms. Instant alerts for negative reviews and automated weekly branded reports. Fully automated.
+    answer: `**Business Plan:** Monitoring for Google, Trustpilot, Yelp, Facebook, and many more platforms. Instant alerts for negative reviews and weekly reports with GuardX branding. Fully automated.
 
 ✓ **Works Across All Platforms** – Google, Yelp, Facebook, Trustpilot, and many more
 ✓ **Protect Your Reputation Instantly** – never miss a review again
@@ -89,7 +89,7 @@ Fake review removal and ongoing protection require time depending on the volume 
 ✓ **Fully Automated** – set it and forget it
 ✓ **Secure & Private** – your business data is safe with GuardX
 
-You receive instant email alerts for negative reviews and automated weekly branded reports. This keeps it simple and ensures you never miss important reputation issues.`,
+You receive instant email alerts for negative reviews and weekly reports with GuardX branding. This keeps it simple and ensures you never miss important reputation issues.`,
   },
   {
     question: "How does fake review removal work?",

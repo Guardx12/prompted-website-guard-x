@@ -65,7 +65,15 @@ export default function PricingPage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">AI-drafted review responses</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">Fully automated</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Weekly reports with GuardX branding</span>
                   </li>
                 </ul>
 
@@ -120,11 +128,19 @@ export default function PricingPage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">AI-drafted review responses</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground font-semibold">Fake review flagging and removal</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">Fully automated</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Weekly reports with GuardX branding</span>
                   </li>
                 </ul>
 
@@ -184,6 +200,10 @@ export default function PricingPage() {
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">Volume discounts available</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">Weekly reports with GuardX branding</span>
                   </li>
                 </ul>
 
@@ -289,9 +309,9 @@ export default function PricingPage() {
                   "We monitor Google, Trustpilot, Yelp, Facebook, and many more review platforms to ensure comprehensive coverage of your online reputation across all major sites.",
               },
               {
-                question: "What's included in the weekly branded reports?",
+                question: "What's included in the weekly reports with GuardX branding?",
                 answer:
-                  "Your weekly reports include overall reputation score with trends, new reviews filtered by sentiment, review sources breakdown, and highlighted reviews & insights - all professionally branded with your business information.",
+                  "Your weekly reports include overall reputation score with trends, new reviews filtered by sentiment, review sources breakdown, and highlighted reviews & insights - all professionally branded by GuardX.",
               },
               {
                 question: "Why does the Pro plan require a one-year commitment?",
@@ -336,7 +356,7 @@ export default function PricingPage() {
               href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
               target="_blank"
               rel="noopener noreferrer"
-              className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold rounded-md inline-flex items-center transition-colors"
+              className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold rounded-md inline-flex items-center justify-center transition-colors"
             >
               <span className="get-started-text">Start Your Protection Today</span>
               <ArrowRight className="ml-2 w-5 h-5" />

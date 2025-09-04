@@ -36,7 +36,8 @@ export default function HomePage() {
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
-              Automated monitoring, instant alerts for negative reviews, and branded weekly reports – set and forget.
+              Automated monitoring, instant alerts for negative reviews, AI-drafted review responses, and professional
+              weekly reports on your reviews and ratings – set and forget.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm">
@@ -79,7 +80,7 @@ export default function HomePage() {
               </div>
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-primary" />
-                <span>Weekly reputation reports</span>
+                <span>Professional weekly reports on your reviews and ratings</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-primary" />
@@ -182,14 +183,16 @@ export default function HomePage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <BarChart3 className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">Automated weekly report with branded logo</h3>
+                <h3 className="text-xl font-bold text-foreground mb-4">
+                  Professional weekly reports on your reviews and ratings
+                </h3>
                 <p className="text-muted-foreground mb-4">
-                  Professional reports with your branding showing reputation trends and key metrics.
+                  Comprehensive reports showing reputation trends and key metrics from all monitored platforms.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Custom branded reports</span>
+                    <span>Professional weekly reports on your reviews and ratings</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
@@ -375,8 +378,11 @@ export default function HomePage() {
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <span className="font-semibold text-foreground">Weekly Reports:</span>
-                    <span className="text-muted-foreground"> Track your reputation score and improvement trends</span>
+                    <span className="font-semibold text-foreground">Professional Weekly Reports:</span>
+                    <span className="text-muted-foreground">
+                      {" "}
+                      Professional weekly reports tracking your reviews and ratings across all platforms
+                    </span>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
@@ -384,6 +390,13 @@ export default function HomePage() {
                   <div>
                     <span className="font-semibold text-foreground">Crisis Support:</span>
                     <span className="text-muted-foreground"> Expert guidance when serious threats emerge</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <span className="font-semibold text-foreground">AI-drafted Review Responses:</span>
+                    <span className="text-muted-foreground"> Automated responses to reviews</span>
                   </div>
                 </li>
               </ul>
@@ -465,7 +478,11 @@ export default function HomePage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Automated weekly branded reports</span>
+                    <span className="text-foreground">Professional weekly reports on your reviews and ratings</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">AI-drafted review responses</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -520,7 +537,11 @@ export default function HomePage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Automated weekly branded reports</span>
+                    <span className="text-foreground">Professional weekly reports on your reviews and ratings</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">AI-drafted review responses</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -635,6 +656,10 @@ export default function HomePage() {
                   <CheckCircle className="w-4 h-4 text-primary" />
                   <span>Secure & private monitoring</span>
                 </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 text-primary" />
+                  <span>AI-drafted review responses</span>
+                </div>
               </div>
             </div>
           </div>
@@ -658,10 +683,10 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              What Your Weekly GuardX Report Includes
+              What Your Professional Weekly Reports Include
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Professional, branded reports delivered to your inbox every week with key insights
+              Comprehensive reports on your reviews and ratings delivered to your inbox every week with key insights
             </p>
           </div>
 
@@ -759,18 +784,20 @@ export default function HomePage() {
           </div>
 
           <div className="bg-primary/5 rounded-lg p-8 mb-12">
-            <h3 className="text-2xl font-bold text-foreground mb-6 text-center">Fully Branded Professional Reports</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
+              Professional Weekly Reports on Your Reviews and Ratings
+            </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
                 <Award className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-foreground mb-2">Your Branding</h4>
+                <h4 className="font-semibold text-foreground mb-2">Comprehensive Data</h4>
                 <p className="text-sm text-muted-foreground">
-                  All reports include your GuardX branding, keeping it professional
+                  All reports include detailed analysis of your reviews and ratings across all platforms
                 </p>
               </div>
               <div className="text-center">
                 <CheckCircle className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-foreground mb-2">Fully Automated</h4>
+                <h4 className="font-semibold text-foreground mb-2">Automated Delivery</h4>
                 <p className="text-sm text-muted-foreground">
                   Reports are generated and delivered automatically every week
                 </p>
@@ -790,7 +817,7 @@ export default function HomePage() {
               rel="noopener noreferrer"
               className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold rounded-md inline-flex items-center transition-colors"
             >
-              <span className="get-started-text">Start Getting Reports Today</span>
+              <span className="get-started-text">Start Getting Professional Reports Today</span>
               <ArrowRight className="ml-2 w-6 h-6" />
             </a>
           </div>

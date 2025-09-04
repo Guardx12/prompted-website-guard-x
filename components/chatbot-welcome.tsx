@@ -61,7 +61,7 @@ export function ChatbotWelcome() {
     {
       question: "What's the difference between the Business and Pro / Fake Review plans?",
       answer:
-        "The Business Plan includes full monitoring, alerts, and a complete dashboard with priority email support within 48 hours during business hours. The Pro / Fake Review Plan includes full monitoring of Google, Trustpilot, and Yelp reviews, instant alerts for negative reviews, weekly branded reports, fake review detection and flagging, and priority email support within 24 hours during business hours. The Pro / Fake Review Plan offers faster support response times and specialized fake review protection.",
+        "The Business Plan includes full monitoring, alerts, and a complete dashboard with priority email support within 48 hours during business hours. The Pro / Fake Review Plan includes full monitoring of Google, Trustpilot, and Yelp reviews, instant alerts for negative reviews, weekly reports with GuardX branding, fake review detection and flagging, and priority email support within 24 hours during business hours. The Pro / Fake Review Plan offers faster support response times and specialized fake review protection.",
       nudge: null,
     },
     {
