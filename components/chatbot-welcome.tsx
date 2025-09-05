@@ -96,7 +96,8 @@ export function ChatbotWelcome() {
     },
     {
       question: "Can I cancel at any time?",
-      answer: "Yes, monthly plans can be canceled at any time. Annual plans offer 20% savings if you pay upfront.",
+      answer:
+        "For the **£299/month Business Plan**, you can cancel or manage your subscription at any time using our secure Stripe Customer Portal: https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00. The **£499/month Pro / Fake Review Plan** is a 12-month contract and cannot be cancelled early.",
       nudge: null,
     },
     {

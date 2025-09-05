@@ -60,7 +60,7 @@ const chatSections: ChatSection[] = [
       {
         question: "Can I cancel anytime?",
         answer:
-          "Yes! Business Plan has no ties - cancel anytime with no contracts or long-term commitments. Pro Plan requires one-year commitment as fake review removal takes time and they may continue to appear.",
+          "For the **£299/month Business Plan**, you can cancel or manage your subscription at any time using our secure Stripe Customer Portal: https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00. The **£499/month Pro / Fake Review Plan** is a 12-month contract and cannot be cancelled early.",
       },
       {
         question: "Is my data secure?",

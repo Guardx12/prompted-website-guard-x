@@ -154,14 +154,24 @@ export default function FAQPage() {
 
                 <AccordionItem value="item-cancel" className="border-border">
                   <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
-                    Can I cancel anytime?
+                    How do I cancel or manage my subscription?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      <strong>Business Plan:</strong> Yes, cancel anytime with no contracts or penalties.{" "}
-                      <strong>Pro Plan:</strong> One-year commitment required for effective fake review removal.{" "}
-                      <strong>Enterprise Plan:</strong> Terms vary based on your custom agreement. No cancellation fees
-                      for any plan.
+                      The <strong>£299/month Business Plan</strong> may be cancelled at any time using our secure Stripe
+                      Customer Portal:{" "}
+                      <a
+                        href="https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline"
+                      >
+                        https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00
+                      </a>
+                    </p>
+                    <p className="mt-2">
+                      The <strong>£499/month Pro / Fake Review Plan</strong> is a 12-month contract and cannot be
+                      cancelled before the end of the term.
                     </p>
                   </AccordionContent>
                 </AccordionItem>

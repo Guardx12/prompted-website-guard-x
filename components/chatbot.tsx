@@ -62,16 +62,17 @@ Each location gets full monitoring across all supported platforms with instant a
 ✓ **Works Across All Platforms** – comprehensive coverage for every location`,
   },
   {
-    question: "Can I cancel my plan?",
-    answer: `Yes, all plans are fully automated and can be cancelled according to terms:
-• Business Plan: Monthly billing with optional annual discount
-• Pro/Fake Review Plan: One-year commitment required
-• Enterprise Plan: Custom terms
+    question: "Can I cancel my subscription?",
+    answer: `**Subscription Management:**
 
-✓ **Cancel Any Time** – no contracts or long-term commitments (Business Plan)
+For the **£299/month Business Plan**, you can cancel or manage your subscription at any time using our secure Stripe Customer Portal: https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00
+
+The **£499/month Pro / Fake Review Plan** is a 12-month contract and cannot be cancelled early.
+
+✓ **Cancel Any Time** – Business Plan has no contracts or long-term commitments
 ✓ **Fully Automated** – set it and forget it
 
-The Business Plan offers maximum flexibility!`,
+The Business Plan offers maximum flexibility for subscription management!`,
   },
   {
     question: "How quickly will I see results?",
