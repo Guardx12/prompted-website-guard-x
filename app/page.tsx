@@ -44,8 +44,8 @@ export default function HomePage() {
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
-              Automated monitoring, instant alerts for negative reviews, AI-drafted review responses, and professional
-              weekly reports on your reviews and ratings – set and forget.
+              Automated monitoring, instant alerts for negative, positive, or all reviews, AI-drafted review responses,
+              and professional weekly reports on your reviews and ratings – set and forget.
             </p>
             <p className="text-sm text-muted-foreground max-w-3xl mx-auto mb-8">
               Respond to reviews faster and smarter – AI drafts the replies for you, ready to send.
