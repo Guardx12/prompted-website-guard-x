@@ -19,8 +19,9 @@ export default function SampleCustomerReportPage() {
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">Sample Customer Report</h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
-              See exactly what your professional weekly reports look like and understand the valuable insights you'll
-              receive every week.
+              As well as urgent alerts for negative, positive, or all reviews, and AI-drafted responses, you'll also
+              receive professional weekly reports. See exactly what they look like and the valuable insights you'll get
+              every week.
             </p>
           </div>
 
