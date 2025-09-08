@@ -43,11 +43,11 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Our <span className="text-primary">Services</span>
+              Our <span style={{ color: "#d4af37", fontWeight: "bold" }}>Premium Services</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Comprehensive reputation management solutions designed to protect, monitor, and enhance your online
-              presence across all digital platforms.
+              Professional reputation management services designed to protect, monitor, and enhance your online
+              presence. Our expert team handles everything so you can focus on running your business.
             </p>
           </div>
         </div>
@@ -57,15 +57,15 @@ export default function ServicesPage() {
       <section className="py-20 bg-card/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Features & Services</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Complete Reputation Management</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive reputation management solutions designed for modern businesses
+              Our expert team provides comprehensive done-for-you reputation management solutions
             </p>
           </div>
 
           {/* Core Features */}
           <div className="mb-16">
-            <h3 className="text-2xl font-bold text-foreground mb-8 text-center">Core Features</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-8 text-center">Core Services</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Card className="bg-card border-border hover:border-primary/50 transition-all">
                 <CardContent className="p-6">
@@ -74,10 +74,12 @@ export default function ServicesPage() {
                       <Eye className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">24/7 reputation monitoring</h4>
+                      <h4 className="text-lg font-semibold text-foreground mb-2">
+                        <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 reputation monitoring</span>
+                      </h4>
                       <p className="text-muted-foreground text-sm">
-                        Continuous surveillance of your brand across all digital platforms. Never miss a mention or
-                        review that could impact your business.
+                        Our expert team continuously monitors your brand across all digital platforms. We never miss a
+                        mention or review that could impact your business reputation.
                       </p>
                     </div>
                   </div>
@@ -91,10 +93,12 @@ export default function ServicesPage() {
                       <Bell className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">Real-time alerts & notifications</h4>
+                      <h4 className="text-lg font-semibold text-foreground mb-2">
+                        <span style={{ color: "#d4af37", fontWeight: "bold" }}>Instant alerts & notifications</span>
+                      </h4>
                       <p className="text-muted-foreground text-sm">
-                        Instant notifications when new reviews or mentions appear. Respond quickly to protect your
-                        reputation before issues escalate.
+                        Receive immediate notifications when new reviews or mentions appear. Our team ensures you can
+                        respond quickly to protect your reputation before issues escalate.
                       </p>
                     </div>
                   </div>
@@ -108,10 +112,12 @@ export default function ServicesPage() {
                       <Globe className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">Multi-platform coverage</h4>
+                      <h4 className="text-lg font-semibold text-foreground mb-2">
+                        <span style={{ color: "#d4af37", fontWeight: "bold" }}>Multi-platform coverage</span>
+                      </h4>
                       <p className="text-muted-foreground text-sm">
-                        Monitor Google, Facebook, Yelp, Trustpilot, and 100+ other platforms. Complete visibility across
-                        your entire digital footprint.
+                        We monitor Google, Facebook, Yelp, Trustpilot, and 100+ other platforms. Complete visibility
+                        across your entire digital footprint with expert oversight.
                       </p>
                     </div>
                   </div>
@@ -125,10 +131,12 @@ export default function ServicesPage() {
                       <Brain className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">Sentiment analysis</h4>
+                      <h4 className="text-lg font-semibold text-foreground mb-2">
+                        <span style={{ color: "#d4af37", fontWeight: "bold" }}>Professional sentiment analysis</span>
+                      </h4>
                       <p className="text-muted-foreground text-sm">
-                        AI-powered analysis categorizes feedback as positive, negative, or neutral. Understand customer
-                        sentiment at a glance.
+                        Our experts use AI-powered analysis to categorize feedback as positive, negative, or neutral.
+                        Understand customer sentiment with professional interpretation and insights.
                       </p>
                     </div>
                   </div>
@@ -142,10 +150,12 @@ export default function ServicesPage() {
                       <MessageSquare className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">Review response management</h4>
+                      <h4 className="text-lg font-semibold text-foreground mb-2">
+                        <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span>
+                      </h4>
                       <p className="text-muted-foreground text-sm">
-                        Professional response templates and management tools. Maintain consistent, brand-appropriate
-                        communication with customers.
+                        Our team provides professionally crafted response templates and management. Maintain consistent,
+                        brand-appropriate communication with expert oversight.
                       </p>
                     </div>
                   </div>
@@ -159,10 +169,12 @@ export default function ServicesPage() {
                       <Target className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">Brand mention tracking</h4>
+                      <h4 className="text-lg font-semibold text-foreground mb-2">
+                        <span style={{ color: "#d4af37", fontWeight: "bold" }}>Brand mention tracking</span>
+                      </h4>
                       <p className="text-muted-foreground text-sm">
-                        Track every mention of your brand across the web. Stay informed about conversations happening
-                        around your business.
+                        Our team tracks every mention of your brand across the web. Stay informed about conversations
+                        happening around your business with professional monitoring.
                       </p>
                     </div>
                   </div>
@@ -173,7 +185,7 @@ export default function ServicesPage() {
 
           {/* Advanced Features */}
           <div className="mb-16">
-            <h3 className="text-2xl font-bold text-foreground mb-8 text-center">Advanced Features</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-8 text-center">Advanced Services</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Card className="bg-card border-border hover:border-primary/50 transition-all">
                 <CardContent className="p-6">
@@ -275,10 +287,12 @@ export default function ServicesPage() {
                       <LineChart className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">Comprehensive dashboard</h4>
+                      <h4 className="text-lg font-semibold text-foreground mb-2">
+                        <span style={{ color: "#d4af37", fontWeight: "bold" }}>Professional dashboard</span>
+                      </h4>
                       <p className="text-muted-foreground text-sm">
-                        Real-time dashboard with all key metrics in one place. Monitor your reputation health at a
-                        glance.
+                        Real-time dashboard with all key metrics managed by our expert team. Monitor your reputation
+                        health with professional insights.
                       </p>
                     </div>
                   </div>
@@ -293,11 +307,11 @@ export default function ServicesPage() {
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-foreground mb-2">
-                        Daily, Weekly, or Monthly detailed reports
+                        <span style={{ color: "#d4af37", fontWeight: "bold" }}>Weekly reputation reports</span>
                       </h4>
                       <p className="text-muted-foreground text-sm">
-                        Comprehensive detailed reports with insights and recommendations. Track progress and plan future
-                        strategies.
+                        Comprehensive detailed reports with expert insights and recommendations. Track progress and
+                        receive strategic guidance from our team.
                       </p>
                     </div>
                   </div>
@@ -376,7 +390,7 @@ export default function ServicesPage() {
 
           {/* Support & Consultation */}
           <div className="mb-16">
-            <h3 className="text-2xl font-bold text-foreground mb-8 text-center">Support & Consultation</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-8 text-center">Expert Support & Consultation</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Card className="bg-card border-border hover:border-primary/50 transition-all">
                 <CardContent className="p-6">
