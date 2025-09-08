@@ -45,7 +45,7 @@ const chatSections: ChatSection[] = [
       {
         question: "What do I receive each week?",
         answer:
-          "You get a professional weekly report with GuardX branding including: Overall reputation score with trends, new reviews filtered by sentiment, review sources breakdown, and highlighted reviews & insights.",
+          "You get a professional weekly PDF report delivered to your email with GuardX branding including: Overall reputation score with trends, new reviews filtered by sentiment, review sources breakdown, and highlighted reviews & insights.",
       },
       {
         question: "How quickly will I be alerted?",
@@ -70,7 +70,7 @@ const chatSections: ChatSection[] = [
       {
         question: "Do I need to access a dashboard?",
         answer:
-          "No dashboard required! Everything is fully automated. You'll receive your weekly reports via email and instant alerts when needed.",
+          "No dashboard required! Everything is fully automated. Your weekly reputation reports are sent directly to your email as a PDF, and you'll receive instant email alerts when urgent reviews need attention.",
       },
       {
         question: "How do I get started?",

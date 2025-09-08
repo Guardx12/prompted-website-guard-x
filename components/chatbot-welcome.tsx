@@ -80,6 +80,12 @@ export function ChatbotWelcome() {
         "After signing up, we monitor your reputation daily, alert you to mentions, and provide actionable guidance to protect and improve your online image.",
       nudge: null,
     },
+    {
+      question: "Can I cancel at any time?",
+      answer:
+        "For the **£299/month Business Plan**, you can cancel or manage your subscription at any time using our secure Stripe Customer Portal: https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00. The **£499/month Pro / Fake Review Plan** is a 12-month contract and cannot be cancelled early.",
+      nudge: null,
+    },
   ]
 
   const faqQuestions = [
@@ -91,7 +97,7 @@ export function ChatbotWelcome() {
     {
       question: "How long does it take to see results?",
       answer:
-        "You'll start receiving alerts and insights immediately, with measurable improvements in reputation within 1–3 months.",
+        "You'll start receiving email alerts and PDF reports immediately, with measurable improvements in reputation within 1–3 months.",
       nudge: null,
     },
     {

@@ -12,7 +12,7 @@ const faqSections: FAQSection[] = [
   {
     question: "What plans are available?",
     answer: `**Business Plan - £299/month** (Most Popular)
-• Optional 20% off with annual billing
+• Month-to-month with no contract
 • Extra locations: £149/month each
 • Monitoring for Google, Trustpilot, Yelp, Facebook, and many more platforms
 • Instant alerts for negative or urgent reviews
@@ -38,12 +38,12 @@ const faqSections: FAQSection[] = [
   },
   {
     question: "What features are included?",
-    answer: `**Business Plan:** Monitoring for Google, Trustpilot, Yelp, Facebook, and many more platforms. Instant alerts for negative reviews and weekly reports with GuardX branding. Fully automated.
+    answer: `**Business Plan:** Monitoring for Google, Trustpilot, Yelp, Facebook, and many more platforms. Instant alerts for negative reviews and weekly reports with GuardX branding. Month-to-month with no contract.
 
 ✓ **Works Across All Platforms** – Google, Yelp, Facebook, Trustpilot, and many more
 ✓ **Protect Your Reputation Instantly** – never miss a review again
 
-**Pro/Fake Review Plan:** Same monitoring as Business Plan plus fake review flagging and removal. One-year commitment needed for effectiveness. Fully automated.
+**Pro/Fake Review Plan:** Same monitoring as Business Plan plus fake review flagging and removal. One-year commitment required for effectiveness. Fully automated.
 
 ✓ **Fully Automated** – set it and forget it
 
@@ -90,7 +90,7 @@ Fake review removal and ongoing protection require time depending on the volume 
 ✓ **Fully Automated** – set it and forget it
 ✓ **Secure & Private** – your business data is safe with GuardX
 
-You receive instant email alerts for negative reviews and weekly reports with GuardX branding. This keeps it simple and ensures you never miss important reputation issues.`,
+Your weekly reputation reports are sent directly to your email as a PDF. You don't need a login — simply open the email to view your report, which includes your overall star rating, reviews by month, reviews in the last 30 days, reviews since joining, rating breakdown (5-star to 1-star), review sources, and detailed review information.`,
   },
   {
     question: "How does fake review removal work?",

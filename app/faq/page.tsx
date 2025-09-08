@@ -78,26 +78,14 @@ export default function FAQPage() {
 
                 <AccordionItem value="item-reports" className="border-border">
                   <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
-                    What's included in the weekly reports with GuardX branding?
+                    What's included in the weekly reports?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      Your weekly reports include: Overall reputation score with trends, new reviews filtered by
-                      sentiment, review sources breakdown, and highlighted reviews & insights. All reports are
-                      professionally branded by GuardX and delivered automatically.
-                    </p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-pro-commitment" className="border-border">
-                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
-                    Why does the Pro plan require a one-year commitment?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      Fake review removal takes time to be effective, and new fake reviews may continue to appear during
-                      the process. The one-year commitment ensures we can provide comprehensive protection and see the
-                      removal process through to completion for maximum effectiveness.
+                      Your weekly reports include: Overall star rating, reviews by month, reviews in the last 30 days,
+                      reviews since joining, rating breakdown (5-star to 1-star), review sources, and detailed review
+                      information. All reports are professionally branded by GuardX and delivered automatically as PDF
+                      files to your email.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -121,9 +109,9 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      You'll receive secure login credentials to access your personalized dashboard with real-time
-                      reputation scores, detailed reports, and monitoring alerts. Reports are also emailed to you
-                      weekly.
+                      Your weekly reputation reports are sent directly to your email as a PDF. You don't need a login —
+                      simply open the email to view your report, which includes your overall rating, individual reviews,
+                      trends, and any urgent alerts.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -134,8 +122,9 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      No, GuardX operates on a month-to-month basis with no long-term contracts. You can cancel anytime
-                      without penalties or fees.
+                      The <strong>Business Plan (£299/month)</strong> is month-to-month with no long-term contract - you
+                      can cancel anytime. The <strong>Pro Plan (£499/month)</strong> requires a one-year commitment for
+                      effective fake review removal.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -146,8 +135,8 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      You receive real-time alerts for urgent issues, daily monitoring summaries, and comprehensive
-                      weekly reports. Your dashboard is updated continuously throughout the day.
+                      You receive real-time alerts for urgent issues via email, daily monitoring summaries, and
+                      comprehensive weekly PDF reports delivered directly to your inbox.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -275,8 +264,8 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      GuardX provides a detailed dashboard, monthly reports, and clear performance metrics to track
-                      improvements in reputation and online presence.
+                      GuardX provides detailed weekly PDF reports and clear performance metrics delivered to your email
+                      to track improvements in reputation and online presence.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
