@@ -19,9 +19,12 @@ export default function SampleCustomerReportPage() {
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">Sample Customer Report</h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
-              As well as urgent alerts for negative, positive, or all reviews, and AI-drafted responses, you'll also
-              receive professional weekly reports. See exactly what they look like and the valuable insights you'll get
-              every week.
+              Our expert team provides <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span>{" "}
+              with <span style={{ color: "#d4af37", fontWeight: "bold" }}>urgent alerts</span> for{" "}
+              <span style={{ color: "#d4af37", fontWeight: "bold" }}>negative/positive/all reviews</span>, plus{" "}
+              <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span> ready to send.
+              You'll also receive these comprehensive professional reports delivered weekly to your inbox – no dashboard
+              login required.
             </p>
           </div>
 
@@ -52,8 +55,8 @@ export default function SampleCustomerReportPage() {
               Understanding Your Professional Weekly Report
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Every metric in your report provides actionable insights to help you protect and improve your business
-              reputation
+              Our reputation management experts analyze every metric and deliver actionable insights to protect and
+              enhance your business reputation – no analysis required on your part.
             </p>
           </div>
 
@@ -66,25 +69,35 @@ export default function SampleCustomerReportPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">Overall Review Rating</h3>
                 <p className="text-muted-foreground mb-4">
-                  <strong>What you see:</strong> Your average star rating (3.5 stars in this example) with total review
-                  count (78 reviews).
+                  <strong>Our Expert Analysis:</strong> We track your{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>star ratings</span> across all platforms (3.5
+                  stars with 78 reviews in this example) and monitor for any reputation threats.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  <strong>Why it matters:</strong> This is the first thing potential customers see. A drop of even 0.1
-                  stars can significantly impact your conversion rates.
+                  <strong>Why Our Monitoring Matters:</strong> Our{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span> catches rating drops
+                  immediately – even a 0.1 star decline can cost you significant revenue, which is why we provide{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>urgent alerts</span>
+                  the moment issues arise.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Track reputation trends over time</span>
+                    <span>
+                      Continuous <span style={{ color: "#d4af37", fontWeight: "bold" }}>review trends</span> monitoring
+                      by our experts
+                    </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Identify when ratings start declining</span>
+                    <span>
+                      Immediate <span style={{ color: "#d4af37", fontWeight: "bold" }}>urgent alerts</span> when ratings
+                      decline
+                    </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Measure impact of reputation management efforts</span>
+                    <span>Professional assessment of reputation management impact</span>
                   </li>
                 </ul>
               </CardContent>
@@ -98,24 +111,28 @@ export default function SampleCustomerReportPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">Recent Activity</h3>
                 <p className="text-muted-foreground mb-4">
-                  <strong>What you see:</strong> +8 reviews in the last 30 days, +1119 reviews since joining GuardX.
+                  <strong>Our Professional Tracking:</strong> We monitor all{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>review sources</span> and report +8 reviews in
+                  the last 30 days, +1119 reviews since our{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span> began.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  <strong>Why it matters:</strong> Shows your review velocity and helps you understand seasonal patterns
-                  or the impact of marketing campaigns.
+                  <strong>Expert Insights Provided:</strong> Our team analyzes{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>review trends</span> to identify seasonal
+                  patterns and campaign effectiveness, delivering actionable intelligence you can act on immediately.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Monitor review frequency changes</span>
+                    <span>Professional monitoring of review frequency changes</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Identify successful customer engagement periods</span>
+                    <span>Expert identification of successful engagement periods</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Track long-term reputation growth</span>
+                    <span>Long-term reputation growth analysis by our specialists</span>
                   </li>
                 </ul>
               </CardContent>
@@ -129,25 +146,28 @@ export default function SampleCustomerReportPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">Rating Breakdown (5-Star to 1-Star)</h3>
                 <p className="text-muted-foreground mb-4">
-                  <strong>What you see:</strong> Distribution showing 31 five-star reviews, 14 four-star reviews, and so
-                  on.
+                  <strong>Our Detailed Analysis:</strong> We break down your{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>star ratings</span> distribution (31 five-star,
+                  14 four-star reviews, etc.) and flag any concerning patterns for immediate attention.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  <strong>Why it matters:</strong> Reveals the health of your reputation. Too many 1-2 star reviews
-                  indicate serious issues that need immediate attention.
+                  <strong>Why Our Expert Monitoring Protects You:</strong> Our specialists identify reputation threats
+                  in real-time. Clusters of 1-2 star reviews trigger{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>urgent alerts</span> so we can help you respond
+                  before serious damage occurs.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Identify patterns in customer satisfaction</span>
+                    <span>Professional analysis of customer satisfaction patterns</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Spot potential fake review attacks</span>
+                    <span>Expert detection of potential fake review attacks</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Focus improvement efforts where needed most</span>
+                    <span>Strategic recommendations for targeted improvements</span>
                   </li>
                 </ul>
               </CardContent>
@@ -161,25 +181,33 @@ export default function SampleCustomerReportPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">Review Sources</h3>
                 <p className="text-muted-foreground mb-4">
-                  <strong>What you see:</strong> Google (78 reviews, 3.5 rating), Facebook (0 reviews), and other
-                  platforms.
+                  <strong>Our Comprehensive Monitoring:</strong> We track all major{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>review sources</span> including Google (78
+                  reviews, 3.5 rating), Facebook (0 reviews), and dozens of other platforms automatically.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  <strong>Why it matters:</strong> Shows which platforms drive your reputation and where you should
-                  focus your review generation efforts.
+                  <strong>Strategic Intelligence Delivered:</strong> Our experts analyze which platforms drive your
+                  reputation and provide specific recommendations on where to focus your review generation efforts for
+                  maximum impact.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Understand where customers leave reviews</span>
+                    <span>
+                      Complete <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span> across all
+                      major platforms
+                    </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Identify underutilized review platforms</span>
+                    <span>
+                      Expert identification of underutilized{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>review sources</span>
+                    </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Focus marketing efforts on high-impact platforms</span>
+                    <span>Strategic guidance on high-impact platform prioritization</span>
                   </li>
                 </ul>
               </CardContent>
@@ -193,25 +221,27 @@ export default function SampleCustomerReportPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">Online Reviews by Month</h3>
                 <p className="text-muted-foreground mb-4">
-                  <strong>What you see:</strong> A trend line showing review volume over the past 12 months, with peaks
-                  and valleys.
+                  <strong>Our Professional Trend Analysis:</strong> We analyze{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>review trends</span> over 12 months,
+                  identifying peaks and valleys to provide predictive insights for your business planning.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  <strong>Why it matters:</strong> Reveals seasonal patterns, the impact of marketing campaigns, and
-                  helps predict future review volume.
+                  <strong>Actionable Business Intelligence:</strong> Our experts identify seasonal patterns and campaign
+                  impacts, delivering strategic recommendations to optimize your reputation management efforts
+                  year-round.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Identify seasonal business patterns</span>
+                    <span>Expert analysis of seasonal business patterns</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Measure marketing campaign effectiveness</span>
+                    <span>Professional measurement of marketing campaign effectiveness</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Plan review generation strategies</span>
+                    <span>Strategic planning support for review generation</span>
                   </li>
                 </ul>
               </CardContent>
@@ -225,25 +255,34 @@ export default function SampleCustomerReportPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">Review Details & Customer Comments</h3>
                 <p className="text-muted-foreground mb-4">
-                  <strong>What you see:</strong> Complete customer reviews with ratings, dates, names, and full text
-                  comments.
+                  <strong>Complete Review Intelligence:</strong> We capture every customer review with ratings, dates,
+                  names, and full text, plus provide{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span> ready for
+                  you to send.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  <strong>Why it matters:</strong> The actual customer feedback that reveals specific strengths and
-                  areas for improvement in your business.
+                  <strong>Expert Analysis & Response Support:</strong> Our team analyzes customer feedback patterns and
+                  provides <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span>{" "}
+                  that address specific concerns professionally, saving you hours of response crafting.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Understand specific customer pain points</span>
+                    <span>Professional analysis of customer pain points</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Identify common themes in feedback</span>
+                    <span>
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span> for
+                      immediate use
+                    </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Use positive reviews for marketing content</span>
+                    <span>
+                      Strategic guidance on leveraging{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>positive reviews</span> for marketing
+                    </span>
                   </li>
                 </ul>
               </CardContent>
@@ -260,7 +299,8 @@ export default function SampleCustomerReportPage() {
               Why GuardX Reports Matter for Your Business
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              These comprehensive reports provide the insights you need to protect and grow your business reputation
+              Our comprehensive done-for-you service provides expert oversight and actionable intelligence to protect
+              and grow your business reputation – no management required on your part.
             </p>
           </div>
 
@@ -270,15 +310,19 @@ export default function SampleCustomerReportPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Clock className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">Save Valuable Time</h3>
+                <h3 className="text-xl font-bold text-foreground mb-4">Complete Done-For-You Service</h3>
                 <p className="text-muted-foreground mb-4">
-                  Stop manually checking multiple review platforms every week. Get everything consolidated in one
-                  professional report.
+                  Our experts handle all <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span>,
+                  analysis, and reporting automatically. You receive professional insights without any platform
+                  management or data collection on your part.
                 </p>
                 <ul className="text-sm text-muted-foreground space-y-2">
-                  <li>• No more platform hopping</li>
-                  <li>• Automated data collection</li>
-                  <li>• Focus on running your business</li>
+                  <li>• No platform management required</li>
+                  <li>
+                    • Professional <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span> by our
+                    team
+                  </li>
+                  <li>• Focus entirely on running your business</li>
                 </ul>
               </CardContent>
             </Card>
@@ -288,14 +332,18 @@ export default function SampleCustomerReportPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <TrendingUp className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">Track Reputation Improvements</h3>
+                <h3 className="text-xl font-bold text-foreground mb-4">Expert Reputation Analysis</h3>
                 <p className="text-muted-foreground mb-4">
-                  See the impact of your customer service improvements and marketing efforts with clear trend data.
+                  Our reputation management specialists analyze{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>review trends</span> and provide expert
+                  insights on the impact of your customer service improvements and marketing efforts.
                 </p>
                 <ul className="text-sm text-muted-foreground space-y-2">
-                  <li>• Historical trend analysis</li>
-                  <li>• Measure improvement efforts</li>
-                  <li>• Identify successful strategies</li>
+                  <li>
+                    • Professional <span style={{ color: "#d4af37", fontWeight: "bold" }}>review trends</span> analysis
+                  </li>
+                  <li>• Expert measurement of improvement efforts</li>
+                  <li>• Strategic identification of successful approaches</li>
                 </ul>
               </CardContent>
             </Card>
@@ -305,15 +353,19 @@ export default function SampleCustomerReportPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Award className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">Get Actionable Insights</h3>
+                <h3 className="text-xl font-bold text-foreground mb-4">Ready-To-Use Intelligence</h3>
                 <p className="text-muted-foreground mb-4">
-                  Transform raw review data into specific actions you can take to improve customer satisfaction and
-                  ratings.
+                  We transform raw review data into specific action plans and provide{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span>
+                  ready to send, plus strategic recommendations for reputation enhancement.
                 </p>
                 <ul className="text-sm text-muted-foreground space-y-2">
-                  <li>• Identify improvement opportunities</li>
-                  <li>• Understand customer priorities</li>
-                  <li>• Make data-driven decisions</li>
+                  <li>
+                    • <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span> ready to
+                    send
+                  </li>
+                  <li>• Expert analysis of customer priorities</li>
+                  <li>• Strategic recommendations for immediate action</li>
                 </ul>
               </CardContent>
             </Card>
@@ -325,44 +377,62 @@ export default function SampleCustomerReportPage() {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
-                <h4 className="text-lg font-semibold text-foreground mb-4">What You Get Every Week:</h4>
+                <h4 className="text-lg font-semibold text-foreground mb-4">Our Expert Team Delivers Weekly:</h4>
                 <ul className="space-y-3 text-muted-foreground">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Complete reputation overview across all platforms</span>
+                    <span>
+                      Professional reputation analysis across all{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>review sources</span>
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Detailed analysis of new reviews and ratings</span>
+                    <span>
+                      Expert evaluation of new reviews with{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>star ratings</span> analysis
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Trend analysis showing reputation changes</span>
+                    <span>
+                      Comprehensive <span style={{ color: "#d4af37", fontWeight: "bold" }}>review trends</span> analysis
+                      by specialists
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Actionable insights for improvement</span>
+                    <span>
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span> ready
+                      for immediate use
+                    </span>
                   </li>
                 </ul>
               </div>
               <div>
-                <h4 className="text-lg font-semibold text-foreground mb-4">Business Benefits:</h4>
+                <h4 className="text-lg font-semibold text-foreground mb-4">Business Protection Benefits:</h4>
                 <ul className="space-y-3 text-muted-foreground">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Catch reputation threats before they spread</span>
+                    <span>
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>Urgent alerts</span> catch reputation
+                      threats before they spread
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Improve customer satisfaction systematically</span>
+                    <span>Expert guidance for systematic customer satisfaction improvement</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Use positive reviews for marketing</span>
+                    <span>
+                      Strategic recommendations for leveraging{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>positive reviews</span>
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Make informed business decisions</span>
+                    <span>Professional intelligence for informed business decisions</span>
                   </li>
                 </ul>
               </div>
@@ -378,30 +448,36 @@ export default function SampleCustomerReportPage() {
             Start Getting Professional Weekly Reports Today
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Don't wait for a reputation crisis. Get the insights you need to protect and grow your business with
-            comprehensive weekly reports on your reviews and ratings.
+            Don't manage reputation monitoring yourself. Our expert team provides{" "}
+            <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span>,{" "}
+            <span style={{ color: "#d4af37", fontWeight: "bold" }}>urgent alerts</span>,{" "}
+            <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span>, and comprehensive
+            weekly intelligence reports – all delivered automatically to your inbox.
           </p>
 
           <div className="bg-primary/10 rounded-lg p-6 mb-8 max-w-2xl mx-auto">
-            <h3 className="text-lg font-semibold text-foreground mb-4">What Happens Next:</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-4">Our Done-For-You Process:</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xs font-bold">
                   1
                 </div>
-                <span>Sign up and we start monitoring immediately</span>
+                <span>
+                  Our experts begin <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span>{" "}
+                  immediately
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xs font-bold">
                   2
                 </div>
-                <span>Receive your first report within 7 days</span>
+                <span>Professional analysis delivered within 7 days</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xs font-bold">
                   3
                 </div>
-                <span>Get weekly insights delivered to your inbox</span>
+                <span>Weekly expert reports automatically delivered</span>
               </div>
             </div>
           </div>
@@ -428,9 +504,12 @@ export default function SampleCustomerReportPage() {
           </div>
 
           <div className="text-sm text-muted-foreground space-y-2">
-            <p>✓ No setup required - monitoring starts immediately</p>
+            <p>✓ No setup or management required - our experts handle everything</p>
             <p>✓ Cancel anytime - no long-term contracts</p>
-            <p>✓ Professional reports delivered weekly to your inbox</p>
+            <p>
+              ✓ <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span> and
+              professional reports delivered weekly
+            </p>
           </div>
         </div>
       </section>

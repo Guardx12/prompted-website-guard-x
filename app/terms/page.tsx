@@ -7,7 +7,7 @@ export default function TermsPage() {
       <section className="bg-card border-b border-border py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Terms of Service</h1>
-          <p className="text-xl text-muted-foreground">Legal terms and conditions for using GuardX services</p>
+          <p className="text-xl text-muted-foreground">Simple, clear terms for our reputation management service</p>
         </div>
       </section>
 
@@ -17,203 +17,257 @@ export default function TermsPage() {
           <div className="bg-card rounded-lg border border-border p-8 md:p-12">
             <div className="prose prose-lg max-w-none">
               <p className="text-sm text-muted-foreground mb-8">
-                <strong>Last Updated: August 18, 2025</strong>
+                <strong>Last Updated: December 9, 2024</strong>
               </p>
 
               <div className="text-foreground space-y-8">
                 <div>
                   <p className="text-lg leading-relaxed mb-6">
-                    Welcome to <strong className="text-primary">GuardX</strong>. These Terms of Service ("Terms") govern
-                    your access to and use of the GuardX website, services, and reputation management solutions (the
-                    "Services"). By using the Services, you agree to be bound by these Terms.
+                    Welcome to GuardX! We're excited to help protect and grow your business reputation. These terms
+                    explain how our service works and what you can expect from us. By using GuardX, you're agreeing to
+                    these simple terms.
                   </p>
-                  <p className="text-lg leading-relaxed">If you do not agree, you must not use the Services.</p>
+                  <p className="text-lg leading-relaxed">
+                    We've written this in plain English to make it easy to understand. If you have any questions, just
+                    reach out to us at info@guardxnetwork.com.
+                  </p>
                 </div>
 
                 <hr className="border-border" />
 
                 <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">1. Eligibility</h2>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• You must be at least 18 years old to use the Services.</li>
-                    <li>• By using the Services, you confirm you have the authority to enter into these Terms.</li>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">How Our Subscription Works</h2>
+                  <p className="text-lg leading-relaxed mb-4">
+                    GuardX is a monthly subscription service that's billed in advance. Here's what you need to know:
+                  </p>
+                  <ul className="space-y-3 text-muted-foreground">
+                    <li>• Your subscription automatically renews each month</li>
+                    <li>• We charge your payment method on the same date each month</li>
+                    <li>• All fees are non-refundable (more on this below)</li>
+                    <li>
+                      • If your payment doesn't go through, we'll let you know so you can update your payment info
+                    </li>
                   </ul>
                 </div>
 
                 <hr className="border-border" />
 
                 <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">2. Services Provided</h2>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">Managing Your Subscription</h2>
+                  <p className="text-lg leading-relaxed mb-4">
+                    You're in complete control of your subscription and can manage it yourself anytime - no need to
+                    contact us!
+                  </p>
+
+                  <h3 className="text-xl font-semibold text-foreground mb-3">Easy Self-Service Management</h3>
                   <p className="text-muted-foreground mb-4">
-                    GuardX provides reputation management solutions, including but not limited to:
+                    Want to cancel or make changes? Simply use our secure customer portal - it's quick and easy:
                   </p>
-                  <ul className="space-y-2 text-muted-foreground mb-4">
-                    <li>• Monitoring online reviews and mentions</li>
-                    <li>• Managing and responding to reviews</li>
-                    <li>• Reputation recovery campaigns</li>
-                    <li>• Crisis management support</li>
-                    <li>• Positive content creation and visibility strategies</li>
-                    <li>• Analytics and reporting</li>
-                  </ul>
-                  <p className="text-muted-foreground">GuardX may update, add, or remove features at any time.</p>
-                </div>
-
-                <hr className="border-border" />
-
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">3. Account & Subscription</h2>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• Access to certain Services requires a subscription (currently £149/month).</li>
-                    <li>• You are responsible for maintaining the confidentiality of your account login details.</li>
-                    <li>• Subscription fees are billed in advance and are non-refundable unless otherwise agreed.</li>
-                  </ul>
-                </div>
-
-                <hr className="border-border" />
-
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">4. Payments</h2>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>
-                      • Payments are processed securely through <strong>Stripe</strong> or other approved payment
-                      providers.
-                    </li>
-                    <li>
-                      • By subscribing, you authorize GuardX to charge your chosen payment method on a recurring basis.
-                    </li>
-                    <li>• If a payment fails, GuardX may suspend or terminate Services until payment is resolved.</li>
-                  </ul>
-                </div>
-
-                <hr className="border-border" />
-
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">5. Acceptable Use</h2>
-                  <p className="text-muted-foreground mb-4">You agree not to:</p>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• Use the Services for unlawful or fraudulent purposes.</li>
-                    <li>• Post or distribute harmful, defamatory, or misleading content.</li>
-                    <li>• Attempt to interfere with the security or functionality of the Services.</li>
-                  </ul>
-                </div>
-
-                <hr className="border-border" />
-
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">6. Content Ownership</h2>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>
-                      • Any original content created by GuardX (such as review responses, reports, or campaigns) remains
-                      the intellectual property of GuardX unless otherwise agreed.
-                    </li>
-                    <li>• You retain ownership of your brand assets and data.</li>
-                  </ul>
-                </div>
-
-                <hr className="border-border" />
-
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">7. Service Limitations</h2>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>
-                      • GuardX strives for accuracy and effectiveness but does not guarantee specific results (such as
-                      ratings, rankings, or revenue outcomes).
-                    </li>
-                    <li>
-                      • Online platforms (Google, Yelp, Trustpilot, etc.) are third-party systems outside GuardX's
-                      control.
-                    </li>
-                  </ul>
-                </div>
-
-                <hr className="border-border" />
-
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">8. Termination</h2>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• You may cancel your subscription at any time by providing written notice.</li>
-                    <li>• GuardX may suspend or terminate Services immediately if these Terms are violated.</li>
-                  </ul>
-                </div>
-
-                <hr className="border-border" />
-
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">9. Disclaimer of Warranties</h2>
-                  <p className="text-muted-foreground">
-                    The Services are provided <strong>"as is"</strong> without warranties of any kind, whether express
-                    or implied. GuardX does not guarantee uninterrupted service or error-free outcomes.
-                  </p>
-                </div>
-
-                <hr className="border-border" />
-
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">10. Limitation of Liability</h2>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>
-                      • To the maximum extent permitted by law, GuardX shall not be liable for indirect, incidental, or
-                      consequential damages.
-                    </li>
-                    <li>
-                      • GuardX's total liability shall not exceed the amount you paid for the Services in the six months
-                      preceding the claim.
-                    </li>
-                  </ul>
-                </div>
-
-                <hr className="border-border" />
-
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">11. Indemnification</h2>
-                  <p className="text-muted-foreground">
-                    You agree to indemnify and hold harmless GuardX, its employees, and affiliates from any claims or
-                    damages arising from your use of the Services or violation of these Terms.
-                  </p>
-                </div>
-
-                <hr className="border-border" />
-
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">12. Changes to Terms</h2>
-                  <p className="text-muted-foreground">
-                    GuardX may update these Terms from time to time. Updated Terms will be posted on this website with a
-                    new "Last Updated" date. Continued use of the Services constitutes acceptance of the changes.
-                  </p>
-                </div>
-
-                <hr className="border-border" />
-
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">13. Governing Law</h2>
-                  <p className="text-muted-foreground">
-                    These Terms are governed by the laws of the United Kingdom. Any disputes shall be subject to the
-                    exclusive jurisdiction of UK courts.
-                  </p>
-                </div>
-
-                <hr className="border-border" />
-
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">14. Contact</h2>
-                  <p className="text-muted-foreground mb-4">For questions about these Terms, please contact:</p>
-                  <div className="bg-background rounded-lg p-6 border border-border">
-                    <div className="space-y-2">
-                      <p className="text-foreground font-semibold text-lg">GuardX</p>
-                      <p className="text-muted-foreground">
-                        📧{" "}
-                        <a href="mailto:info@guardxnetwork.com" className="text-primary hover:underline">
-                          info@guardxnetwork.com
-                        </a>
-                      </p>
-                      <p className="text-muted-foreground">
-                        🌐{" "}
-                        <Link href="/" className="text-primary hover:underline">
-                          www.guardxnetwork.com
-                        </Link>
-                      </p>
-                    </div>
+                  <div className="bg-muted p-4 rounded-lg mb-4">
+                    <p className="font-medium text-foreground">Stripe Customer Portal:</p>
+                    <Link
+                      href="https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00"
+                      target="_blank"
+                      className="text-primary hover:underline break-all"
+                    >
+                      billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00
+                    </Link>
                   </div>
+
+                  <h3 className="text-xl font-semibold text-foreground mb-3">What Happens When You Cancel</h3>
+                  <ul className="space-y-3 text-muted-foreground">
+                    <li>• Your service stops immediately when you cancel</li>
+                    <li>• You won't be charged again after cancellation</li>
+                    <li>• We can't provide refunds for time already paid for</li>
+                    <li>• You can always resubscribe later if you change your mind</li>
+                  </ul>
+                </div>
+
+                <hr className="border-border" />
+
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">Our No-Refund Policy</h2>
+                  <p className="text-lg leading-relaxed mb-4">
+                    We operate a strict no-refund policy for all subscription fees. This helps us keep our prices low
+                    and our service quality high.
+                  </p>
+                  <p className="text-muted-foreground mb-4">This means no refunds for:</p>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>• Canceling mid-month</li>
+                    <li>• Changing your mind about the service</li>
+                    <li>• Business changes or circumstances</li>
+                    <li>• Issues with third-party platforms (like Google or Yelp)</li>
+                  </ul>
+                  <p className="text-muted-foreground">
+                    We're confident you'll love our service, but please make sure you're ready to commit before
+                    subscribing.
+                  </p>
+                </div>
+
+                <hr className="border-border" />
+
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">Working with Review Platforms</h2>
+                  <p className="text-lg leading-relaxed mb-4">
+                    We work with many review platforms like Google, Yelp, Facebook, and others to manage your
+                    reputation. Here's what you should know:
+                  </p>
+                  <ul className="space-y-3 text-muted-foreground">
+                    <li>• Sometimes these platforms have outages or change their rules - that's beyond our control</li>
+                    <li>• We can't guarantee these platforms will always work perfectly</li>
+                    <li>
+                      • If a platform goes down temporarily, it doesn't affect your subscription or entitle you to a
+                      refund
+                    </li>
+                    <li>• We'll always do our best to work around any platform issues</li>
+                  </ul>
+                </div>
+
+                <hr className="border-border" />
+
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">What We Do for You</h2>
+                  <p className="text-lg leading-relaxed mb-4">
+                    GuardX is a complete done-for-you reputation management service. We handle everything so you don't
+                    have to:
+                  </p>
+                  <ul className="space-y-3 text-muted-foreground mb-6">
+                    <li>• Monitor your online reviews 24/7</li>
+                    <li>• Send you instant alerts when new reviews come in</li>
+                    <li>• Write professional responses to your reviews</li>
+                    <li>• Send you weekly reports on your reputation</li>
+                    <li>• Help with reputation recovery if needed</li>
+                    <li>• Provide crisis management support</li>
+                  </ul>
+                  <p className="text-muted-foreground">
+                    While we work hard to improve your reputation, we can't guarantee specific results like star ratings
+                    or revenue increases. Every business is different, and results depend on many factors.
+                  </p>
+                </div>
+
+                <hr className="border-border" />
+
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">Our Responsibilities and Limits</h2>
+                  <p className="text-lg leading-relaxed mb-4">
+                    We're committed to providing excellent service, but we need to be clear about our limits:
+                  </p>
+                  <ul className="space-y-3 text-muted-foreground">
+                    <li>• We provide our service "as is" and do our best to help your business</li>
+                    <li>• We're not responsible for what happens on third-party platforms like Google or Yelp</li>
+                    <li>• If something goes wrong, our maximum liability is what you paid us in the last 3 months</li>
+                    <li>• We can't be held responsible for indirect business losses</li>
+                  </ul>
+                </div>
+
+                <hr className="border-border" />
+
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">By Using Our Service</h2>
+                  <p className="text-lg leading-relaxed mb-4">
+                    When you subscribe to GuardX, you're confirming that you understand and agree to:
+                  </p>
+                  <ul className="space-y-3 text-muted-foreground">
+                    <li>• Our no-refund policy</li>
+                    <li>• That we can't control third-party platforms</li>
+                    <li>• How our done-for-you service works</li>
+                    <li>• That your access ends immediately when you cancel</li>
+                  </ul>
+                </div>
+
+                <hr className="border-border" />
+
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">Your Account</h2>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>• You must be 18 or older and authorized to make decisions for your business</li>
+                    <li>• Keep your account information secure and up to date</li>
+                    <li>• Provide accurate business information so we can help you effectively</li>
+                  </ul>
+                </div>
+
+                <hr className="border-border" />
+
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">Fair Use</h2>
+                  <p className="text-muted-foreground mb-4">
+                    We ask that you use our service responsibly. Please don't:
+                  </p>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>• Use our service for anything illegal</li>
+                    <li>• Ask us to create fake reviews</li>
+                    <li>• Try to interfere with our systems</li>
+                    <li>• Break the rules of review platforms</li>
+                  </ul>
+                </div>
+
+                <hr className="border-border" />
+
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">Content and Ownership</h2>
+                  <p className="text-lg leading-relaxed mb-4">Here's how content ownership works with our service:</p>
+
+                  <h3 className="text-xl font-semibold text-foreground mb-3">What You Own</h3>
+                  <ul className="space-y-3 text-muted-foreground mb-6">
+                    <li>• Your business information, brand assets, and company data always remain yours</li>
+                    <li>
+                      • You have full rights to use all responses and reports we create as part of your business
+                      operations
+                    </li>
+                    <li>
+                      • Any content you provide to us (business details, preferences, etc.) stays under your ownership
+                    </li>
+                  </ul>
+
+                  <h3 className="text-xl font-semibold text-foreground mb-3">How Our Service Works</h3>
+                  <ul className="space-y-3 text-muted-foreground mb-6">
+                    <li>
+                      • We provide AI-generated responses and reports from third-party providers as part of our service
+                    </li>
+                    <li>• These materials are licensed to you for your business use and benefit</li>
+                    <li>
+                      • We don't claim ownership of the underlying AI-generated content or the tools that create it
+                    </li>
+                    <li>• You're free to use our service deliverables to grow and protect your business reputation</li>
+                    <li>• The AI platforms and tools we use remain the property of their respective providers</li>
+                  </ul>
+
+                  <h3 className="text-xl font-semibold text-foreground mb-3">Marketing and Examples</h3>
+                  <p className="text-muted-foreground">
+                    We may use anonymized examples of our work for marketing purposes, but we'll never identify your
+                    business or share your confidential information. This helps us show potential clients the quality of
+                    our service while keeping your privacy protected.
+                  </p>
+                </div>
+
+                <hr className="border-border" />
+
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">Changes to These Terms</h2>
+                  <p className="text-muted-foreground">
+                    We may update these terms occasionally. When we do, we'll post the new version here with a new date.
+                    By continuing to use our service after changes are posted, you're agreeing to the updated terms.
+                  </p>
+                </div>
+
+                <hr className="border-border" />
+
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">Legal Stuff</h2>
+                  <p className="text-muted-foreground">
+                    These terms are governed by UK law. If there's ever a legal dispute, it will be handled in UK
+                    courts.
+                  </p>
+                </div>
+
+                <hr className="border-border" />
+
+                <div className="bg-muted p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold text-foreground mb-3">Questions?</h3>
+                  <p className="text-muted-foreground">
+                    We're here to help! If you have any questions about these terms or our service, just email us at{" "}
+                    <strong>info@guardxnetwork.com</strong> and we'll get back to you quickly.
+                  </p>
                 </div>
               </div>
             </div>

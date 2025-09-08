@@ -19,7 +19,7 @@ export default function PricingPage() {
               Choose Your <span className="text-primary">Protection Plan</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Professional reputation management with transparent pricing
+              Professional done-for-you reputation management with expert oversight and transparent pricing
             </p>
           </div>
         </div>
@@ -45,40 +45,58 @@ export default function PricingPage() {
                   <div className="mb-4">
                     <span className="text-sm text-green-600 font-medium">Save 20% with annual billing</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">Perfect for single location businesses</p>
+                  <p className="text-sm text-muted-foreground">
+                    Complete expert reputation management for single location businesses
+                  </p>
                 </div>
 
                 <ul className="space-y-3 mb-8">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">
-                      Monitoring for Google, Trustpilot, Yelp, Facebook, and many more platforms
+                      Our experts provide <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span>{" "}
+                      across Google, Trustpilot, Yelp, Facebook, and many more platforms
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Instant alerts for negative or urgent reviews</span>
+                    <span className="text-foreground">
+                      Receive <span style={{ color: "#d4af37", fontWeight: "bold" }}>instant alerts</span> when our team
+                      detects negative or urgent reviews
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Automated weekly branded reports</span>
+                    <span className="text-foreground">
+                      Professional{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>weekly reputation reports</span> delivered
+                      automatically with your branding
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">AI-drafted review responses</span>
+                    <span className="text-foreground">
+                      Expert-crafted{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span> managed
+                      by our team
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Fully automated</span>
+                    <span className="text-foreground">
+                      Completely hands-off - our experts handle everything automatically
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Weekly reports with GuardX branding</span>
+                    <span className="text-foreground">
+                      Professional reports with your GuardX branding delivered weekly
+                    </span>
                   </li>
                 </ul>
 
                 <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">Extra locations: £149/month each</p>
+                  <p className="text-sm text-muted-foreground">Additional locations: £149/month each (fully managed)</p>
                 </div>
 
                 <div className="mb-4 space-y-1">
@@ -92,7 +110,7 @@ export default function PricingPage() {
                   rel="noopener noreferrer"
                   className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold rounded-md inline-flex items-center justify-center transition-colors"
                 >
-                  <span className="get-started-text">Start Protecting Today</span>
+                  <span className="get-started-text">Start Expert Protection Today</span>
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
               </CardContent>
@@ -107,7 +125,9 @@ export default function PricingPage() {
                     <span className="text-4xl font-bold text-primary">£499</span>
                     <span className="text-muted-foreground">/month</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">Includes fake review removal</p>
+                  <p className="text-sm text-muted-foreground">
+                    Expert fake review removal and comprehensive protection
+                  </p>
                   <p className="text-xs text-blue-600 font-medium mt-1">One-year commitment required</p>
                 </div>
 
@@ -115,49 +135,73 @@ export default function PricingPage() {
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">
-                      Monitoring for Google, Trustpilot, Yelp, Facebook, and many more platforms
+                      Our experts provide <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span>{" "}
+                      across Google, Trustpilot, Yelp, Facebook, and many more platforms
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Instant alerts for negative or urgent reviews</span>
+                    <span className="text-foreground">
+                      Receive <span style={{ color: "#d4af37", fontWeight: "bold" }}>instant alerts</span> when our team
+                      detects negative or urgent reviews
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Automated weekly branded reports</span>
+                    <span className="text-foreground">
+                      Professional{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>weekly reputation reports</span> delivered
+                      automatically with your branding
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">AI-drafted review responses</span>
+                    <span className="text-foreground">
+                      Expert-crafted{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span> managed
+                      by our team
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground font-semibold">Fake review flagging and removal</span>
+                    <span className="text-foreground font-semibold">
+                      Professional{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>
+                        fake review identification and removal
+                      </span>{" "}
+                      handled by our experts
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Fully automated</span>
+                    <span className="text-foreground">
+                      Completely hands-off - our experts handle everything automatically
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Weekly reports with GuardX branding</span>
+                    <span className="text-foreground">
+                      Professional reports with your GuardX branding delivered weekly
+                    </span>
                   </li>
                 </ul>
 
                 <div className="mb-6 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                   <p className="text-xs text-blue-800">
-                    A one-year commitment is required to allow sufficient time for effective removal of fake reviews and
-                    ongoing protection against recurring fake reviews.
+                    Our expert team requires a one-year commitment to effectively identify, remove, and provide ongoing
+                    protection against fake reviews. This ensures comprehensive results and continuous monitoring.
                   </p>
                 </div>
 
                 <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">Extra locations: £299/month each</p>
+                  <p className="text-sm text-muted-foreground">Additional locations: £299/month each (fully managed)</p>
                 </div>
 
                 <div className="mb-4 space-y-1">
-                  <div className="text-xs text-green-600 font-medium">✓ Secure & Private – your data is safe</div>
-                  <div className="text-xs text-green-600 font-medium">✓ Trusted by Small Businesses</div>
+                  <div className="text-xs text-green-600 font-medium">
+                    ✓ Expert Team Management – complete peace of mind
+                  </div>
+                  <div className="text-xs text-green-600 font-medium">✓ Trusted by Small Businesses Nationwide</div>
                 </div>
 
                 <a
@@ -166,7 +210,7 @@ export default function PricingPage() {
                   rel="noopener noreferrer"
                   className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold rounded-md inline-flex items-center justify-center transition-colors"
                 >
-                  <span className="get-started-text">Start Protecting Today</span>
+                  <span className="get-started-text">Start Expert Protection Today</span>
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
               </CardContent>
@@ -181,39 +225,51 @@ export default function PricingPage() {
                     <span className="text-3xl font-bold text-primary">Custom</span>
                     <span className="text-muted-foreground"> Pricing</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">For businesses with 5+ locations</p>
+                  <p className="text-sm text-muted-foreground">
+                    Dedicated expert team for businesses with 5+ locations
+                  </p>
                 </div>
 
                 <ul className="space-y-3 mb-8">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Includes all features in the Business Plan</span>
+                    <span className="text-foreground">All Business Plan features managed by our expert team</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Custom monitoring setup</span>
+                    <span className="text-foreground">
+                      Custom <span style={{ color: "#d4af37", fontWeight: "bold" }}>monitoring setup</span> tailored by
+                      our specialists
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Dedicated account manager</span>
+                    <span className="text-foreground">
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>Dedicated account manager</span> for
+                      personalized service
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Volume discounts available</span>
+                    <span className="text-foreground">Significant volume discounts for multi-location management</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Weekly reports with GuardX branding</span>
+                    <span className="text-foreground">
+                      Professional reports with your GuardX branding delivered weekly
+                    </span>
                   </li>
                 </ul>
 
                 <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">Scalable pricing based on your needs</p>
+                  <p className="text-sm text-muted-foreground">
+                    Scalable expert management pricing based on your needs
+                  </p>
                 </div>
 
                 <div className="mb-4 space-y-1">
-                  <div className="text-xs text-green-600 font-medium">✓ Protect Your Reputation Instantly</div>
-                  <div className="text-xs text-green-600 font-medium">✓ Dedicated Support Included</div>
+                  <div className="text-xs text-green-600 font-medium">✓ Dedicated Expert Team – premium service</div>
+                  <div className="text-xs text-green-600 font-medium">✓ Priority Support & Account Management</div>
                 </div>
 
                 <Link href="/contact">
@@ -221,7 +277,7 @@ export default function PricingPage() {
                     variant="outline"
                     className="get-started-btn w-full border-primary text-primary hover:bg-primary/10 py-3 text-lg font-semibold bg-transparent"
                   >
-                    <span className="get-started-text">Contact Us</span>
+                    <span className="get-started-text">Contact Our Experts</span>
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
@@ -237,9 +293,12 @@ export default function PricingPage() {
       <section className="py-20 bg-card/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Why Choose Our Professional Plans?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Why Choose Our Expert Management Plans?
+            </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Tailored solutions to protect and enhance your reputation, suitable for businesses of all sizes
+              Professional done-for-you reputation management with dedicated expert oversight for businesses of all
+              sizes
             </p>
           </div>
 
@@ -249,9 +308,10 @@ export default function PricingPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Clock className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-4">Save Time</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-4">Complete Peace of Mind</h3>
                 <p className="text-muted-foreground">
-                  Let our experts handle your reputation management while you focus on growing your business.
+                  Our expert team handles all reputation management tasks automatically, so you can focus entirely on
+                  growing your business without any monitoring concerns.
                 </p>
               </CardContent>
             </Card>
@@ -261,9 +321,10 @@ export default function PricingPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <TrendingUp className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-4">Proven Results</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-4">Expert-Driven Results</h3>
                 <p className="text-muted-foreground">
-                  Our strategies have helped hundreds of businesses improve their online reputation and ratings.
+                  Our professional team's proven strategies and expert oversight have helped hundreds of businesses
+                  significantly improve their online reputation and ratings.
                 </p>
               </CardContent>
             </Card>
@@ -273,9 +334,10 @@ export default function PricingPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Shield className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-4">Complete Protection</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-4">Comprehensive Expert Protection</h3>
                 <p className="text-muted-foreground">
-                  Comprehensive monitoring and protection across all platforms and review sites.
+                  Our specialists provide complete monitoring and protection across all platforms and review sites with
+                  professional oversight and immediate response capabilities.
                 </p>
               </CardContent>
             </Card>
@@ -288,49 +350,52 @@ export default function PricingPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Frequently Asked Questions</h2>
-            <p className="text-lg text-muted-foreground">Common questions about our pricing and services</p>
+            <p className="text-lg text-muted-foreground">
+              Common questions about our expert management pricing and services
+            </p>
           </div>
 
           <div className="space-y-6">
             {[
               {
-                question: "What are your pricing plans?",
+                question: "What are your expert management pricing plans?",
                 answer:
-                  "We offer three plans: Business Plan (£299/month) for complete reputation protection, Pro/Fake Review Plan (£499/month with one-year commitment) for advanced fake review removal, and Enterprise Plan (custom pricing) for businesses with 5+ locations.",
+                  "We offer three expert-managed plans: Business Plan (£299/month) for complete professional reputation protection, Pro/Fake Review Plan (£499/month with one-year commitment) for advanced fake review removal by our specialists, and Enterprise Plan (custom pricing) for businesses with 5+ locations requiring dedicated expert teams.",
               },
               {
-                question: "How does extra location pricing work?",
+                question: "How does expert management pricing work for multiple locations?",
                 answer:
-                  "Business Plan: £149/month per additional location. Pro/Fake Review Plan: £299/month per additional location. Enterprise Plan: Custom pricing for 5+ locations with volume discounts.",
+                  "Business Plan: £149/month per additional location (fully managed by our experts). Pro/Fake Review Plan: £299/month per additional location (complete expert oversight). Enterprise Plan: Custom pricing for 5+ locations with dedicated account management and volume discounts.",
               },
               {
-                question: "What platforms do you monitor?",
+                question: "What platforms do your experts monitor?",
                 answer:
-                  "We monitor Google, Trustpilot, Yelp, Facebook, and many more review platforms to ensure comprehensive coverage of your online reputation across all major sites.",
+                  "Our professional team monitors Google, Trustpilot, Yelp, Facebook, and many more review platforms with 24/7 expert oversight to ensure comprehensive coverage of your online reputation across all major sites.",
               },
               {
-                question: "What's included in the weekly reports with GuardX branding?",
+                question: "What's included in the professional weekly reports with GuardX branding?",
                 answer:
-                  "Your weekly reports include overall reputation score with trends, new reviews filtered by sentiment, review sources breakdown, and highlighted reviews & insights - all professionally branded by GuardX.",
+                  "Your expert-prepared weekly reports include overall reputation score with professional trend analysis, new reviews filtered by sentiment with expert insights, comprehensive review sources breakdown, and highlighted reviews with actionable recommendations - all professionally branded by GuardX and delivered automatically.",
               },
               {
-                question: "Why does the Pro plan require a one-year commitment?",
+                question: "Why does the Pro plan require a one-year commitment for expert fake review removal?",
                 answer:
-                  "Fake review removal takes time to be effective, and new fake reviews may continue to appear. The one-year commitment ensures we can provide comprehensive protection and see the process through to completion.",
+                  "Our expert fake review removal process requires time to be effective, and new fake reviews may continue to appear. The one-year commitment ensures our specialists can provide comprehensive protection and see the complete removal process through to successful completion with ongoing monitoring.",
               },
               {
-                question: "Is everything fully automated?",
+                question: "Is everything managed by your expert team automatically?",
                 answer:
-                  "Yes, all our services are fully automated. You don't need dashboard access or manual intervention - we handle monitoring, alerts, reporting, and response management automatically.",
+                  "Yes, all our services are completely managed by our expert team. You receive professional oversight without needing any dashboard access or manual intervention - our specialists handle monitoring, alerts, reporting, and response management automatically with expert precision.",
               },
               {
-                question: "Can I cancel anytime?",
+                question: "Can I cancel my expert management service anytime?",
                 answer:
-                  "Business Plan: Yes, cancel anytime with no contracts or penalties. Pro Plan: One-year commitment required. Enterprise Plan: Terms vary based on agreement.",
+                  "Business Plan: Yes, cancel anytime with no contracts or penalties - complete flexibility. Pro Plan: One-year expert commitment required for effective fake review removal. Enterprise Plan: Terms vary based on dedicated service agreement.",
               },
               {
-                question: "Are there any setup fees?",
-                answer: "No, there are no setup fees for any of our plans. You only pay the monthly subscription fee.",
+                question: "Are there any setup fees for expert management?",
+                answer:
+                  "No, there are no setup fees for any of our expert-managed plans. You only pay the monthly subscription fee for complete professional service.",
               },
             ].map((faq, index) => (
               <Card key={index} className="bg-card border-border">
@@ -347,9 +412,10 @@ export default function PricingPage() {
       {/* CTA Section */}
       <section className="py-20 bg-card/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Ready to Get Started?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Ready for Expert Protection?</h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Join hundreds of businesses that trust GuardX to protect their online reputation.
+            Join hundreds of businesses that trust GuardX's expert team to professionally manage and protect their
+            online reputation.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -358,14 +424,14 @@ export default function PricingPage() {
               rel="noopener noreferrer"
               className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold rounded-md inline-flex items-center justify-center transition-colors"
             >
-              <span className="get-started-text">Start Your Protection Today</span>
+              <span className="get-started-text">Start Expert Protection Today</span>
               <ArrowRight className="ml-2 w-5 h-5" />
             </a>
             <a
               href="/pricing"
               className="border border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg bg-transparent rounded-md inline-flex items-center transition-colors"
             >
-              Get Started Online
+              Get Expert Management Online
             </a>
           </div>
         </div>

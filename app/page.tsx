@@ -44,16 +44,22 @@ export default function HomePage() {
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
-              Automated monitoring, instant alerts for negative, positive, or all reviews, AI-drafted review responses,
-              and professional weekly reports on your reviews and ratings – set and forget.
+              Our expert team provides <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span>,{" "}
+              <span style={{ color: "#d4af37", fontWeight: "bold" }}>instant alerts</span> for negative, positive, or
+              all reviews, <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span>,
+              and <span style={{ color: "#d4af37", fontWeight: "bold" }}>professional weekly reports</span> on your
+              reviews and ratings – completely hands-off for you.
             </p>
             <p className="text-sm text-muted-foreground max-w-3xl mx-auto mb-8">
-              Respond to reviews faster and smarter – AI drafts the replies for you, ready to send.
+              Our AI drafts professional review responses for you, ready to send – respond faster and smarter without
+              the effort.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm">
               <div className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">✓ Cancel Any Time</div>
-              <div className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">✓ Fully Automated</div>
+              <div className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
+                ✓ Fully Managed Service
+              </div>
               <div className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
                 ✓ Works Across All Platforms
               </div>
@@ -81,21 +87,26 @@ export default function HomePage() {
             </div>
 
             <p className="text-sm text-muted-foreground mb-8 font-medium">
-              Protection starts immediately — no setup required
+              Expert protection starts immediately — no setup required from you
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-primary" />
-                <span>Instant threat detection</span>
+                <span>
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>Instant threat detection</span> by our team
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-primary" />
-                <span>Professional weekly reports on your reviews and ratings</span>
+                <span>
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>Professional weekly reports</span> delivered to
+                  you
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-primary" />
-                <span>Crisis response support</span>
+                <span>Expert crisis response support</span>
               </div>
             </div>
 
@@ -104,22 +115,22 @@ export default function HomePage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Shield className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">Monitor</h3>
-                <p className="text-sm text-muted-foreground">Catch threats before they spread</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">We Monitor</h3>
+                <p className="text-sm text-muted-foreground">Our experts catch threats before they spread</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <TrendingUp className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">Alert</h3>
-                <p className="text-sm text-muted-foreground">Instant notifications of issues</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">We Alert</h3>
+                <p className="text-sm text-muted-foreground">You get instant notifications of issues</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">Protect</h3>
-                <p className="text-sm text-muted-foreground">Defend your reputation 24/7</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">We Protect</h3>
+                <p className="text-sm text-muted-foreground">Expert defense of your reputation 24/7</p>
               </div>
             </div>
           </div>
@@ -136,7 +147,7 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">What You Get With GuardX</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Complete reputation protection that works automatically in the background
+              Complete reputation management service that works automatically while you focus on your business
             </p>
           </div>
 
@@ -147,19 +158,25 @@ export default function HomePage() {
                   <Shield className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-4">
-                  Monitoring for Google, Trustpilot, Yelp, Facebook, and many more platforms
+                  Expert <span style={{ color: "#d4af37", fontWeight: "bold" }}>monitoring</span> across Google,
+                  Trustpilot, Yelp, Facebook, and many more platforms
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  We watch all major review platforms 24/7 so you never miss a mention of your business.
+                  Our team watches all major review platforms{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7</span> so you never miss a mention of your
+                  business.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Real-time monitoring across all platforms</span>
+                    <span>
+                      Professional <span style={{ color: "#d4af37", fontWeight: "bold" }}>real-time monitoring</span>{" "}
+                      across all platforms
+                    </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Comprehensive coverage of review sites</span>
+                    <span>Comprehensive coverage managed by our experts</span>
                   </li>
                 </ul>
               </CardContent>
@@ -171,19 +188,27 @@ export default function HomePage() {
                   <AlertTriangle className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-4">
-                  Instant alerts for negative or urgent reviews (1–3 stars)
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>Instant alerts</span> delivered to you for
+                  negative or urgent reviews (1–3{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>star ratings</span>)
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  Get notified immediately when negative reviews appear so you can respond quickly.
+                  Our system notifies you immediately when negative reviews appear so you can respond quickly with our
+                  expert guidance.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Instant email and SMS alerts</span>
+                    <span>
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>Instant alerts</span> via email and SMS
+                    </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Priority flagging for urgent issues</span>
+                    <span>
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>Urgent alerts</span> for critical
+                      reputation threats
+                    </span>
                   </li>
                 </ul>
               </CardContent>
@@ -195,19 +220,26 @@ export default function HomePage() {
                   <BarChart3 className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-4">
-                  Professional weekly reports on your reviews and ratings
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>Professional weekly reports</span> on your{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>reviews and ratings</span>
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  Comprehensive reports showing reputation trends and key metrics from all monitored platforms.
+                  Our experts compile comprehensive reports showing{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>review trends</span> and key metrics from all
+                  monitored platforms, delivered directly to your inbox.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Professional weekly reports on your reviews and ratings</span>
+                    <span>
+                      Expert analysis of <span style={{ color: "#d4af37", fontWeight: "bold" }}>positive reviews</span>,{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>negative reviews</span>, and{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>all reviews</span>
+                    </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Weekly delivery to your inbox</span>
+                    <span>Automated weekly delivery to your inbox</span>
                   </li>
                 </ul>
               </CardContent>
@@ -219,19 +251,23 @@ export default function HomePage() {
                   <CheckCircle className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-4">
-                  Fully automated, no dashboard or login required
+                  Fully managed service, no dashboard or login required
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  Set it and forget it. Everything works automatically in the background.
+                  Our team handles everything automatically in the background. You receive expert oversight without any
+                  effort on your part.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Zero maintenance required</span>
+                    <span>Zero maintenance required from you</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Works 24/7 without intervention</span>
+                    <span>
+                      Expert team works <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7</span> without your
+                      intervention
+                    </span>
                   </li>
                 </ul>
               </CardContent>
@@ -239,22 +275,26 @@ export default function HomePage() {
           </div>
 
           <div className="bg-primary/5 rounded-lg p-8 mb-12">
-            <h3 className="text-2xl font-bold text-foreground mb-6 text-center">Key Benefits</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-6 text-center">Key Service Benefits</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
                 <Shield className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-foreground mb-2">Protect Your Reputation</h4>
-                <p className="text-sm text-muted-foreground">Stop negative reviews from damaging your business</p>
+                <h4 className="font-semibold text-foreground mb-2">Expert Reputation Protection</h4>
+                <p className="text-sm text-muted-foreground">
+                  Our team stops negative reviews from damaging your business
+                </p>
               </div>
               <div className="text-center">
                 <TrendingUp className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-foreground mb-2">Leverage Positive Reviews</h4>
-                <p className="text-sm text-muted-foreground">Turn good reviews into marketing opportunities</p>
+                <h4 className="font-semibold text-foreground mb-2">Maximize Positive Impact</h4>
+                <p className="text-sm text-muted-foreground">
+                  We help you leverage good reviews into marketing opportunities
+                </p>
               </div>
               <div className="text-center">
                 <Clock className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-foreground mb-2">Save Time</h4>
-                <p className="text-sm text-muted-foreground">Automated monitoring means no manual checking</p>
+                <h4 className="font-semibold text-foreground mb-2">Complete Time Savings</h4>
+                <p className="text-sm text-muted-foreground">Our automated service means no manual checking required</p>
               </div>
             </div>
           </div>
@@ -279,7 +319,7 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Feedback from Business Owners</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Real feedback from business owners who understand the importance of reputation protection
+              Real feedback from business owners who trust our expert reputation management service
             </p>
           </div>
 
@@ -292,9 +332,10 @@ export default function HomePage() {
                   ))}
                 </div>
                 <p className="text-foreground mb-4 font-medium">
-                  "I was spending hours every week checking Google and Yelp for new reviews. This service saves me so
-                  much time – I get instant alerts when something needs my attention and can focus on running my
-                  business."
+                  "I was spending hours every week checking Google and Yelp for new reviews. GuardX's expert team saves
+                  me so much time – I get <span style={{ color: "#d4af37", fontWeight: "bold" }}>instant alerts</span>{" "}
+                  when something needs my attention and can focus on running my business while they handle the
+                  monitoring."
                 </p>
                 <p className="text-sm text-muted-foreground">— Restaurant Owner</p>
               </CardContent>
@@ -308,8 +349,9 @@ export default function HomePage() {
                   ))}
                 </div>
                 <p className="text-foreground mb-4 font-medium">
-                  "A competitor left a fake 1-star review that I didn't notice for weeks. Now I get alerts within
-                  minutes of any negative review, so I can respond quickly before it damages my reputation."
+                  "A competitor left a fake 1-star review that I didn't notice for weeks. Now GuardX's team sends me{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>urgent alerts</span> within minutes of any
+                  negative review, so I can respond quickly before it damages my reputation."
                 </p>
                 <p className="text-sm text-muted-foreground">— Retail Manager</p>
               </CardContent>
@@ -323,8 +365,9 @@ export default function HomePage() {
                   ))}
                 </div>
                 <p className="text-foreground mb-4 font-medium">
-                  "I missed a negative review on Trustpilot that cost me several bookings. Automated monitoring means I
-                  never miss anything important again. The peace of mind is worth every penny."
+                  "I missed a negative review on Trustpilot that cost me several bookings. GuardX's{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span> service means I never
+                  miss anything important again. The expert oversight and peace of mind is worth every penny."
                 </p>
                 <p className="text-sm text-muted-foreground">— Boutique Hotel Manager</p>
               </CardContent>
@@ -355,7 +398,9 @@ export default function HomePage() {
               can lose you £10,000+ in revenue this year alone.
             </p>
             <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-6 max-w-2xl mx-auto mb-8">
-              <p className="text-lg font-semibold text-foreground mb-2">Without protection, you're vulnerable to:</p>
+              <p className="text-lg font-semibold text-foreground mb-2">
+                Without expert protection, you're vulnerable to:
+              </p>
               <ul className="text-left space-y-2 text-muted-foreground">
                 <li>• Fake negative reviews from competitors</li>
                 <li>• Angry customers posting before you can respond</li>
@@ -367,52 +412,64 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
             <div>
-              <h3 className="text-2xl font-bold text-foreground mb-6">GuardX Stops The Damage</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-6">GuardX Expert Team Stops The Damage</h3>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <span className="font-semibold text-foreground">24/7 Monitoring:</span>
+                    <span className="font-semibold text-foreground">
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 Monitoring</span> Service:
+                    </span>
                     <span className="text-muted-foreground">
                       {" "}
-                      We watch every review site, social platform, and forum
+                      Our experts watch every{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>review source</span>, social platform, and
+                      forum
                     </span>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <span className="font-semibold text-foreground">Instant Alerts:</span>
-                    <span className="text-muted-foreground"> Get notified within minutes of any new mention</span>
+                    <span className="font-semibold text-foreground">
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>Instant Alerts</span> Delivered:
+                    </span>
+                    <span className="text-muted-foreground"> You get notified within minutes of any new mention</span>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <span className="font-semibold text-foreground">Professional Weekly Reports:</span>
+                    <span className="font-semibold text-foreground">
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>Professional Weekly Reports</span>:
+                    </span>
                     <span className="text-muted-foreground">
                       {" "}
-                      Professional weekly reports tracking your reviews and ratings across all platforms
+                      Expert analysis tracking your{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>reviews and ratings</span> across all
+                      platforms
                     </span>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <span className="font-semibold text-foreground">Crisis Support:</span>
-                    <span className="text-muted-foreground"> Expert guidance when serious threats emerge</span>
+                    <span className="font-semibold text-foreground">Expert Crisis Support:</span>
+                    <span className="text-muted-foreground"> Professional guidance when serious threats emerge</span>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <span className="font-semibold text-foreground">AI-drafted Review Responses:</span>
-                    <span className="text-muted-foreground"> Automated responses to reviews</span>
+                    <span className="font-semibold text-foreground">
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted Review Responses</span>:
+                    </span>
+                    <span className="text-muted-foreground"> Our system creates professional responses for you</span>
                   </div>
                 </li>
                 <div className="ml-9 mt-1">
                   <p className="text-sm text-muted-foreground">
-                    Respond to reviews faster and smarter – AI drafts the replies for you, ready to send.
+                    Respond to reviews faster and smarter – our AI drafts the replies for you, ready to send.
                   </p>
                 </div>
               </ul>
@@ -421,7 +478,7 @@ export default function HomePage() {
               <h4 className="text-xl font-bold text-foreground mb-4">ROI Calculator</h4>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">GuardX monthly cost:</span>
+                  <span className="text-muted-foreground">GuardX monthly service cost:</span>
                   <span className="font-semibold text-foreground">£299</span>
                 </div>
                 <div className="flex justify-between">
@@ -456,7 +513,7 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Choose Your Protection Plan</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Simple, transparent pricing with no hidden fees. Cancel anytime.
+              Simple, transparent pricing for expert reputation management service. Cancel anytime.
             </p>
           </div>
 
@@ -485,29 +542,38 @@ export default function HomePage() {
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">
-                      Monitoring for Google, Trustpilot, Yelp, Facebook, and many more platforms
+                      Expert <span style={{ color: "#d4af37", fontWeight: "bold" }}>monitoring</span> across Google,
+                      Trustpilot, Yelp, Facebook, and many more platforms
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Instant alerts for negative or urgent reviews</span>
+                    <span className="text-foreground">
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>Instant alerts</span> delivered for{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>negative reviews</span> and urgent issues
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Professional weekly reports on your reviews and ratings</span>
+                    <span className="text-foreground">
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>Professional weekly reports</span> on your{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>reviews and ratings</span>
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">AI-drafted review responses</span>
+                    <span className="text-foreground">
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span>
+                    </span>
                   </li>
                   <div className="ml-9 mt-1">
                     <p className="text-sm text-muted-foreground">
-                      Respond to reviews faster and smarter – AI drafts the replies for you, ready to send.
+                      Respond to reviews faster and smarter – our AI drafts the replies for you, ready to send.
                     </p>
                   </div>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Fully automated</span>
+                    <span className="text-foreground">Fully managed service</span>
                   </li>
                 </ul>
 
@@ -541,7 +607,7 @@ export default function HomePage() {
                     <span className="text-4xl font-bold text-primary">£499</span>
                     <span className="text-muted-foreground">/month</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">Includes fake review removal</p>
+                  <p className="text-sm text-muted-foreground">Includes expert fake review removal service</p>
                   <p className="text-xs text-blue-600 font-medium mt-1">One-year commitment required</p>
                 </div>
 
@@ -549,40 +615,51 @@ export default function HomePage() {
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">
-                      Monitoring for Google, Trustpilot, Yelp, Facebook, and many more platforms
+                      Expert <span style={{ color: "#d4af37", fontWeight: "bold" }}>monitoring</span> across Google,
+                      Trustpilot, Yelp, Facebook, and many more platforms
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Instant alerts for negative or urgent reviews</span>
+                    <span className="text-foreground">
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>Instant alerts</span> delivered for{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>negative reviews</span> and urgent issues
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Professional weekly reports on your reviews and ratings</span>
+                    <span className="text-foreground">
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>Professional weekly reports</span> on your{" "}
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>reviews and ratings</span>
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">AI-drafted review responses</span>
+                    <span className="text-foreground">
+                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span>
+                    </span>
                   </li>
                   <div className="ml-9 mt-1">
                     <p className="text-sm text-muted-foreground">
-                      Respond to reviews faster and smarter – AI drafts the replies for you, ready to send.
+                      Respond to reviews faster and smarter – our AI drafts the replies for you, ready to send.
                     </p>
                   </div>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground font-semibold">Fake review flagging and removal</span>
+                    <span className="text-foreground font-semibold">
+                      Expert fake review flagging and removal service
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Fully automated</span>
+                    <span className="text-foreground">Fully managed service</span>
                   </li>
                 </ul>
 
                 <div className="mb-6 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                   <p className="text-xs text-blue-800">
-                    A one-year commitment is required to allow sufficient time for effective removal of fake reviews and
-                    ongoing protection against recurring fake reviews.
+                    A one-year commitment is required to allow sufficient time for our experts to effectively remove
+                    fake reviews and provide ongoing protection against recurring fake reviews.
                   </p>
                 </div>
 
@@ -622,11 +699,14 @@ export default function HomePage() {
                 <ul className="space-y-3 mb-8">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Includes all features in the Business Plan</span>
+                    <span className="text-foreground">Includes all features in the Business Plan service</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Custom monitoring setup</span>
+                    <span className="text-foreground">
+                      Custom <span style={{ color: "#d4af37", fontWeight: "bold" }}>monitoring</span> setup by our
+                      experts
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -664,7 +744,7 @@ export default function HomePage() {
 
           <div className="text-center mb-12">
             <div className="bg-card/50 rounded-lg p-6 mb-8">
-              <h3 className="text-lg font-semibold text-foreground mb-4">Why Choose GuardX?</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-4">Why Choose GuardX Expert Service?</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle className="w-4 h-4 text-primary" />
@@ -672,7 +752,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>Fully automated – set and forget</span>
+                  <span>Fully managed service – hands-off for you</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle className="w-4 h-4 text-primary" />
@@ -680,14 +760,18 @@ export default function HomePage() {
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>Secure & private monitoring</span>
+                  <span>
+                    Secure & private expert <span style={{ color: "#d4af37", fontWeight: "bold" }}>monitoring</span>
+                  </span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>AI-drafted review responses</span>
+                  <span>
+                    <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span>
+                  </span>
                 </div>
                 <div className="text-xs text-muted-foreground mt-1 ml-6">
-                  Respond to reviews faster and smarter – AI drafts the replies for you, ready to send.
+                  Respond to reviews faster and smarter – our AI drafts the replies for you, ready to send.
                 </div>
               </div>
             </div>
@@ -703,7 +787,7 @@ export default function HomePage() {
               <span className="get-started-text">Start Protecting Today</span>
               <ArrowRight className="ml-2 w-6 h-6" />
             </a>
-            <p className="text-sm text-muted-foreground mt-3">Protection starts immediately</p>
+            <p className="text-sm text-muted-foreground mt-3">Expert protection starts immediately</p>
           </div>
         </div>
       </section>
@@ -712,10 +796,13 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              What Your Professional Weekly Reports Include
+              What Your <span style={{ color: "#d4af37", fontWeight: "bold" }}>Professional Weekly Reports</span>{" "}
+              Include
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive reports on your reviews and ratings delivered to your inbox every week with key insights
+              Comprehensive expert analysis of your{" "}
+              <span style={{ color: "#d4af37", fontWeight: "bold" }}>reviews and ratings</span> delivered to your inbox
+              every week with key insights
             </p>
           </div>
 
@@ -727,17 +814,20 @@ export default function HomePage() {
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-4">Overall Reputation Score</h3>
                 <p className="text-muted-foreground mb-4">
-                  See your average star rating across Google, Yelp, Facebook, Trustpilot, and many more, with trends
+                  Our experts analyze your average{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>star ratings</span> across Google, Yelp,
+                  Facebook, Trustpilot, and many more, with{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>review trends</span>
                   over time.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Cross-platform reputation tracking</span>
+                    <span>Cross-platform reputation tracking by our team</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Historical trend analysis</span>
+                    <span>Expert historical trend analysis</span>
                   </li>
                 </ul>
               </CardContent>
@@ -748,19 +838,20 @@ export default function HomePage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <Star className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">New Reviews</h3>
+                <h3 className="text-xl font-bold text-foreground mb-4">New Reviews Analysis</h3>
                 <p className="text-muted-foreground mb-4">
-                  Get a list of all reviews received since your last report, filtered by positive, neutral, and
-                  negative.
+                  Our team compiles all reviews received since your last report, expertly categorized by{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>positive reviews</span>, neutral, and
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}> negative reviews</span>.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Organized by sentiment rating</span>
+                    <span>Expert organization by sentiment rating</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Complete review text included</span>
+                    <span>Complete review text included with analysis</span>
                   </li>
                 </ul>
               </CardContent>
@@ -771,18 +862,24 @@ export default function HomePage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <Shield className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">Review Sources</h3>
+                <h3 className="text-xl font-bold text-foreground mb-4">
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>Review Sources</span> Analysis
+                </h3>
                 <p className="text-muted-foreground mb-4">
-                  Know exactly which platforms your reviews came from with detailed source breakdown.
+                  Our experts provide detailed analysis of exactly which platforms your reviews came from with
+                  comprehensive source breakdown.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Platform-by-platform breakdown</span>
+                    <span>Expert platform-by-platform breakdown</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Direct links to review sources</span>
+                    <span>
+                      Direct links to <span style={{ color: "#d4af37", fontWeight: "bold" }}>review sources</span>{" "}
+                      provided
+                    </span>
                   </li>
                 </ul>
               </CardContent>
@@ -793,19 +890,19 @@ export default function HomePage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <TrendingUp className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">Highlighted Reviews & Insights</h3>
+                <h3 className="text-xl font-bold text-foreground mb-4">Expert Highlighted Reviews & Insights</h3>
                 <p className="text-muted-foreground mb-4">
-                  Quickly see any urgent or impactful reviews, plus trends showing where your reputation is improving or
-                  needs attention.
+                  Our team highlights any <span style={{ color: "#d4af37", fontWeight: "bold" }}>urgent alerts</span> or
+                  impactful reviews, plus expert analysis showing where your reputation is improving or needs attention.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Priority flagging for urgent reviews</span>
+                    <span>Expert priority flagging for urgent reviews</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Actionable improvement insights</span>
+                    <span>Professional actionable improvement insights</span>
                   </li>
                 </ul>
               </CardContent>
@@ -814,27 +911,30 @@ export default function HomePage() {
 
           <div className="bg-primary/5 rounded-lg p-8 mb-12">
             <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
-              Professional Weekly Reports on Your Reviews and Ratings
+              Expert <span style={{ color: "#d4af37", fontWeight: "bold" }}>Professional Weekly Reports</span> on Your{" "}
+              <span style={{ color: "#d4af37", fontWeight: "bold" }}>Reviews and Ratings</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
                 <Award className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-foreground mb-2">Comprehensive Data</h4>
+                <h4 className="font-semibold text-foreground mb-2">Comprehensive Expert Data</h4>
                 <p className="text-sm text-muted-foreground">
-                  All reports include detailed analysis of your reviews and ratings across all platforms
+                  All reports include detailed professional analysis of your{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>reviews and ratings</span> across{" "}
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>all reviews</span> platforms
                 </p>
               </div>
               <div className="text-center">
                 <CheckCircle className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-foreground mb-2">Automated Delivery</h4>
+                <h4 className="font-semibold text-foreground mb-2">Automated Expert Delivery</h4>
                 <p className="text-sm text-muted-foreground">
-                  Reports are generated and delivered automatically every week
+                  Reports are generated by our experts and delivered automatically every week
                 </p>
               </div>
               <div className="text-center">
                 <Clock className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-foreground mb-2">Easy to Share</h4>
-                <p className="text-sm text-muted-foreground">Professional format perfect for sharing internally</p>
+                <h4 className="font-semibold text-foreground mb-2">Professional Format</h4>
+                <p className="text-sm text-muted-foreground">Expert-designed format perfect for sharing internally</p>
               </div>
             </div>
           </div>
@@ -846,7 +946,7 @@ export default function HomePage() {
               rel="noopener noreferrer"
               className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold rounded-md inline-flex items-center transition-colors"
             >
-              <span className="get-started-text">Start Getting Professional Reports Today</span>
+              <span className="get-started-text">Start Getting Expert Reports Today</span>
               <ArrowRight className="ml-2 w-6 h-6" />
             </a>
           </div>
