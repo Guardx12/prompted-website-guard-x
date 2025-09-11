@@ -15,12 +15,12 @@ const chatSections: ChatSection[] = [
       {
         question: "What are your pricing plans?",
         answer:
-          "We offer three plans: Business Plan (£299/month) - monitoring Google, Trustpilot, Yelp, Facebook and many more platforms with 20% off annual billing. Pro/Fake Review Plan (£499/month) - same monitoring with one-year commitment required for effective fake review removal. Enterprise Plan - custom pricing for multiple locations with everything in Business Plan.",
+          "We offer two plans: Business Plan (£299/month) - monitoring Google, Trustpilot, Yelp, Facebook and many more platforms with 20% off annual billing. Enterprise Plan - custom pricing for multiple locations with everything in Business Plan.",
       },
       {
         question: "Can I add extra locations?",
         answer:
-          "Yes! Business Plan: £149/month per extra location. Pro/Fake Review Plan: £299/month per extra location. Enterprise Plan includes multiple locations with custom pricing.",
+          "Yes! Business Plan: £149/month per extra location. Enterprise Plan includes multiple locations with custom pricing.",
       },
       {
         question: "Do you offer annual discounts?",
@@ -60,7 +60,7 @@ const chatSections: ChatSection[] = [
       {
         question: "Can I cancel anytime?",
         answer:
-          "For the **£299/month Business Plan**, you can cancel or manage your subscription at any time using our secure Stripe Customer Portal: https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00. The **£499/month Pro / Fake Review Plan** is a 12-month contract and cannot be cancelled early.",
+          "For the **£299/month Business Plan**, you can cancel or manage your subscription at any time using our secure Stripe Customer Portal: https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00",
       },
       {
         question: "Is my data secure?",

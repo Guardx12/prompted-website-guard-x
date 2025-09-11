@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer"
 
 export function createEmailTransporter() {
-  return nodemailer.createTransporter({
+  return nodemailer.createTransport({
     host: process.env.SMTP_HOST || "smtp-mail.outlook.com",
     port: Number.parseInt(process.env.SMTP_PORT || "587"),
     secure: false, // Use STARTTLS
@@ -40,7 +40,7 @@ export async function sendOTPEmail(email: string, code: string, companyName: str
             Please use the verification code below to complete your GuardX setup:
           </p>
           
-          <div style="background-color: #000; color: #d4af37; font-size: 32px; font-weight: bold; padding: 20px; border-radius: 8px; letter-spacing: 8px; margin: 20px 0;">
+          <div style="background-color: #000; color: #ffffff; font-size: 32px; font-weight: bold; padding: 20px; border-radius: 8px; letter-spacing: 8px; margin: 20px 0; border: 2px solid #d4af37;">
             ${code}
           </div>
           

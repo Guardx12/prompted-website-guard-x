@@ -41,11 +41,9 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      We offer three plans: <strong>Business Plan (£299/month)</strong> for complete reputation
-                      protection with monitoring across Google, Trustpilot, Yelp, Facebook, and many more platforms.{" "}
-                      <strong>Pro/Fake Review Plan (£499/month)</strong> with one-year commitment for advanced fake
-                      review removal. <strong>Enterprise Plan (custom pricing)</strong> for businesses with 5+
-                      locations.
+                      We offer two plans: <strong>Business Plan (£299/month)</strong> for complete reputation protection
+                      with monitoring across Google, Trustpilot, Yelp, Facebook, and many more platforms.{" "}
+                      <strong>Enterprise Plan (custom pricing)</strong> for businesses with 5+ locations.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -69,9 +67,9 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      <strong>Business Plan:</strong> £149/month per additional location. <strong>Pro Plan:</strong>{" "}
-                      £299/month per additional location. <strong>Enterprise Plan:</strong> Custom pricing for
-                      businesses with 5+ locations with volume discounts available.
+                      <strong>Business Plan:</strong> £149/month per additional location.{" "}
+                      <strong>Enterprise Plan:</strong> Custom pricing for businesses with 5+ locations with volume
+                      discounts available.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -84,8 +82,8 @@ export default function FAQPage() {
                     <p>
                       Your weekly reports include: Overall star rating, reviews by month, reviews in the last 30 days,
                       reviews since joining, rating breakdown (5-star to 1-star), review sources, and detailed review
-                      information. All reports are professionally branded by GuardX and delivered automatically as PDF
-                      files to your email.
+                      information. All reports are professional weekly reports and delivered automatically as PDF files
+                      to your email.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -123,8 +121,7 @@ export default function FAQPage() {
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
                       The <strong>Business Plan (£299/month)</strong> is month-to-month with no long-term contract - you
-                      can cancel anytime. The <strong>Pro Plan (£499/month)</strong> requires a one-year commitment for
-                      effective fake review removal.
+                      can cancel anytime.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -158,10 +155,6 @@ export default function FAQPage() {
                         https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00
                       </a>
                     </p>
-                    <p className="mt-2">
-                      The <strong>£499/month Pro / Fake Review Plan</strong> is a 12-month contract and cannot be
-                      cancelled before the end of the term.
-                    </p>
                   </AccordionContent>
                 </AccordionItem>
 
@@ -172,7 +165,7 @@ export default function FAQPage() {
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
                       No, GuardX does not charge setup fees for any plan. The only costs are the monthly subscription
-                      fees: Business Plan £299/month, Pro Plan £499/month, or custom Enterprise pricing.
+                      fees: Business Plan £299/month, or custom Enterprise pricing.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -194,18 +187,6 @@ export default function FAQPage() {
                     <p>
                       Many clients notice improvements within the first 1–2 weeks, with stronger results typically
                       building over 1–3 months.
-                    </p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-5" className="border-border">
-                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
-                    Do you offer refunds?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      GuardX offers a 30-day satisfaction guarantee. If you are not satisfied within the first month, a
-                      full refund is available.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -240,8 +221,8 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      Yes, every client receives a dedicated account manager who provides updates, strategy, and
-                      hands-on support.
+                      All plans are fully managed as a done-for-you service by our expert team, ensuring your reputation
+                      is monitored and improved without any effort on your part.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -333,9 +314,9 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      The Enterprise Plan includes everything in the Business Plan plus multiple location management,
-                      dedicated account manager, custom reporting schedules, priority support & training, and volume
-                      pricing for businesses with 5+ locations.
+                      Our Enterprise Plan provides the fully managed, done-for-you service across all your locations for
+                      businesses with more than five locations, ensuring your reputation is monitored and improved
+                      automatically without any extra work from your team.
                     </p>
                   </AccordionContent>
                 </AccordionItem>

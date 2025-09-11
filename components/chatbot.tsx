@@ -22,18 +22,11 @@ const faqSections: FAQSection[] = [
 ✓ **Cancel Any Time** – no contracts or long-term commitments
 ✓ **One Low Monthly Fee** – no hidden costs, transparent pricing
 
-**Pro/Fake Review Plan - £499/month**
-• One-year commitment required
-• Extra locations: £299/month each
-• Everything in Business Plan PLUS fake review flagging and removal
-• Fully automated
-
-✓ **Secure & Private** – your business data is safe with GuardX
-
 **Enterprise Plan - Custom Pricing**
 • For businesses with 5+ locations
-• Custom monitoring setup and dedicated account manager
+• Our Enterprise Plan provides the fully managed, done-for-you service across all your locations for businesses with more than five locations, ensuring your reputation is monitored and improved automatically without any extra work from your team
 
+✓ **Secure & Private** – your business data is safe with GuardX
 ✓ **Trusted by Small Businesses** – simple, reliable protection`,
   },
   {
@@ -42,18 +35,14 @@ const faqSections: FAQSection[] = [
 
 ✓ **Works Across All Platforms** – Google, Yelp, Facebook, Trustpilot, and many more
 ✓ **Protect Your Reputation Instantly** – never miss a review again
-
-**Pro/Fake Review Plan:** Same monitoring as Business Plan plus fake review flagging and removal. One-year commitment required for effectiveness. Fully automated.
-
 ✓ **Fully Automated** – set it and forget it
 
-**Enterprise Plan:** Everything in Business Plan for 5+ locations with custom setup and dedicated support.`,
+**Enterprise Plan:** Everything in Business Plan for 5+ locations with custom setup and our Enterprise Plan provides the fully managed, done-for-you service across all your locations for businesses with more than five locations, ensuring your reputation is monitored and improved automatically without any extra work from your team.`,
   },
   {
     question: "How much do extra locations cost?",
     answer: `**Extra Location Pricing:**
 • Business Plan: £149 per extra location
-• Pro/Fake Review Plan: £299 per extra location
 • Enterprise Plan: Custom pricing for 5+ locations
 
 Each location gets full monitoring across all supported platforms with instant alerts and weekly reports.
@@ -67,8 +56,6 @@ Each location gets full monitoring across all supported platforms with instant a
 
 For the **£299/month Business Plan**, you can cancel or manage your subscription at any time using our secure Stripe Customer Portal: https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00
 
-The **£499/month Pro / Fake Review Plan** is a 12-month contract and cannot be cancelled early.
-
 ✓ **Cancel Any Time** – Business Plan has no contracts or long-term commitments
 ✓ **Fully Automated** – set it and forget it
 
@@ -81,7 +68,7 @@ The Business Plan offers maximum flexibility for subscription management!`,
 ✓ **Protect Your Reputation Instantly** – never miss a review again
 ✓ **Fully Automated** – set it and forget it
 
-Fake review removal and ongoing protection require time depending on the volume and source. A one-year commitment is required to allow sufficient time for effective removal of fake reviews and ongoing protection against recurring fake reviews.`,
+Our comprehensive monitoring and protection services provide ongoing reputation management and review oversight.`,
   },
   {
     question: "Do I get dashboard access?",
@@ -103,7 +90,7 @@ Your weekly reputation reports are sent directly to your email as a PDF. You don
 ✓ **Works Across All Platforms** – Google, Yelp, Facebook, Trustpilot, and many more
 ✓ **Secure & Private** – your business data is safe with GuardX
 
-This requires time and ongoing vigilance, which is why the Pro Plan has a one-year commitment to allow sufficient time for effective removal and ongoing protection.`,
+This comprehensive protection ensures ongoing vigilance against fake reviews and reputation threats.`,
   },
   {
     question: "How do I get started?",

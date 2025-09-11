@@ -43,7 +43,7 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Our <span style={{ color: "#d4af37", fontWeight: "bold" }}>Premium Services</span>
+              Our <span className="text-yellow-600 font-bold">Premium Services</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Professional reputation management services designed to protect, monitor, and enhance your online
@@ -75,7 +75,7 @@ export default function ServicesPage() {
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-foreground mb-2">
-                        <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 reputation monitoring</span>
+                        <span className="text-yellow-600 font-bold">24/7 reputation monitoring</span>
                       </h4>
                       <p className="text-muted-foreground text-sm">
                         Our expert team continuously monitors your brand across all digital platforms. We never miss a
@@ -94,7 +94,7 @@ export default function ServicesPage() {
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-foreground mb-2">
-                        <span style={{ color: "#d4af37", fontWeight: "bold" }}>Instant alerts & notifications</span>
+                        <span className="text-yellow-600 font-bold">Instant alerts & notifications</span>
                       </h4>
                       <p className="text-muted-foreground text-sm">
                         Receive immediate notifications when new reviews or mentions appear. Our team ensures you can
@@ -113,7 +113,7 @@ export default function ServicesPage() {
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-foreground mb-2">
-                        <span style={{ color: "#d4af37", fontWeight: "bold" }}>Multi-platform coverage</span>
+                        <span className="text-yellow-600 font-bold">Multi-platform coverage</span>
                       </h4>
                       <p className="text-muted-foreground text-sm">
                         We monitor Google, Facebook, Yelp, Trustpilot, and 100+ other platforms. Complete visibility
@@ -132,7 +132,7 @@ export default function ServicesPage() {
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-foreground mb-2">
-                        <span style={{ color: "#d4af37", fontWeight: "bold" }}>Professional sentiment analysis</span>
+                        <span className="text-yellow-600 font-bold">Professional sentiment analysis</span>
                       </h4>
                       <p className="text-muted-foreground text-sm">
                         Our experts use AI-powered analysis to categorize feedback as positive, negative, or neutral.
@@ -151,7 +151,7 @@ export default function ServicesPage() {
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-foreground mb-2">
-                        <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span>
+                        <span className="text-yellow-600 font-bold">AI-drafted review responses</span>
                       </h4>
                       <p className="text-muted-foreground text-sm">
                         Our team provides professionally crafted response templates and management. Maintain consistent,
@@ -170,7 +170,7 @@ export default function ServicesPage() {
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-foreground mb-2">
-                        <span style={{ color: "#d4af37", fontWeight: "bold" }}>Brand mention tracking</span>
+                        <span className="text-yellow-600 font-bold">Brand mention tracking</span>
                       </h4>
                       <p className="text-muted-foreground text-sm">
                         Our team tracks every mention of your brand across the web. Stay informed about conversations
@@ -288,7 +288,7 @@ export default function ServicesPage() {
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-foreground mb-2">
-                        <span style={{ color: "#d4af37", fontWeight: "bold" }}>Professional dashboard</span>
+                        <span className="text-yellow-600 font-bold">Professional dashboard</span>
                       </h4>
                       <p className="text-muted-foreground text-sm">
                         Real-time dashboard with all key metrics managed by our expert team. Monitor your reputation
@@ -307,7 +307,7 @@ export default function ServicesPage() {
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-foreground mb-2">
-                        <span style={{ color: "#d4af37", fontWeight: "bold" }}>Weekly reputation reports</span>
+                        <span className="text-yellow-600 font-bold">Weekly reputation reports</span>
                       </h4>
                       <p className="text-muted-foreground text-sm">
                         Comprehensive detailed reports with expert insights and recommendations. Track progress and

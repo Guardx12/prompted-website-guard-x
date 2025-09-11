@@ -19,12 +19,12 @@ export default function SampleCustomerReportPage() {
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">Sample Customer Report</h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
-              Our expert team provides <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span>{" "}
-              with <span style={{ color: "#d4af37", fontWeight: "bold" }}>urgent alerts</span> for{" "}
-              <span style={{ color: "#d4af37", fontWeight: "bold" }}>negative/positive/all reviews</span>, plus{" "}
-              <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span> ready to send.
-              You'll also receive these comprehensive professional reports delivered weekly to your inbox – no dashboard
-              login required.
+              Our expert team provides <span className="text-primary font-bold">24/7 monitoring</span> with{" "}
+              <span className="text-primary font-bold">urgent alerts</span> for{" "}
+              <span className="text-primary font-bold">negative/positive/all reviews</span>, plus{" "}
+              <span className="text-primary font-bold">AI-drafted review responses</span> ready to send. You'll also
+              receive these comprehensive professional reports delivered weekly to your inbox – no dashboard login
+              required.
             </p>
           </div>
 
@@ -70,29 +70,27 @@ export default function SampleCustomerReportPage() {
                 <h3 className="text-2xl font-bold text-foreground mb-4">Overall Review Rating</h3>
                 <p className="text-muted-foreground mb-4">
                   <strong>Our Expert Analysis:</strong> We track your{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>star ratings</span> across all platforms (3.5
-                  stars with 78 reviews in this example) and monitor for any reputation threats.
+                  <span className="text-primary font-bold">star ratings</span> across all platforms (3.5 stars with 78
+                  reviews in this example) and monitor for any reputation threats.
                 </p>
                 <p className="text-muted-foreground mb-4">
                   <strong>Why Our Monitoring Matters:</strong> Our{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span> catches rating drops
-                  immediately – even a 0.1 star decline can cost you significant revenue, which is why we provide{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>urgent alerts</span>
+                  <span className="text-primary font-bold">24/7 monitoring</span> catches rating drops immediately –
+                  even a 0.1 star decline can cost you significant revenue, which is why we provide{" "}
+                  <span className="text-primary font-bold">urgent alerts</span>
                   the moment issues arise.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>
-                      Continuous <span style={{ color: "#d4af37", fontWeight: "bold" }}>review trends</span> monitoring
-                      by our experts
+                      Continuous <span className="text-primary font-bold">review trends</span> monitoring by our experts
                     </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>
-                      Immediate <span style={{ color: "#d4af37", fontWeight: "bold" }}>urgent alerts</span> when ratings
-                      decline
+                      Immediate <span className="text-primary font-bold">urgent alerts</span> when ratings decline
                     </span>
                   </li>
                   <li className="flex items-center gap-2">
@@ -112,14 +110,13 @@ export default function SampleCustomerReportPage() {
                 <h3 className="text-2xl font-bold text-foreground mb-4">Recent Activity</h3>
                 <p className="text-muted-foreground mb-4">
                   <strong>Our Professional Tracking:</strong> We monitor all{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>review sources</span> and report +8 reviews in
-                  the last 30 days, +1119 reviews since our{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span> began.
+                  <span className="text-primary font-bold">review sources</span> and report +8 reviews in the last 30
+                  days, +1119 reviews since our <span className="text-primary font-bold">24/7 monitoring</span> began.
                 </p>
                 <p className="text-muted-foreground mb-4">
                   <strong>Expert Insights Provided:</strong> Our team analyzes{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>review trends</span> to identify seasonal
-                  patterns and campaign effectiveness, delivering actionable intelligence you can act on immediately.
+                  <span className="text-primary font-bold">review trends</span> to identify seasonal patterns and
+                  campaign effectiveness, delivering actionable intelligence you can act on immediately.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
@@ -147,14 +144,14 @@ export default function SampleCustomerReportPage() {
                 <h3 className="text-2xl font-bold text-foreground mb-4">Rating Breakdown (5-Star to 1-Star)</h3>
                 <p className="text-muted-foreground mb-4">
                   <strong>Our Detailed Analysis:</strong> We break down your{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>star ratings</span> distribution (31 five-star,
-                  14 four-star reviews, etc.) and flag any concerning patterns for immediate attention.
+                  <span className="text-primary font-bold">star ratings</span> distribution (31 five-star, 14 four-star
+                  reviews, etc.) and flag any concerning patterns for immediate attention.
                 </p>
                 <p className="text-muted-foreground mb-4">
                   <strong>Why Our Expert Monitoring Protects You:</strong> Our specialists identify reputation threats
                   in real-time. Clusters of 1-2 star reviews trigger{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>urgent alerts</span> so we can help you respond
-                  before serious damage occurs.
+                  <span className="text-primary font-bold">urgent alerts</span> so we can help you respond before
+                  serious damage occurs.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
@@ -182,8 +179,8 @@ export default function SampleCustomerReportPage() {
                 <h3 className="text-2xl font-bold text-foreground mb-4">Review Sources</h3>
                 <p className="text-muted-foreground mb-4">
                   <strong>Our Comprehensive Monitoring:</strong> We track all major{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>review sources</span> including Google (78
-                  reviews, 3.5 rating), Facebook (0 reviews), and dozens of other platforms automatically.
+                  <span className="text-primary font-bold">review sources</span> including Google (78 reviews, 3.5
+                  rating), Facebook (0 reviews), and dozens of other platforms automatically.
                 </p>
                 <p className="text-muted-foreground mb-4">
                   <strong>Strategic Intelligence Delivered:</strong> Our experts analyze which platforms drive your
@@ -194,15 +191,15 @@ export default function SampleCustomerReportPage() {
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>
-                      Complete <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span> across all
-                      major platforms
+                      Complete <span className="text-primary font-bold">24/7 monitoring</span> across all major
+                      platforms
                     </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>
                       Expert identification of underutilized{" "}
-                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>review sources</span>
+                      <span className="text-primary font-bold">review sources</span>
                     </span>
                   </li>
                   <li className="flex items-center gap-2">
@@ -222,8 +219,8 @@ export default function SampleCustomerReportPage() {
                 <h3 className="text-2xl font-bold text-foreground mb-4">Online Reviews by Month</h3>
                 <p className="text-muted-foreground mb-4">
                   <strong>Our Professional Trend Analysis:</strong> We analyze{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>review trends</span> over 12 months,
-                  identifying peaks and valleys to provide predictive insights for your business planning.
+                  <span className="text-primary font-bold">review trends</span> over 12 months, identifying peaks and
+                  valleys to provide predictive insights for your business planning.
                 </p>
                 <p className="text-muted-foreground mb-4">
                   <strong>Actionable Business Intelligence:</strong> Our experts identify seasonal patterns and campaign
@@ -257,13 +254,12 @@ export default function SampleCustomerReportPage() {
                 <p className="text-muted-foreground mb-4">
                   <strong>Complete Review Intelligence:</strong> We capture every customer review with ratings, dates,
                   names, and full text, plus provide{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span> ready for
-                  you to send.
+                  <span className="text-primary font-bold">AI-drafted review responses</span> ready for you to send.
                 </p>
                 <p className="text-muted-foreground mb-4">
                   <strong>Expert Analysis & Response Support:</strong> Our team analyzes customer feedback patterns and
-                  provides <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span>{" "}
-                  that address specific concerns professionally, saving you hours of response crafting.
+                  provides <span className="text-primary font-bold">AI-drafted review responses</span> that address
+                  specific concerns professionally, saving you hours of response crafting.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
@@ -273,15 +269,14 @@ export default function SampleCustomerReportPage() {
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>
-                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span> for
-                      immediate use
+                      <span className="text-primary font-bold">AI-drafted review responses</span> for immediate use
                     </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>
-                      Strategic guidance on leveraging{" "}
-                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>positive reviews</span> for marketing
+                      Strategic guidance on leveraging <span className="text-primary font-bold">positive reviews</span>{" "}
+                      for marketing
                     </span>
                   </li>
                 </ul>
@@ -312,15 +307,14 @@ export default function SampleCustomerReportPage() {
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-4">Complete Done-For-You Service</h3>
                 <p className="text-muted-foreground mb-4">
-                  Our experts handle all <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span>,
-                  analysis, and reporting automatically. You receive professional insights without any platform
-                  management or data collection on your part.
+                  Our experts handle all <span className="text-primary font-bold">24/7 monitoring</span>, analysis, and
+                  reporting automatically. You receive professional insights without any platform management or data
+                  collection on your part.
                 </p>
                 <ul className="text-sm text-muted-foreground space-y-2">
                   <li>• No platform management required</li>
                   <li>
-                    • Professional <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span> by our
-                    team
+                    • Professional <span className="text-primary font-bold">24/7 monitoring</span> by our team
                   </li>
                   <li>• Focus entirely on running your business</li>
                 </ul>
@@ -335,12 +329,12 @@ export default function SampleCustomerReportPage() {
                 <h3 className="text-xl font-bold text-foreground mb-4">Expert Reputation Analysis</h3>
                 <p className="text-muted-foreground mb-4">
                   Our reputation management specialists analyze{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>review trends</span> and provide expert
-                  insights on the impact of your customer service improvements and marketing efforts.
+                  <span className="text-primary font-bold">review trends</span> and provide expert insights on the
+                  impact of your customer service improvements and marketing efforts.
                 </p>
                 <ul className="text-sm text-muted-foreground space-y-2">
                   <li>
-                    • Professional <span style={{ color: "#d4af37", fontWeight: "bold" }}>review trends</span> analysis
+                    • Professional <span className="text-primary font-bold">review trends</span> analysis
                   </li>
                   <li>• Expert measurement of improvement efforts</li>
                   <li>• Strategic identification of successful approaches</li>
@@ -356,13 +350,12 @@ export default function SampleCustomerReportPage() {
                 <h3 className="text-xl font-bold text-foreground mb-4">Ready-To-Use Intelligence</h3>
                 <p className="text-muted-foreground mb-4">
                   We transform raw review data into specific action plans and provide{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span>
+                  <span className="text-primary font-bold">AI-drafted review responses</span>
                   ready to send, plus strategic recommendations for reputation enhancement.
                 </p>
                 <ul className="text-sm text-muted-foreground space-y-2">
                   <li>
-                    • <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span> ready to
-                    send
+                    • <span className="text-primary font-bold">AI-drafted review responses</span> ready to send
                   </li>
                   <li>• Expert analysis of customer priorities</li>
                   <li>• Strategic recommendations for immediate action</li>
@@ -383,28 +376,28 @@ export default function SampleCustomerReportPage() {
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span>
                       Professional reputation analysis across all{" "}
-                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>review sources</span>
+                      <span className="text-primary font-bold">review sources</span>
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span>
-                      Expert evaluation of new reviews with{" "}
-                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>star ratings</span> analysis
+                      Expert evaluation of new reviews with <span className="text-primary font-bold">star ratings</span>{" "}
+                      analysis
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span>
-                      Comprehensive <span style={{ color: "#d4af37", fontWeight: "bold" }}>review trends</span> analysis
-                      by specialists
+                      Comprehensive <span className="text-primary font-bold">review trends</span> analysis by
+                      specialists
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span>
-                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span> ready
-                      for immediate use
+                      <span className="text-primary font-bold">AI-drafted review responses</span> ready for immediate
+                      use
                     </span>
                   </li>
                 </ul>
@@ -415,8 +408,8 @@ export default function SampleCustomerReportPage() {
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span>
-                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>Urgent alerts</span> catch reputation
-                      threats before they spread
+                      <span className="text-primary font-bold">Urgent alerts</span> catch reputation threats before they
+                      spread
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
@@ -427,7 +420,7 @@ export default function SampleCustomerReportPage() {
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span>
                       Strategic recommendations for leveraging{" "}
-                      <span style={{ color: "#d4af37", fontWeight: "bold" }}>positive reviews</span>
+                      <span className="text-primary font-bold">positive reviews</span>
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
@@ -449,10 +442,10 @@ export default function SampleCustomerReportPage() {
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Don't manage reputation monitoring yourself. Our expert team provides{" "}
-            <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span>,{" "}
-            <span style={{ color: "#d4af37", fontWeight: "bold" }}>urgent alerts</span>,{" "}
-            <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span>, and comprehensive
-            weekly intelligence reports – all delivered automatically to your inbox.
+            <span className="text-primary font-bold">24/7 monitoring</span>,{" "}
+            <span className="text-primary font-bold">urgent alerts</span>,{" "}
+            <span className="text-primary font-bold">AI-drafted review responses</span>, and comprehensive weekly
+            intelligence reports – all delivered automatically to your inbox.
           </p>
 
           <div className="bg-primary/10 rounded-lg p-6 mb-8 max-w-2xl mx-auto">
@@ -463,8 +456,7 @@ export default function SampleCustomerReportPage() {
                   1
                 </div>
                 <span>
-                  Our experts begin <span style={{ color: "#d4af37", fontWeight: "bold" }}>24/7 monitoring</span>{" "}
-                  immediately
+                  Our experts begin <span className="text-primary font-bold">24/7 monitoring</span> immediately
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -507,8 +499,8 @@ export default function SampleCustomerReportPage() {
             <p>✓ No setup or management required - our experts handle everything</p>
             <p>✓ Cancel anytime - no long-term contracts</p>
             <p>
-              ✓ <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted review responses</span> and
-              professional reports delivered weekly
+              ✓ <span className="text-primary font-bold">AI-drafted review responses</span> and professional reports
+              delivered weekly
             </p>
           </div>
         </div>

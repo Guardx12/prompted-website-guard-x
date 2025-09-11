@@ -7,7 +7,7 @@ export function PricingNote() {
         <Info className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
         <div className="space-y-3 text-sm">
           <p className="text-foreground font-medium">
-            <span className="text-primary font-semibold">Important:</span> Each plan includes monitoring for 1 location.
+            <span className="text-primary font-semibold">Important:</span>
           </p>
 
           <div className="space-y-2 text-muted-foreground">
