@@ -453,7 +453,7 @@ export default function HomePage() {
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <Shield className="w-8 h-8 text-primary" />
             </div>
-            <h3 className="text-2xl font-bold text-foreground mb-4">Put Yourself in Your Customer's Shoes</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-4">Strengthen Your Online Reputation</h3>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Imagine your business at <span className="text-destructive font-bold">3.4★</span> on Google. One negative
               review keeps dragging you down. With GuardX, you could rebuild trust and reach{" "}
