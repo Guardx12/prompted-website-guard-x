@@ -40,12 +40,12 @@ const chatSections: ChatSection[] = [
       {
         question: "Is everything fully automated?",
         answer:
-          "Yes! Everything is fully automated - no dashboard access required. You'll receive weekly reports with GuardX branding and instant alerts for negative/urgent reviews without any manual work.",
+          "Yes! Everything is fully automated — no dashboard access required. You'll receive weekly reports and instant alerts for negative or urgent reviews without any manual work.",
       },
       {
         question: "What do I receive each week?",
         answer:
-          "You get a professional weekly PDF report delivered to your email with GuardX branding including: Overall reputation score with trends, new reviews filtered by sentiment, review sources breakdown, and highlighted reviews & insights.",
+          "You'll receive a professional weekly PDF report delivered to your email, including: overall review rating, breakdown of rating types, review sources for the last 30 days, total reviews since joining, online reviews by month, and detailed review summaries.",
       },
       {
         question: "How quickly will I be alerted?",

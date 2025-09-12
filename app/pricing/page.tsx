@@ -67,10 +67,7 @@ export default function PricingPage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">
-                      Professional <span className="text-yellow-600 font-bold">weekly reputation reports</span>{" "}
-                      delivered automatically with your branding
-                    </span>
+                    <span className="text-foreground">Professional Weekly Reputation Reports Delivered.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -83,12 +80,6 @@ export default function PricingPage() {
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">
                       Completely hands-off - our experts handle everything automatically
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">
-                      Professional reports with your GuardX branding delivered weekly
                     </span>
                   </li>
                 </ul>
@@ -153,9 +144,7 @@ export default function PricingPage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">
-                      Professional reports with your GuardX branding delivered weekly
-                    </span>
+                    <span className="text-foreground">Professional Reports Delivered Weekly.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
