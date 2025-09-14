@@ -74,9 +74,8 @@ export default function WhyThisWorksPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-3">Expert Data Analysis</h3>
                 <p className="text-muted-foreground">
-                  Our team provides informed decisions based on real data and{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>review trends</span>. See exactly what's
-                  working and what needs attention with professional insights.
+                  Informed decisions driven by real data and review trends. See exactly what's working and what needs
+                  attention with clear, professional insights.
                 </p>
               </CardContent>
             </Card>
@@ -114,9 +113,8 @@ export default function WhyThisWorksPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-3">Proven Results</h3>
                 <p className="text-muted-foreground">
-                  Our systematic professional approach has helped thousands of businesses improve their online
-                  reputation and bottom line with expert guidance and{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted responses</span>.
+                  With expert guidance and AI-crafted responses, we help businesses improve their reputation online —
+                  quickly, consistently, and professionally.
                 </p>
               </CardContent>
             </Card>

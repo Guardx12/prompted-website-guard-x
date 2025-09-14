@@ -39,29 +39,34 @@ export default function HomePage() {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Start Protecting Your Business Today –{" "}
-              <span className="text-primary">One Bad Review Can Destroy Your Reputation</span>
+              Reputation Management Made Simple –{" "}
+              <span className="text-primary">Protect Your Reviews Before They Impact Your Business</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
-              Our expert team provides <span className="text-primary font-bold">24/7 monitoring</span>,{" "}
-              <span className="text-primary font-bold">instant alerts</span> for negative, positive, or all reviews,{" "}
-              <span className="text-primary font-bold">AI-drafted review responses</span>, and{" "}
-              <span className="text-primary font-bold">professional weekly reports</span> on your reviews and ratings –
-              completely hands-off for you.
+              We automatically monitor all your online reviews across Google, Trustpilot, Facebook, and more. You'll
+              get:
             </p>
-            <p className="text-sm text-muted-foreground max-w-3xl mx-auto mb-8">
-              Our AI drafts professional review responses for you, ready to send – respond faster and smarter without
-              the effort.
+
+            <div className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6 space-y-2">
+              <p>• Instant alerts for new or urgent reviews</p>
+              <p>• AI-drafted responses ready to send with one click</p>
+              <p>• Weekly PDF reports showing all your reviews and ratings</p>
+            </div>
+
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8 font-medium">
+              No dashboards, no logins, no stress — just everything done for you.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm">
-              <div className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">✓ Cancel Any Time</div>
               <div className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
-                ✓ Fully Managed Service
+                ✓ Save time and reduce stress
               </div>
               <div className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
-                ✓ Works Across All Platforms
+                ✓ Respond faster and smarter with AI
+              </div>
+              <div className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
+                ✓ Fully managed service, cancel any time
               </div>
             </div>
 
