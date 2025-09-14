@@ -1,13 +1,11 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import {
   Shield,
-  Search,
   TrendingUp,
-  CheckCircle,
   BarChart3,
   Eye,
   Zap,
@@ -15,9 +13,7 @@ import {
   Bell,
   MessageSquare,
   Target,
-  LineChart,
   FileText,
-  Activity,
   Headphones,
 } from "lucide-react"
 import Link from "next/link"
@@ -172,179 +168,6 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          {/* Advanced Features */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-foreground mb-8 text-center">Advanced Services</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card className="bg-card border-border hover:border-primary/50 transition-all">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Search className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">24/7 Monitoring</h4>
-                      <p className="text-muted-foreground text-sm">
-                        Automatic monitoring of major review platforms such as Google, Trustpilot, Facebook, Yelp, and
-                        more. Never miss a new review that could impact your reputation.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-card border-border hover:border-primary/50 transition-all">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Bell className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">Instant Email Alerts</h4>
-                      <p className="text-muted-foreground text-sm">
-                        Get notified immediately when urgent reviews appear. Choose whether to receive alerts for
-                        negative reviews, positive reviews, or both — tailored to your preference.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-card border-border hover:border-primary/50 transition-all">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <FileText className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">Weekly PDF Reports</h4>
-                      <p className="text-muted-foreground text-sm">
-                        Professional PDF reports delivered straight to your inbox every week. Each report includes:
-                      </p>
-                      <ul className="space-y-2 text-sm text-muted-foreground">
-                        <li className="flex items-center gap-2">
-                          <CheckCircle className="w-4 h-4 text-primary" />
-                          <span>Your current average star rating</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <CheckCircle className="w-4 h-4 text-primary" />
-                          <span>A breakdown of ratings (1–5 stars)</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <CheckCircle className="w-4 h-4 text-primary" />
-                          <span>Total number of reviews since joining</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <CheckCircle className="w-4 h-4 text-primary" />
-                          <span>Number of reviews in the last 30 days</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <CheckCircle className="w-4 h-4 text-primary" />
-                          <span>Clear monthly trends and reputation insights</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-card border-border hover:border-primary/50 transition-all">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Shield className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">Simple & Automatic</h4>
-                      <p className="text-muted-foreground text-sm">
-                        No dashboards, no complex tools. All your monitoring, alerts, and reports are delivered directly
-                        to your email, saving you time and effort.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-
-          {/* Analytics & Reporting */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-foreground mb-8 text-center">Analytics & Reporting</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card className="bg-card border-border hover:border-primary/50 transition-all">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <LineChart className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">
-                        <span className="text-[#d4af37] font-bold">No dashboards needed</span>
-                      </h4>
-                      <p className="text-muted-foreground text-sm">
-                        Everything you need delivered to your email. No logins, no dashboards to check, no complex
-                        interfaces. Just clear, actionable insights in your inbox.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-card border-border hover:border-primary/50 transition-all">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <FileText className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">
-                        <span className="text-[#d4af37] font-bold">Weekly PDF reports delivered</span>
-                      </h4>
-                      <p className="text-muted-foreground text-sm">
-                        Professional PDF reports arrive in your inbox every week. Clear summaries of your reputation
-                        health, new reviews, and trends — easy to read and share with your team.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-card border-border hover:border-primary/50 transition-all">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Activity className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">Performance metrics</h4>
-                      <p className="text-muted-foreground text-sm">
-                        Detailed performance tracking across all platforms. Measure the effectiveness of reputation
-                        management efforts.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-card border-border hover:border-primary/50 transition-all">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Target className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">Impact tracking</h4>
-                      <p className="text-muted-foreground text-sm">
-                        Track the real business impact of reputation improvements. Connect reputation metrics to revenue
-                        and growth.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-
           {/* Support & Consultation */}
           <div className="mb-16">
             <h3 className="text-2xl font-bold text-foreground mb-8 text-center">Support System</h3>
@@ -384,102 +207,6 @@ export default function ServicesPage() {
               </Card>
             </div>
           </div>
-
-          {/* Core Services */}
-          <section className="py-20 bg-card/50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">What You Get</h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Complete reputation protection that works automatically — delivering real results with minimal effort
-                  from you.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                <Card className="bg-card border-border hover:border-primary/50 transition-all group">
-                  <CardHeader>
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                      <Search className="w-6 h-6 text-primary" />
-                    </div>
-                    <CardTitle className="text-xl">24/7 Monitoring</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4">
-                      Automatic monitoring of major review platforms such as Google, Trustpilot, Facebook, Yelp, and
-                      more. Never miss a new review that could impact your reputation.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-card border-border hover:border-primary/50 transition-all group">
-                  <CardHeader>
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                      <Bell className="w-6 h-6 text-primary" />
-                    </div>
-                    <CardTitle className="text-xl">Instant Email Alerts</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4">
-                      Get notified immediately when urgent reviews appear. Choose whether to receive alerts for negative
-                      reviews, positive reviews, or both — tailored to your preference.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-card border-border hover:border-primary/50 transition-all group">
-                  <CardHeader>
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                      <FileText className="w-6 h-6 text-primary" />
-                    </div>
-                    <CardTitle className="text-xl">Weekly PDF Reports</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4">
-                      Professional PDF reports delivered straight to your inbox every week. Each report includes:
-                    </p>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-primary" />
-                        <span>Your current average star rating</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-primary" />
-                        <span>A breakdown of ratings (1–5 stars)</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-primary" />
-                        <span>Total number of reviews since joining</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-primary" />
-                        <span>Number of reviews in the last 30 days</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-primary" />
-                        <span>Clear monthly trends and reputation insights</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-card border-border hover:border-primary/50 transition-all group">
-                  <CardHeader>
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                      <Shield className="w-6 h-6 text-primary" />
-                    </div>
-                    <CardTitle className="text-xl">Simple & Automatic</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4">
-                      No dashboards, no complicated tools. Everything you need arrives directly to your email. Clear,
-                      easy-to-read insights designed to save you time and give you peace of mind.
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </section>
 
           {/* How It Works */}
           <section className="py-20">
