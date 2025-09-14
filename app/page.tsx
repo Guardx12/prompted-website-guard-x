@@ -531,13 +531,6 @@ export default function HomePage() {
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <span className="font-semibold text-foreground">Expert Crisis Support:</span>
-                    <span className="text-muted-foreground"> Professional guidance when serious threats emerge</span>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
                     <span className="font-semibold text-foreground">
                       <span className="text-primary font-bold">AI-drafted Review Responses</span>:
                     </span>
@@ -868,29 +861,6 @@ export default function HomePage() {
                     <span>
                       Direct links to <span className="text-primary font-bold">review sources</span> provided
                     </span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border-border">
-              <CardContent className="p-8">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <TrendingUp className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">Expert Highlighted Reviews & Insights</h3>
-                <p className="text-muted-foreground mb-4">
-                  Our team highlights any <span className="text-primary font-bold">urgent alerts</span> or impactful
-                  reviews, plus expert analysis showing where your reputation is improving or needs attention.
-                </p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Expert priority flagging for urgent reviews</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Professional actionable improvement insights</span>
                   </li>
                 </ul>
               </CardContent>

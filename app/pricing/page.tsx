@@ -270,17 +270,17 @@ export default function PricingPage() {
               {
                 question: "What's included in the professional weekly reports?",
                 answer:
-                  "Your expert-prepared weekly reports include overall reputation score with professional trend analysis, new reviews filtered by sentiment with expert insights, comprehensive review sources breakdown, and highlighted reviews with actionable recommendations - all professional weekly reports delivered automatically.",
+                  "Your expert-prepared weekly reports include overall reputation score with professional trend analysis, new reviews, and comprehensive review sources breakdown — all professional weekly reports delivered automatically.",
               },
               {
                 question: "Is everything managed by your expert team automatically?",
                 answer:
-                  "Yes, all our services are completely managed by our expert team. You receive professional oversight without needing any dashboard access or manual intervention - our specialists handle monitoring, alerts, reporting, and response management automatically with expert precision.",
+                  "Yes, all our services are completely managed by our expert team. You receive professional oversight without needing any dashboard access or manual intervention — our specialists handle monitoring, alerts, reporting, and response management automatically with expert precision.",
               },
               {
                 question: "Can I cancel my expert management service anytime?",
                 answer:
-                  "Business Plan: Yes, cancel anytime with no contracts or penalties - complete flexibility. Enterprise Plan: Terms vary based on dedicated service agreement.",
+                  "Business Plan: Yes, cancel anytime with no contracts or penalties — complete flexibility. Enterprise Plan: Terms vary based on dedicated service agreement.",
               },
               {
                 question: "Are there any setup fees for expert management?",
