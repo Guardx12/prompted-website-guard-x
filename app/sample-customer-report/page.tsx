@@ -183,9 +183,10 @@ export default function SampleCustomerReportPage() {
                   rating), Facebook (0 reviews), and dozens of other platforms automatically.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  <strong>Strategic Intelligence Delivered:</strong> Our experts analyze which platforms drive your
-                  reputation and provide specific recommendations on where to focus your review generation efforts for
-                  maximum impact.
+                  <strong>Real-Time Review Monitoring:</strong> Our system provides continuous monitoring across Google,
+                  Trustpilot, Facebook, and more, delivering{" "}
+                  <span className="text-primary font-bold">instant alerts</span> for negative, urgent, or positive
+                  reviews so you can respond quickly.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
@@ -198,13 +199,13 @@ export default function SampleCustomerReportPage() {
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>
-                      Expert identification of underutilized{" "}
-                      <span className="text-primary font-bold">review sources</span>
+                      <span className="text-primary font-bold">AI-Generated Response Templates</span> ready to send with
+                      one click
                     </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Strategic guidance on high-impact platform prioritization</span>
+                    <span>Weekly PDF Summary Reports showing all reviews and ratings</span>
                   </li>
                 </ul>
               </CardContent>
@@ -218,27 +219,26 @@ export default function SampleCustomerReportPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">Online Reviews by Month</h3>
                 <p className="text-muted-foreground mb-4">
-                  <strong>Our Professional Trend Analysis:</strong> We analyze{" "}
-                  <span className="text-primary font-bold">review trends</span> over 12 months, identifying peaks and
-                  valleys to provide predictive insights for your business planning.
+                  <strong>Our Professional Monitoring:</strong> We track{" "}
+                  <span className="text-primary font-bold">review trends</span> and provide comprehensive monthly
+                  summaries showing review volume and rating changes across all platforms.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  <strong>Actionable Business Intelligence:</strong> Our experts identify seasonal patterns and campaign
-                  impacts, delivering strategic recommendations to optimize your reputation management efforts
-                  year-round.
+                  <strong>Weekly PDF Summary Reports:</strong> Our system delivers detailed reports showing all reviews
+                  and ratings, helping you understand your reputation performance and identify areas for improvement.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Expert analysis of seasonal business patterns</span>
+                    <span>Monthly review volume tracking and analysis</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Professional measurement of marketing campaign effectiveness</span>
+                    <span>Comprehensive rating performance monitoring</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Strategic planning support for review generation</span>
+                    <span>Weekly PDF reports delivered automatically</span>
                   </li>
                 </ul>
               </CardContent>
@@ -275,8 +275,8 @@ export default function SampleCustomerReportPage() {
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>
-                      Strategic guidance on leveraging <span className="text-primary font-bold">positive reviews</span>{" "}
-                      for marketing
+                      Focus on leveraging <span className="text-primary font-bold">positive reviews</span> to showcase
+                      business strengths
                     </span>
                   </li>
                 </ul>

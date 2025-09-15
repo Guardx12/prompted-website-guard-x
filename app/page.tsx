@@ -40,7 +40,7 @@ export default function HomePage() {
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
               Reputation Management Made Simple –{" "}
-              <span className="text-primary">Protect Your Reviews Before They Impact Your Business</span>
+              <span className="text-primary">Protect your reviews on the go, before they impact your business.</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
@@ -229,18 +229,18 @@ export default function HomePage() {
                   <AlertTriangle className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-4">
-                  <span className="text-primary font-bold">Instant alerts</span> delivered to you for negative or urgent
-                  reviews (1–3 <span className="text-primary font-bold">star ratings</span>)
+                  <span className="text-primary font-bold">Instant alerts</span> for all your reviews
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  Our system notifies you immediately when negative reviews appear so you can respond quickly with our
-                  expert guidance.
+                  Our system notifies you immediately when new reviews appear — negative, urgent, or positive — so you
+                  can respond quickly and stay on top of your reputation. Choose the alerts you want to receive, and get
+                  expert guidance when it matters most.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>
-                      <span className="text-primary font-bold">Instant alerts</span> via email and SMS
+                      <span className="text-primary font-bold">Instant email alerts</span> for all review types
                     </span>
                   </li>
                   <li className="flex items-center gap-2">
