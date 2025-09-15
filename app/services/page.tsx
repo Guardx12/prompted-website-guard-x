@@ -98,11 +98,11 @@ export default function ServicesPage() {
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-foreground mb-2">
-                        <span className="text-[#d4af37] font-bold">AI-drafted responses ready to send</span>
+                        <span className="text-[#d4af37] font-bold">AI-drafted responses Ready to Copy and Send</span>
                       </h4>
                       <p className="text-muted-foreground text-sm">
-                        Professional review responses crafted by AI and delivered to your email. Simply click send — no
-                        logging into dashboards or writing responses yourself.
+                        Professional review responses crafted by AI and delivered to your email. Copy and paste the
+                        responses to your review platforms — no logging into dashboards or writing responses yourself.
                       </p>
                     </div>
                   </div>

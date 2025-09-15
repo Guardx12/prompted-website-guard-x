@@ -73,13 +73,13 @@ export default function PricingPage() {
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">
                       Expert-crafted <span className="text-yellow-600 font-bold">AI-drafted review responses</span>{" "}
-                      managed by our team
+                      Ready to Copy and Send
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">
-                      Completely hands-off - our experts handle everything automatically
+                      Completely hands-off - our experts handle everything Ready to Copy and Send
                     </span>
                   </li>
                 </ul>
@@ -150,8 +150,8 @@ export default function PricingPage() {
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">
                       Our Enterprise Plan provides the fully managed, done-for-you service across all your locations for
-                      businesses with more than five locations, ensuring your reputation is monitored and improved
-                      automatically without any extra work from your team
+                      businesses with more than five locations, ensuring your reputation is monitored and improved Ready
+                      to Copy and Send without any extra work from your team
                     </span>
                   </li>
                 </ul>
@@ -205,8 +205,8 @@ export default function PricingPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-4">Complete Peace of Mind</h3>
                 <p className="text-muted-foreground">
-                  Our expert team handles all reputation management tasks automatically, so you can focus entirely on
-                  growing your business without any monitoring concerns.
+                  Our expert team handles all reputation management tasks Ready to Copy and Send, so you can focus
+                  entirely on growing your business without any monitoring concerns.
                 </p>
               </CardContent>
             </Card>
@@ -270,12 +270,12 @@ export default function PricingPage() {
               {
                 question: "What's included in the professional weekly reports?",
                 answer:
-                  "Your expert-prepared weekly reports include overall reputation score with professional trend analysis, new reviews, and comprehensive review sources breakdown — all professional weekly reports delivered automatically.",
+                  "Your expert-prepared weekly reports include overall reputation score with professional trend analysis, new reviews, and comprehensive review sources breakdown — all professional weekly reports delivered Ready to Copy and Send.",
               },
               {
                 question: "Is everything managed by your expert team automatically?",
                 answer:
-                  "Yes, all our services are completely managed by our expert team. You receive professional oversight without needing any dashboard access or manual intervention — our specialists handle monitoring, alerts, reporting, and response management automatically with expert precision.",
+                  "Yes, all our services are completely managed by our expert team. You receive professional oversight without needing any dashboard access or manual intervention — our specialists handle monitoring, alerts, reporting, and response management Ready to Copy and Send with expert precision.",
               },
               {
                 question: "Can I cancel my expert management service anytime?",

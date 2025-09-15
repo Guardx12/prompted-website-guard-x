@@ -50,7 +50,7 @@ export default function HomePage() {
 
             <div className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6 space-y-2">
               <p>• Instant alerts for new or urgent reviews</p>
-              <p>• AI-drafted responses ready to send with one click</p>
+              <p>• AI-drafted responses Ready to Copy and Send</p>
               <p>• Weekly PDF reports showing all your reviews and ratings</p>
             </div>
 
@@ -539,7 +539,7 @@ export default function HomePage() {
                 </li>
                 <div className="ml-9 mt-1">
                   <p className="text-sm text-muted-foreground">
-                    Respond to reviews faster and smarter – our AI drafts the replies for you, ready to send.
+                    Respond to reviews faster and smarter – our AI drafts the replies for you, Ready to Copy and Send.
                   </p>
                 </div>
               </ul>
@@ -640,7 +640,7 @@ export default function HomePage() {
                   </li>
                   <div className="ml-9 mt-1">
                     <p className="text-sm text-muted-foreground">
-                      Respond to reviews faster and smarter – our AI drafts the replies for you, ready to send.
+                      Respond to reviews faster and smarter – our AI drafts the replies for you, Ready to Copy and Send.
                     </p>
                   </div>
                   <li className="flex items-start gap-3">
@@ -756,7 +756,7 @@ export default function HomePage() {
                   </span>
                 </div>
                 <div className="text-xs text-muted-foreground mt-1 ml-6">
-                  Respond to reviews faster and smarter – our AI drafts the replies for you, ready to send.
+                  Respond to reviews faster and smarter – our AI drafts the replies for you, Ready to Copy and Send.
                 </div>
               </div>
             </div>
