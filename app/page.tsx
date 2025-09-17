@@ -165,7 +165,6 @@ export default function HomePage() {
                 suggested professional responses — all automatically — so you can stay in control, protect your
                 customers' trust, and respond confidently.
               </p>
-              <p>With GuardX, you never miss a critical mention and always have clear guidance on how to act.</p>
             </div>
           </div>
         </div>
