@@ -146,6 +146,31 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Founder's Story Section */}
+      <section className="py-16 bg-card/30">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-card border border-border rounded-lg p-8 text-center">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Shield className="w-8 h-8 text-primary" />
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">Why We Created GuardX</h2>
+            <div className="text-lg text-muted-foreground leading-relaxed space-y-4">
+              <p>
+                Hi, I'm <span className="text-primary font-bold">Luke Andrews</span>, founder of GuardX. I started
+                GuardX because I saw how quickly a single negative review or online mention could harm a business — and
+                how stressful it is for owners to track it all themselves.
+              </p>
+              <p>
+                GuardX delivers <span className="text-primary font-bold">real-time alerts</span>, clear reports, and
+                suggested professional responses — all automatically — so you can stay in control, protect your
+                customers' trust, and respond confidently.
+              </p>
+              <p>With GuardX, you never miss a critical mention and always have clear guidance on how to act.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-16 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
