@@ -58,6 +58,9 @@ export function Navigation() {
               <Link href="/sample-customer-report" className="text-foreground hover:text-primary transition-colors">
                 Sample Report
               </Link>
+              <Link href="/reputation-scorecard" className="text-foreground hover:text-primary transition-colors">
+                Free Scorecard
+              </Link>
               <Link href="/pricing" className="text-foreground hover:text-primary transition-colors">
                 Pricing
               </Link>
@@ -127,6 +130,13 @@ export function Navigation() {
                   onClick={() => setIsOpen(false)}
                 >
                   Sample Report
+                </Link>
+                <Link
+                  href="/reputation-scorecard"
+                  className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Free Scorecard
                 </Link>
                 <Link
                   href="/pricing"
