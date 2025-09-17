@@ -11,6 +11,12 @@ export default function ReputationScorecardPage() {
   const [scriptsLoaded, setScriptsLoaded] = useState(false)
 
   useEffect(() => {
+    const link = document.createElement("link")
+    link.rel = "stylesheet"
+    link.href = "https://cdn.reviewability.com/css/app/widget/create-lead/lead-form.min.css"
+    link.type = "text/css"
+    document.head.appendChild(link)
+
     // Listen for form submission from the embedded widget
     const handleMessage = (event: MessageEvent) => {
       if (event.data && event.data.type === "leadFormSubmitted") {
@@ -19,21 +25,38 @@ export default function ReputationScorecardPage() {
     }
 
     window.addEventListener("message", handleMessage)
-    return () => window.removeEventListener("message", handleMessage)
+    return () => {
+      window.removeEventListener("message", handleMessage)
+      if (document.head.contains(link)) {
+        document.head.removeChild(link)
+      }
+    }
   }, [])
+
+  useEffect(() => {
+    if (scriptsLoaded && typeof window !== "undefined") {
+      // Give the script a moment to initialize
+      setTimeout(() => {
+        console.log("[v0] Widget script loaded, checking for initialization")
+        // Trigger widget initialization if needed
+        const event = new Event("DOMContentLoaded")
+        document.dispatchEvent(event)
+      }, 100)
+    }
+  }, [scriptsLoaded])
 
   return (
     <div className="min-h-screen bg-background">
       <Script
         src="https://cdn.reviewability.com/js/widget/reputation-scorecard/create-lead.min.js"
         strategy="afterInteractive"
-        onLoad={() => setScriptsLoaded(true)}
-      />
-
-      <link
-        rel="stylesheet"
-        href="https://cdn.reviewability.com/css/app/widget/create-lead/lead-form.min.css"
-        type="text/css"
+        onLoad={() => {
+          console.log("[v0] Script loaded successfully")
+          setScriptsLoaded(true)
+        }}
+        onError={(e) => {
+          console.error("[v0] Script failed to load:", e)
+        }}
       />
 
       <Navigation />
@@ -121,12 +144,12 @@ export default function ReputationScorecardPage() {
                   </p>
                 </div>
 
-                {scriptsLoaded ? (
-                  <div
-                    className="createLeadContainer"
-                    data-url="https://guardx.reviewability.com/reputation-scorecard/lead/create-form?hash=FnJkyz/EyKcAKiGxJziQje4gNkxn/eX%2BvEKU8Am2ADmV9mlT5ONLl3G3QK%2BZ962rOHZ6bzlhVDUrWTQzRjFEU2d0ZkMxZz09"
-                  ></div>
-                ) : (
+                <div
+                  className="createLeadContainer"
+                  data-url="https://guardx.reviewability.com/reputation-scorecard/lead/create-form?hash=FnJkyz/EyKcAKiGxJziQje4gNkxn/eX%2BvEKU8Am2ADmV9mlT5ONLl3G3QK%2BZ962rOHZ6bzlhVDUrWTQzRjFEU2d0ZkMxZz09"
+                ></div>
+
+                {!scriptsLoaded && (
                   <div className="text-center py-8">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
                     <p className="text-muted-foreground mt-4">Loading form...</p>
