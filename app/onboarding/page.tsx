@@ -45,6 +45,14 @@ export default function OnboardingPage() {
       </section>
 
       <Footer />
+
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            gtag('event', 'conversion', {'send_to': 'AW-17521993303/17521993303'});
+          `,
+        }}
+      />
     </div>
   )
 }
