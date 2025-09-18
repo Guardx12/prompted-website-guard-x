@@ -6,7 +6,6 @@ import Script from "next/script";
 
 export default function ReputationScorecardPage() {
   useEffect(() => {
-    // Initialize the GatherUp widget if it exists
     if (window && (window as any).Reviewability) {
       (window as any).Reviewability.createLead?.();
     }
@@ -27,14 +26,13 @@ export default function ReputationScorecardPage() {
         />
       </Head>
 
-      {/* GatherUp Widget Script */}
       <Script
         src="https://cdn.reviewability.com/js/widget/reputation-scorecard/create-lead.min.js"
         strategy="afterInteractive"
       />
 
       <main className="min-h-screen bg-background text-foreground antialiased px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
+        {/* Hero */}
         <section className="max-w-4xl mx-auto text-center py-16">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Get Your Free <span className="text-primary">Reputation Scorecard</span>
@@ -46,29 +44,23 @@ export default function ReputationScorecardPage() {
           </p>
         </section>
 
-        {/* Features Section */}
+        {/* Features */}
         <section className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 text-center">
           <div className="p-6 bg-primary/5 rounded-lg">
             <h3 className="text-xl font-semibold mb-2">Real-time Monitoring</h3>
-            <p className="text-sm text-muted-foreground">
-              Never miss a review or mention.
-            </p>
+            <p className="text-sm text-muted-foreground">Never miss a review or mention.</p>
           </div>
           <div className="p-6 bg-primary/5 rounded-lg">
             <h3 className="text-xl font-semibold mb-2">Weekly PDF Reports</h3>
-            <p className="text-sm text-muted-foreground">
-              Summarizing your online reputation trends.
-            </p>
+            <p className="text-sm text-muted-foreground">Summarizing your online reputation trends.</p>
           </div>
           <div className="p-6 bg-primary/5 rounded-lg">
             <h3 className="text-xl font-semibold mb-2">AI-drafted Responses</h3>
-            <p className="text-sm text-muted-foreground">
-              Ready to copy and send instantly.
-            </p>
+            <p className="text-sm text-muted-foreground">Ready to copy and send instantly.</p>
           </div>
         </section>
 
-        {/* Lead Form Section */}
+        {/* Lead Form */}
         <section className="max-w-2xl mx-auto mb-16">
           <div
             className="createLeadContainer"
@@ -83,22 +75,8 @@ export default function ReputationScorecardPage() {
 
         {/* Chat Button */}
         <div className="fixed bottom-6 right-6 z-50">
-          <button
-            className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-            aria-label="Open chat support"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="lucide lucide-message-circle w-6 h-6"
-            >
+          <button className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110" aria-label="Open chat support">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-message-circle w-6 h-6">
               <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
             </svg>
           </button>
