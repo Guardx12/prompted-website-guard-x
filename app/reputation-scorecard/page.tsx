@@ -1,51 +1,66 @@
 "use client"
 
 import { useEffect } from "react"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { CheckCircle, Shield, Star, TrendingUp } from "lucide-react"
 
 export default function ReputationScorecardPage() {
   useEffect(() => {
-    // Dynamically load the Reviewability widget script
+    // Load the widget CSS
+    const link = document.createElement("link")
+    link.rel = "stylesheet"
+    link.href = "https://cdn.reviewability.com/css/app/widget/create-lead/lead-form.min.css"
+    document.head.appendChild(link)
+
+    // Load the widget JS
     const script = document.createElement("script")
-    script.src = "https://guardx.reviewability.com/reputation-scorecard/widget.js" // Replace with actual widget script if different
+    script.src = "https://cdn.reviewability.com/js/widget/reputation-scorecard/create-lead.min.js"
     script.async = true
     document.body.appendChild(script)
 
-    // Optional: cleanup
     return () => {
+      document.head.removeChild(link)
       document.body.removeChild(script)
     }
   }, [])
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-
+    <div className="min-h-screen bg-background text-foreground antialiased px-4 sm:px-6 lg:px-8">
       {/* Hero Section */}
-      <section className="relative pt-6 pb-20 lg:pt-8 lg:pb-32">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-8">
-              Get Your Free <span className="text-primary">Reputation Scorecard</span>
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6">
-              Every day, reviews, mentions, and ratings shape your business's reputation — and a single negative
-              review can cost you customers. GuardX is your 24/7 reputation watchdog.
-            </p>
-          </div>
+      <section className="max-w-4xl mx-auto text-center py-16">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          Get Your Free <span className="text-primary">Reputation Scorecard</span>
+        </h1>
+        <p className="text-lg md:text-xl text-muted-foreground mb-8">
+          Every day, reviews, mentions, and ratings shape your business's reputation — and a single negative review can cost you customers. GuardX is your 24/7 reputation watchdog.
+        </p>
+      </section>
 
-          {/* Widget Container */}
-          <div className="bg-card border border-border rounded-lg p-8 max-w-2xl mx-auto mb-12">
-            <div className="createLeadContainer" data-url="https://guardx.reviewability.com/reputation-scorecard/lead/create-form?hash=nTk6nMzY0qOoTZ%2BK4r0csrkU7CpuqbJpPOzGHKInGXUyb3ckOXyIooL8kKEGuAJPclFHdjZhNGI2ODBIcWk5alRqTGo4QT09">
-              {/* The widget will inject here */}
-            </div>
-          </div>
+      {/* Benefits Section */}
+      <section className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 text-center">
+        <div className="p-6 bg-primary/5 rounded-lg">
+          <h3 className="text-xl font-semibold mb-2">Real-time Monitoring</h3>
+          <p className="text-sm text-muted-foreground">Never miss a review or mention.</p>
+        </div>
+        <div className="p-6 bg-primary/5 rounded-lg">
+          <h3 className="text-xl font-semibold mb-2">Weekly PDF Reports</h3>
+          <p className="text-sm text-muted-foreground">Summarizing your online reputation trends.</p>
+        </div>
+        <div className="p-6 bg-primary/5 rounded-lg">
+          <h3 className="text-xl font-semibold mb-2">AI-drafted Responses</h3>
+          <p className="text-sm text-muted-foreground">Ready to copy and send instantly.</p>
         </div>
       </section>
 
-      <Footer />
+      {/* Form Section */}
+      <section className="max-w-2xl mx-auto mb-16">
+        <div className="createLeadContainer"
+             data-url="https://guardx.reviewability.com/reputation-scorecard/lead/create-form?hash=nTk6nMzY0qOoTZ%2BK4r0csrkU7CpuqbJpPOzGHKInGXUyb3ckOXyIooL8kKEGuAJPclFHdjZhNGI2ODBIcWk5alRqTGo4QT09">
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border py-12 text-center text-sm text-muted-foreground">
+        © 2025 GuardX. All rights reserved.
+      </footer>
     </div>
   )
 }
