@@ -27,10 +27,10 @@ export default function ReputationScorecardPage() {
           </p>
 
           <a
-            href="mailto:info@guardxnetwork.com?subject=Scorecard Request&body=Please%20send%20me%20my%20free%20SCORECARD"
+            href="mailto:info@guardxnetwork.com?subject=Scorecard Request&body=Please%20send%20me%20my%20free%20SCORECARD%20with%20my%20Business%20Name%20and%20Business%20Address"
             className="inline-block bg-primary text-background font-semibold px-8 py-4 rounded-lg shadow-lg hover:bg-primary/90 transition-colors mb-12"
           >
-            Email the word <strong>SCORECARD</strong> to info@guardxnetwork.com
+            Email your Business Name, Business Address, and the word <strong>SCORECARD</strong> to info@guardxnetwork.com
           </a>
 
           <div className="bg-primary/5 p-6 rounded-lg shadow-md">
