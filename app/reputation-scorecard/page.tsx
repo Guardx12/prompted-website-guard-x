@@ -1,10 +1,31 @@
 "use client"
 
+import { useEffect } from "react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { CheckCircle, Shield, Star, TrendingUp } from "lucide-react"
 
 export default function ReputationScorecardPage() {
+  useEffect(() => {
+    // Dynamically load widget CSS
+    const link = document.createElement("link")
+    link.rel = "stylesheet"
+    link.href = "https://cdn.reviewability.com/css/app/widget/create-lead/lead-form.min.css"
+    link.type = "text/css"
+    document.head.appendChild(link)
+
+    // Dynamically load widget JS
+    const script = document.createElement("script")
+    script.src = "https://cdn.reviewability.com/js/widget/reputation-scorecard/create-lead.min.js"
+    script.async = true
+    document.body.appendChild(script)
+
+    return () => {
+      document.head.removeChild(link)
+      document.body.removeChild(script)
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -20,8 +41,8 @@ export default function ReputationScorecardPage() {
             <div className="max-w-3xl mx-auto mb-12">
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6">
                 Every day, reviews, mentions, and ratings shape your business's reputation — and a single negative
-                review can cost you customers. GuardX is your 24/7 reputation watchdog, giving you complete control and
-                peace of mind. With GuardX, you get:
+                review can cost you customers. GuardX is your 24/7 reputation watchdog, giving you complete control
+                and peace of mind. With GuardX, you get:
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -79,48 +100,46 @@ export default function ReputationScorecardPage() {
                 <p className="text-sm text-muted-foreground">Expert defense of your reputation 24/7</p>
               </div>
             </div>
-          </div>
 
-          <div className="bg-card border border-border rounded-lg p-8 max-w-2xl mx-auto">
-            <div className="text-center py-12">
-              <h2 className="text-2xl font-semibold text-foreground mb-4">Coming Soon!</h2>
-              <p className="text-muted-foreground">Our Reputation Scorecard form is launching shortly. Stay tuned!</p>
+            {/* Reputation Scorecard Widget */}
+            <div className="bg-card border border-border rounded-lg p-8 max-w-2xl mx-auto">
+              <div className="createLeadContainer" data-url="https://guardx.reviewability.com/reputation-scorecard/lead/create-form?hash=nTk6nMzY0qOoTZ%2BK4r0csrkU7CpuqbJpPOzGHKInGXUyb3ckOXyIooL8kKEGuAJPclFHdjZhNGI2ODBIcWk5alRqTGo4QT09"></div>
             </div>
-          </div>
 
-          {/* Additional Benefits Section */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-primary/5 rounded-lg p-6">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Star className="w-6 h-6 text-primary" />
+            {/* Additional Benefits Section */}
+            <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="bg-primary/5 rounded-lg p-6">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Star className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground">Instant Impact</h3>
                 </div>
-                <h3 className="text-xl font-bold text-foreground">Instant Impact</h3>
+                <p className="text-muted-foreground">
+                  See exactly where your reputation stands across all major platforms and get actionable insights to
+                  improve your ratings immediately.
+                </p>
               </div>
-              <p className="text-muted-foreground">
-                See exactly where your reputation stands across all major platforms and get actionable insights to
-                improve your ratings immediately.
-              </p>
-            </div>
 
-            <div className="bg-primary/5 rounded-lg p-6">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Shield className="w-6 h-6 text-primary" />
+              <div className="bg-primary/5 rounded-lg p-6">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Shield className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground">Expert Analysis</h3>
                 </div>
-                <h3 className="text-xl font-bold text-foreground">Expert Analysis</h3>
+                <p className="text-muted-foreground">
+                  Our reputation experts analyze your current standing and provide personalized recommendations for
+                  protecting and improving your online presence.
+                </p>
               </div>
-              <p className="text-muted-foreground">
-                Our reputation experts analyze your current standing and provide personalized recommendations for
-                protecting and improving your online presence.
-              </p>
             </div>
           </div>
-        </div>
 
-        {/* Background decoration */}
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+          {/* Background decoration */}
+          <div className="absolute inset-0 -z-10 overflow-hidden">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+          </div>
         </div>
       </section>
 
