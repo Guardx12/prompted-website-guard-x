@@ -1,10 +1,12 @@
+"use client";
+
 import React, { useEffect } from "react";
 import Head from "next/head";
 import Script from "next/script";
 
 export default function ReputationScorecardPage() {
   useEffect(() => {
-    // Reinitialize widget if necessary
+    // Initialize the GatherUp widget if it exists
     if (window && (window as any).Reviewability) {
       (window as any).Reviewability.createLead?.();
     }
