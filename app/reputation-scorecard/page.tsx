@@ -6,45 +6,61 @@ export default function ReputationScorecardPage() {
   return (
     <>
       <Head>
-        <title>GuardX - Get Your Free Reputation Scorecard</title>
+        <title>GuardX - Free Reputation Scorecard</title>
         <meta
           name="description"
-          content="Understand and improve your online reputation with a free scorecard from GuardX."
+          content="Request your free GuardX Reputation Scorecard and monitor your online reputation."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="min-h-screen flex flex-col items-center justify-center bg-background text-foreground px-4 sm:px-6 lg:px-8">
-        <section className="max-w-3xl text-center">
+        <section className="max-w-3xl text-center py-16">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Protect & Improve Your Online Reputation
+            Get Your Free <span className="text-primary">Reputation Scorecard</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground mb-8">
-            Every review, rating, and mention shapes how customers see your business. A single negative review can cost you valuable customers—but GuardX helps you stay ahead.
+            Understand your online reputation and take control before it impacts your business.
           </p>
-          <p className="text-lg md:text-xl text-muted-foreground mb-8">
-            Get your <strong>free Reputation Scorecard</strong> today!
+          <p className="text-lg md:text-xl text-muted-foreground mb-8 font-semibold">
+            Please email your <strong>Business Name</strong>, <strong>Business Address</strong>, and the word <strong>SCORECARD</strong> to <strong>info@guardxnetwork.com</strong> to request your free scorecard.
           </p>
+        </section>
 
-          <a
-            href="mailto:info@guardxnetwork.com?subject=Scorecard Request&body=Please%20send%20me%20my%20free%20SCORECARD%20with%20my%20Business%20Name%20and%20Business%20Address"
-            className="inline-block bg-primary text-background font-semibold px-8 py-4 rounded-lg shadow-lg hover:bg-primary/90 transition-colors mb-12"
-          >
-            Email your Business Name, Business Address, and the word <strong>SCORECARD</strong> to info@guardxnetwork.com
-          </a>
+        <section className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 text-center">
+          <div className="p-6 bg-primary/5 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-2">Real-time Monitoring</h3>
+            <p className="text-sm text-muted-foreground">
+              Monitor your reviews, mentions, and ratings in real-time.
+            </p>
+          </div>
 
-          <div className="bg-primary/5 p-6 rounded-lg shadow-md">
-            <h2 className="text-2xl font-semibold mb-4">Why GuardX?</h2>
-            <ul className="text-left list-disc list-inside space-y-2">
-              <li>Monitor your reviews, mentions, and ratings in real-time.</li>
-              <li>Identify negative mentions before they impact your business.</li>
-              <li>Receive actionable insights to improve your online reputation.</li>
-              <li>AI-drafted responses ready for you to use immediately.</li>
-              <li>Professional, branded reports you can implement instantly.</li>
-            </ul>
+          <div className="p-6 bg-primary/5 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-2">Negative Alerts</h3>
+            <p className="text-sm text-muted-foreground">
+              Identify negative mentions before they impact your business.
+            </p>
+          </div>
+
+          <div className="p-6 bg-primary/5 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-2">AI-generated Responses</h3>
+            <p className="text-sm text-muted-foreground">
+              Ready for you to copy and send immediately.
+            </p>
+          </div>
+
+          <div className="p-6 bg-primary/5 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-2">PDF Reports</h3>
+            <p className="text-sm text-muted-foreground">
+              Professional weekly PDF reports you can use instantly.
+            </p>
           </div>
         </section>
       </main>
+
+      <footer className="border-t border-border py-12 text-center text-sm text-muted-foreground">
+        © 2025 GuardX. All rights reserved.
+      </footer>
     </>
   );
 }
