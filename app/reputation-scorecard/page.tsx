@@ -1,15 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 
 export default function ReputationScorecardPage() {
+  useEffect(() => {
+    // Dynamically load Reviewability script after component mounts
+    const script = document.createElement('script');
+    script.src = 'https://cdn.reviewability.com/js/widget/reputation-scorecard/create-lead.min.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Cleanup on unmount
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <>
       <Head>
         <title>GuardX - Protecting Your Reputation</title>
-        <meta name="description" content="Professional reputation management services to protect and enhance your online presence." />
+        <meta
+          name="description"
+          content="Professional reputation management services to protect and enhance your online presence."
+        />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="https://cdn.reviewability.com/css/app/widget/create-lead/lead-form.min.css" />
-        <script src="https://cdn.reviewability.com/js/widget/reputation-scorecard/create-lead.min.js" type="text/javascript"></script>
+        <link
+          rel="stylesheet"
+          href="https://cdn.reviewability.com/css/app/widget/create-lead/lead-form.min.css"
+        />
       </Head>
 
       <main className="min-h-screen bg-background text-foreground antialiased px-4 sm:px-6 lg:px-8">
@@ -54,8 +72,22 @@ export default function ReputationScorecardPage() {
 
         {/* Chat Button */}
         <div className="fixed bottom-6 right-6 z-50">
-          <button className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110" aria-label="Open chat support">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-message-circle w-6 h-6">
+          <button
+            className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+            aria-label="Open chat support"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-message-circle w-6 h-6"
+            >
               <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
             </svg>
           </button>
