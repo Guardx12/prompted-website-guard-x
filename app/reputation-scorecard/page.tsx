@@ -77,7 +77,7 @@ export default function ReputationScorecardPage() {
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                     <CheckCircle className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-4">AI-drafted Responses</h3>
+                  <h3 className="text-xl font-bold text-foreground mb-4">Professional Response Suggestions</h3>
                   <p className="text-muted-foreground">Ready for you to copy and send immediately.</p>
                 </CardContent>
               </Card>

@@ -22,9 +22,9 @@ export default function SampleCustomerReportPage() {
               Our expert team provides <span className="text-primary font-bold">24/7 monitoring</span> with{" "}
               <span className="text-primary font-bold">urgent alerts</span> for{" "}
               <span className="text-primary font-bold">negative/positive/all reviews</span>, plus{" "}
-              <span className="text-primary font-bold">AI-drafted review responses</span> Ready to Copy and Send. You'll
-              also receive these comprehensive professional reports delivered weekly to your inbox – no dashboard login
-              required.
+              <span className="text-primary font-bold">professional response suggestions</span> Ready to Copy and Send.
+              You'll also receive these comprehensive professional reports delivered weekly to your inbox – no dashboard
+              login required.
             </p>
           </div>
 
@@ -199,7 +199,7 @@ export default function SampleCustomerReportPage() {
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>
-                      <span className="text-primary font-bold">AI-Generated Response Templates</span> Ready to Copy and
+                      <span className="text-primary font-bold">Professional Response Templates</span> Ready to Copy and
                       Send
                     </span>
                   </li>
@@ -254,12 +254,13 @@ export default function SampleCustomerReportPage() {
                 <p className="text-muted-foreground mb-4">
                   <strong>Complete Review Intelligence:</strong> We capture every customer review with ratings, dates,
                   names, and full text, plus provide{" "}
-                  <span className="text-primary font-bold">AI-drafted review responses</span> Ready to Copy and Send.
+                  <span className="text-primary font-bold">professional response suggestions</span> Ready to Copy and
+                  Send.
                 </p>
                 <p className="text-muted-foreground mb-4">
                   <strong>Expert Analysis & Response Support:</strong> Our team analyzes customer feedback patterns and
-                  provides <span className="text-primary font-bold">AI-drafted review responses</span> that address
-                  specific concerns professionally, saving you hours of response crafting.
+                  provides <span className="text-primary font-bold">professional response suggestions</span> that
+                  address specific concerns professionally, saving you hours of response crafting.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
@@ -269,7 +270,8 @@ export default function SampleCustomerReportPage() {
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>
-                      <span className="text-primary font-bold">AI-drafted review responses</span> Ready to Copy and Send
+                      <span className="text-primary font-bold">Professional response suggestions</span> Ready to Copy
+                      and Send
                     </span>
                   </li>
                   <li className="flex items-center gap-2">
@@ -350,12 +352,13 @@ export default function SampleCustomerReportPage() {
                 <h3 className="text-xl font-bold text-foreground mb-4">Ready-To-Use Intelligence</h3>
                 <p className="text-muted-foreground mb-4">
                   We transform raw review data into specific action plans and provide{" "}
-                  <span className="text-primary font-bold">AI-drafted review responses</span>
+                  <span className="text-primary font-bold">professional response suggestions</span>
                   Ready to Copy and Send, plus strategic recommendations for reputation enhancement.
                 </p>
                 <ul className="text-sm text-muted-foreground space-y-2">
                   <li>
-                    • <span className="text-primary font-bold">AI-drafted review responses</span> Ready to Copy and Send
+                    • <span className="text-primary font-bold">Professional response suggestions</span> Ready to Copy
+                    and Send
                   </li>
                   <li>• Expert analysis of customer priorities</li>
                   <li>• Strategic recommendations for immediate action</li>
@@ -396,7 +399,8 @@ export default function SampleCustomerReportPage() {
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span>
-                      <span className="text-primary font-bold">AI-drafted review responses</span> Ready to Copy and Send
+                      <span className="text-primary font-bold">Professional response suggestions</span> Ready to Copy
+                      and Send
                     </span>
                   </li>
                 </ul>
@@ -443,8 +447,8 @@ export default function SampleCustomerReportPage() {
             Don't manage reputation monitoring yourself. Our expert team provides{" "}
             <span className="text-primary font-bold">24/7 monitoring</span>,{" "}
             <span className="text-primary font-bold">urgent alerts</span>,{" "}
-            <span className="text-primary font-bold">AI-drafted review responses</span> Ready to Copy and Send, and
-            comprehensive weekly intelligence reports – all delivered automatically to your inbox.
+            <span className="text-primary font-bold">professional response suggestions</span> Ready to Copy and Send,
+            and comprehensive weekly intelligence reports – all delivered automatically to your inbox.
           </p>
 
           <div className="bg-primary/10 rounded-lg p-6 mb-8 max-w-2xl mx-auto">
@@ -475,9 +479,7 @@ export default function SampleCustomerReportPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <a
-              href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
               className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-xl font-bold shadow-lg rounded-md inline-flex items-center transition-colors"
             >
               <span className="get-started-text">Start Getting Reports Today</span>
@@ -498,8 +500,8 @@ export default function SampleCustomerReportPage() {
             <p>✓ No setup or management required - our experts handle everything</p>
             <p>✓ Cancel anytime - no long-term contracts</p>
             <p>
-              ✓ <span className="text-primary font-bold">AI-drafted review responses</span> Ready to Copy and Send and
-              professional reports delivered weekly
+              ✓ <span className="text-primary font-bold">Professional response suggestions</span> Ready to Copy and Send
+              and professional reports delivered weekly
             </p>
           </div>
         </div>

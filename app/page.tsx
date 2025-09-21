@@ -50,12 +50,11 @@ export default function HomePage() {
 
             <div className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6 space-y-2">
               <p>• Instant alerts for new or urgent reviews</p>
-              <p>• AI-drafted responses Ready to Copy and Send</p>
               <p>• Weekly PDF reports showing all your reviews and ratings</p>
             </div>
 
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8 font-medium">
-              No dashboards, no logins, no stress — just everything done for you.
+              Everything delivered straight to your inbox with expert oversight.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm">
@@ -63,7 +62,7 @@ export default function HomePage() {
                 ✓ Save time and reduce stress
               </div>
               <div className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
-                ✓ Respond faster and smarter with AI
+                ✓ Professional guidance and expert oversight
               </div>
               <div className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
                 ✓ Fully managed service, cancel any time
@@ -72,9 +71,7 @@ export default function HomePage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <a
-                href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
                 className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-xl font-bold shadow-lg rounded-md inline-flex items-center transition-colors"
               >
                 <span className="get-started-text">Start Protecting Today</span>
@@ -107,10 +104,6 @@ export default function HomePage() {
                 <span>
                   <span className="text-primary font-bold">Professional weekly reports</span> delivered to you
                 </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-primary" />
-                <span>Expert crisis response support</span>
               </div>
             </div>
 
@@ -161,9 +154,8 @@ export default function HomePage() {
                 how stressful it is for owners to track it all themselves.
               </p>
               <p>
-                GuardX delivers <span className="text-primary font-bold">real-time alerts</span>, clear reports, and
-                suggested professional responses — all automatically — so you can stay in control, protect your
-                customers' trust, and respond confidently.
+                GuardX delivers <span className="text-primary font-bold">real-time alerts</span>, clear reports — all
+                automatically — so you can stay in control, protect your customers' trust, and respond confidently.
               </p>
             </div>
           </div>
@@ -173,7 +165,7 @@ export default function HomePage() {
       <section className="py-16 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               What a Reputation Turnaround Looks Like
             </h2>
 
@@ -212,7 +204,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">What You Get With GuardX</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Complete reputation management service that works automatically while you focus on your business
             </p>
           </div>
@@ -257,8 +249,7 @@ export default function HomePage() {
                 </h3>
                 <p className="text-muted-foreground mb-4">
                   Our system notifies you immediately when new reviews appear — negative, urgent, or positive — so you
-                  can respond quickly and stay on top of your reputation. Choose the alerts you want to receive, and get
-                  expert guidance when it matters most.
+                  can respond quickly and stay on top of your reputation. Choose the alerts you want to receive.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
@@ -363,9 +354,7 @@ export default function HomePage() {
 
           <div className="text-center">
             <a
-              href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
               className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold rounded-md inline-flex items-center transition-colors"
             >
               <span className="get-started-text">Start Protecting Today</span>
@@ -463,9 +452,7 @@ export default function HomePage() {
 
           <div className="text-center">
             <a
-              href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
               className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold rounded-md inline-flex items-center transition-colors"
             >
               <span className="get-started-text">Start Protecting Today</span>
@@ -485,7 +472,7 @@ export default function HomePage() {
             <h3 className="text-2xl font-bold text-foreground mb-4">Strengthen Your Online Reputation</h3>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Imagine your business at <span className="text-destructive font-bold">3.4★</span> on Google. One negative
-              review keeps dragging you down. With GuardX, you could rebuild trust and reach{" "}
+              review keeps you dragging you down. With GuardX, you could rebuild trust and reach{" "}
               <span className="text-primary font-bold">4.5★ or higher</span> — gaining more customers every month.
             </p>
           </div>
@@ -552,20 +539,6 @@ export default function HomePage() {
                     </span>
                   </div>
                 </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <span className="font-semibold text-foreground">
-                      <span className="text-primary font-bold">AI-drafted Review Responses</span>:
-                    </span>
-                    <span className="text-muted-foreground"> Our system creates professional responses for you</span>
-                  </div>
-                </li>
-                <div className="ml-9 mt-1">
-                  <p className="text-sm text-muted-foreground">
-                    Respond to reviews faster and smarter – our AI drafts the replies for you, Ready to Copy and Send.
-                  </p>
-                </div>
               </ul>
             </div>
             <div className="bg-primary/5 p-8 rounded-lg">
@@ -573,7 +546,7 @@ export default function HomePage() {
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">GuardX monthly service cost:</span>
-                  <span className="font-semibold text-foreground">£299</span>
+                  <span className="font-semibold text-foreground">£99</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Revenue saved from 1 prevented bad review:</span>
@@ -581,7 +554,7 @@ export default function HomePage() {
                 </div>
                 <div className="border-t border-border pt-2 flex justify-between">
                   <span className="text-foreground font-semibold">Monthly ROI:</span>
-                  <span className="font-bold text-primary text-lg">3,244%</span>
+                  <span className="font-bold text-primary text-lg">10,000%+</span>
                 </div>
               </div>
             </div>
@@ -589,9 +562,7 @@ export default function HomePage() {
 
           <div className="text-center">
             <a
-              href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
               className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold rounded-md inline-flex items-center transition-colors"
             >
               <span className="get-started-text">Protect Your Revenue — Start Now</span>
@@ -611,9 +582,9 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12" id="pricing-section">
+          <div className="max-w-md mx-auto mb-12" id="pricing-section">
             {/* Business Plan - Most Popular */}
-            <Card className="bg-card border-primary hover:border-primary transition-all duration-300 relative transform scale-105">
+            <Card className="bg-card border-primary hover:border-primary transition-all duration-300 relative">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <div className="bg-primary text-primary-foreground px-6 py-2 rounded-full text-sm font-semibold">
                   Most Popular
@@ -623,11 +594,8 @@ export default function HomePage() {
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold text-foreground mb-2">Business Plan</h3>
                   <div className="mb-2">
-                    <span className="text-4xl font-bold text-primary">£299</span>
+                    <span className="text-4xl font-bold text-primary">£99</span>
                     <span className="text-muted-foreground">/month</span>
-                  </div>
-                  <div className="mb-4">
-                    <span className="text-sm text-green-600 font-medium">Save 20% with annual billing</span>
                   </div>
                   <p className="text-sm text-muted-foreground">
                     Perfect for all businesses, with flexible location options
@@ -658,24 +626,9 @@ export default function HomePage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">
-                      <span className="text-primary font-bold">AI-drafted review responses</span>
-                    </span>
-                  </li>
-                  <div className="ml-9 mt-1">
-                    <p className="text-sm text-muted-foreground">
-                      Respond to reviews faster and smarter – our AI drafts the replies for you, Ready to Copy and Send.
-                    </p>
-                  </div>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">Fully managed service</span>
                   </li>
                 </ul>
-
-                <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">Extra locations: £149/month each</p>
-                </div>
 
                 <div className="mb-4 space-y-1">
                   <div className="text-xs text-green-600 font-medium">✓ Cancel Any Time – no contracts</div>
@@ -683,68 +636,12 @@ export default function HomePage() {
                 </div>
 
                 <a
-                  href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
                   className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold rounded-md inline-flex items-center justify-center transition-colors"
                 >
                   <span className="get-started-text">Start Protecting Today</span>
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
-              </CardContent>
-            </Card>
-
-            {/* Enterprise Plan */}
-            <Card className="bg-card border-border hover:border-primary/50 transition-all duration-300 relative">
-              <CardContent className="p-8">
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-foreground mb-2">Enterprise Plan</h3>
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold text-primary">Custom</span>
-                    <span className="text-muted-foreground"> Pricing</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">For businesses with 5+ locations</p>
-                </div>
-
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Includes all features in the Business Plan service</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">
-                      Custom <span className="text-primary font-bold">monitoring</span> setup by our experts
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Dedicated account manager</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Volume discounts available</span>
-                  </li>
-                </ul>
-
-                <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">Scalable pricing based on your needs</p>
-                </div>
-
-                <div className="mb-4 space-y-1">
-                  <div className="text-xs text-green-600 font-medium">✓ Protect Your Reputation Instantly</div>
-                  <div className="text-xs text-green-600 font-medium">✓ Dedicated Support Included</div>
-                </div>
-
-                <Link href="/contact">
-                  <Button
-                    variant="outline"
-                    className="get-started-btn w-full border-primary text-primary hover:bg-primary/10 py-3 text-lg font-semibold bg-transparent"
-                  >
-                    <span className="get-started-text">Contact Us</span>
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
               </CardContent>
             </Card>
           </div>
@@ -773,24 +670,13 @@ export default function HomePage() {
                     Secure & private expert <span className="text-primary font-bold">monitoring</span>
                   </span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>
-                    <span className="text-primary font-bold">AI-drafted review responses</span>
-                  </span>
-                </div>
-                <div className="text-xs text-muted-foreground mt-1 ml-6">
-                  Respond to reviews faster and smarter – our AI drafts the replies for you, Ready to Copy and Send.
-                </div>
               </div>
             </div>
           </div>
 
           <div className="text-center">
             <a
-              href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
               className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold rounded-md inline-flex items-center transition-colors"
             >
               <span className="get-started-text">Start Protecting Today</span>
@@ -923,9 +809,7 @@ export default function HomePage() {
 
           <div className="text-center">
             <a
-              href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
               className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold rounded-md inline-flex items-center transition-colors"
             >
               <span className="get-started-text">Start Getting Expert Reports Today</span>

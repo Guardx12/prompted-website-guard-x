@@ -11,9 +11,8 @@ interface FAQSection {
 const faqSections: FAQSection[] = [
   {
     question: "What plans are available?",
-    answer: `**Business Plan - £299/month** (Most Popular)
+    answer: `**Business Plan - £99/month** (Most Popular)
 • Month-to-month with no contract
-• Extra locations: £149/month each
 • Monitoring for Google, Trustpilot, Yelp, Facebook, and many more platforms
 • Instant alerts for negative or urgent reviews
 • Automated weekly branded reports
@@ -22,9 +21,7 @@ const faqSections: FAQSection[] = [
 ✓ **Cancel Any Time** – no contracts or long-term commitments
 ✓ **One Low Monthly Fee** – no hidden costs, transparent pricing
 
-**Enterprise Plan - Custom Pricing**
-• For businesses with 5+ locations
-• Our Enterprise Plan provides the fully managed, done-for-you service across all your locations for businesses with more than five locations, ensuring your reputation is monitored and improved automatically without any extra work from your team
+We offer the Business Plan for £99/month, cancel any time — monitoring Google, Trustpilot, Yelp, Facebook, and many more platforms.
 
 ✓ **Secure & Private** – your business data is safe with GuardX
 ✓ **Trusted by Small Businesses** – simple, reliable protection`,
@@ -37,13 +34,11 @@ const faqSections: FAQSection[] = [
 ✓ **Protect Your Reputation Instantly** – never miss a review again
 ✓ **Fully Automated** – set it and forget it
 
-**Enterprise Plan:** Everything in Business Plan for 5+ locations with custom setup and our Enterprise Plan provides the fully managed, done-for-you service across all your locations for businesses with more than five locations, ensuring your reputation is monitored and improved automatically without any extra work from your team.`,
+Our Business Plan provides comprehensive monitoring and protection across all major review platforms.`,
   },
   {
     question: "How much do extra locations cost?",
     answer: `**Extra Location Pricing:**
-• Business Plan: £149 per extra location
-• Enterprise Plan: Custom pricing for 5+ locations
 
 Each location gets full monitoring across all supported platforms with instant alerts and weekly reports.
 
@@ -54,7 +49,7 @@ Each location gets full monitoring across all supported platforms with instant a
     question: "Can I cancel my subscription?",
     answer: `**Subscription Management:**
 
-For the **£299/month Business Plan**, you can cancel or manage your subscription at any time using our secure Stripe Customer Portal: https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00
+For the **£99/month Business Plan**, you can cancel or manage your subscription at any time through your account settings.
 
 ✓ **Cancel Any Time** – Business Plan has no contracts or long-term commitments
 ✓ **Fully Automated** – set it and forget it
@@ -169,7 +164,7 @@ export default function Chatbot() {
             <div className="text-center">
               <p className="text-sm text-gray-300 mb-3">Ready to protect your reputation?</p>
               <button
-                onClick={() => (window.location.href = "/pricing")}
+                onClick={() => (window.location.href = "https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05")}
                 className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-semibold py-2 px-4 rounded-lg transition-all duration-300"
               >
                 Start Protecting Today

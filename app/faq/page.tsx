@@ -41,9 +41,8 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      We offer two plans: <strong>Business Plan (£299/month)</strong> for complete reputation protection
-                      with monitoring across Google, Trustpilot, Yelp, Facebook, and many more platforms.{" "}
-                      <strong>Enterprise Plan (custom pricing)</strong> for businesses with 5+ locations.
+                      We offer the <strong>Business Plan (£99/month)</strong> for complete reputation protection with
+                      monitoring across Google, Trustpilot, Yelp, Facebook, and many more platforms.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -67,9 +66,7 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      <strong>Business Plan:</strong> £149/month per additional location.{" "}
-                      <strong>Enterprise Plan:</strong> Custom pricing for businesses with 5+ locations with volume
-                      discounts available.
+                      <strong>Business Plan:</strong> £149/month per additional location.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -120,7 +117,7 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      The <strong>Business Plan (£299/month)</strong> is month-to-month with no long-term contract - you
+                      The <strong>Business Plan (£99/month)</strong> is month-to-month with no long-term contract - you
                       can cancel anytime.
                     </p>
                   </AccordionContent>
@@ -144,16 +141,8 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      The <strong>£299/month Business Plan</strong> may be cancelled at any time using our secure Stripe
-                      Customer Portal:{" "}
-                      <a
-                        href="https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-primary hover:underline"
-                      >
-                        https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00
-                      </a>
+                      The <strong>£99/month Business Plan</strong> may be cancelled at any time through your account
+                      settings or by contacting our support team.
                     </p>
                   </AccordionContent>
                 </AccordionItem>
@@ -165,7 +154,7 @@ export default function FAQPage() {
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
                       No, GuardX does not charge setup fees for any plan. The only costs are the monthly subscription
-                      fees: Business Plan £299/month, or custom Enterprise pricing.
+                      fees: Business Plan £99/month, or custom Enterprise pricing.
                     </p>
                   </AccordionContent>
                 </AccordionItem>

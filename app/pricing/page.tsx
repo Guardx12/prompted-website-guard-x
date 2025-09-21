@@ -2,9 +2,7 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { PricingNote } from "@/components/pricing-note"
 import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { CheckCircle, Shield, TrendingUp, Clock, ArrowRight } from "lucide-react"
-import Link from "next/link"
 
 export default function PricingPage() {
   return (
@@ -27,9 +25,9 @@ export default function PricingPage() {
 
       <section className="py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <div className="flex justify-center mb-12">
             {/* Business Plan - Most Popular */}
-            <Card className="bg-card border-primary hover:border-primary transition-all duration-300 relative transform scale-105">
+            <Card className="bg-card border-primary hover:border-primary transition-all duration-300 relative transform scale-105 max-w-md w-full">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <div className="bg-primary text-primary-foreground px-6 py-2 rounded-full text-sm font-semibold">
                   Most Popular
@@ -39,11 +37,8 @@ export default function PricingPage() {
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold text-foreground mb-2">Business Plan</h3>
                   <div className="mb-2">
-                    <span className="text-4xl font-bold text-primary">£299</span>
+                    <span className="text-4xl font-bold text-primary">£99</span>
                     <span className="text-muted-foreground">/month</span>
-                  </div>
-                  <div className="mb-4">
-                    <span className="text-sm text-green-600 font-medium">Save 20% with annual billing</span>
                   </div>
                   <p className="text-sm text-muted-foreground">
                     Perfect for all businesses, with flexible location options
@@ -71,22 +66,9 @@ export default function PricingPage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">
-                      Expert-crafted <span className="text-yellow-600 font-bold">AI-drafted review responses</span>{" "}
-                      Ready to Copy and Send
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">
-                      Completely hands-off - our experts handle everything Ready to Copy and Send
-                    </span>
+                    <span className="text-foreground">Completely hands-off - our experts handle everything</span>
                   </li>
                 </ul>
-
-                <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">Additional locations: £149/month each (fully managed)</p>
-                </div>
 
                 <div className="mb-4 space-y-1">
                   <div className="text-xs text-green-600 font-medium">✓ Cancel Any Time – no contracts</div>
@@ -94,88 +76,12 @@ export default function PricingPage() {
                 </div>
 
                 <a
-                  href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
                   className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold rounded-md inline-flex items-center justify-center transition-colors"
                 >
                   <span className="get-started-text">Start Expert Protection Today</span>
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
-              </CardContent>
-            </Card>
-
-            {/* Enterprise Plan */}
-            <Card className="bg-card border-border hover:border-primary/50 transition-all duration-300 relative">
-              <CardContent className="p-8">
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-foreground mb-2">Enterprise Plan</h3>
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold text-primary">Custom</span>
-                    <span className="text-muted-foreground"> Pricing</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    Dedicated expert team for businesses with 5+ locations
-                  </p>
-                </div>
-
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">All Business Plan features managed by our expert team</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">
-                      Custom <span className="text-yellow-600 font-bold">monitoring setup</span> tailored by our
-                      specialists
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">
-                      All plans are fully managed as a done-for-you service by our expert team, ensuring your reputation
-                      is monitored and improved without any effort on your part
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Significant volume discounts for multi-location management</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Professional Reports Delivered Weekly.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">
-                      Our Enterprise Plan provides the fully managed, done-for-you service across all your locations for
-                      businesses with more than five locations, ensuring your reputation is monitored and improved Ready
-                      to Copy and Send without any extra work from your team
-                    </span>
-                  </li>
-                </ul>
-
-                <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">
-                    Scalable expert management pricing based on your needs
-                  </p>
-                </div>
-
-                <div className="mb-4 space-y-1">
-                  <div className="text-xs text-green-600 font-medium">✓ Dedicated Expert Team – premium service</div>
-                  <div className="text-xs text-green-600 font-medium">✓ Fully Managed Service & Account Management</div>
-                </div>
-
-                <Link href="/contact">
-                  <Button
-                    variant="outline"
-                    className="get-started-btn w-full border-primary text-primary hover:bg-primary/10 py-3 text-lg font-semibold bg-transparent"
-                  >
-                    <span className="get-started-text">Contact Our Experts</span>
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
               </CardContent>
             </Card>
           </div>
@@ -205,8 +111,8 @@ export default function PricingPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-4">Complete Peace of Mind</h3>
                 <p className="text-muted-foreground">
-                  Our expert team handles all reputation management tasks Ready to Copy and Send, so you can focus
-                  entirely on growing your business without any monitoring concerns.
+                  Our expert team handles all reputation management tasks, so you can focus entirely on growing your
+                  business without any monitoring concerns.
                 </p>
               </CardContent>
             </Card>
@@ -255,7 +161,7 @@ export default function PricingPage() {
               {
                 question: "What are your expert management pricing plans?",
                 answer:
-                  "We offer two expert-managed plans: Business Plan (£299/month) for complete professional reputation protection, and Enterprise Plan (custom pricing) for businesses with 5+ locations requiring dedicated expert teams.",
+                  "We offer two expert-managed plans: Business Plan (£99/month) for complete professional reputation protection, and Enterprise Plan (custom pricing) for businesses with 5+ locations requiring dedicated expert teams.",
               },
               {
                 question: "How does expert management pricing work for multiple locations?",
@@ -270,12 +176,12 @@ export default function PricingPage() {
               {
                 question: "What's included in the professional weekly reports?",
                 answer:
-                  "Your expert-prepared weekly reports include overall reputation score with professional trend analysis, new reviews, and comprehensive review sources breakdown — all professional weekly reports delivered Ready to Copy and Send.",
+                  "Your expert-prepared weekly reports include overall reputation score with professional trend analysis, new reviews, and comprehensive review sources breakdown — all professional weekly reports delivered automatically.",
               },
               {
                 question: "Is everything managed by your expert team automatically?",
                 answer:
-                  "Yes, all our services are completely managed by our expert team. You receive professional oversight without needing any dashboard access or manual intervention — our specialists handle monitoring, alerts, reporting, and response management Ready to Copy and Send with expert precision.",
+                  "Yes, all our services are completely managed by our expert team. You receive professional oversight without needing any dashboard access or manual intervention — our specialists handle monitoring, alerts, reporting, and response management with expert precision.",
               },
               {
                 question: "Can I cancel my expert management service anytime?",
@@ -309,9 +215,7 @@ export default function PricingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://buy.stripe.com/fZu8wO1QM3ZF4rF9ExcIE00"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
               className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold rounded-md inline-flex items-center justify-center transition-colors"
             >
               <span className="get-started-text">Start Expert Protection Today</span>

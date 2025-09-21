@@ -61,18 +61,9 @@ export default function TermsPage() {
 
                   <h3 className="text-xl font-semibold text-foreground mb-3">Easy Self-Service Management</h3>
                   <p className="text-muted-foreground mb-4">
-                    Want to cancel or make changes? Simply use our secure customer portal - it's quick and easy:
+                    Want to cancel or make changes? Simply contact our support team or manage your subscription through
+                    your account settings - it's quick and easy.
                   </p>
-                  <div className="bg-muted p-4 rounded-lg mb-4">
-                    <p className="font-medium text-foreground">Stripe Customer Portal:</p>
-                    <Link
-                      href="https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00"
-                      target="_blank"
-                      className="text-primary hover:underline break-all"
-                    >
-                      billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00
-                    </Link>
-                  </div>
 
                   <h3 className="text-xl font-semibold text-foreground mb-3">What Happens When You Cancel</h3>
                   <ul className="space-y-3 text-muted-foreground">
@@ -221,15 +212,11 @@ export default function TermsPage() {
 
                   <h3 className="text-xl font-semibold text-foreground mb-3">How Our Service Works</h3>
                   <ul className="space-y-3 text-muted-foreground mb-6">
-                    <li>
-                      • We provide AI-generated responses and reports from third-party providers as part of our service
-                    </li>
+                    <li>• We provide professional responses and reports from our system as part of our service</li>
                     <li>• These materials are licensed to you for your business use and benefit</li>
-                    <li>
-                      • We don't claim ownership of the underlying AI-generated content or the tools that create it
-                    </li>
+                    <li>• We don't claim ownership of the underlying content or the tools that create it</li>
                     <li>• You're free to use our service deliverables to grow and protect your business reputation</li>
-                    <li>• The AI platforms and tools we use remain the property of their respective providers</li>
+                    <li>• The platforms and tools we use remain the property of their respective providers</li>
                   </ul>
 
                   <h3 className="text-xl font-semibold text-foreground mb-3">Marketing and Examples</h3>

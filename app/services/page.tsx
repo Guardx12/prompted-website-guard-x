@@ -3,19 +3,7 @@ import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import {
-  Shield,
-  TrendingUp,
-  BarChart3,
-  Eye,
-  Zap,
-  ArrowRight,
-  Bell,
-  MessageSquare,
-  Target,
-  FileText,
-  Headphones,
-} from "lucide-react"
+import { Shield, TrendingUp, BarChart3, Eye, Zap, ArrowRight, Bell, Target, FileText, Headphones } from "lucide-react"
 import Link from "next/link"
 
 export default function ServicesPage() {
@@ -84,25 +72,6 @@ export default function ServicesPage() {
                       <p className="text-muted-foreground text-sm">
                         Get immediate email alerts the moment negative or urgent reviews appear. Know about issues
                         instantly so you can respond before they damage your reputation.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-card border-border hover:border-primary/50 transition-all">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <MessageSquare className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">
-                        <span className="text-[#d4af37] font-bold">AI-drafted responses Ready to Copy and Send</span>
-                      </h4>
-                      <p className="text-muted-foreground text-sm">
-                        Professional review responses crafted by AI and delivered to your email. Copy and paste the
-                        responses to your review platforms — no logging into dashboards or writing responses yourself.
                       </p>
                     </div>
                   </div>
@@ -229,7 +198,7 @@ export default function ServicesPage() {
                   {
                     step: "02",
                     title: "Strategy",
-                    description: "AI-driven framework designed to enhance your reputation.",
+                    description: "Professional framework designed to enhance your reputation.",
                     icon: BarChart3,
                   },
                   {

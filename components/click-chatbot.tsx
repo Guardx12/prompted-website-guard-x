@@ -15,17 +15,17 @@ const chatSections: ChatSection[] = [
       {
         question: "What are your pricing plans?",
         answer:
-          "We offer two plans: Business Plan (£299/month) - monitoring Google, Trustpilot, Yelp, Facebook and many more platforms with 20% off annual billing. Enterprise Plan - custom pricing for multiple locations with everything in Business Plan.",
+          "We offer the Business Plan for £99/month, cancel any time — monitoring Google, Trustpilot, Yelp, Facebook, and many more platforms.",
       },
       {
         question: "Can I add extra locations?",
         answer:
-          "Yes! Business Plan: £149/month per extra location. Enterprise Plan includes multiple locations with custom pricing.",
+          "Yes! Business Plan: £149/month per extra location. Contact us for custom pricing on multiple locations.",
       },
       {
         question: "Do you offer annual discounts?",
         answer:
-          "Yes! Business Plan customers get 20% off when paying annually. That's £2,390 instead of £3,588 - saving you £1,198 per year!",
+          "Yes! Business Plan customers get 20% off when paying annually. That's £950 instead of £1,188 - saving you £238 per year!",
       },
     ],
   },
@@ -60,7 +60,7 @@ const chatSections: ChatSection[] = [
       {
         question: "Can I cancel anytime?",
         answer:
-          "For the **£299/month Business Plan**, you can cancel or manage your subscription at any time using our secure Stripe Customer Portal: https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00",
+          "For the **£99/month Business Plan**, you can cancel or manage your subscription at any time through your account settings.",
       },
       {
         question: "Is my data secure?",
@@ -185,7 +185,7 @@ export default function ClickChatbot() {
 
                 <div className="mt-4">
                   <a
-                    href="/pricing"
+                    href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
                     className="block w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-semibold py-3 px-4 rounded-lg text-center transition-all duration-200"
                   >
                     Get Started Now
@@ -245,7 +245,7 @@ export default function ClickChatbot() {
 
                 <div className="mt-4">
                   <a
-                    href="/pricing"
+                    href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
                     className="block w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-semibold py-2 px-4 rounded-lg text-center transition-all duration-200 text-sm"
                   >
                     Get Started Now

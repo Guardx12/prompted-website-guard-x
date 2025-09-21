@@ -91,8 +91,8 @@ export default function HowItWorksPage() {
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-2xl">
                 <p className="text-blue-800 font-medium text-sm">
                   <strong>Why This Helps You:</strong> Our team helps you quickly address negative reviews with{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>AI-drafted responses</span> before they impact
-                  your reputation. Save time and reduce stress with expert guidance.
+                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>professional response suggestions</span> before
+                  they impact your reputation. Save time and reduce stress with expert guidance.
                 </p>
               </div>
               <ArrowDown className="w-6 h-6 text-primary mt-8" />

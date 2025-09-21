@@ -40,11 +40,8 @@ export function ChatbotWelcome() {
       answer: (
         <div className="space-y-2">
           <div>
-            <strong className="text-primary">Business Plan:</strong> £299/month.{" "}
+            <strong className="text-primary">Business Plan:</strong> £99/month, cancel anytime.{" "}
             <strong>20% off annual pricing.</strong>
-          </div>
-          <div>
-            <strong className="text-primary">Enterprise Plan:</strong> Custom pricing for 5+ locations — contact us.
           </div>
           <div>
             <strong className="text-primary">Fake Review Protection:</strong> {pricing.fakeRemovalService}/month per
@@ -57,7 +54,7 @@ export function ChatbotWelcome() {
     {
       question: "What's the difference between the Business and Enterprise plans?",
       answer:
-        "The Business Plan includes full monitoring, alerts, and a complete dashboard with priority email support within 48 hours during business hours. Our Enterprise Plan provides the fully managed, done-for-you service across all your locations for businesses with more than five locations, ensuring your reputation is monitored and improved automatically without any extra work from your team.",
+        "The Business Plan includes full monitoring, alerts, and a complete dashboard with priority email support within 48 hours during business hours. Our service provides fully managed, done-for-you reputation monitoring across all your locations, ensuring your reputation is monitored and improved automatically without any extra work from your team.",
       nudge: null,
     },
     {
@@ -79,7 +76,7 @@ export function ChatbotWelcome() {
     {
       question: "Can I cancel at any time?",
       answer:
-        "For the **£299/month Business Plan**, you can cancel or manage your subscription at any time using our secure Stripe Customer Portal: https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00",
+        "For the **£99/month Business Plan**, you can cancel or manage your subscription at any time through your account settings.",
       nudge: null,
     },
   ]
@@ -99,7 +96,7 @@ export function ChatbotWelcome() {
     {
       question: "Can I cancel at any time?",
       answer:
-        "For the **£299/month Business Plan**, you can cancel or manage your subscription at any time using our secure Stripe Customer Portal: https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00",
+        "For the **£99/month Business Plan**, you can cancel or manage your subscription at any time through your account settings.",
       nudge: null,
     },
     {
@@ -120,7 +117,7 @@ export function ChatbotWelcome() {
     {
       question: "What are your support response times?",
       answer:
-        "Business Plan customers receive priority email support within 48 hours during business hours. Our Enterprise Plan provides the fully managed, done-for-you service across all your locations for businesses with more than five locations, ensuring your reputation is monitored and improved automatically without any extra work from your team.",
+        "Business Plan customers receive priority email support within 48 hours during business hours. Our service provides fully managed, done-for-you reputation monitoring across all your locations, ensuring your reputation is monitored and improved automatically without any extra work from your team.",
       nudge: null,
     },
   ]
@@ -254,7 +251,7 @@ export function ChatbotWelcome() {
                 <div className="space-y-2 pt-3 border-t border-[#2a2a2a]">
                   <Button
                     className="w-full bg-primary text-black hover:bg-primary-dark font-semibold shadow-md hover:shadow-lg transition-all duration-200"
-                    onClick={() => (window.location.href = "/pricing")}
+                    onClick={() => (window.location.href = "https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05")}
                   >
                     Get Started
                   </Button>

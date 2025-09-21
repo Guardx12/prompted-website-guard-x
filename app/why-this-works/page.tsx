@@ -113,8 +113,8 @@ export default function WhyThisWorksPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-3">Proven Results</h3>
                 <p className="text-muted-foreground">
-                  With expert guidance and AI-crafted responses, we help businesses improve their reputation online —
-                  quickly, consistently, and professionally.
+                  With expert guidance and professional response suggestions, we help businesses improve their
+                  reputation online — quickly, consistently, and professionally.
                 </p>
               </CardContent>
             </Card>
