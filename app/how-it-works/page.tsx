@@ -42,13 +42,6 @@ export default function HowItWorksPage() {
                 Select the protection plan that fits your business needs. Our expert team gets you protected immediately
                 with professional setup and monitoring.
               </p>
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-2xl">
-                <p className="text-blue-800 font-medium text-sm">
-                  <strong>Why This Helps You:</strong> Simple plan selection gets you{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>expert protection</span> quickly – our team
-                  handles all the technical work, so you can focus on running your business.
-                </p>
-              </div>
               <ArrowDown className="w-6 h-6 text-primary mt-8" />
             </div>
 
@@ -65,13 +58,6 @@ export default function HowItWorksPage() {
                 Our expert team tracks <span style={{ color: "#d4af37", fontWeight: "bold" }}>reviews</span> from
                 Google, Yelp, Trustpilot, Facebook, and many more platforms with professional oversight.
               </p>
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-2xl">
-                <p className="text-blue-800 font-medium text-sm">
-                  <strong>Why This Helps You:</strong> Stay informed about what customers are saying with{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>expert analysis</span>, protect your brand, and
-                  improve customer trust through professional management.
-                </p>
-              </div>
               <ArrowDown className="w-6 h-6 text-primary mt-8" />
             </div>
 
@@ -88,13 +74,6 @@ export default function HowItWorksPage() {
                 Get <span style={{ color: "#d4af37", fontWeight: "bold" }}>urgent alerts</span> for negative reviews or
                 any review type you request, managed by our expert team.
               </p>
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-2xl">
-                <p className="text-blue-800 font-medium text-sm">
-                  <strong>Why This Helps You:</strong> Our team helps you quickly address negative reviews with{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>professional response suggestions</span> before
-                  they impact your reputation. Save time and reduce stress with expert guidance.
-                </p>
-              </div>
               <ArrowDown className="w-6 h-6 text-primary mt-8" />
             </div>
 
@@ -113,14 +92,6 @@ export default function HowItWorksPage() {
                 reputation, <span style={{ color: "#d4af37", fontWeight: "bold" }}>star ratings</span>, and{" "}
                 <span style={{ color: "#d4af37", fontWeight: "bold" }}>review trends</span> with expert insights.
               </p>
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-2xl">
-                <p className="text-blue-800 font-medium text-sm">
-                  <strong>Why This Helps You:</strong> Understand your business reputation at a glance with expert
-                  analysis, track improvement, and leverage{" "}
-                  <span style={{ color: "#d4af37", fontWeight: "bold" }}>positive reviews</span> to attract more
-                  customers.
-                </p>
-              </div>
             </div>
           </div>
         </div>
