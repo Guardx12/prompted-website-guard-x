@@ -17,6 +17,14 @@ export default function SuccessPage() {
     if (sessionId) {
       // Here you could verify the session with your backend if needed
       setLoading(false)
+
+      // Fire Meta Pixel Purchase event when payment is confirmed
+      if (typeof window !== "undefined" && (window as any).fbq) {
+        ;(window as any).fbq("track", "Purchase", {
+          value: 99.0,
+          currency: "GBP",
+        })
+      }
     }
   }, [sessionId])
 
