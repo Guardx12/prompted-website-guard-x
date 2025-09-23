@@ -91,25 +91,6 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <p className="text-sm text-muted-foreground mb-8 font-medium">
-              We start protecting your business right away — no setup needed
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-primary" />
-                <span>
-                  <span className="text-primary font-bold">We spot problems fast</span> and tell you right away
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Award className="w-4 h-4 text-primary" />
-                <span>
-                  <span className="text-primary font-bold">Weekly reports</span> sent to your email
-                </span>
-              </div>
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
