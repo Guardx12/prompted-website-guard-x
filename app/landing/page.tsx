@@ -16,11 +16,11 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6">
-              Protect Your Reputation. <br />
-              <span className="text-primary">Grow Your Business.</span>
+              Stop Bad Reviews From Hurting Your Business. <br />
+              <span className="text-primary">We Watch Your Reviews So You Don’t Have To.</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8">
-              Get real-time alerts, actionable insights, and professional support to safeguard your brand's reputation.
+              We monitor your online reviews on Google, Facebook, Trustpilot, and more. Get alerts immediately when something needs your attention and receive easy-to-read weekly reports.
             </p>
             <Link href="/pricing">
               <Button
@@ -44,9 +44,9 @@ export default function LandingPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Bell className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-4">Real-time monitoring & alerts</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-4">We Watch Your Reviews</h3>
                 <p className="text-muted-foreground">
-                  Never miss a review or mention. Get instant notifications when your business is discussed online.
+                  Get notified instantly whenever a new review or mention appears online. You’ll never miss something important again.
                 </p>
               </CardContent>
             </Card>
@@ -56,9 +56,9 @@ export default function LandingPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <BarChart3 className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-4">Automated reports & reputation scoring</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-4">Easy-to-Read Weekly Reports</h3>
                 <p className="text-muted-foreground">
-                  Track your reputation score and get detailed reports showing exactly how your business is perceived.
+                  Every week, get a clear PDF showing all your reviews, how your reputation is trending, and what actions you might need to take.
                 </p>
               </CardContent>
             </Card>
@@ -68,9 +68,9 @@ export default function LandingPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Users className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-4">Dedicated support to protect your brand</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-4">We Help Protect Your Brand</h3>
                 <p className="text-muted-foreground">
-                  Our experts help you respond to reviews, manage crises, and build a stronger online presence.
+                  Our team provides guidance on responding to reviews, handling urgent issues, and keeping your online reputation strong.
                 </p>
               </CardContent>
             </Card>
@@ -83,7 +83,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-lg text-muted-foreground">Choose the plan that fits your business size</p>
+            <p className="text-lg text-muted-foreground">Pick the plan that suits your business</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -193,18 +193,17 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Social Proof Placeholder */}
+      {/* Social Proof */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Trusted by Businesses Worldwide</h2>
             <p className="text-lg text-muted-foreground">
-              Join hundreds of companies protecting their reputation with GuardX
+              Hundreds of businesses rely on GuardX to protect their reputation every day.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Testimonial placeholders */}
             {[1, 2, 3].map((i) => (
               <Card key={i} className="bg-card border-border">
                 <CardContent className="p-6">
@@ -214,8 +213,7 @@ export default function LandingPage() {
                     ))}
                   </div>
                   <p className="text-muted-foreground mb-4 italic">
-                    "GuardX has transformed how we manage our online reputation. The real-time alerts and professional
-                    support have been invaluable."
+                    "GuardX has made managing our reviews simple. We get alerts immediately and can respond quickly."
                   </p>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
@@ -237,10 +235,10 @@ export default function LandingPage() {
       <section className="py-20 bg-card/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            Ready to Protect Your Business Reputation?
+            Start Protecting Your Business Today
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Start monitoring, get alerts, and protect your brand today
+            We monitor your reviews, alert you instantly, and send simple weekly reports. No stress, no guesswork.
           </p>
           <Link href="/pricing">
             <Button
