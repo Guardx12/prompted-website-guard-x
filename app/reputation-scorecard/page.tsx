@@ -71,16 +71,6 @@ export default function ReputationScorecardPage() {
                   </p>
                 </CardContent>
               </Card>
-
-              <Card className="bg-card border-border">
-                <CardContent className="p-8 text-center">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-4">Professional Response Suggestions</h3>
-                  <p className="text-muted-foreground">Ready for you to copy and send immediately.</p>
-                </CardContent>
-              </Card>
             </div>
           </section>
         </div>

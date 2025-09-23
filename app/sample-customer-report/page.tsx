@@ -114,7 +114,7 @@ export default function SampleCustomerReportPage() {
                 <p className="text-muted-foreground mb-4">
                   <strong>Expert Insights Provided:</strong> Our team analyzes{" "}
                   <span className="text-primary font-bold">review trends</span> to identify seasonal patterns and
-                  campaign effectiveness, delivering actionable intelligence you can act on immediately.
+                  campaign effectiveness, delivering insights you can act on immediately.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
@@ -159,10 +159,6 @@ export default function SampleCustomerReportPage() {
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>Expert detection of potential fake review attacks</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Strategic recommendations for targeted improvements</span>
                   </li>
                 </ul>
               </CardContent>
@@ -212,8 +208,8 @@ export default function SampleCustomerReportPage() {
               Why GuardX Reports Matter for Your Business
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our comprehensive done-for-you service provides expert oversight and actionable intelligence to protect
-              and grow your business reputation – no management required on your part.
+              Our comprehensive done-for-you service provides expert oversight to protect and grow your business
+              reputation – no management required on your part.
             </p>
           </div>
 
@@ -301,14 +297,6 @@ export default function SampleCustomerReportPage() {
                       <span className="text-primary font-bold">Urgent alerts</span> catch reputation threats before they
                       spread
                     </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Expert guidance for systematic customer satisfaction improvement</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Professional intelligence for informed business decisions</span>
                   </li>
                 </ul>
               </div>
