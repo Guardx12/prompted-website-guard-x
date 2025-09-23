@@ -39,33 +39,33 @@ export default function HomePage() {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Reputation Management Made Simple –{" "}
-              <span className="text-primary">Protect your reviews on the go, before they impact your business.</span>
+              Keep Your Business Safe From Bad Reviews –{" "}
+              <span className="text-primary">We watch your online reputation so you don't have to.</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
-              We automatically monitor all your online reviews across Google, Trustpilot, Facebook, and more. You'll
-              get:
+              We check all your online reviews on Google, Trustpilot, Facebook, and other sites every day. When
+              something happens, you'll get:
             </p>
 
             <div className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6 space-y-2">
-              <p>• Instant alerts for new or urgent reviews</p>
-              <p>• Weekly PDF reports showing all your reviews and ratings</p>
+              <p>• Email alerts when new reviews appear (good, bad, or all reviews)</p>
+              <p>• Weekly PDF reports showing all your reviews and star ratings</p>
             </div>
 
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8 font-medium">
-              Everything delivered straight to your inbox with expert oversight.
+              Everything sent straight to your email. No work required from you.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm">
               <div className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
-                ✓ Save time and reduce stress
+                ✓ Saves you hours of checking websites
               </div>
               <div className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
-                ✓ Professional guidance and expert oversight
+                ✓ Our team handles everything for you
               </div>
               <div className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
-                ✓ Fully managed service, cancel any time
+                ✓ Cancel anytime, no long contracts
               </div>
             </div>
 
@@ -89,20 +89,20 @@ export default function HomePage() {
             </div>
 
             <p className="text-sm text-muted-foreground mb-8 font-medium">
-              Expert protection starts immediately — no setup required from you
+              We start protecting your business right away — no setup needed
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-primary" />
                 <span>
-                  <span className="text-primary font-bold">Instant threat detection</span> by our team
+                  <span className="text-primary font-bold">We spot problems fast</span> and tell you right away
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-primary" />
                 <span>
-                  <span className="text-primary font-bold">Professional weekly reports</span> delivered to you
+                  <span className="text-primary font-bold">Weekly reports</span> sent to your email
                 </span>
               </div>
             </div>
@@ -112,22 +112,26 @@ export default function HomePage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Shield className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">We Monitor</h3>
-                <p className="text-sm text-muted-foreground">Our experts catch threats before they spread</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">We Watch</h3>
+                <p className="text-sm text-muted-foreground">
+                  We check review sites every day for mentions of your business
+                </p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <TrendingUp className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">We Alert</h3>
-                <p className="text-sm text-muted-foreground">You get instant notifications of issues</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">We Tell You</h3>
+                <p className="text-sm text-muted-foreground">You get an email alert when new reviews appear</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">We Protect</h3>
-                <p className="text-sm text-muted-foreground">Expert defense of your reputation 24/7</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">We Help</h3>
+                <p className="text-sm text-muted-foreground">
+                  Our team helps protect your business reputation around the clock
+                </p>
               </div>
             </div>
           </div>
@@ -146,16 +150,17 @@ export default function HomePage() {
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <Shield className="w-8 h-8 text-primary" />
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">Why We Created GuardX</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">Why We Started GuardX</h2>
             <div className="text-lg text-muted-foreground leading-relaxed space-y-4">
               <p>
-                Hi, I'm <span className="text-primary font-bold">Luke Andrews</span>, founder of GuardX. I started
-                GuardX because I saw how quickly a single negative review or online mention could harm a business — and
-                how stressful it is for owners to track it all themselves.
+                Hi, I'm <span className="text-primary font-bold">Luke Andrews</span>, founder of GuardX. I started this
+                company because I saw how one bad review could hurt a business owner's livelihood — and how stressful it
+                is to constantly check review sites yourself.
               </p>
               <p>
-                GuardX delivers <span className="text-primary font-bold">real-time alerts</span>, clear reports — all
-                automatically — so you can stay in control, protect your customers' trust, and respond confidently.
+                GuardX sends you <span className="text-primary font-bold">instant email alerts</span> and easy-to-read
+                reports — all automatically — so you can stay in control of your reputation and respond quickly when
+                needed.
               </p>
             </div>
           </div>
@@ -165,9 +170,7 @@ export default function HomePage() {
       <section className="py-16 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              What a Reputation Turnaround Looks Like
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">How Your Star Rating Can Improve</h2>
 
             <div className="bg-card border border-border rounded-lg p-8 max-w-2xl mx-auto">
               <div className="grid grid-cols-2 gap-8 items-center">
@@ -192,7 +195,7 @@ export default function HomePage() {
 
               <div className="mt-6 pt-6 border-t border-border">
                 <p className="text-sm text-muted-foreground text-center">
-                  Typical improvement when businesses take control of their online reviews.
+                  This is what happens when business owners stay on top of their reviews.
                 </p>
               </div>
             </div>
@@ -205,7 +208,7 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">What You Get With GuardX</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Complete reputation management service that works automatically while you focus on your business
+              A complete review monitoring service that runs automatically while you focus on your business
             </p>
           </div>
 
@@ -216,24 +219,24 @@ export default function HomePage() {
                   <Shield className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-4">
-                  Expert <span className="text-primary font-bold">monitoring</span> across Google, Trustpilot, Yelp,
-                  Facebook, and many more platforms
+                  We check <span className="text-primary font-bold">all major review sites</span> including Google,
+                  Trustpilot, Yelp, Facebook, and many more
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  Our team watches all major review platforms <span className="text-primary font-bold">24/7</span> so
-                  you never miss a mention of your business.
+                  Our team checks all the important review websites{" "}
+                  <span className="text-primary font-bold">every day</span> so you never miss when someone mentions your
+                  business.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>
-                      Professional <span className="text-primary font-bold">real-time monitoring</span> across all
-                      platforms
+                      <span className="text-primary font-bold">Daily checking</span> of all review sites
                     </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Comprehensive coverage managed by our experts</span>
+                    <span>Complete coverage handled by our team</span>
                   </li>
                 </ul>
               </CardContent>
@@ -245,23 +248,23 @@ export default function HomePage() {
                   <AlertTriangle className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-4">
-                  <span className="text-primary font-bold">Instant alerts</span> for all your reviews
+                  <span className="text-primary font-bold">Instant email alerts</span> for all new reviews
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  Our system notifies you immediately when new reviews appear — negative, urgent, or positive — so you
-                  can respond quickly and stay on top of your reputation. Choose the alerts you want to receive.
+                  We send you an email right away when new reviews appear — whether they're good, bad, or urgent — so
+                  you can respond quickly and stay on top of your reputation. You choose which alerts you want.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>
-                      <span className="text-primary font-bold">Instant email alerts</span> for all review types
+                      <span className="text-primary font-bold">Email alerts</span> for all types of reviews
                     </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>
-                      <span className="text-primary font-bold">Urgent alerts</span> for critical reputation threats
+                      <span className="text-primary font-bold">Priority alerts</span> for serious reputation problems
                     </span>
                   </li>
                 </ul>
@@ -274,26 +277,26 @@ export default function HomePage() {
                   <BarChart3 className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-4">
-                  <span className="text-primary font-bold">Professional weekly reports</span> on your{" "}
-                  <span className="text-primary font-bold">reviews and ratings</span>
+                  <span className="text-primary font-bold">Weekly PDF reports</span> showing your{" "}
+                  <span className="text-primary font-bold">reviews and star ratings</span>
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  Our experts compile comprehensive reports showing{" "}
-                  <span className="text-primary font-bold">review trends</span> and key metrics from all monitored
-                  platforms, delivered directly to your inbox.
+                  Our team creates detailed reports showing{" "}
+                  <span className="text-primary font-bold">how your reviews are trending</span> and important numbers
+                  from all the sites we monitor, sent directly to your email.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>
-                      Expert analysis of <span className="text-primary font-bold">positive reviews</span>,{" "}
-                      <span className="text-primary font-bold">negative reviews</span>, and{" "}
+                      Analysis of <span className="text-primary font-bold">good reviews</span>,{" "}
+                      <span className="text-primary font-bold">bad reviews</span>, and{" "}
                       <span className="text-primary font-bold">all reviews</span>
                     </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Automated weekly delivery to your inbox</span>
+                    <span>Sent to your email every week automatically</span>
                   </li>
                 </ul>
               </CardContent>
@@ -305,21 +308,22 @@ export default function HomePage() {
                   <CheckCircle className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-4">
-                  Fully managed service, no dashboard or login required
+                  Completely hands-off service — no website to log into
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  Our team handles everything automatically in the background. You receive expert oversight without any
-                  effort on your part.
+                  Our team does everything automatically behind the scenes. You get all the benefits without any work on
+                  your part.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Zero maintenance required from you</span>
+                    <span>No work required from you</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>
-                      Expert team works <span className="text-primary font-bold">24/7</span> without your intervention
+                      Our team works <span className="text-primary font-bold">around the clock</span> without you having
+                      to do anything
                     </span>
                   </li>
                 </ul>
@@ -328,26 +332,24 @@ export default function HomePage() {
           </div>
 
           <div className="bg-primary/5 rounded-lg p-8 mb-12">
-            <h3 className="text-2xl font-bold text-foreground mb-6 text-center">Key Service Benefits</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-6 text-center">Key Benefits</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
                 <Shield className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-foreground mb-2">Expert Reputation Protection</h4>
+                <h4 className="font-semibold text-foreground mb-2">Protect Your Reputation</h4>
                 <p className="text-sm text-muted-foreground">
-                  Our team stops negative reviews from damaging your business
+                  Our team helps stop bad reviews from hurting your business
                 </p>
               </div>
               <div className="text-center">
                 <TrendingUp className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-foreground mb-2">Maximize Positive Impact</h4>
-                <p className="text-sm text-muted-foreground">
-                  We help you leverage good reviews into marketing opportunities
-                </p>
+                <h4 className="font-semibold text-foreground mb-2">Make Good Reviews Work Harder</h4>
+                <p className="text-sm text-muted-foreground">We help you turn positive reviews into more customers</p>
               </div>
               <div className="text-center">
                 <Clock className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-foreground mb-2">Complete Time Savings</h4>
-                <p className="text-sm text-muted-foreground">Our automated service means no manual checking required</p>
+                <h4 className="font-semibold text-foreground mb-2">Save Hours Every Week</h4>
+                <p className="text-sm text-muted-foreground">No more manually checking review sites yourself</p>
               </div>
             </div>
           </div>
@@ -372,8 +374,8 @@ export default function HomePage() {
                 <TrendingUp className="w-6 h-6 text-primary" />
               </div>
               <p className="text-foreground font-medium">
-                Businesses that respond to reviews see up to{" "}
-                <span className="text-primary font-bold">35% more revenue</span>.
+                Businesses that respond to reviews earn up to{" "}
+                <span className="text-primary font-bold">35% more money</span>.
               </p>
             </div>
 
@@ -382,8 +384,8 @@ export default function HomePage() {
                 <Star className="w-6 h-6 text-primary" />
               </div>
               <p className="text-foreground font-medium">
-                Companies managing reviews consistently often raise their star ratings by{" "}
-                <span className="text-primary font-bold">1–1.5★ within 6–12 months</span>.
+                Businesses that manage their reviews properly often improve their star ratings by{" "}
+                <span className="text-primary font-bold">1–1.5 stars within 6–12 months</span>.
               </p>
             </div>
           </div>
@@ -394,9 +396,9 @@ export default function HomePage() {
       <section className="py-20 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Feedback from Business Owners</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">What Business Owners Say</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Real feedback from business owners who trust our expert reputation management service
+              Real feedback from business owners who use our review monitoring service
             </p>
           </div>
 
@@ -409,9 +411,9 @@ export default function HomePage() {
                   ))}
                 </div>
                 <p className="text-foreground mb-4 font-medium">
-                  "I was spending hours every week checking Google and Yelp for new reviews. GuardX's expert team saves
-                  me so much time – I get <span className="text-primary font-bold">instant alerts</span> when something
-                  needs my attention and can focus on running my business while they handle the monitoring."
+                  "I used to spend hours every week checking Google and Yelp for new reviews. GuardX saves me so much
+                  time – I get <span className="text-primary font-bold">instant email alerts</span> when something needs
+                  my attention, and I can focus on running my business while they handle the checking."
                 </p>
                 <p className="text-sm text-muted-foreground">— Restaurant Owner</p>
               </CardContent>
@@ -425,9 +427,9 @@ export default function HomePage() {
                   ))}
                 </div>
                 <p className="text-foreground mb-4 font-medium">
-                  "A competitor left a fake 1-star review that I didn't notice for weeks. Now GuardX's team sends me{" "}
-                  <span className="text-primary font-bold">urgent alerts</span> within minutes of any negative review,
-                  so I can respond quickly before it damages my reputation."
+                  "A competitor left a fake 1-star review that I didn't see for weeks. Now GuardX sends me{" "}
+                  <span className="text-primary font-bold">urgent alerts</span> within minutes of any bad review, so I
+                  can respond quickly before it hurts my business."
                 </p>
                 <p className="text-sm text-muted-foreground">— Retail Manager</p>
               </CardContent>
@@ -441,9 +443,9 @@ export default function HomePage() {
                   ))}
                 </div>
                 <p className="text-foreground mb-4 font-medium">
-                  "I missed a negative review on Trustpilot that cost me several bookings. GuardX's{" "}
-                  <span className="text-primary font-bold">24/7 monitoring</span> service means I never miss anything
-                  important again. The expert oversight and peace of mind is worth every penny."
+                  "I missed a bad review on Trustpilot that cost me several bookings. GuardX's{" "}
+                  <span className="text-primary font-bold">daily monitoring</span> means I never miss anything important
+                  again. The peace of mind is worth every penny."
                 </p>
                 <p className="text-sm text-muted-foreground">— Boutique Hotel Manager</p>
               </CardContent>
@@ -458,7 +460,7 @@ export default function HomePage() {
               <span className="get-started-text">Start Protecting Today</span>
               <ArrowRight className="ml-2 w-6 h-6" />
             </a>
-            <p className="text-sm text-muted-foreground mt-3">Join hundreds of satisfied customers</p>
+            <p className="text-sm text-muted-foreground mt-3">Join hundreds of happy customers</p>
           </div>
         </div>
       </section>
@@ -469,11 +471,12 @@ export default function HomePage() {
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <Shield className="w-8 h-8 text-primary" />
             </div>
-            <h3 className="text-2xl font-bold text-foreground mb-4">Strengthen Your Online Reputation</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-4">Improve Your Online Reputation</h3>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Imagine your business at <span className="text-destructive font-bold">3.4★</span> on Google. One negative
-              review keeps you dragging you down. With GuardX, you could rebuild trust and reach{" "}
-              <span className="text-primary font-bold">4.5★ or higher</span> — gaining more customers every month.
+              Picture your business stuck at <span className="text-destructive font-bold">3.4 stars</span> on Google.
+              Bad reviews keep pulling you down. With GuardX, you could rebuild trust and reach{" "}
+              <span className="text-primary font-bold">4.5 stars or higher</span> — bringing in more customers every
+              month.
             </p>
           </div>
         </div>
@@ -482,37 +485,35 @@ export default function HomePage() {
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">The Hidden Cost of Bad Reviews</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Why Bad Reviews Are So Dangerous</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-              Studies show that just one negative review can cost you up to 30 customers. A single bad review on Google
-              can lose you £10,000+ in revenue this year alone.
+              Research shows that just one bad review can cost you up to 30 customers. A single negative review on
+              Google can lose you £10,000+ in sales this year alone.
             </p>
             <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-6 max-w-2xl mx-auto mb-8">
-              <p className="text-lg font-semibold text-foreground mb-2">
-                Without expert protection, you're vulnerable to:
-              </p>
+              <p className="text-lg font-semibold text-foreground mb-2">Without protection, you're at risk from:</p>
               <ul className="text-left space-y-2 text-muted-foreground">
-                <li>• Fake negative reviews from competitors</li>
-                <li>• Angry customers posting before you can respond</li>
-                <li>• Old complaints resurfacing and spreading</li>
-                <li>• Lost customers who never give you a chance</li>
+                <li>• Fake bad reviews from competitors</li>
+                <li>• Upset customers posting before you can fix their problem</li>
+                <li>• Old complaints coming back to hurt you</li>
+                <li>• Potential customers choosing your competitors instead</li>
               </ul>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
             <div>
-              <h3 className="text-2xl font-bold text-foreground mb-6">GuardX Expert Team Stops The Damage</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-6">How GuardX Stops The Damage</h3>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
                     <span className="font-semibold text-foreground">
-                      <span className="text-primary font-bold">24/7 Monitoring</span> Service:
+                      <span className="text-primary font-bold">Daily Checking</span>:
                     </span>
                     <span className="text-muted-foreground">
                       {" "}
-                      Our experts watch every <span className="text-primary font-bold">review source</span>, social
+                      Our team checks every <span className="text-primary font-bold">review site</span>, social media
                       platform, and forum
                     </span>
                   </div>
@@ -521,7 +522,7 @@ export default function HomePage() {
                   <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
                     <span className="font-semibold text-foreground">
-                      <span className="text-primary font-bold">Instant Alerts</span> Delivered:
+                      <span className="text-primary font-bold">Fast Alerts</span>:
                     </span>
                     <span className="text-muted-foreground"> You get notified within minutes of any new mention</span>
                   </div>
@@ -530,30 +531,30 @@ export default function HomePage() {
                   <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
                     <span className="font-semibold text-foreground">
-                      <span className="text-primary font-bold">Professional Weekly Reports</span>:
+                      <span className="text-primary font-bold">Weekly Reports</span>:
                     </span>
                     <span className="text-muted-foreground">
                       {" "}
-                      Expert analysis tracking your <span className="text-primary font-bold">reviews and ratings</span>{" "}
-                      across all platforms
+                      Detailed tracking of your <span className="text-primary font-bold">reviews and star ratings</span>{" "}
+                      across all sites
                     </span>
                   </div>
                 </li>
               </ul>
             </div>
             <div className="bg-primary/5 p-8 rounded-lg">
-              <h4 className="text-xl font-bold text-foreground mb-4">ROI Calculator</h4>
+              <h4 className="text-xl font-bold text-foreground mb-4">Value Calculator</h4>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">GuardX monthly service cost:</span>
+                  <span className="text-muted-foreground">GuardX monthly cost:</span>
                   <span className="font-semibold text-foreground">£99</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Revenue saved from 1 prevented bad review:</span>
+                  <span className="text-muted-foreground">Money saved from 1 prevented bad review:</span>
                   <span className="font-semibold text-primary">£10,000+</span>
                 </div>
                 <div className="border-t border-border pt-2 flex justify-between">
-                  <span className="text-foreground font-semibold">Monthly ROI:</span>
+                  <span className="text-foreground font-semibold">Monthly value:</span>
                   <span className="font-bold text-primary text-lg">10,000%+</span>
                 </div>
               </div>
@@ -568,7 +569,7 @@ export default function HomePage() {
               <span className="get-started-text">Protect Your Revenue — Start Now</span>
               <ArrowRight className="ml-2 w-6 h-6" />
             </a>
-            <p className="text-sm text-muted-foreground mt-3">One prevented bad review pays for 3+ years of service</p>
+            <p className="text-sm text-muted-foreground mt-3">One prevented bad review pays for years of service</p>
           </div>
         </div>
       </section>
@@ -576,9 +577,9 @@ export default function HomePage() {
       <section className="py-20 bg-card/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Choose Your Protection Plan</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Simple Pricing</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Simple, transparent pricing for expert reputation management service. Cancel anytime.
+              One clear price for complete review monitoring. Cancel anytime.
             </p>
           </div>
 
@@ -606,27 +607,27 @@ export default function HomePage() {
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">
-                      Expert <span className="text-primary font-bold">monitoring</span> across Google, Trustpilot, Yelp,
-                      Facebook, and many more platforms
+                      We check <span className="text-primary font-bold">all major review sites</span> including Google,
+                      Trustpilot, Yelp, Facebook, and many more
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">
-                      <span className="text-primary font-bold">Instant alerts</span> delivered for{" "}
-                      <span className="text-primary font-bold">negative reviews</span> and urgent issues
+                      <span className="text-primary font-bold">Instant email alerts</span> for{" "}
+                      <span className="text-primary font-bold">bad reviews</span> and urgent problems
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">
-                      <span className="text-primary font-bold">Professional weekly reports</span> on your{" "}
-                      <span className="text-primary font-bold">reviews and ratings</span>
+                      <span className="text-primary font-bold">Weekly PDF reports</span> showing your{" "}
+                      <span className="text-primary font-bold">reviews and star ratings</span>
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Fully managed service</span>
+                    <span className="text-foreground">Completely hands-off service</span>
                   </li>
                 </ul>
 
@@ -650,7 +651,7 @@ export default function HomePage() {
 
           <div className="text-center mb-12">
             <div className="bg-card/50 rounded-lg p-6 mb-8">
-              <h3 className="text-lg font-semibold text-foreground mb-4">Why Choose GuardX Expert Service?</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-4">Why Choose GuardX?</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle className="w-4 h-4 text-primary" />
@@ -658,7 +659,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>Fully managed service – hands-off for you</span>
+                  <span>Completely hands-off – no work for you</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle className="w-4 h-4 text-primary" />
@@ -667,7 +668,7 @@ export default function HomePage() {
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle className="w-4 h-4 text-primary" />
                   <span>
-                    Secure & private expert <span className="text-primary font-bold">monitoring</span>
+                    Secure & private <span className="text-primary font-bold">monitoring</span>
                   </span>
                 </div>
               </div>
@@ -682,7 +683,7 @@ export default function HomePage() {
               <span className="get-started-text">Start Protecting Today</span>
               <ArrowRight className="ml-2 w-6 h-6" />
             </a>
-            <p className="text-sm text-muted-foreground mt-3">Expert protection starts immediately</p>
+            <p className="text-sm text-muted-foreground mt-3">We start protecting your business right away</p>
           </div>
         </div>
       </section>
@@ -691,11 +692,11 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              What Your <span className="text-primary font-bold">Professional Weekly Reports</span> Include
+              What Your <span className="text-primary font-bold">Weekly PDF Reports</span> Include
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive expert analysis of your <span className="text-primary font-bold">reviews and ratings</span>{" "}
-              delivered to your inbox every week with key insights
+              Detailed analysis of your <span className="text-primary font-bold">reviews and star ratings</span> sent to
+              your email every week with important insights
             </p>
           </div>
 
@@ -705,21 +706,20 @@ export default function HomePage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <BarChart3 className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">Overall Reputation Score</h3>
+                <h3 className="text-xl font-bold text-foreground mb-4">Overall Star Rating Score</h3>
                 <p className="text-muted-foreground mb-4">
-                  Our experts analyze your average <span className="text-primary font-bold">star ratings</span> across
+                  Our team tracks your average <span className="text-primary font-bold">star ratings</span> across
                   Google, Yelp, Facebook, Trustpilot, and many more, with{" "}
-                  <span className="text-primary font-bold">review trends</span>
-                  over time.
+                  <span className="text-primary font-bold">trends over time</span>.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Cross-platform reputation tracking by our team</span>
+                    <span>Reputation tracking across all sites</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Expert historical trend analysis</span>
+                    <span>Historical trend analysis</span>
                   </li>
                 </ul>
               </CardContent>
@@ -730,20 +730,20 @@ export default function HomePage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <Star className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">New Reviews Analysis</h3>
+                <h3 className="text-xl font-bold text-foreground mb-4">New Reviews Summary</h3>
                 <p className="text-muted-foreground mb-4">
-                  Our team compiles all reviews received since your last report, expertly categorized by{" "}
-                  <span className="text-primary font-bold">positive reviews</span>, neutral, and
-                  <span className="text-primary font-bold"> negative reviews</span>.
+                  Our team organizes all reviews received since your last report, sorted by{" "}
+                  <span className="text-primary font-bold">good reviews</span>, neutral, and
+                  <span className="text-primary font-bold"> bad reviews</span>.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Expert organization by sentiment rating</span>
+                    <span>Organized by positive, neutral, and negative</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Complete review text included with analysis</span>
+                    <span>Full review text included</span>
                   </li>
                 </ul>
               </CardContent>
@@ -755,16 +755,15 @@ export default function HomePage() {
                   <Shield className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-4">
-                  <span className="text-primary font-bold">Review Sources</span> Analysis
+                  <span className="text-primary font-bold">Review Sources</span> Breakdown
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  Our experts provide detailed analysis of exactly which platforms your reviews came from with
-                  comprehensive source breakdown.
+                  Our team shows you exactly which websites your reviews came from with detailed source information.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Expert platform-by-platform breakdown</span>
+                    <span>Site-by-site breakdown</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
@@ -779,30 +778,30 @@ export default function HomePage() {
 
           <div className="bg-primary/5 rounded-lg p-8 mb-12">
             <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
-              Expert <span className="text-primary font-bold">Professional Weekly Reports</span> on Your{" "}
-              <span className="text-primary font-bold">Reviews and Ratings</span>
+              <span className="text-primary font-bold">Weekly PDF Reports</span> on Your{" "}
+              <span className="text-primary font-bold">Reviews and Star Ratings</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
                 <Award className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-foreground mb-2">Comprehensive Expert Data</h4>
+                <h4 className="font-semibold text-foreground mb-2">Complete Data</h4>
                 <p className="text-sm text-muted-foreground">
-                  All reports include detailed professional analysis of your{" "}
-                  <span className="text-primary font-bold">reviews and ratings</span> across{" "}
-                  <span className="text-primary font-bold">all reviews</span> platforms
+                  All reports include detailed analysis of your{" "}
+                  <span className="text-primary font-bold">reviews and star ratings</span> across{" "}
+                  <span className="text-primary font-bold">all review sites</span>
                 </p>
               </div>
               <div className="text-center">
                 <CheckCircle className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-foreground mb-2">Automated Expert Delivery</h4>
+                <h4 className="font-semibold text-foreground mb-2">Automatic Delivery</h4>
                 <p className="text-sm text-muted-foreground">
-                  Reports are generated by our experts and delivered automatically every week
+                  Reports are created by our team and sent automatically every week
                 </p>
               </div>
               <div className="text-center">
                 <Clock className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-foreground mb-2">Professional Format</h4>
-                <p className="text-sm text-muted-foreground">Expert-designed format perfect for sharing internally</p>
+                <h4 className="font-semibold text-foreground mb-2">Easy-to-Read Format</h4>
+                <p className="text-sm text-muted-foreground">Clean format perfect for sharing with your team</p>
               </div>
             </div>
           </div>
@@ -812,7 +811,7 @@ export default function HomePage() {
               href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
               className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-5 text-xl font-bold rounded-md inline-flex items-center transition-colors"
             >
-              <span className="get-started-text">Start Getting Expert Reports Today</span>
+              <span className="get-started-text">Start Getting Reports Today</span>
               <ArrowRight className="ml-2 w-6 h-6" />
             </a>
           </div>
