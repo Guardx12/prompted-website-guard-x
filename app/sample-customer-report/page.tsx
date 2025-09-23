@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { ArrowRight, BarChart3, Star, TrendingUp, CheckCircle, Award, Clock, Shield } from "lucide-react"
+import { ArrowRight, BarChart3, Star, TrendingUp, CheckCircle, Clock } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
@@ -21,10 +21,8 @@ export default function SampleCustomerReportPage() {
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
               Our expert team provides <span className="text-primary font-bold">24/7 monitoring</span> with{" "}
               <span className="text-primary font-bold">urgent alerts</span> for{" "}
-              <span className="text-primary font-bold">negative/positive/all reviews</span>, plus{" "}
-              <span className="text-primary font-bold">professional response suggestions</span> Ready to Copy and Send.
-              You'll also receive these comprehensive professional reports delivered weekly to your inbox – no dashboard
-              login required.
+              <span className="text-primary font-bold">negative/positive/all reviews</span>. You'll also receive these
+              comprehensive professional reports delivered weekly to your inbox – no dashboard login required.
             </p>
           </div>
 
@@ -170,47 +168,6 @@ export default function SampleCustomerReportPage() {
               </CardContent>
             </Card>
 
-            {/* Review Sources */}
-            <Card className="bg-card border-border">
-              <CardContent className="p-8">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <Shield className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">Review Sources</h3>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Our Comprehensive Monitoring:</strong> We track all major{" "}
-                  <span className="text-primary font-bold">review sources</span> including Google (78 reviews, 3.5
-                  rating), Facebook (0 reviews), and dozens of other platforms automatically.
-                </p>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Real-Time Review Monitoring:</strong> Our system provides continuous monitoring across Google,
-                  Trustpilot, Facebook, and more, delivering{" "}
-                  <span className="text-primary font-bold">instant alerts</span> for negative, urgent, or positive
-                  reviews so you can respond quickly.
-                </p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>
-                      Complete <span className="text-primary font-bold">24/7 monitoring</span> across all major
-                      platforms
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>
-                      <span className="text-primary font-bold">Professional Response Templates</span> Ready to Copy and
-                      Send
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Weekly PDF Summary Reports showing all reviews and ratings</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
             {/* Online Reviews by Month */}
             <Card className="bg-card border-border">
               <CardContent className="p-8">
@@ -239,47 +196,6 @@ export default function SampleCustomerReportPage() {
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
                     <span>Weekly PDF reports delivered automatically</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* Review Details */}
-            <Card className="bg-card border-border">
-              <CardContent className="p-8">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <Award className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">Review Details & Customer Comments</h3>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Complete Review Intelligence:</strong> We capture every customer review with ratings, dates,
-                  names, and full text, plus provide{" "}
-                  <span className="text-primary font-bold">professional response suggestions</span> Ready to Copy and
-                  Send.
-                </p>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Expert Analysis & Response Support:</strong> Our team analyzes customer feedback patterns and
-                  provides <span className="text-primary font-bold">professional response suggestions</span> that
-                  address specific concerns professionally, saving you hours of response crafting.
-                </p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Professional analysis of customer pain points</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>
-                      <span className="text-primary font-bold">Professional response suggestions</span> Ready to Copy
-                      and Send
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>
-                      Focus on leveraging <span className="text-primary font-bold">positive reviews</span> to showcase
-                      business strengths
-                    </span>
                   </li>
                 </ul>
               </CardContent>
@@ -343,28 +259,6 @@ export default function SampleCustomerReportPage() {
                 </ul>
               </CardContent>
             </Card>
-
-            <Card className="bg-card border-border">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Award className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">Ready-To-Use Intelligence</h3>
-                <p className="text-muted-foreground mb-4">
-                  We transform raw review data into specific action plans and provide{" "}
-                  <span className="text-primary font-bold">professional response suggestions</span>
-                  Ready to Copy and Send, plus strategic recommendations for reputation enhancement.
-                </p>
-                <ul className="text-sm text-muted-foreground space-y-2">
-                  <li>
-                    • <span className="text-primary font-bold">Professional response suggestions</span> Ready to Copy
-                    and Send
-                  </li>
-                  <li>• Expert analysis of customer priorities</li>
-                  <li>• Strategic recommendations for immediate action</li>
-                </ul>
-              </CardContent>
-            </Card>
           </div>
 
           <div className="bg-primary/5 rounded-lg p-8 mb-16">
@@ -396,13 +290,6 @@ export default function SampleCustomerReportPage() {
                       specialists
                     </span>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span>
-                      <span className="text-primary font-bold">Professional response suggestions</span> Ready to Copy
-                      and Send
-                    </span>
-                  </li>
                 </ul>
               </div>
               <div>
@@ -418,13 +305,6 @@ export default function SampleCustomerReportPage() {
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span>Expert guidance for systematic customer satisfaction improvement</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span>
-                      Strategic recommendations for leveraging{" "}
-                      <span className="text-primary font-bold">positive reviews</span>
-                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -446,9 +326,8 @@ export default function SampleCustomerReportPage() {
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Don't manage reputation monitoring yourself. Our expert team provides{" "}
             <span className="text-primary font-bold">24/7 monitoring</span>,{" "}
-            <span className="text-primary font-bold">urgent alerts</span>,{" "}
-            <span className="text-primary font-bold">professional response suggestions</span> Ready to Copy and Send,
-            and comprehensive weekly intelligence reports – all delivered automatically to your inbox.
+            <span className="text-primary font-bold">urgent alerts</span>, and comprehensive weekly intelligence reports
+            – all delivered automatically to your inbox.
           </p>
 
           <div className="bg-primary/10 rounded-lg p-6 mb-8 max-w-2xl mx-auto">
@@ -499,10 +378,7 @@ export default function SampleCustomerReportPage() {
           <div className="text-sm text-muted-foreground space-y-2">
             <p>✓ No setup or management required - our experts handle everything</p>
             <p>✓ Cancel anytime - no long-term contracts</p>
-            <p>
-              ✓ <span className="text-primary font-bold">Professional response suggestions</span> Ready to Copy and Send
-              and professional reports delivered weekly
-            </p>
+            <p>✓ Professional reports delivered weekly</p>
           </div>
         </div>
       </section>
