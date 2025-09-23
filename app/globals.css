@@ -204,3 +204,30 @@
     transform: none;
   }
 }
+
+/* Added styles for CTA redirect message */
+.cta-redirect-message {
+  color: #22c55e; /* Light green color */
+  font-weight: bold;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 0.875rem; /* 14px */
+  animation: pulse-message 2s ease-in-out infinite;
+}
+
+@keyframes pulse-message {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .cta-redirect-message {
+    animation: none;
+  }
+}

@@ -77,6 +77,9 @@ export default function HomePage() {
                 <span className="get-started-text">Start Protecting Today</span>
                 <ArrowRight className="ml-2 w-6 h-6" />
               </a>
+              <div className="cta-redirect-message">
+                You will be redirected to our customer form immediately upon purchase.
+              </div>
               <Link href="/how-it-works">
                 <Button
                   variant="outline"
@@ -362,6 +365,9 @@ export default function HomePage() {
               <span className="get-started-text">Start Protecting Today</span>
               <ArrowRight className="ml-2 w-6 h-6" />
             </a>
+            <div className="cta-redirect-message">
+              You will be redirected to our customer form immediately upon purchase.
+            </div>
           </div>
         </div>
       </section>
@@ -460,6 +466,9 @@ export default function HomePage() {
               <span className="get-started-text">Start Protecting Today</span>
               <ArrowRight className="ml-2 w-6 h-6" />
             </a>
+            <div className="cta-redirect-message">
+              You will be redirected to our customer form immediately upon purchase.
+            </div>
             <p className="text-sm text-muted-foreground mt-3">Join hundreds of happy customers</p>
           </div>
         </div>
@@ -569,6 +578,9 @@ export default function HomePage() {
               <span className="get-started-text">Protect Your Revenue — Start Now</span>
               <ArrowRight className="ml-2 w-6 h-6" />
             </a>
+            <div className="cta-redirect-message">
+              You will be redirected to our customer form immediately upon purchase.
+            </div>
             <p className="text-sm text-muted-foreground mt-3">One prevented bad review pays for years of service</p>
           </div>
         </div>
@@ -643,6 +655,9 @@ export default function HomePage() {
                   <span className="get-started-text">Start Protecting Today</span>
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
+                <div className="cta-redirect-message">
+                  You will be redirected to our customer form immediately upon purchase.
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -683,6 +698,9 @@ export default function HomePage() {
               <span className="get-started-text">Start Protecting Today</span>
               <ArrowRight className="ml-2 w-6 h-6" />
             </a>
+            <div className="cta-redirect-message">
+              You will be redirected to our customer form immediately upon purchase.
+            </div>
             <p className="text-sm text-muted-foreground mt-3">We start protecting your business right away</p>
           </div>
         </div>
@@ -814,6 +832,9 @@ export default function HomePage() {
               <span className="get-started-text">Start Getting Reports Today</span>
               <ArrowRight className="ml-2 w-6 h-6" />
             </a>
+            <div className="cta-redirect-message">
+              You will be redirected to our customer form immediately upon purchase.
+            </div>
           </div>
         </div>
       </section>

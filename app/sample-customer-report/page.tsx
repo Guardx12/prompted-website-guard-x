@@ -352,6 +352,9 @@ export default function SampleCustomerReportPage() {
               <span className="get-started-text">Start Getting Reports Today</span>
               <ArrowRight className="ml-2 w-6 h-6" />
             </a>
+            <div className="cta-redirect-message">
+              You will be redirected to our customer form immediately upon purchase.
+            </div>
             <Link href="/pricing">
               <Button
                 variant="outline"

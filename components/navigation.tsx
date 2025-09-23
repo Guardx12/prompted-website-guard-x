@@ -74,6 +74,9 @@ export function Navigation() {
                 <Button className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90">
                   <span className="get-started-text">Get Started Today</span>
                 </Button>
+                <div className="cta-redirect-message">
+                  You will be redirected to our customer form immediately upon purchase.
+                </div>
               </Link>
             </div>
 
@@ -165,6 +168,9 @@ export function Navigation() {
                       <span className="get-started-text">Get Started Today</span>
                     </Button>
                   </Link>
+                  <div className="cta-redirect-message">
+                    You will be redirected to our customer form immediately upon purchase.
+                  </div>
                 </div>
               </div>
             </div>

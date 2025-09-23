@@ -82,6 +82,9 @@ export default function PricingPage() {
                   <span className="get-started-text">Start Expert Protection Today</span>
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
+                <div className="cta-redirect-message">
+                  You will be redirected to our customer form immediately upon purchase.
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -221,6 +224,9 @@ export default function PricingPage() {
               <span className="get-started-text">Start Expert Protection Today</span>
               <ArrowRight className="ml-2 w-5 h-5" />
             </a>
+            <div className="cta-redirect-message">
+              You will be redirected to our customer form immediately upon purchase.
+            </div>
             <a
               href="/pricing"
               className="border border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg bg-transparent rounded-md inline-flex items-center transition-colors"
