@@ -26,11 +26,10 @@ export default function HomePage() {
       <section className="relative pt-6 pb-20 lg:pt-8 lg:pb-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            {/* Logo */}
             <div className="flex justify-center mb-8">
               <Image
-                src="/images/guardx-new-logo.jpg"
-                alt="GuardX Company Logo"
+                src="/images/review-report.jpg"
+                alt="Review Report Screenshot showing 4.5 star rating with 21 reviews"
                 width={350}
                 height={140}
                 className="w-52 md:w-64 lg:w-72 h-auto object-contain"

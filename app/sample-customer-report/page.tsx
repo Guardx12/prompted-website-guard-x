@@ -7,11 +7,36 @@ import { Footer } from "@/components/footer"
 import { ArrowRight, BarChart3, Star, TrendingUp, CheckCircle, Clock } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { useEffect, useState } from "react"
 
 export default function SampleCustomerReportPage() {
+  const [isSticky, setIsSticky] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY
+      setIsSticky(scrollTop > 200)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
+
+      {isSticky && (
+        <div className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm py-3 text-center shadow-lg">
+          <a
+            href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg font-bold shadow-lg rounded-md inline-flex items-center transition-colors animate-pulse"
+          >
+            <span>Start Protecting Today</span>
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </a>
+        </div>
+      )}
 
       {/* Hero Section with Report Screenshot */}
       <section className="relative pt-6 pb-12 lg:pt-8 lg:pb-16">
@@ -23,6 +48,25 @@ export default function SampleCustomerReportPage() {
               <span className="text-primary font-bold">urgent alerts</span> for{" "}
               <span className="text-primary font-bold">negative/positive/all reviews</span>. You'll also receive these
               comprehensive professional reports delivered weekly to your inbox – no dashboard login required.
+            </p>
+
+            <div className="mb-12">
+              <a
+                href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-xl font-bold shadow-lg rounded-md inline-flex items-center transition-colors animate-pulse"
+              >
+                <span>Start Protecting Today</span>
+                <ArrowRight className="ml-2 w-6 h-6" />
+              </a>
+              <div className="text-sm text-muted-foreground mt-2">
+                You will be redirected to our customer form immediately upon purchase.
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mb-4">
+            <p className="text-lg font-semibold text-primary bg-primary/10 inline-block px-6 py-2 rounded-full">
+              Real sample report — see exactly what you'll get when you join GuardX.
             </p>
           </div>
 
@@ -41,6 +85,36 @@ export default function SampleCustomerReportPage() {
                 Sample report for "Taco Shop" showing comprehensive review analytics and insights
               </p>
             </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+            <Link href="/contact">
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-muted-foreground/30 text-muted-foreground hover:bg-muted/10 px-6 py-3 text-base bg-transparent"
+              >
+                Got questions? Contact us →
+              </Button>
+            </Link>
+            <Link href="/pricing">
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-muted-foreground/30 text-muted-foreground hover:bg-muted/10 px-6 py-3 text-base bg-transparent"
+              >
+                See our affordable pricing →
+              </Button>
+            </Link>
+            <Link href="/how-it-works">
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-muted-foreground/30 text-muted-foreground hover:bg-muted/10 px-6 py-3 text-base bg-transparent"
+              >
+                Learn how GuardX works →
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
