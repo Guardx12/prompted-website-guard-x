@@ -40,6 +40,8 @@ Our Business Plan provides comprehensive monitoring and protection across all ma
     question: "How much do extra locations cost?",
     answer: `**Extra Location Pricing:**
 
+Business Plan: £99/month per extra location.
+
 Each location gets full monitoring across all supported platforms with instant alerts and weekly reports.
 
 ✓ **One Low Monthly Fee** – no hidden costs, transparent pricing

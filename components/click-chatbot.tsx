@@ -20,12 +20,12 @@ const chatSections: ChatSection[] = [
       {
         question: "Can I add extra locations?",
         answer:
-          "Yes! Business Plan: £149/month per extra location. Contact us for custom pricing on multiple locations.",
+          "Yes! Business Plan: £99/month per extra location. Contact us for custom pricing on multiple locations.",
       },
       {
         question: "Do you offer annual discounts?",
         answer:
-          "Yes! Business Plan customers get 20% off when paying annually. That's £950 instead of £1,188 - saving you £238 per year!",
+          "Currently, we offer month-to-month pricing with no long-term contracts required. You can cancel anytime with complete flexibility.",
       },
     ],
   },

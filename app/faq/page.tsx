@@ -66,7 +66,7 @@ export default function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
                     <p>
-                      <strong>Business Plan:</strong> £149/month per additional location.
+                      <strong>Business Plan:</strong> £99/month per additional location.
                     </p>
                   </AccordionContent>
                 </AccordionItem>

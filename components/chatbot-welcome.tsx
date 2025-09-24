@@ -40,12 +40,10 @@ export function ChatbotWelcome() {
       answer: (
         <div className="space-y-2">
           <div>
-            <strong className="text-primary">Business Plan:</strong> £99/month, cancel anytime.{" "}
-            <strong>20% off annual pricing.</strong>
+            <strong className="text-primary">Business Plan:</strong> £99/month, cancel anytime.
           </div>
           <div>
-            <strong className="text-primary">Fake Review Protection:</strong> {pricing.fakeRemovalService}/month per
-            location.
+            <strong className="text-primary">Extra Locations:</strong> £99/month per additional location.
           </div>
         </div>
       ),
@@ -64,7 +62,8 @@ export function ChatbotWelcome() {
     },
     {
       question: "Can I pay annually?",
-      answer: "Yes! <strong>Annual payments give you a 20% discount</strong> on the Business Plan.",
+      answer:
+        "We currently offer month-to-month pricing with no long-term contracts. You can cancel anytime with complete flexibility.",
       nudge: null,
     },
     {
