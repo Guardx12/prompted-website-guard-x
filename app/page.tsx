@@ -127,6 +127,21 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Google Review Section */}
+      <section className="py-8 bg-background">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-center">
+            <Image
+              src="/images/joe-review.png"
+              alt="Google Review from Joseph Yossefi - 5 stars - A very handy tool to keep track of my business reviews — simple and easy to use."
+              width={600}
+              height={120}
+              className="w-full max-w-2xl h-auto object-contain"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Founder's Story Section */}
       <section className="py-16 bg-card/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -189,7 +204,7 @@ export default function HomePage() {
 
       <section className="py-20 bg-card/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">What You Get With GuardX</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               A complete review monitoring service that runs automatically while you focus on your business
@@ -280,7 +295,9 @@ export default function HomePage() {
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Sent to your email every week automatically</span>
+                    <span>
+                      <span className="text-primary font-bold">Sent to your email</span> every week automatically
+                    </span>
                   </li>
                 </ul>
               </CardContent>
