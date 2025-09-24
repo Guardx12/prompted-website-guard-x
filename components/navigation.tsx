@@ -55,8 +55,8 @@ export function Navigation() {
               <Link href="/why-this-works" className="text-foreground hover:text-primary transition-colors">
                 Why This Works
               </Link>
-              <Link href="/sample-customer-report" className="text-foreground hover:text-primary transition-colors">
-                Sample Report
+              <Link href="/what-you-get" className="text-foreground hover:text-primary transition-colors">
+                What You Get
               </Link>
               <Link href="/reputation-scorecard" className="text-foreground hover:text-primary transition-colors">
                 Free Scorecard
@@ -128,11 +128,11 @@ export function Navigation() {
                   Why This Works
                 </Link>
                 <Link
-                  href="/sample-customer-report"
+                  href="/what-you-get"
                   className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
-                  Sample Report
+                  What You Get
                 </Link>
                 <Link
                   href="/reputation-scorecard"

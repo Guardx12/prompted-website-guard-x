@@ -15,9 +15,9 @@ export default function HomePage() {
       <Navigation />
 
       <div className="bg-green-500 py-3 text-center">
-        <Link href="/sample-customer-report">
+        <Link href="/what-you-get">
           <Button className="bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-3 text-lg rounded-lg shadow-lg animate-pulse">
-            View Sample Report
+            View What You Get
           </Button>
         </Link>
       </div>
