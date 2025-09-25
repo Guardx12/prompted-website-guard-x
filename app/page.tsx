@@ -5,14 +5,17 @@ import { Footer } from "@/components/footer"
 import { Star, CheckCircle, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import Link from "next/link"
 
 export default function HomePage() {
   const [isSticky, setIsSticky] = useState(false)
+  const [showPromoBar, setShowPromoBar] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY
       setIsSticky(scrollTop > 200)
+      setShowPromoBar(scrollTop > 120)
     }
 
     window.addEventListener("scroll", handleScroll)
@@ -22,6 +25,18 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
+
+      {showPromoBar && (
+        <div className="fixed top-[106px] left-0 right-0 z-40 bg-green-600 text-white py-3 text-center shadow-lg">
+          <Link
+            href="/what-you-get"
+            className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black hover:from-yellow-300 hover:to-yellow-400 px-8 py-3 text-lg font-bold shadow-xl rounded-lg inline-flex items-center transition-all duration-300 transform hover:scale-105 animate-pulse border-2 border-yellow-600"
+          >
+            <span>View What You Get</span>
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Link>
+        </div>
+      )}
 
       {isSticky && (
         <div className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm py-3 text-center shadow-lg">

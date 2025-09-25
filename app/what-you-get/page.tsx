@@ -83,9 +83,6 @@ export default function SampleCustomerReportPage() {
                   className="w-full h-auto rounded-lg border border-border shadow-md"
                   priority
                 />
-                <p className="text-sm text-muted-foreground text-center mt-4">
-                  Real-time notification showing instant alert of new 5-star review detected by GuardX
-                </p>
               </div>
             </div>
           </div>
