@@ -18,7 +18,7 @@ export function Navigation() {
           className="text-primary-foreground hover:bg-primary-foreground/20"
           onClick={() => (window.location.href = "https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05")}
         >
-          Protect Your Reputation Now – £99/Month
+          Protect your reputation now for £99/month — just £3.20/day, cancel any time
         </Button>
       </div>
 
@@ -72,7 +72,7 @@ export function Navigation() {
               </Link>
               <Link href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05">
                 <Button className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90">
-                  <span className="get-started-text">Get Started Today</span>
+                  <span className="get-started-text">Start Protecting Today — Instant Setup!</span>
                 </Button>
                 <div className="cta-redirect-message">
                   You will be redirected to our customer form immediately upon purchase.
@@ -165,7 +165,7 @@ export function Navigation() {
                 <div className="px-3 py-2">
                   <Link href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05">
                     <Button className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                      <span className="get-started-text">Get Started Today</span>
+                      <span className="get-started-text">Start Protecting Today — Instant Setup!</span>
                     </Button>
                   </Link>
                   <div className="cta-redirect-message">

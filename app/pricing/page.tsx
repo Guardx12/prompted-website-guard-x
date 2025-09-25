@@ -1,13 +1,39 @@
+"use client"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { PricingNote } from "@/components/pricing-note"
 import { Card, CardContent } from "@/components/ui/card"
 import { CheckCircle, Shield, TrendingUp, Clock, ArrowRight } from "lucide-react"
+import { useEffect, useState } from "react"
 
 export default function PricingPage() {
+  const [isSticky, setIsSticky] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY
+      setIsSticky(scrollTop > 200)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
+
+      {isSticky && (
+        <div className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm py-3 text-center shadow-lg">
+          <a
+            href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
+            className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-10 py-4 text-xl font-bold shadow-xl rounded-lg inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20"
+          >
+            <span>Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
+            <ArrowRight className="ml-3 w-6 h-6" />
+          </a>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="py-20 lg:py-32">
@@ -40,6 +66,7 @@ export default function PricingPage() {
                     <span className="text-4xl font-bold text-primary">£99</span>
                     <span className="text-muted-foreground">/month</span>
                   </div>
+                  <div className="text-sm text-muted-foreground mb-2">Just £3.20/day – Cancel anytime</div>
                   <p className="text-sm text-muted-foreground">
                     Perfect for all businesses, with flexible location options
                   </p>
@@ -77,14 +104,11 @@ export default function PricingPage() {
 
                 <a
                   href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
-                  className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg font-semibold rounded-md inline-flex items-center justify-center transition-colors"
+                  className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 w-full px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
                 >
-                  <span className="get-started-text">Start Expert Protection Today</span>
-                  <ArrowRight className="ml-2 w-5 h-5" />
+                  <span className="get-started-text">Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
+                  <ArrowRight className="ml-4 w-8 h-8" />
                 </a>
-                <div className="cta-redirect-message">
-                  You will be redirected to our customer form immediately upon purchase.
-                </div>
               </CardContent>
             </Card>
           </div>
@@ -219,14 +243,11 @@ export default function PricingPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
-              className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-semibold rounded-md inline-flex items-center justify-center transition-colors"
+              className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
             >
-              <span className="get-started-text">Start Expert Protection Today</span>
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <span className="get-started-text">Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
+              <ArrowRight className="ml-4 w-8 h-8" />
             </a>
-            <div className="cta-redirect-message">
-              You will be redirected to our customer form immediately upon purchase.
-            </div>
             <a
               href="/pricing"
               className="border border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg bg-transparent rounded-md inline-flex items-center transition-colors"

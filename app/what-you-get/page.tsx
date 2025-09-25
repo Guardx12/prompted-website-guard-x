@@ -27,10 +27,10 @@ export default function SampleCustomerReportPage() {
         <div className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm py-3 text-center shadow-lg">
           <a
             href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg font-bold shadow-lg rounded-md inline-flex items-center transition-colors animate-pulse"
+            className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-10 py-4 text-xl font-bold shadow-xl rounded-lg inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20"
           >
-            <span>Start Protecting Today</span>
-            <ArrowRight className="ml-2 w-5 h-5" />
+            <span>Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
+            <ArrowRight className="ml-3 w-6 h-6" />
           </a>
         </div>
       )}
@@ -39,7 +39,7 @@ export default function SampleCustomerReportPage() {
       <section className="relative pt-6 pb-12 lg:pt-8 lg:pb-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground mb-6 tracking-tight">
               Instant Alerts for Every Review
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
@@ -50,12 +50,12 @@ export default function SampleCustomerReportPage() {
             <div className="mb-12">
               <a
                 href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
-                className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-xl font-bold shadow-lg rounded-md inline-flex items-center transition-colors"
+                className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
               >
-                <span className="get-started-text">Start Protecting Today</span>
-                <ArrowRight className="ml-2 w-6 h-6" />
+                <span>Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
+                <ArrowRight className="ml-4 w-8 h-8" />
               </a>
-              <div className="cta-redirect-message">
+              <div className="text-sm text-muted-foreground mt-4 font-medium">
                 You will be redirected to our customer form immediately upon purchase.
               </div>
             </div>
@@ -65,24 +65,26 @@ export default function SampleCustomerReportPage() {
           <div className="mb-16">
             <div className="bg-card/50 rounded-lg p-8 shadow-lg">
               <div className="text-center mb-6">
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">See How You'll Get Alerted</h2>
+                <h2 className="text-2xl md:text-3xl font-black text-foreground mb-4 tracking-tight">
+                  Instant Alerts On The Go
+                </h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  This is exactly what you'll see in your inbox when new reviews are detected. Instant notifications
-                  mean you can respond quickly and protect your reputation.
+                  Receive real-time notifications the moment a new review appears. Stay informed, respond quickly, and
+                  protect your business reputation effortlessly.
                 </p>
               </div>
 
               <div className="max-w-2xl mx-auto">
                 <Image
-                  src="/images/alerts.png"
-                  alt="Outlook email alert showing '2 New Online Review(s)' notification from GuardX for a business location"
+                  src="/images/susan-review-notification.png"
+                  alt="Google Review notification showing 5-star review from Susan M. - 'Nice pool great showers and staff too'"
                   width={600}
                   height={400}
                   className="w-full h-auto rounded-lg border border-border shadow-md"
                   priority
                 />
                 <p className="text-sm text-muted-foreground text-center mt-4">
-                  Real alert email showing instant notification of new reviews detected by GuardX
+                  Real-time notification showing instant alert of new 5-star review detected by GuardX
                 </p>
               </div>
             </div>
@@ -95,7 +97,7 @@ export default function SampleCustomerReportPage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <AlertTriangle className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-lg font-bold text-foreground mb-3">Instant Notifications</h3>
+                <h3 className="text-lg font-black text-foreground mb-3 tracking-tight">Instant Notifications</h3>
                 <p className="text-muted-foreground text-sm">
                   Get alerted within minutes of any new review appearing online. Never miss an opportunity to respond
                   quickly.
@@ -108,7 +110,7 @@ export default function SampleCustomerReportPage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <Mail className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-lg font-bold text-foreground mb-3">Direct to Your Email</h3>
+                <h3 className="text-lg font-black text-foreground mb-3 tracking-tight">Direct to Your Email</h3>
                 <p className="text-muted-foreground text-sm">
                   All alerts come straight to your inbox. No apps to check, no dashboards to log into – just simple
                   email notifications.
@@ -121,7 +123,7 @@ export default function SampleCustomerReportPage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-lg font-bold text-foreground mb-3">All Review Sites</h3>
+                <h3 className="text-lg font-black text-foreground mb-3 tracking-tight">All Review Sites</h3>
                 <p className="text-muted-foreground text-sm">
                   We monitor Google, Facebook, Trustpilot, Yelp, and many more review platforms automatically.
                 </p>
@@ -135,7 +137,9 @@ export default function SampleCustomerReportPage() {
       <section className="py-16 bg-card/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Plus Weekly Professional Reports</h2>
+            <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4 tracking-tight">
+              Plus Weekly Professional Reports
+            </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Once a week, you'll also receive a comprehensive professional report summarizing all your reviews,
               ratings, and insights. Here's what a sample report looks like:
@@ -165,7 +169,7 @@ export default function SampleCustomerReportPage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <BarChart3 className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">Complete Analytics</h3>
+                <h3 className="text-xl font-black text-foreground mb-4 tracking-tight">Complete Analytics</h3>
                 <p className="text-muted-foreground mb-4">
                   Every weekly report includes your overall star ratings, review breakdown by platform, and trends over
                   time. See exactly how your reputation is performing.
@@ -192,7 +196,7 @@ export default function SampleCustomerReportPage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <Clock className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">Delivered Automatically</h3>
+                <h3 className="text-xl font-black text-foreground mb-4 tracking-tight">Delivered Automatically</h3>
                 <p className="text-muted-foreground mb-4">
                   Reports are created by our team and sent directly to your email every week. No logging in, no manual
                   work – just professional insights delivered automatically.
@@ -221,7 +225,7 @@ export default function SampleCustomerReportPage() {
       <section className="py-16 bg-card/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4 tracking-tight">
               Understanding Your Professional Weekly Report
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -237,7 +241,7 @@ export default function SampleCustomerReportPage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <Star className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">Overall Review Rating</h3>
+                <h3 className="text-2xl font-black text-foreground mb-4 tracking-tight">Overall Review Rating</h3>
                 <p className="text-muted-foreground mb-4">
                   <strong>Our Expert Analysis:</strong> We track your{" "}
                   <span className="text-primary font-bold">star ratings</span> across all platforms (3.5 stars with 78
@@ -277,7 +281,7 @@ export default function SampleCustomerReportPage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <TrendingUp className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">Recent Activity</h3>
+                <h3 className="text-2xl font-black text-foreground mb-4 tracking-tight">Recent Activity</h3>
                 <p className="text-muted-foreground mb-4">
                   <strong>Our Professional Tracking:</strong> We monitor all{" "}
                   <span className="text-primary font-bold">review sources</span> and report +8 reviews in the last 30
@@ -308,10 +312,12 @@ export default function SampleCustomerReportPage() {
             {/* Rating Breakdown */}
             <Card className="bg-card border-border">
               <CardContent className="p-8">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <BarChart3 className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">Rating Breakdown (5-Star to 1-Star)</h3>
+                <h3 className="text-2xl font-black text-foreground mb-4 tracking-tight">
+                  Rating Breakdown (5-Star to 1-Star)
+                </h3>
                 <p className="text-muted-foreground mb-4">
                   <strong>Our Detailed Analysis:</strong> We break down your{" "}
                   <span className="text-primary font-bold">star ratings</span> distribution (31 five-star, 14 four-star
@@ -342,7 +348,7 @@ export default function SampleCustomerReportPage() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <TrendingUp className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">Online Reviews by Month</h3>
+                <h3 className="text-2xl font-black text-foreground mb-4 tracking-tight">Online Reviews by Month</h3>
                 <p className="text-muted-foreground mb-4">
                   <strong>Our Professional Monitoring:</strong> We track{" "}
                   <span className="text-primary font-bold">review trends</span> and provide comprehensive monthly
@@ -376,7 +382,7 @@ export default function SampleCustomerReportPage() {
       <section className="py-16 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4 tracking-tight">
               Complete Protection for Your Reputation
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -387,7 +393,7 @@ export default function SampleCustomerReportPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
             <div>
-              <h3 className="text-2xl font-bold text-foreground mb-6">Instant Response Capability</h3>
+              <h3 className="text-2xl font-black text-foreground mb-6 tracking-tight">Instant Response Capability</h3>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <AlertTriangle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
@@ -449,14 +455,23 @@ export default function SampleCustomerReportPage() {
       {/* Call to Action */}
       <section className="py-20 bg-card/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Start Getting Instant Alerts Today</h2>
+          <h2 className="text-3xl md:text-4xl font-black text-foreground mb-6 tracking-tight">
+            Start Getting Instant Alerts Today
+          </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Don't let reviews slip by unnoticed. Get instant email alerts for every new review plus comprehensive weekly
             reports – all delivered automatically to your inbox.
           </p>
 
           <div className="bg-primary/10 rounded-lg p-6 mb-8 max-w-2xl mx-auto">
-            <h3 className="text-lg font-semibold text-foreground mb-4">What You Get:</h3>
+            <h3 className="text-lg font-black text-foreground mb-4 tracking-tight">What You Get:</h3>
+            <div className="text-center mb-6">
+              <div className="text-3xl font-black text-primary mb-2">£99/month</div>
+              <div className="text-sm text-muted-foreground mb-2">Just £3.20/day – Cancel anytime</div>
+              <div className="text-sm font-semibold text-primary">
+                Best value for busy business owners — covers all major review sites automatically.
+              </div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-primary" />
@@ -482,12 +497,12 @@ export default function SampleCustomerReportPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <a
               href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
-              className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-xl font-bold shadow-lg rounded-md inline-flex items-center transition-colors"
+              className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
             >
-              <span className="get-started-text">Start Protecting Today</span>
-              <ArrowRight className="ml-2 w-6 h-6" />
+              <span>Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
+              <ArrowRight className="ml-4 w-8 h-8" />
             </a>
-            <div className="cta-redirect-message">
+            <div className="text-sm text-muted-foreground font-medium">
               You will be redirected to our customer form immediately upon purchase.
             </div>
           </div>
