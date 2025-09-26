@@ -219,20 +219,20 @@ export default function HomePage() {
             </div>
 
             <div className="max-w-2xl mx-auto mb-8">
-              <Card className="bg-primary/5 border-primary/30 shadow-lg">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-primary mb-3">Why £99?</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                    GuardX is built to be <strong className="text-foreground">lean</strong>,{" "}
-                    <strong className="text-foreground">automated</strong>, and{" "}
-                    <strong className="text-foreground">affordable</strong>. Unlike big enterprise services that charge
+              <Card className="bg-green-600 border-green-700 shadow-lg">
+                <CardContent className="p-5 sm:p-6">
+                  <h3 className="text-xl font-bold text-white mb-3">Why £99?</h3>
+                  <p className="text-sm text-white leading-relaxed mb-3">
+                    GuardX is built to be <strong className="text-white">lean</strong>,{" "}
+                    <strong className="text-white">automated</strong>, and{" "}
+                    <strong className="text-white">affordable</strong>. Unlike big enterprise services that charge
                     hundreds per month for manual monitoring, GuardX uses a smart, automated system to track all your
                     online reviews and alerts daily.
                   </p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    You get the <strong className="text-primary">same protection and insights</strong> at a fair price —
-                    just <strong className="text-primary">£99/month</strong>. No hidden fees, no long contracts — just
-                    straightforward reputation monitoring for every business.
+                  <p className="text-sm text-white leading-relaxed">
+                    You get the <strong className="text-white">same protection and insights</strong> at a fair price —
+                    just <strong className="text-white text-lg">£99/month</strong>. No hidden fees, no long contracts —
+                    just straightforward reputation monitoring for every business.
                   </p>
                 </CardContent>
               </Card>

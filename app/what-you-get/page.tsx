@@ -391,18 +391,20 @@ export default function SampleCustomerReportPage() {
             </div>
 
             <div className="mt-6 pt-6 border-t border-border">
-              <h4 className="text-lg font-bold text-foreground mb-3">Why £99?</h4>
-              <p className="text-sm text-muted-foreground mb-3">
-                GuardX is built to be{" "}
-                <span className="text-primary font-semibold">lean, automated, and affordable</span>. Unlike big
-                enterprise services that charge hundreds per month for manual monitoring, GuardX uses a smart, automated
-                system to track all your online reviews and alerts daily.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                You get the <span className="text-primary font-semibold">same protection and insights</span> at a fair
-                price — just <span className="text-primary font-bold">£99/month</span>. No hidden fees, no long
-                contracts — just straightforward reputation monitoring for every business.
-              </p>
+              <div className="bg-green-600 rounded-md p-5 sm:p-6">
+                <h4 className="text-lg font-bold text-white mb-3">Why £99?</h4>
+                <p className="text-sm text-white leading-relaxed mb-3">
+                  GuardX is built to be{" "}
+                  <span className="text-white font-semibold">lean, automated, and affordable</span>. Unlike big
+                  enterprise services that charge hundreds per month for manual monitoring, GuardX uses a smart,
+                  automated system to track all your online reviews and alerts daily.
+                </p>
+                <p className="text-sm text-white leading-relaxed">
+                  You get the <span className="text-white font-semibold">same protection and insights</span> at a fair
+                  price — just <span className="text-white font-bold text-lg">£99/month</span>. No hidden fees, no long
+                  contracts — just straightforward reputation monitoring for every business.
+                </p>
+              </div>
             </div>
           </div>
 
