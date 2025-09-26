@@ -46,6 +46,25 @@ export default function PricingPage() {
               Professional done-for-you reputation management with expert oversight and transparent pricing
             </p>
           </div>
+
+          <div className="max-w-3xl mx-auto mb-16">
+            <Card className="bg-card/50 border-primary/20">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-foreground mb-4 text-center">Why £99?</h2>
+                <p className="text-muted-foreground mb-4">
+                  GuardX is built to be{" "}
+                  <span className="text-primary font-semibold">lean, automated, and affordable</span>. Unlike big
+                  enterprise services that charge hundreds per month for manual monitoring, GuardX uses a smart,
+                  automated system to track all your online reviews and alerts daily.
+                </p>
+                <p className="text-muted-foreground">
+                  You get the <span className="text-primary font-semibold">same protection and insights</span> at a fair
+                  price — just <span className="text-primary font-bold">£99/month</span>. No hidden fees, no long
+                  contracts — just straightforward reputation monitoring for every business.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 

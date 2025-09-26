@@ -177,21 +177,72 @@ export default function HomePage() {
 
           <div className="w-24 h-px bg-primary mx-auto mb-8 opacity-50"></div>
 
+          <div className="max-w-4xl mx-auto mt-12 mb-8">
+            <Card className="bg-card/50 border-primary/20 shadow-lg">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <h2 className="text-2xl font-bold text-foreground mb-4">Why I Started GuardX</h2>
+                </div>
+                <div className="prose prose-invert max-w-none">
+                  <p className="text-base text-muted-foreground leading-relaxed mb-4">
+                    Hi, I'm <strong className="text-foreground">Luke Andrews</strong>. I started GuardX because I saw
+                    how easy it is for businesses of all sizes to have their reputation damaged online — and how hard it
+                    is to keep track of every review, comment, and rating across the web.
+                  </p>
+                  <p className="text-base text-muted-foreground leading-relaxed mb-4">
+                    I wanted to create a service that's <strong className="text-primary">simple</strong>,{" "}
+                    <strong className="text-primary">affordable</strong>, and{" "}
+                    <strong className="text-primary">automated</strong> so business owners can focus on running their
+                    business, not chasing alerts.
+                  </p>
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    With GuardX, you'll get a clear, easy-to-read daily report showing exactly what people are saying
+                    about your business, so you can act quickly and protect your reputation. GuardX isn't a big
+                    enterprise service — it's <strong className="text-primary">lean</strong>,{" "}
+                    <strong className="text-primary">affordable</strong>, and designed to give you{" "}
+                    <strong className="text-primary">peace of mind</strong>.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="w-24 h-px bg-primary mx-auto mb-8 opacity-50"></div>
+
           <div className="text-center">
             <div className="mb-6">
               <div className="text-4xl font-bold text-primary mb-2">£99/month</div>
               <div className="text-lg text-muted-foreground font-medium">Just £3.20/day – Cancel anytime</div>
-              {/* Added value proposition line under pricing */}
               <div className="text-sm text-muted-foreground mt-2 italic">
                 Best value for busy business owners — covers all major review sites automatically.
               </div>
+            </div>
+
+            <div className="max-w-2xl mx-auto mb-8">
+              <Card className="bg-primary/5 border-primary/30 shadow-lg">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-primary mb-3">Why £99?</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                    GuardX is built to be <strong className="text-foreground">lean</strong>,{" "}
+                    <strong className="text-foreground">automated</strong>, and{" "}
+                    <strong className="text-foreground">affordable</strong>. Unlike big enterprise services that charge
+                    hundreds per month for manual monitoring, GuardX uses a smart, automated system to track all your
+                    online reviews and alerts daily.
+                  </p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    You get the <strong className="text-primary">same protection and insights</strong> at a fair price —
+                    just <strong className="text-primary">£99/month</strong>. No hidden fees, no long contracts — just
+                    straightforward reputation monitoring for every business.
+                  </p>
+                </CardContent>
+              </Card>
             </div>
 
             <a
               href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
               className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
             >
-              <span className="get-started-text">Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
+              <span className="get-started-text">Protect Your Reputation Today — £99/month</span>
               <ArrowRight className="ml-4 w-8 h-8" />
             </a>
 
