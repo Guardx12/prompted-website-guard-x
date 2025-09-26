@@ -216,11 +216,6 @@ export default function PricingPage() {
                   "We offer two expert-managed plans: Business Plan (£99/month) for complete professional reputation protection, and Enterprise Plan (custom pricing) for businesses with 5+ locations requiring dedicated expert teams.",
               },
               {
-                question: "How does expert management pricing work for multiple locations?",
-                answer:
-                  "Business Plan: £149/month per additional location (fully managed by our experts). Enterprise Plan: Custom pricing for 5+ locations with dedicated account management and volume discounts.",
-              },
-              {
                 question: "What platforms do your experts monitor?",
                 answer:
                   "Our professional team monitors Google, Trustpilot, Yelp, Facebook, and many more review platforms with 24/7 expert oversight to ensure comprehensive coverage of your online reputation across all major sites.",
