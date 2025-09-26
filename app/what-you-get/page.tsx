@@ -2,7 +2,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { ArrowRight, BarChart3, Star, TrendingUp, CheckCircle, Clock, AlertTriangle, Mail } from "lucide-react"
+import { ArrowRight, BarChart3, Star, TrendingUp, CheckCircle, Clock, AlertTriangle } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 
@@ -87,64 +87,21 @@ export default function SampleCustomerReportPage() {
             </div>
           </div>
 
-          {/* Alerts Benefits */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <Card className="bg-card border-border">
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <AlertTriangle className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-lg font-black text-foreground mb-3 tracking-tight">Instant Notifications</h3>
-                <p className="text-muted-foreground text-sm">
-                  Get alerted within minutes of any new review appearing online. Never miss an opportunity to respond
-                  quickly.
+          <div className="mb-16">
+            <div className="bg-card/50 rounded-lg p-8 shadow-lg">
+              <div className="text-center mb-6">
+                <h2 className="text-2xl md:text-3xl font-black text-foreground mb-4 tracking-tight">
+                  Plus Weekly Professional Reports
+                </h2>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                  Once a week, you'll also receive a comprehensive professional report summarizing all your reviews,
+                  ratings, and insights. Here's what a sample report looks like:
                 </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border-border">
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Mail className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-lg font-black text-foreground mb-3 tracking-tight">Direct to Your Email</h3>
-                <p className="text-muted-foreground text-sm">
-                  All alerts come straight to your inbox. No apps to check, no dashboards to log into – just simple
-                  email notifications.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border-border">
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-lg font-black text-foreground mb-3 tracking-tight">All Review Sites</h3>
-                <p className="text-muted-foreground text-sm">
-                  We monitor Google, Facebook, Trustpilot, Yelp, and many more review platforms automatically.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Weekly Reports Section */}
-      <section className="py-16 bg-card/50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4 tracking-tight">
-              Plus Weekly Professional Reports
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Once a week, you'll also receive a comprehensive professional report summarizing all your reviews,
-              ratings, and insights. Here's what a sample report looks like:
-            </p>
+              </div>
+            </div>
           </div>
 
-          {/* Sample Report Screenshot */}
-          <div className="mb-12">
+          <div className="mb-16">
             <div className="bg-card/50 rounded-lg p-6 shadow-lg">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-09-04%20at%209.47.04%E2%80%AFAM-3YMh7Grb6pepRc2i1iJOjWo154REZp.png"
@@ -157,63 +114,6 @@ export default function SampleCustomerReportPage() {
                 Sample weekly report showing comprehensive review analytics and insights
               </p>
             </div>
-          </div>
-
-          {/* Report Features */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="bg-card border-border">
-              <CardContent className="p-8">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <BarChart3 className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-black text-foreground mb-4 tracking-tight">Complete Analytics</h3>
-                <p className="text-muted-foreground mb-4">
-                  Every weekly report includes your overall star ratings, review breakdown by platform, and trends over
-                  time. See exactly how your reputation is performing.
-                </p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Star ratings across all platforms</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Review volume and trends</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Platform-by-platform breakdown</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border-border">
-              <CardContent className="p-8">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <Clock className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-black text-foreground mb-4 tracking-tight">Delivered Automatically</h3>
-                <p className="text-muted-foreground mb-4">
-                  Reports are created by our team and sent directly to your email every week. No logging in, no manual
-                  work – just professional insights delivered automatically.
-                </p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Weekly delivery to your inbox</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Professional PDF format</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Easy to share with your team</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
