@@ -2,6 +2,8 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import { PaymentLogos } from "@/components/payment-logos"
+import { CompanyLogos } from "@/components/company-logos"
 import { ArrowRight, BarChart3, Star, TrendingUp, CheckCircle, Clock, AlertTriangle } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
@@ -47,7 +49,9 @@ export default function SampleCustomerReportPage() {
               and other review sites. No more checking websites manually – we watch everything for you.
             </p>
 
-            <div className="mb-12">
+            <CompanyLogos className="mb-8" />
+
+            <div className="mb-12 flex flex-col items-center">
               <a
                 href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
                 className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
@@ -55,6 +59,7 @@ export default function SampleCustomerReportPage() {
                 <span>Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
                 <ArrowRight className="ml-4 w-8 h-8" />
               </a>
+              <PaymentLogos />
               <div className="text-sm text-muted-foreground mt-4 font-medium">
                 You will be redirected to our customer form immediately upon purchase.
               </div>
@@ -409,13 +414,16 @@ export default function SampleCustomerReportPage() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-            <a
-              href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
-              className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
-            >
-              <span>Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
-              <ArrowRight className="ml-4 w-8 h-8" />
-            </a>
+            <div className="flex flex-col items-center">
+              <a
+                href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
+                className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
+              >
+                <span>Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
+                <ArrowRight className="ml-4 w-8 h-8" />
+              </a>
+              <PaymentLogos />
+            </div>
             <div className="text-sm text-muted-foreground font-medium">
               You will be redirected to our customer form immediately upon purchase.
             </div>

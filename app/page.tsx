@@ -2,6 +2,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import { PaymentLogos } from "@/components/payment-logos"
 import { Star, CheckCircle, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
@@ -70,18 +71,53 @@ export default function HomePage() {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
               Protect Your Business Reputation — <span className="text-primary">Automatic Alerts & Reports</span>
             </h1>
+
+            <div className="flex justify-center items-center gap-8 mb-6 flex-wrap">
+              <Image
+                src="/images/facebook-logo.png"
+                alt="Facebook"
+                width={40}
+                height={40}
+                className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity duration-200"
+              />
+              <Image
+                src="/images/yelp-logo.png"
+                alt="Yelp"
+                width={80}
+                height={40}
+                className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity duration-200"
+              />
+              <Image
+                src="/images/trustpilot-logo-new.webp"
+                alt="Trustpilot"
+                width={40}
+                height={40}
+                className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity duration-200"
+              />
+              <Image
+                src="/images/tripadvisor-logo-new.png"
+                alt="TripAdvisor"
+                width={140}
+                height={40}
+                className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity duration-200"
+              />
+            </div>
+
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
               Get notified immediately when new reviews appear — good, bad, or urgent. Weekly reports delivered straight
               to your inbox.
             </p>
 
-            <a
-              href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
-              className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
-            >
-              <span className="get-started-text">Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
-              <ArrowRight className="ml-4 w-8 h-8" />
-            </a>
+            <div className="flex flex-col items-center">
+              <a
+                href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
+                className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
+              >
+                <span className="get-started-text">Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
+                <ArrowRight className="ml-4 w-8 h-8" />
+              </a>
+              <PaymentLogos />
+            </div>
           </div>
 
           <div className="w-24 h-px bg-primary mx-auto mb-8 opacity-50"></div>
@@ -238,13 +274,16 @@ export default function HomePage() {
               </Card>
             </div>
 
-            <a
-              href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
-              className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
-            >
-              <span className="get-started-text">Protect Your Reputation Today — £99/month</span>
-              <ArrowRight className="ml-4 w-8 h-8" />
-            </a>
+            <div className="flex flex-col items-center">
+              <a
+                href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
+                className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
+              >
+                <span className="get-started-text">Protect Your Reputation Today — £99/month</span>
+                <ArrowRight className="ml-4 w-8 h-8" />
+              </a>
+              <PaymentLogos />
+            </div>
 
             <p className="text-sm text-muted-foreground">No contracts • Cancel anytime • Instant setup</p>
           </div>

@@ -2,6 +2,8 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { PricingNote } from "@/components/pricing-note"
+import { PaymentLogos } from "@/components/payment-logos"
+import { CompanyLogos } from "@/components/company-logos"
 import { Card, CardContent } from "@/components/ui/card"
 import { CheckCircle, Shield, TrendingUp, Clock, ArrowRight } from "lucide-react"
 import { useEffect, useState } from "react"
@@ -121,13 +123,17 @@ export default function PricingPage() {
                   <div className="text-xs text-green-600 font-medium">✓ One Low Monthly Fee – no hidden costs</div>
                 </div>
 
-                <a
-                  href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
-                  className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 w-full px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
-                >
-                  <span className="get-started-text">Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
-                  <ArrowRight className="ml-4 w-8 h-8" />
-                </a>
+                <div className="flex flex-col items-center">
+                  <a
+                    href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
+                    className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 w-full px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
+                  >
+                    <span className="get-started-text">Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
+                    <ArrowRight className="ml-4 w-8 h-8" />
+                  </a>
+                  <PaymentLogos />
+                  <CompanyLogos />
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -259,14 +265,18 @@ export default function PricingPage() {
             Join hundreds of businesses that trust GuardX's expert team to professionally manage and protect their
             online reputation.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
-              className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
-            >
-              <span className="get-started-text">Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
-              <ArrowRight className="ml-4 w-8 h-8" />
-            </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col items-center">
+              <a
+                href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
+                className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
+              >
+                <span className="get-started-text">Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
+                <ArrowRight className="ml-4 w-8 h-8" />
+              </a>
+              <PaymentLogos />
+              <CompanyLogos />
+            </div>
             <a
               href="/pricing"
               className="border border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg bg-transparent rounded-md inline-flex items-center transition-colors"
