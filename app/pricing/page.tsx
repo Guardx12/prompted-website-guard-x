@@ -7,6 +7,7 @@ import { CompanyLogos } from "@/components/company-logos"
 import { Card, CardContent } from "@/components/ui/card"
 import { CheckCircle, Shield, TrendingUp, Clock, ArrowRight } from "lucide-react"
 import { useEffect, useState } from "react"
+import { FreeTrialSection } from "@/components/free-trial-section"
 
 export default function PricingPage() {
   const [isSticky, setIsSticky] = useState(false)
@@ -47,6 +48,10 @@ export default function PricingPage() {
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Professional done-for-you reputation management with expert oversight and transparent pricing
             </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto mb-16">
+            <FreeTrialSection variant="pricing" />
           </div>
 
           <div className="max-w-3xl mx-auto mb-16">

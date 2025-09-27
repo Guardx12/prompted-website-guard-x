@@ -7,6 +7,7 @@ import { Star, CheckCircle, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { FreeTrialSection } from "@/components/free-trial-section"
 
 export default function HomePage() {
   const [isSticky, setIsSticky] = useState(false)
@@ -119,6 +120,8 @@ export default function HomePage() {
               <PaymentLogos />
             </div>
           </div>
+
+          <FreeTrialSection variant="hero" className="mb-12" />
 
           <div className="w-24 h-px bg-primary mx-auto mb-8 opacity-50"></div>
 

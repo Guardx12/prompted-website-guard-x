@@ -7,6 +7,7 @@ import { CompanyLogos } from "@/components/company-logos"
 import { ArrowRight, BarChart3, Star, TrendingUp, CheckCircle, Clock, AlertTriangle } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import { FreeTrialSection } from "@/components/free-trial-section"
 
 export default function SampleCustomerReportPage() {
   const [isSticky, setIsSticky] = useState(false)
@@ -351,6 +352,13 @@ export default function SampleCustomerReportPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Free Trial Section */}
+      <section className="py-16 bg-card/50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FreeTrialSection variant="features" />
         </div>
       </section>
 
