@@ -10,13 +10,11 @@ import Link from "next/link"
 import { FreeTrialSection } from "@/components/free-trial-section"
 
 export default function HomePage() {
-  const [isSticky, setIsSticky] = useState(false)
   const [showPromoBar, setShowPromoBar] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY
-      setIsSticky(scrollTop > 200)
       setShowPromoBar(scrollTop > 120)
     }
 
@@ -32,23 +30,11 @@ export default function HomePage() {
         <div className="fixed top-[106px] left-0 right-0 z-40 bg-green-600 text-white py-3 text-center shadow-lg">
           <Link
             href="/what-you-get"
-            className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black hover:from-yellow-300 hover:to-yellow-400 px-8 py-3 text-lg font-bold shadow-xl rounded-lg inline-flex items-center transition-all duration-300 transform hover:scale-105 animate-pulse border-2 border-yellow-600"
+            className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black hover:from-yellow-300 hover:to-yellow-400 px-8 py-3 text-lg font-bold shadow-xl rounded-lg inline-flex items-center border-2 border-yellow-600"
           >
             <span>View What You Get</span>
             <ArrowRight className="ml-2 w-5 h-5" />
           </Link>
-        </div>
-      )}
-
-      {isSticky && (
-        <div className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm py-3 text-center shadow-lg">
-          <a
-            href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
-            className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-10 py-4 text-xl font-bold shadow-xl rounded-lg inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20"
-          >
-            <span>Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
-            <ArrowRight className="ml-3 w-6 h-6" />
-          </a>
         </div>
       )}
 
@@ -112,7 +98,7 @@ export default function HomePage() {
             <div className="flex flex-col items-center">
               <a
                 href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
-                className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
+                className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 border-2 border-primary-foreground/20"
               >
                 <span className="get-started-text">Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
                 <ArrowRight className="ml-4 w-8 h-8" />
@@ -280,7 +266,7 @@ export default function HomePage() {
             <div className="flex flex-col items-center">
               <a
                 href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
-                className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
+                className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 border-2 border-primary-foreground/20"
               >
                 <span className="get-started-text">Protect Your Reputation Today — £99/month</span>
                 <ArrowRight className="ml-4 w-8 h-8" />

@@ -55,9 +55,6 @@ export function FreeTrialSection({ variant = "hero", className = "" }: FreeTrial
             <p className="text-sm text-muted-foreground mb-3">
               with the subject line <strong className="text-primary">'Free Trial'</strong> to get started!
             </p>
-            <p className="text-xs text-muted-foreground italic">
-              Only 5 active trial slots at a time. Others will be added to the queue.
-            </p>
           </div>
         </CardContent>
       </Card>
