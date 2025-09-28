@@ -26,18 +26,22 @@ export default function HomePage() {
     window.open(`mailto:${email}?subject=${subject}`, "_blank")
   }
 
+  const handleWhatYouGetClick = () => {
+    window.location.href = "/what-you-get"
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
 
       {showPromoBar && (
-        <div className="fixed top-[106px] left-0 right-0 z-40 bg-primary text-primary-foreground py-3 text-center shadow-lg">
+        <div className="fixed top-[106px] left-0 right-0 z-40 bg-green-600 text-white py-3 text-center shadow-lg">
           <button
-            onClick={handleEmailClick}
+            onClick={handleWhatYouGetClick}
             className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black hover:from-yellow-300 hover:to-yellow-400 px-8 py-3 text-lg font-bold shadow-xl rounded-lg inline-flex items-center border-2 border-yellow-600"
           >
             <Mail className="mr-2 w-5 h-5" />
-            <span>Email Free Trial</span>
+            <span>What You Get</span>
             <ArrowRight className="ml-2 w-5 h-5" />
           </button>
         </div>
