@@ -27,13 +27,14 @@ export function FreeTrialSection({ variant = "hero", className = "" }: FreeTrial
           </h3>
 
           <p className={`text-muted-foreground mb-6 max-w-2xl mx-auto ${isHero ? "text-lg" : "text-base"}`}>
-            Instant alerts, weekly reports, and complete peace of mind. No login required — just results.
+            Get 24/7 monitoring and instant alerts for reviews on Google, Facebook, Yelp, and 100+ platforms. No login
+            required — trial starts immediately via email.
           </p>
 
           <div className="mb-4 p-3 bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/30 rounded-lg">
             <p className="text-sm text-amber-800 dark:text-amber-200">
-              <strong>Trial includes:</strong> Google and Facebook review monitoring only. Full service monitors all
-              major review platforms.
+              <strong>Free 7-Day Trial includes:</strong> 24/7 monitoring, instant alerts for Google, Facebook, Yelp &
+              100+ platforms, sample review reports, and complete peace of mind for business owners.
             </p>
           </div>
 
@@ -53,7 +54,8 @@ export function FreeTrialSection({ variant = "hero", className = "" }: FreeTrial
               <strong className="text-foreground">Email info@guardxnetwork.com</strong>
             </p>
             <p className="text-sm text-muted-foreground mb-3">
-              with the subject line <strong className="text-primary">'Free Trial'</strong> to get started!
+              with the subject line <strong className="text-primary">'Free Trial'</strong> — onboarding link sent
+              instantly!
             </p>
           </div>
         </CardContent>

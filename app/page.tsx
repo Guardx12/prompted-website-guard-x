@@ -58,8 +58,8 @@ export default function HomePage() {
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto mb-8 leading-relaxed">
-              Get instant alerts when new reviews appear. Google & Facebook monitoring starts immediately — no login
-              required.
+              Get 24/7 monitoring and instant alerts for reviews on Google, Facebook, Yelp, and 100+ platforms. No login
+              required — trial starts immediately via email.
             </p>
 
             {/* Single, Obvious CTA */}
@@ -78,7 +78,7 @@ export default function HomePage() {
               Email: <strong className="text-primary">info@guardxnetwork.com</strong>
             </p>
             <p className="text-base text-muted-foreground">
-              Subject: "Free Trial" • Onboarding sent immediately via email
+              Subject: "Free Trial" • Onboarding link sent instantly after emailing
             </p>
           </div>
 
@@ -86,23 +86,23 @@ export default function HomePage() {
           <div className="max-w-3xl mx-auto mb-12">
             <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20 shadow-lg">
               <CardContent className="p-6 text-center">
-                <h3 className="text-xl font-bold text-foreground mb-4">What's Included in Your Free Trial</h3>
+                <h3 className="text-xl font-bold text-foreground mb-4">What's Included in Your Free 7-Day Trial</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-base">Google review monitoring</span>
+                    <span className="text-base">24/7 monitoring across 100+ platforms</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-base">Facebook review monitoring</span>
+                    <span className="text-base">Instant alerts for all major review sites</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-base">Instant email alerts</span>
+                    <span className="text-base">Sample review reports included</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-base">No login required</span>
+                    <span className="text-base">Complete peace of mind for business owners</span>
                   </div>
                 </div>
               </CardContent>

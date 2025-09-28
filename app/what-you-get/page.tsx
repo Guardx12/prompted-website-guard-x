@@ -46,8 +46,8 @@ export default function SampleCustomerReportPage() {
               Instant Alerts for Every Review
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
-              Get notified immediately when new reviews appear for your business across Google, Facebook, Trustpilot,
-              and other review sites. No more checking websites manually – we watch everything for you.
+              Get 24/7 monitoring and instant alerts for reviews on Google, Facebook, Yelp, and 100+ platforms. No login
+              required — trial starts immediately via email with complete peace of mind.
             </p>
 
             <CompanyLogos className="mb-8" />
