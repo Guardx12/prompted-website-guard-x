@@ -75,9 +75,9 @@ export default function TermsPage() {
                 <hr className="border-border" />
 
                 <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">Working with Review Platforms</h2>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">Review Platform Monitoring</h2>
                   <p className="text-lg leading-relaxed mb-4">
-                    We work with many review platforms like Google, Yelp, Facebook, and others to manage your
+                    We monitor reviews on many platforms like Google, Yelp, Facebook, and others to manage your
                     reputation. Here's what you should know:
                   </p>
                   <ul className="space-y-3 text-muted-foreground">
