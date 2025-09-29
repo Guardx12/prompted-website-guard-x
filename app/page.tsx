@@ -68,7 +68,8 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight">
-              Get Your <span className="text-primary">Free Reputation Scorecard</span> in Minutes
+              Get your <span className="text-primary">score</span> within minutes and see how much{" "}
+              <span className="text-primary">revenue you could be losing</span> from negative reviews
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-12 leading-relaxed">
