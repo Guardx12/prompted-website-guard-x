@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import "./globals.css"
-import ClickChatbot from "@/components/click-chatbot"
 import Script from "next/script"
 
 export const metadata: Metadata = {
@@ -50,7 +49,6 @@ export default function RootLayout({
 
       <body className="min-h-screen bg-background text-foreground antialiased">
         {children}
-        <ClickChatbot />
 
         {/* Facebook Pixel noscript */}
         <noscript>

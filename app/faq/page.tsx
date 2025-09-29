@@ -40,10 +40,25 @@ export default function FAQPage() {
                     What are your pricing plans?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      We offer the <strong>Business Plan (£99/month)</strong> for complete reputation protection with
-                      monitoring across Google, Trustpilot, Yelp, Facebook, and many more platforms.
-                    </p>
+                    <div className="space-y-3">
+                      <p>We offer a simple, transparent pricing structure:</p>
+                      <ul className="list-disc list-inside space-y-2 ml-4">
+                        <li>
+                          <strong>Business Plan: £99/month per location</strong>
+                        </li>
+                        <li>Complete reputation protection and monitoring</li>
+                        <li>Weekly automated reports delivered to your email</li>
+                        <li>Real-time alerts for urgent issues</li>
+                        <li>No setup fees or long-term contracts</li>
+                      </ul>
+                      <div className="mt-4">
+                        <Link href="/pricing">
+                          <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                            View Full Pricing Details
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
 
@@ -52,11 +67,19 @@ export default function FAQPage() {
                     What platforms do you monitor?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      We monitor Google, Trustpilot, Yelp, Facebook, and many more review platforms to ensure
-                      comprehensive coverage of your online reputation across all major sites where customers leave
-                      reviews.
-                    </p>
+                    <div className="space-y-3">
+                      <p>We provide comprehensive monitoring across all major review platforms:</p>
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        <li>Google Reviews & Google My Business</li>
+                        <li>Trustpilot</li>
+                        <li>Yelp</li>
+                        <li>Facebook Reviews</li>
+                        <li>Plus 100+ additional platforms automatically monitored</li>
+                      </ul>
+                      <p className="mt-3">
+                        Our automated system ensures no review goes unnoticed across your entire online presence.
+                      </p>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
 
@@ -65,9 +88,27 @@ export default function FAQPage() {
                     How does extra location pricing work?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      <strong>Business Plan:</strong> £99/month per additional location.
-                    </p>
+                    <div className="space-y-3">
+                      <p>Our location-based pricing is simple and transparent:</p>
+                      <ul className="list-disc list-inside space-y-2 ml-4">
+                        <li>
+                          <strong>£99 per location per month</strong>
+                        </li>
+                        <li>Include all locations in your onboarding form after purchase</li>
+                        <li>Each location receives full monitoring and reporting</li>
+                        <li>No additional setup fees for multiple locations</li>
+                      </ul>
+                      <div className="mt-4">
+                        <Link href="/onboarding">
+                          <Button
+                            variant="outline"
+                            className="border-primary text-primary hover:bg-primary/10 bg-transparent"
+                          >
+                            Start Onboarding Process
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
 
@@ -76,12 +117,21 @@ export default function FAQPage() {
                     What's included in the weekly reports?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      Your weekly reports include: Overall star rating, reviews by month, reviews in the last 30 days,
-                      reviews since joining, rating breakdown (5-star to 1-star), review sources, and detailed review
-                      information. All reports are professional weekly reports and delivered automatically as PDF files
-                      to your email.
-                    </p>
+                    <div className="space-y-3">
+                      <p>Your comprehensive weekly reports include:</p>
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        <li>Overall star rating across all platforms</li>
+                        <li>Reviews by month and trends analysis</li>
+                        <li>Reviews in the last 30 days</li>
+                        <li>Total reviews since joining GuardX</li>
+                        <li>Rating breakdown (5-star to 1-star distribution)</li>
+                        <li>Review sources and platform performance</li>
+                        <li>Detailed review information and responses</li>
+                      </ul>
+                      <p className="mt-3">
+                        All reports are professionally branded and delivered automatically as PDF files to your email.
+                      </p>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
 
@@ -90,11 +140,22 @@ export default function FAQPage() {
                     Is everything fully automated?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      Yes, all our services are fully automated. You don't need dashboard access or manual intervention
-                      - we handle monitoring, alerts, reporting, and response management automatically. Simply receive
-                      your weekly reports with GuardX branding and instant alerts when needed.
-                    </p>
+                    <div className="space-y-3">
+                      <p>
+                        <strong>Yes, completely automated.</strong> Our done-for-you service includes:
+                      </p>
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        <li>Automatic monitoring across all platforms</li>
+                        <li>Instant alerts for urgent issues</li>
+                        <li>Weekly reports delivered to your email</li>
+                        <li>Professional response management</li>
+                        <li>No dashboard access needed</li>
+                        <li>No manual intervention required</li>
+                      </ul>
+                      <p className="mt-3">
+                        Simply receive your weekly reports with GuardX branding and let us handle the rest.
+                      </p>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
 
@@ -103,11 +164,17 @@ export default function FAQPage() {
                     How do I access my reports?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      Your weekly reputation reports are sent directly to your email as a PDF. You don't need a login —
-                      simply open the email to view your report, which includes your overall rating, individual reviews,
-                      trends, and any urgent alerts.
-                    </p>
+                    <div className="space-y-3">
+                      <p>Accessing your reports is simple:</p>
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        <li>Weekly reports sent directly to your email as PDF</li>
+                        <li>No login or dashboard required</li>
+                        <li>Professional formatting with your business details</li>
+                        <li>Includes overall rating, individual reviews, and trends</li>
+                        <li>Urgent alerts sent immediately when needed</li>
+                      </ul>
+                      <p className="mt-3">Everything you need arrives in your inbox automatically.</p>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
 
@@ -116,10 +183,17 @@ export default function FAQPage() {
                     Is there a contract?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      The <strong>Business Plan (£99/month)</strong> is month-to-month with no long-term contract - you
-                      can cancel anytime.
-                    </p>
+                    <div className="space-y-3">
+                      <p>
+                        <strong>No long-term contracts required.</strong>
+                      </p>
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        <li>Business Plan: Month-to-month billing</li>
+                        <li>Cancel anytime with no penalties</li>
+                        <li>Flexible service that grows with your business</li>
+                        <li>No hidden fees or surprise charges</li>
+                      </ul>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
 
@@ -128,10 +202,21 @@ export default function FAQPage() {
                     How often are updates?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      You receive real-time alerts for urgent issues via email, daily monitoring summaries, and
-                      comprehensive weekly PDF reports delivered directly to your inbox.
-                    </p>
+                    <div className="space-y-3">
+                      <p>You receive multiple types of updates:</p>
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        <li>
+                          <strong>Real-time alerts</strong> for urgent issues via email
+                        </li>
+                        <li>
+                          <strong>Daily monitoring</strong> summaries when needed
+                        </li>
+                        <li>
+                          <strong>Weekly comprehensive reports</strong> delivered every week
+                        </li>
+                        <li>All updates delivered directly to your inbox</li>
+                      </ul>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
 
@@ -140,173 +225,142 @@ export default function FAQPage() {
                     How do I cancel or manage my subscription?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      The <strong>£99/month Business Plan</strong> may be cancelled at any time through your account
-                      settings or by contacting our support team.
-                    </p>
+                    <div className="space-y-3">
+                      <p>Managing your subscription is straightforward:</p>
+                      <p>
+                        Cancel anytime through the Stripe billing portal:{" "}
+                        <a
+                          href="https://billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00"
+                          className="text-primary hover:underline"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          billing.stripe.com/p/login/fZu8wO1QM3ZF4rF9ExcIE00
+                        </a>
+                      </p>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="item-1" className="border-border">
+                <AccordionItem value="item-setup-fee" className="border-border">
                   <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
                     Is there a setup fee?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      No, GuardX does not charge setup fees for any plan. The only costs are the monthly subscription
-                      fees: Business Plan £99/month, or custom Enterprise pricing.
-                    </p>
+                    <div className="space-y-3">
+                      <p>
+                        <strong>No setup fees.</strong> Our transparent pricing includes:
+                      </p>
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        <li>Business Plan: £99/month per location only</li>
+                        <li>No hidden costs or surprise charges</li>
+                        <li>All setup and onboarding included</li>
+                        <li>Start protecting your reputation immediately</li>
+                      </ul>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="item-3" className="border-border">
+                <AccordionItem value="item-payment" className="border-border">
                   <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
                     What payment methods are accepted?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>GuardX securely accepts all major credit cards and bank transfers through Stripe.</p>
+                    <div className="space-y-3">
+                      <p>We accept secure payments through:</p>
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        <li>All major credit cards (Visa, MasterCard, etc.)</li>
+                        <li>Bank transfers</li>
+                        <li>Powered by Stripe for maximum security</li>
+                        <li>Automatic monthly billing for convenience</li>
+                      </ul>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="item-4" className="border-border">
+                <AccordionItem value="item-results" className="border-border">
                   <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
                     How quickly will results be visible?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      Many clients notice improvements within the first 1–2 weeks, with stronger results typically
-                      building over 1–3 months.
-                    </p>
+                    <div className="space-y-3">
+                      <p>Results timeline varies by situation:</p>
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        <li>
+                          <strong>Initial improvements:</strong> 1-2 weeks
+                        </li>
+                        <li>
+                          <strong>Significant results:</strong> 1-3 months
+                        </li>
+                        <li>Immediate monitoring and alert setup</li>
+                        <li>Weekly reports show progress from day one</li>
+                      </ul>
+                      <p className="mt-3">
+                        Many clients notice positive changes within the first few weeks of service.
+                      </p>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="item-6" className="border-border">
+                <AccordionItem value="item-industry" className="border-border">
                   <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
-                    Does GuardX write fake reviews?
+                    Do you provide industry-specific solutions?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      GuardX does not post fake reviews. Instead, GuardX helps clients generate genuine positive
-                      feedback from satisfied customers and ensures reviews are managed and responded to professionally.
-                    </p>
+                    <div className="space-y-3">
+                      <p>
+                        <strong>Yes, we tailor strategies for specific industries:</strong>
+                      </p>
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        <li>Healthcare and medical practices</li>
+                        <li>Legal services and law firms</li>
+                        <li>Real estate and property management</li>
+                        <li>Hospitality and restaurants</li>
+                        <li>Finance and professional services</li>
+                        <li>And many more industries</li>
+                      </ul>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="item-7" className="border-border">
-                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
-                    Can GuardX remove negative content?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      Yes. GuardX uses proven strategies to suppress harmful or misleading content and, where possible,
-                      works with platforms to request removal of false or defamatory material.
-                    </p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-8" className="border-border">
-                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
-                    Do I get a dedicated account manager?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      All plans are fully managed as a done-for-you service by our expert team, ensuring your reputation
-                      is monitored and improved without any effort on your part.
-                    </p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-9" className="border-border">
-                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
-                    Will GuardX help during a reputation crisis?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      Yes, GuardX provides immediate crisis management support to protect your brand and restore trust
-                      quickly.
-                    </p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-10" className="border-border">
-                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
-                    How are results measured?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      GuardX provides detailed weekly PDF reports and clear performance metrics delivered to your email
-                      to track improvements in reputation and online presence.
-                    </p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-11" className="border-border">
-                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
-                    Does GuardX provide industry-specific solutions?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      Yes, GuardX tailors reputation strategies to specific industries such as healthcare, legal
-                      services, real estate, hospitality, finance, and more.
-                    </p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-12" className="border-border">
+                <AccordionItem value="item-security" className="border-border">
                   <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
                     Is my data secure?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      Yes, GuardX follows strict data protection standards. All client information is encrypted, handled
-                      securely, and never shared with third parties without permission.
-                    </p>
+                    <div className="space-y-3">
+                      <p>
+                        <strong>Yes, we follow strict data protection standards:</strong>
+                      </p>
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        <li>All client information is encrypted</li>
+                        <li>Secure handling and storage protocols</li>
+                        <li>Never shared with third parties without permission</li>
+                        <li>GDPR compliant data practices</li>
+                      </ul>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="item-13" className="border-border">
-                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
-                    Does GuardX monitor competitors?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      Yes, GuardX offers competitor analysis to benchmark reputation performance and identify
-                      opportunities to stay ahead in your industry.
-                    </p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-14" className="border-border">
+                <AccordionItem value="item-no-reviews" className="border-border">
                   <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
                     What if my business has no reviews yet?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      GuardX can help build a strong foundation by encouraging genuine customer feedback and improving
-                      visibility across key platforms.
-                    </p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-15" className="border-border">
-                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
-                    Can GuardX work with businesses outside the UK?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pt-4">
-                    <p>Yes, GuardX provides reputation management solutions for businesses worldwide.</p>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-enterprise" className="border-border">
-                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary">
-                    What's included in the Enterprise Plan?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pt-4">
-                    <p>
-                      Our Enterprise Plan provides the fully managed, done-for-you service across all your locations for
-                      businesses with more than five locations, ensuring your reputation is monitored and improved
-                      automatically without any extra work from your team.
-                    </p>
+                    <div className="space-y-3">
+                      <p>
+                        <strong>Perfect opportunity to build a strong foundation:</strong>
+                      </p>
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        <li>Encourage genuine customer feedback</li>
+                        <li>Improve visibility across key platforms</li>
+                        <li>Establish positive online presence from the start</li>
+                        <li>Proactive reputation building strategies</li>
+                      </ul>
+                      <p className="mt-3">
+                        Starting early gives you the best advantage in building a strong online reputation.
+                      </p>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
@@ -315,15 +369,14 @@ export default function FAQPage() {
         </div>
       </section>
 
-      {/* Additional Help Section */}
       <section className="py-20 bg-card/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Still Have Questions?</h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Our reputation management experts are here to help. Get personalized answers to your specific questions
-                and learn how GuardX can protect your business.
+                Our reputation management experts are here to help. Contact our team for personalized answers and
+                guidance.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/contact">
@@ -335,13 +388,13 @@ export default function FAQPage() {
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
-                <Link href="/pricing">
+                <Link href="/onboarding">
                   <Button
                     variant="outline"
                     size="lg"
                     className="border-primary text-primary hover:bg-primary/10 px-8 py-4 text-lg bg-transparent"
                   >
-                    View Pricing
+                    Get Started Now
                   </Button>
                 </Link>
               </div>
@@ -388,10 +441,6 @@ export default function FAQPage() {
               {
                 title: "Review Management",
                 description: "How we help manage and respond to customer reviews across all platforms.",
-              },
-              {
-                title: "Crisis Response",
-                description: "Our emergency protocols for handling reputation crises and negative publicity.",
               },
               {
                 title: "SEO & Content",

@@ -1,321 +1,348 @@
 "use client"
 import { Card, CardContent } from "@/components/ui/card"
+import type React from "react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { PaymentLogos } from "@/components/payment-logos"
-import { Star, CheckCircle, ArrowRight, Mail } from "lucide-react"
-import Image from "next/image"
-import { useEffect, useState } from "react"
+import { Star, CheckCircle, Shield } from "lucide-react"
+import { useState } from "react"
+import { PlatformLogos } from "@/components/platform-logos"
 
 export default function HomePage() {
-  const [showPromoBar, setShowPromoBar] = useState(false)
+  const [formData, setFormData] = useState({
+    email: "",
+    businessName: "",
+    businessAddress: "",
+    message: "",
+  })
+  const [showThankYou, setShowThankYou] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY
-      setShowPromoBar(scrollTop > 120)
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!formData.email.trim() || !formData.businessName.trim() || !formData.businessAddress.trim()) {
+      alert("Please fill in all required fields.")
+      return
     }
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    setIsSubmitting(true)
 
-  const handleEmailClick = () => {
-    const subject = encodeURIComponent("Free Trial")
-    const email = "info@guardxnetwork.com"
-    window.open(`mailto:${email}?subject=${subject}`, "_blank")
+    try {
+      const response = await fetch("https://formspree.io/f/mrbypyzv", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          businessName: formData.businessName,
+          businessAddress: formData.businessAddress,
+          message: formData.message,
+        }),
+      })
+
+      if (response.ok) {
+        setShowThankYou(true)
+        setFormData({ email: "", businessName: "", businessAddress: "", message: "" })
+        setTimeout(() => setShowThankYou(false), 5000)
+      } else {
+        alert("There was an error submitting your request. Please try again.")
+      }
+    } catch (error) {
+      alert("There was an error submitting your request. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
-  const handleWhatYouGetClick = () => {
-    window.location.href = "/what-you-get"
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       <Navigation />
-
-      {showPromoBar && (
-        <div className="fixed top-[106px] left-0 right-0 z-40 bg-green-600 text-white py-3 text-center shadow-lg">
-          <button
-            onClick={handleWhatYouGetClick}
-            className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black hover:from-yellow-300 hover:to-yellow-400 px-8 py-3 text-lg font-bold shadow-xl rounded-lg inline-flex items-center border-2 border-yellow-600"
-          >
-            <Mail className="mr-2 w-5 h-5" />
-            <span>What You Get</span>
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </button>
-        </div>
-      )}
 
       <section className="pt-8 pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Free 7-Day Trial - Leading Section */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-              <span className="text-primary">Free 7-Day Trial</span>
-              <br />
-              Protect Your Business Reputation
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight">
+              Get Your <span className="text-primary">Free Reputation Scorecard</span> in Minutes
             </h1>
 
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto mb-8 leading-relaxed">
-              Get 24/7 monitoring and instant alerts for reviews on Google, Facebook, Yelp, and 100+ platforms. No login
-              required — trial starts immediately via email.
+            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-12 leading-relaxed">
+              See your current online reputation and how your business stacks up — delivered straight to your inbox.
             </p>
 
-            {/* Single, Obvious CTA */}
-            <div className="mb-8">
-              <button
-                onClick={handleEmailClick}
-                className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-12 py-6 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20"
-              >
-                <Mail className="mr-4 w-6 h-6" />
-                <span>Email Free Trial</span>
-                <ArrowRight className="ml-4 w-6 h-6" />
-              </button>
-            </div>
+            <div className="max-w-2xl mx-auto mb-12">
+              <Card className="bg-white border-2 border-primary/20 shadow-xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-black mb-6">Get Your Free Scorecard</h3>
 
-            <p className="text-lg text-muted-foreground mb-2">
-              Email: <strong className="text-primary">info@guardxnetwork.com</strong>
-            </p>
-            <p className="text-base text-muted-foreground">
-              Subject: "Free Trial" • Onboarding link sent instantly after emailing
-            </p>
-          </div>
+                  {showThankYou ? (
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+                      <div className="flex items-center justify-center mb-4">
+                        <CheckCircle className="w-8 h-8 text-green-600" />
+                      </div>
+                      <p className="text-lg font-semibold text-green-800 text-center">
+                        Thank you! Your free scorecard request has been sent. We will email you your scorecard shortly.
+                      </p>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleFormSubmit} className="space-y-6">
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-bold text-black mb-2">
+                          Email *
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:outline-none text-black bg-white transition-colors"
+                          placeholder="Enter your email address"
+                        />
+                      </div>
 
-          {/* Trial Explanation - Concise */}
-          <div className="max-w-3xl mx-auto mb-12">
-            <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20 shadow-lg">
-              <CardContent className="p-6 text-center">
-                <h3 className="text-xl font-bold text-foreground mb-4">What's Included in Your Free 7-Day Trial</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-base">24/7 monitoring across 100+ platforms</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-base">Instant alerts for all major review sites</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-base">Sample review reports included</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-base">Complete peace of mind for business owners</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+                      <div>
+                        <label htmlFor="businessName" className="block text-sm font-bold text-black mb-2">
+                          Business Name *
+                        </label>
+                        <input
+                          type="text"
+                          id="businessName"
+                          name="businessName"
+                          value={formData.businessName}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:outline-none text-black bg-white transition-colors"
+                          placeholder="Enter your business name"
+                        />
+                      </div>
 
-          {/* Sample Report Image */}
-          <div className="flex justify-center mb-12">
-            <Image
-              src="/images/review-report.jpg"
-              alt="Sample review report showing overall rating, rating breakdown, and review sources"
-              width={800}
-              height={300}
-              className="w-full max-w-3xl h-auto object-contain rounded-lg shadow-lg border border-border"
-              priority
-            />
-          </div>
+                      <div>
+                        <label htmlFor="businessAddress" className="block text-sm font-bold text-black mb-2">
+                          Business Address *
+                        </label>
+                        <input
+                          type="text"
+                          id="businessAddress"
+                          name="businessAddress"
+                          value={formData.businessAddress}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:outline-none text-black bg-white transition-colors"
+                          placeholder="Enter your business address"
+                        />
+                      </div>
 
-          {/* Short, Scannable Benefits */}
-          <div className="max-w-4xl mx-auto mb-12">
-            <h2 className="text-2xl font-bold text-center text-foreground mb-8">Why Business Owners Choose GuardX</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="flex items-start gap-4">
-                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-bold text-foreground mb-2">Stop Bad Reviews from Hurting You</h3>
-                  <p className="text-muted-foreground">
-                    Get notified immediately so you can respond fast and protect your reputation.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-bold text-foreground mb-2">Turn Good Reviews into More Customers</h3>
-                  <p className="text-muted-foreground">
-                    Know when positive reviews come in so you can share and promote them.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-bold text-foreground mb-2">Save Hours Every Week</h3>
-                  <p className="text-muted-foreground">
-                    No more manually checking review sites — we watch everything for you.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-bold text-foreground mb-2">Complete Peace of Mind</h3>
-                  <p className="text-muted-foreground">
-                    Know exactly what people are saying about your business, 24/7.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+                      <div>
+                        <label htmlFor="message" className="block text-sm font-bold text-black mb-2">
+                          Message (Optional)
+                        </label>
+                        <textarea
+                          id="message"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleInputChange}
+                          rows={4}
+                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:outline-none text-black bg-white transition-colors resize-vertical"
+                          placeholder="Any additional information or questions..."
+                        />
+                      </div>
 
-          {/* Platform Logos */}
-          <div className="text-center mb-12">
-            <p className="text-lg text-muted-foreground mb-6">Monitoring reviews across all major platforms</p>
-            <div className="flex justify-center items-center gap-8 flex-wrap">
-              <Image
-                src="/images/facebook-logo.png"
-                alt="Facebook"
-                width={40}
-                height={40}
-                className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity duration-200"
-              />
-              <Image
-                src="/images/yelp-logo.png"
-                alt="Yelp"
-                width={80}
-                height={40}
-                className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity duration-200"
-              />
-              <Image
-                src="/images/trustpilot-logo-new.webp"
-                alt="Trustpilot"
-                width={40}
-                height={40}
-                className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity duration-200"
-              />
-              <Image
-                src="/images/tripadvisor-logo-new.png"
-                alt="TripAdvisor"
-                width={140}
-                height={40}
-                className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity duration-200"
-              />
-            </div>
-          </div>
-
-          {/* Testimonials */}
-          <div className="max-w-4xl mx-auto mb-12">
-            <h2 className="text-2xl font-bold text-center text-foreground mb-8">What Our Customers Say</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="bg-card border-border shadow-lg">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-base text-foreground mb-3 leading-relaxed">
-                    "The GuardX system is great for staying on top of reviews. It's saved me time, and the reports are
-                    really clear and easy to read."
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    <strong className="text-foreground">Holly Cox</strong>
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-card border-border shadow-lg">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-base text-foreground mb-3 leading-relaxed">
-                    "A very handy tool to keep track of my business reviews — simple and easy to use."
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    <strong className="text-foreground">Joseph Yossefi</strong>
-                  </p>
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full bg-primary text-black hover:bg-yellow-500 disabled:bg-gray-300 disabled:cursor-not-allowed px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100 border-2 border-black/10"
+                      >
+                        {isSubmitting ? "Submitting..." : "Get My Free Scorecard"}
+                      </button>
+                    </form>
+                  )}
                 </CardContent>
               </Card>
             </div>
-          </div>
 
-          {/* Second CTA for Free Trial */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-foreground mb-6">Ready to Protect Your Reputation?</h2>
-            <button
-              onClick={handleEmailClick}
-              className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-12 py-6 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20"
-            >
-              <Mail className="mr-4 w-6 h-6" />
-              <span>Start Your Free 7-Day Trial</span>
-              <ArrowRight className="ml-4 w-6 h-6" />
-            </button>
-            <p className="text-base text-muted-foreground mt-4">
-              Email info@guardxnetwork.com with subject "Free Trial"
-            </p>
-          </div>
+            <div className="max-w-6xl mx-auto mb-12">
+              <h2 className="text-3xl font-bold text-center text-black mb-8">What's in Your Free Scorecard</h2>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <Card className="bg-white border-2 border-gray-200 shadow-lg">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-bold text-black mb-4">Overall Reputation Score</h3>
+                    <div className="mb-4">
+                      <img
+                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/scorecard%20overall%20rating-U2L4QmNYHZ4mLpegUYDIdcOQRh6DhW.png"
+                        alt="Overall Score: 60/100 with breakdown of Volume 15/30, Rating 25/30, Recency 10/30, Sentiment 10/10"
+                        className="w-full rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <p className="text-gray-600">
+                      Your comprehensive reputation score (0-100) generated by analyzing your average rating, sentiment
+                      of reviews, review volume, and recency of reviews across all platforms.
+                    </p>
+                  </CardContent>
+                </Card>
 
-          <div className="w-24 h-px bg-primary mx-auto mb-12 opacity-50"></div>
+                <Card className="bg-white border-2 border-gray-200 shadow-lg">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-bold text-black mb-4">Star Rating Analysis</h3>
+                    <div className="mb-4">
+                      <img
+                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/scorecard%20star%20rating-QBqc9E3c8b47cFkhCd5F3jehx7fmiv.png"
+                        alt="Star Rating: 4.1 stars with 25/30 rating score on Google"
+                        className="w-full rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <p className="text-gray-600">
+                      Your average star rating across all major review platforms. Businesses with 4-4.5 star ratings
+                      earn 28% more in annual revenue than average.
+                    </p>
+                  </CardContent>
+                </Card>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-foreground mb-4">Full Service: Complete Protection</h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                After your free trial, upgrade to monitor all major review platforms
-              </p>
+                <Card className="bg-white border-2 border-gray-200 shadow-lg">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-bold text-black mb-4">Review Volume</h3>
+                    <div className="mb-4">
+                      <img
+                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/scorecard%20volume-0P75LzBALt3nZl5WLjfNbec620bbzG.png"
+                        alt="Review Volume: 15/30 score with 201 Google reviews"
+                        className="w-full rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <p className="text-gray-600">
+                      Total number of reviews and how your volume compares to competitors. Businesses with 200+ reviews
+                      earn nearly twice as much revenue than average.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white border-2 border-gray-200 shadow-lg">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-bold text-black mb-4">Review Recency</h3>
+                    <div className="mb-4">
+                      <img
+                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/scorecard%20recency-RkIY3cGK5CIFuICC6sT4T9jNbsZINB.png"
+                        alt="Review Recency: 10/30 score with average time since last review being 36 days ago"
+                        className="w-full rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <p className="text-gray-600">
+                      How recently customers have been leaving reviews. Businesses with more than 9 fresh reviews earn
+                      52% more than average and show stronger engagement trends.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white border-2 border-gray-200 shadow-lg lg:col-span-2">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-bold text-black mb-4">Sentiment Analysis</h3>
+                    <div className="mb-4">
+                      <img
+                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/scorecard%20sentiment-oJZ3V5IWp6ZekiFcuYatS9ViBJpMzo.png"
+                        alt="Sentiment Analysis: 10/10 score showing positive customer reviews"
+                        className="w-full rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <p className="text-gray-600">
+                      Detailed analysis of positive, neutral, and negative customer sentiment trends. Google creates a
+                      review summary which is the first impression users have of your company.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
 
-            <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20 shadow-lg mb-8">
-              <CardContent className="p-8">
-                <div className="text-center mb-6">
-                  <div className="text-4xl font-bold text-primary mb-2">£99/month</div>
-                  <div className="text-lg text-muted-foreground font-medium">Just £3.20/day • Cancel anytime</div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span>All major review platforms</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span>Instant email alerts</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span>Weekly summary reports</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span>24/7 monitoring</span>
-                  </div>
-                </div>
-
-                <div className="text-center">
+            <div className="max-w-4xl mx-auto mb-12">
+              <Card className="bg-gray-50 border-gray-200 shadow-lg">
+                <CardContent className="p-8 text-center">
+                  <h3 className="text-2xl font-bold text-black mb-4">Want Ongoing Protection?</h3>
+                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                    After receiving your free scorecard, start your 7-day free trial for full review monitoring with
+                    instant alerts and detailed reporting.
+                  </p>
                   <a
-                    href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
-                    className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-8 py-4 text-lg font-bold shadow-xl rounded-lg inline-flex items-center transition-all duration-300"
+                    href="/onboarding"
+                    className="inline-block bg-primary text-black hover:bg-yellow-500 px-8 py-3 text-lg font-bold shadow-lg rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-black/10"
                   >
-                    <span>Start Full Protection — £99/month</span>
-                    <ArrowRight className="ml-3 w-5 h-5" />
+                    Start Your Free 7-Day Trial
                   </a>
-                  <PaymentLogos />
-                  <p className="text-sm text-muted-foreground mt-2">No contracts • Cancel anytime • Instant setup</p>
-                </div>
-              </CardContent>
-            </Card>
+                  <div className="mt-6">
+                    <PlatformLogos />
+                  </div>
+                  <div className="flex items-center justify-center gap-4 mt-4 flex-wrap">
+                    <img
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/VISA-logo-94e8TfJm0LvTgjaFBJAF1nJ71UjbHI.png"
+                      alt="Visa"
+                      className="h-6 opacity-70 hover:opacity-100 transition-opacity"
+                    />
+                    <img
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mastercard_logo-Sp0PYT1Mx8tnGo6H2Da56NE9QWdazd.webp"
+                      alt="MasterCard"
+                      className="h-6 opacity-70 hover:opacity-100 transition-opacity"
+                    />
+                    <img
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Powered%20by%20Stripe%20-%20blurple%20%281%29-DWAHrqGrB7uyZuj49bMP1IkhnZ6cwt.svg"
+                      alt="Powered by Stripe"
+                      className="h-6 opacity-70 hover:opacity-100 transition-opacity"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
 
-            {/* Why £99 explanation */}
-            <Card className="bg-green-600 border-green-700 shadow-lg">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3 text-center">Why £99?</h3>
-                <p className="text-white leading-relaxed text-center">
-                  GuardX is built to be <strong>lean</strong>, <strong>automated</strong>, and{" "}
-                  <strong>affordable</strong>. Unlike enterprise services that charge hundreds per month, GuardX uses
-                  smart automation to deliver the same protection at a fair price — just <strong>£99/month</strong>. No
-                  hidden fees, no long contracts.
-                </p>
-              </CardContent>
-            </Card>
+            <div className="max-w-4xl mx-auto mb-12">
+              <h2 className="text-2xl font-bold text-center text-black mb-8">Trusted by Business Owners</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card className="bg-white border-gray-200 shadow-lg">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-3">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-5 h-5 text-primary fill-current" />
+                      ))}
+                    </div>
+                    <p className="text-base text-black mb-3 leading-relaxed">
+                      "The GuardX system is great for staying on top of reviews. It's saved me time, and the reports are
+                      really clear and easy to read, making it simple to keep an eye on my average rating."
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      <strong className="text-black">Holly Cox</strong> - 4 days ago
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white border-gray-200 shadow-lg">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-3">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-5 h-5 text-primary fill-current" />
+                      ))}
+                    </div>
+                    <p className="text-base text-black mb-3 leading-relaxed">
+                      "A very handy tool to keep track of my business reviews — simple and easy to use."
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      <strong className="text-black">Joseph Yossefi</strong> - 5 days ago
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            <div className="max-w-4xl mx-auto mb-12">
+              <div className="text-center">
+                <div className="inline-flex items-center gap-3 bg-gray-50 border border-gray-200 rounded-lg px-6 py-4">
+                  <Shield className="w-6 h-6 text-primary" />
+                  <span className="text-lg font-semibold text-black">
+                    Your data is secure and never shared with third parties.
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

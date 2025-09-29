@@ -2,445 +2,381 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { PaymentLogos } from "@/components/payment-logos"
-import { CompanyLogos } from "@/components/company-logos"
-import { ArrowRight, BarChart3, Star, TrendingUp, CheckCircle, Clock, AlertTriangle } from "lucide-react"
+import { ArrowRight, Star, CheckCircle, Shield, AlertTriangle, Clock, BarChart3, TrendingUp } from "lucide-react"
 import Image from "next/image"
-import { useEffect, useState } from "react"
-import { FreeTrialSection } from "@/components/free-trial-section"
+import { PlatformLogos } from "@/components/platform-logos"
 
-export default function SampleCustomerReportPage() {
-  const [isSticky, setIsSticky] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY
-      setIsSticky(scrollTop > 200)
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
+export default function HowWeHelpPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       <Navigation />
 
-      {isSticky && (
-        <div className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm py-3 text-center shadow-lg">
-          <a
-            href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
-            className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-10 py-4 text-xl font-bold shadow-xl rounded-lg inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20"
-          >
-            <span>Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
-            <ArrowRight className="ml-3 w-6 h-6" />
-          </a>
-        </div>
-      )}
-
-      {/* Hero Section with Alerts Focus */}
-      <section className="relative pt-6 pb-12 lg:pt-8 lg:pb-16">
+      <section className="pt-8 pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground mb-6 tracking-tight">
-              Instant Alerts for Every Review
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight">
+              Stay On Top of Your <span className="text-primary">Online Reputation</span> Without the Stress
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
-              Get 24/7 monitoring and instant alerts for reviews on Google, Facebook, Yelp, and 100+ platforms. No login
-              required — trial starts immediately via email with complete peace of mind.
+
+            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-8 leading-relaxed">
+              GuardX keeps you on top of your online reputation with real-time monitoring, instant alerts, and clear
+              weekly reports. See exactly what your customers are saying and take action before issues escalate.
             </p>
 
-            <CompanyLogos className="mb-8" />
-
-            <div className="mb-12 flex flex-col items-center">
-              <a
-                href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
-                className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
-              >
-                <span>Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
-                <ArrowRight className="ml-4 w-8 h-8" />
-              </a>
-              <PaymentLogos />
-              <div className="text-sm text-muted-foreground mt-4 font-medium">
-                You will be redirected to our customer form immediately upon purchase.
-              </div>
+            <div className="max-w-2xl mx-auto mb-8">
+              <Card className="bg-white border-gray-200 shadow-lg">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-1 mb-3 justify-center">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-primary fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-base text-black mb-3 leading-relaxed">
+                    "The GuardX system is great for staying on top of reviews. It's saved me time, and the reports are
+                    really clear and easy to read, making it simple to keep an eye on my average rating."
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    <strong className="text-black">Holly Cox</strong> - 4 days ago
+                  </p>
+                </CardContent>
+              </Card>
             </div>
-          </div>
 
-          {/* Alert Email Example */}
-          <div className="mb-16">
-            <div className="bg-card/50 rounded-lg p-8 shadow-lg">
-              <div className="text-center mb-6">
-                <h2 className="text-2xl md:text-3xl font-black text-foreground mb-4 tracking-tight">
-                  Instant Alerts On The Go
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Receive real-time notifications the moment a new review appears. Stay informed, respond quickly, and
-                  protect your business reputation effortlessly.
-                </p>
+            <div className="flex flex-col items-center mb-12">
+              <a
+                href="/onboarding"
+                className="bg-primary text-black hover:bg-yellow-500 px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-black/10 mb-4"
+              >
+                Start Your 7-Day Free Trial
+                <ArrowRight className="ml-2 w-5 h-5 inline" />
+              </a>
+              <div className="mb-4">
+                <PlatformLogos />
               </div>
-
-              <div className="max-w-2xl mx-auto">
-                <Image
-                  src="/images/susan-review-notification.png"
-                  alt="Google Review notification showing 5-star review from Susan M. - 'Nice pool great showers and staff too'"
-                  width={600}
-                  height={400}
-                  className="w-full h-auto rounded-lg border border-border shadow-md"
-                  priority
+              <div className="flex items-center justify-center gap-4 flex-wrap">
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/VISA-logo-94e8TfJm0LvTgjaFBJAF1nJ71UjbHI.png"
+                  alt="Visa"
+                  className="h-6 opacity-70 hover:opacity-100 transition-opacity"
+                />
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mastercard_logo-Sp0PYT1Mx8tnGo6H2Da56NE9QWdazd.webp"
+                  alt="MasterCard"
+                  className="h-6 opacity-70 hover:opacity-100 transition-opacity"
+                />
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Powered%20by%20Stripe%20-%20blurple%20%281%29-DWAHrqGrB7uyZuj49bMP1IkhnZ6cwt.svg"
+                  alt="Powered by Stripe"
+                  className="h-6 opacity-70 hover:opacity-100 transition-opacity"
                 />
               </div>
             </div>
           </div>
-
-          <div className="mb-16">
-            <div className="bg-card/50 rounded-lg p-8 shadow-lg">
-              <div className="text-center mb-6">
-                <h2 className="text-2xl md:text-3xl font-black text-foreground mb-4 tracking-tight">
-                  Plus Weekly Professional Reports
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Once a week, you'll also receive a comprehensive professional report summarizing all your reviews,
-                  ratings, and insights. Here's what a sample report looks like:
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mb-16">
-            <div className="bg-card/50 rounded-lg p-6 shadow-lg">
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-09-04%20at%209.47.04%E2%80%AFAM-3YMh7Grb6pepRc2i1iJOjWo154REZp.png"
-                alt="Sample GuardX Customer Report Dashboard showing comprehensive review analytics"
-                width={1400}
-                height={900}
-                className="w-full h-auto rounded-lg border border-border"
-              />
-              <p className="text-sm text-muted-foreground text-center mt-4">
-                Sample weekly report showing comprehensive review analytics and insights
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Report Breakdown Section */}
-      <section className="py-16 bg-card/50">
+      <section className="py-12 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4 tracking-tight">
-              Understanding Your Professional Weekly Report
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our reputation management experts analyze every metric and deliver actionable insights to protect and
-              enhance your business reputation – no analysis required on your part.
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">The Problems You Face Every Day</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Managing your online reputation across multiple platforms is overwhelming and time-consuming.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-            {/* Overall Review Rating */}
-            <Card className="bg-card border-border">
-              <CardContent className="p-8">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <Star className="w-6 h-6 text-primary" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Card className="bg-white border-gray-200 shadow-lg">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <AlertTriangle className="w-8 h-8 text-red-600" />
                 </div>
-                <h3 className="text-2xl font-black text-foreground mb-4 tracking-tight">Overall Review Rating</h3>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Our Expert Analysis:</strong> We track your{" "}
-                  <span className="text-primary font-bold">star ratings</span> across all platforms (3.5 stars with 78
-                  reviews in this example) and monitor for any reputation threats.
+                <h3 className="text-xl font-bold text-black mb-3">Losing Potential Customers</h3>
+                <p className="text-gray-600">
+                  Negative reviews go unnoticed for days or weeks, driving away customers before you can respond.
                 </p>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Why Our Monitoring Matters:</strong> Our{" "}
-                  <span className="text-primary font-bold">24/7 monitoring</span> catches rating drops immediately –
-                  even a 0.1 star decline can cost you significant revenue, which is why we provide{" "}
-                  <span className="text-primary font-bold">urgent alerts</span>
-                  the moment issues arise.
-                </p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>
-                      Continuous <span className="text-primary font-bold">review trends</span> monitoring by our experts
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>
-                      Immediate <span className="text-primary font-bold">urgent alerts</span> when ratings decline
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Professional assessment of reputation management impact</span>
-                  </li>
-                </ul>
               </CardContent>
             </Card>
 
-            {/* Recent Activity */}
-            <Card className="bg-card border-border">
-              <CardContent className="p-8">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <TrendingUp className="w-6 h-6 text-primary" />
+            <Card className="bg-white border-gray-200 shadow-lg">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <BarChart3 className="w-8 h-8 text-orange-600" />
                 </div>
-                <h3 className="text-2xl font-black text-foreground mb-4 tracking-tight">Recent Activity</h3>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Our Professional Tracking:</strong> We monitor all{" "}
-                  <span className="text-primary font-bold">review sources</span> and report +8 reviews in the last 30
-                  days, +1119 reviews since our <span className="text-primary font-bold">24/7 monitoring</span> began.
+                <h3 className="text-xl font-bold text-black mb-3">Not Knowing What's Being Said</h3>
+                <p className="text-gray-600">
+                  Reviews appear on Google, Facebook, Yelp, and dozens of other platforms without your knowledge.
                 </p>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Expert Insights Provided:</strong> Our team analyzes{" "}
-                  <span className="text-primary font-bold">review trends</span> to identify seasonal patterns and
-                  campaign effectiveness, delivering insights you can act on immediately.
-                </p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Professional monitoring of review frequency changes</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Expert identification of successful engagement periods</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Long-term reputation growth analysis by our specialists</span>
-                  </li>
-                </ul>
               </CardContent>
             </Card>
 
-            {/* Rating Breakdown */}
-            <Card className="bg-card border-border">
-              <CardContent className="p-8">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <BarChart3 className="w-6 h-6 text-primary" />
+            <Card className="bg-white border-gray-200 shadow-lg">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="w-8 h-8 text-yellow-600" />
                 </div>
-                <h3 className="text-2xl font-black text-foreground mb-4 tracking-tight">
-                  Rating Breakdown (5-Star to 1-Star)
-                </h3>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Our Detailed Analysis:</strong> We break down your{" "}
-                  <span className="text-primary font-bold">star ratings</span> distribution (31 five-star, 14 four-star
-                  reviews, etc.) and flag any concerning patterns for immediate attention.
+                <h3 className="text-xl font-bold text-black mb-3">Wasting Hours Manually Checking</h3>
+                <p className="text-gray-600">
+                  Logging into multiple platforms daily to check for new reviews takes valuable time away from your
+                  business.
                 </p>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Why Our Expert Monitoring Protects You:</strong> Our specialists identify reputation threats
-                  in real-time. Clusters of 1-2 star reviews trigger{" "}
-                  <span className="text-primary font-bold">urgent alerts</span> so we can help you respond before
-                  serious damage occurs.
-                </p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Professional analysis of customer satisfaction patterns</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Expert detection of potential fake review attacks</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* Online Reviews by Month */}
-            <Card className="bg-card border-border">
-              <CardContent className="p-8">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <TrendingUp className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-black text-foreground mb-4 tracking-tight">Online Reviews by Month</h3>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Our Professional Monitoring:</strong> We track{" "}
-                  <span className="text-primary font-bold">review trends</span> and provide comprehensive monthly
-                  summaries showing review volume and rating changes across all platforms.
-                </p>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Weekly PDF Summary Reports:</strong> Our system delivers detailed reports showing all reviews
-                  and ratings, helping you understand your reputation performance and identify areas for improvement.
-                </p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Monthly review volume tracking and analysis</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Comprehensive rating performance monitoring</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Weekly PDF reports delivered automatically</span>
-                  </li>
-                </ul>
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* How It All Works Together */}
-      <section className="py-16 bg-background">
+      <section className="py-12 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4 tracking-tight">
-              Complete Protection for Your Reputation
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              GuardX combines instant alerts with comprehensive reporting to give you complete control over your online
-              reputation.
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">Here's How GuardX Helps You Every Day</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Our automated system works 24/7 to monitor, alert, and report on your online reputation.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
-            <div>
-              <h3 className="text-2xl font-black text-foreground mb-6 tracking-tight">Instant Response Capability</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <AlertTriangle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <span className="font-semibold text-foreground">
-                      <span className="text-primary font-bold">Immediate Alerts</span>:
-                    </span>
-                    <span className="text-muted-foreground">
-                      {" "}
-                      Get notified within minutes of any new review appearing online
-                    </span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <Card className="bg-white border-2 border-gray-200 shadow-lg">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Shield className="w-6 h-6 text-primary" />
                   </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <span className="font-semibold text-foreground">
-                      <span className="text-primary font-bold">Quick Response</span>:
-                    </span>
-                    <span className="text-muted-foreground"> Respond to reviews while they're fresh and impactful</span>
+                  <h3 className="text-xl font-bold text-black">Real-Time Monitoring & Instant Alerts</h3>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Monitor all major review platforms, receive instant email alerts for new reviews, and never miss an
+                  important customer comment again.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span>Google My Business, Facebook, Yelp coverage</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span>Industry-specific platforms included</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white border-2 border-gray-200 shadow-lg">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <AlertTriangle className="w-6 h-6 text-primary" />
                   </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <span className="font-semibold text-foreground">
-                      <span className="text-primary font-bold">Damage Prevention</span>:
-                    </span>
-                    <span className="text-muted-foreground"> Stop reputation damage before it spreads</span>
+                  <h3 className="text-xl font-bold text-black">Instant Alerts</h3>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Get notified as soon as a new review appears. Email alerts sent within minutes of publication.
+                </p>
+                <div className="mb-4">
+                  <Image
+                    src="/images/susan-review-notification.png"
+                    alt="Instant review alert notification"
+                    width={300}
+                    height={200}
+                    className="w-full rounded-lg border border-gray-200"
+                  />
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white border-2 border-gray-200 shadow-lg">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <BarChart3 className="w-6 h-6 text-primary" />
                   </div>
-                </li>
-              </ul>
-            </div>
-            <div className="bg-primary/5 p-8 rounded-lg">
-              <h4 className="text-xl font-bold text-foreground mb-4">Why Speed Matters</h4>
-              <div className="space-y-3 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Response within 1 hour:</span>
-                  <span className="font-semibold text-primary">90% customer satisfaction</span>
+                  <h3 className="text-xl font-bold text-black">Clear, Actionable Weekly Reports</h3>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Response within 24 hours:</span>
-                  <span className="font-semibold text-foreground">60% customer satisfaction</span>
+                <p className="text-gray-600 mb-4">Your weekly report includes:</p>
+                <ul className="space-y-2 text-sm text-gray-600 mb-4">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span>Overall star rating</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span>Total reviews since joining</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span>Number of reviews in the last 30 days</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span>Review sources and platforms</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span>Detailed review counts by platform</span>
+                  </li>
+                </ul>
+                <div className="mb-4">
+                  <Image
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-09-04%20at%209.47.04%E2%80%AFAM-3YMh7Grb6pepRc2i1iJOjWo154REZp.png"
+                    alt="Weekly PDF report sample"
+                    width={400}
+                    height={250}
+                    className="w-full rounded-lg border border-gray-200"
+                  />
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">No response:</span>
-                  <span className="font-semibold text-destructive">Permanent reputation damage</span>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white border-2 border-gray-200 shadow-lg">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <TrendingUp className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold text-black">Actionable Insights</h3>
                 </div>
-                <div className="border-t border-border pt-2 flex justify-between">
-                  <span className="text-foreground font-semibold">GuardX advantage:</span>
-                  <span className="font-bold text-primary text-lg">Instant alerts</span>
-                </div>
-              </div>
-            </div>
+                <p className="text-gray-600 mb-4">
+                  Identify trends in customer feedback and spot urgent issues immediately with our expert analysis.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span>Urgent issue identification</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span>Weekly PDF showing:</span>
+                  </li>
+                  <li className="flex items-center gap-2 ml-6">
+                    <CheckCircle className="w-3 h-3 text-primary" />
+                    <span>Total number of reviews</span>
+                  </li>
+                  <li className="flex items-center gap-2 ml-6">
+                    <CheckCircle className="w-3 h-3 text-primary" />
+                    <span>Average star rating</span>
+                  </li>
+                  <li className="flex items-center gap-2 ml-6">
+                    <CheckCircle className="w-3 h-3 text-primary" />
+                    <span>Number of reviews in the last 30 days</span>
+                  </li>
+                  <li className="flex items-center gap-2 ml-6">
+                    <CheckCircle className="w-3 h-3 text-primary" />
+                    <span>Review sources across all platforms</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Free Trial Section */}
-      <section className="py-16 bg-card/50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FreeTrialSection variant="features" />
+      <section className="py-12 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">Take Control of Your Reputation</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Track your star ratings, review volume, and platform coverage across all major review sites. GuardX gives
+              you the clear data you need to understand your online reputation and respond quickly to customer feedback.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="bg-white border-2 border-primary/20 shadow-lg">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-black mb-3">Protect Your Business</h3>
+                <p className="text-gray-600">
+                  Respond to negative reviews quickly before they damage your reputation and drive customers away.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white border-2 border-primary/20 shadow-lg">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Star className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-black mb-3">Improve Overall Ratings</h3>
+                <p className="text-gray-600">
+                  Build customer trust with consistent monitoring and professional responses to all feedback.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white border-2 border-primary/20 shadow-lg">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-black mb-3">Save Hours Each Week</h3>
+                <p className="text-gray-600">
+                  Automated monitoring eliminates the need to manually check multiple platforms daily.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-20 bg-card/50">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-black text-foreground mb-6 tracking-tight">
-            Start Getting Instant Alerts Today
-          </h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Don't let reviews slip by unnoticed. Get instant email alerts for every new review plus comprehensive weekly
-            reports – all delivered automatically to your inbox.
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">Start Your Free 7-Day Trial</h2>
+          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Don't let another review slip by unnoticed. Get instant alerts and comprehensive reporting starting today.
           </p>
 
-          <div className="bg-primary/10 rounded-lg p-6 mb-8 max-w-2xl mx-auto">
-            <h3 className="text-lg font-black text-foreground mb-4 tracking-tight">What You Get:</h3>
-            <div className="text-center mb-6">
-              <div className="text-3xl font-black text-primary mb-2">£99/month</div>
-              <div className="text-sm text-muted-foreground mb-2">Just £3.20/day – Cancel anytime</div>
-              <div className="text-sm font-semibold text-primary">
-                Best value for busy business owners — covers all major review sites automatically.
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 text-primary" />
-                <span>
-                  <span className="text-primary font-bold">Instant alerts</span> for every new review
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 text-primary" />
-                <span>Weekly professional reports with full analytics</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-primary" />
-                <span>Monitoring across all major review platforms</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-primary" />
-                <span>Completely hands-off – no work required</span>
-              </div>
+          <div className="flex flex-col items-center mb-8">
+            <a
+              href="/onboarding"
+              className="bg-primary text-black hover:bg-yellow-500 px-12 py-4 text-xl font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-black/10 mb-4"
+            >
+              Start Free 7-Day Trial
+              <ArrowRight className="ml-3 w-6 h-6 inline" />
+            </a>
+
+            <div className="flex items-center justify-center gap-4 flex-wrap mb-6">
+              <img
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/VISA-logo-94e8TfJm0LvTgjaFBJAF1nJ71UjbHI.png"
+                alt="Visa"
+                className="h-6 opacity-70 hover:opacity-100 transition-opacity"
+              />
+              <img
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mastercard_logo-Sp0PYT1Mx8tnGo6H2Da56NE9QWdazd.webp"
+                alt="MasterCard"
+                className="h-6 opacity-70 hover:opacity-100 transition-opacity"
+              />
+              <img
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Powered%20by%20Stripe%20-%20blurple%20%281%29-DWAHrqGrB7uyZuj49bMP1IkhnZ6cwt.svg"
+                alt="Powered by Stripe"
+                className="h-6 opacity-70 hover:opacity-100 transition-opacity"
+              />
             </div>
 
-            <div className="mt-6 pt-6 border-t border-border">
-              <div className="bg-green-600 rounded-md p-5 sm:p-6">
-                <h4 className="text-lg font-bold text-white mb-3">Why £99?</h4>
-                <p className="text-sm text-white leading-relaxed mb-3">
-                  GuardX is built to be{" "}
-                  <span className="text-white font-semibold">lean, automated, and affordable</span>. Unlike big
-                  enterprise services that charge hundreds per month for manual monitoring, GuardX uses a smart,
-                  automated system to track all your online reviews and alerts daily.
-                </p>
-                <p className="text-sm text-white leading-relaxed">
-                  You get the <span className="text-white font-semibold">same protection and insights</span> at a fair
-                  price — just <span className="text-white font-bold text-lg">£99/month</span>. No hidden fees, no long
-                  contracts — just straightforward reputation monitoring for every business.
-                </p>
-              </div>
+            <div className="text-sm text-gray-500 mb-4">Monitoring reviews across all major platforms:</div>
+            <div className="flex items-center justify-center gap-6 flex-wrap mb-4">
+              <img
+                src="/images/google-logo.png"
+                alt="Google"
+                className="h-8 opacity-70 hover:opacity-100 transition-opacity"
+              />
+              <img
+                src="/images/yelp-logo.png"
+                alt="Yelp"
+                className="h-8 opacity-70 hover:opacity-100 transition-opacity"
+              />
+              <img
+                src="/images/trustpilot-logo.png"
+                alt="Trustpilot"
+                className="h-8 opacity-70 hover:opacity-100 transition-opacity"
+              />
+              <img
+                src="/images/tripadvisor-logo.png"
+                alt="TripAdvisor"
+                className="h-8 opacity-70 hover:opacity-100 transition-opacity"
+              />
             </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-            <div className="flex flex-col items-center">
-              <a
-                href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05"
-                className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 px-16 py-8 text-2xl font-bold shadow-2xl rounded-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 border-2 border-primary-foreground/20 animate-pulse"
-              >
-                <span>Start Protecting Today — Just £3.20 a day — Cancel anytime</span>
-                <ArrowRight className="ml-4 w-8 h-8" />
-              </a>
-              <PaymentLogos />
-            </div>
-            <div className="text-sm text-muted-foreground font-medium">
-              You will be redirected to our customer form immediately upon purchase.
-            </div>
-          </div>
-
-          <div className="text-sm text-muted-foreground space-y-2">
-            <p>✓ Instant email alerts for every new review</p>
-            <p>✓ Weekly professional reports delivered automatically</p>
-            <p>✓ Cancel anytime - no long-term contracts</p>
+            <div className="text-sm text-gray-500 opacity-60">+100 more platforms monitored automatically</div>
           </div>
         </div>
       </section>

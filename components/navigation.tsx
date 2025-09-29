@@ -9,20 +9,23 @@ import Image from "next/image"
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
+  const handleEmailClick = () => {
+    const subject = encodeURIComponent("My Free Scorecard")
+    const body = encodeURIComponent(`Hi GuardX Team,
+
+I would like to receive my free reputation scorecard.
+
+Business Name: [Your Business Name]
+Business Address: [Your Business Address]
+
+Thank you!`)
+    const email = "info@guardxnetwork.com"
+    window.open(`mailto:${email}?subject=${subject}&body=${body}`, "_blank")
+  }
+
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 bg-primary text-primary-foreground text-center py-2 text-sm font-medium z-50">
-        <Button
-          variant="ghost"
-          size="sm"
-          className="text-primary-foreground hover:bg-primary-foreground/20"
-          onClick={() => (window.location.href = "https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05")}
-        >
-          Protect your reputation now for £99/month — just £3.20/day, cancel any time
-        </Button>
-      </div>
-
-      <nav className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 mt-10">
+      <nav className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
@@ -43,23 +46,8 @@ export function Navigation() {
               <Link href="/" className="text-foreground hover:text-primary transition-colors">
                 Home
               </Link>
-              <Link href="/services" className="text-foreground hover:text-primary transition-colors">
-                Services
-              </Link>
-              <Link href="/industries" className="text-foreground hover:text-primary transition-colors">
-                Industries
-              </Link>
-              <Link href="/how-it-works" className="text-foreground hover:text-primary transition-colors">
-                How It Works
-              </Link>
-              <Link href="/why-this-works" className="text-foreground hover:text-primary transition-colors">
-                Why This Works
-              </Link>
               <Link href="/what-you-get" className="text-foreground hover:text-primary transition-colors">
-                What You Get
-              </Link>
-              <Link href="/reputation-scorecard" className="text-foreground hover:text-primary transition-colors">
-                Free Scorecard
+                How We Help
               </Link>
               <Link href="/pricing" className="text-foreground hover:text-primary transition-colors">
                 Pricing
@@ -67,16 +55,8 @@ export function Navigation() {
               <Link href="/faq" className="text-foreground hover:text-primary transition-colors">
                 FAQ
               </Link>
-              <Link href="/contact" className="text-foreground hover:text-primary transition-colors">
-                Contact
-              </Link>
-              <Link href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05">
-                <Button className="get-started-btn bg-primary text-primary-foreground hover:bg-primary/90">
-                  <span className="get-started-text">Start Protecting Today — Instant Setup!</span>
-                </Button>
-                <div className="cta-redirect-message">
-                  You will be redirected to our customer form immediately upon purchase.
-                </div>
+              <Link href="/how-it-works" className="text-foreground hover:text-primary transition-colors">
+                Why It Works
               </Link>
             </div>
 
@@ -100,46 +80,11 @@ export function Navigation() {
                   Home
                 </Link>
                 <Link
-                  href="/services"
-                  className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Services
-                </Link>
-                <Link
-                  href="/industries"
-                  className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Industries
-                </Link>
-                <Link
-                  href="/how-it-works"
-                  className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  How It Works
-                </Link>
-                <Link
-                  href="/why-this-works"
-                  className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Why This Works
-                </Link>
-                <Link
                   href="/what-you-get"
                   className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
-                  What You Get
-                </Link>
-                <Link
-                  href="/reputation-scorecard"
-                  className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Free Scorecard
+                  How We Help
                 </Link>
                 <Link
                   href="/pricing"
@@ -156,22 +101,12 @@ export function Navigation() {
                   FAQ
                 </Link>
                 <Link
-                  href="/contact"
+                  href="/how-it-works"
                   className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
-                  Contact
+                  Why It Works
                 </Link>
-                <div className="px-3 py-2">
-                  <Link href="https://buy.stripe.com/cNidR8fHC7bRgang2VcIE05">
-                    <Button className="get-started-btn w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                      <span className="get-started-text">Start Protecting Today — Instant Setup!</span>
-                    </Button>
-                  </Link>
-                  <div className="cta-redirect-message">
-                    You will be redirected to our customer form immediately upon purchase.
-                  </div>
-                </div>
               </div>
             </div>
           )}

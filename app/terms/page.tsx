@@ -43,7 +43,6 @@ export default function TermsPage() {
                   <ul className="space-y-3 text-muted-foreground">
                     <li>• Your subscription automatically renews each month</li>
                     <li>• We charge your payment method on the same date each month</li>
-                    <li>• All fees are non-refundable (more on this below)</li>
                     <li>
                       • If your payment doesn't go through, we'll let you know so you can update your payment info
                     </li>
@@ -69,30 +68,8 @@ export default function TermsPage() {
                   <ul className="space-y-3 text-muted-foreground">
                     <li>• Your service stops immediately when you cancel</li>
                     <li>• You won't be charged again after cancellation</li>
-                    <li>• We can't provide refunds for time already paid for</li>
                     <li>• You can always resubscribe later if you change your mind</li>
                   </ul>
-                </div>
-
-                <hr className="border-border" />
-
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">Our No-Refund Policy</h2>
-                  <p className="text-lg leading-relaxed mb-4">
-                    We operate a strict no-refund policy for all subscription fees. This helps us keep our prices low
-                    and our service quality high.
-                  </p>
-                  <p className="text-muted-foreground mb-4">This means no refunds for:</p>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• Canceling mid-month</li>
-                    <li>• Changing your mind about the service</li>
-                    <li>• Business changes or circumstances</li>
-                    <li>• Issues with third-party platforms (like Google or Yelp)</li>
-                  </ul>
-                  <p className="text-muted-foreground">
-                    We're confident you'll love our service, but please make sure you're ready to commit before
-                    subscribing.
-                  </p>
                 </div>
 
                 <hr className="border-border" />
@@ -106,10 +83,7 @@ export default function TermsPage() {
                   <ul className="space-y-3 text-muted-foreground">
                     <li>• Sometimes these platforms have outages or change their rules - that's beyond our control</li>
                     <li>• We can't guarantee these platforms will always work perfectly</li>
-                    <li>
-                      • If a platform goes down temporarily, it doesn't affect your subscription or entitle you to a
-                      refund
-                    </li>
+                    <li>• If a platform goes down temporarily, it doesn't affect your subscription</li>
                     <li>• We'll always do our best to work around any platform issues</li>
                   </ul>
                 </div>
@@ -159,7 +133,6 @@ export default function TermsPage() {
                     When you subscribe to GuardX, you're confirming that you understand and agree to:
                   </p>
                   <ul className="space-y-3 text-muted-foreground">
-                    <li>• Our no-refund policy</li>
                     <li>• That we can't control third-party platforms</li>
                     <li>• How our done-for-you service works</li>
                     <li>• That your access ends immediately when you cancel</li>
