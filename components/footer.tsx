@@ -24,11 +24,6 @@ export function Footer() {
             <h3 className="text-foreground font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/pricing" className="text-muted-foreground hover:text-primary transition-colors">
-                  Pricing
-                </Link>
-              </li>
-              <li>
                 <Link href="/what-you-get" className="text-muted-foreground hover:text-primary transition-colors">
                   How We Help
                 </Link>
