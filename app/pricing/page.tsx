@@ -122,7 +122,7 @@ export default function PricingPage() {
                   onClick={() => setIsDemoOpen(true)}
                   className="bg-black hover:bg-gray-800 text-white px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105"
                 >
-                  Book a Demo
+                  Book a Setup & Strategy Call
                 </Button>
               </div>
             </div>
@@ -189,7 +189,7 @@ export default function PricingPage() {
                     onClick={() => setIsDemoOpen(true)}
                     className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10"
                   >
-                    Get Lite Plan
+                    Book a Setup & Strategy Call
                   </Button>
                 </div>
               </CardContent>
@@ -315,7 +315,7 @@ export default function PricingPage() {
                     onClick={() => setIsDemoOpen(true)}
                     className="bg-white hover:bg-gray-100 text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105"
                   >
-                    Book a Demo
+                    Book a Setup & Strategy Call
                   </Button>
                 </div>
               </CardContent>
@@ -397,81 +397,18 @@ export default function PricingPage() {
                 onClick={() => setIsDemoOpen(true)}
                 className="bg-white hover:bg-gray-100 text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105"
               >
-                Book a Demo
+                Book a Setup & Strategy Call
               </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Free Scorecard Dialog */}
-      <Dialog open={isScorecardOpen} onOpenChange={setIsScorecardOpen}>
-        <DialogContent className="sm:max-w-md bg-white">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-black">Get Your Free Scorecard</DialogTitle>
-          </DialogHeader>
-          <form onSubmit={handleScorecardSubmit} className="space-y-4">
-            <div>
-              <Label htmlFor="scorecard-email" className="text-black">
-                Email Address
-              </Label>
-              <Input
-                id="scorecard-email"
-                name="email"
-                type="email"
-                required
-                placeholder="your@email.com"
-                className="border-gray-300"
-              />
-            </div>
-            <div>
-              <Label htmlFor="scorecard-business" className="text-black">
-                Business Name
-              </Label>
-              <Input
-                id="scorecard-business"
-                name="businessName"
-                type="text"
-                required
-                placeholder="Your Business Name"
-                className="border-gray-300"
-              />
-            </div>
-            <div>
-              <Label htmlFor="scorecard-address" className="text-black">
-                Business Address
-              </Label>
-              <Input
-                id="scorecard-address"
-                name="businessAddress"
-                type="text"
-                required
-                placeholder="123 Main St, City, State"
-                className="border-gray-300"
-              />
-            </div>
-            <Button
-              type="submit"
-              disabled={scorecardStatus === "loading"}
-              className="w-full bg-primary hover:bg-[#e6c34a] text-black border-2 border-black/10"
-            >
-              {scorecardStatus === "loading" ? "Submitting..." : "Get Free Scorecard"}
-            </Button>
-            {scorecardStatus === "success" && (
-              <p className="text-green-600 text-sm text-center">Success! Check your email for your scorecard.</p>
-            )}
-            {scorecardStatus === "error" && (
-              <p className="text-red-600 text-sm text-center">Something went wrong. Please try again.</p>
-            )}
-          </form>
-        </DialogContent>
-      </Dialog>
-
-      {/* Book Demo Dialog */}
+      {/* Book Setup & Strategy Call Dialog */}
       <Dialog open={isDemoOpen} onOpenChange={setIsDemoOpen}>
         <DialogContent className="sm:max-w-md bg-white">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-black">Book a Demo</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-black">Book a Setup & Strategy Call</DialogTitle>
           </DialogHeader>
           <form onSubmit={handleDemoSubmit} className="space-y-4">
             <div>
@@ -531,12 +468,75 @@ export default function PricingPage() {
               disabled={demoStatus === "loading"}
               className="w-full bg-primary hover:bg-[#e6c34a] text-black border-2 border-black/10"
             >
-              {demoStatus === "loading" ? "Submitting..." : "Book Demo"}
+              {demoStatus === "loading" ? "Submitting..." : "Book Setup & Strategy Call"}
             </Button>
             {demoStatus === "success" && (
               <p className="text-green-600 text-sm text-center">Success! We'll contact you soon to schedule.</p>
             )}
             {demoStatus === "error" && (
+              <p className="text-red-600 text-sm text-center">Something went wrong. Please try again.</p>
+            )}
+          </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Free Scorecard Dialog */}
+      <Dialog open={isScorecardOpen} onOpenChange={setIsScorecardOpen}>
+        <DialogContent className="sm:max-w-md bg-white">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-black">Get Your Free Scorecard</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleScorecardSubmit} className="space-y-4">
+            <div>
+              <Label htmlFor="scorecard-email" className="text-black">
+                Email Address
+              </Label>
+              <Input
+                id="scorecard-email"
+                name="email"
+                type="email"
+                required
+                placeholder="your@email.com"
+                className="border-gray-300"
+              />
+            </div>
+            <div>
+              <Label htmlFor="scorecard-business" className="text-black">
+                Business Name
+              </Label>
+              <Input
+                id="scorecard-business"
+                name="businessName"
+                type="text"
+                required
+                placeholder="Your Business Name"
+                className="border-gray-300"
+              />
+            </div>
+            <div>
+              <Label htmlFor="scorecard-address" className="text-black">
+                Business Address
+              </Label>
+              <Input
+                id="scorecard-address"
+                name="businessAddress"
+                type="text"
+                required
+                placeholder="123 Main St, City, State"
+                className="border-gray-300"
+              />
+            </div>
+            <Button
+              type="submit"
+              disabled={scorecardStatus === "loading"}
+              className="w-full bg-primary hover:bg-[#e6c34a] text-black border-2 border-black/10"
+            >
+              {scorecardStatus === "loading" ? "Submitting..." : "Get Free Scorecard"}
+            </Button>
+            {scorecardStatus === "success" && (
+              <p className="text-green-600 text-sm text-center">Success! Check your email for your scorecard.</p>
+            )}
+            {scorecardStatus === "error" && (
               <p className="text-red-600 text-sm text-center">Something went wrong. Please try again.</p>
             )}
           </form>

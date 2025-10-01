@@ -210,12 +210,12 @@ export default function HowWeHelpPage() {
                     variant="outline"
                     className="border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black font-semibold text-lg px-8 py-6 bg-transparent"
                   >
-                    Book a Demo
+                    Book a Setup & Strategy Call
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold">Book Your Free Demo</DialogTitle>
+                    <DialogTitle className="text-2xl font-bold">Book Your Free Setup & Strategy Call</DialogTitle>
                     <DialogDescription>
                       Schedule a personalized demo to see how GuardX can protect and grow your business reputation.
                     </DialogDescription>
@@ -282,7 +282,7 @@ export default function HowWeHelpPage() {
                       disabled={demoStatus === "submitting"}
                       className="w-full bg-primary text-black hover:bg-[#e6c34a] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-black/10 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {demoStatus === "submitting" ? "Submitting..." : "Book My Demo"}
+                      {demoStatus === "submitting" ? "Submitting..." : "Book My Setup & Strategy Call"}
                     </button>
 
                     {demoStatus === "success" && (
@@ -619,7 +619,7 @@ export default function HowWeHelpPage() {
                       variant="outline"
                       className="border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black font-semibold text-lg px-8 py-6 bg-transparent"
                     >
-                      Book a Demo
+                      Book a Setup & Strategy Call
                     </Button>
                   </DialogTrigger>
                 </Dialog>

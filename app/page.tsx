@@ -126,7 +126,7 @@ export default function HomePage() {
                   href="#book-demo"
                   className="inline-block bg-black text-primary hover:bg-gray-800 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-primary/20 text-center"
                 >
-                  Book a Demo
+                  Book a Setup & Strategy Call
                 </a>
               </div>
             </div>
@@ -484,14 +484,14 @@ export default function HomePage() {
               <div className="mb-6 flex justify-center">
                 <img
                   src="/calendar-with-zoom-meeting-icon.jpg"
-                  alt="Book a Demo"
+                  alt="Book a Setup & Strategy Call"
                   className="w-32 h-32 rounded-lg shadow-lg"
                 />
               </div>
               <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold text-black">
                 1
               </div>
-              <h3 className="text-xl font-bold text-black mb-3">Book a Demo</h3>
+              <h3 className="text-xl font-bold text-black mb-3">Book a Setup & Strategy Call</h3>
               <p className="text-gray-600">Schedule a call to discuss your business and reputation goals.</p>
             </div>
 
@@ -672,17 +672,17 @@ export default function HomePage() {
               href="#book-demo"
               className="inline-block bg-black text-primary hover:bg-gray-800 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-primary/20"
             >
-              Book a Demo
+              Book a Setup & Strategy Call
             </a>
           </div>
         </div>
       </section>
 
-      {/* Book a Demo Section */}
+      {/* Book a Setup & Strategy Call Section */}
       <section id="book-demo" className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 scroll-animate">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">Book Your Free Demo</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">Book Your Free Setup & Strategy Call</h2>
             <p className="text-xl text-gray-600">
               Schedule a personalized demo to see how GuardX can protect and grow your business reputation. No
               commitment required.
@@ -754,7 +754,7 @@ export default function HomePage() {
                     disabled={demoStatus === "submitting"}
                     className="w-full bg-primary text-black hover:bg-[#e6c34a] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-black/10 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {demoStatus === "submitting" ? "Submitting..." : "Book My Demo"}
+                    {demoStatus === "submitting" ? "Submitting..." : "Book My Setup & Strategy Call"}
                   </button>
 
                   {demoStatus === "success" && (

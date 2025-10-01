@@ -125,7 +125,7 @@ export default function HowItWorksPage() {
                   onClick={() => setDemoOpen(true)}
                   className="inline-block bg-black text-primary hover:bg-gray-800 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-primary/20 text-center"
                 >
-                  Book a Demo
+                  Book a Setup & Strategy Call
                 </button>
               </div>
             </div>
@@ -461,7 +461,7 @@ export default function HowItWorksPage() {
                   onClick={() => setDemoOpen(true)}
                   className="inline-block bg-black text-primary hover:bg-gray-800 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-primary/20 text-center"
                 >
-                  Book a Demo
+                  Book a Setup & Strategy Call
                 </button>
               </div>
             </div>
@@ -558,7 +558,7 @@ export default function HowItWorksPage() {
 
       <Dialog open={demoOpen} onOpenChange={setDemoOpen}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-          <DialogTitle className="text-2xl font-bold">Book Your Free Demo</DialogTitle>
+          <DialogTitle className="text-2xl font-bold">Book Your Free Setup & Strategy Call</DialogTitle>
           <DialogDescription className="text-gray-600 mb-4">
             Schedule a personalized demo to see how GuardX can protect and grow your business reputation. No commitment
             required.
@@ -626,7 +626,7 @@ export default function HowItWorksPage() {
               disabled={demoStatus === "submitting"}
               className="w-full bg-primary text-black hover:bg-[#e6c34a] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-black/10 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {demoStatus === "submitting" ? "Submitting..." : "Book My Demo"}
+              {demoStatus === "submitting" ? "Submitting..." : "Book My Setup & Strategy Call"}
             </button>
 
             {demoStatus === "success" && (
