@@ -3,7 +3,6 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import {
   Dialog,
   DialogContent,
@@ -14,7 +13,6 @@ import {
 } from "@/components/ui/dialog"
 import { useEffect, useRef, useState } from "react"
 import type React from "react"
-import Image from "next/image"
 
 export default function HowWeHelpPage() {
   const observerRef = useRef<IntersectionObserver | null>(null)
@@ -101,15 +99,15 @@ export default function HowWeHelpPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
+      <section className="relative pt-24 pb-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat" />
         </div>
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
+          <div className="text-center mb-8 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
               How GuardX Works to Grow Your{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#e6c34a]">
                 Reputation & Revenue
               </span>
             </h1>
@@ -121,7 +119,7 @@ export default function HowWeHelpPage() {
                 <DialogTrigger asChild>
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-semibold text-lg px-8 py-6"
+                    className="bg-primary hover:bg-[#e6c34a] text-black font-semibold text-lg px-8 py-6 shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-black/10"
                   >
                     Get Your Free Scorecard
                   </Button>
@@ -208,7 +206,7 @@ export default function HowWeHelpPage() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black font-semibold text-lg px-8 py-6 bg-transparent"
+                    className="border-2 border-primary text-primary hover:bg-primary hover:text-black font-semibold text-lg px-8 py-6 bg-transparent shadow-xl transition-all duration-300 transform hover:scale-105"
                   >
                     Book a Setup & Strategy Call
                   </Button>
@@ -305,13 +303,11 @@ export default function HowWeHelpPage() {
               </Dialog>
             </div>
           </div>
-          <div className="mt-16 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-200">
-            <Image
-              src="/business-dashboard-with-reviews-and-analytics-char.jpg"
-              alt="Business dashboard showing reviews and analytics"
-              width={1200}
-              height={600}
-              className="rounded-lg shadow-2xl mx-auto border-4 border-yellow-400/20"
+          <div className="mt-8 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-200">
+            <img
+              src="/images/revenue-growth-arrow-small.png"
+              alt="Revenue growth with upward trending arrow and pound sterling symbols in black and gold"
+              className="rounded-lg shadow-2xl mx-auto border-4 border-primary/20 w-32"
             />
           </div>
         </div>
@@ -322,27 +318,27 @@ export default function HowWeHelpPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
-              <div className="inline-block px-4 py-2 bg-yellow-400 text-black font-bold rounded-full mb-4">STEP 1</div>
+              <div className="inline-block px-4 py-2 bg-primary text-black font-bold rounded-full mb-4">STEP 1</div>
               <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
                 Collect Customer Feedback Automatically
               </h2>
               <div className="space-y-4 text-lg text-gray-700">
                 <p className="flex items-start gap-3">
-                  <span className="text-yellow-400 text-2xl">✓</span>
+                  <span className="text-primary text-2xl">✓</span>
                   <span>
                     GuardX monitors <strong>100+ platforms</strong> including Google, Facebook, Yelp, TripAdvisor, and
                     Trustpilot.
                   </span>
                 </p>
                 <p className="flex items-start gap-3">
-                  <span className="text-yellow-400 text-2xl">✓</span>
+                  <span className="text-primary text-2xl">✓</span>
                   <span>
                     <strong>Automatic email review requests</strong> sent to happy customers to boost your positive
                     reviews.
                   </span>
                 </p>
                 <p className="flex items-start gap-3">
-                  <span className="text-yellow-400 text-2xl">✓</span>
+                  <span className="text-primary text-2xl">✓</span>
                   <span>
                     Never miss a review again with <strong>24/7 automated monitoring</strong> across all your platforms.
                   </span>
@@ -350,12 +346,10 @@ export default function HowWeHelpPage() {
               </div>
             </div>
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-200">
-              <Image
-                src="/dashboard-showing-incoming-reviews-from-multiple-p.jpg"
-                alt="Dashboard showing incoming reviews from multiple platforms"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-xl border-2 border-gray-200"
+              <img
+                src="/images/nps-survey-request.png"
+                alt="NPS survey request asking customers to rate their experience"
+                className="rounded-lg shadow-xl border-2 border-gray-200 w-full"
               />
             </div>
           </div>
@@ -367,44 +361,49 @@ export default function HowWeHelpPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-200">
-              <Image
-                src="/professional-performance-dashboard-with-charts-sho.jpg"
-                alt="Monthly performance report dashboard"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-xl border-2 border-yellow-400/20"
-              />
+              <div className="space-y-6">
+                <img
+                  src="/images/reputation-analytics-dashboard.png"
+                  alt="Reputation analytics dashboard showing overall rating, rating breakdown, and review sources"
+                  className="rounded-lg shadow-xl border-2 border-primary/20 w-full"
+                />
+                <img
+                  src="/images/nps-breakdown-dashboard.png"
+                  alt="NPS breakdown dashboard showing Net Promoter Score gauge, promoters, passives, and detractors"
+                  className="rounded-lg shadow-xl border-2 border-primary/20 w-full"
+                />
+              </div>
             </div>
             <div className="order-1 md:order-2 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
-              <div className="inline-block px-4 py-2 bg-yellow-400 text-black font-bold rounded-full mb-4">STEP 2</div>
+              <div className="inline-block px-4 py-2 bg-primary text-black font-bold rounded-full mb-4">STEP 2</div>
               <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">Understand Key Insights & Metrics</h2>
 
               <div className="mb-8">
                 <h3 className="text-2xl font-bold text-black mb-4 flex items-center gap-3">
-                  <span className="text-yellow-400">📊</span>
+                  <span className="text-primary">📊</span>
                   Monthly Reports
                 </h3>
                 <div className="space-y-3 text-lg text-gray-700">
                   <p className="flex items-start gap-3">
-                    <span className="text-yellow-400 text-2xl">✓</span>
+                    <span className="text-primary text-2xl">✓</span>
                     <span>
                       <strong>Review trends over time</strong> showing how your reputation is improving month-over-month
                     </span>
                   </p>
                   <p className="flex items-start gap-3">
-                    <span className="text-yellow-400 text-2xl">✓</span>
+                    <span className="text-primary text-2xl">✓</span>
                     <span>
                       <strong>Net Promoter Score (NPS) gauge</strong> tracking customer loyalty and satisfaction
                     </span>
                   </p>
                   <p className="flex items-start gap-3">
-                    <span className="text-yellow-400 text-2xl">✓</span>
+                    <span className="text-primary text-2xl">✓</span>
                     <span>
                       <strong>Star rating history</strong> across all platforms to monitor your overall performance
                     </span>
                   </p>
                   <p className="flex items-start gap-3">
-                    <span className="text-yellow-400 text-2xl">✓</span>
+                    <span className="text-primary text-2xl">✓</span>
                     <span>
                       <strong>Revenue impact insights</strong> showing how your reputation directly affects your bottom
                       line
@@ -415,25 +414,25 @@ export default function HowWeHelpPage() {
 
               <div>
                 <h3 className="text-2xl font-bold text-black mb-4 flex items-center gap-3">
-                  <span className="text-yellow-400">💡</span>
+                  <span className="text-primary">💡</span>
                   Analysis & Insights
                 </h3>
                 <div className="space-y-3 text-lg text-gray-700">
                   <p className="flex items-start gap-3">
-                    <span className="text-yellow-400 text-2xl">✓</span>
+                    <span className="text-primary text-2xl">✓</span>
                     <span>
                       <strong>AI-powered pattern recognition</strong> identifying recurring themes in customer feedback
                     </span>
                   </p>
                   <p className="flex items-start gap-3">
-                    <span className="text-yellow-400 text-2xl">✓</span>
+                    <span className="text-primary text-2xl">✓</span>
                     <span>
                       <strong>Team-assisted analysis</strong> providing actionable recommendations to improve customer
                       experience
                     </span>
                   </p>
                   <p className="flex items-start gap-3">
-                    <span className="text-yellow-400 text-2xl">✓</span>
+                    <span className="text-primary text-2xl">✓</span>
                     <span>
                       <strong>Automated insights delivery</strong> sent directly to your inbox every month
                     </span>
@@ -450,34 +449,34 @@ export default function HowWeHelpPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
-              <div className="inline-block px-4 py-2 bg-yellow-400 text-black font-bold rounded-full mb-4">STEP 3</div>
+              <div className="inline-block px-4 py-2 bg-primary text-black font-bold rounded-full mb-4">STEP 3</div>
               <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
                 Respond Professionally & Boost Your Reputation
               </h2>
               <div className="space-y-4 text-lg text-gray-700">
                 <p className="flex items-start gap-3">
-                  <span className="text-yellow-400 text-2xl">✓</span>
+                  <span className="text-primary text-2xl">✓</span>
                   <span>
                     <strong>AI-powered response suggestions</strong> (editable) or fully managed by the GuardX team for
                     professional replies.
                   </span>
                 </p>
                 <p className="flex items-start gap-3">
-                  <span className="text-yellow-400 text-2xl">✓</span>
+                  <span className="text-primary text-2xl">✓</span>
                   <span>
                     <strong>Suggested replies for negative reviews</strong> to protect revenue and turn unhappy
                     customers into loyal ones.
                   </span>
                 </p>
                 <p className="flex items-start gap-3">
-                  <span className="text-yellow-400 text-2xl">✓</span>
+                  <span className="text-primary text-2xl">✓</span>
                   <span>
                     <strong>Review widgets</strong> for your website and social media sharing to showcase your best
                     reviews.
                   </span>
                 </p>
                 <p className="flex items-start gap-3">
-                  <span className="text-yellow-400 text-2xl">✓</span>
+                  <span className="text-primary text-2xl">✓</span>
                   <span>
                     <strong>Instant notifications</strong> when negative reviews appear so you can respond quickly.
                   </span>
@@ -485,12 +484,10 @@ export default function HowWeHelpPage() {
               </div>
             </div>
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-200">
-              <Image
-                src="/response-dashboard-screenshot-showing-ai-powered-r.jpg"
-                alt="Response dashboard with AI suggestions"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-xl border-2 border-gray-200"
+              <img
+                src="/images/ai-suggested-reply.png"
+                alt="AI-powered response suggestion interface showing review and suggested reply"
+                className="rounded-lg shadow-xl border-2 border-gray-200 w-full"
               />
             </div>
           </div>
@@ -515,15 +512,15 @@ export default function HowWeHelpPage() {
               "Gyms & Fitness",
               "Retailers & Service",
             ].map((industry, index) => (
-              <Card
+              <div
                 key={index}
                 className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 hover:shadow-lg hover:scale-105 transition-transform"
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <CardContent className="p-6 text-center">
+                <div className="p-6 text-center">
                   <p className="font-semibold text-gray-800">{industry}</p>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -536,11 +533,11 @@ export default function HowWeHelpPage() {
             <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">What Our Clients Say</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 hover:shadow-xl transition-shadow">
-              <CardContent className="p-8">
+            <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 hover:shadow-xl transition-shadow">
+              <div className="p-8">
                 <div className="flex items-center gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-2xl">
+                    <span key={i} className="text-primary text-2xl">
                       ★
                     </span>
                   ))}
@@ -550,7 +547,7 @@ export default function HowWeHelpPage() {
                   really clear and easy to read, making it simple to keep an eye on my average rating."
                 </p>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-white font-bold text-xl">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-[#e6c34a] flex items-center justify-center text-white font-bold text-xl">
                     HC
                   </div>
                   <div>
@@ -558,14 +555,14 @@ export default function HowWeHelpPage() {
                     <p className="text-gray-600">Business Owner</p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            <Card className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-200 hover:shadow-xl transition-shadow">
-              <CardContent className="p-8">
+            <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-200 hover:shadow-xl transition-shadow">
+              <div className="p-8">
                 <div className="flex items-center gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-2xl">
+                    <span key={i} className="text-primary text-2xl">
                       ★
                     </span>
                   ))}
@@ -574,7 +571,7 @@ export default function HowWeHelpPage() {
                   "A very handy tool to keep track of my business reviews — simple and easy to use."
                 </p>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-white font-bold text-xl">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-[#e6c34a] flex items-center justify-center text-white font-bold text-xl">
                     JY
                   </div>
                   <div>
@@ -582,8 +579,8 @@ export default function HowWeHelpPage() {
                     <p className="text-gray-600">Business Owner</p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -605,7 +602,7 @@ export default function HowWeHelpPage() {
                   <DialogTrigger asChild>
                     <Button
                       size="lg"
-                      className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-semibold text-lg px-8 py-6"
+                      className="bg-primary hover:bg-[#e6c34a] text-black font-semibold text-lg px-8 py-6 shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-black/10"
                     >
                       Get Your Free Scorecard
                     </Button>
@@ -617,7 +614,7 @@ export default function HowWeHelpPage() {
                     <Button
                       size="lg"
                       variant="outline"
-                      className="border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black font-semibold text-lg px-8 py-6 bg-transparent"
+                      className="border-2 border-primary text-primary hover:bg-primary hover:text-black font-semibold text-lg px-8 py-6 bg-transparent shadow-xl transition-all duration-300 transform hover:scale-105"
                     >
                       Book a Setup & Strategy Call
                     </Button>
@@ -626,12 +623,10 @@ export default function HowWeHelpPage() {
               </div>
             </div>
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-200">
-              <Image
-                src="/happy-business-owner-looking-at-positive-reviews-o.jpg"
+              <img
+                src="/images/happy-business-owner.jpg"
                 alt="Happy business owner with positive reviews"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-2xl border-4 border-yellow-400/20"
+                className="rounded-lg shadow-2xl border-4 border-primary/20 w-full"
               />
             </div>
           </div>

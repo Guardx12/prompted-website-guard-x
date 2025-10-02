@@ -128,7 +128,7 @@ export default function PricingPage() {
             </div>
             <div className="relative">
               <img
-                src="/professional-business-owner-reviewing-analytics-da.jpg"
+                src="/images/professional-business-owner-reviewing-analytics-da.jpg"
                 alt="Business owner reviewing analytics"
                 className="rounded-lg shadow-2xl"
               />
@@ -373,7 +373,7 @@ export default function PricingPage() {
       <section className="py-20 bg-gradient-to-br from-black to-gray-900 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <img
-            src="/happy-successful-business-owner-celebrating-with-t.jpg"
+            src="/images/happy-successful-business-owner-celebrating-with-t.jpg"
             alt="Background"
             className="w-full h-full object-cover"
           />

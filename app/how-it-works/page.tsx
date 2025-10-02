@@ -131,7 +131,7 @@ export default function HowItWorksPage() {
             </div>
             <div className="flex justify-center scroll-animate">
               <img
-                src="/business-dashboard-with-reviews-and-analytics-char.jpg"
+                src="/images/business-dashboard-with-reviews-and-analytics-char.jpg"
                 alt="Business dashboard showing reviews and analytics"
                 className="w-full max-w-md rounded-lg shadow-2xl"
               />
@@ -146,7 +146,7 @@ export default function HowItWorksPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="scroll-animate order-2 lg:order-1">
               <img
-                src="/dashboard-showing-incoming-reviews-from-multiple-p.jpg"
+                src="/images/dashboard-showing-incoming-reviews-from-multiple-p.jpg"
                 alt="Dashboard showing incoming reviews"
                 className="w-full rounded-lg shadow-2xl border-2 border-primary/20"
               />
@@ -263,7 +263,7 @@ export default function HowItWorksPage() {
             </div>
             <div className="scroll-animate">
               <img
-                src="/professional-performance-dashboard-with-charts-sho.jpg"
+                src="/images/professional-performance-dashboard-with-charts-sho.jpg"
                 alt="Monthly performance report dashboard"
                 className="w-full rounded-lg shadow-2xl border-2 border-primary/20"
               />
@@ -278,7 +278,7 @@ export default function HowItWorksPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="scroll-animate order-2 lg:order-1">
               <img
-                src="/response-dashboard-screenshot-showing-ai-powered-r.jpg"
+                src="/images/response-dashboard-screenshot-showing-ai-powered-r.jpg"
                 alt="Response dashboard with AI suggestions"
                 className="w-full rounded-lg shadow-2xl border-2 border-primary/20"
               />
@@ -467,7 +467,7 @@ export default function HowItWorksPage() {
             </div>
             <div className="flex justify-center scroll-animate">
               <img
-                src="/happy-business-owner-looking-at-positive-reviews-o.jpg"
+                src="/images/happy-business-owner-looking-at-positive-reviews-o.jpg"
                 alt="Happy business owner with positive reviews"
                 className="w-full max-w-md rounded-lg shadow-2xl"
               />

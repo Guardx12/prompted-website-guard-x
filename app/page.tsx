@@ -132,7 +132,7 @@ export default function HomePage() {
             </div>
             <div className="flex justify-center scroll-animate">
               <img
-                src="/business-owner-checking-reviews-on-tablet-with-ris.jpg"
+                src="/images/business-owner-tablet.jpg"
                 alt="Business owner with reviews"
                 className="w-full max-w-md rounded-lg shadow-2xl"
               />
@@ -148,23 +148,27 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-4xl font-bold text-black mb-8">Monitor 100+ Platforms Including:</h2>
             <div className="flex flex-wrap justify-center items-center gap-12 mb-12">
               <img
-                src="/google-logo.png"
+                src="/images/google-logo.jpg"
                 alt="Google"
                 className="h-10 opacity-70 hover:opacity-100 transition-opacity"
               />
               <img
-                src="/facebook-logo.png"
+                src="/images/facebook-logo.jpg"
                 alt="Facebook"
                 className="h-10 opacity-70 hover:opacity-100 transition-opacity"
               />
-              <img src="/yelp-logo.png" alt="Yelp" className="h-10 opacity-70 hover:opacity-100 transition-opacity" />
               <img
-                src="/tripadvisor-logo.png"
+                src="/images/yelp-logo.jpg"
+                alt="Yelp"
+                className="h-10 opacity-70 hover:opacity-100 transition-opacity"
+              />
+              <img
+                src="/images/tripadvisor-logo.jpg"
                 alt="TripAdvisor"
                 className="h-10 opacity-70 hover:opacity-100 transition-opacity"
               />
               <img
-                src="/trustpilot-logo.png"
+                src="/images/trustpilot-logo.jpg"
                 alt="Trustpilot"
                 className="h-10 opacity-70 hover:opacity-100 transition-opacity"
               />
@@ -173,7 +177,7 @@ export default function HomePage() {
 
           <div className="max-w-5xl mx-auto scroll-animate">
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/review%20reoprt-vCoZUQPBhalzkp2Y1Ex0y8mdrNdNIO.jpg"
+              src="/images/review-dashboard.jpg"
               alt="Multi-platform review monitoring dashboard"
               className="w-full rounded-lg shadow-2xl border-2 border-primary/20"
             />
@@ -483,7 +487,7 @@ export default function HomePage() {
             <div className="text-center scroll-animate">
               <div className="mb-6 flex justify-center">
                 <img
-                  src="/calendar-with-zoom-meeting-icon.jpg"
+                  src="/images/calendar-meeting.jpg"
                   alt="Book a Setup & Strategy Call"
                   className="w-32 h-32 rounded-lg shadow-lg"
                 />
@@ -497,11 +501,7 @@ export default function HomePage() {
 
             <div className="text-center scroll-animate">
               <div className="mb-6 flex justify-center">
-                <img
-                  src="/checklist-with-setup-icons-and-checkmarks.jpg"
-                  alt="Guided Setup"
-                  className="w-32 h-32 rounded-lg shadow-lg"
-                />
+                <img src="/images/setup-checklist.jpg" alt="Guided Setup" className="w-32 h-32 rounded-lg shadow-lg" />
               </div>
               <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold text-black">
                 2
@@ -513,7 +513,7 @@ export default function HomePage() {
             <div className="text-center scroll-animate">
               <div className="mb-6 flex justify-center">
                 <img
-                  src="/smartphone-with-notification-alerts-and-bell-icons.jpg"
+                  src="/images/notification-alerts.jpg"
                   alt="Automatic Monitoring"
                   className="w-32 h-32 rounded-lg shadow-lg"
                 />
@@ -528,7 +528,7 @@ export default function HomePage() {
             <div className="text-center scroll-animate">
               <div className="mb-6 flex justify-center">
                 <img
-                  src="/professional-report-pdf-mockup-with-charts-and-met.jpg"
+                  src="/images/report-mockup.jpg"
                   alt="Reports & Results"
                   className="w-32 h-32 rounded-lg shadow-lg"
                 />
@@ -682,7 +682,9 @@ export default function HomePage() {
       <section id="book-demo" className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 scroll-animate">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">Book Your Free Setup & Strategy Call</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center text-black mb-4">
+              Book Your Free Setup & Strategy Call
+            </h2>
             <p className="text-xl text-gray-600">
               Schedule a personalized demo to see how GuardX can protect and grow your business reputation. No
               commitment required.
