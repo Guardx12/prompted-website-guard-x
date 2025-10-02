@@ -55,6 +55,9 @@ Thank you!`)
               <Link href="/faq" className="text-foreground hover:text-primary transition-colors">
                 FAQ
               </Link>
+              <Link href="/contact" className="text-foreground hover:text-primary transition-colors">
+                Contact
+              </Link>
             </div>
 
             {/* Mobile menu button */}
@@ -96,6 +99,13 @@ Thank you!`)
                   onClick={() => setIsOpen(false)}
                 >
                   FAQ
+                </Link>
+                <Link
+                  href="/contact"
+                  className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Contact
                 </Link>
               </div>
             </div>

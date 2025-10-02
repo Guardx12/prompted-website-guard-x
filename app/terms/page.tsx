@@ -17,7 +17,7 @@ export default function TermsPage() {
           <div className="bg-card rounded-lg border border-border p-8 md:p-12">
             <div className="prose prose-lg max-w-none">
               <p className="text-sm text-muted-foreground mb-8">
-                <strong>Last Updated: December 9, 2024</strong>
+                <strong>Last Updated: 2 October 2025</strong>
               </p>
 
               <div className="text-foreground space-y-8">

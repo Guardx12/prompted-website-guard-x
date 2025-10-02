@@ -17,12 +17,12 @@ import {
   BarChart3,
   Globe,
   TrendingUp,
-  Users,
   CheckCircle2,
   Target,
   Zap,
   Mail,
   Star,
+  Sparkles,
 } from "lucide-react"
 
 export default function PricingPage() {
@@ -105,24 +105,27 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
+              <div className="inline-block bg-primary/10 border-2 border-primary px-4 py-2 rounded-full mb-6">
+                <span className="text-primary font-bold text-sm">ALL-IN-ONE PACKAGE</span>
+              </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 text-balance">
-                GuardX – Simple, <span className="text-primary">Done-for-You</span> Reputation Management
+                Everything You Need to Protect & Grow Your Reputation
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed">
-                Everything you need to grow your reputation and revenue in one premium package.
+                One simple price. Complete reputation management. Fully automated.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
-                  onClick={() => setIsScorecardOpen(true)}
+                  onClick={() => setIsDemoOpen(true)}
                   className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10"
                 >
-                  Get Your Free Scorecard
+                  Book a Setup & Strategy Call
                 </Button>
                 <Button
-                  onClick={() => setIsDemoOpen(true)}
-                  className="bg-black hover:bg-gray-800 text-white px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105"
+                  onClick={() => setIsScorecardOpen(true)}
+                  className="bg-white hover:bg-gray-50 text-black border-2 border-gray-300 px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105"
                 >
-                  Book a Setup & Strategy Call
+                  Get Your Free Scorecard
                 </Button>
               </div>
             </div>
@@ -137,185 +140,159 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Lite Plan Section */}
+      {/* Main Package Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">Pricing Plans</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
+              Your Complete Reputation Management Solution
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              For just £199/month, get everything you need to monitor, manage, and grow your online reputation—all
+              handled by our expert team.
+            </p>
           </div>
 
-          <div className="max-w-4xl mx-auto mb-12">
-            <Card className="bg-white border-2 border-gray-300 hover:shadow-xl transition-all duration-300">
-              <CardContent className="p-10 md:p-12">
-                <div className="text-center mb-10">
-                  <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">Lite Plan</h2>
-                  <div className="mb-4">
-                    <span className="text-6xl font-bold text-black">£99</span>
-                    <span className="text-2xl text-gray-600">/month</span>
-                  </div>
-                </div>
-
-                <div className="space-y-4 mb-10">
-                  <div className="flex items-start gap-4">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <p className="text-gray-700 text-lg">Monitor key platforms: Google, Facebook, Yelp</p>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <p className="text-gray-700 text-lg">Instant alerts for new reviews (positive & negative)</p>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <p className="text-gray-700 text-lg">AI Suggested Responses (manual approval, push of a button)</p>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <p className="text-gray-700 text-lg">
-                      Monthly performance reports (star ratings, review counts, trends)
-                    </p>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <p className="text-gray-700 text-lg">Email support</p>
-                  </div>
-                </div>
-
-                <div className="text-center">
-                  <Button
-                    onClick={() => setIsDemoOpen(true)}
-                    className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10"
-                  >
-                    Book a Setup & Strategy Call
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Premium Package Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <Card className="bg-gradient-to-br from-black to-gray-900 border-2 border-primary hover:shadow-2xl transition-all duration-300">
               <CardContent className="p-10 md:p-12">
                 <div className="text-center mb-10">
-                  <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Premium Package</h2>
+                  <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary px-4 py-2 rounded-full mb-4">
+                    <Sparkles className="w-5 h-5 text-primary" />
+                    <span className="text-primary font-bold text-sm">MOST POPULAR</span>
+                  </div>
+                  <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">GuardX All-In-One Package</h3>
                   <div className="mb-4">
-                    <span className="text-6xl font-bold text-primary">£299</span>
+                    <span className="text-6xl font-bold text-primary">£199</span>
                     <span className="text-2xl text-gray-300">/month</span>
                   </div>
+                  <p className="text-gray-300 text-lg">Everything included. No hidden fees. Cancel anytime.</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-                  <div className="flex items-start gap-4">
+                <div className="space-y-6 mb-10">
+                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                       <Globe className="w-6 h-6 text-black" />
                     </div>
                     <div>
-                      <h3 className="text-white font-bold text-lg mb-1">Monitoring across 100+ platforms</h3>
-                      <p className="text-gray-300 text-sm">Google, Facebook, Yelp, TripAdvisor, Trustpilot, and more</p>
+                      <h4 className="text-white font-bold text-xl mb-2">Monitor 100+ Platforms in One Place</h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        See all your reviews from Google, Facebook, Yelp, TripAdvisor, Trustpilot, and 95+ other
+                        platforms in a single dashboard. No more logging into multiple sites—save hours every week and
+                        never miss a review again.
+                      </p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                       <Bell className="w-6 h-6 text-black" />
                     </div>
                     <div>
-                      <h3 className="text-white font-bold text-lg mb-1">Instant alerts for all reviews</h3>
-                      <p className="text-gray-300 text-sm">Positive & negative</p>
+                      <h4 className="text-white font-bold text-xl mb-2">Instant Alerts for Every Review</h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        Get notified immediately when someone leaves a review—positive or negative. Respond quickly to
+                        protect your reputation, turn unhappy customers into loyal ones, and show potential customers
+                        you care about feedback.
+                      </p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                       <MessageSquare className="w-6 h-6 text-black" />
                     </div>
                     <div>
-                      <h3 className="text-white font-bold text-lg mb-1">AI Suggested Responses</h3>
-                      <p className="text-gray-300 text-sm">Optional auto-response for positive reviews</p>
+                      <h4 className="text-white font-bold text-xl mb-2">AI-Powered Review Responses</h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        Save time and engage customers professionally with AI-suggested replies tailored to each review.
+                        Approve with one click or let positive reviews auto-respond. Maintain a consistent, professional
+                        voice without the hassle.
+                      </p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                       <Star className="w-6 h-6 text-black" />
                     </div>
                     <div>
-                      <h3 className="text-white font-bold text-lg mb-1">Review request setup</h3>
-                      <p className="text-gray-300 text-sm">Collect more reviews</p>
+                      <h4 className="text-white font-bold text-xl mb-2">Automated Review Requests</h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        Automatically encourage happy customers to leave reviews, boosting your overall ratings and
+                        attracting more business. More positive reviews mean higher search rankings and increased trust
+                        from potential customers.
+                      </p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <BarChart3 className="w-6 h-6 text-black" />
-                    </div>
-                    <div>
-                      <h3 className="text-white font-bold text-lg mb-1">Weekly or monthly performance reports</h3>
-                      <p className="text-gray-300 text-sm">Ratings, volume, NPS, trends</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                       <TrendingUp className="w-6 h-6 text-black" />
                     </div>
                     <div>
-                      <h3 className="text-white font-bold text-lg mb-1">Website review widgets</h3>
-                      <p className="text-gray-300 text-sm">Display your best reviews on your website</p>
+                      <h4 className="text-white font-bold text-xl mb-2">Website Review Widget</h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        Display your best reviews directly on your website to build instant trust with visitors. Social
+                        proof converts browsers into paying customers—showcase your reputation where it matters most.
+                      </p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
+                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                      <BarChart3 className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-bold text-xl mb-2">Detailed Monthly Reports</h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        Receive comprehensive reports showing your star ratings, review volume, NPS scores, sentiment
+                        trends, and urgent issues. Make data-driven decisions to improve customer experience and
+                        identify revenue opportunities.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                       <Shield className="w-6 h-6 text-black" />
                     </div>
                     <div>
-                      <h3 className="text-white font-bold text-lg mb-1">Full setup & integration</h3>
-                      <p className="text-gray-300 text-sm">Handled by GuardX team</p>
+                      <h4 className="text-white font-bold text-xl mb-2">Fully Managed Service</h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        Everything is automated and handled by the GuardX team—from setup to ongoing monitoring. You
+                        focus on running your business while we protect and grow your reputation 24/7. No technical
+                        skills required.
+                      </p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 md:col-span-2">
+                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                       <Mail className="w-6 h-6 text-black" />
                     </div>
                     <div>
-                      <h3 className="text-white font-bold text-lg mb-1">Email support</h3>
-                      <p className="text-gray-300 text-sm">Dedicated support for your needs</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4 md:col-span-2">
-                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <Users className="w-6 h-6 text-black" />
-                    </div>
-                    <div>
-                      <h3 className="text-white font-bold text-lg mb-1">Optional multi-location management</h3>
-                      <p className="text-gray-300 text-sm">Inquire for bespoke plan</p>
+                      <h4 className="text-white font-bold text-xl mb-2">Dedicated Email Support</h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        Get expert help whenever you need it. Our team is here to answer questions, provide guidance,
+                        and ensure you're getting maximum value from your reputation management.
+                      </p>
                     </div>
                   </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button
-                    onClick={() => setIsScorecardOpen(true)}
+                    onClick={() => setIsDemoOpen(true)}
                     className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10"
                   >
-                    Get Your Free Scorecard
+                    Book a Setup & Strategy Call
                   </Button>
                   <Button
-                    onClick={() => setIsDemoOpen(true)}
+                    onClick={() => setIsScorecardOpen(true)}
                     className="bg-white hover:bg-gray-100 text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105"
                   >
-                    Book a Setup & Strategy Call
+                    Get Your Free Scorecard
                   </Button>
                 </div>
               </CardContent>
@@ -325,10 +302,13 @@ export default function PricingPage() {
       </section>
 
       {/* Why Choose GuardX Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">Why Choose GuardX?</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">Why Businesses Choose GuardX</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Simple, effective, and completely hands-off reputation management
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -337,9 +317,10 @@ export default function PricingPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <CheckCircle2 className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-black mb-3">Done-for-You</h3>
+                <h3 className="text-2xl font-bold text-black mb-3">100% Done-for-You</h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Focus on running your business while we handle your reputation management from start to finish
+                  We handle everything—setup, monitoring, alerts, and reporting. You get all the benefits without
+                  lifting a finger. Focus on what you do best: running your business.
                 </p>
               </CardContent>
             </Card>
@@ -349,8 +330,11 @@ export default function PricingPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Zap className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-black mb-3">Scalable</h3>
-                <p className="text-gray-700 leading-relaxed">Perfect for single or multi-location businesses</p>
+                <h3 className="text-2xl font-bold text-black mb-3">Simple & Transparent</h3>
+                <p className="text-gray-700 leading-relaxed">
+                  One price, everything included. No hidden fees, no complicated tiers, no surprises. Just
+                  straightforward reputation management that works.
+                </p>
               </CardContent>
             </Card>
 
@@ -359,12 +343,69 @@ export default function PricingPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Target className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-black mb-3">Revenue-Focused</h3>
+                <h3 className="text-2xl font-bold text-black mb-3">Proven ROI</h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Positive reputation equals more paying customers and increased revenue
+                  Better reviews mean more customers and higher revenue. Our clients see measurable improvements in
+                  ratings, review volume, and most importantly—their bottom line.
                 </p>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* What's Included Summary */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
+                Everything Included for £199/Month
+              </h2>
+              <p className="text-xl text-gray-600">No add-ons. No upsells. Just complete reputation management.</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
+                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
+                <span className="text-gray-700 font-medium">100+ platform monitoring</span>
+              </div>
+              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
+                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
+                <span className="text-gray-700 font-medium">Instant review alerts</span>
+              </div>
+              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
+                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
+                <span className="text-gray-700 font-medium">AI-powered responses</span>
+              </div>
+              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
+                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
+                <span className="text-gray-700 font-medium">Automated review requests</span>
+              </div>
+              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
+                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
+                <span className="text-gray-700 font-medium">Website review widget</span>
+              </div>
+              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
+                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
+                <span className="text-gray-700 font-medium">Monthly detailed reports</span>
+              </div>
+              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
+                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
+                <span className="text-gray-700 font-medium">Complete setup & integration</span>
+              </div>
+              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
+                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
+                <span className="text-gray-700 font-medium">Dedicated email support</span>
+              </div>
+            </div>
+
+            <div className="mt-10 text-center">
+              <p className="text-gray-600 mb-6">
+                <strong className="text-black">Multi-location business?</strong> We offer custom packages for businesses
+                with multiple locations. Contact us for a tailored solution.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -381,25 +422,27 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
-              Get Started Today
+              Ready to Protect & Grow Your Reputation?
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Join businesses that trust GuardX to protect and grow their reputation
+              Join hundreds of businesses using GuardX to automate their reputation management. Get started today for
+              just £199/month—everything included, fully managed.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                onClick={() => setIsScorecardOpen(true)}
-                className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10"
-              >
-                Get Your Free Scorecard
-              </Button>
-              <Button
                 onClick={() => setIsDemoOpen(true)}
-                className="bg-white hover:bg-gray-100 text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105"
+                className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10"
               >
                 Book a Setup & Strategy Call
               </Button>
+              <Button
+                onClick={() => setIsScorecardOpen(true)}
+                className="bg-white hover:bg-gray-100 text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105"
+              >
+                Get Your Free Scorecard
+              </Button>
             </div>
+            <p className="text-gray-400 mt-6 text-sm">No credit card required • Cancel anytime • Setup in 24 hours</p>
           </div>
         </div>
       </section>
