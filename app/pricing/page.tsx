@@ -27,9 +27,7 @@ import {
 
 export default function PricingPage() {
   const [isScorecardOpen, setIsScorecardOpen] = useState(false)
-  const [isDemoOpen, setIsDemoOpen] = useState(false)
   const [scorecardStatus, setScorecardStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
-  const [demoStatus, setDemoStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
 
   const handleScorecardSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -63,39 +61,6 @@ export default function PricingPage() {
     }
   }
 
-  const handleDemoSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setDemoStatus("loading")
-
-    const formData = new FormData(e.currentTarget)
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      businessName: formData.get("businessName"),
-      businessAddress: formData.get("businessAddress"),
-    }
-
-    try {
-      const response = await fetch("https://formspree.io/f/xdkoqgpk", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      })
-
-      if (response.ok) {
-        setDemoStatus("success")
-        setTimeout(() => {
-          setIsDemoOpen(false)
-          setDemoStatus("idle")
-        }, 2000)
-      } else {
-        setDemoStatus("error")
-      }
-    } catch (error) {
-      setDemoStatus("error")
-    }
-  }
-
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -115,12 +80,11 @@ export default function PricingPage() {
                 One simple price. Complete reputation management. Fully automated.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  onClick={() => setIsDemoOpen(true)}
-                  className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10"
-                >
-                  Book a Setup & Strategy Call
-                </Button>
+                <a href="https://calendly.com/guardxnetwork-info/30min" target="_blank" rel="noopener noreferrer">
+                  <Button className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10">
+                    Book a Strategy Call
+                  </Button>
+                </a>
                 <Button
                   onClick={() => setIsScorecardOpen(true)}
                   className="bg-white hover:bg-gray-50 text-black border-2 border-gray-300 px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105"
@@ -287,12 +251,11 @@ export default function PricingPage() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button
-                    onClick={() => setIsDemoOpen(true)}
-                    className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10"
-                  >
-                    Book a Setup & Strategy Call
-                  </Button>
+                  <a href="https://calendly.com/guardxnetwork-info/30min" target="_blank" rel="noopener noreferrer">
+                    <Button className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10">
+                      Book a Strategy Call
+                    </Button>
+                  </a>
                   <Button
                     onClick={() => setIsScorecardOpen(true)}
                     className="bg-white hover:bg-gray-100 text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105"
@@ -434,12 +397,11 @@ export default function PricingPage() {
               just £199/month—everything included, fully managed.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                onClick={() => setIsDemoOpen(true)}
-                className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10"
-              >
-                Book a Setup & Strategy Call
-              </Button>
+              <a href="https://calendly.com/guardxnetwork-info/30min" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10">
+                  Book a Strategy Call
+                </Button>
+              </a>
               <Button
                 onClick={() => setIsScorecardOpen(true)}
                 className="bg-white hover:bg-gray-100 text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105"
@@ -451,82 +413,6 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
-
-      {/* Book Setup & Strategy Call Dialog */}
-      <Dialog open={isDemoOpen} onOpenChange={setIsDemoOpen}>
-        <DialogContent className="sm:max-w-md bg-white">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-black">Book a Setup & Strategy Call</DialogTitle>
-          </DialogHeader>
-          <form onSubmit={handleDemoSubmit} className="space-y-4">
-            <div>
-              <Label htmlFor="demo-name" className="text-black">
-                Full Name
-              </Label>
-              <Input
-                id="demo-name"
-                name="name"
-                type="text"
-                required
-                placeholder="John Smith"
-                className="border-gray-300"
-              />
-            </div>
-            <div>
-              <Label htmlFor="demo-email" className="text-black">
-                Email Address
-              </Label>
-              <Input
-                id="demo-email"
-                name="email"
-                type="email"
-                required
-                placeholder="your@email.com"
-                className="border-gray-300"
-              />
-            </div>
-            <div>
-              <Label htmlFor="demo-business" className="text-black">
-                Business Name
-              </Label>
-              <Input
-                id="demo-business"
-                name="businessName"
-                type="text"
-                required
-                placeholder="Your Business Name"
-                className="border-gray-300"
-              />
-            </div>
-            <div>
-              <Label htmlFor="demo-address" className="text-black">
-                Business Address
-              </Label>
-              <Input
-                id="demo-address"
-                name="businessAddress"
-                type="text"
-                required
-                placeholder="123 Main St, City, State"
-                className="border-gray-300"
-              />
-            </div>
-            <Button
-              type="submit"
-              disabled={demoStatus === "loading"}
-              className="w-full bg-primary hover:bg-[#e6c34a] text-black border-2 border-black/10"
-            >
-              {demoStatus === "loading" ? "Submitting..." : "Book Setup & Strategy Call"}
-            </Button>
-            {demoStatus === "success" && (
-              <p className="text-green-600 text-sm text-center">Success! We'll contact you soon to schedule.</p>
-            )}
-            {demoStatus === "error" && (
-              <p className="text-red-600 text-sm text-center">Something went wrong. Please try again.</p>
-            )}
-          </form>
-        </DialogContent>
-      </Dialog>
 
       {/* Free Scorecard Dialog */}
       <Dialog open={isScorecardOpen} onOpenChange={setIsScorecardOpen}>
