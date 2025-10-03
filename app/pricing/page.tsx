@@ -151,6 +151,11 @@ export default function PricingPage() {
               For just £199/month, get everything you need to monitor, manage, and grow your online reputation—all
               handled by our expert team.
             </p>
+            <div className="mt-6 animate-pulse">
+              <p className="text-lg font-bold text-[#FFD700] bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent">
+                We also offer plans for smaller businesses. Get in touch to discuss.
+              </p>
+            </div>
           </div>
 
           <div className="max-w-5xl mx-auto">
@@ -297,6 +302,13 @@ export default function PricingPage() {
                 </div>
               </CardContent>
             </Card>
+
+            <div className="mt-8 text-center space-y-3 max-w-3xl mx-auto">
+              <p className="text-gray-700 text-lg">
+                <strong className="text-black">Multi-location business?</strong> We offer custom packages for businesses
+                with multiple locations. Contact us for a tailored solution.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -399,13 +411,6 @@ export default function PricingPage() {
                 <span className="text-gray-700 font-medium">Dedicated email support</span>
               </div>
             </div>
-
-            <div className="mt-10 text-center">
-              <p className="text-gray-600 mb-6">
-                <strong className="text-black">Multi-location business?</strong> We offer custom packages for businesses
-                with multiple locations. Contact us for a tailored solution.
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -413,7 +418,11 @@ export default function PricingPage() {
       {/* Updated CTA Section */}
       <section className="py-20 bg-gradient-to-br from-black to-gray-900 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <img src="/successful-business-owner-celebrating-achievement.jpg" alt="Background" className="w-full h-full object-cover" />
+          <img
+            src="/successful-business-owner-celebrating-achievement.jpg"
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">

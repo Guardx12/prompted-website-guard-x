@@ -150,27 +150,27 @@ export default function HomePage() {
               <img
                 src="/images/google-logo.jpg"
                 alt="Google"
-                className="h-10 opacity-70 hover:opacity-100 transition-opacity"
+                className="h-14 opacity-70 hover:opacity-100 transition-opacity"
               />
               <img
                 src="/images/facebook-logo.jpg"
                 alt="Facebook"
-                className="h-10 opacity-70 hover:opacity-100 transition-opacity"
+                className="h-14 opacity-70 hover:opacity-100 transition-opacity"
               />
               <img
                 src="/images/yelp-logo.jpg"
                 alt="Yelp"
-                className="h-10 opacity-70 hover:opacity-100 transition-opacity"
+                className="h-14 opacity-70 hover:opacity-100 transition-opacity"
               />
               <img
                 src="/images/tripadvisor-logo.jpg"
                 alt="TripAdvisor"
-                className="h-10 opacity-70 hover:opacity-100 transition-opacity"
+                className="h-14 opacity-70 hover:opacity-100 transition-opacity"
               />
               <img
                 src="/images/trustpilot-logo.jpg"
                 alt="Trustpilot"
-                className="h-10 opacity-70 hover:opacity-100 transition-opacity"
+                className="h-14 opacity-70 hover:opacity-100 transition-opacity"
               />
             </div>
           </div>
