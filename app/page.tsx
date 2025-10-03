@@ -20,6 +20,7 @@ import {
   Store,
 } from "lucide-react"
 import { useEffect, useState } from "react"
+import { GoogleLogo, FacebookLogo, YelpLogo, TripAdvisorLogo, TrustpilotLogo } from "@/components/platform-logos"
 
 export default function HomePage() {
   // Intersection Observer for scroll animations
@@ -147,37 +148,27 @@ export default function HomePage() {
           <div className="text-center mb-12 scroll-animate">
             <h2 className="text-3xl md:text-4xl font-bold text-black mb-8">Monitor 100+ Platforms Including:</h2>
             <div className="flex flex-wrap justify-center items-center gap-12 mb-12">
-              <img
-                src="/images/google-logo.jpg"
-                alt="Google"
-                className="h-14 opacity-70 hover:opacity-100 transition-opacity"
-              />
-              <img
-                src="/images/facebook-logo.jpg"
-                alt="Facebook"
-                className="h-14 opacity-70 hover:opacity-100 transition-opacity"
-              />
-              <img
-                src="/images/yelp-logo.jpg"
-                alt="Yelp"
-                className="h-14 opacity-70 hover:opacity-100 transition-opacity"
-              />
-              <img
-                src="/images/tripadvisor-logo.jpg"
-                alt="TripAdvisor"
-                className="h-14 opacity-70 hover:opacity-100 transition-opacity"
-              />
-              <img
-                src="/images/trustpilot-logo.jpg"
-                alt="Trustpilot"
-                className="h-14 opacity-70 hover:opacity-100 transition-opacity"
-              />
+              <div className="opacity-70 hover:opacity-100 transition-opacity">
+                <GoogleLogo className="h-14" />
+              </div>
+              <div className="opacity-70 hover:opacity-100 transition-opacity">
+                <FacebookLogo className="h-14" />
+              </div>
+              <div className="opacity-70 hover:opacity-100 transition-opacity">
+                <YelpLogo className="h-14" />
+              </div>
+              <div className="opacity-70 hover:opacity-100 transition-opacity">
+                <TripAdvisorLogo className="h-14" />
+              </div>
+              <div className="opacity-70 hover:opacity-100 transition-opacity">
+                <TrustpilotLogo className="h-14" />
+              </div>
             </div>
           </div>
 
           <div className="max-w-5xl mx-auto scroll-animate">
             <img
-              src="/images/review-dashboard.jpg"
+              src="/images/dash4.png"
               alt="Multi-platform review monitoring dashboard"
               className="w-full rounded-lg shadow-2xl border-2 border-primary/20"
             />
