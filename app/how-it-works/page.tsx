@@ -215,7 +215,8 @@ export default function HowItWorksPage() {
                   <div className="flex items-start gap-3">
                     <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                     <p>
-                      <strong>AI-powered pattern recognition</strong> identifying recurring themes in customer feedback
+                      <strong>AI-assisted sentiment analysis</strong> to help you quickly identify positive, neutral,
+                      and negative feedback.
                     </p>
                   </div>
                   <div className="flex items-start gap-3">

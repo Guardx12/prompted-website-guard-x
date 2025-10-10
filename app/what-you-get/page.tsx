@@ -301,7 +301,8 @@ export default function HowWeHelpPage() {
                   <p className="flex items-start gap-3">
                     <span className="text-primary text-2xl">✓</span>
                     <span>
-                      <strong>AI-powered pattern recognition</strong> identifying recurring themes in customer feedback
+                      <strong>AI-assisted sentiment analysis</strong> to help you quickly identify positive, neutral,
+                      and negative feedback.
                     </span>
                   </p>
                   <p className="flex items-start gap-3">
