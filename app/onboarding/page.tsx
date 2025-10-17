@@ -89,8 +89,10 @@ export default function OnboardingPage() {
       submitData.append("additionalInfo", formData.additionalInfo)
 
       submitData.append("form_source", "guardx_client_onboarding_form")
+      submitData.append("_replyto", formData.email)
+      submitData.append("_to", "info@guardxnetwork.com")
 
-      const response = await fetch("https://formspree.io/f/mqaybkep", {
+      const response = await fetch("https://formspree.io/f/mkgqyvok", {
         method: "POST",
         body: submitData,
         headers: {
