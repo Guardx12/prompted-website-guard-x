@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 export function Footer() {
   return (
@@ -8,10 +9,13 @@ export function Footer() {
           {/* Logo and tagline */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">G</span>
-              </div>
-              <span className="text-xl font-bold text-foreground">GuardX</span>
+              <Image
+                src="/images/guardx-company-logo.jpg"
+                alt="GuardX Logo"
+                width={120}
+                height={40}
+                className="h-10 w-auto"
+              />
             </div>
             <p className="text-muted-foreground mb-4">
               Protecting your reputation with professional online reputation management services.
