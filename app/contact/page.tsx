@@ -162,7 +162,7 @@ export default function ContactPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="bg-gradient-to-br from-[#d4af37] to-[#b8941f] py-16">
+        <section className="bg-gradient-to-br from-primary to-[#b8941f] py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Protect Your Reputation?</h2>
             <p className="text-xl text-white mb-8">
@@ -172,7 +172,7 @@ export default function ContactPage() {
               <Button
                 size="lg"
                 variant="secondary"
-                className="bg-white text-[#d4af37] hover:bg-gray-100 font-semibold"
+                className="bg-white text-primary hover:bg-gray-100 font-semibold"
                 onClick={() => (window.location.href = `mailto:${email}`)}
               >
                 Send Us an Email
@@ -180,7 +180,7 @@ export default function ContactPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-[#d4af37] font-semibold bg-transparent"
+                className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold bg-transparent"
                 onClick={() => window.open(googleMapsUrl, "_blank")}
               >
                 View on Map
