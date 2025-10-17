@@ -44,16 +44,6 @@ export default function OnboardingPage() {
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (
-      !formData.businessName.trim() ||
-      !formData.contactName.trim() ||
-      !formData.email.trim() ||
-      !formData.confirmation
-    ) {
-      alert("Please fill in all required fields and confirm the details are correct.")
-      return
-    }
-
     setIsSubmitting(true)
 
     try {
@@ -211,7 +201,7 @@ export default function OnboardingPage() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleFormSubmit} className="space-y-8">
+                <form onSubmit={handleFormSubmit} noValidate className="space-y-8">
                   <div className="space-y-6">
                     <h2 className="text-2xl font-bold text-black border-b-2 border-primary pb-2">
                       1️⃣ Basic Business Information
@@ -227,7 +217,6 @@ export default function OnboardingPage() {
                         name="businessName"
                         value={formData.businessName}
                         onChange={handleInputChange}
-                        required
                         className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:outline-none text-black bg-white transition-colors"
                         placeholder="Enter your business name"
                       />
@@ -243,7 +232,6 @@ export default function OnboardingPage() {
                         name="contactName"
                         value={formData.contactName}
                         onChange={handleInputChange}
-                        required
                         className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:outline-none text-black bg-white transition-colors"
                         placeholder="Enter contact person name"
                       />
@@ -254,12 +242,11 @@ export default function OnboardingPage() {
                         Business Email Address *
                       </label>
                       <input
-                        type="email"
+                        type="text"
                         id="email"
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        required
                         className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:outline-none text-black bg-white transition-colors"
                         placeholder="your@email.com"
                       />
@@ -270,7 +257,7 @@ export default function OnboardingPage() {
                         Business Phone Number
                       </label>
                       <input
-                        type="tel"
+                        type="text"
                         id="phone"
                         name="phone"
                         value={formData.phone}
@@ -285,7 +272,7 @@ export default function OnboardingPage() {
                         Website URL
                       </label>
                       <input
-                        type="url"
+                        type="text"
                         id="website"
                         name="website"
                         value={formData.website}
@@ -367,7 +354,7 @@ export default function OnboardingPage() {
                         Link to Google Business Profile
                       </label>
                       <input
-                        type="url"
+                        type="text"
                         id="googleProfileLink"
                         name="googleProfileLink"
                         value={formData.googleProfileLink}
@@ -399,7 +386,7 @@ export default function OnboardingPage() {
                         Facebook Page Link
                       </label>
                       <input
-                        type="url"
+                        type="text"
                         id="facebookLink"
                         name="facebookLink"
                         value={formData.facebookLink}
@@ -624,7 +611,7 @@ export default function OnboardingPage() {
                         submitting
                       </label>
                       <input
-                        type="url"
+                        type="text"
                         id="logoLink"
                         name="logoLink"
                         value={formData.logoLink}
@@ -717,7 +704,6 @@ export default function OnboardingPage() {
                         name="confirmation"
                         checked={formData.confirmation}
                         onChange={handleInputChange}
-                        required
                         className="w-5 h-5 border-2 border-gray-300 rounded focus:ring-2 focus:ring-primary text-primary mt-1"
                       />
                       <label htmlFor="confirmation" className="text-sm font-medium text-black cursor-pointer">
