@@ -85,6 +85,9 @@ export default function HomePage() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight">
                 GuardX – Grow Your Reputation, Grow Your Revenue
               </h1>
+              <p className="text-2xl md:text-3xl text-gray-700 mb-6 font-semibold">
+                Supporting businesses across the UK
+              </p>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                 Boost your business reputation and turn more browsers into paying customers.
               </p>
