@@ -48,7 +48,8 @@ export default function FAQPage() {
     },
     {
       question: "Are there any hidden fees?",
-      answer: "No. The £199/month package is all-inclusive. There are no hidden fees.",
+      answer:
+        "GuardX offers an all-inclusive service with no hidden fees. Every business is different, so pricing depends on your size, review volume, and goals. Most clients find GuardX pays for itself within the first few months by driving more 5-star reviews and preventing public negatives.",
     },
     {
       question: "How quickly will I see results?",
@@ -81,8 +82,7 @@ export default function FAQPage() {
     },
     {
       question: "Can I switch to another plan if needed?",
-      answer:
-        "Currently, the package is all-inclusive at £199/month. You can cancel anytime if you no longer want the service.",
+      answer: "The package is all-inclusive. You can cancel anytime if you no longer want the service.",
     },
     {
       question: "What if I already use another review management tool?",

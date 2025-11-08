@@ -112,8 +112,8 @@ export default function PricingPage() {
               Your Complete Reputation Management Solution
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              For just £199/month, get everything you need to monitor, manage, and grow your online reputation—all
-              handled by our expert team.
+              Get everything you need to monitor, manage, and grow your online reputation—all handled by our expert
+              team.
             </p>
             <div className="mt-6 animate-pulse">
               <p className="text-lg font-bold text-[#FFD700] bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent">
@@ -131,11 +131,14 @@ export default function PricingPage() {
                     <span className="text-primary font-bold text-sm">MOST POPULAR</span>
                   </div>
                   <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">GuardX All-In-One Package</h3>
-                  <div className="mb-4">
-                    <span className="text-6xl font-bold text-primary">£199</span>
-                    <span className="text-2xl text-gray-300">/month</span>
+                  <div className="mb-4 max-w-3xl mx-auto">
+                    <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+                      Most clients find GuardX pays for itself within the first few months by driving more 5-star
+                      reviews and preventing public negatives. Every business is different — pricing depends on your
+                      size, review volume, and goals. To receive your tailored quote, please book a quick strategy call
+                      or email us at info@guardxnetwork.com.
+                    </p>
                   </div>
-                  <p className="text-gray-300 text-lg">Everything included. No hidden fees. Cancel anytime.</p>
                 </div>
 
                 <div className="space-y-6 mb-10">
@@ -334,9 +337,7 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
-                Everything Included for £199/Month
-              </h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">Everything Included</h2>
               <p className="text-xl text-gray-600">No add-ons. No upsells. Just complete reputation management.</p>
             </div>
 
@@ -393,8 +394,8 @@ export default function PricingPage() {
               Ready to Protect & Grow Your Reputation?
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Join hundreds of businesses using GuardX to automate their reputation management. Get started today for
-              just £199/month—everything included, fully managed.
+              Join hundreds of businesses using GuardX to automate their reputation management. Get started
+              today—everything included, fully managed.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="https://calendly.com/guardxnetwork-info/30min" target="_blank" rel="noopener noreferrer">
