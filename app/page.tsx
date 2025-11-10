@@ -85,6 +85,7 @@ export default function HomePage() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight">
                 GuardX – Grow Your Reputation, Grow Your Revenue
               </h1>
+              <p className="text-xl text-gray-600 mb-6 font-medium">Now with automated email & SMS review requests.</p>
               <p className="text-2xl md:text-3xl text-gray-700 mb-6 font-semibold">
                 Supporting businesses across the UK
               </p>
@@ -339,6 +340,14 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 scroll-animate">
             <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">Set-and-Forget Reputation Growth</h2>
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold text-black mb-3">Automated Review Requests (Email & SMS)</h3>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                GuardX automatically follows up with your customers after every visit — by email or text message. Text
+                invites reach customers instantly with open rates above 98%, helping you collect more 5-star reviews
+                without chasing. Choose email only, or add our SMS Review Booster for even faster results.
+              </p>
+            </div>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               GuardX is fully managed by our team. You focus on running your business while we protect and grow your
               reputation automatically.
@@ -424,7 +433,10 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-black mb-2">Fully Managed Service</h3>
-                    <p className="text-gray-600">Our team handles setup and ongoing management.</p>
+                    <p className="text-gray-600">
+                      Our team handles setup and ongoing management. Includes setup of email and optional SMS review
+                      invitations so you can capture every customer's feedback automatically.
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -490,7 +502,11 @@ export default function HomePage() {
                 3
               </div>
               <h3 className="text-xl font-bold text-black mb-3">Automatic Monitoring</h3>
-              <p className="text-gray-600">24/7 monitoring with alerts and AI suggestions for every review.</p>
+              <p className="text-gray-600">
+                24/7 monitoring with alerts and AI suggestions for every review. GuardX automatically monitors your
+                reviews and sends follow-up requests by email or SMS, ensuring every customer has the chance to share
+                positive feedback.
+              </p>
             </div>
 
             <div className="text-center scroll-animate">

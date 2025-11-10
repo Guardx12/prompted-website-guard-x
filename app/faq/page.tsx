@@ -94,6 +94,11 @@ export default function FAQPage() {
       answer:
         "No. GuardX cannot remove reviews. It helps you respond professionally, address issues, and improve your reputation over time.",
     },
+    {
+      question: "Can GuardX send review requests by text message?",
+      answer:
+        "Yes — our optional SMS Review Booster automatically sends friendly text invites to your customers, linking them directly to your Google review page. It's fast, personal, and drives up to 3× more feedback.",
+    },
   ]
 
   return (

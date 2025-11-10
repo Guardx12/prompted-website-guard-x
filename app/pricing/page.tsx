@@ -193,7 +193,23 @@ export default function PricingPage() {
                       <p className="text-gray-300 leading-relaxed">
                         Automatically encourage happy customers to leave reviews, boosting your overall ratings and
                         attracting more business. More positive reviews mean higher search rankings and increased trust
-                        from potential customers.
+                        from potential customers. GuardX can send review requests by email or text message, ensuring
+                        every customer has the chance to share feedback on their preferred channel.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
+                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-bold text-xl mb-2">
+                        Email and SMS Review Invitations (Optional Add-On)
+                      </h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        Send review invites by email or text with high open rates. Plans start at £12 / month for 200
+                        texts. Available as an optional monthly upgrade for any plan.
                       </p>
                     </div>
                   </div>
@@ -239,15 +255,15 @@ export default function PricingPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
+                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all border-2 border-primary/30">
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-6 h-6 text-black" />
+                      <MessageSquare className="w-6 h-6 text-black" />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold text-xl mb-2">Dedicated Email Support</h4>
+                      <h4 className="text-white font-bold text-xl mb-2">Optional Add-On → SMS Review Booster</h4>
                       <p className="text-gray-300 leading-relaxed">
-                        Get expert help whenever you need it. Our team is here to answer questions, provide guidance,
-                        and ensure you're getting maximum value from your reputation management.
+                        Send review invites by text with 98% open rates. Plans start at £12 / month for 200 texts.
+                        Available as an optional monthly upgrade for any plan.
                       </p>
                     </div>
                   </div>
@@ -360,6 +376,10 @@ export default function PricingPage() {
               </div>
               <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
+                <span className="text-gray-700 font-medium">Email and SMS review invitations (optional add-on)</span>
+              </div>
+              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
+                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
                 <span className="text-gray-700 font-medium">Website review widget</span>
               </div>
               <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
@@ -373,6 +393,10 @@ export default function PricingPage() {
               <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
                 <span className="text-gray-700 font-medium">Dedicated email support</span>
+              </div>
+              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
+                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
+                <span className="text-gray-700 font-medium">SMS Review Booster</span>
               </div>
             </div>
           </div>

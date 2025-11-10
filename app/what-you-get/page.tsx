@@ -220,8 +220,19 @@ export default function HowWeHelpPage() {
                 <p className="flex items-start gap-3">
                   <span className="text-primary text-2xl">✓</span>
                   <span>
+                    <strong>Optional SMS review requests</strong> available for even higher response rates — text
+                    invites reach customers instantly and get opened 98% of the time.
+                  </span>
+                </p>
+                <p className="flex items-start gap-3">
+                  <span className="text-primary text-2xl">✓</span>
+                  <span>
                     Never miss a review again with <strong>24/7 automated monitoring</strong> across all your platforms.
                   </span>
+                </p>
+                <p className="text-gray-700 leading-relaxed mt-4">
+                  GuardX automatically sends review requests by email or text depending on what details your customers
+                  provide, ensuring every customer is reached on their preferred channel.
                 </p>
               </div>
             </div>
@@ -340,6 +351,13 @@ export default function HowWeHelpPage() {
                   <span>
                     <strong>AI-powered response suggestions</strong> (editable) or fully managed by the GuardX team for
                     professional replies.
+                  </span>
+                </p>
+                <p className="flex items-start gap-3">
+                  <span className="text-primary text-2xl">✓</span>
+                  <span>
+                    <strong>Track and respond to feedback</strong> collected through both email and SMS review requests
+                    in one place.
                   </span>
                 </p>
                 <p className="flex items-start gap-3">
