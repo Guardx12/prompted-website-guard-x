@@ -20,7 +20,6 @@ import {
   CheckCircle2,
   Target,
   Zap,
-  Mail,
   Star,
   Sparkles,
 } from "lucide-react"
@@ -201,21 +200,6 @@ export default function PricingPage() {
 
                   <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-6 h-6 text-black" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold text-xl mb-2">
-                        Email and SMS Review Invitations (Optional Add-On)
-                      </h4>
-                      <p className="text-gray-300 leading-relaxed">
-                        Send review invites by email or text with high open rates. Plans start at £12 / month for 200
-                        texts. Available as an optional monthly upgrade for any plan.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
-                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                       <TrendingUp className="w-6 h-6 text-black" />
                     </div>
                     <div>
@@ -373,10 +357,6 @@ export default function PricingPage() {
               <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
                 <span className="text-gray-700 font-medium">Automated review requests</span>
-              </div>
-              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
-                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">Email and SMS review invitations (optional add-on)</span>
               </div>
               <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
