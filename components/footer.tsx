@@ -18,7 +18,8 @@ export function Footer() {
               />
             </div>
             <p className="text-muted-foreground mb-4">
-              Protecting your reputation with professional online reputation management services.
+              GuardX – Helping UK businesses grow through automated review requests and simple, done-for-you review
+              growth systems.
             </p>
             <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} GuardX. All rights reserved.</p>
           </div>
@@ -28,8 +29,13 @@ export function Footer() {
             <h3 className="text-foreground font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/what-you-get" className="text-muted-foreground hover:text-primary transition-colors">
-                  How We Help
+                <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/pricing" className="text-muted-foreground hover:text-primary transition-colors">
+                  Pricing
                 </Link>
               </li>
               <li>
