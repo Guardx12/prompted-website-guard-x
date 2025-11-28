@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import Script from "next/script"
+import { WhatsAppBubble } from "@/components/whatsapp-bubble"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -55,6 +56,8 @@ export default function RootLayout({
 
       <body className="min-h-screen bg-background text-foreground antialiased">
         {children}
+
+        <WhatsAppBubble />
 
         {/* Facebook Pixel noscript */}
         <noscript>
