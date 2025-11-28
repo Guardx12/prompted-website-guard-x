@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from 'next/font/google'
+import { Inter } from "next/font/google"
 import "./globals.css"
 import Script from "next/script"
 
@@ -12,7 +12,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "GuardX – Grow Your Reputation, Grow Your Revenue",
-  description: "Boost your Google visibility, calls, and reviews with GuardX. We help UK businesses grow using automated review requests and performance-based pricing.",
+  description:
+    "The Review Growth System for Local UK Businesses. Automated email & SMS review requests that boost your Google visibility and bring in more customers.",
   generator: "v0.app",
   icons: {
     icon: "/favicon.ico",

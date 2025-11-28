@@ -11,93 +11,92 @@ export default function FAQPage() {
     {
       question: "What does GuardX do?",
       answer:
-        "GuardX monitors your online reviews across 100+ platforms, including Google, Facebook, Yelp, TripAdvisor, and Trustpilot. It sends instant alerts for new reviews and provides automated or suggested AI responses, along with detailed reports to track ratings, NPS, and sentiment trends.",
+        "GuardX helps local businesses collect more Google reviews automatically using email and optional SMS review requests. No dashboards, no complicated tools — just consistent review growth that boosts visibility and enquiries.",
     },
     {
       question: "Is GuardX fully automated?",
       answer:
-        "Yes. GuardX is a fully managed system. Reviews are monitored, alerts are sent, review requests are automated, and reports are generated automatically. You don't need to manually manage any part of the system.",
+        "Yes. Once it's set up, review requests go out automatically after every job or visit, followed by two gentle reminders to increase responses.",
     },
     {
       question: "Can I respond to reviews myself?",
       answer:
-        "Yes. GuardX provides suggested AI responses, but you can also manually respond to any review if you prefer.",
+        "Yes. All reviews appear on your own Google or Facebook page as normal. You stay fully in control and can reply directly on your platforms.",
     },
     {
       question: "Can I cancel the service?",
-      answer: "Yes. You can cancel your GuardX subscription at any time.",
+      answer: "Yes — GuardX is month-to-month. You can cancel anytime with no contracts or commitments.",
     },
     {
       question: "How often do I get reports?",
       answer:
-        "Reports are delivered automatically, giving you regular insights into your review ratings, NPS scores, sentiment trends, and any urgent issues.",
+        "GuardX focuses on review growth rather than dashboards. Your results will appear directly on Google. You'll see your reviews and visibility improving week by week without needing reports.",
     },
     {
-      question: "What platforms do you monitor?",
+      question: "Does GuardX monitor platforms?",
       answer:
-        "GuardX monitors more than 100 platforms, including Google, Facebook, Yelp, TripAdvisor, Trustpilot, and others.",
+        "No. GuardX focuses on increasing your reviews and improving visibility. All reviews go directly to your Google or Facebook pages where you can see them instantly.",
     },
     {
       question: "Does GuardX request reviews from my customers?",
       answer:
-        "Yes. GuardX can automatically request reviews from your customers to help increase your overall ratings.",
+        "Yes. GuardX automatically sends friendly review requests by email (and SMS if added), along with two reminders to increase responses.",
     },
     {
       question: "Can I display my reviews on my website?",
-      answer: "Yes. GuardX includes a widget to show your best reviews on your website.",
+      answer:
+        "Yes — because customers leave reviews on your Google page, you can use any standard Google review widget or plugin if you want to show them on your website.",
     },
     {
       question: "Are there any hidden fees?",
       answer:
-        "GuardX offers an all-inclusive service with no hidden fees. Every business is different, so pricing depends on your size, review volume, and goals. Most clients find GuardX pays for itself within the first few months by driving more 5-star reviews and preventing public negatives.",
+        "No hidden fees. The only optional add-on is SMS (£16/month for a UK SMS number + £12/month for 200 text credits).",
     },
     {
       question: "How quickly will I see results?",
-      answer:
-        "You'll immediately start receiving alerts and automated review requests. Reputation improvements depend on your existing reviews and customer engagement, which varies by business.",
+      answer: "Most businesses begin receiving new reviews within the first few days once the system is switched on.",
     },
     {
       question: "Do you manage my responses for me?",
       answer:
-        "Yes. GuardX can automatically respond to reviews using AI-generated replies, or you can choose to review and approve them manually.",
+        "No. GuardX helps you collect more reviews automatically — all replies stay fully in your control through your Google Business Profile.",
     },
     {
-      question: "Can I customize the review requests sent to my customers?",
-      answer: "Yes. You can personalize the messages that are sent when requesting reviews.",
+      question: "Can I customise my review requests?",
+      answer: "Yes — we can personalise your messages with your business name and tone.",
     },
     {
       question: "Is training required to use GuardX?",
       answer:
-        "No. GuardX is fully automated and designed to be simple. Once your account is set up, the system runs on its own.",
+        "No training needed. The system runs automatically in the background — most clients never need to log into anything.",
     },
     {
       question: "How secure is my data?",
       answer:
-        "Your data is protected using industry-standard security protocols. Only authorized users can access your account.",
+        "We only collect the customer name, email and phone number required to send review requests. Nothing else. All data is handled securely.",
     },
     {
-      question: "How soon will I start receiving alerts?",
+      question: "How soon does everything start working?",
       answer:
-        "You will start receiving alerts immediately after your account is set up and connected to your review platforms.",
+        "Most setups are completed the same day. Email review requests can start immediately, and SMS begins once your dedicated number is approved (usually 1–2 weeks).",
     },
     {
-      question: "Can I switch to another plan if needed?",
-      answer: "The package is all-inclusive. You can cancel anytime if you no longer want the service.",
-    },
-    {
-      question: "What if I already use another review management tool?",
+      question: "Can I switch plans later?",
       answer:
-        "GuardX can run alongside other tools, but we recommend consolidating to get the most benefit from the automated monitoring, AI responses, and reporting.",
+        "There are no complicated plans — your quote is based on the size and needs of your business. You can upgrade SMS at any time.",
+    },
+    {
+      question: "What if I already use another tool?",
+      answer: "GuardX can run alongside other tools, or replace them entirely if you prefer a simpler setup.",
     },
     {
       question: "Will GuardX remove negative reviews?",
       answer:
-        "No. GuardX cannot remove reviews. It helps you respond professionally, address issues, and improve your reputation over time.",
+        "No service can remove legitimate reviews. GuardX focuses on increasing positive reviews so negative ones have far less impact.",
     },
     {
       question: "Can GuardX send review requests by text message?",
-      answer:
-        "Yes — our optional SMS Review Booster automatically sends friendly text invites to your customers, linking them directly to your Google review page. It's fast, personal, and drives up to 3× more feedback.",
+      answer: "Yes — SMS review requests are available as an optional upgrade and have a 98% open rate.",
     },
   ]
 
@@ -153,10 +152,10 @@ export default function FAQPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">Still Have Questions?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">Have more questions?</h2>
               <p className="text-lg text-gray-700 mb-8">
-                Our reputation management experts are here to help. Contact our team for personalized answers and
-                guidance.
+                We're here to help. Contact us any time for personalised guidance or to see how GuardX can work for your
+                business.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/contact">
@@ -188,8 +187,8 @@ export default function FAQPage() {
                   </div>
                   <h3 className="text-xl font-semibold text-black mb-4">Quick Response Guarantee</h3>
                   <p className="text-gray-700 mb-6">
-                    We respond to all inquiries within 24 hours and provide automated reputation management solutions to
-                    discuss your specific needs.
+                    We reply to all messages within 24 hours. Simple, automated review growth — no dashboards, no
+                    complexity.
                   </p>
                   <div className="grid grid-cols-2 gap-4 text-center">
                     <div>

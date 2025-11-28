@@ -20,12 +20,11 @@ export default function ContactPage() {
         <section className="bg-white py-16 sm:py-20 lg:py-24">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-6">
-              Contact <span className="text-[#d4af37]">GuardX Network</span>
+              Contact <span className="text-[#d4af37]">GuardX</span>
             </h1>
             <p className="text-lg sm:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-              Have questions about our reputation management services? Need support or want to learn more about how we
-              can help your business? We're here to help. Reach out to our team for personalized answers, consultations,
-              or inquiries about our services.
+              Have questions about growing your Google reviews? Need help getting set up, or want to learn how the
+              GuardX review system works? We're here to help — fast, simple support whenever you need it.
             </p>
           </div>
         </section>
@@ -67,7 +66,7 @@ export default function ContactPage() {
                         >
                           {email}
                         </a>
-                        <p className="text-sm text-gray-600 mt-1">We typically respond within 24 hours</p>
+                        <p className="text-sm text-gray-600 mt-1">We typically respond within 24 hours.</p>
                       </div>
                     </div>
                   </div>
@@ -77,7 +76,7 @@ export default function ContactPage() {
               {/* Why Contact Us Card */}
               <Card className="border-2 border-gray-200 shadow-lg">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-[#d4af37] mb-6">Why Contact Us?</h2>
+                  <h2 className="text-2xl font-bold text-[#d4af37] mb-6">Why Contact GuardX?</h2>
 
                   <ul className="space-y-4">
                     <li className="flex items-start gap-3">
@@ -85,8 +84,10 @@ export default function ContactPage() {
                         <span className="text-white text-sm font-bold">✓</span>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-black mb-1">Free Consultation</h4>
-                        <p className="text-gray-700 text-sm">Get expert advice on your reputation management needs</p>
+                        <h4 className="font-semibold text-black mb-1">Free Review Growth Consultation</h4>
+                        <p className="text-gray-700 text-sm">
+                          Ask anything about Google reviews, visibility, or how our system works.
+                        </p>
                       </div>
                     </li>
 
@@ -95,8 +96,10 @@ export default function ContactPage() {
                         <span className="text-white text-sm font-bold">✓</span>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-black mb-1">Custom Solutions</h4>
-                        <p className="text-gray-700 text-sm">Discuss tailored packages for your specific business</p>
+                        <h4 className="font-semibold text-black mb-1">Simple Setup Support</h4>
+                        <p className="text-gray-700 text-sm">
+                          Get guidance on CRM/BCC integration or using the staff form.
+                        </p>
                       </div>
                     </li>
 
@@ -105,8 +108,10 @@ export default function ContactPage() {
                         <span className="text-white text-sm font-bold">✓</span>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-black mb-1">Quick Response</h4>
-                        <p className="text-gray-700 text-sm">Our team responds promptly to all inquiries</p>
+                        <h4 className="font-semibold text-black mb-1">Fast Replies</h4>
+                        <p className="text-gray-700 text-sm">
+                          We respond quickly to make setup smooth and stress-free.
+                        </p>
                       </div>
                     </li>
 
@@ -115,8 +120,11 @@ export default function ContactPage() {
                         <span className="text-white text-sm font-bold">✓</span>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-black mb-1">Expert Guidance</h4>
-                        <p className="text-gray-700 text-sm">Get answers from reputation management professionals</p>
+                        <h4 className="font-semibold text-black mb-1">Clear, Honest Advice</h4>
+                        <p className="text-gray-700 text-sm">
+                          Learn exactly how GuardX helps increase your reviews and visibility — without jargon or
+                          complicated tools.
+                        </p>
                       </div>
                     </li>
                   </ul>
@@ -133,7 +141,7 @@ export default function ContactPage() {
               <h2 className="text-3xl font-bold text-black mb-4">
                 Find Us on <span className="text-[#d4af37]">the Map</span>
               </h2>
-              <p className="text-gray-700">Based in West Sussex, serving businesses across the United Kingdom</p>
+              <p className="text-gray-700">Based in West Sussex, working with businesses across the UK.</p>
             </div>
 
             <div className="bg-white rounded-lg shadow-lg overflow-hidden border-2 border-gray-200">
@@ -164,9 +172,10 @@ export default function ContactPage() {
         {/* CTA Section */}
         <section className="bg-gradient-to-br from-primary to-[#b8941f] py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Protect Your Reputation?</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Grow Your Reviews?</h2>
             <p className="text-xl text-white mb-8">
-              Contact us today for a free consultation and discover how GuardX can help your business thrive online.
+              Contact us today for a free, friendly consultation and see how GuardX can increase your reviews,
+              visibility, and enquiries.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button

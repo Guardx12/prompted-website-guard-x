@@ -12,16 +12,17 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
   Shield,
-  Bell,
   MessageSquare,
-  BarChart3,
-  Globe,
-  TrendingUp,
-  CheckCircle2,
   Target,
   Zap,
   Star,
   Sparkles,
+  CheckCircle2,
+  Phone,
+  Mail,
+  Users,
+  Settings,
+  TrendingUp,
 } from "lucide-react"
 
 export default function PricingPage() {
@@ -73,10 +74,11 @@ export default function PricingPage() {
                 <span className="text-primary font-bold text-sm">ALL-IN-ONE PACKAGE</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 text-balance">
-                Everything You Need to Protect & Grow Your Reputation
+                Simple Pricing for Growing Your Reviews & Visibility
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed">
-                One simple price. Complete reputation management. Fully automated.
+                One straightforward system that increases your Google reviews automatically — no dashboards, no
+                complicated tools, just real results.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href="https://calendly.com/guardxnetwork-info/30min" target="_blank" rel="noopener noreferrer">
@@ -108,17 +110,8 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
-              Your Complete Reputation Management Solution
+              The GuardX Review Growth System
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Get everything you need to monitor, manage, and grow your online reputation—all handled by our expert
-              team.
-            </p>
-            <div className="mt-6 animate-pulse">
-              <p className="text-lg font-bold text-[#FFD700] bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent">
-                We also offer plans for smaller businesses. Get in touch to discuss.
-              </p>
-            </div>
           </div>
 
           <div className="max-w-5xl mx-auto">
@@ -129,13 +122,13 @@ export default function PricingPage() {
                     <Sparkles className="w-5 h-5 text-primary" />
                     <span className="text-primary font-bold text-sm">MOST POPULAR</span>
                   </div>
-                  <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">GuardX All-In-One Package</h3>
+                  <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">GuardX Review Growth System</h3>
                   <div className="mb-4 max-w-3xl mx-auto">
                     <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-                      Most clients find GuardX pays for itself within the first few months by driving more 5-star
-                      reviews and preventing public negatives. Every business is different — pricing depends on your
-                      size, review volume, and goals. To receive your tailored quote, please book a quick strategy call
-                      or email us at info@guardxnetwork.com.
+                      Most clients find GuardX pays for itself within the first few months by increasing their Google
+                      reviews, improving visibility, and generating more customer enquiries. Every business is different
+                      — pricing depends on your size, review volume and goals. To receive your tailored quote, please
+                      book a quick strategy call or email us at info@guardxnetwork.com.
                     </p>
                   </div>
                 </div>
@@ -143,28 +136,15 @@ export default function PricingPage() {
                 <div className="space-y-6 mb-10">
                   <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <Globe className="w-6 h-6 text-black" />
+                      <Mail className="w-6 h-6 text-black" />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold text-xl mb-2">Monitor 100+ Platforms in One Place</h4>
+                      <h4 className="text-white font-bold text-xl mb-2">
+                        Automated email review requests after every job or visit
+                      </h4>
                       <p className="text-gray-300 leading-relaxed">
-                        See all your reviews from Google, Facebook, Yelp, TripAdvisor, Trustpilot, and 95+ other
-                        platforms in a single dashboard. No more logging into multiple sites—save hours every week and
-                        never miss a review again.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
-                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <Bell className="w-6 h-6 text-black" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold text-xl mb-2">Instant Alerts for Every Review</h4>
-                      <p className="text-gray-300 leading-relaxed">
-                        Get notified immediately when someone leaves a review—positive or negative. Respond quickly to
-                        protect your reputation, turn unhappy customers into loyal ones, and show potential customers
-                        you care about feedback.
+                        Automatically request reviews from satisfied customers via email, ensuring consistent review
+                        collection without manual effort.
                       </p>
                     </div>
                   </div>
@@ -174,11 +154,12 @@ export default function PricingPage() {
                       <MessageSquare className="w-6 h-6 text-black" />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold text-xl mb-2">AI-Powered Review Responses</h4>
+                      <h4 className="text-white font-bold text-xl mb-2">
+                        Optional SMS review requests (98% open rate)
+                      </h4>
                       <p className="text-gray-300 leading-relaxed">
-                        Save time and engage customers professionally with AI-suggested replies tailored to each review.
-                        Approve with one click or let positive reviews auto-respond. Maintain a consistent, professional
-                        voice without the hassle.
+                        Reach customers instantly via text message with an impressive 98% open rate, maximizing your
+                        chances of getting reviews.
                       </p>
                     </div>
                   </div>
@@ -188,39 +169,55 @@ export default function PricingPage() {
                       <Star className="w-6 h-6 text-black" />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold text-xl mb-2">Automated Review Requests</h4>
+                      <h4 className="text-white font-bold text-xl mb-2">
+                        Two gentle follow-up reminders to increase responses
+                      </h4>
                       <p className="text-gray-300 leading-relaxed">
-                        Automatically encourage happy customers to leave reviews, boosting your overall ratings and
-                        attracting more business. More positive reviews mean higher search rankings and increased trust
-                        from potential customers. GuardX can send review requests by email or text message, ensuring
-                        every customer has the chance to share feedback on their preferred channel.
+                        Automated follow-up messages ensure customers don't forget to leave a review, increasing
+                        response rates by 4-5x.
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <TrendingUp className="w-6 h-6 text-black" />
+                      <Settings className="w-6 h-6 text-black" />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold text-xl mb-2">Website Review Widget</h4>
+                      <h4 className="text-white font-bold text-xl mb-2">CRM integration or BCC email setup</h4>
                       <p className="text-gray-300 leading-relaxed">
-                        Display your best reviews directly on your website to build instant trust with visitors. Social
-                        proof converts browsers into paying customers—showcase your reputation where it matters most.
+                        Seamlessly integrate with your existing CRM system or use our simple BCC email setup to trigger
+                        review requests automatically.
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <BarChart3 className="w-6 h-6 text-black" />
+                      <Users className="w-6 h-6 text-black" />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold text-xl mb-2">Detailed Monthly Reports</h4>
+                      <h4 className="text-white font-bold text-xl mb-2">
+                        Staff form for trades, shops & in-person jobs
+                      </h4>
                       <p className="text-gray-300 leading-relaxed">
-                        Receive comprehensive reports showing your star ratings, review volume, NPS scores, sentiment
-                        trends, and urgent issues. Make data-driven decisions to improve customer experience and
-                        identify revenue opportunities.
+                        Perfect for businesses with on-site staff — collect customer details via a simple form and
+                        trigger review requests instantly.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
+                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                      <Target className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-bold text-xl mb-2">
+                        Set up your Google, Facebook, Yell or any review links
+                      </h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        We configure all your review platform links so customers are directed to the right place to
+                        leave feedback.
                       </p>
                     </div>
                   </div>
@@ -230,24 +227,38 @@ export default function PricingPage() {
                       <Shield className="w-6 h-6 text-black" />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold text-xl mb-2">Fully Managed Service</h4>
+                      <h4 className="text-white font-bold text-xl mb-2">Fully done-for-you setup</h4>
                       <p className="text-gray-300 leading-relaxed">
-                        Everything is automated and handled by the GuardX team—from setup to ongoing monitoring. You
-                        focus on running your business while we protect and grow your reputation 24/7. No technical
-                        skills required.
+                        Everything is configured and automated by the GuardX team — you focus on your business while we
+                        handle the technical setup.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
+                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                      <Zap className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-bold text-xl mb-2">Ongoing support whenever you need help</h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        Get dedicated email support whenever you need assistance — we're here to help your review growth
+                        succeed.
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all border-2 border-primary/30">
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <MessageSquare className="w-6 h-6 text-black" />
+                      <Phone className="w-6 h-6 text-black" />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold text-xl mb-2">Optional Add-On → SMS Review Booster</h4>
+                      <h4 className="text-white font-bold text-xl mb-2">
+                        Optional SMS upgrade → £16/month for a UK SMS number + £12/month for 200 text credits
+                      </h4>
                       <p className="text-gray-300 leading-relaxed">
-                        Send review invites by text with 98% open rates. Plans start at £12 / month for 200 texts.
-                        Available as an optional monthly upgrade for any plan.
+                        Upgrade to SMS review requests for maximum response rates. Available as an optional add-on to
+                        any plan.
                       </p>
                     </div>
                   </div>
@@ -271,8 +282,8 @@ export default function PricingPage() {
 
             <div className="mt-8 text-center space-y-3 max-w-3xl mx-auto">
               <p className="text-gray-700 text-lg">
-                <strong className="text-black">Multi-location business?</strong> We offer custom packages for businesses
-                with multiple locations. Contact us for a tailored solution.
+                <strong className="text-black">Multi-location business?</strong> We offer flexible pricing based on how
+                many locations you want to activate. Contact us for a tailored solution.
               </p>
             </div>
           </div>
@@ -285,7 +296,7 @@ export default function PricingPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">Why Businesses Choose GuardX</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Simple, effective, and completely hands-off reputation management
+              Simple, effective, and completely hands-off review growth
             </p>
           </div>
 
@@ -297,8 +308,8 @@ export default function PricingPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-black mb-3">100% Done-for-You</h3>
                 <p className="text-gray-700 leading-relaxed">
-                  We handle everything—setup, monitoring, alerts, and reporting. You get all the benefits without
-                  lifting a finger. Focus on what you do best: running your business.
+                  GuardX handles everything — setup, integration, and sending all review requests automatically. No
+                  dashboards or software to learn.
                 </p>
               </CardContent>
             </Card>
@@ -310,8 +321,7 @@ export default function PricingPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-black mb-3">Simple & Transparent</h3>
                 <p className="text-gray-700 leading-relaxed">
-                  One price, everything included. No hidden fees, no complicated tiers, no surprises. Just
-                  straightforward reputation management that works.
+                  No confusing tiers or hidden fees. One straightforward review growth system that works.
                 </p>
               </CardContent>
             </Card>
@@ -321,10 +331,49 @@ export default function PricingPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Target className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-black mb-3">Proven ROI</h3>
+                <h3 className="text-2xl font-bold text-black mb-3">Proven Results</h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Better reviews mean more customers and higher revenue. Our clients see measurable improvements in
-                  ratings, review volume, and most importantly—their bottom line.
+                  Businesses consistently see more reviews, higher rankings, and more enquiries once their automated
+                  review flow is switched on.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white border-2 border-gray-200 hover:border-primary transition-all duration-300 hover:shadow-lg">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <TrendingUp className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold text-black mb-3">4–5x More Reviews</h3>
+                <p className="text-gray-700 leading-relaxed">
+                  With two friendly reminders, customers become 4–5x more likely to leave a review compared to asking
+                  once manually.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white border-2 border-gray-200 hover:border-primary transition-all duration-300 hover:shadow-lg">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Phone className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold text-black mb-3">98% SMS Open Rate</h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Text review invites are opened 98% of the time, making them one of the most effective ways to collect
+                  reviews quickly.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white border-2 border-gray-200 hover:border-primary transition-all duration-300 hover:shadow-lg">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Star className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold text-black mb-3">Works for Any Local Business</h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Perfect for trades, flooring, garages, shops, salons, gyms, pet services, and all local service-based
+                  businesses.
                 </p>
               </CardContent>
             </Card>
@@ -338,33 +387,33 @@ export default function PricingPage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">Everything Included</h2>
-              <p className="text-xl text-gray-600">No add-ons. No upsells. Just complete reputation management.</p>
+              <p className="text-xl text-gray-600">No add-ons. No upsells. Just automated review growth.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">100+ platform monitoring</span>
+                <span className="text-gray-700 font-medium">Automated email review requests</span>
               </div>
               <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">Instant review alerts</span>
+                <span className="text-gray-700 font-medium">Optional SMS review requests</span>
               </div>
               <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">AI-powered responses</span>
+                <span className="text-gray-700 font-medium">Two follow-up reminders</span>
               </div>
               <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">Automated review requests</span>
+                <span className="text-gray-700 font-medium">CRM integration or BCC setup</span>
               </div>
               <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">Website review widget</span>
+                <span className="text-gray-700 font-medium">Staff form for in-person jobs</span>
               </div>
               <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">Monthly detailed reports</span>
+                <span className="text-gray-700 font-medium">Review link configuration</span>
               </div>
               <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
@@ -373,10 +422,6 @@ export default function PricingPage() {
               <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
                 <span className="text-gray-700 font-medium">Dedicated email support</span>
-              </div>
-              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
-                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">SMS Review Booster</span>
               </div>
             </div>
           </div>
@@ -395,11 +440,10 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
-              Ready to Protect & Grow Your Reputation?
+              Ready to grow your reviews, visibility and customer enquiries?
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Join hundreds of businesses using GuardX to automate their reputation management. Get started
-              today—everything included, fully managed.
+              Join UK businesses using GuardX to automate their review requests and grow month after month.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="https://calendly.com/guardxnetwork-info/30min" target="_blank" rel="noopener noreferrer">
@@ -414,7 +458,9 @@ export default function PricingPage() {
                 Get Your Free Scorecard
               </Button>
             </div>
-            <p className="text-gray-400 mt-6 text-sm">No credit card required • Cancel anytime • Setup in 24 hours</p>
+            <p className="text-gray-400 mt-6 text-sm">
+              No credit card required • Cancel anytime • Same-day setup available
+            </p>
           </div>
         </div>
       </section>

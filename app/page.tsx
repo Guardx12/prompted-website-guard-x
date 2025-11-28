@@ -5,22 +5,8 @@ import type React from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import {
-  Star,
-  Shield,
-  Bell,
-  TrendingUp,
-  BarChart3,
-  MessageSquare,
-  CheckCircle,
-  Users,
-  Building2,
-  Utensils,
-  Dumbbell,
-  Store,
-} from "lucide-react"
+import { Star, Shield, CheckCircle, Users, Building2, Dumbbell, Store } from "lucide-react"
 import { useEffect, useState } from "react"
-import { GoogleLogo, FacebookLogo, YelpLogo, TripAdvisorLogo, TrustpilotLogo } from "@/components/platform-logos"
 
 export default function HomePage() {
   // Intersection Observer for scroll animations
@@ -85,12 +71,15 @@ export default function HomePage() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight">
                 GuardX – Grow Your Reputation, Grow Your Revenue
               </h1>
-              <p className="text-xl text-gray-600 mb-6 font-medium">Now with automated email & SMS review requests.</p>
-              <p className="text-2xl md:text-3xl text-gray-700 mb-6 font-semibold">
-                Supporting businesses across the UK
+              <p className="text-xl text-gray-600 mb-6 font-medium">The Review Growth System for Local UK Businesses</p>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                Ever wondered how some local businesses get 500–1,000+ reviews and look fully established online?
+                They're not lucky — they use a consistent review request system. GuardX gives you the same advantage
+                automatically.
               </p>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Boost your business reputation and turn more browsers into paying customers.
+              <p className="text-2xl md:text-3xl text-gray-700 mb-6 font-semibold">
+                GuardX helps you collect more Google reviews automatically using simple email and SMS review requests.
+                No dashboards. No complicated tools. Just more reviews, more visibility and more customers.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
@@ -120,60 +109,111 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Monitoring Section */}
+      {/* Helping Local Businesses Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 scroll-animate">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-8">Monitor 100+ Platforms Including:</h2>
-            <div className="flex flex-wrap justify-center items-center gap-12 mb-12">
-              <div className="opacity-70 hover:opacity-100 transition-opacity">
-                <GoogleLogo className="h-14" />
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
+              Helping Local Businesses Stand Out & Get Chosen More Often
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
+              GuardX connects to your CRM, BCC email, or a quick staff form to send friendly review requests to your
+              customers after every job or visit. If they don't respond, GuardX follows up with two gentle reminders
+              over the next couple of days.
+            </p>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-4">
+              This consistent two-reminder flow makes customers around 4–5x more likely to actually leave a review
+              compared with asking once manually. And because SMS has a 98% open rate, your requests actually get seen.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 scroll-animate">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">The Review Growth System</h2>
+            <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
+              Your customers receive a short, friendly review request after each job or visit — sent automatically by
+              email or SMS. If they don't respond, GuardX follows up with a gentle reminder the next day.
+            </p>
+            <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
+              This simple, consistent flow boosts your Google visibility, increases your review count, and helps you win
+              more local customers.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto mb-12 scroll-animate">
+            <h3 className="text-2xl font-bold text-black mb-6 text-center">We handle everything for you:</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <p className="text-gray-700 text-lg">Automated email review requests</p>
               </div>
-              <div className="opacity-70 hover:opacity-100 transition-opacity">
-                <FacebookLogo className="h-14" />
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <p className="text-gray-700 text-lg">Optional SMS review requests (98% open rate)</p>
               </div>
-              <div className="opacity-70 hover:opacity-100 transition-opacity">
-                <YelpLogo className="h-14" />
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <p className="text-gray-700 text-lg">CRM or BCC email integration</p>
               </div>
-              <div className="opacity-70 hover:opacity-100 transition-opacity">
-                <TripAdvisorLogo className="h-14" />
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <p className="text-gray-700 text-lg">Staff form for trades & in-person jobs</p>
               </div>
-              <div className="opacity-70 hover:opacity-100 transition-opacity">
-                <TrustpilotLogo className="h-14" />
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <p className="text-gray-700 text-lg">Set up your Google, Facebook, Yell or any review links</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <p className="text-gray-700 text-lg">Fully done-for-you setup</p>
               </div>
             </div>
           </div>
 
-          <div className="max-w-5xl mx-auto scroll-animate">
-            <img
-              src="/images/dash4.png"
-              alt="Multi-platform review monitoring dashboard"
-              className="w-full rounded-lg shadow-2xl border-2 border-primary/20"
-            />
-            <div className="text-center mt-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-black mb-4">
-                We Monitor Your Reviews and Protect Your Reputation for You
-              </h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                GuardX monitors reviews across 100+ platforms, alerts you to negative feedback, and provides
-                professional response suggestions — all handled by our expert team so you can focus on growing your
-                business.
-              </p>
-            </div>
+          <div className="text-center scroll-animate">
+            <p className="text-xl font-semibold text-black">
+              You focus on running the business — GuardX brings in the reviews.
+            </p>
           </div>
         </div>
       </section>
 
       {/* Free Scorecard Section */}
-      <section id="free-scorecard" className="py-16 bg-white">
+      <section id="free-scorecard" className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 scroll-animate">
             <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
-              See How Your Reputation Impacts Your Revenue
+              See Where Customers Might Be Choosing Competitors Instead
             </h2>
-            <p className="text-xl text-gray-600">
-              Get a free, comprehensive scorecard showing your current online reputation across major platforms. Learn
-              where you're losing potential revenue and how to improve it.
+            <p className="text-xl text-gray-600 mb-6">
+              Get a simple scorecard showing how your reviews compare to competitors, where visibility may be low, and
+              where enquiries may be leaking to other businesses. Delivered within 24 hours.
+            </p>
+            <div className="max-w-2xl mx-auto text-left mb-6">
+              <ul className="space-y-3 text-lg text-gray-600">
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <span>Your current Google review performance</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <span>How you compare to similar local businesses</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <span>Visibility gaps that could be costing you enquiries</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <span>Opportunities to increase your ranking and trust</span>
+                </li>
+              </ul>
+            </div>
+            <p className="text-lg text-gray-600">
+              Enter your details below and receive your scorecard within 24 hours.
             </p>
           </div>
 
@@ -244,7 +284,7 @@ export default function HomePage() {
                   )}
 
                   <p className="text-center text-sm text-gray-500">
-                    No credit card required. Receive your scorecard within 24 hours.
+                    No credit card required — full breakdown delivered by email.
                   </p>
                 </form>
               </CardContent>
@@ -265,7 +305,7 @@ export default function HomePage() {
             <div className="text-center scroll-animate">
               <div className="mb-4 overflow-hidden rounded-lg">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/scorecard%20volume-Ivqk3xX9zftKKXNjh6VbZF7gFZBw45.png"
+                  src="/images/scorecard-20volume.png"
                   alt="Volume Score"
                   className="w-full h-auto transition-all duration-300 hover:scale-110 hover:shadow-2xl rounded-lg"
                 />
@@ -280,7 +320,7 @@ export default function HomePage() {
             <div className="text-center scroll-animate">
               <div className="mb-4 overflow-hidden rounded-lg">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/scorecard%20star%20rating-aWuKz26eyRkGaQ0aK6cSDGngitw5tu.png"
+                  src="/images/scorecard-20star-20rating.png"
                   alt="Star Rating Score"
                   className="w-full h-auto transition-all duration-300 hover:scale-110 hover:shadow-2xl rounded-lg"
                 />
@@ -294,7 +334,7 @@ export default function HomePage() {
             <div className="text-center scroll-animate">
               <div className="mb-4 overflow-hidden rounded-lg">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/scorecard%20sentiment-eFcjOynE0YS4FG0iEF5S5iGoeRHP35.png"
+                  src="/images/scorecard-20sentiment.png"
                   alt="Sentiment Score"
                   className="w-full h-auto transition-all duration-300 hover:scale-110 hover:shadow-2xl rounded-lg"
                 />
@@ -308,7 +348,7 @@ export default function HomePage() {
             <div className="text-center scroll-animate">
               <div className="mb-4 overflow-hidden rounded-lg">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/scorecard%20recency-cL9cNdYLrYAPiP7LmXUl3X3OHK9z50.png"
+                  src="/images/scorecard-20recency.png"
                   alt="Recency Score"
                   className="w-full h-auto transition-all duration-300 hover:scale-110 hover:shadow-2xl rounded-lg"
                 />
@@ -322,7 +362,7 @@ export default function HomePage() {
             <div className="text-center scroll-animate">
               <div className="mb-4 overflow-hidden rounded-lg">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/scorecard%20overall%20rating-WratJSKGvJNKhAqvllBLsC9ZVts8Ea.png"
+                  src="/images/scorecard-20overall-20rating.png"
                   alt="Overall Score"
                   className="w-full h-auto transition-all duration-300 hover:scale-110 hover:shadow-2xl rounded-lg"
                 />
@@ -335,251 +375,232 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Core Services / Features Section */}
+      {/* Why Reviews Matter Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 scroll-animate">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
+              More Reviews → More Trust → More Customers
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-4">
+              Businesses with frequent, recent reviews rank higher on Google and get more calls, clicks and enquiries.
+              GuardX helps you stay consistently visible by increasing your review flow every week using proven,
+              automated follow-up reminders.
+            </p>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Consistent reviews build trust fast and lead to more customers choosing you over competitors.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* What More Reviews Mean Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 scroll-animate">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">Set-and-Forget Reputation Growth</h2>
-            <div className="mb-6">
-              <h3 className="text-2xl font-bold text-black mb-3">Automated Review Requests (Email & SMS)</h3>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                GuardX automatically follows up with your customers after every visit — by email or text message. Text
-                invites reach customers instantly with open rates above 98%, helping you collect more 5-star reviews
-                without chasing. Choose email only, or add our SMS Review Booster for even faster results.
-              </p>
-            </div>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              GuardX is fully managed by our team. You focus on running your business while we protect and grow your
-              reputation automatically.
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
+              What More Reviews Actually Mean for Your Business
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
+              Reviews aren't just a vanity metric — they directly affect how many people choose your business, call you,
+              and click through to your website.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="bg-white border-2 border-primary/20 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Shield className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-black mb-2">100+ Platform Monitoring</h3>
-                    <p className="text-gray-600">
-                      Track reviews across Google, Facebook, Yelp, TripAdvisor, Trustpilot, and more.
-                    </p>
-                    <div className="flex items-center gap-1 mt-3">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-primary fill-current" />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          <div className="max-w-4xl mx-auto mb-8 scroll-animate">
+            <div className="space-y-6">
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  Businesses with consistent new reviews typically see 20–40% more calls, website clicks and enquiries
+                  within the first few months.
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  If a competitor has more recent reviews than you, customers will usually choose them first — not
+                  because they're better, but because they look more trustworthy.
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  Those businesses with 500–1,000+ reviews aren't just "lucky" — they use a consistent review request
+                  system. GuardX gives you the same advantage automatically, without adding extra work for your team.
+                </p>
+              </div>
+            </div>
+          </div>
 
-            <Card className="bg-white border-2 border-primary/20 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Bell className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-black mb-2">Instant Negative Review Alerts</h3>
-                    <p className="text-gray-600">
-                      Address negative feedback immediately to protect revenue and customer trust.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-primary/20 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MessageSquare className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-black mb-2">AI-Powered Response Suggestions</h3>
-                    <p className="text-gray-600">
-                      Quickly respond to reviews with professional, revenue-friendly replies.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-primary/20 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <BarChart3 className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-black mb-2">Monthly Performance Reports</h3>
-                    <p className="text-gray-600">
-                      Reports include star ratings, review volume, sentiment trends, NPS scores, and insights into
-                      potential revenue impact.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-primary/20 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <CheckCircle className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-black mb-2">Fully Managed Service</h3>
-                    <p className="text-gray-600">
-                      Our team handles setup and ongoing management. Includes setup of email and optional SMS review
-                      invitations so you can capture every customer's feedback automatically.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-primary/20 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <TrendingUp className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-black mb-2">Scalable for Any Business</h3>
-                    <p className="text-gray-600">Single or multi-location businesses.</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          <div className="text-center scroll-animate">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Switch it on once, and let the reviews build your reputation and enquiries every week.
+            </p>
           </div>
         </div>
       </section>
 
       {/* How It Works Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-black mb-12 scroll-animate">How It Works</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-black mb-12 scroll-animate">
+            How GuardX Works
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center scroll-animate">
               <div className="mb-6 flex justify-center">
                 <img
                   src="/images/calendar-meeting.jpg"
-                  alt="Book a Strategy Call"
+                  alt="Connect Your CRM or BCC Email"
                   className="w-32 h-32 rounded-lg shadow-lg"
                 />
               </div>
               <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold text-black">
                 1
               </div>
-              <h3 className="text-xl font-bold text-black mb-3">Book a Strategy Call</h3>
-              <p className="text-gray-600">Schedule a call to discuss your business and reputation goals.</p>
+              <h3 className="text-xl font-bold text-black mb-3">Connect your CRM or BCC email</h3>
+              <p className="text-gray-600">Or use our simple staff form</p>
             </div>
 
             <div className="text-center scroll-animate">
               <div className="mb-6 flex justify-center">
-                <img src="/images/setup-checklist.jpg" alt="Guided Setup" className="w-32 h-32 rounded-lg shadow-lg" />
+                <img
+                  src="/images/setup-checklist.jpg"
+                  alt="Review Requests Go Out Automatically"
+                  className="w-32 h-32 rounded-lg shadow-lg"
+                />
               </div>
               <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold text-black">
                 2
               </div>
-              <h3 className="text-xl font-bold text-black mb-3">Guided Setup</h3>
-              <p className="text-gray-600">Connect Google & Facebook accounts; we handle the technical setup.</p>
+              <h3 className="text-xl font-bold text-black mb-3">
+                Review requests go out automatically after each job or visit
+              </h3>
+              <p className="text-gray-600">Friendly email or SMS requests sent to your customers</p>
             </div>
 
             <div className="text-center scroll-animate">
               <div className="mb-6 flex justify-center">
                 <img
                   src="/images/notification-alerts.jpg"
-                  alt="Automatic Monitoring"
+                  alt="Two Gentle Follow-up Reminders"
                   className="w-32 h-32 rounded-lg shadow-lg"
                 />
               </div>
               <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold text-black">
                 3
               </div>
-              <h3 className="text-xl font-bold text-black mb-3">Automatic Monitoring</h3>
-              <p className="text-gray-600">
-                24/7 monitoring with alerts and AI suggestions for every review. GuardX automatically monitors your
-                reviews and sends follow-up requests by email or SMS, ensuring every customer has the chance to share
-                positive feedback.
-              </p>
+              <h3 className="text-xl font-bold text-black mb-3">
+                Two gentle follow-up reminders increase response rates
+              </h3>
+              <p className="text-gray-600">Makes customers 4-5x more likely to leave a review</p>
             </div>
 
             <div className="text-center scroll-animate">
               <div className="mb-6 flex justify-center">
                 <img
                   src="/images/report-mockup.jpg"
-                  alt="Reports & Results"
+                  alt="Your Reviews and Visibility Grow"
                   className="w-32 h-32 rounded-lg shadow-lg"
                 />
               </div>
               <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold text-black">
                 4
               </div>
-              <h3 className="text-xl font-bold text-black mb-3">Receive Reports & Results</h3>
-              <p className="text-gray-600">
-                Monthly reports with metrics and revenue insights delivered automatically.
-              </p>
+              <h3 className="text-xl font-bold text-black mb-3">Your reviews and visibility grow month after month</h3>
+              <p className="text-gray-600">More visibility. More trust. More customers.</p>
             </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12 scroll-animate">
+            <a
+              href="#free-scorecard"
+              className="inline-block bg-primary text-black hover:bg-[#e6c34a] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-black/10 text-center"
+            >
+              Get Your Free Scorecard
+            </a>
+            <a
+              href="https://calendly.com/guardxnetwork-info/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-black text-primary hover:bg-gray-800 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-primary/20 text-center"
+            >
+              Book a Strategy Call
+            </a>
           </div>
         </div>
       </section>
 
       {/* Industries Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-black mb-4 scroll-animate">Who We Help</h2>
           <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto scroll-animate">
-            GuardX is trusted by businesses across industries to protect and grow their online reputation.
+            GuardX works best for:
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
               <CardContent className="p-6 text-center">
                 <Users className="w-12 h-12 text-primary mx-auto mb-3" />
-                <h3 className="font-bold text-black text-sm">Small Businesses</h3>
+                <h3 className="font-bold text-black text-sm">Trades & home services</h3>
               </CardContent>
             </Card>
 
             <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
               <CardContent className="p-6 text-center">
                 <Building2 className="w-12 h-12 text-primary mx-auto mb-3" />
-                <h3 className="font-bold text-black text-sm">Multi-Location</h3>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
-              <CardContent className="p-6 text-center">
-                <Utensils className="w-12 h-12 text-primary mx-auto mb-3" />
-                <h3 className="font-bold text-black text-sm">Restaurants & Cafes</h3>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
-              <CardContent className="p-6 text-center">
-                <Shield className="w-12 h-12 text-primary mx-auto mb-3" />
-                <h3 className="font-bold text-black text-sm">Clinics & Healthcare</h3>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
-              <CardContent className="p-6 text-center">
-                <Dumbbell className="w-12 h-12 text-primary mx-auto mb-3" />
-                <h3 className="font-bold text-black text-sm">Gyms & Fitness</h3>
+                <h3 className="font-bold text-black text-sm">Flooring & carpet businesses</h3>
               </CardContent>
             </Card>
 
             <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
               <CardContent className="p-6 text-center">
                 <Store className="w-12 h-12 text-primary mx-auto mb-3" />
-                <h3 className="font-bold text-black text-sm">Retailers & Service</h3>
+                <h3 className="font-bold text-black text-sm">Shops & retail</h3>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
+              <CardContent className="p-6 text-center">
+                <Shield className="w-12 h-12 text-primary mx-auto mb-3" />
+                <h3 className="font-bold text-black text-sm">Garages & MOT centres</h3>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
+              <CardContent className="p-6 text-center">
+                <Dumbbell className="w-12 h-12 text-primary mx-auto mb-3" />
+                <h3 className="font-bold text-black text-sm">Gyms & fitness</h3>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
+              <CardContent className="p-6 text-center">
+                <Users className="w-12 h-12 text-primary mx-auto mb-3" />
+                <h3 className="font-bold text-black text-sm">Salons & barbers</h3>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
+              <CardContent className="p-6 text-center">
+                <Shield className="w-12 h-12 text-primary mx-auto mb-3" />
+                <h3 className="font-bold text-black text-sm">Pet services</h3>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
+              <CardContent className="p-6 text-center">
+                <Building2 className="w-12 h-12 text-primary mx-auto mb-3" />
+                <h3 className="font-bold text-black text-sm">Local service businesses</h3>
               </CardContent>
             </Card>
           </div>
+
+          <p className="text-xl text-gray-700 text-center mt-12 max-w-3xl mx-auto scroll-animate font-semibold">
+            If you rely on Google reviews to win customers — GuardX helps you grow.
+          </p>
         </div>
       </section>
 
@@ -643,7 +664,7 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
           <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">Ready to Grow Your Reputation and Revenue?</h2>
           <p className="text-xl text-gray-600 mb-8">
-            Join hundreds of businesses using GuardX to monitor, manage, and grow their online reputation automatically.
+            Join businesses across the UK using GuardX to grow their online reviews automatically.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
