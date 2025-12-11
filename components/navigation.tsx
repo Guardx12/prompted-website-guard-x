@@ -46,6 +46,9 @@ Thank you!`)
               <Link href="/" className="text-foreground hover:text-primary transition-colors">
                 Home
               </Link>
+              <Link href="/real-results" className="text-foreground hover:text-primary transition-colors">
+                Real Results
+              </Link>
               <Link href="/pricing" className="text-foreground hover:text-primary transition-colors">
                 Pricing
               </Link>
@@ -75,6 +78,13 @@ Thank you!`)
                   onClick={() => setIsOpen(false)}
                 >
                   Home
+                </Link>
+                <Link
+                  href="/real-results"
+                  className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Real Results
                 </Link>
                 <Link
                   href="/pricing"
