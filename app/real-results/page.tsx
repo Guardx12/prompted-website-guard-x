@@ -30,6 +30,20 @@ export default function RealResultsPage() {
     <div className="min-h-screen bg-white">
       <Navigation />
 
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-6xl mx-auto scroll-animate">
+          <div className="relative w-full rounded-lg overflow-hidden shadow-lg" style={{ paddingBottom: "56.25%" }}>
+            <iframe
+              className="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/69pOg88MkZQ"
+              title="YouTube video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
       {/* Page Header */}
       <section className="pt-16 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center scroll-animate">
