@@ -97,6 +97,12 @@ export default function HomePage() {
                   Book a Strategy Call
                 </a>
               </div>
+              <a
+                href="/real-results"
+                className="inline-block mt-4 text-gray-600 hover:text-primary transition-colors duration-200 text-base font-medium"
+              >
+                {"See real results from real UK businesses using GuardX →"}
+              </a>
             </div>
             <div className="flex justify-center scroll-animate">
               <img
