@@ -5,6 +5,7 @@ import type React from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import { ReviewValueCalculator } from "@/components/review-value-calculator"
 import { Star, Shield, CheckCircle, Users, Building2, Dumbbell, Store } from "lucide-react"
 import { useEffect, useState } from "react"
 
@@ -94,7 +95,7 @@ export default function HomePage() {
                   rel="noopener noreferrer"
                   className="inline-block bg-black text-primary hover:bg-gray-800 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-primary/20 text-center"
                 >
-                  Book a Strategy Call
+                  Book a Call
                 </a>
               </div>
               <a
@@ -114,6 +115,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Review Value Calculator Section */}
+      <ReviewValueCalculator />
 
       {/* Helping Local Businesses Section */}
       <section className="py-16 bg-gray-50">
@@ -532,7 +536,7 @@ export default function HomePage() {
               rel="noopener noreferrer"
               className="inline-block bg-black text-primary hover:bg-gray-800 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-primary/20 text-center"
             >
-              Book a Strategy Call
+              Book a Call
             </a>
           </div>
         </div>
@@ -685,7 +689,7 @@ export default function HomePage() {
               rel="noopener noreferrer"
               className="inline-block bg-black text-primary hover:bg-gray-800 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-primary/20"
             >
-              Book a Strategy Call
+              Book a Call
             </a>
           </div>
         </div>

@@ -83,7 +83,7 @@ export default function PricingPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href="https://calendly.com/guardxnetwork-info/30min" target="_blank" rel="noopener noreferrer">
                   <Button className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10">
-                    Book a Strategy Call
+                    Book a Call
                   </Button>
                 </a>
                 <Button
@@ -267,7 +267,7 @@ export default function PricingPage() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a href="https://calendly.com/guardxnetwork-info/30min" target="_blank" rel="noopener noreferrer">
                     <Button className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10">
-                      Book a Strategy Call
+                      Book a Call
                     </Button>
                   </a>
                   <Button
@@ -448,7 +448,7 @@ export default function PricingPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="https://calendly.com/guardxnetwork-info/30min" target="_blank" rel="noopener noreferrer">
                 <Button className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10">
-                  Book a Strategy Call
+                  Book a Call
                 </Button>
               </a>
               <Button

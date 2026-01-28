@@ -98,7 +98,7 @@ export default function HowItWorksPage() {
                   rel="noopener noreferrer"
                   className="inline-block bg-black text-primary hover:bg-gray-800 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-primary/20 text-center"
                 >
-                  Book a Strategy Call
+                  Book a Call
                 </a>
               </div>
             </div>
@@ -437,7 +437,7 @@ export default function HowItWorksPage() {
                   rel="noopener noreferrer"
                   className="inline-block bg-black text-primary hover:bg-gray-800 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-primary/20 text-center"
                 >
-                  Book a Strategy Call
+                  Book a Call
                 </a>
               </div>
             </div>

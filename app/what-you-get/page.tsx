@@ -178,7 +178,7 @@ export default function HowWeHelpPage() {
                   variant="outline"
                   className="border-2 border-primary text-primary hover:bg-primary hover:text-black font-semibold text-lg px-8 py-6 bg-transparent shadow-xl transition-all duration-300 transform hover:scale-105"
                 >
-                  Book a Strategy Call
+                  Book a Call
                 </Button>
               </a>
             </div>
@@ -514,7 +514,7 @@ export default function HowWeHelpPage() {
                     variant="outline"
                     className="border-2 border-primary text-primary hover:bg-primary hover:text-black font-semibold text-lg px-8 py-6 bg-transparent shadow-xl transition-all duration-300 transform hover:scale-105"
                   >
-                    Book a Strategy Call
+                    Book a Call
                   </Button>
                 </a>
               </div>
