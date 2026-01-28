@@ -5,12 +5,29 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Slider } from "@/components/ui/slider"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
+const noSpinnerStyles = `
+  .no-spinner::-webkit-outer-spin-button,
+  .no-spinner::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .no-spinner {
+    -moz-appearance: textfield;
+  }
+`
+
 export function ReviewValueCalculator() {
-  const [averageJobValue, setAverageJobValue] = useState(800)
-  const [jobsPerMonth, setJobsPerMonth] = useState(20)
-  const [currentReviewsPerMonth, setCurrentReviewsPerMonth] = useState(5)
+  // Use string state to allow empty input while typing
+  const [averageJobValueStr, setAverageJobValueStr] = useState("800")
+  const [jobsPerMonthStr, setJobsPerMonthStr] = useState("20")
+  const [currentReviewsPerMonthStr, setCurrentReviewsPerMonthStr] = useState("5")
   const [multiplier, setMultiplier] = useState(4)
   const [timePeriod, setTimePeriod] = useState<"30" | "90" | "365">("90")
+
+  // Parse string to number for calculations, defaulting to 0 if empty/invalid
+  const averageJobValue = averageJobValueStr === "" ? 0 : (Number.parseInt(averageJobValueStr, 10) || 0)
+  const jobsPerMonth = jobsPerMonthStr === "" ? 0 : (Number.parseInt(jobsPerMonthStr, 10) || 0)
+  const currentReviewsPerMonth = currentReviewsPerMonthStr === "" ? 0 : (Number.parseInt(currentReviewsPerMonthStr, 10) || 0)
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat("en-GB", {
@@ -49,15 +66,28 @@ export function ReviewValueCalculator() {
     }
   }, [averageJobValue, jobsPerMonth, currentReviewsPerMonth, multiplier, timePeriod])
 
-  const handleNumberInput = (
+  // Allow free typing - just set the string value directly
+  const handleInputChange = (value: string, setter: (val: string) => void) => {
+    setter(value)
+  }
+
+  // Validate and clamp only on blur
+  const handleInputBlur = (
     value: string,
-    setter: (val: number) => void,
+    setter: (val: string) => void,
     min: number,
-    max: number
+    max: number,
+    defaultValue: number
   ) => {
+    if (value === "") {
+      setter(defaultValue.toString())
+      return
+    }
     const num = Number.parseInt(value, 10)
-    if (!Number.isNaN(num)) {
-      setter(Math.max(min, Math.min(max, num)))
+    if (Number.isNaN(num)) {
+      setter(defaultValue.toString())
+    } else {
+      setter(Math.max(min, Math.min(max, num)).toString())
     }
   }
 
@@ -65,6 +95,7 @@ export function ReviewValueCalculator() {
 
   return (
     <section className="py-16 bg-gray-50">
+      <style dangerouslySetInnerHTML={{ __html: noSpinnerStyles }} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 text-balance">
@@ -87,11 +118,12 @@ export function ReviewValueCalculator() {
                 </label>
                 <input
                   type="number"
-                  value={averageJobValue}
-                  onChange={(e) => handleNumberInput(e.target.value, setAverageJobValue, 50, 20000)}
+                  value={averageJobValueStr}
+                  onChange={(e) => handleInputChange(e.target.value, setAverageJobValueStr)}
+                  onBlur={(e) => handleInputBlur(e.target.value, setAverageJobValueStr, 50, 20000, 800)}
                   min={50}
                   max={20000}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-black"
+                  className="no-spinner w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-black"
                 />
               </div>
 
@@ -102,11 +134,12 @@ export function ReviewValueCalculator() {
                 </label>
                 <input
                   type="number"
-                  value={jobsPerMonth}
-                  onChange={(e) => handleNumberInput(e.target.value, setJobsPerMonth, 1, 500)}
+                  value={jobsPerMonthStr}
+                  onChange={(e) => handleInputChange(e.target.value, setJobsPerMonthStr)}
+                  onBlur={(e) => handleInputBlur(e.target.value, setJobsPerMonthStr, 1, 500, 20)}
                   min={1}
                   max={500}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-black"
+                  className="no-spinner w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-black"
                 />
               </div>
 
@@ -117,11 +150,12 @@ export function ReviewValueCalculator() {
                 </label>
                 <input
                   type="number"
-                  value={currentReviewsPerMonth}
-                  onChange={(e) => handleNumberInput(e.target.value, setCurrentReviewsPerMonth, 0, 300)}
+                  value={currentReviewsPerMonthStr}
+                  onChange={(e) => handleInputChange(e.target.value, setCurrentReviewsPerMonthStr)}
+                  onBlur={(e) => handleInputBlur(e.target.value, setCurrentReviewsPerMonthStr, 0, 300, 5)}
                   min={0}
                   max={300}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-black"
+                  className="no-spinner w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-black"
                 />
               </div>
 
