@@ -19,17 +19,9 @@ export function PopupRatingWidget() {
     script.async = true
 
     document.body.appendChild(script)
-
-    return () => {
-      // Cleanup on unmount
-      const existingScript = document.getElementById("popup-rating-widget-script")
-      if (existingScript) {
-        existingScript.remove()
-      }
-    }
   }, [])
 
-  return <div id="popup-rating-widget"></div>
+  return <div id="popup-rating-widget" />
 }
 
 export default PopupRatingWidget
