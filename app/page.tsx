@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { ReviewValueCalculator } from "@/components/review-value-calculator"
+import { PopupRatingWidget } from "@/components/popup-rating-widget"
 import { Star, Shield, CheckCircle, Users, Building2, Dumbbell, Store } from "lucide-react"
 import { useEffect, useState } from "react"
 
@@ -62,6 +63,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white">
+      <PopupRatingWidget />
       <Navigation />
 
       {/* Hero Section */}
