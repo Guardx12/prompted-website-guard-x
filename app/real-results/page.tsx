@@ -105,15 +105,15 @@ export default function RealResultsPage() {
             industry="Flooring Retailer — Lancing"
             image="/images/greenfields-20flooring.webp"
             stats={[
-              "Greenfields Flooring reinforced its position as the most established local flooring business on Google.",
+              "Greenfields Flooring strengthened its Google presence and visibility compared to local competitors.",
               "Google reviews grew to approximately 100, with review recency of around 14 days.",
               "Local competitors average over 400 days since their last review — Greenfields now appears consistently active while competitors look dormant.",
               "This recency gap protects visibility and trust, ensuring competitors no longer appear more established by default."
             ]}
             testimonial={{
-              author: "Michael Greenfield — Greenfields Flooring",
+              author: "Greenfields Flooring",
               quote:
-                "Highly recommend Luke at GuardX. The system is easy to use and our Google reviews have almost doubled since we joined.\n\nWe came across a Facebook advert for GuardX Limited and were initially unsure, but decided to go ahead. The link is quick and easy for customers to use and we started receiving more reviews in no time.\n\nI would definitely recommend GuardX.",
+                "Highly recommend Luke at GuardX — the system is so easy to use and our Google reviews have almost doubled since we joined.",
             }}
           />
         </div>
