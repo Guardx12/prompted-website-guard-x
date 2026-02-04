@@ -23,8 +23,8 @@ export default function ContactPage() {
               Contact <span className="text-[#d4af37]">GuardX</span>
             </h1>
             <p className="text-lg sm:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-              Have questions about growing your Google reviews? Need help getting set up, or want to learn how the
-              GuardX review system works? We're here to help — fast, simple support whenever you need it.
+              Wondering how your Google presence compares to competitors? Want to understand where you might be losing
+              visibility locally? We're happy to have a straightforward conversation — no pressure, just honest insight.
             </p>
           </div>
         </section>
@@ -76,7 +76,7 @@ export default function ContactPage() {
               {/* Why Contact Us Card */}
               <Card className="border-2 border-gray-200 shadow-lg">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-[#d4af37] mb-6">Why Contact GuardX?</h2>
+                  <h2 className="text-2xl font-bold text-[#d4af37] mb-6">Why Get in Touch?</h2>
 
                   <ul className="space-y-4">
                     <li className="flex items-start gap-3">
@@ -84,9 +84,9 @@ export default function ContactPage() {
                         <span className="text-white text-sm font-bold">✓</span>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-black mb-1">Free Review Growth Consultation</h4>
+                        <h4 className="font-semibold text-black mb-1">Discuss Your Visibility Gaps</h4>
                         <p className="text-gray-700 text-sm">
-                          Ask anything about Google reviews, visibility, or how our system works.
+                          Understand where your Google presence may be falling behind competitors in your area.
                         </p>
                       </div>
                     </li>
@@ -96,9 +96,9 @@ export default function ContactPage() {
                         <span className="text-white text-sm font-bold">✓</span>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-black mb-1">Simple Setup Support</h4>
+                        <h4 className="font-semibold text-black mb-1">Review Your Google Presence</h4>
                         <p className="text-gray-700 text-sm">
-                          Get guidance on CRM/BCC integration or using the staff form.
+                          Get a clear picture of how active and trusted your profile appears to customers searching locally.
                         </p>
                       </div>
                     </li>
@@ -108,9 +108,9 @@ export default function ContactPage() {
                         <span className="text-white text-sm font-bold">✓</span>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-black mb-1">Fast Replies</h4>
+                        <h4 className="font-semibold text-black mb-1">Understand Your Local Position</h4>
                         <p className="text-gray-700 text-sm">
-                          We respond quickly to make setup smooth and stress-free.
+                          Learn how you compare to other businesses in your area when customers are making decisions.
                         </p>
                       </div>
                     </li>
@@ -120,10 +120,9 @@ export default function ContactPage() {
                         <span className="text-white text-sm font-bold">✓</span>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-black mb-1">Clear, Honest Advice</h4>
+                        <h4 className="font-semibold text-black mb-1">No Pressure, Just Clarity</h4>
                         <p className="text-gray-700 text-sm">
-                          Learn exactly how GuardX helps increase your reviews and visibility — without jargon or
-                          complicated tools.
+                          We're happy to share honest insight about your situation — whether or not GuardX is right for you.
                         </p>
                       </div>
                     </li>
@@ -172,10 +171,9 @@ export default function ContactPage() {
         {/* CTA Section */}
         <section className="bg-gradient-to-br from-primary to-[#b8941f] py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Grow Your Reviews?</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Improve Your Google Presence?</h2>
             <p className="text-xl text-white mb-8">
-              Contact us today for a free, friendly consultation and see how GuardX can increase your reviews,
-              visibility, and enquiries.
+              Get in touch for a friendly, no-obligation conversation about your visibility and competitive position locally.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button

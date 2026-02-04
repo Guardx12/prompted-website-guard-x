@@ -4,7 +4,6 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import Script from "next/script"
 import { WhatsAppBubble } from "@/components/whatsapp-bubble"
-import { PopupRatingWidget } from "@/components/popup-rating-widget"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -59,8 +58,6 @@ export default function RootLayout({
         {children}
 
         <WhatsAppBubble />
-
-        <PopupRatingWidget />
 
         {/* Facebook Pixel noscript */}
         <noscript>

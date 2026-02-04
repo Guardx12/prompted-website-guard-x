@@ -70,17 +70,16 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="scroll-animate">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight">
-                GuardX – Grow Your Reputation, Grow Your Revenue
+                GuardX – Stand Out on Google. Get Chosen More Often.
               </h1>
-              <p className="text-xl text-gray-600 mb-6 font-medium">The Review Growth System for Local UK Businesses</p>
+              <p className="text-xl text-gray-600 mb-6 font-medium">The Google Visibility System for Local UK Businesses</p>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Ever wondered how some local businesses get 500–1,000+ reviews and look fully established online?
-                They're not lucky — they use a consistent review request system. GuardX gives you the same advantage
-                automatically.
+                When customers search locally, Google shows them businesses that look active and trusted. If your profile
+                looks quiet while competitors appear established, you lose enquiries before they even consider you.
               </p>
               <p className="text-2xl md:text-3xl text-gray-700 mb-6 font-semibold">
-                GuardX helps you collect more Google reviews automatically using simple email and SMS review requests.
-                No dashboards. No complicated tools. Just more reviews, more visibility and more customers.
+                GuardX keeps your Google presence visibly active with consistent customer feedback — the signal Google
+                uses to decide who appears first and who customers trust enough to contact.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
@@ -102,7 +101,7 @@ export default function HomePage() {
                 href="/real-results"
                 className="inline-block mt-4 text-gray-600 hover:text-primary transition-colors duration-200 text-base font-medium"
               >
-                {"See real results from real UK businesses using GuardX →"}
+                {"See how UK businesses are becoming more visible and trusted on Google →"}
               </a>
             </div>
             <div className="flex justify-center scroll-animate">
@@ -124,16 +123,17 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 scroll-animate">
             <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
-              Helping Local Businesses Stand Out & Get Chosen More Often
+              Helping Local Businesses Become More Visible and Trusted on Google
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-              GuardX connects to your CRM, BCC email, or a quick staff form to send friendly review requests to your
-              customers after every job or visit. If they don't respond, GuardX follows up with two gentle reminders
-              over the next couple of days.
+              Google ranks local businesses based on relevance, distance, and prominence. Prominence is directly
+              influenced by how active and trusted your profile appears — and that comes from consistent, recent
+              customer feedback.
             </p>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-4">
-              This consistent two-reminder flow makes customers around 4–5x more likely to actually leave a review
-              compared with asking once manually. And because SMS has a 98% open rate, your requests actually get seen.
+              GuardX automates this process, sending friendly requests after every job or visit, with follow-up
+              reminders that make customers 4–5x more likely to respond. The result: your Google presence stays
+              visibly active while competitors fade into the background.
             </p>
           </div>
         </div>
@@ -142,14 +142,14 @@ export default function HomePage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 scroll-animate">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">The Review Growth System</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">The Google Visibility System</h2>
             <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-              Your customers receive a short, friendly review request after each job or visit — sent automatically by
+              Your customers receive a short, friendly request after each job or visit — sent automatically by
               email or SMS. If they don't respond, GuardX follows up with a gentle reminder the next day.
             </p>
             <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-              This simple, consistent flow boosts your Google visibility, increases your review count, and helps you win
-              more local customers.
+              This consistent activity builds the signals Google uses to rank local businesses: recency, volume, and
+              engagement. Your profile stays active. Competitors look dormant. You get chosen more often.
             </p>
           </div>
 
@@ -185,7 +185,7 @@ export default function HomePage() {
 
           <div className="text-center scroll-animate">
             <p className="text-xl font-semibold text-black">
-              You focus on running the business — GuardX brings in the reviews.
+              You focus on running the business — GuardX builds your Google presence.
             </p>
           </div>
         </div>
@@ -390,15 +390,14 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 scroll-animate">
             <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
-              More Reviews → More Trust → More Customers
+              Greater Visibility → Stronger Trust → More Customers
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-4">
-              Businesses with frequent, recent reviews rank higher on Google and get more calls, clicks and enquiries.
-              GuardX helps you stay consistently visible by increasing your review flow every week using proven,
-              automated follow-up reminders.
+              Google uses review activity as a key signal when ranking local businesses. Profiles with consistent,
+              recent feedback appear more prominently and are trusted more by customers making decisions.
             </p>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Consistent reviews build trust fast and lead to more customers choosing you over competitors.
+              GuardX keeps your presence active so you stand out locally instead of blending in.
             </p>
           </div>
         </div>
@@ -409,11 +408,11 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 scroll-animate">
             <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
-              What More Reviews Actually Mean for Your Business
+              What Google Visibility Actually Means for Your Business
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-              Reviews aren't just a vanity metric — they directly affect how many people choose your business, call you,
-              and click through to your website.
+              Your position in Google Maps and local search directly affects how many customers see you, trust you,
+              and contact you. Consistent activity is the signal Google responds to.
             </p>
           </div>
 
@@ -422,22 +421,22 @@ export default function HomePage() {
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                 <p className="text-gray-700 text-lg leading-relaxed">
-                  Businesses with consistent new reviews typically see 20–40% more calls, website clicks and enquiries
-                  within the first few months.
+                  Businesses that maintain consistent activity on Google typically see 20–40% more calls, clicks and
+                  enquiries within the first few months — simply by appearing more established and trusted.
                 </p>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                 <p className="text-gray-700 text-lg leading-relaxed">
-                  If a competitor has more recent reviews than you, customers will usually choose them first — not
-                  because they're better, but because they look more trustworthy.
+                  When competitors appear more active than you, customers choose them first — not because they're
+                  better, but because they look more established in Google Maps and local search.
                 </p>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                 <p className="text-gray-700 text-lg leading-relaxed">
-                  Those businesses with 500–1,000+ reviews aren't just "lucky" — they use a consistent review request
-                  system. GuardX gives you the same advantage automatically, without adding extra work for your team.
+                  Those businesses dominating local search aren't just "lucky" — they maintain a visibly active
+                  Google presence. GuardX gives you the same advantage automatically.
                 </p>
               </div>
             </div>
@@ -445,7 +444,7 @@ export default function HomePage() {
 
           <div className="text-center scroll-animate">
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Switch it on once, and let the reviews build your reputation and enquiries every week.
+              Switch it on once, and let GuardX build your Google presence and enquiries every week.
             </p>
           </div>
         </div>
@@ -609,7 +608,7 @@ export default function HomePage() {
           </div>
 
           <p className="text-xl text-gray-700 text-center mt-12 max-w-3xl mx-auto scroll-animate font-semibold">
-            If you rely on Google reviews to win customers — GuardX helps you grow.
+            If you rely on Google to win local customers — GuardX helps you stand out.
           </p>
         </div>
       </section>
@@ -672,9 +671,9 @@ export default function HomePage() {
       {/* Final CTA Section */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
-          <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">Ready to Grow Your Reputation and Revenue?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">Ready to Stand Out on Google and Win More Customers?</h2>
           <p className="text-xl text-gray-600 mb-8">
-            Join businesses across the UK using GuardX to grow their online reviews automatically.
+            Join businesses across the UK using GuardX to become more visible and trusted on Google.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

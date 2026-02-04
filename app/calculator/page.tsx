@@ -4,8 +4,8 @@ import { Footer } from "@/components/footer"
 import { ReviewValueCalculator } from "@/components/review-value-calculator"
 
 export const metadata: Metadata = {
-  title: "Review Value Calculator | GuardX",
-  description: "Estimate what each extra Google review is worth using your numbers. See the real revenue impact of building a stronger review profile.",
+  title: "Google Visibility Calculator | GuardX",
+  description: "Estimate what improved Google visibility is worth to your business. See the revenue impact of being chosen more often in local search.",
 }
 
 export default function CalculatorPage() {
@@ -18,10 +18,10 @@ export default function CalculatorPage() {
         <section className="py-12 bg-black text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-balance text-primary">
-              Review Value Calculator
+              Google Visibility Calculator
             </h1>
             <p className="text-lg sm:text-xl text-gray-300 text-pretty">
-              Estimate what each extra Google review is worth using your numbers.
+              Estimate what being chosen more often on Google is worth to your business.
             </p>
           </div>
         </section>

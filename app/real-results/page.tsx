@@ -89,10 +89,10 @@ export default function RealResultsPage() {
       <section className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-background">
         <div className="max-w-3xl mx-auto text-center scroll-animate">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6 leading-tight text-balance">
-            More Reviews. More Enquiries. Real Results.
+            Stronger Google Presence. Greater Trust. Real Results.
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground text-pretty">
-            See how UK businesses are building stronger reputations and winning more customers with GuardX.
+            See how UK businesses are becoming more visible and trusted on Google with GuardX.
           </p>
         </div>
       </section>
@@ -102,9 +102,14 @@ export default function RealResultsPage() {
         <div className="max-w-3xl mx-auto">
           <CaseStudy
             name="Greenfields Flooring"
-            industry="Flooring Retailer"
+            industry="Flooring Retailer — Lancing"
             image="/images/greenfields-20flooring.webp"
-            stats={["14 new Google reviews in just 30 days", "Now generating reviews consistently"]}
+            stats={[
+              "Greenfields Flooring reinforced its position as the most established local flooring business on Google.",
+              "Google reviews grew to approximately 100, with review recency of around 14 days.",
+              "Local competitors average over 400 days since their last review — Greenfields now appears consistently active while competitors look dormant.",
+              "This recency gap protects visibility and trust, ensuring competitors no longer appear more established by default."
+            ]}
             testimonial={{
               author: "Michael Greenfield — Greenfields Flooring",
               quote:
@@ -119,13 +124,19 @@ export default function RealResultsPage() {
         <div className="max-w-3xl mx-auto">
           <CaseStudy
             name="Carpet Trader"
-            industry="Flooring Retailer"
+            industry="Flooring Retailer — Leeds"
             image="/images/carpet-trader.webp"
             stats={[
-              "22 new Google reviews in just 5 days",
-              "Achieved by uploading recent customers into GuardX",
-              "New customers now receive review requests automatically",
+              "Carpet Trader became one of the most visibly active carpet stores on Google in Leeds.",
+              "Google reviews increased from approximately 42 to approximately 82.",
+              "Achieved perfect review recency (0 days since last review), while competitors averaged 100+ days between reviews.",
+              "Profile now signals strong activity, trust, and momentum — transforming from blending in to standing out in local search."
             ]}
+            testimonial={{
+              author: "Carpet Trader",
+              quote:
+                "It's been a good addition for our business, helping us build that very important Google platform.",
+            }}
           />
         </div>
       </section>
@@ -134,27 +145,25 @@ export default function RealResultsPage() {
       <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-secondary">
         <div className="max-w-3xl mx-auto scroll-animate">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-6 md:mb-8 text-center text-balance">
-            More reviews means more revenue
+            Google visibility drives business growth
           </h2>
 
           <p className="text-base sm:text-lg text-muted-foreground mb-8 text-center leading-relaxed">
-            Businesses with strong, recent Google reviews consistently outperform those with weak or stale profiles.
+            Businesses that appear active and trusted on Google consistently win more customers than those that blend into the background.
           </p>
 
           <div className="bg-card border-l-4 border-primary rounded-r-lg p-5 sm:p-6 mb-8">
             <p className="text-foreground text-base sm:text-lg leading-relaxed">
-              <span className="font-bold">The pattern is clear:</span> When GuardX is active, businesses generate
-              significantly more Google reviews. Those reviews drive stronger visibility, greater trust, and more
-              inbound enquiries.
+              <span className="font-bold">The pattern is clear:</span> When GuardX is active, businesses build a visibly stronger Google presence. That visibility creates trust at the moment customers are choosing, leading to more clicks, more enquiries, and more revenue.
             </p>
           </div>
 
           {/* Flow - with generous spacing for mobile readability */}
           <div className="space-y-4 max-w-lg mx-auto mb-8">
             {[
-              "More reviews build more trust.",
-              "More trust drives more clicks.",
-              "More clicks generate more enquiries.",
+              "Consistent activity builds a stronger Google presence.",
+              "A stronger presence builds greater trust.",
+              "Greater trust drives more clicks and enquiries.",
               "More enquiries deliver more revenue.",
             ].map((text, index) => (
               <div key={index} className="flex items-center gap-4 p-4 bg-card rounded-lg border border-border">
@@ -165,8 +174,7 @@ export default function RealResultsPage() {
           </div>
 
           <p className="text-base sm:text-lg text-muted-foreground text-center text-pretty leading-relaxed">
-            GuardX makes it simple to collect genuine reviews from real customers, building the visibility and trust
-            that brings new business through your door.
+            GuardX keeps your Google profile visibly active with genuine customer feedback, so you stand out when it matters most.
           </p>
         </div>
       </section>
@@ -233,7 +241,11 @@ export default function RealResultsPage() {
             name="DJ Recycling"
             industry="Waste & Recycling"
             image="/images/dj-20recycling.webp"
-            stats={["30 new Google reviews in 30 days", "A step-change in customer feedback volume"]}
+            stats={[
+              "Became one of the most visibly active businesses on Google in their area",
+              "Strong recency advantage now reinforces trust at the moment customers choose",
+              "Reduced risk of competitors appearing more established or active"
+            ]}
           />
         </div>
       </section>
@@ -245,7 +257,11 @@ export default function RealResultsPage() {
             name="Alderwood Ponds"
             industry="Fishing Lake"
             image="/images/alderwood-20ponds.webp"
-            stats={["7 new Google reviews in just 14 days", "Rapid growth in recent trust signals"]}
+            stats={[
+              "Moved from blending in to standing out in local search within two weeks",
+              "Google profile now shows continuous recent activity",
+              "New customers cited trust in their active presence as a deciding factor"
+            ]}
             testimonial={{
               author: "Alderwood Ponds",
               quote:
@@ -322,8 +338,7 @@ export default function RealResultsPage() {
       <section className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-background">
         <div className="max-w-2xl mx-auto text-center scroll-animate">
           <p className="text-base sm:text-lg md:text-xl text-foreground mb-8 text-pretty leading-relaxed">
-            Ready to see what GuardX can do for your business? Get in touch today and start generating more reviews
-            within the next 30 days.
+            Ready to build a stronger Google presence for your business? Get in touch today and start standing out in local search within the next 30 days.
           </p>
 
           {/* WhatsApp CTA Button */}

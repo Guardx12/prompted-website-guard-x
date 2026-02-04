@@ -74,11 +74,11 @@ export default function PricingPage() {
                 <span className="text-primary font-bold text-sm">ALL-IN-ONE PACKAGE</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 text-balance">
-                Simple Pricing for Growing Your Reviews & Visibility
+                Simple Pricing for Maintaining Your Google Presence
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed">
-                One straightforward system that increases your Google reviews automatically — no dashboards, no
-                complicated tools, just real results.
+                One straightforward system that keeps your Google profile visibly active — so you stand out locally
+                instead of blending in.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href="https://calendly.com/guardxnetwork-info/30min" target="_blank" rel="noopener noreferrer">
@@ -110,7 +110,7 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
-              The GuardX Review Growth System
+              The GuardX Google Visibility System
             </h2>
           </div>
 
@@ -122,13 +122,13 @@ export default function PricingPage() {
                     <Sparkles className="w-5 h-5 text-primary" />
                     <span className="text-primary font-bold text-sm">MOST POPULAR</span>
                   </div>
-                  <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">GuardX Review Growth System</h3>
+                  <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">GuardX Google Visibility System</h3>
                   <div className="mb-4 max-w-3xl mx-auto">
                     <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-                      Most clients find GuardX pays for itself within the first few months by increasing their Google
-                      reviews, improving visibility, and generating more customer enquiries. Every business is different
-                      — pricing depends on your size, review volume and goals. To receive your tailored quote, please
-                      book a quick strategy call or email us at info@guardxnetwork.com.
+                      Most clients find GuardX pays for itself within the first few months by strengthening their Google
+                      presence and generating more customer enquiries. Every business is different — pricing depends on
+                      your size, activity goals, and how many locations you want to protect. To receive your tailored
+                      quote, please book a quick strategy call or email us at info@guardxnetwork.com.
                     </p>
                   </div>
                 </div>
@@ -140,11 +140,11 @@ export default function PricingPage() {
                     </div>
                     <div>
                       <h4 className="text-white font-bold text-xl mb-2">
-                        Automated email review requests after every job or visit
+                        Automated customer engagement after every job or visit
                       </h4>
                       <p className="text-gray-300 leading-relaxed">
-                        Automatically request reviews from satisfied customers via email, ensuring consistent review
-                        collection without manual effort.
+                        Keep your Google profile consistently active with regular customer feedback — the signal Google
+                        uses to rank local businesses.
                       </p>
                     </div>
                   </div>
@@ -155,11 +155,11 @@ export default function PricingPage() {
                     </div>
                     <div>
                       <h4 className="text-white font-bold text-xl mb-2">
-                        Optional SMS review requests (98% open rate)
+                        Optional SMS engagement (98% open rate)
                       </h4>
                       <p className="text-gray-300 leading-relaxed">
-                        Reach customers instantly via text message with an impressive 98% open rate, maximizing your
-                        chances of getting reviews.
+                        Reach customers instantly via text message with an impressive 98% open rate, ensuring your
+                        Google presence stays active even when competitors go quiet.
                       </p>
                     </div>
                   </div>
@@ -170,11 +170,11 @@ export default function PricingPage() {
                     </div>
                     <div>
                       <h4 className="text-white font-bold text-xl mb-2">
-                        Two gentle follow-up reminders to increase responses
+                        Two gentle follow-up reminders to maintain activity
                       </h4>
                       <p className="text-gray-300 leading-relaxed">
-                        Automated follow-up messages ensure customers don't forget to leave a review, increasing
-                        response rates by 4-5x.
+                        Consistent follow-up ensures your profile stays visibly active, protecting your position while
+                        competitors appear dormant.
                       </p>
                     </div>
                   </div>
@@ -186,8 +186,8 @@ export default function PricingPage() {
                     <div>
                       <h4 className="text-white font-bold text-xl mb-2">CRM integration or BCC email setup</h4>
                       <p className="text-gray-300 leading-relaxed">
-                        Seamlessly integrate with your existing CRM system or use our simple BCC email setup to trigger
-                        review requests automatically.
+                        Seamlessly integrate with your existing systems so your Google presence maintains itself
+                        automatically as you complete jobs.
                       </p>
                     </div>
                   </div>
@@ -201,8 +201,8 @@ export default function PricingPage() {
                         Staff form for trades, shops & in-person jobs
                       </h4>
                       <p className="text-gray-300 leading-relaxed">
-                        Perfect for businesses with on-site staff — collect customer details via a simple form and
-                        trigger review requests instantly.
+                        Perfect for businesses with on-site staff — capture customer details via a simple form and
+                        maintain consistent Google activity.
                       </p>
                     </div>
                   </div>
@@ -213,11 +213,11 @@ export default function PricingPage() {
                     </div>
                     <div>
                       <h4 className="text-white font-bold text-xl mb-2">
-                        Set up your Google, Facebook, Yell or any review links
+                        Set up your Google, Facebook, Yell or any platform links
                       </h4>
                       <p className="text-gray-300 leading-relaxed">
-                        We configure all your review platform links so customers are directed to the right place to
-                        leave feedback.
+                        We configure all your platform links so customer activity flows to the right places,
+                        strengthening your presence across key directories.
                       </p>
                     </div>
                   </div>
@@ -242,27 +242,13 @@ export default function PricingPage() {
                     <div>
                       <h4 className="text-white font-bold text-xl mb-2">Ongoing support whenever you need help</h4>
                       <p className="text-gray-300 leading-relaxed">
-                        Get dedicated email support whenever you need assistance — we're here to help your review growth
-                        succeed.
+                        Get dedicated email support whenever you need assistance — we're here to help protect your
+                        Google visibility long-term.
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all border-2 border-primary/30">
-                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-6 h-6 text-black" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold text-xl mb-2">
-                        Optional SMS upgrade → £16/month for a UK SMS number + £12/month for 200 text credits
-                      </h4>
-                      <p className="text-gray-300 leading-relaxed">
-                        Upgrade to SMS review requests for maximum response rates. Available as an optional add-on to
-                        any plan.
-                      </p>
-                    </div>
                   </div>
-                </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a href="https://calendly.com/guardxnetwork-info/30min" target="_blank" rel="noopener noreferrer">
@@ -296,7 +282,7 @@ export default function PricingPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">Why Businesses Choose GuardX</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Simple, effective, and completely hands-off review growth
+              Simple, effective, and completely hands-off Google presence management
             </p>
           </div>
 
@@ -308,8 +294,8 @@ export default function PricingPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-black mb-3">100% Done-for-You</h3>
                 <p className="text-gray-700 leading-relaxed">
-                  GuardX handles everything — setup, integration, and sending all review requests automatically. No
-                  dashboards or software to learn.
+                  GuardX handles everything — setup, integration, and maintaining your Google activity automatically.
+                  No dashboards or software to learn.
                 </p>
               </CardContent>
             </Card>
@@ -321,7 +307,7 @@ export default function PricingPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-black mb-3">Simple & Transparent</h3>
                 <p className="text-gray-700 leading-relaxed">
-                  No confusing tiers or hidden fees. One straightforward review growth system that works.
+                  No confusing tiers or hidden fees. One straightforward system that protects your Google visibility.
                 </p>
               </CardContent>
             </Card>
@@ -333,8 +319,8 @@ export default function PricingPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-black mb-3">Proven Results</h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Businesses consistently see more reviews, higher rankings, and more enquiries once their automated
-                  review flow is switched on.
+                  Businesses consistently see stronger Google presence, improved local rankings, and more enquiries
+                  once their visibility system is active.
                 </p>
               </CardContent>
             </Card>
@@ -344,10 +330,10 @@ export default function PricingPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <TrendingUp className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-black mb-3">4–5x More Reviews</h3>
+                <h3 className="text-2xl font-bold text-black mb-3">4–5x More Activity</h3>
                 <p className="text-gray-700 leading-relaxed">
-                  With two friendly reminders, customers become 4–5x more likely to leave a review compared to asking
-                  once manually.
+                  With consistent follow-up, your Google profile stays 4–5x more active than competitors relying on
+                  occasional manual requests.
                 </p>
               </CardContent>
             </Card>
@@ -359,8 +345,8 @@ export default function PricingPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-black mb-3">98% SMS Open Rate</h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Text review invites are opened 98% of the time, making them one of the most effective ways to collect
-                  reviews quickly.
+                  Text messages are opened 98% of the time, making SMS one of the most effective ways to maintain
+                  consistent Google activity.
                 </p>
               </CardContent>
             </Card>
@@ -387,17 +373,17 @@ export default function PricingPage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">Everything Included</h2>
-              <p className="text-xl text-gray-600">No add-ons. No upsells. Just automated review growth.</p>
+              <p className="text-xl text-gray-600">No add-ons. No upsells. Just consistent Google presence protection.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">Automated email review requests</span>
+                <span className="text-gray-700 font-medium">Automated customer engagement</span>
               </div>
               <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">Optional SMS review requests</span>
+                <span className="text-gray-700 font-medium">Optional SMS engagement</span>
               </div>
               <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
@@ -440,10 +426,10 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
-              Ready to grow your reviews, visibility and customer enquiries?
+              Ready to protect your Google visibility and win more customers?
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Join UK businesses using GuardX to automate their review requests and grow month after month.
+              Join UK businesses using GuardX to maintain a strong Google presence and stand out locally.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="https://calendly.com/guardxnetwork-info/30min" target="_blank" rel="noopener noreferrer">

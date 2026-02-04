@@ -99,9 +99,9 @@ export function ReviewValueCalculator() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 text-balance">
-            See how much each extra Google review is worth to your business
+            See what improved Google visibility is worth to your business
           </h2>
-          <p className="text-lg text-gray-600">Based on real-world averages and your numbers.</p>
+          <p className="text-lg text-gray-600">Based on how Google ranks local businesses and your numbers.</p>
         </div>
 
         <Card className="bg-white border border-gray-200 shadow-lg">
@@ -162,7 +162,7 @@ export function ReviewValueCalculator() {
               {/* Multiplier slider */}
               <div className="md:col-span-2">
                 <label className="block text-sm font-semibold text-black mb-2">
-                  Expected review growth multiplier: <span className="text-primary">{multiplier}x</span>
+                  Expected activity multiplier: <span className="text-primary">{multiplier}x</span>
                 </label>
                 <Slider
                   value={[multiplier]}
@@ -177,10 +177,10 @@ export function ReviewValueCalculator() {
                   <span>5x</span>
                 </div>
                 <p className="text-xs text-gray-500 mt-2">
-                  3–5× is the typical range we see when GuardX is switched on and review requests are sent consistently.
+                  3–5× is the typical increase in Google profile activity when GuardX is active.
                 </p>
                 <p className="text-xs text-gray-500 mt-1">
-                  Assumed uplift in jobs: {Math.round(calculations.upliftRate * 100)}% (conservative)
+                  Assumed uplift in enquiries from improved visibility: {Math.round(calculations.upliftRate * 100)}% (conservative)
                 </p>
               </div>
 
@@ -203,43 +203,43 @@ export function ReviewValueCalculator() {
             {/* Output cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-5 text-center">
-                <p className="text-sm text-gray-600 mb-1">Estimated extra reviews</p>
+                <p className="text-sm text-gray-600 mb-1">Increased profile activity</p>
                 <p className="text-sm text-gray-500 mb-2">in {periodLabel}</p>
-                <p className="text-3xl font-bold text-black">{calculations.extraReviewsInPeriod}</p>
+                <p className="text-3xl font-bold text-black">+{calculations.extraReviewsInPeriod}</p>
               </div>
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-5 text-center">
                 <p className="text-sm text-gray-600 mb-1">Estimated additional revenue</p>
-                <p className="text-sm text-gray-500 mb-2">in {periodLabel}</p>
+                <p className="text-sm text-gray-500 mb-2">from improved visibility</p>
                 <p className="text-3xl font-bold text-primary">{formatCurrency(calculations.additionalRevenueInPeriod)}</p>
               </div>
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-5 text-center">
-                <p className="text-sm text-gray-600 mb-1">Estimated value per</p>
-                <p className="text-sm text-gray-500 mb-2">extra review</p>
+                <p className="text-sm text-gray-600 mb-1">Value of each visibility</p>
+                <p className="text-sm text-gray-500 mb-2">signal to Google</p>
                 <p className="text-3xl font-bold text-black">{formatCurrency(calculations.valuePerExtraReview)}</p>
               </div>
             </div>
 
             {/* What this means explanation block */}
             <div className="bg-gray-50 border border-gray-200 rounded-lg p-5 mb-6">
-              <p className="text-sm font-semibold text-black mb-3">What this means (based on how Google actually works)</p>
+              <p className="text-sm font-semibold text-black mb-3">Why visibility translates into revenue</p>
               <div className="text-sm text-gray-700 leading-relaxed space-y-3">
                 <p>
-                  Google ranks local businesses using three primary factors: relevance, distance, and prominence. Google has publicly confirmed that reviews directly influence prominence, which affects how often and how high a business appears in Google Maps and local search results.
+                  Google ranks local businesses using three primary factors: relevance, distance, and prominence. Prominence is directly influenced by profile activity — how often customers engage with your business and leave feedback.
                 </p>
                 <p>
-                  In real-world terms:
+                  When your Google profile shows consistent, recent activity:
                 </p>
                 <p>
-                  Businesses that increase the volume and frequency of their reviews consistently gain greater visibility in local results.
+                  You appear higher and more often in Google Maps and local search results.
                 </p>
                 <p>
-                  Higher visibility leads to more clicks, more calls, and more enquiries.
+                  Customers see you as more established and trustworthy at the moment they're deciding who to contact.
                 </p>
                 <p>
-                  Moving just one or two positions higher in Google Maps materially increases the number of potential customers who see and choose a business.
+                  You receive more profile views, more clicks, and more enquiries than competitors who appear less active.
                 </p>
                 <p>
-                  The calculator above is built using real-world average visibility and customer behaviour patterns observed when businesses improve their review profiles. It models how that increased visibility typically translates into a small but meaningful increase in customers over time, using your own numbers.
+                  This calculator models the revenue impact of that improved visibility. It estimates how being chosen more often — because you appear more active and trusted — translates into additional customers over time, using your own numbers.
                 </p>
               </div>
             </div>
@@ -247,17 +247,17 @@ export function ReviewValueCalculator() {
             {/* Disclaimer */}
             <div className="bg-gray-100 border border-gray-200 rounded-lg p-4 mb-6">
               <p className="text-xs text-gray-600 text-center">
-                This calculator is based on your business inputs and conservative modelling informed by widely published UK and global research on the impact of online reviews on consumer trust and purchasing decisions.
+                This calculator uses conservative modelling based on published research into how Google visibility affects local business enquiries and customer decision-making.
               </p>
             </div>
 
             {/* CTA */}
             <div className="text-center">
               <a
-                href="#free-scorecard"
+                href="/reputation-scorecard"
                 className="inline-block bg-primary text-black hover:bg-[#e6c34a] px-8 py-4 text-lg font-bold shadow-lg rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-black/10"
               >
-                Get a free review scorecard
+                Get a free visibility scorecard
               </a>
             </div>
           </CardContent>
