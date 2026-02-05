@@ -403,8 +403,30 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* What More Reviews Mean Section */}
+      {/* Google Maps Results vs Sponsored Ads Section */}
       <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center scroll-animate">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
+              Google Maps Results vs Sponsored Ads
+            </h2>
+            <div className="max-w-4xl mx-auto space-y-6">
+              <p className="text-xl text-gray-600 leading-relaxed">
+                When people search for local services, most clicks go to the Google Maps results — not sponsored ads.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Customers tend to trust businesses that appear established, active, and well-reviewed in local search. Sponsored ads may get attention, but many users scroll past them in favour of businesses that look proven and trustworthy.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Organic visibility in Google Maps earns trust at the exact moment customers are deciding who to contact. That's why maintaining a visibly active Google profile is often more effective long-term than relying on ads alone.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What More Reviews Mean Section */}
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 scroll-animate">
             <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
