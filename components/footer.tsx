@@ -69,7 +69,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Locations & Industries */}
+          {/* Explore */}
           <div>
             <h3 className="text-[#e2e8f0] font-semibold mb-4">Explore</h3>
             <ul className="space-y-2">
