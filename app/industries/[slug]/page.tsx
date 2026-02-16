@@ -1,45 +1,60 @@
-import type { Metadata } from "next"
-import { notFound } from "next/navigation"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { SeoCTABlock } from "@/components/seo-cta-block"
+import { AnimatedPageTitle } from "@/components/animated-page-title"
 import { industries, getIndustryBySlug } from "@/lib/industries-data"
 import { getLocationBySlug } from "@/lib/locations-data"
-import { ArrowRight, CheckCircle2, MapPin, AlertTriangle } from "lucide-react"
+import { CheckCircle2, ArrowRight, MapPin } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
+import { notFound } from "next/navigation"
+import type { Metadata } from "next"
 
-export function generateStaticParams() {
-  return industries.map((industry) => ({
-    slug: industry.slug,
-  }))
+const industryImages: Record<string, { src: string; alt: string }> = {
+  builders: { src: "/seo/industries/builder.jpg", alt: "Builder working on a residential construction site" },
+  "construction-companies": { src: "/seo/industries/construction-companies.jpg", alt: "Construction site with workers and steel framework" },
+  scaffolders: { src: "/seo/industries/scaffolding.jpg", alt: "Scaffolding erected on a residential building" },
+  "flooring-shops": { src: "/seo/industries/flooring.jpg", alt: "Flooring specialist installing hardwood flooring" },
+  "carpet-cleaners": { src: "/seo/industries/carpet-cleaners.jpg", alt: "Professional carpet cleaner at work" },
+  "driveway-companies": { src: "/seo/industries/driveway-companies.jpg", alt: "Driveway block paving installation" },
+  roofers: { src: "/seo/industries/roofers.jpg", alt: "Roofer replacing tiles on a residential roof" },
+  plumbers: { src: "/seo/industries/plumber.jpg", alt: "Plumber fixing pipes in a kitchen" },
+  electricians: { src: "/seo/industries/electrician.jpg", alt: "Electrician working on residential wiring" },
+  "painters-and-decorators": { src: "/seo/industries/painters-and-decorators.jpg", alt: "Painter and decorator painting a wall" },
+  "estate-agents": { src: "/seo/industries/estate-agents.jpg", alt: "Estate agent showing a property to buyers" },
+  "letting-agents": { src: "/seo/industries/letting-agents.jpg", alt: "Letting agent handing over house keys" },
+  restaurants: { src: "/seo/industries/restaurants.jpg", alt: "Modern restaurant interior with diners" },
+  cafes: { src: "/seo/industries/cafes.jpg", alt: "Cosy British cafe interior" },
+  garages: { src: "/seo/industries/garages.jpg", alt: "Professional car garage workshop" },
+  mechanics: { src: "/seo/industries/mechanics.jpg", alt: "Mechanic diagnosing an engine" },
+  "cleaning-companies": { src: "/seo/industries/cleaning-companies.jpg", alt: "Professional cleaning team at work" },
+  landscapers: { src: "/seo/industries/landscapers.jpg", alt: "Landscaper designing a garden" },
+  "tree-surgeons": { src: "/seo/industries/tree-surgeons.jpg", alt: "Tree surgeon working with climbing gear" },
+  locksmiths: { src: "/seo/industries/locksmiths.jpg", alt: "Locksmith working on a front door lock" },
+  dentists: { src: "/seo/industries/dentists.jpg", alt: "Modern dental surgery treatment room" },
+  physios: { src: "/seo/industries/physios.jpg", alt: "Physiotherapist treating a patient" },
+  gyms: { src: "/seo/industries/gyms.jpg", alt: "Modern gym interior with fitness equipment" },
+  salons: { src: "/seo/industries/salons.jpg", alt: "Hair and beauty salon interior" },
+  barbers: { src: "/seo/industries/barber.jpg", alt: "Barber giving a professional haircut" },
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}): Promise<Metadata> {
+export async function generateStaticParams() {
+  return industries.map((industry) => ({ slug: industry.slug }))
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const industry = getIndustryBySlug(slug)
   if (!industry) return {}
-
   return {
     title: industry.metaTitle,
     description: industry.metaDescription,
   }
 }
 
-export default async function IndustryPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+export default async function IndustryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const industry = getIndustryBySlug(slug)
-
-  if (!industry) {
-    notFound()
-  }
+  if (!industry) notFound()
 
   const relatedIndustries = industry.relatedIndustries
     .map((s) => getIndustryBySlug(s))
@@ -51,108 +66,108 @@ export default async function IndustryPage({
 
   const introParagraphs = industry.intro.split("\n\n")
 
-  const benefits = [
-    `Automated review requests designed for ${industry.name.toLowerCase()}`,
-    "Personalised email and SMS messages your customers actually respond to",
-    "More five-star Google reviews without any manual effort",
-    "Higher local search rankings that bring in new customers",
-    "A done-for-you system that works while you focus on your business",
-    "Real-time dashboard to track your growing reputation",
-  ]
-
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
       <Navigation />
 
-      <main className="pt-16">
+      <main className="flex-1">
         {/* Hero */}
-        <section className="py-20 lg:py-28">
+        <section className="pt-32 pb-20 bg-[#0a0e1a]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 text-primary font-semibold text-sm mb-4 bg-primary/10 px-4 py-2 rounded-full">
-              {industry.category}
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
-              {industry.h1}
-            </h1>
-            {introParagraphs.map((paragraph, i) => (
-              <p
-                key={i}
-                className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-4"
-              >
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </section>
-
-        {/* Top CTA */}
-        <SeoCTABlock variant="top" industryName={industry.name} />
-
-        {/* Industry Challenges */}
-        <section className="py-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-start gap-4 p-6 bg-secondary/50 rounded-xl border border-border">
-              <AlertTriangle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-              <div>
-                <h2 className="text-2xl font-bold text-foreground mb-4">
-                  The Review Challenge for {industry.name}
-                </h2>
-                <p className="text-muted-foreground leading-relaxed text-lg">
-                  {industry.challenges}
-                </p>
+            <AnimatedPageTitle text={industry.h1} className="mb-6" />
+            <p className="text-sm text-[#64748b] mb-4">{industry.category}</p>
+            {industryImages[slug] && (
+              <div className="relative w-full max-w-3xl mx-auto aspect-[16/9] rounded-xl overflow-hidden mb-10">
+                <Image
+                  src={industryImages[slug].src}
+                  alt={industryImages[slug].alt}
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 768px"
+                />
               </div>
-            </div>
+            )}
+            <p className="text-xl text-[#94a3b8] max-w-3xl mx-auto leading-relaxed mb-10">
+              {introParagraphs[0]}
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
+            >
+              Get Started <ArrowRight className="w-5 h-5" />
+            </Link>
           </div>
         </section>
 
-        {/* Benefits */}
-        <section className="py-16 bg-secondary/30">
+        {/* Extended Intro */}
+        {introParagraphs.length > 1 && (
+          <section className="py-20 bg-[#111827]">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              {introParagraphs.slice(1).map((para, i) => (
+                <p key={i} className="text-lg text-[#94a3b8] leading-relaxed mb-6 last:mb-0">
+                  {para}
+                </p>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Challenges */}
+        <section className="py-20 bg-[#0a0e1a]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
-              How GuardX Helps {industry.name}
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
+              The Review Challenge for {industry.name}
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {benefits.map((benefit, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-3 p-4 bg-card rounded-lg border border-border"
-                >
-                  <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground">{benefit}</span>
+            <p className="text-lg text-[#94a3b8] leading-relaxed text-center max-w-3xl mx-auto">
+              {industry.challenges}
+            </p>
+          </div>
+        </section>
+
+        {/* Why GuardX */}
+        <section className="py-20 bg-[#111827]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
+              Why {industry.name} Choose GuardX
+            </h2>
+            <div className="max-w-2xl mx-auto space-y-6">
+              {[
+                `Professional web design built to showcase ${industry.name.toLowerCase()} and convert visitors into enquiries.`,
+                "SEO foundation included — proper meta tags, semantic HTML, fast load times, and mobile optimisation from day one.",
+                `Automated review generation designed specifically for ${industry.name.toLowerCase()}.`,
+                "Personalised email and SMS prompts sent at the right moment — hands-free while you focus on your business.",
+                "Web design, SEO, and reviews working together for higher rankings, more visibility, and more customers.",
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1] text-lg leading-relaxed">{item}</span>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Mid CTA */}
-        <SeoCTABlock variant="mid" industryName={industry.name} />
-
         {/* Related Industries */}
         {relatedIndustries.length > 0 && (
-          <section className="py-16">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+          <section className="py-20 bg-[#0a0e1a]">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">
                 Related Industries
               </h2>
-              <p className="text-muted-foreground mb-8">
-                GuardX also helps businesses in these related sectors.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {relatedIndustries.map((ind) =>
-                  ind ? (
-                    <Link
-                      key={ind.slug}
-                      href={`/industries/${ind.slug}`}
-                      className="group flex items-center justify-between p-4 rounded-lg border border-border bg-card hover:border-primary/50 hover:shadow-md transition-all duration-300"
-                    >
-                      <span className="text-foreground font-semibold group-hover:text-primary transition-colors">
-                        {ind.name}
-                      </span>
-                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                    </Link>
-                  ) : null,
-                )}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {relatedIndustries.map((ind) => (
+                  <Link
+                    key={ind!.slug}
+                    href={`/industries/${ind!.slug}`}
+                    className="group rounded-xl border border-white/10 bg-[#1e293b] p-6 transition-all duration-300 hover:border-blue-500/50"
+                  >
+                    <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors mb-2">
+                      {ind!.name}
+                    </h3>
+                    <p className="text-[#94a3b8] text-sm line-clamp-2">{ind!.intro.split("\n")[0]}</p>
+                  </Link>
+                ))}
               </div>
             </div>
           </section>
@@ -160,37 +175,50 @@ export default async function IndustryPage({
 
         {/* Related Locations */}
         {relatedLocations.length > 0 && (
-          <section className="py-16 bg-secondary/30">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-                Locations We Serve
+          <section className="py-20 bg-[#111827]">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">
+                {industry.name} in These Locations
               </h2>
-              <p className="text-muted-foreground mb-8">
-                Find GuardX review growth for {industry.name.toLowerCase()} in your area.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {relatedLocations.map((loc) =>
-                  loc ? (
-                    <Link
-                      key={loc.slug}
-                      href={`/locations/${loc.slug}`}
-                      className="group flex items-center gap-3 p-4 rounded-lg border border-border bg-card hover:border-primary/50 hover:shadow-md transition-all duration-300"
-                    >
-                      <MapPin className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-foreground font-semibold group-hover:text-primary transition-colors flex-1">
-                        {loc.name}
-                      </span>
-                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
-                    </Link>
-                  ) : null,
-                )}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {relatedLocations.map((loc) => (
+                  <Link
+                    key={loc!.slug}
+                    href={`/locations/${loc!.slug}`}
+                    className="group rounded-xl border border-white/10 bg-[#1e293b] p-6 transition-all duration-300 hover:border-blue-500/50"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <MapPin className="w-4 h-4 text-blue-400" />
+                      <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">
+                        {loc!.name}
+                      </h3>
+                    </div>
+                    <p className="text-[#94a3b8] text-sm line-clamp-2">{loc!.intro.split("\n")[0]}</p>
+                  </Link>
+                ))}
               </div>
             </div>
           </section>
         )}
 
-        {/* Bottom CTA */}
-        <SeoCTABlock variant="bottom" industryName={industry.name} />
+        {/* CTA */}
+        <section className="py-20 bg-[#0a0e1a]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Ready to Grow Your {industry.name} Business?
+            </h2>
+            <p className="text-lg text-[#94a3b8] mb-10 max-w-2xl mx-auto leading-relaxed">
+              Contact GuardX today for a free, no-obligation conversation about how our web design, SEO foundation,
+              and review generation services can transform your online presence.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
+            >
+              Contact Us <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </section>
       </main>
 
       <Footer />

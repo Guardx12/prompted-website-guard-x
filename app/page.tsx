@@ -562,24 +562,14 @@ export default function HomePage() {
             <div className="flex-1">
               <Reveal>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
-                  SEO Foundation Built In
+                  SEO Foundation Included with Professional Website Package
                 </h2>
               </Reveal>
               <Reveal delay={0.1}>
                 <p className="text-[#94a3b8] text-lg mb-6 leading-relaxed">
-                  Every website we deliver comes with a solid SEO foundation baked into the build. Your site
-                  is structured correctly for Google from the start &mdash; proper meta tags, semantic HTML, fast load times,
-                  mobile optimisation, and clean URLs.
+                  Our Professional Website package includes strong SEO foundation setup. This ensures your website is
+                  structured correctly and ready for Google indexing. This is a one-time setup built into the website.
                 </p>
-              </Reveal>
-              <Reveal delay={0.15}>
-                <div className="rounded-xl bg-white/[0.05] border border-white/10 p-6 mb-6">
-                  <p className="text-[#cbd5e1] text-sm leading-relaxed">
-                    <strong className="text-white">Included with Professional Website:</strong> Our Professional Website
-                    package includes strong SEO foundation setup, ensuring your website is structured correctly and ready
-                    for Google indexing. This is a one-time setup built into the website.
-                  </p>
-                </div>
               </Reveal>
               <Reveal delay={0.2}>
                 <ul className="space-y-4">

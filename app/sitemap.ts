@@ -63,6 +63,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
     {
+      url: `${BASE_URL}/locations`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/industries`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
       url: `${BASE_URL}/website-design-uk`,
       lastModified: now,
       changeFrequency: "monthly",
@@ -112,37 +124,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  // Directory pages
-  const directoryPages: MetadataRoute.Sitemap = [
-    {
-      url: `${BASE_URL}/locations`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/industries`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-  ]
-
-  // Location pages
   const locationPages: MetadataRoute.Sitemap = locations.map((location) => ({
     url: `${BASE_URL}/locations/${location.slug}`,
     lastModified: now,
-    changeFrequency: "monthly" as const,
+    changeFrequency: "monthly",
     priority: 0.7,
   }))
 
-  // Industry pages
   const industryPages: MetadataRoute.Sitemap = industries.map((industry) => ({
     url: `${BASE_URL}/industries/${industry.slug}`,
     lastModified: now,
-    changeFrequency: "monthly" as const,
+    changeFrequency: "monthly",
     priority: 0.7,
   }))
 
-  return [...staticPages, ...directoryPages, ...locationPages, ...industryPages]
+  return [...staticPages, ...locationPages, ...industryPages]
 }

@@ -1,110 +1,122 @@
-import type { Metadata } from "next"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { SeoCTABlock } from "@/components/seo-cta-block"
-import { getSussexLocations, getUKCityLocations } from "@/lib/locations-data"
-import { MapPin, ArrowRight } from "lucide-react"
+import { AnimatedPageTitle } from "@/components/animated-page-title"
+import { locations, getSussexLocations, getUKCityLocations } from "@/lib/locations-data"
+import { ArrowRight, MapPin } from "lucide-react"
 import Link from "next/link"
+import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "GuardX Locations — Review Growth for Local UK Businesses",
+  title: "GuardX Locations — Web Design, SEO & Review Generation Across Sussex and the UK",
   description:
-    "Find GuardX review growth services near you. We help local businesses across Sussex and major UK cities build five-star Google reputations with automated review requests.",
+    "GuardX provides professional web design, SEO foundation, and automated review generation for businesses across Sussex and major UK cities. Find your location and discover how we can help.",
 }
 
-export default function LocationsDirectoryPage() {
+export default function LocationsPage() {
   const sussexLocations = getSussexLocations()
   const ukCityLocations = getUKCityLocations()
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
       <Navigation />
 
-      <main className="pt-16">
+      <main className="flex-1">
         {/* Hero */}
-        <section className="py-20 lg:py-28">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
-              <span className="text-primary">Locations</span> We Serve
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              GuardX helps local businesses across the UK grow through automated review requests.
-              Find your area below and discover how we can boost your Google reputation.
+        <section className="pt-32 pb-20 bg-[#0a0e1a]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <AnimatedPageTitle text="All Locations" className="mb-6" />
+            <p className="text-xl text-[#94a3b8] max-w-3xl mx-auto leading-relaxed">
+              GuardX helps businesses grow across Sussex and major UK cities with professional web design, SEO
+              foundation, and automated review generation. Find your area below.
             </p>
           </div>
         </section>
 
-        {/* Top CTA */}
-        <SeoCTABlock variant="top" />
-
         {/* Sussex Locations */}
-        <section className="py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Sussex</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl">
-                Our home region. GuardX was built for Sussex businesses and we know the local market inside out.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <section className="py-20 bg-[#111827]">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">Sussex Locations</h2>
+            <p className="text-[#94a3b8] text-center mb-12 max-w-2xl mx-auto">
+              Serving businesses across East Sussex, West Sussex, and Brighton &amp; Hove.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {sussexLocations.map((location) => (
                 <Link
                   key={location.slug}
                   href={`/locations/${location.slug}`}
-                  className="group flex items-center gap-3 p-4 rounded-lg border border-border bg-card hover:border-primary/50 hover:shadow-md transition-all duration-300"
+                  className="group rounded-xl border border-white/10 bg-[#1e293b] p-6 transition-all duration-300 hover:border-blue-500/50 hover:bg-[#1e293b]/80"
                 >
-                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                    <MapPin className="w-5 h-5 text-primary" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <span className="text-foreground font-semibold group-hover:text-primary transition-colors block">
+                  <div className="flex items-start gap-3 mb-3">
+                    <MapPin className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                    <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">
                       {location.name}
-                    </span>
-                    {location.county && (
-                      <span className="text-sm text-muted-foreground">{location.county}</span>
-                    )}
+                    </h3>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+                  {location.county && (
+                    <p className="text-sm text-[#64748b] mb-3">{location.county}</p>
+                  )}
+                  <p className="text-[#94a3b8] text-sm leading-relaxed line-clamp-3">
+                    {location.intro.split("\n")[0]}
+                  </p>
+                  <div className="mt-4 flex items-center gap-1 text-blue-400 text-sm font-medium">
+                    Learn more <ArrowRight className="w-4 h-4" />
+                  </div>
                 </Link>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Mid CTA */}
-        <SeoCTABlock variant="mid" />
-
-        {/* UK Cities */}
-        <section className="py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Major UK Cities</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl">
-                GuardX review growth is available nationwide. We help businesses in cities across England, Scotland, Wales, and Northern Ireland.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {/* UK City Locations */}
+        <section className="py-20 bg-[#0a0e1a]">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">UK Cities</h2>
+            <p className="text-[#94a3b8] text-center mb-12 max-w-2xl mx-auto">
+              Helping businesses grow their Google reputation in major cities across the United Kingdom.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {ukCityLocations.map((location) => (
                 <Link
                   key={location.slug}
                   href={`/locations/${location.slug}`}
-                  className="group flex items-center gap-3 p-4 rounded-lg border border-border bg-card hover:border-primary/50 hover:shadow-md transition-all duration-300"
+                  className="group rounded-xl border border-white/10 bg-[#1e293b] p-6 transition-all duration-300 hover:border-blue-500/50 hover:bg-[#1e293b]/80"
                 >
-                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                    <MapPin className="w-5 h-5 text-primary" />
+                  <div className="flex items-start gap-3 mb-3">
+                    <MapPin className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                    <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">
+                      {location.name}
+                    </h3>
                   </div>
-                  <span className="text-foreground font-semibold group-hover:text-primary transition-colors flex-1">
-                    {location.name}
-                  </span>
-                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+                  <p className="text-[#94a3b8] text-sm leading-relaxed line-clamp-3">
+                    {location.intro.split("\n")[0]}
+                  </p>
+                  <div className="mt-4 flex items-center gap-1 text-blue-400 text-sm font-medium">
+                    Learn more <ArrowRight className="w-4 h-4" />
+                  </div>
                 </Link>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Bottom CTA */}
-        <SeoCTABlock variant="bottom" />
+        {/* CTA */}
+        <section className="py-20 bg-[#111827]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              {"Don't See Your Area?"}
+            </h2>
+            <p className="text-lg text-[#94a3b8] mb-10 max-w-2xl mx-auto leading-relaxed">
+              GuardX works with businesses across the UK. Get in touch and we will show you how our web design, SEO
+              foundation, and review generation services can work for your location.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
+            >
+              Contact Us <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </section>
       </main>
 
       <Footer />

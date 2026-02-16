@@ -167,17 +167,17 @@ export default function ContactPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="bg-gradient-to-br from-blue-600 to-blue-800 py-16">
+        <section className="bg-gradient-to-br from-[#818cf8] to-[#6d28d9] py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Improve Your Google Presence?</h2>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-indigo-100 mb-8">
               Get in touch for a friendly, no-obligation conversation about your visibility and competitive position locally.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
                 variant="secondary"
-                className="bg-white text-blue-700 hover:bg-blue-50 font-semibold"
+                className="bg-white text-[#6d28d9] hover:bg-indigo-50 font-semibold"
                 onClick={() => (window.location.href = `mailto:${email}`)}
               >
                 Send Us an Email

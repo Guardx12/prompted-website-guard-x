@@ -1,92 +1,90 @@
-import type { Metadata } from "next"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { SeoCTABlock } from "@/components/seo-cta-block"
+import { AnimatedPageTitle } from "@/components/animated-page-title"
 import { industries, industryCategories, getIndustriesByCategory } from "@/lib/industries-data"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
+import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "GuardX Industries — Review Growth for Every Business Type",
+  title: "GuardX Industries — Web Design, SEO & Review Generation for Every Business Type",
   description:
-    "GuardX helps businesses across trades, hospitality, property, automotive, health, and beauty build five-star Google reputations. Find your industry and see how we can help.",
+    "GuardX provides professional web design, SEO foundation, and automated review generation for trades, hospitality, health, beauty, property, automotive, and home service businesses across the UK.",
 }
 
-const categoryDescriptions: Record<string, string> = {
-  Trades: "Builders, plumbers, electricians, and more. We help trades businesses turn completed jobs into five-star reviews.",
-  "Home Services": "Cleaning, landscaping, and property care businesses that keep homes running smoothly.",
-  Property: "Estate agents and letting agents who need visible trust to win instructions and tenants.",
-  Automotive: "Garages and mechanics who rely on customer trust to keep their bays booked.",
-  Health: "Dentists, physios, and gyms building patient and member trust through visible reviews.",
-  Beauty: "Salons and barbershops that depend on reputation to fill their appointment books.",
-  Hospitality: "Restaurants and cafes where five-star reviews directly translate to more covers.",
-}
-
-export default function IndustriesDirectoryPage() {
+export default function IndustriesPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
       <Navigation />
 
-      <main className="pt-16">
-        {/* Hero Section */}
-        <section className="py-20 lg:py-28">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
-              <span className="text-primary">Industries</span> We Serve
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              GuardX provides automated review growth tailored to the unique challenges of each industry.
-              Find your business type below and discover how more five-star reviews can transform your growth.
+      <main className="flex-1">
+        {/* Hero */}
+        <section className="pt-32 pb-20 bg-[#0a0e1a]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <AnimatedPageTitle text="All Industries" className="mb-6" />
+            <p className="text-xl text-[#94a3b8] max-w-3xl mx-auto leading-relaxed">
+              GuardX helps businesses across every industry with professional web design, SEO foundation, and automated
+              review generation. Find your industry below.
             </p>
           </div>
         </section>
 
-        {/* Top CTA */}
-        <SeoCTABlock variant="top" />
-
-        {/* Industries by category */}
-        {industryCategories.map((category, catIndex) => {
+        {/* Industry Categories */}
+        {industryCategories.map((category, idx) => {
           const categoryIndustries = getIndustriesByCategory(category)
           if (categoryIndustries.length === 0) return null
-
           return (
             <section
               key={category}
-              className={`py-16 ${catIndex % 2 === 1 ? "bg-secondary/30" : ""}`}
+              className={`py-20 ${idx % 2 === 0 ? "bg-[#111827]" : "bg-[#0a0e1a]"}`}
             >
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="mb-8">
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-                    {category}
-                  </h2>
-                  <p className="text-lg text-muted-foreground max-w-2xl">
-                    {categoryDescriptions[category]}
-                  </p>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">{category}</h2>
+                <p className="text-[#94a3b8] text-center mb-12 max-w-2xl mx-auto">
+                  Web design, SEO foundation, and review generation for {category.toLowerCase()} businesses across the UK.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {categoryIndustries.map((industry) => (
                     <Link
                       key={industry.slug}
                       href={`/industries/${industry.slug}`}
-                      className="group flex items-center justify-between p-4 rounded-lg border border-border bg-card hover:border-primary/50 hover:shadow-md transition-all duration-300"
+                      className="group rounded-xl border border-white/10 bg-[#1e293b] p-6 transition-all duration-300 hover:border-blue-500/50 hover:bg-[#1e293b]/80"
                     >
-                      <span className="text-foreground font-semibold group-hover:text-primary transition-colors">
+                      <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors mb-3">
                         {industry.name}
-                      </span>
-                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+                      </h3>
+                      <p className="text-[#94a3b8] text-sm leading-relaxed line-clamp-3">
+                        {industry.intro.split("\n")[0]}
+                      </p>
+                      <div className="mt-4 flex items-center gap-1 text-blue-400 text-sm font-medium">
+                        Learn more <ArrowRight className="w-4 h-4" />
+                      </div>
                     </Link>
                   ))}
                 </div>
               </div>
-
-              {/* Insert mid CTA after the second category */}
-              {catIndex === 1 && <div className="mt-16"><SeoCTABlock variant="mid" /></div>}
             </section>
           )
         })}
 
-        {/* Bottom CTA */}
-        <SeoCTABlock variant="bottom" />
+        {/* CTA */}
+        <section className="py-20 bg-[#111827]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              {"Don't See Your Industry?"}
+            </h2>
+            <p className="text-lg text-[#94a3b8] mb-10 max-w-2xl mx-auto leading-relaxed">
+              GuardX works with businesses of all types. Get in touch and we will show you how our web design, SEO
+              foundation, and review generation services can transform your online presence.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
+            >
+              Contact Us <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </section>
       </main>
 
       <Footer />
