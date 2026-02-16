@@ -17,14 +17,12 @@ const noSpinnerStyles = `
 `
 
 export function ReviewValueCalculator() {
-  // Use string state to allow empty input while typing
   const [averageJobValueStr, setAverageJobValueStr] = useState("800")
   const [jobsPerMonthStr, setJobsPerMonthStr] = useState("20")
   const [currentReviewsPerMonthStr, setCurrentReviewsPerMonthStr] = useState("5")
   const [multiplier, setMultiplier] = useState(4)
   const [timePeriod, setTimePeriod] = useState<"30" | "90" | "365">("90")
 
-  // Parse string to number for calculations, defaulting to 0 if empty/invalid
   const averageJobValue = averageJobValueStr === "" ? 0 : (Number.parseInt(averageJobValueStr, 10) || 0)
   const jobsPerMonth = jobsPerMonthStr === "" ? 0 : (Number.parseInt(jobsPerMonthStr, 10) || 0)
   const currentReviewsPerMonth = currentReviewsPerMonthStr === "" ? 0 : (Number.parseInt(currentReviewsPerMonthStr, 10) || 0)
@@ -38,10 +36,7 @@ export function ReviewValueCalculator() {
     }).format(value)
   }
 
-  // Calculate uplift rate based on multiplier (linear interpolation: 3x=10%, 4x=15%, 5x=20%)
   const getUpliftRate = (mult: number) => {
-    // Linear interpolation: at 3 => 0.10, at 5 => 0.20
-    // slope = (0.20 - 0.10) / (5 - 3) = 0.05 per unit
     return 0.10 + (mult - 3) * 0.05
   }
 
@@ -66,12 +61,10 @@ export function ReviewValueCalculator() {
     }
   }, [averageJobValue, jobsPerMonth, currentReviewsPerMonth, multiplier, timePeriod])
 
-  // Allow free typing - just set the string value directly
   const handleInputChange = (value: string, setter: (val: string) => void) => {
     setter(value)
   }
 
-  // Validate and clamp only on blur
   const handleInputBlur = (
     value: string,
     setter: (val: string) => void,
@@ -94,27 +87,26 @@ export function ReviewValueCalculator() {
   const periodLabel = timePeriod === "30" ? "30 days" : timePeriod === "90" ? "90 days" : "12 months"
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-[#111827]">
       <style dangerouslySetInnerHTML={{ __html: noSpinnerStyles }} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 text-balance">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-balance">
             See what improved Google visibility is worth to your business
           </h2>
-          <p className="text-lg text-gray-600">Based on how Google ranks local businesses and your numbers.</p>
+          <p className="text-lg text-[#cbd5e1]">Based on how Google ranks local businesses and your numbers.</p>
         </div>
 
-        <Card className="bg-white border border-gray-200 shadow-lg">
-          <CardContent className="p-6 md:p-8">
-            <p className="text-gray-700 font-medium mb-6 text-center">
+        <div className="rounded-xl border border-[#334155] bg-[#1e293b] p-6 md:p-8 shadow-lg">
+            <p className="text-[#cbd5e1] font-medium mb-6 text-center">
               Adjust the numbers below to reflect your business.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               {/* Average job value */}
               <div>
-                <label className="block text-sm font-semibold text-black mb-2">
-                  Average job value (£)
+                <label className="block text-sm font-semibold text-white mb-2">
+                  {"Average job value (\u00A3)"}
                 </label>
                 <input
                   type="number"
@@ -123,13 +115,13 @@ export function ReviewValueCalculator() {
                   onBlur={(e) => handleInputBlur(e.target.value, setAverageJobValueStr, 50, 20000, 800)}
                   min={50}
                   max={20000}
-                  className="no-spinner w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-black"
+                  className="no-spinner w-full px-4 py-3 border border-[#475569] rounded-lg focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/30 bg-[#0f172a] text-white placeholder:text-[#64748b]"
                 />
               </div>
 
               {/* Jobs per month */}
               <div>
-                <label className="block text-sm font-semibold text-black mb-2">
+                <label className="block text-sm font-semibold text-white mb-2">
                   Jobs per month
                 </label>
                 <input
@@ -139,13 +131,13 @@ export function ReviewValueCalculator() {
                   onBlur={(e) => handleInputBlur(e.target.value, setJobsPerMonthStr, 1, 500, 20)}
                   min={1}
                   max={500}
-                  className="no-spinner w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-black"
+                  className="no-spinner w-full px-4 py-3 border border-[#475569] rounded-lg focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/30 bg-[#0f172a] text-white placeholder:text-[#64748b]"
                 />
               </div>
 
               {/* Current reviews per month */}
               <div className="md:col-span-2">
-                <label className="block text-sm font-semibold text-black mb-2">
+                <label className="block text-sm font-semibold text-white mb-2">
                   Current reviews per month
                 </label>
                 <input
@@ -155,14 +147,14 @@ export function ReviewValueCalculator() {
                   onBlur={(e) => handleInputBlur(e.target.value, setCurrentReviewsPerMonthStr, 0, 300, 5)}
                   min={0}
                   max={300}
-                  className="no-spinner w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-black"
+                  className="no-spinner w-full px-4 py-3 border border-[#475569] rounded-lg focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/30 bg-[#0f172a] text-white placeholder:text-[#64748b]"
                 />
               </div>
 
               {/* Multiplier slider */}
               <div className="md:col-span-2">
-                <label className="block text-sm font-semibold text-black mb-2">
-                  Expected activity multiplier: <span className="text-primary">{multiplier}x</span>
+                <label className="block text-sm font-semibold text-white mb-2">
+                  Expected activity multiplier: <span className="text-blue-400">{multiplier}x</span>
                 </label>
                 <Slider
                   value={[multiplier]}
@@ -172,26 +164,26 @@ export function ReviewValueCalculator() {
                   step={0.5}
                   className="w-full"
                 />
-                <div className="flex justify-between text-xs text-gray-500 mt-1">
+                <div className="flex justify-between text-xs text-[#94a3b8] mt-1">
                   <span>3x</span>
                   <span>5x</span>
                 </div>
-                <p className="text-xs text-gray-500 mt-2">
-                  3–5× is the typical increase in Google profile activity when GuardX is active.
+                <p className="text-xs text-[#94a3b8] mt-2">
+                  {"3-5x is the typical increase in Google profile activity when GuardX is active."}
                 </p>
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-[#94a3b8] mt-1">
                   Assumed uplift in enquiries from improved visibility: {Math.round(calculations.upliftRate * 100)}% (conservative)
                 </p>
               </div>
 
               {/* Time period */}
               <div className="md:col-span-2">
-                <label className="block text-sm font-semibold text-black mb-2">Time period</label>
+                <label className="block text-sm font-semibold text-white mb-2">Time period</label>
                 <Select value={timePeriod} onValueChange={(val) => setTimePeriod(val as "30" | "90" | "365")}>
-                  <SelectTrigger className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-black bg-white">
+                  <SelectTrigger className="w-full px-4 py-3 border border-[#475569] rounded-lg focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/30 bg-[#0f172a] text-white">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-[#1e293b] border-[#475569] text-white">
                     <SelectItem value="30">30 days</SelectItem>
                     <SelectItem value="90">90 days</SelectItem>
                     <SelectItem value="365">12 months</SelectItem>
@@ -202,29 +194,29 @@ export function ReviewValueCalculator() {
 
             {/* Output cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-5 text-center">
-                <p className="text-sm text-gray-600 mb-1">Increased profile activity</p>
-                <p className="text-sm text-gray-500 mb-2">in {periodLabel}</p>
-                <p className="text-3xl font-bold text-black">+{calculations.extraReviewsInPeriod}</p>
+              <div className="bg-[#0f172a] border border-[#334155] rounded-lg p-5 text-center">
+                <p className="text-sm text-[#cbd5e1] mb-1">Increased profile activity</p>
+                <p className="text-sm text-[#94a3b8] mb-2">in {periodLabel}</p>
+                <p className="text-3xl font-bold text-white">+{calculations.extraReviewsInPeriod}</p>
               </div>
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-5 text-center">
-                <p className="text-sm text-gray-600 mb-1">Estimated additional revenue</p>
-                <p className="text-sm text-gray-500 mb-2">from improved visibility</p>
-                <p className="text-3xl font-bold text-primary">{formatCurrency(calculations.additionalRevenueInPeriod)}</p>
+              <div className="bg-[#0f172a] border border-[#334155] rounded-lg p-5 text-center">
+                <p className="text-sm text-[#cbd5e1] mb-1">Estimated additional revenue</p>
+                <p className="text-sm text-[#94a3b8] mb-2">from improved visibility</p>
+                <p className="text-3xl font-bold text-blue-400">{formatCurrency(calculations.additionalRevenueInPeriod)}</p>
               </div>
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-5 text-center">
-                <p className="text-sm text-gray-600 mb-1">Value of each visibility</p>
-                <p className="text-sm text-gray-500 mb-2">signal to Google</p>
-                <p className="text-3xl font-bold text-black">{formatCurrency(calculations.valuePerExtraReview)}</p>
+              <div className="bg-[#0f172a] border border-[#334155] rounded-lg p-5 text-center">
+                <p className="text-sm text-[#cbd5e1] mb-1">Value of each visibility</p>
+                <p className="text-sm text-[#94a3b8] mb-2">signal to Google</p>
+                <p className="text-3xl font-bold text-white">{formatCurrency(calculations.valuePerExtraReview)}</p>
               </div>
             </div>
 
             {/* What this means explanation block */}
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-5 mb-6">
-              <p className="text-sm font-semibold text-black mb-3">Why visibility translates into revenue</p>
-              <div className="text-sm text-gray-700 leading-relaxed space-y-3">
+            <div className="bg-[#0f172a] border border-[#334155] rounded-lg p-5 mb-6">
+              <p className="text-sm font-semibold text-white mb-3">Why visibility translates into revenue</p>
+              <div className="text-sm text-[#cbd5e1] leading-relaxed space-y-3">
                 <p>
-                  Google ranks local businesses using three primary factors: relevance, distance, and prominence. Prominence is directly influenced by profile activity — how often customers engage with your business and leave feedback.
+                  {"Google ranks local businesses using three primary factors: relevance, distance, and prominence. Prominence is directly influenced by profile activity -- how often customers engage with your business and leave feedback."}
                 </p>
                 <p>
                   When your Google profile shows consistent, recent activity:
@@ -233,20 +225,20 @@ export function ReviewValueCalculator() {
                   You appear higher and more often in Google Maps and local search results.
                 </p>
                 <p>
-                  Customers see you as more established and trustworthy at the moment they're deciding who to contact.
+                  {"Customers see you as more established and trustworthy at the moment they're deciding who to contact."}
                 </p>
                 <p>
                   You receive more profile views, more clicks, and more enquiries than competitors who appear less active.
                 </p>
                 <p>
-                  This calculator models the revenue impact of that improved visibility. It estimates how being chosen more often — because you appear more active and trusted — translates into additional customers over time, using your own numbers.
+                  {"This calculator models the revenue impact of that improved visibility. It estimates how being chosen more often -- because you appear more active and trusted -- translates into additional customers over time, using your own numbers."}
                 </p>
               </div>
             </div>
 
             {/* Disclaimer */}
-            <div className="bg-gray-100 border border-gray-200 rounded-lg p-4 mb-6">
-              <p className="text-xs text-gray-600 text-center">
+            <div className="bg-[#0f172a] border border-[#334155] rounded-lg p-4 mb-6">
+              <p className="text-xs text-[#94a3b8] text-center">
                 This calculator uses conservative modelling based on published research into how Google visibility affects local business enquiries and customer decision-making.
               </p>
             </div>
@@ -255,13 +247,12 @@ export function ReviewValueCalculator() {
             <div className="text-center">
               <a
                 href="/reputation-scorecard"
-                className="inline-block bg-primary text-black hover:bg-[#e6c34a] px-8 py-4 text-lg font-bold shadow-lg rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-black/10"
+                className="inline-block bg-blue-500 text-white hover:bg-blue-600 px-8 py-4 text-lg font-bold shadow-lg rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
               >
                 Get a free visibility scorecard
               </a>
             </div>
-          </CardContent>
-        </Card>
+        </div>
       </div>
     </section>
   )

@@ -3,48 +3,50 @@ import Image from "next/image"
 
 export function Footer() {
   return (
-    <footer className="bg-card border-t border-border">
+    <footer className="border-t border-[rgba(148,163,184,0.1)] bg-[#070b14]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Logo and tagline */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <Image
-                src="/images/guardx-company-logo.jpg"
+                src="/images/guardx-final-logo.jpg"
                 alt="GuardX Logo"
                 width={120}
                 height={40}
                 className="h-10 w-auto"
               />
             </div>
-            <p className="text-muted-foreground mb-4">
-              GuardX – Helping UK businesses grow through automated review requests and simple, done-for-you review
+            <p className="text-[#94a3b8] mb-4">
+              GuardX -- Helping UK businesses grow through automated review requests and simple, done-for-you review
               growth systems.
             </p>
-            <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} GuardX. All rights reserved.</p>
+            <p className="text-sm text-[#64748b]">
+              &copy; {new Date().getFullYear()} GuardX. All rights reserved.
+            </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-foreground font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-[#e2e8f0] font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/pricing" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors">
                   Pricing
                 </Link>
               </li>
               <li>
-                <Link href="/faq" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/faq" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/contact" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors">
                   Contact
                 </Link>
               </li>
@@ -53,7 +55,7 @@ export function Footer() {
                   href="https://share.google/zoeVuuRq3BjgwU2Jb"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+                  className="flex items-center gap-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors"
                 >
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -69,25 +71,25 @@ export function Footer() {
 
           {/* Locations & Industries */}
           <div>
-            <h3 className="text-foreground font-semibold mb-4">Explore</h3>
+            <h3 className="text-[#e2e8f0] font-semibold mb-4">Explore</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/locations" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/locations" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors">
                   All Locations
                 </Link>
               </li>
               <li>
-                <Link href="/industries" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/industries" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors">
                   All Industries
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/privacy" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/terms" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors">
                   Terms of Service
                 </Link>
               </li>

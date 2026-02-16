@@ -9,30 +9,16 @@ import Image from "next/image"
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
-  const handleEmailClick = () => {
-    const subject = encodeURIComponent("My Free Scorecard")
-    const body = encodeURIComponent(`Hi GuardX Team,
-
-I would like to receive my free reputation scorecard.
-
-Business Name: [Your Business Name]
-Business Address: [Your Business Address]
-
-Thank you!`)
-    const email = "info@guardxnetwork.com"
-    window.open(`mailto:${email}?subject=${subject}&body=${body}`, "_blank")
-  }
-
   return (
     <>
-      <nav className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <nav className="sticky top-0 z-50 border-b border-[rgba(148,163,184,0.1)] bg-[#0a0e1a]/80 backdrop-blur-xl supports-[backdrop-filter]:bg-[#0a0e1a]/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
               <div className="relative w-20 h-12 sm:w-24 sm:h-14 md:w-28 md:h-16 lg:w-32 lg:h-18">
                 <Image
-                  src="/images/guardx-new-logo.jpg"
-                  alt="GuardX - Reputation Management"
+                  src="/images/guardx-final-logo.jpg"
+                  alt="GuardX"
                   fill
                   className="object-contain"
                   priority
@@ -42,30 +28,41 @@ Thank you!`)
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="/" className="text-foreground hover:text-primary transition-colors">
+            <div className="hidden md:flex items-center gap-6">
+              <Link href="/" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
                 Home
               </Link>
-              <Link href="/real-results" className="text-foreground hover:text-primary transition-colors">
-                Real Results
+              <Link href="/review-generation" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
+                Review Generation
               </Link>
-              <Link href="/calculator" className="text-foreground hover:text-primary transition-colors">
+              <Link href="/web-design" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
+                Web Design
+              </Link>
+              <Link href="/real-results" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
+                Review Generation Results
+              </Link>
+              <Link href="/calculator" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
                 Calculator
               </Link>
-              <Link href="/pricing" className="text-foreground hover:text-primary transition-colors">
+              <Link href="/pricing" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
                 Pricing
               </Link>
-              <Link href="/faq" className="text-foreground hover:text-primary transition-colors">
+              <Link href="/faq" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
                 FAQ
               </Link>
-              <Link href="/contact" className="text-foreground hover:text-primary transition-colors">
+              <Link href="/contact" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
                 Contact
               </Link>
             </div>
 
             {/* Mobile menu button */}
             <div className="md:hidden">
-              <Button variant="ghost" size="sm" onClick={() => setIsOpen(!isOpen)} className="text-foreground">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsOpen(!isOpen)}
+                className="text-[#e2e8f0] hover:bg-[rgba(148,163,184,0.1)]"
+              >
                 {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </Button>
             </div>
@@ -74,47 +71,29 @@ Thank you!`)
           {/* Mobile Navigation */}
           {isOpen && (
             <div className="md:hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-border">
-                <Link
-                  href="/"
-                  className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
+              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-[rgba(148,163,184,0.1)]">
+                <Link href="/" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
                   Home
                 </Link>
-                <Link
-                  href="/real-results"
-                  className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Real Results
+                <Link href="/review-generation" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
+                  Review Generation
                 </Link>
-                <Link
-                  href="/calculator"
-                  className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
+                <Link href="/web-design" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
+                  Web Design
+                </Link>
+                <Link href="/real-results" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
+                  Review Generation Results
+                </Link>
+                <Link href="/calculator" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
                   Calculator
                 </Link>
-                <Link
-                  href="/pricing"
-                  className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
+                <Link href="/pricing" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
                   Pricing
                 </Link>
-                <Link
-                  href="/faq"
-                  className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
+                <Link href="/faq" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
                   FAQ
                 </Link>
-                <Link
-                  href="/contact"
-                  className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
+                <Link href="/contact" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
                   Contact
                 </Link>
               </div>
