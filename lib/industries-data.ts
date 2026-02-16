@@ -17,10 +17,10 @@ export const industries: Industry[] = [
     slug: "builders",
     name: "Builders",
     category: "Trades",
-    metaTitle: "GuardX for Builders — Review Growth That Wins More Jobs",
+    metaTitle: "GuardX for Builders — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps builders collect more Google reviews automatically. Build trust with homeowners, rank higher in local search, and win more jobs with a five-star reputation.",
-    h1: "Review Growth That Wins More Builders Jobs",
+    h1: "Web Design, SEO & Review Generation for Builders",
     intro:
       "As a builder, your reputation is your business. Homeowners and commercial clients check Google reviews before choosing who to trust with their property. GuardX automates the review collection process, so every completed project has the chance to generate a five-star review that wins you more work.\n\nOur email and SMS system sends personalised review requests to your clients after every job, capturing their satisfaction while it is fresh. No awkward conversations, no chasing — just a steady stream of genuine reviews that grow your reputation.",
     challenges:
@@ -32,10 +32,10 @@ export const industries: Industry[] = [
     slug: "construction-companies",
     name: "Construction Companies",
     category: "Trades",
-    metaTitle: "GuardX for Construction Companies — Automated Review Growth",
+    metaTitle: "GuardX for Construction Companies — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps construction companies build five-star Google reputations. Automated review requests that win client trust and generate more project enquiries.",
-    h1: "Automated Review Growth for Construction Companies",
+    h1: "Web Design, SEO & Review Generation for Construction Companies",
     intro:
       "Construction companies handle large-scale projects where trust and credibility are paramount. Clients making significant investments want to see proof that your company delivers. GuardX automates your Google review collection, ensuring your online reputation reflects the scale and quality of your work.\n\nOur system sends personalised review requests at project milestones or completion, making it easy for commercial and residential clients alike to share their experience. A growing review profile positions your company as the trusted choice for future projects.",
     challenges:
@@ -47,10 +47,10 @@ export const industries: Industry[] = [
     slug: "scaffolders",
     name: "Scaffolders",
     category: "Trades",
-    metaTitle: "GuardX for Scaffolders — More Google Reviews, More Jobs",
+    metaTitle: "GuardX for Scaffolders — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps scaffolding companies collect more Google reviews. Build trust with contractors and homeowners, improve local visibility, and win more work.",
-    h1: "More Google Reviews, More Scaffolding Jobs",
+    h1: "Web Design, SEO & Review Generation for Scaffolders",
     intro:
       "Scaffolding companies work behind the scenes on many building projects, but your Google reviews are what make you visible to new clients. Whether you serve builders, homeowners, or commercial developers, GuardX automates review collection so your reputation grows with every job.\n\nOur email and SMS system sends personalised review requests to your clients after each project, ensuring the quality of your service is captured in five-star reviews that bring in new business.",
     challenges:
@@ -62,10 +62,10 @@ export const industries: Industry[] = [
     slug: "flooring-shops",
     name: "Flooring Shops",
     category: "Trades",
-    metaTitle: "GuardX for Flooring Shops — Automated Review Growth",
+    metaTitle: "GuardX for Flooring Shops — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps flooring shops and fitters collect more Google reviews automatically. Build trust, improve local rankings, and attract more customers.",
-    h1: "Automated Review Growth for Flooring Shops",
+    h1: "Web Design, SEO & Review Generation for Flooring Shops",
     intro:
       "Flooring shops and installers rely on trust and visual proof of quality. Customers want to see that others have had a great experience before committing to a purchase and installation. GuardX automates your Google review collection, turning every happy customer into a visible endorsement of your work.\n\nOur system sends personalised review requests after installation or purchase, ensuring customers share their satisfaction when it is highest. A strong review profile drives showroom visits and installation bookings.",
     challenges:
@@ -77,10 +77,10 @@ export const industries: Industry[] = [
     slug: "carpet-cleaners",
     name: "Carpet Cleaners",
     category: "Home Services",
-    metaTitle: "GuardX for Carpet Cleaners — Review Growth That Gets More Bookings",
+    metaTitle: "GuardX for Carpet Cleaners — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps carpet cleaning businesses collect more Google reviews. Automated requests that build trust, improve rankings, and fill your diary with bookings.",
-    h1: "Review Growth That Gets More Carpet Cleaning Bookings",
+    h1: "Web Design, SEO & Review Generation for Carpet Cleaners",
     intro:
       "Carpet cleaning is a service where customers see immediate, visible results — which makes it perfect for generating enthusiastic Google reviews. GuardX automates the process, sending personalised review requests right after each clean when customers are most impressed with the transformation.\n\nOur email and SMS system handles everything, turning that 'wow moment' into a five-star Google review that attracts new customers and keeps your diary full.",
     challenges:
@@ -92,10 +92,10 @@ export const industries: Industry[] = [
     slug: "driveway-companies",
     name: "Driveway Companies",
     category: "Trades",
-    metaTitle: "GuardX for Driveway Companies — Automated Google Reviews",
+    metaTitle: "GuardX for Driveway Companies — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps driveway companies build five-star Google reputations. Automated review requests that win homeowner trust and generate more project enquiries.",
-    h1: "Automated Google Reviews for Driveway Companies",
+    h1: "Web Design, SEO & Review Generation for Driveway Companies",
     intro:
       "Driveway installations are high-value projects where homeowners do extensive research before choosing a company. Your Google reviews are one of the first things they check. GuardX automates review collection so every completed driveway can generate a five-star review that wins you the next job.\n\nOur system sends personalised email and SMS requests after project completion, making it easy for satisfied homeowners to share their experience. A strong review profile means more enquiries, more quotes, and more projects.",
     challenges:
@@ -107,10 +107,10 @@ export const industries: Industry[] = [
     slug: "roofers",
     name: "Roofers",
     category: "Trades",
-    metaTitle: "GuardX for Roofers — Review Growth That Builds Trust",
+    metaTitle: "GuardX for Roofers — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps roofing companies collect more Google reviews automatically. Build homeowner trust, rank higher in search, and win more roofing contracts.",
-    h1: "Review Growth That Builds Trust for Roofers",
+    h1: "Web Design, SEO & Review Generation for Roofers",
     intro:
       "Roofing is one of the trades where trust matters most — homeowners are inviting you to work on one of the most critical parts of their property. A strong Google review profile signals that you are reliable, skilled, and trustworthy. GuardX automates the review collection process so your reputation grows with every job.\n\nOur personalised email and SMS review requests are sent after every completed project, ensuring satisfied customers have an easy way to share their experience. More five-star reviews mean more visibility and more jobs.",
     challenges:
@@ -122,10 +122,10 @@ export const industries: Industry[] = [
     slug: "plumbers",
     name: "Plumbers",
     category: "Trades",
-    metaTitle: "GuardX for Plumbers — Automated Review Growth",
+    metaTitle: "GuardX for Plumbers — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps plumbers collect more Google reviews automatically. Build trust, rank higher in local search, and get more callouts with a five-star reputation.",
-    h1: "Automated Review Growth for Plumbers",
+    h1: "Web Design, SEO & Review Generation for Plumbers",
     intro:
       "Plumbing is an essential service where customers need to make fast decisions, often in emergencies. When someone searches for a plumber on Google, your reviews are the deciding factor. GuardX automates the review process so every completed job has the opportunity to generate a five-star review.\n\nOur system sends personalised email and SMS review requests immediately after each job, capturing customer satisfaction while it is fresh. The result: a growing Google profile that keeps your phone ringing.",
     challenges:
@@ -137,10 +137,10 @@ export const industries: Industry[] = [
     slug: "electricians",
     name: "Electricians",
     category: "Trades",
-    metaTitle: "GuardX for Electricians — More Reviews, More Callouts",
+    metaTitle: "GuardX for Electricians — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps electricians build five-star Google reputations automatically. More reviews mean more trust, higher rankings, and more work coming in.",
-    h1: "More Reviews, More Callouts for Electricians",
+    h1: "Web Design, SEO & Review Generation for Electricians",
     intro:
       "Electricians handle critical work in homes and businesses, and customers want reassurance that they are hiring someone competent and trustworthy. Your Google reviews provide that reassurance. GuardX automates review collection so your online reputation grows alongside your business.\n\nOur email and SMS system sends personalised review requests after every job, from small domestic fixes to large commercial installations. A consistent flow of five-star reviews keeps you visible and trusted in local search.",
     challenges:
@@ -152,10 +152,10 @@ export const industries: Industry[] = [
     slug: "painters-and-decorators",
     name: "Painters and Decorators",
     category: "Trades",
-    metaTitle: "GuardX for Painters and Decorators — Review Growth That Shows Off Your Work",
+    metaTitle: "GuardX for Painters and Decorators — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps painters and decorators collect Google reviews automatically. Showcase your craftsmanship, build trust, and win more decorating contracts.",
-    h1: "Review Growth That Shows Off Your Work",
+    h1: "Web Design, SEO & Review Generation for Painters and Decorators",
     intro:
       "Painting and decorating is a visual trade where the results speak for themselves — but potential customers need to find you first. A strong Google review profile is the best way to showcase your reputation and attract new clients. GuardX automates the review process so every transformation you create can be celebrated online.\n\nOur system sends personalised email and SMS review requests after every completed project, making it easy for delighted customers to share their experience. Over time, these reviews build a portfolio of trust that wins new work.",
     challenges:
@@ -164,15 +164,15 @@ export const industries: Industry[] = [
     relatedLocations: ["sussex", "brighton", "london", "chichester", "eastbourne"],
   },
 
-  // ─── Property ──────────────────────────────────────────────────────
+  // ─── Property ──────────────────────────────────────���───────────────
   {
     slug: "estate-agents",
     name: "Estate Agents",
     category: "Property",
-    metaTitle: "GuardX for Estate Agents — Review Growth That Wins Instructions",
+    metaTitle: "GuardX for Estate Agents — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps estate agents build five-star Google reputations. Automated review requests that win vendor trust, attract buyers, and grow your instructions.",
-    h1: "Review Growth That Wins More Instructions",
+    h1: "Web Design, SEO & Review Generation for Estate Agents",
     intro:
       "For estate agents, Google reviews are a direct driver of new instructions. Vendors research agents extensively before choosing who to trust with their property sale. A strong, visible five-star reputation gives you the edge in every valuation appointment. GuardX automates the review process so your reputation works for you 24/7.\n\nOur system sends personalised email and SMS review requests to vendors and buyers after key milestones — viewings, offers, completions — ensuring a steady flow of genuine reviews that demonstrate your expertise and professionalism.",
     challenges:
@@ -184,10 +184,10 @@ export const industries: Industry[] = [
     slug: "letting-agents",
     name: "Letting Agents",
     category: "Property",
-    metaTitle: "GuardX for Letting Agents — Automated Review Growth",
+    metaTitle: "GuardX for Letting Agents — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps letting agents collect more Google reviews. Build tenant and landlord trust, improve local visibility, and grow your property portfolio.",
-    h1: "Automated Review Growth for Letting Agents",
+    h1: "Web Design, SEO & Review Generation for Letting Agents",
     intro:
       "Letting agents serve two distinct audiences — landlords and tenants — and both check Google reviews before making decisions. A strong review profile reassures landlords that their property is in good hands and helps tenants feel confident in their choice. GuardX automates review collection from both sides of the relationship.\n\nOur email and SMS system sends personalised review requests at key touchpoints: move-in, annual review, maintenance completion, and tenancy renewal. This builds a comprehensive review profile that attracts new landlords and quality tenants.",
     challenges:
@@ -201,10 +201,10 @@ export const industries: Industry[] = [
     slug: "restaurants",
     name: "Restaurants",
     category: "Hospitality",
-    metaTitle: "GuardX for Restaurants — Review Growth That Fills Tables",
+    metaTitle: "GuardX for Restaurants — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps restaurants collect more Google reviews automatically. Build a five-star reputation, rank higher in local search, and fill more tables every night.",
-    h1: "Review Growth That Fills Restaurant Tables",
+    h1: "Web Design, SEO & Review Generation for Restaurants",
     intro:
       "For restaurants, Google reviews directly influence how many diners walk through the door. Most customers check reviews before booking or visiting, and a strong five-star profile can be the difference between a full house and empty tables. GuardX automates review collection so your online reputation grows with every service.\n\nOur system sends personalised email and SMS review requests after each dining experience, making it easy for happy diners to share their experience. More five-star reviews mean higher search rankings, more walk-ins, and more bookings.",
     challenges:
@@ -216,10 +216,10 @@ export const industries: Industry[] = [
     slug: "cafes",
     name: "Cafes",
     category: "Hospitality",
-    metaTitle: "GuardX for Cafes — Automated Review Growth for Coffee Shops",
+    metaTitle: "GuardX for Cafes — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps cafes and coffee shops collect more Google reviews. Build a five-star reputation that attracts regulars and brings in new customers automatically.",
-    h1: "Automated Review Growth for Cafes",
+    h1: "Web Design, SEO & Review Generation for Cafes",
     intro:
       "Cafes thrive on footfall and loyalty, and Google reviews drive both. When someone new to the area searches for a cafe, your review profile is the first thing they see. GuardX automates the review collection process, turning your regular customers into visible online advocates.\n\nOur email and SMS system sends personalised review requests that encourage customers to share what they love about your cafe. A growing stream of genuine five-star reviews builds the reputation that keeps your tables full.",
     challenges:
@@ -233,10 +233,10 @@ export const industries: Industry[] = [
     slug: "garages",
     name: "Garages",
     category: "Automotive",
-    metaTitle: "GuardX for Garages — Review Growth That Drives More Bookings",
+    metaTitle: "GuardX for Garages — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps garages and auto repair shops collect more Google reviews. Build customer trust, rank higher in local search, and fill more service bays.",
-    h1: "Review Growth That Drives More Garage Bookings",
+    h1: "Web Design, SEO & Review Generation for Garages",
     intro:
       "Garages rely on trust — customers need to know their vehicle is in safe hands. Google reviews are the most visible way to demonstrate that trust. GuardX automates review collection so every satisfied customer has the chance to share their experience, building a reputation that drives more bookings.\n\nOur email and SMS system sends personalised review requests after every service, MOT, or repair. A consistent flow of five-star reviews strengthens your Google presence and keeps your bays busy.",
     challenges:
@@ -248,10 +248,10 @@ export const industries: Industry[] = [
     slug: "mechanics",
     name: "Mechanics",
     category: "Automotive",
-    metaTitle: "GuardX for Mechanics — Automated Google Reviews",
+    metaTitle: "GuardX for Mechanics — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps mechanics and auto repair specialists collect more Google reviews. Build trust, improve local visibility, and attract more customers automatically.",
-    h1: "Automated Google Reviews for Mechanics",
+    h1: "Web Design, SEO & Review Generation for Mechanics",
     intro:
       "Finding a trustworthy mechanic is one of the most common local searches on Google. Your reviews are often the deciding factor for customers choosing between you and the garage down the road. GuardX automates review collection so your expertise and reliability are visible to everyone searching.\n\nOur system sends personalised email and SMS review requests after every repair, service, or MOT. The result: a growing Google profile that builds customer confidence and keeps your workshop fully booked.",
     challenges:
@@ -265,10 +265,10 @@ export const industries: Industry[] = [
     slug: "cleaning-companies",
     name: "Cleaning Companies",
     category: "Home Services",
-    metaTitle: "GuardX for Cleaning Companies — Review Growth That Books More Cleans",
+    metaTitle: "GuardX for Cleaning Companies — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps cleaning companies collect more Google reviews. Automated requests that build trust, improve rankings, and keep your schedule fully booked.",
-    h1: "Review Growth That Books More Cleans",
+    h1: "Web Design, SEO & Review Generation for Cleaning Companies",
     intro:
       "Cleaning companies operate in one of the most competitive local service markets. Customers have many options, and your Google reviews are often the tipping point that wins a booking. GuardX automates review collection so every clean can generate a five-star review that attracts more business.\n\nOur email and SMS system sends personalised review requests after every clean, whether it is a one-off deep clean or a regular domestic service. A growing review profile means more visibility, more trust, and a diary that stays full.",
     challenges:
@@ -280,10 +280,10 @@ export const industries: Industry[] = [
     slug: "landscapers",
     name: "Landscapers",
     category: "Home Services",
-    metaTitle: "GuardX for Landscapers — Automated Review Growth",
+    metaTitle: "GuardX for Landscapers — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps landscaping businesses collect more Google reviews. Showcase your outdoor projects, build trust, and attract more landscaping clients.",
-    h1: "Automated Review Growth for Landscapers",
+    h1: "Web Design, SEO & Review Generation for Landscapers",
     intro:
       "Landscaping projects create stunning visual transformations that homeowners are proud to show off. GuardX helps you turn that pride into visible Google reviews by automating the review collection process. Every completed garden, patio, or outdoor space becomes an opportunity for a five-star review.\n\nOur system sends personalised email and SMS review requests after project completion, capturing customer delight when it is at its peak. These reviews build a reputation that attracts new clients and positions you as the go-to landscaper in your area.",
     challenges:
@@ -295,10 +295,10 @@ export const industries: Industry[] = [
     slug: "tree-surgeons",
     name: "Tree Surgeons",
     category: "Home Services",
-    metaTitle: "GuardX for Tree Surgeons — More Reviews, More Contracts",
+    metaTitle: "GuardX for Tree Surgeons — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps tree surgery businesses collect Google reviews automatically. Build trust with homeowners and councils, improve visibility, and win more contracts.",
-    h1: "More Reviews, More Tree Surgery Contracts",
+    h1: "Web Design, SEO & Review Generation for Tree Surgeons",
     intro:
       "Tree surgery is specialist work that requires high levels of trust and professionalism. Homeowners and councils need to know they are hiring skilled arborists. Your Google reviews provide that reassurance. GuardX automates the review process so every completed job strengthens your professional reputation.\n\nOur email and SMS system sends personalised review requests after each project, from domestic tree removal to commercial maintenance contracts. A growing five-star profile attracts both private clients and commercial opportunities.",
     challenges:
@@ -310,10 +310,10 @@ export const industries: Industry[] = [
     slug: "locksmiths",
     name: "Locksmiths",
     category: "Home Services",
-    metaTitle: "GuardX for Locksmiths — Review Growth for Emergency Service Providers",
+    metaTitle: "GuardX for Locksmiths — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps locksmiths collect more Google reviews. Build trust for emergency callouts, improve local rankings, and become the go-to locksmith in your area.",
-    h1: "Review Growth for Locksmiths",
+    h1: "Web Design, SEO & Review Generation for Locksmiths",
     intro:
       "Locksmiths are called in emergencies, which means customers make fast decisions based on trust signals — and the most visible trust signal is your Google reviews. A five-star profile can be the difference between getting the callout or losing it to a competitor. GuardX automates review collection so your reputation works for you around the clock.\n\nOur system sends personalised review requests via email and SMS after every job, from emergency lockouts to security installations. The result: a growing Google profile that makes you the first choice when people need help.",
     challenges:
@@ -327,10 +327,10 @@ export const industries: Industry[] = [
     slug: "dentists",
     name: "Dentists",
     category: "Health",
-    metaTitle: "GuardX for Dentists — Review Growth That Builds Patient Trust",
+    metaTitle: "GuardX for Dentists — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps dental practices collect more Google reviews. Build patient trust, improve local visibility, and attract new patients with a five-star reputation.",
-    h1: "Review Growth That Builds Patient Trust",
+    h1: "Web Design, SEO & Review Generation for Dentists",
     intro:
       "Choosing a dentist is a deeply personal decision, and patients rely heavily on Google reviews to make that choice. A dental practice with a strong five-star profile attracts more new patient enquiries than one that relies solely on word-of-mouth. GuardX automates review collection so your practice's reputation grows with every appointment.\n\nOur system sends personalised email and SMS review requests after each visit, making it easy for satisfied patients to share their experience. A growing review profile builds trust, improves search visibility, and keeps your appointment book full.",
     challenges:
@@ -342,10 +342,10 @@ export const industries: Industry[] = [
     slug: "physios",
     name: "Physios",
     category: "Health",
-    metaTitle: "GuardX for Physiotherapists — Automated Review Growth",
+    metaTitle: "GuardX for Physiotherapists — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps physiotherapy practices collect more Google reviews. Build patient trust, showcase treatment outcomes, and attract new patients automatically.",
-    h1: "Automated Review Growth for Physiotherapists",
+    h1: "Web Design, SEO & Review Generation for Physiotherapists",
     intro:
       "Physiotherapy is a results-driven profession — when patients feel better, they are naturally inclined to share that experience. GuardX helps physiotherapists capture that positive sentiment by automating Google review collection after treatment sessions. Every recovery story becomes a five-star review that attracts new patients.\n\nOur email and SMS system sends personalised review requests at the right moment, whether after a single session or at treatment milestones. A strong review profile positions your practice as the trusted choice for injury recovery and rehabilitation.",
     challenges:
@@ -357,10 +357,10 @@ export const industries: Industry[] = [
     slug: "gyms",
     name: "Gyms",
     category: "Health",
-    metaTitle: "GuardX for Gyms — Review Growth That Attracts New Members",
+    metaTitle: "GuardX for Gyms — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps gyms and fitness centres collect more Google reviews. Build a five-star reputation that attracts new members and reduces churn.",
-    h1: "Review Growth That Attracts New Gym Members",
+    h1: "Web Design, SEO & Review Generation for Gyms",
     intro:
       "Gyms compete fiercely for new members, and Google reviews are one of the most influential factors in a potential member's decision. A five-star review profile signals a welcoming, well-equipped facility with results-driven programmes. GuardX automates the review collection process so your gym's reputation grows as steadily as your members' fitness.\n\nOur email and SMS system sends personalised review requests at key moments — after first sessions, milestone achievements, or programme completions — ensuring a consistent flow of genuine reviews that attract new sign-ups.",
     challenges:
@@ -374,10 +374,10 @@ export const industries: Industry[] = [
     slug: "salons",
     name: "Salons",
     category: "Beauty",
-    metaTitle: "GuardX for Hair Salons — Review Growth That Fills Your Chair",
+    metaTitle: "GuardX for Hair Salons — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps hair salons collect more Google reviews automatically. Build a five-star reputation, attract new clients, and keep your chairs fully booked.",
-    h1: "Review Growth That Fills Your Salon Chairs",
+    h1: "Web Design, SEO & Review Generation for Salons",
     intro:
       "Hair salons depend on trust and personal recommendation. In the digital age, Google reviews are the modern version of word-of-mouth. A strong five-star profile attracts new clients who are looking for a salon they can trust. GuardX automates the review collection process so your reputation grows with every appointment.\n\nOur email and SMS system sends personalised review requests after each visit, making it easy for clients to share their experience. Whether it is a colour transformation or a regular trim, every appointment is an opportunity for a glowing review.",
     challenges:
@@ -389,10 +389,10 @@ export const industries: Industry[] = [
     slug: "barbers",
     name: "Barbers",
     category: "Beauty",
-    metaTitle: "GuardX for Barbers — Automated Review Growth for Barbershops",
+    metaTitle: "GuardX for Barbers — Web Design, SEO & Review Generation",
     metaDescription:
       "GuardX helps barbershops collect more Google reviews. Build a loyal client base, improve local visibility, and keep your barber chairs fully booked.",
-    h1: "Automated Review Growth for Barbershops",
+    h1: "Web Design, SEO & Review Generation for Barbershops",
     intro:
       "Barbershops are community hubs where loyalty and reputation are everything. Your Google reviews are how new customers discover you and decide to give you a try. GuardX automates review collection so every haircut, shave, or grooming session has the potential to generate a five-star review.\n\nOur email and SMS system sends personalised review requests after each appointment, capturing the satisfaction of a fresh cut while it is still front of mind. A growing review profile attracts new walk-ins and keeps your regular clients coming back.",
     challenges:
