@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://www.guardxnetwork.com/sitemap.xml",
+    sitemap: "https://guardxnetwork.com/sitemap.xml",
   }
 }

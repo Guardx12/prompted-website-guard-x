@@ -4,44 +4,43 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated color scheme to white background with black, white, and gold */
-  --background: #ffffff; /* White background */
-  --foreground: #222222; /* Black text */
-  --card: #ffffff; /* White cards */
-  --card-foreground: #222222;
-  --popover: #ffffff;
-  --popover-foreground: #222222;
-  --primary: #d4af37; /* Gold accent */
-  --primary-foreground: #222222; /* Black text on gold */
-  --secondary: #f5f5f5; /* Light gray */
-  --secondary-foreground: #222222;
-  --muted: #f9f9f9;
-  --muted-foreground: #666666;
-  --accent: #d4af37; /* Gold accent */
-  --accent-foreground: #222222;
-  --destructive: #dc2626;
+  /* Premium dark theme */
+  --background: #0a0e1a;
+  --foreground: #e2e8f0;
+  --card: #111827;
+  --card-foreground: #ffffff;
+  --popover: #111827;
+  --popover-foreground: #e2e8f0;
+  --primary: #60a5fa;
+  --primary-foreground: #0a0e1a;
+  --secondary: #1e293b;
+  --secondary-foreground: #e2e8f0;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #818cf8;
+  --accent-foreground: #e2e8f0;
+  --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: #e5e5e5; /* Light border */
-  --input: #f5f5f5;
-  --ring: #d4af37; /* Gold focus ring */
-  --chart-1: #d4af37; /* Gold for charts */
-  --chart-2: #b8941f; /* Darker gold variant */
-  --chart-3: #9c7a1a;
-  --chart-4: #f4e4a6; /* Light gold */
-  --chart-5: #e6d078; /* Medium gold */
+  --border: rgba(148, 163, 184, 0.15);
+  --input: #1e293b;
+  --ring: #60a5fa;
+  --chart-1: #60a5fa;
+  --chart-2: #818cf8;
+  --chart-3: #a78bfa;
+  --chart-4: #38bdf8;
+  --chart-5: #34d399;
   --radius: 0.625rem;
-  --sidebar: #ffffff;
-  --sidebar-foreground: #222222;
-  --sidebar-primary: #d4af37;
-  --sidebar-primary-foreground: #222222;
-  --sidebar-accent: #f5f5f5;
-  --sidebar-accent-foreground: #222222;
-  --sidebar-border: #e5e5e5;
-  --sidebar-ring: #d4af37;
+  --sidebar: #111827;
+  --sidebar-foreground: #e2e8f0;
+  --sidebar-primary: #60a5fa;
+  --sidebar-primary-foreground: #0a0e1a;
+  --sidebar-accent: #1e293b;
+  --sidebar-accent-foreground: #e2e8f0;
+  --sidebar-border: rgba(148, 163, 184, 0.15);
+  --sidebar-ring: #60a5fa;
 }
 
 @theme inline {
-  /* Updated font family to use Inter */
   --font-sans: "Inter", var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -90,58 +89,28 @@
   }
 }
 
-/* Updated GuardX styles for white background theme */
-.gold-gradient {
-  background: linear-gradient(135deg, #d4af37, #f4e4a6);
+/* Premium accent utilities */
+.text-glow {
+  text-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
 }
 
-.text-gold {
-  color: #d4af37;
-}
-
-.border-gold {
-  border-color: #d4af37;
-}
-
-.hover-gold:hover {
-  background-color: #b8941f;
-}
-
-/* Updated styles for white background readability */
-.tagline-text {
-  color: #222222;
-  text-shadow: none;
-}
-
-.gold-text-enhanced {
-  color: #d4af37;
-  font-weight: 600;
-  letter-spacing: 0.025em;
-}
-
-/* Updated button animations for new color scheme */
+/* Button animations */
 @keyframes pulse-glow {
-  0%,
-  100% {
-    box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(96, 165, 250, 0.3);
     transform: scale(1);
   }
   50% {
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6), 0 0 30px rgba(212, 175, 55, 0.4);
+    box-shadow: 0 0 20px rgba(96, 165, 250, 0.5), 0 0 30px rgba(96, 165, 250, 0.3);
     transform: scale(1.02);
   }
 }
 
 @keyframes text-flash {
-  0%,
-  90%,
-  100% {
-    opacity: 1;
-  }
-  45%,
-  55% {
+  0%, 90%, 100% { opacity: 1; }
+  45%, 55% {
     opacity: 0.8;
-    text-shadow: 0 0 8px rgba(212, 175, 55, 0.8);
+    text-shadow: 0 0 8px rgba(96, 165, 250, 0.8);
   }
 }
 
@@ -157,8 +126,7 @@
 
 .get-started-btn:hover {
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4), 0 0 30px rgba(212, 175, 55, 0.3);
-  background: linear-gradient(135deg, #f4e4a6, #d4af37);
+  box-shadow: 0 10px 25px rgba(96, 165, 250, 0.4), 0 0 30px rgba(96, 165, 250, 0.3);
 }
 
 .get-started-btn:active {
@@ -170,39 +138,26 @@
   transition: all 0.3s ease;
 }
 
-.get-started-btn:hover .get-started-text {
-  color: #222222;
-  font-weight: 700;
-  text-shadow: none;
-}
-
 @media (max-width: 768px) {
   .get-started-btn {
     animation: pulse-glow 6s ease-in-out infinite;
   }
-
   .get-started-btn:hover {
     transform: translateY(-1px) scale(1.02);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .get-started-btn {
-    animation: none;
-  }
-
+  .get-started-btn,
   .get-started-text {
     animation: none;
   }
-
   .get-started-btn:hover {
     transform: none;
   }
-
   html {
     scroll-behavior: auto;
   }
-
   .scroll-animate {
     opacity: 1;
     transform: translateY(0);
@@ -211,7 +166,7 @@
 }
 
 .cta-redirect-message {
-  color: #22c55e;
+  color: #34d399;
   font-weight: bold;
   text-align: center;
   margin-top: 0.5rem;
@@ -220,13 +175,8 @@
 }
 
 @keyframes pulse-message {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
 
 html {
@@ -248,4 +198,21 @@ html {
   .cta-redirect-message {
     animation: none;
   }
+}
+
+/* Homepage premium animations */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-150%) skewX(-15deg); }
+  100% { transform: translateX(250%) skewX(-15deg); }
+}
+
+@keyframes waveFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }

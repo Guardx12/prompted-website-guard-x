@@ -5,25 +5,21 @@ import type React from "react"
 import { useState } from "react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { Card, CardContent } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
-  Shield,
-  MessageSquare,
-  Target,
-  Zap,
-  Star,
-  Sparkles,
   CheckCircle2,
-  Phone,
+  Globe,
+  Search,
+  Server,
+  MessageSquare,
   Mail,
-  Users,
-  Settings,
-  TrendingUp,
+  Smartphone,
+  ArrowRight,
 } from "lucide-react"
+import { AnimatedPageTitle } from "@/components/animated-page-title"
 
 export default function PricingPage() {
   const [isScorecardOpen, setIsScorecardOpen] = useState(false)
@@ -62,42 +58,38 @@ export default function PricingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#0a0e1a]">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-20 lg:py-32 bg-gradient-to-b from-[#0a0e1a] to-[#111827]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-block bg-primary/10 border-2 border-primary px-4 py-2 rounded-full mb-6">
-                <span className="text-primary font-bold text-sm">ALL-IN-ONE PACKAGE</span>
+              <div className="inline-block bg-blue-500/10 border border-blue-500/30 px-4 py-2 rounded-full mb-6">
+                <span className="text-blue-400 font-bold text-sm">WEBSITE DESIGN & SEO</span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 text-balance">
-                Simple Pricing for Maintaining Your Google Presence
-              </h1>
-              <p className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed">
-                One straightforward system that keeps your Google profile visibly active — so you stand out locally
-                instead of blending in.
+              <AnimatedPageTitle text="Website Design &" suffix="SEO Foundation Pricing" className="mb-6" />
+              <p className="text-xl md:text-2xl text-[#94a3b8] mb-8 leading-relaxed">
+                Professional websites built to generate enquiries and help your business stand out online.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href="https://calendly.com/guardxnetwork-info/30min" target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10">
+                  <Button className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105">
                     Book a Call
                   </Button>
                 </a>
-                <Button
-                  onClick={() => setIsScorecardOpen(true)}
-                  className="bg-white hover:bg-gray-50 text-black border-2 border-gray-300 px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105"
-                >
-                  Get Your Free Scorecard
-                </Button>
+                <a href="/contact">
+                  <Button className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 backdrop-blur-sm">
+                    Get in Touch
+                  </Button>
+                </a>
               </div>
             </div>
             <div className="relative">
               <img
                 src="/professional-business-owner-reviewing-analytics-da.jpg"
-                alt="Business owner reviewing analytics"
+                alt="Business owner reviewing website analytics"
                 className="rounded-lg shadow-2xl"
               />
             </div>
@@ -105,317 +97,166 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Main Package Section */}
-      <section className="py-20 bg-white">
+      {/* PRIMARY SECTION: Website Design Pricing */}
+      <section className="py-20 bg-[#0a0e1a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
-              The GuardX Google Visibility System
-            </h2>
-          </div>
-
-          <div className="max-w-5xl mx-auto">
-            <Card className="bg-gradient-to-br from-black to-gray-900 border-2 border-primary hover:shadow-2xl transition-all duration-300">
-              <CardContent className="p-10 md:p-12">
-                <div className="text-center mb-10">
-                  <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary px-4 py-2 rounded-full mb-4">
-                    <Sparkles className="w-5 h-5 text-primary" />
-                    <span className="text-primary font-bold text-sm">MOST POPULAR</span>
-                  </div>
-                  <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">GuardX Google Visibility System</h3>
-                  <div className="mb-4 max-w-3xl mx-auto">
-                    <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-                      Most clients find GuardX pays for itself within the first few months by strengthening their Google
-                      presence and generating more customer enquiries. Every business is different — pricing depends on
-                      your size, activity goals, and how many locations you want to protect. To receive your tailored
-                      quote, please book a quick strategy call or email us at info@guardxnetwork.com.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="space-y-6 mb-10">
-                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
-                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-6 h-6 text-black" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold text-xl mb-2">
-                        Automated customer engagement after every job or visit
-                      </h4>
-                      <p className="text-gray-300 leading-relaxed">
-                        Keep your Google profile consistently active with regular customer feedback — the signal Google
-                        uses to rank local businesses.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
-                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <MessageSquare className="w-6 h-6 text-black" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold text-xl mb-2">
-                        Optional SMS engagement (98% open rate)
-                      </h4>
-                      <p className="text-gray-300 leading-relaxed">
-                        Reach customers instantly via text message with an impressive 98% open rate, ensuring your
-                        Google presence stays active even when competitors go quiet.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
-                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <Star className="w-6 h-6 text-black" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold text-xl mb-2">
-                        Two gentle follow-up reminders to maintain activity
-                      </h4>
-                      <p className="text-gray-300 leading-relaxed">
-                        Consistent follow-up ensures your profile stays visibly active, protecting your position while
-                        competitors appear dormant.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
-                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <Settings className="w-6 h-6 text-black" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold text-xl mb-2">CRM integration or BCC email setup</h4>
-                      <p className="text-gray-300 leading-relaxed">
-                        Seamlessly integrate with your existing systems so your Google presence maintains itself
-                        automatically as you complete jobs.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
-                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <Users className="w-6 h-6 text-black" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold text-xl mb-2">
-                        Staff form for trades, shops & in-person jobs
-                      </h4>
-                      <p className="text-gray-300 leading-relaxed">
-                        Perfect for businesses with on-site staff — capture customer details via a simple form and
-                        maintain consistent Google activity.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
-                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <Target className="w-6 h-6 text-black" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold text-xl mb-2">
-                        Set up your Google, Facebook, Yell or any platform links
-                      </h4>
-                      <p className="text-gray-300 leading-relaxed">
-                        We configure all your platform links so customer activity flows to the right places,
-                        strengthening your presence across key directories.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
-                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <Shield className="w-6 h-6 text-black" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold text-xl mb-2">Fully done-for-you setup</h4>
-                      <p className="text-gray-300 leading-relaxed">
-                        Everything is configured and automated by the GuardX team — you focus on your business while we
-                        handle the technical setup.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4 bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all">
-                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <Zap className="w-6 h-6 text-black" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold text-xl mb-2">Ongoing support whenever you need help</h4>
-                      <p className="text-gray-300 leading-relaxed">
-                        Get dedicated email support whenever you need assistance — we're here to help protect your
-                        Google visibility long-term.
-                      </p>
-                    </div>
-                  </div>
-
-                  </div>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href="https://calendly.com/guardxnetwork-info/30min" target="_blank" rel="noopener noreferrer">
-                    <Button className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10">
-                      Book a Call
-                    </Button>
-                  </a>
-                  <Button
-                    onClick={() => setIsScorecardOpen(true)}
-                    className="bg-white hover:bg-gray-100 text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105"
-                  >
-                    Get Your Free Scorecard
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            <div className="mt-8 text-center space-y-3 max-w-3xl mx-auto">
-              <p className="text-gray-700 text-lg">
-                <strong className="text-black">Multi-location business?</strong> We offer flexible pricing based on how
-                many locations you want to activate. Contact us for a tailored solution.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose GuardX Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">Why Businesses Choose GuardX</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Simple, effective, and completely hands-off Google presence management
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">Website Design Pricing</h2>
+            <p className="text-xl text-[#94a3b8] max-w-3xl mx-auto">
+              Professional websites built to generate enquiries for local UK businesses
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="bg-white border-2 border-gray-200 hover:border-primary transition-all duration-300 hover:shadow-lg">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle2 className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-black mb-3">100% Done-for-You</h3>
-                <p className="text-gray-700 leading-relaxed">
-                  GuardX handles everything — setup, integration, and maintaining your Google activity automatically.
-                  No dashboards or software to learn.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-gray-200 hover:border-primary transition-all duration-300 hover:shadow-lg">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Zap className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-black mb-3">Simple & Transparent</h3>
-                <p className="text-gray-700 leading-relaxed">
-                  No confusing tiers or hidden fees. One straightforward system that protects your Google visibility.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-gray-200 hover:border-primary transition-all duration-300 hover:shadow-lg">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Target className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-black mb-3">Proven Results</h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Businesses consistently see stronger Google presence, improved local rankings, and more enquiries
-                  once their visibility system is active.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-gray-200 hover:border-primary transition-all duration-300 hover:shadow-lg">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <TrendingUp className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-black mb-3">4–5x More Activity</h3>
-                <p className="text-gray-700 leading-relaxed">
-                  With consistent follow-up, your Google profile stays 4–5x more active than competitors relying on
-                  occasional manual requests.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-gray-200 hover:border-primary transition-all duration-300 hover:shadow-lg">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Phone className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-black mb-3">98% SMS Open Rate</h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Text messages are opened 98% of the time, making SMS one of the most effective ways to maintain
-                  consistent Google activity.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-gray-200 hover:border-primary transition-all duration-300 hover:shadow-lg">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Star className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-black mb-3">Works for Any Local Business</h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Perfect for trades, flooring, garages, shops, salons, gyms, pet services, and all local service-based
-                  businesses.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* What's Included Summary */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">Everything Included</h2>
-              <p className="text-xl text-gray-600">No add-ons. No upsells. Just consistent Google presence protection.</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Starter Website */}
+            <div className="rounded-xl border border-white/10 bg-[#111827] p-8 flex flex-col transition-all duration-300 hover:border-blue-400/40 hover:shadow-lg">
+              <div className="w-14 h-14 bg-blue-500/10 rounded-full flex items-center justify-center mb-6">
+                <Globe className="w-7 h-7 text-blue-400" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Starter Website</h3>
+              <div className="mb-6">
+                <span className="text-sm text-[#94a3b8]">from</span>
+                <span className="text-4xl font-bold text-white ml-2">{"£"}500</span>
+              </div>
+              <ul className="space-y-3 mb-8 flex-1">
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Modern professional website</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Mobile-friendly design</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Built to generate enquiries</span>
+                </li>
+              </ul>
+              <a href="/contact">
+                <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-6 text-lg font-semibold transition-all duration-300 hover:scale-105">
+                  Get Started
+                </Button>
+              </a>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
-                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">Automated customer engagement</span>
+            {/* Professional Website + SEO */}
+            <div className="rounded-xl border-2 border-blue-500 bg-[#111827] p-8 flex flex-col relative transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                <span className="bg-blue-500 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide">
+                  Recommended
+                </span>
               </div>
-              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
-                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">Optional SMS engagement</span>
+              <div className="w-14 h-14 bg-blue-500/10 rounded-full flex items-center justify-center mb-6">
+                <Search className="w-7 h-7 text-blue-400" />
               </div>
-              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
-                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">Two follow-up reminders</span>
+              <h3 className="text-2xl font-bold text-white mb-2">Professional Website + SEO Foundation</h3>
+              <div className="mb-6">
+                <span className="text-sm text-[#94a3b8]">from</span>
+                <span className="text-4xl font-bold text-white ml-2">{"£"}1,000</span>
               </div>
-              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
-                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">CRM integration or BCC setup</span>
+              <ul className="space-y-3 mb-8 flex-1">
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Everything in Starter Website</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Strong SEO foundation setup</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Structured correctly for Google indexing</span>
+                </li>
+              </ul>
+              <a href="/contact">
+                <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-6 text-lg font-semibold transition-all duration-300 hover:scale-105">
+                  Get Started
+                </Button>
+              </a>
+            </div>
+
+            {/* Website Hosting */}
+            <div className="rounded-xl border border-white/10 bg-[#111827] p-8 flex flex-col transition-all duration-300 hover:border-blue-400/40 hover:shadow-lg">
+              <div className="w-14 h-14 bg-blue-500/10 rounded-full flex items-center justify-center mb-6">
+                <Server className="w-7 h-7 text-blue-400" />
               </div>
-              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
-                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">Staff form for in-person jobs</span>
+              <h3 className="text-2xl font-bold text-white mb-2">Website Hosting</h3>
+              <div className="mb-6">
+                <span className="text-4xl font-bold text-white">{"£"}30</span>
+                <span className="text-lg text-[#94a3b8] ml-2">per month</span>
               </div>
-              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
-                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">Review link configuration</span>
-              </div>
-              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
-                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">Complete setup & integration</span>
-              </div>
-              <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
-                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span className="text-gray-700 font-medium">Dedicated email support</span>
-              </div>
+              <ul className="space-y-3 mb-8 flex-1">
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Fast, secure hosting</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Ongoing support if needed</span>
+                </li>
+              </ul>
+              <a href="/contact">
+                <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-6 text-lg font-semibold transition-all duration-300 hover:scale-105">
+                  Get Started
+                </Button>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Updated CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-black to-gray-900 relative overflow-hidden">
+      {/* SECONDARY SECTION: Optional Review Generation Add-On */}
+      <section className="py-20 bg-[#111827]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-xl border border-white/10 bg-[#0a0e1a] p-10 md:p-14">
+            <div className="text-center mb-8">
+              <div className="inline-block bg-blue-500/10 border border-blue-500/30 px-4 py-2 rounded-full mb-6">
+                <span className="text-blue-400 font-bold text-sm">OPTIONAL ADD-ON</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Optional Review Generation Add-On
+              </h2>
+              <p className="text-lg text-[#94a3b8] max-w-2xl mx-auto leading-relaxed">
+                GuardX Review Generation helps keep your Google profile active by automatically encouraging customer
+                feedback after each job.
+              </p>
+            </div>
+
+            <ul className="space-y-4 mb-10 max-w-md mx-auto">
+              <li className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-blue-500/10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-5 h-5 text-blue-400" />
+                </div>
+                <span className="text-[#cbd5e1] text-lg">Automated review requests</span>
+              </li>
+              <li className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-blue-500/10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Smartphone className="w-5 h-5 text-blue-400" />
+                </div>
+                <span className="text-[#cbd5e1] text-lg">SMS and email engagement options</span>
+              </li>
+              <li className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-blue-500/10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <MessageSquare className="w-5 h-5 text-blue-400" />
+                </div>
+                <span className="text-[#cbd5e1] text-lg">Easy setup and integration</span>
+              </li>
+            </ul>
+
+            <div className="text-center">
+              <a href="/review-generation">
+                <Button className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 backdrop-blur-sm gap-2">
+                  Learn More
+                  <ArrowRight className="w-5 h-5" />
+                </Button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-br from-[#0a0e1a] to-[#111827] relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <img
             src="/successful-business-owner-celebrating-achievement.jpg"
@@ -426,26 +267,26 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
-              Ready to protect your Google visibility and win more customers?
+              Ready for a website that works as hard as you do?
             </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Join UK businesses using GuardX to maintain a strong Google presence and stand out locally.
+            <p className="text-xl text-[#94a3b8] mb-8 max-w-2xl mx-auto leading-relaxed">
+              Get a professional website built to generate enquiries and help your business stand out online.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="https://calendly.com/guardxnetwork-info/30min" target="_blank" rel="noopener noreferrer">
-                <Button className="bg-primary hover:bg-[#e6c34a] text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 border-black/10">
+                <Button className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105">
                   Book a Call
                 </Button>
               </a>
               <Button
                 onClick={() => setIsScorecardOpen(true)}
-                className="bg-white hover:bg-gray-100 text-black px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105"
+                className="bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105"
               >
                 Get Your Free Scorecard
               </Button>
             </div>
-            <p className="text-gray-400 mt-6 text-sm">
-              No credit card required • Cancel anytime • Same-day setup available
+            <p className="text-[#475569] mt-6 text-sm">
+              No credit card required -- Same-day response available
             </p>
           </div>
         </div>
@@ -453,13 +294,13 @@ export default function PricingPage() {
 
       {/* Free Scorecard Dialog */}
       <Dialog open={isScorecardOpen} onOpenChange={setIsScorecardOpen}>
-        <DialogContent className="sm:max-w-md bg-white">
+        <DialogContent className="sm:max-w-md bg-[#1e293b] border-white/10">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-black">Get Your Free Scorecard</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-white">Get Your Free Scorecard</DialogTitle>
           </DialogHeader>
           <form onSubmit={handleScorecardSubmit} className="space-y-4">
             <div>
-              <Label htmlFor="scorecard-email" className="text-black">
+              <Label htmlFor="scorecard-email" className="text-white">
                 Email Address
               </Label>
               <Input
@@ -468,11 +309,11 @@ export default function PricingPage() {
                 type="email"
                 required
                 placeholder="your@email.com"
-                className="border-gray-300"
+                className="border-white/10 bg-[#0a0e1a] text-white"
               />
             </div>
             <div>
-              <Label htmlFor="scorecard-business" className="text-black">
+              <Label htmlFor="scorecard-business" className="text-white">
                 Business Name
               </Label>
               <Input
@@ -481,11 +322,11 @@ export default function PricingPage() {
                 type="text"
                 required
                 placeholder="Your Business Name"
-                className="border-gray-300"
+                className="border-white/10 bg-[#0a0e1a] text-white"
               />
             </div>
             <div>
-              <Label htmlFor="scorecard-address" className="text-black">
+              <Label htmlFor="scorecard-address" className="text-white">
                 Business Address
               </Label>
               <Input
@@ -494,21 +335,21 @@ export default function PricingPage() {
                 type="text"
                 required
                 placeholder="123 Main St, City, State"
-                className="border-gray-300"
+                className="border-white/10 bg-[#0a0e1a] text-white"
               />
             </div>
             <Button
               type="submit"
               disabled={scorecardStatus === "loading"}
-              className="w-full bg-primary hover:bg-[#e6c34a] text-black border-2 border-black/10"
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white"
             >
               {scorecardStatus === "loading" ? "Submitting..." : "Get Free Scorecard"}
             </Button>
             {scorecardStatus === "success" && (
-              <p className="text-green-600 text-sm text-center">Success! Check your email for your scorecard.</p>
+              <p className="text-green-400 text-sm text-center">Success! Check your email for your scorecard.</p>
             )}
             {scorecardStatus === "error" && (
-              <p className="text-red-600 text-sm text-center">Something went wrong. Please try again.</p>
+              <p className="text-red-400 text-sm text-center">Something went wrong. Please try again.</p>
             )}
           </form>
         </DialogContent>

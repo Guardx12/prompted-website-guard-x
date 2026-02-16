@@ -1,718 +1,775 @@
 "use client"
 
-import type React from "react"
-
-import { Card, CardContent } from "@/components/ui/card"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { ReviewValueCalculator } from "@/components/review-value-calculator"
-import { Star, Shield, CheckCircle, Users, Building2, Dumbbell, Store } from "lucide-react"
-import { useEffect, useState } from "react"
+import Link from "next/link"
+import Image from "next/image"
+import { useEffect, useRef, useState, useCallback } from "react"
+import { motion, useReducedMotion, useInView } from "framer-motion"
+import {
+  Code2,
+  Search,
+  Smartphone,
+  Zap,
+  Layers,
+  Globe,
+  BarChart3,
+  FileCode,
+  ArrowRight,
+  CheckCircle,
+  Star,
+  MessageSquare,
+} from "lucide-react"
 
-export default function HomePage() {
-  // Intersection Observer for scroll animations
-  const [scorecardStatus, setScorecardStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
+/* ------------------------------------------------------------------ */
+/*  Animated gradient background (canvas)                              */
+/* ------------------------------------------------------------------ */
+function AnimatedBackground() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const prefersReduced = useReducedMotion()
 
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -100px 0px",
+    const canvas = canvasRef.current
+    if (!canvas || prefersReduced) return
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+
+    let raf: number
+    let t = 0
+
+    const resize = () => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
     }
+    resize()
+    window.addEventListener("resize", resize)
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-in")
-        }
-      })
-    }, observerOptions)
+    const draw = () => {
+      t += 0.002
+      const w = canvas.width
+      const h = canvas.height
 
-    const animatedElements = document.querySelectorAll(".scroll-animate")
-    animatedElements.forEach((el) => observer.observe(el))
+      ctx.fillStyle = "#0a0e1a"
+      ctx.fillRect(0, 0, w, h)
 
-    return () => observer.disconnect()
-  }, [])
-
-  const handleScorecardSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setScorecardStatus("submitting")
-
-    const form = e.currentTarget
-    const formData = new FormData(form)
-
-    try {
-      const response = await fetch("https://formspree.io/f/mrbypyzv", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json",
+      const spots = [
+        {
+          x: w * (0.3 + 0.15 * Math.sin(t * 0.7)),
+          y: h * (0.3 + 0.1 * Math.cos(t * 0.5)),
+          r: Math.max(w, h) * 0.55,
+          color: `rgba(30, 58, 138, ${0.35 + 0.1 * Math.sin(t)})`,
         },
+        {
+          x: w * (0.7 + 0.1 * Math.cos(t * 0.6)),
+          y: h * (0.5 + 0.15 * Math.sin(t * 0.8)),
+          r: Math.max(w, h) * 0.5,
+          color: `rgba(88, 28, 135, ${0.25 + 0.08 * Math.cos(t * 1.1)})`,
+        },
+        {
+          x: w * (0.5 + 0.2 * Math.sin(t * 0.4)),
+          y: h * (0.7 + 0.1 * Math.cos(t * 0.9)),
+          r: Math.max(w, h) * 0.45,
+          color: `rgba(14, 116, 144, ${0.2 + 0.06 * Math.sin(t * 0.7)})`,
+        },
+        {
+          x: w * (0.2 + 0.1 * Math.cos(t * 0.3)),
+          y: h * (0.8 + 0.05 * Math.sin(t * 1.2)),
+          r: Math.max(w, h) * 0.4,
+          color: `rgba(59, 130, 246, ${0.15 + 0.05 * Math.cos(t * 0.9)})`,
+        },
+      ]
+
+      spots.forEach((s) => {
+        const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r)
+        g.addColorStop(0, s.color)
+        g.addColorStop(1, "transparent")
+        ctx.fillStyle = g
+        ctx.fillRect(0, 0, w, h)
       })
 
-      if (response.ok) {
-        setScorecardStatus("success")
-        form.reset()
-      } else {
-        setScorecardStatus("error")
-      }
-    } catch (error) {
-      setScorecardStatus("error")
+      raf = requestAnimationFrame(draw)
     }
-  }
+    draw()
+
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener("resize", resize)
+    }
+  }, [prefersReduced])
 
   return (
-    <div className="min-h-screen bg-white">
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 -z-10"
+      style={{ background: "#0a0e1a" }}
+      aria-hidden="true"
+    />
+  )
+}
+
+/* ------------------------------------------------------------------ */
+/*  Floating particles (client-only to avoid hydration mismatch)       */
+/* ------------------------------------------------------------------ */
+function FloatingParticles() {
+  const prefersReduced = useReducedMotion()
+  const [particles, setParticles] = useState<
+    { id: number; x: number; y: number; size: number; duration: number; delay: number; opacity: number }[]
+  >([])
+
+  useEffect(() => {
+    if (prefersReduced) return
+    setParticles(
+      Array.from({ length: 18 }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: 2 + Math.random() * 3,
+        duration: 12 + Math.random() * 20,
+        delay: Math.random() * 8,
+        opacity: 0.15 + Math.random() * 0.25,
+      }))
+    )
+  }, [prefersReduced])
+
+  if (particles.length === 0) return null
+
+  return (
+    <div className="fixed inset-0 -z-[5] overflow-hidden pointer-events-none" aria-hidden="true">
+      {particles.map((p) => (
+        <motion.div
+          key={p.id}
+          className="absolute rounded-full"
+          style={{
+            width: p.size,
+            height: p.size,
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            background: `radial-gradient(circle, rgba(147,197,253,${p.opacity}), transparent)`,
+            boxShadow: `0 0 ${p.size * 3}px rgba(147,197,253,${p.opacity * 0.5})`,
+          }}
+          animate={{
+            y: [0, -60, 0],
+            x: [0, 20 * (p.id % 2 === 0 ? 1 : -1), 0],
+            opacity: [p.opacity, p.opacity * 1.4, p.opacity],
+          }}
+          transition={{
+            duration: p.duration,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: p.delay,
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
+/* ------------------------------------------------------------------ */
+/*  DVD-style bouncing logo orb                                        */
+/* ------------------------------------------------------------------ */
+function BouncingOrb() {
+  const prefersReduced = useReducedMotion()
+  const containerRef = useRef<HTMLDivElement>(null)
+  const posRef = useRef({ x: 60, y: 40 })
+  const velRef = useRef({ vx: 1.2, vy: 0.8 })
+  const [pos, setPos] = useState({ x: 60, y: 40 })
+
+  useEffect(() => {
+    if (prefersReduced) return
+    const container = containerRef.current
+    if (!container) return
+
+    const orbSize = 220
+    let raf: number
+
+    const step = () => {
+      const rect = container.getBoundingClientRect()
+      const maxX = rect.width - orbSize
+      const maxY = rect.height - orbSize
+
+      let { x, y } = posRef.current
+      let { vx, vy } = velRef.current
+
+      x += vx
+      y += vy
+
+      if (x <= 0) { x = 0; vx = Math.abs(vx); }
+      if (x >= maxX) { x = maxX; vx = -Math.abs(vx); }
+      if (y <= 0) { y = 0; vy = Math.abs(vy); }
+      if (y >= maxY) { y = maxY; vy = -Math.abs(vy); }
+
+      posRef.current = { x, y }
+      velRef.current = { vx, vy }
+      setPos({ x, y })
+      raf = requestAnimationFrame(step)
+    }
+    raf = requestAnimationFrame(step)
+
+    return () => cancelAnimationFrame(raf)
+  }, [prefersReduced])
+
+  return (
+    <div ref={containerRef} className="relative w-full h-[340px] sm:h-[400px]">
+      <div
+        className="absolute"
+        style={{
+          transform: `translate(${pos.x}px, ${pos.y}px)`,
+          willChange: "transform",
+        }}
+      >
+        {/* Outer glow */}
+        <div
+          className="absolute -inset-10 rounded-full pointer-events-none"
+          style={{
+            background: "radial-gradient(circle, rgba(59,130,246,0.25) 0%, rgba(88,28,135,0.12) 40%, transparent 70%)",
+            filter: "blur(30px)",
+            animation: prefersReduced ? "none" : "pulse 4s ease-in-out infinite",
+          }}
+        />
+        {/* Glass orb */}
+        <div
+          className="relative w-[200px] h-[200px] sm:w-[220px] sm:h-[220px] rounded-full flex items-center justify-center overflow-hidden"
+          style={{
+            background: "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 100%)",
+            boxShadow: "0 0 60px rgba(59,130,246,0.2), inset 0 0 60px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.3)",
+            backdropFilter: "blur(12px)",
+            border: "1px solid rgba(255,255,255,0.15)",
+          }}
+        >
+          <Image
+            src="/images/guardx-final-logo.jpg"
+            alt="GuardX Logo"
+            width={180}
+            height={180}
+            className="rounded-full object-cover w-[170px] h-[170px] sm:w-[190px] sm:h-[190px]"
+            priority
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ------------------------------------------------------------------ */
+/*  Animated headline with wave + shimmer                              */
+/* ------------------------------------------------------------------ */
+function AnimatedHeadline() {
+  const prefersReduced = useReducedMotion()
+  const words = "Website Design & SEO Foundation".split(" ")
+  const line2 = "for Local Businesses"
+
+  /* Build a flat index so each letter gets a unique wave delay */
+  let globalIndex = 0
+
+  return (
+    <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight mb-6">
+      <span className="relative inline">
+        {prefersReduced ? (
+          <span
+            className="text-transparent bg-clip-text"
+            style={{
+              backgroundImage: "linear-gradient(135deg, #93c5fd, #818cf8, #a78bfa, #60a5fa, #93c5fd)",
+              backgroundSize: "300% 300%",
+            }}
+          >
+            {words.join(" ")}
+          </span>
+        ) : (
+          words.map((word, wi) => (
+            <span key={wi} className="inline-block whitespace-nowrap">
+              {word.split("").map((char) => {
+                const idx = globalIndex++
+                return (
+                  <span
+                    key={idx}
+                    className="inline-block text-transparent bg-clip-text"
+                    style={{
+                      backgroundImage: "linear-gradient(135deg, #93c5fd, #818cf8, #a78bfa, #60a5fa, #93c5fd)",
+                      backgroundSize: "300% 300%",
+                      animation: `gradientShift 8s ease infinite, waveFloat 3s ease-in-out ${idx * 0.04}s infinite`,
+                    }}
+                  >
+                    {char}
+                  </span>
+                )
+              })}
+              {wi < words.length - 1 && <span className="inline-block">{"\u00A0"}</span>}
+            </span>
+          ))
+        )}
+        {/* Shimmer pass */}
+        {!prefersReduced && (
+          <span
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%)",
+              animation: "shimmer 4s ease-in-out infinite",
+              width: "40%",
+            }}
+            aria-hidden="true"
+          />
+        )}
+      </span>{" "}
+      <span className="text-white">{line2}</span>
+    </h1>
+  )
+}
+
+/* ------------------------------------------------------------------ */
+/*  Scroll-reveal wrapper                                              */
+/* ------------------------------------------------------------------ */
+function Reveal({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: React.ReactNode
+  className?: string
+  delay?: number
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: "-80px" })
+  const prefersReduced = useReducedMotion()
+
+  return (
+    <motion.div
+      ref={ref}
+      className={className}
+      initial={prefersReduced ? {} : { opacity: 0, y: 36 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, delay, ease: "easeOut" }}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+/* ------------------------------------------------------------------ */
+/*  Feature card with glow hover                                       */
+/* ------------------------------------------------------------------ */
+function FeatureCard({
+  icon: Icon,
+  title,
+  description,
+  delay = 0,
+}: {
+  icon: React.ElementType
+  title: string
+  description: string
+  delay?: number
+}) {
+  return (
+    <Reveal delay={delay}>
+      <div className="group relative rounded-2xl p-6 sm:p-8 transition-all duration-500 hover:scale-[1.03] bg-white/[0.04] border border-white/10 backdrop-blur-sm hover:bg-white/[0.08] hover:border-white/20 hover:shadow-[0_0_40px_rgba(59,130,246,0.12)]">
+        <div className="flex items-center justify-center w-14 h-14 rounded-xl mb-5 bg-[rgba(59,130,246,0.15)] group-hover:bg-[rgba(59,130,246,0.25)] transition-colors duration-300">
+          <Icon className="w-7 h-7 text-blue-400" />
+        </div>
+        <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
+        <p className="text-[#94a3b8] leading-relaxed">{description}</p>
+      </div>
+    </Reveal>
+  )
+}
+
+/* ------------------------------------------------------------------ */
+/*  Pricing card                                                       */
+/* ------------------------------------------------------------------ */
+function PricingCard({
+  title,
+  price,
+  unit,
+  features,
+  highlight = false,
+  delay = 0,
+}: {
+  title: string
+  price: string
+  unit?: string
+  features: string[]
+  highlight?: boolean
+  delay?: number
+}) {
+  return (
+    <Reveal delay={delay}>
+      <div
+        className={`relative rounded-2xl p-8 transition-all duration-500 hover:scale-[1.03] ${
+          highlight
+            ? "bg-white/[0.08] border-2 border-blue-500/40 shadow-[0_0_40px_rgba(59,130,246,0.15)]"
+            : "bg-white/[0.04] border border-white/10"
+        } backdrop-blur-sm`}
+      >
+        {highlight && (
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-blue-500 text-white text-xs font-bold rounded-full tracking-wider uppercase">
+            Most Popular
+          </div>
+        )}
+        <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
+        <div className="mb-6">
+          <span className="text-4xl font-bold text-white">{price}</span>
+          {unit && <span className="text-[#94a3b8] ml-1 text-base">{unit}</span>}
+        </div>
+        <ul className="space-y-3 mb-8">
+          {features.map((f) => (
+            <li key={f} className="flex items-start gap-3 text-[#94a3b8]">
+              <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+              <span>{f}</span>
+            </li>
+          ))}
+        </ul>
+        <Link
+          href="/contact"
+          className={`block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
+            highlight
+              ? "bg-blue-500 text-white hover:bg-blue-600 hover:shadow-[0_0_24px_rgba(59,130,246,0.4)]"
+              : "bg-white/10 text-white hover:bg-white/20"
+          }`}
+        >
+          Get a Quote
+        </Link>
+      </div>
+    </Reveal>
+  )
+}
+
+/* ================================================================== */
+/*  MAIN PAGE                                                          */
+/* ================================================================== */
+export default function HomePage() {
+  return (
+    <div className="relative min-h-screen overflow-x-hidden">
+      <AnimatedBackground />
+      <FloatingParticles />
+
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="pt-16 pb-20 px-4 sm:px-6 lg:px-8">
+      {/* ============================================================ */}
+      {/*  HERO                                                         */}
+      {/* ============================================================ */}
+      <section className="relative pt-20 pb-24 sm:pt-28 sm:pb-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="scroll-animate">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight">
-                GuardX – Stand Out on Google. Get Chosen More Often.
-              </h1>
-              <p className="text-xl text-gray-600 mb-6 font-medium">The Google Visibility System for Local UK Businesses</p>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                When customers search locally, Google shows them businesses that look active and trusted. If your profile
-                looks quiet while competitors appear established, you lose enquiries before they even consider you.
-              </p>
-              <p className="text-2xl md:text-3xl text-gray-700 mb-6 font-semibold">
-                GuardX keeps your Google presence visibly active with consistent customer feedback — the signal Google
-                uses to decide who appears first and who customers trust enough to contact.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="#free-scorecard"
-                  className="inline-block bg-primary text-black hover:bg-[#e6c34a] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-black/10 text-center"
-                >
-                  Get Your Free Scorecard
-                </a>
-                <a
-                  href="https://calendly.com/guardxnetwork-info/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-black text-primary hover:bg-gray-800 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-primary/20 text-center"
-                >
-                  Book a Call
-                </a>
-              </div>
-              <a
-                href="/real-results"
-                className="inline-block mt-4 text-gray-600 hover:text-primary transition-colors duration-200 text-base font-medium"
-              >
-                {"See how UK businesses are becoming more visible and trusted on Google →"}
-              </a>
-            </div>
-            <div className="flex justify-center scroll-animate">
-              <img
-                src="/images/business-owner-tablet.jpg"
-                alt="Business owner with reviews"
-                className="w-full max-w-md rounded-lg shadow-2xl"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            {/* Copy */}
+            <div className="flex-1 text-center lg:text-left">
+              <Reveal>
+                <AnimatedHeadline />
+              </Reveal>
 
-      {/* Review Value Calculator Section */}
-      <ReviewValueCalculator />
+              <Reveal delay={0.15}>
+                <p className="text-lg sm:text-xl text-[#94a3b8] mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                  Modern, lightning-fast websites built to rank. Structured correctly for Google from day one so your
+                  business gets found by the right customers.
+                </p>
+              </Reveal>
 
-      {/* Helping Local Businesses Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 scroll-animate">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
-              Helping Local Businesses Become More Visible and Trusted on Google
-            </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-              Google ranks local businesses based on relevance, distance, and prominence. Prominence is directly
-              influenced by how active and trusted your profile appears — and that comes from consistent, recent
-              customer feedback.
-            </p>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-4">
-              GuardX automates this process, sending friendly requests after every job or visit, with follow-up
-              reminders that make customers 4–5x more likely to respond. The result: your Google presence stays
-              visibly active while competitors fade into the background.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 scroll-animate">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">The Google Visibility System</h2>
-            <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-              Your customers receive a short, friendly request after each job or visit — sent automatically by
-              email or SMS. If they don't respond, GuardX follows up with a gentle reminder the next day.
-            </p>
-            <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-              This consistent activity builds the signals Google uses to rank local businesses: recency, volume, and
-              engagement. Your profile stays active. Competitors look dormant. You get chosen more often.
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto mb-12 scroll-animate">
-            <h3 className="text-2xl font-bold text-black mb-6 text-center">We handle everything for you:</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <p className="text-gray-700 text-lg">Automated email review requests</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <p className="text-gray-700 text-lg">Optional SMS review requests (98% open rate)</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <p className="text-gray-700 text-lg">CRM or BCC email integration</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <p className="text-gray-700 text-lg">Staff form for trades & in-person jobs</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <p className="text-gray-700 text-lg">Set up your Google, Facebook, Yell or any review links</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <p className="text-gray-700 text-lg">Fully done-for-you setup</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center scroll-animate">
-            <p className="text-xl font-semibold text-black">
-              You focus on running the business — GuardX builds your Google presence.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Free Scorecard Section */}
-      <section id="free-scorecard" className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 scroll-animate">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
-              See Where Customers Might Be Choosing Competitors Instead
-            </h2>
-            <p className="text-xl text-gray-600 mb-6">
-              Get a simple scorecard showing how your reviews compare to competitors, where visibility may be low, and
-              where enquiries may be leaking to other businesses. Delivered within 24 hours.
-            </p>
-            <div className="max-w-2xl mx-auto text-left mb-6">
-              <ul className="space-y-3 text-lg text-gray-600">
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <span>Your current Google review performance</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <span>How you compare to similar local businesses</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <span>Visibility gaps that could be costing you enquiries</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <span>Opportunities to increase your ranking and trust</span>
-                </li>
-              </ul>
-            </div>
-            <p className="text-lg text-gray-600">
-              Enter your details below and receive your scorecard within 24 hours.
-            </p>
-          </div>
-
-          <div className="max-w-2xl mx-auto">
-            <Card className="bg-white border-2 border-primary shadow-2xl scroll-animate">
-              <CardContent className="p-8 md:p-10">
-                <form onSubmit={handleScorecardSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-bold text-black mb-2">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:outline-none text-black"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="businessName" className="block text-sm font-bold text-black mb-2">
-                      Business Name
-                    </label>
-                    <input
-                      type="text"
-                      id="businessName"
-                      name="businessName"
-                      required
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:outline-none text-black"
-                      placeholder="Your Business Name"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="businessAddress" className="block text-sm font-bold text-black mb-2">
-                      Business Address
-                    </label>
-                    <input
-                      type="text"
-                      id="businessAddress"
-                      name="businessAddress"
-                      required
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:outline-none text-black"
-                      placeholder="123 Main Street, City, Postcode"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={scorecardStatus === "submitting"}
-                    className="w-full bg-primary text-black hover:bg-[#e6c34a] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-black/10 disabled:opacity-50 disabled:cursor-not-allowed"
+              <Reveal delay={0.3}>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <Link
+                    href="/portfolio"
+                    className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-8 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
                   >
-                    {scorecardStatus === "submitting" ? "Submitting..." : "Get My Free Scorecard"}
-                  </button>
+                    View Portfolio <ArrowRight className="w-5 h-5" />
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center gap-2 bg-white/10 text-white hover:bg-white/20 px-8 py-4 text-lg font-bold rounded-xl border border-white/20 transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                  >
+                    Get a Quote
+                  </Link>
+                </div>
+              </Reveal>
+            </div>
 
-                  {scorecardStatus === "success" && (
-                    <p className="text-center text-green-600 font-semibold">
-                      Thank you! Your scorecard request has been submitted. We'll send it to you within 24 hours.
-                    </p>
-                  )}
+            {/* Bouncing logo orb */}
+            <Reveal delay={0.2} className="flex-1 w-full">
+              <BouncingOrb />
+            </Reveal>
+          </div>
+        </div>
+      </section>
 
-                  {scorecardStatus === "error" && (
-                    <p className="text-center text-red-600 font-semibold">
-                      Something went wrong. Please try again or contact us directly.
-                    </p>
-                  )}
+      {/* ============================================================ */}
+      {/*  WEBSITE DESIGN FEATURES                                      */}
+      {/* ============================================================ */}
+      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <Reveal>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-center mb-4 text-balance">
+              What You Get
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="text-[#94a3b8] text-lg text-center max-w-3xl mx-auto mb-16 leading-relaxed">
+              Every site we build is custom-designed, fully responsive, and engineered for performance.
+              No templates. No shortcuts.
+            </p>
+          </Reveal>
 
-                  <p className="text-center text-sm text-gray-500">
-                    No credit card required — full breakdown delivered by email.
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <FeatureCard
+              icon={Code2}
+              title="Modern Professional Design"
+              description="Bespoke designs tailored to your brand identity. Hand-crafted for a premium look that builds instant trust with customers."
+              delay={0}
+            />
+            <FeatureCard
+              icon={Smartphone}
+              title="Mobile-Friendly & Responsive"
+              description="Flawless experience on every device. Mobile-first design ensures your site works perfectly wherever customers find you."
+              delay={0.1}
+            />
+            <FeatureCard
+              icon={Zap}
+              title="Fast Loading Performance"
+              description="Sub-second load times with optimised images, clean code, and modern hosting infrastructure that keeps visitors engaged."
+              delay={0.2}
+            />
+            <FeatureCard
+              icon={Layers}
+              title="Clear Structure for Enquiries"
+              description="Strategic layout and clear calls-to-action designed to guide visitors towards contacting your business."
+              delay={0.3}
+            />
+            <FeatureCard
+              icon={Search}
+              title="Strong SEO Foundation"
+              description="Proper meta tags, semantic HTML, clean URLs, and Core Web Vitals optimisation built into every page from day one."
+              delay={0.4}
+            />
+          </div>
+
+          <Reveal delay={0.5}>
+            <div className="mt-12 max-w-3xl mx-auto rounded-xl bg-white/[0.05] border border-white/10 p-6 text-center">
+              <p className="text-[#cbd5e1] leading-relaxed">
+                {"We don't run ongoing SEO campaigns \u2014 we build a strong SEO foundation so your website is ready to rank."}
+              </p>
+              <p className="text-[#94a3b8] text-sm mt-4">
+                Learn more about our{" "}
+                <Link href="/web-design" className="text-blue-400 hover:text-blue-300 underline">web design services</Link>,{" "}
+                <Link href="/website-design-uk" className="text-blue-400 hover:text-blue-300 underline">UK website design</Link>, or{" "}
+                <Link href="/seo-foundation" className="text-blue-400 hover:text-blue-300 underline">SEO foundation</Link>.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/*  SEO FOUNDATION DETAIL                                        */}
+      {/* ============================================================ */}
+      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <div className="flex-1">
+              <Reveal>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
+                  SEO Foundation Built In
+                </h2>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p className="text-[#94a3b8] text-lg mb-6 leading-relaxed">
+                  Every website we deliver comes with a solid SEO foundation baked into the build. Your site
+                  is structured correctly for Google from the start &mdash; proper meta tags, semantic HTML, fast load times,
+                  mobile optimisation, and clean URLs.
+                </p>
+              </Reveal>
+              <Reveal delay={0.15}>
+                <div className="rounded-xl bg-white/[0.05] border border-white/10 p-6 mb-6">
+                  <p className="text-[#cbd5e1] text-sm leading-relaxed">
+                    <strong className="text-white">Included with Professional Website:</strong> Our Professional Website
+                    package includes strong SEO foundation setup, ensuring your website is structured correctly and ready
+                    for Google indexing. This is a one-time setup built into the website.
                   </p>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Scorecard Insights Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-black mb-12 scroll-animate">
-            Understand Your Score at a Glance
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-            {/* Volume Insight */}
-            <div className="text-center scroll-animate">
-              <div className="mb-4 overflow-hidden rounded-lg">
-                <img
-                  src="/images/scorecard-20volume.png"
-                  alt="Volume Score"
-                  className="w-full h-auto transition-all duration-300 hover:scale-110 hover:shadow-2xl rounded-lg"
-                />
-              </div>
-              <p className="text-gray-700 text-sm leading-relaxed">
-                See how many reviews your business has and how it compares to competitors. More reviews = stronger
-                online presence.
-              </p>
+                </div>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <ul className="space-y-4">
+                  {[
+                    "Proper heading hierarchy & semantic HTML5",
+                    "Optimised meta titles & descriptions",
+                    "XML sitemap & robots.txt configuration",
+                    "Core Web Vitals optimisation",
+                    "Mobile-first indexing ready",
+                    "Fast page load speeds",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-[#94a3b8]">
+                      <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
             </div>
 
-            {/* Star Rating Insight */}
-            <div className="text-center scroll-animate">
-              <div className="mb-4 overflow-hidden rounded-lg">
-                <img
-                  src="/images/scorecard-20star-20rating.png"
-                  alt="Star Rating Score"
-                  className="w-full h-auto transition-all duration-300 hover:scale-110 hover:shadow-2xl rounded-lg"
-                />
-              </div>
-              <p className="text-gray-700 text-sm leading-relaxed">
-                View your average rating across platforms. Higher ratings build trust and increase conversions.
-              </p>
-            </div>
-
-            {/* Sentiment Insight */}
-            <div className="text-center scroll-animate">
-              <div className="mb-4 overflow-hidden rounded-lg">
-                <img
-                  src="/images/scorecard-20sentiment.png"
-                  alt="Sentiment Score"
-                  className="w-full h-auto transition-all duration-300 hover:scale-110 hover:shadow-2xl rounded-lg"
-                />
-              </div>
-              <p className="text-gray-700 text-sm leading-relaxed">
-                Track positive, neutral, and negative reviews to understand customer feelings and improve experience.
-              </p>
-            </div>
-
-            {/* Recency Insight */}
-            <div className="text-center scroll-animate">
-              <div className="mb-4 overflow-hidden rounded-lg">
-                <img
-                  src="/images/scorecard-20recency.png"
-                  alt="Recency Score"
-                  className="w-full h-auto transition-all duration-300 hover:scale-110 hover:shadow-2xl rounded-lg"
-                />
-              </div>
-              <p className="text-gray-700 text-sm leading-relaxed">
-                Check how recent your reviews are. Fresh feedback shows engagement and keeps your business relevant.
-              </p>
-            </div>
-
-            {/* Overall Score Insight */}
-            <div className="text-center scroll-animate">
-              <div className="mb-4 overflow-hidden rounded-lg">
-                <img
-                  src="/images/scorecard-20overall-20rating.png"
-                  alt="Overall Score"
-                  className="w-full h-auto transition-all duration-300 hover:scale-110 hover:shadow-2xl rounded-lg"
-                />
-              </div>
-              <p className="text-gray-700 text-sm leading-relaxed">
-                Get a snapshot of your total reputation score, showing how well your business is performing online.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Reviews Matter Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 scroll-animate">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
-              Greater Visibility → Stronger Trust → More Customers
-            </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-4">
-              Google uses review activity as a key signal when ranking local businesses. Profiles with consistent,
-              recent feedback appear more prominently and are trusted more by customers making decisions.
-            </p>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              GuardX keeps your presence active so you stand out locally instead of blending in.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Google Maps Results vs Sponsored Ads Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center scroll-animate">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
-              Google Maps Results vs Sponsored Ads
-            </h2>
-            <div className="max-w-4xl mx-auto space-y-6">
-              <p className="text-xl text-gray-600 leading-relaxed">
-                When people search for local services, most clicks go to the Google Maps results — not sponsored ads.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Customers tend to trust businesses that appear established, active, and well-reviewed in local search. Sponsored ads may get attention, but many users scroll past them in favour of businesses that look proven and trustworthy.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Organic visibility in Google Maps earns trust at the exact moment customers are deciding who to contact. That's why maintaining a visibly active Google profile is often more effective long-term than relying on ads alone.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What More Reviews Mean Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 scroll-animate">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
-              What Google Visibility Actually Means for Your Business
-            </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-              Your position in Google Maps and local search directly affects how many customers see you, trust you,
-              and contact you. Consistent activity is the signal Google responds to.
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto mb-8 scroll-animate">
-            <div className="space-y-6">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <p className="text-gray-700 text-lg leading-relaxed">
-                  Businesses that maintain consistent activity on Google typically see 20–40% more calls, clicks and
-                  enquiries within the first few months — simply by appearing more established and trusted.
-                </p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <p className="text-gray-700 text-lg leading-relaxed">
-                  When competitors appear more active than you, customers choose them first — not because they're
-                  better, but because they look more established in Google Maps and local search.
-                </p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <p className="text-gray-700 text-lg leading-relaxed">
-                  Those businesses dominating local search aren't just "lucky" — they maintain a visibly active
-                  Google presence. GuardX gives you the same advantage automatically.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center scroll-animate">
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Switch it on once, and let GuardX build your Google presence and enquiries every week.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-black mb-12 scroll-animate">
-            How GuardX Works
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center scroll-animate">
-              <div className="mb-6 flex justify-center">
-                <img
-                  src="/images/calendar-meeting.jpg"
-                  alt="Connect Your CRM or BCC Email"
-                  className="w-32 h-32 rounded-lg shadow-lg"
-                />
-              </div>
-              <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold text-black">
-                1
-              </div>
-              <h3 className="text-xl font-bold text-black mb-3">Connect your CRM or BCC email</h3>
-              <p className="text-gray-600">Or use our simple staff form</p>
-            </div>
-
-            <div className="text-center scroll-animate">
-              <div className="mb-6 flex justify-center">
-                <img
-                  src="/images/setup-checklist.jpg"
-                  alt="Review Requests Go Out Automatically"
-                  className="w-32 h-32 rounded-lg shadow-lg"
-                />
-              </div>
-              <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold text-black">
-                2
-              </div>
-              <h3 className="text-xl font-bold text-black mb-3">
-                Review requests go out automatically after each job or visit
-              </h3>
-              <p className="text-gray-600">Friendly email or SMS requests sent to your customers</p>
-            </div>
-
-            <div className="text-center scroll-animate">
-              <div className="mb-6 flex justify-center">
-                <img
-                  src="/images/notification-alerts.jpg"
-                  alt="Two Gentle Follow-up Reminders"
-                  className="w-32 h-32 rounded-lg shadow-lg"
-                />
-              </div>
-              <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold text-black">
-                3
-              </div>
-              <h3 className="text-xl font-bold text-black mb-3">
-                Two gentle follow-up reminders increase response rates
-              </h3>
-              <p className="text-gray-600">Makes customers 4-5x more likely to leave a review</p>
-            </div>
-
-            <div className="text-center scroll-animate">
-              <div className="mb-6 flex justify-center">
-                <img
-                  src="/images/report-mockup.jpg"
-                  alt="Your Reviews and Visibility Grow"
-                  className="w-32 h-32 rounded-lg shadow-lg"
-                />
-              </div>
-              <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold text-black">
-                4
-              </div>
-              <h3 className="text-xl font-bold text-black mb-3">Your reviews and visibility grow month after month</h3>
-              <p className="text-gray-600">More visibility. More trust. More customers.</p>
-            </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12 scroll-animate">
-            <a
-              href="#free-scorecard"
-              className="inline-block bg-primary text-black hover:bg-[#e6c34a] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-black/10 text-center"
-            >
-              Get Your Free Scorecard
-            </a>
-            <a
-              href="https://calendly.com/guardxnetwork-info/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-black text-primary hover:bg-gray-800 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-primary/20 text-center"
-            >
-              Book a Call
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Industries Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-black mb-4 scroll-animate">Who We Help</h2>
-          <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto scroll-animate">
-            GuardX works best for:
-          </p>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
-              <CardContent className="p-6 text-center">
-                <Users className="w-12 h-12 text-primary mx-auto mb-3" />
-                <h3 className="font-bold text-black text-sm">Trades & home services</h3>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
-              <CardContent className="p-6 text-center">
-                <Building2 className="w-12 h-12 text-primary mx-auto mb-3" />
-                <h3 className="font-bold text-black text-sm">Flooring & carpet businesses</h3>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
-              <CardContent className="p-6 text-center">
-                <Store className="w-12 h-12 text-primary mx-auto mb-3" />
-                <h3 className="font-bold text-black text-sm">Shops & retail</h3>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
-              <CardContent className="p-6 text-center">
-                <Shield className="w-12 h-12 text-primary mx-auto mb-3" />
-                <h3 className="font-bold text-black text-sm">Garages & MOT centres</h3>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
-              <CardContent className="p-6 text-center">
-                <Dumbbell className="w-12 h-12 text-primary mx-auto mb-3" />
-                <h3 className="font-bold text-black text-sm">Gyms & fitness</h3>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
-              <CardContent className="p-6 text-center">
-                <Users className="w-12 h-12 text-primary mx-auto mb-3" />
-                <h3 className="font-bold text-black text-sm">Salons & barbers</h3>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
-              <CardContent className="p-6 text-center">
-                <Shield className="w-12 h-12 text-primary mx-auto mb-3" />
-                <h3 className="font-bold text-black text-sm">Pet services</h3>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary/40 transition-all scroll-animate">
-              <CardContent className="p-6 text-center">
-                <Building2 className="w-12 h-12 text-primary mx-auto mb-3" />
-                <h3 className="font-bold text-black text-sm">Local service businesses</h3>
-              </CardContent>
-            </Card>
-          </div>
-
-          <p className="text-xl text-gray-700 text-center mt-12 max-w-3xl mx-auto scroll-animate font-semibold">
-            If you rely on Google to win local customers — GuardX helps you stand out.
-          </p>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-black mb-12 scroll-animate">
-            What Our Clients Say
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="bg-white border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all scroll-animate">
-              <CardContent className="p-8">
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-primary fill-current" />
+            {/* Visual grid */}
+            <Reveal delay={0.2} className="flex-1 flex justify-center">
+              <div className="relative w-full max-w-md">
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 blur-3xl" />
+                <div className="relative grid grid-cols-2 gap-4">
+                  {[
+                    { icon: Search, label: "SEO Ready" },
+                    { icon: Globe, label: "Clean URLs" },
+                    { icon: BarChart3, label: "Core Web Vitals" },
+                    { icon: FileCode, label: "Clean Code" },
+                  ].map((item) => (
+                    <div
+                      key={item.label}
+                      className="flex flex-col items-center gap-3 p-6 rounded-2xl bg-white/[0.05] border border-white/10 backdrop-blur-sm"
+                    >
+                      <item.icon className="w-10 h-10 text-blue-400" />
+                      <span className="text-white font-semibold text-sm text-center">{item.label}</span>
+                    </div>
                   ))}
                 </div>
-                <p className="text-gray-700 mb-4 leading-relaxed">
-                  "The GuardX system is great for staying on top of reviews. It's saved me time, and the reports are
-                  really clear and easy to read, making it simple to keep an eye on my average rating."
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-bold text-lg">HC</span>
-                  </div>
-                  <div>
-                    <p className="font-bold text-black">Holly Cox</p>
-                    <p className="text-sm text-gray-500">Business Owner</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all scroll-animate">
-              <CardContent className="p-8">
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-primary fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-4 leading-relaxed">
-                  "A very handy tool to keep track of my business reviews — simple and easy to use."
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-bold text-lg">JY</span>
-                  </div>
-                  <div>
-                    <p className="font-bold text-black">Joseph Yossefi</p>
-                    <p className="text-sm text-gray-500">Business Owner</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
-          <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">Ready to Stand Out on Google and Win More Customers?</h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Join businesses across the UK using GuardX to become more visible and trusted on Google.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#free-scorecard"
-              className="inline-block bg-primary text-black hover:bg-[#e6c34a] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-black/10"
-            >
-              Get Your Free Scorecard
-            </a>
-            <a
-              href="https://calendly.com/guardxnetwork-info/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-black text-primary hover:bg-gray-800 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] px-8 py-4 text-lg font-bold shadow-xl rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-primary/20"
-            >
-              Book a Call
-            </a>
+      {/* ============================================================ */}
+      {/*  PRICING                                                      */}
+      {/* ============================================================ */}
+      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <Reveal>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-center mb-4 text-balance">
+              Transparent Pricing
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="text-[#94a3b8] text-lg text-center max-w-2xl mx-auto mb-16 leading-relaxed">
+              Simple, honest pricing with no hidden fees.
+            </p>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            <PricingCard
+              title="Starter Website"
+              price="from &pound;500"
+              features={[
+                "Modern professional website",
+                "Mobile-friendly design",
+                "Built to generate enquiries",
+              ]}
+              delay={0}
+            />
+            <PricingCard
+              title="Website + SEO Foundation"
+              price="from &pound;1,000"
+              features={[
+                "Everything in Starter, plus:",
+                "Strong SEO foundation setup",
+                "Proper page structure",
+                "Optimised titles and descriptions",
+                "Built ready for Google indexing",
+              ]}
+              highlight
+              delay={0.1}
+            />
+            <PricingCard
+              title="Hosting"
+              price="&pound;30"
+              unit="/ month"
+              features={[
+                "Fast, secure hosting and ongoing support",
+              ]}
+              delay={0.2}
+            />
           </div>
+
+          <Reveal delay={0.3}>
+            <div className="mt-12 text-center">
+              <Link
+                href="/pricing"
+                className="text-blue-400 hover:text-blue-300 underline text-lg font-medium"
+              >
+                View full pricing details
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/*  REVIEW GENERATION ADD-ON                                     */}
+      {/* ============================================================ */}
+      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <Reveal>
+            <div className="relative rounded-2xl overflow-hidden bg-white/[0.04] border border-white/10 backdrop-blur-sm p-8 sm:p-12 text-center">
+              {/* Subtle glow behind */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 pointer-events-none" />
+
+              <div className="relative">
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-[rgba(59,130,246,0.15)]">
+                    <Star className="w-7 h-7 text-blue-400" />
+                  </div>
+                  <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-[rgba(59,130,246,0.15)]">
+                    <MessageSquare className="w-7 h-7 text-blue-400" />
+                  </div>
+                </div>
+
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 text-balance">
+                  Need More Google Reviews?
+                </h2>
+                <p className="text-[#94a3b8] text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+                  Review Generation is available as an optional add-on service to help businesses collect more Google
+                  reviews. Automated email and SMS review requests that boost your online visibility.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link
+                    href="/review-generation"
+                    className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-8 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
+                  >
+                    Learn About Review Generation <ArrowRight className="w-5 h-5" />
+                  </Link>
+                  <Link
+                    href="/real-results"
+                    className="inline-flex items-center justify-center gap-2 bg-white/10 text-white hover:bg-white/20 px-8 py-4 text-lg font-bold rounded-xl border border-white/20 transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                  >
+                    See Results
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/*  FINAL CTA                                                    */}
+      {/* ============================================================ */}
+      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <Reveal>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
+              Ready to Build a Website That Actually Works?
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="text-[#94a3b8] text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+              Let us design and build a premium website with proper SEO foundations so your
+              business gets found by the right customers.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/web-design"
+                className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-8 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
+              >
+                View Our Work <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 bg-white/10 text-white hover:bg-white/20 px-8 py-4 text-lg font-bold rounded-xl border border-white/20 transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+              >
+                Get a Quote
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 

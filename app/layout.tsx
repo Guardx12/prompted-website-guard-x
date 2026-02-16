@@ -12,12 +12,21 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "GuardX – Grow Your Reputation, Grow Your Revenue",
+  title: {
+    default: "Web Design & SEO Foundation for Local Businesses | GuardX",
+    template: "%s | GuardX",
+  },
   description:
-    "The Review Growth System for Local UK Businesses. Automated email & SMS review requests that boost your Google visibility and bring in more customers.",
+    "Professional website design and SEO foundation for UK local businesses. Modern, fast websites built to generate enquiries.",
   generator: "v0.app",
   icons: {
     icon: "/favicon.ico",
+  },
+  metadataBase: new URL("https://guardxnetwork.com"),
+  openGraph: {
+    siteName: "GuardX",
+    type: "website",
+    locale: "en_GB",
   },
 }
 
