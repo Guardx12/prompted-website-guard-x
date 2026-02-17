@@ -661,7 +661,8 @@ export default function HomePage() {
               price="&pound;30"
               unit="/ month"
               features={[
-                "Fast, secure hosting and ongoing support",
+                "Fast, secure hosting to keep your website live",
+                "Support available if needed",
               ]}
               delay={0.2}
             />
@@ -680,6 +681,100 @@ export default function HomePage() {
         </div>
       </section>
 
+
+      {/* ============================================================ */}
+      {/*  WEBSITE HOSTING                                               */}
+      {/* ============================================================ */}
+      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+            <div>
+              <Reveal>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 text-balance">
+                  Website Hosting by GuardX
+                </h2>
+              </Reveal>
+              <Reveal delay={0.08}>
+                <p className="text-[#94a3b8] text-lg leading-relaxed">
+                  Website Hosting by GuardX is <span className="text-white font-semibold">&pound;30/month</span>.
+                  It keeps your website live, fast, and accessible to customers. Built on reliable modern infrastructure
+                  with support available if needed.
+                </p>
+              </Reveal>
+              <Reveal delay={0.14}>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {[
+                    "Fast global delivery",
+                    "Secure by default",
+                    "Simple, reliable setup",
+                    "Support available if needed",
+                  ].map((t) => (
+                    <span
+                      key={t}
+                      className="inline-flex items-center rounded-full border border-[rgba(148,163,184,0.18)] bg-[rgba(255,255,255,0.04)] px-4 py-2 text-sm text-[#cbd5e1]"
+                    >
+                      <CheckCircle className="h-4 w-4 text-blue-400 mr-2" />
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </Reveal>
+            </div>
+
+            <Reveal delay={0.1}>
+              <div className="rounded-3xl border border-[rgba(148,163,184,0.14)] bg-[rgba(255,255,255,0.03)] p-8 shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
+                <h3 className="text-xl font-semibold text-white mb-4">What hosting covers</h3>
+                <ul className="space-y-3 text-[#94a3b8]">
+                  {[
+                    "Keeping your website live on reliable infrastructure",
+                    "Connecting your domain and ensuring it stays online",
+                    "Ongoing monitoring of critical errors (if reported)",
+                  ].map((x) => (
+                    <li key={x} className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <span>{x}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-xs text-[#94a3b8] mt-5">
+                  Note: Content changes and new pages are handled separately to keep things fair and predictable.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/*  MODERN TECHNOLOGY                                             */}
+      {/* ============================================================ */}
+      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <Reveal>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance text-center">
+              Built Using Modern Technology
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="text-[#94a3b8] text-lg text-center max-w-3xl mx-auto mb-14 leading-relaxed">
+              Modern build quality matters. Your website is designed to load fast, look premium, and convert visitors into enquiries.
+            </p>
+          </Reveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {[
+              { icon: Zap, title: "Fast loading performance", desc: "Optimised builds and modern hosting for quick load times." },
+              { icon: Smartphone, title: "Fully mobile responsive", desc: "Designed to look perfect on phones, tablets and desktop." },
+              { icon: FileCode, title: "Modern web standards", desc: "Clean semantic structure built the right way." },
+              { icon: Search, title: "Google-ready structure", desc: "Structured correctly so Google can crawl and understand your site." },
+              { icon: Layers, title: "Built to convert", desc: "Clear calls-to-action and layout built to generate enquiries." },
+              { icon: Globe, title: "Scalable foundation", desc: "Easy to expand with new pages when your business grows." },
+            ].map((i, idx) => (
+              <FeatureCard key={i.title} icon={i.icon} title={i.title} description={i.desc} delay={idx * 0.05} />
+            ))}
+          </div>
+        </div>
+      </section>
       {/* ============================================================ */}
       {/*  REVIEW GENERATION ADD-ON                                     */}
       {/* ============================================================ */}

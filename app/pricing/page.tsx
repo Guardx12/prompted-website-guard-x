@@ -220,6 +220,8 @@ export default function PricingPage() {
                 GuardX Review Generation helps keep your Google profile active by automatically encouraging customer
                 feedback after each job.
               </p>
+              <p className="text-white font-semibold text-xl mt-4">£30/week</p>
+              <p className="text-[#94a3b8] mt-2">Cancel anytime • No long contracts</p>
             </div>
 
             <ul className="space-y-4 mb-10 max-w-md mx-auto">

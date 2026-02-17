@@ -27,7 +27,7 @@ export default function FAQPage() {
     {
       question: "Do you provide hosting?",
       answer:
-        "Yes. GuardX provides fast, secure hosting and support for \u00a330 per month.",
+        "Yes. GuardX provides fast, secure hosting to keep your website live for \u00a330 per month. Support is available if needed.",
     },
     {
       question: "How long does it take to build a website?",
