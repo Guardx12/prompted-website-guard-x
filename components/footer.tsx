@@ -21,7 +21,16 @@ export function Footer() {
               GuardX -- Helping UK businesses grow through automated review requests and simple, done-for-you review
               growth systems.
             </p>
-            <p className="text-[#94a3b8] mb-4">GuardX Limited – Web Design &amp; Review Generation for UK Businesses.</p>
+            <p className="text-[#94a3b8] mb-4">GuardX Limited – Web Design &amp; Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for UK Businesses.</p>
             <p className="text-sm text-[#64748b]">
               &copy; {new Date().getFullYear()} GuardX. All rights reserved.
             </p>
@@ -101,3 +110,6 @@ export function Footer() {
     </footer>
   )
 }
+
+
+<p>Built using modern, professional technology for speed, reliability, and long-term performance.</p>

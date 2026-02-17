@@ -19,10 +19,28 @@ export const locations: Location[] = [
     name: "Sussex",
     region: "sussex",
     county: "Sussex",
-    metaTitle: "GuardX Sussex — Web Design, SEO & Review Generation for Sussex Businesses",
+    metaTitle: "GuardX Sussex — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Sussex Businesses",
     metaDescription:
       "GuardX helps Sussex businesses grow through automated review requests, reputation monitoring, and Google visibility. Serving East Sussex, West Sussex, and Brighton & Hove.",
-    h1: "Web Design, SEO & Review Generation for Sussex Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Sussex Businesses",
     intro:
       "Sussex is home to thousands of thriving local businesses, from seaside hospitality in Brighton to established trades across Horsham and Crawley. GuardX provides Sussex businesses with an automated review growth system that turns every satisfied customer into a five-star Google review, boosting your visibility and building lasting trust.\n\nOur done-for-you system sends personalised email and SMS review requests on your behalf, so you can focus on running your business while your online reputation grows steadily. Whether you are a plumber in Worthing or a salon in Eastbourne, GuardX makes reputation management simple and effective.",
     localContext:
@@ -35,10 +53,28 @@ export const locations: Location[] = [
     name: "Brighton",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Brighton — Web Design, SEO & Review Generation for Brighton Businesses",
+    metaTitle: "GuardX Brighton — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Brighton Businesses",
     metaDescription:
       "Grow your Brighton business with GuardX. Automated email and SMS review requests that boost your Google visibility, attract more customers, and build a five-star reputation.",
-    h1: "Web Design, SEO & Review Generation for Brighton Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Brighton Businesses",
     intro:
       "Brighton is one of the most competitive local markets in the south of England. Whether you run a restaurant in The Lanes, a salon in Kemptown, or a trades business across the city, your Google reviews can make or break your growth. GuardX gives Brighton businesses an automated system that consistently generates genuine five-star reviews.\n\nOur platform sends personalised review requests via email and SMS after every job or visit, making it effortless for your happy customers to leave feedback. No chasing, no awkward conversations — just steady, organic review growth that puts you ahead of local competitors.",
     localContext:
@@ -51,10 +87,28 @@ export const locations: Location[] = [
     name: "Hove",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Hove — Web Design, SEO & Review Generation for Hove Businesses",
+    metaTitle: "GuardX Hove — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Hove Businesses",
     metaDescription:
       "GuardX helps Hove businesses generate more Google reviews automatically. Boost your local reputation, attract new customers, and grow revenue with our done-for-you system.",
-    h1: "Web Design, SEO & Review Generation for Hove Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Hove Businesses",
     intro:
       "Hove businesses benefit from the affluent, loyal customer base that defines this coastal neighbourhood. But even in Hove, standing out on Google means having a strong, consistent stream of positive reviews. GuardX automates the entire process so your reputation grows without lifting a finger.\n\nFrom independent cafes on Church Road to established estate agents and tradespeople, our system sends timely, personalised review requests that convert satisfied customers into glowing online testimonials.",
     localContext:
@@ -67,10 +121,28 @@ export const locations: Location[] = [
     name: "Worthing",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Worthing — Web Design, SEO & Review Generation in Worthing",
+    metaTitle: "GuardX Worthing — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ in Worthing",
     metaDescription:
       "GuardX Worthing: automated review requests that help local businesses build a five-star Google reputation, attract more customers, and increase revenue.",
-    h1: "Web Design, SEO & Review Generation in Worthing",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ in Worthing",
     intro:
       "Worthing is experiencing a renaissance, with new businesses opening alongside established local firms. As the town grows, so does competition on Google. GuardX gives Worthing businesses a reliable, automated way to generate more five-star reviews and climb local search rankings.\n\nOur system works in the background, sending review requests to your customers at the right moment after every job, appointment, or purchase. More reviews mean more visibility, more trust, and ultimately more revenue.",
     localContext:
@@ -83,10 +155,28 @@ export const locations: Location[] = [
     name: "Littlehampton",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Littlehampton — Web Design, SEO & Review Generation for Littlehampton Businesses",
+    metaTitle: "GuardX Littlehampton — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Littlehampton Businesses",
     metaDescription:
       "Automated review growth for Littlehampton businesses. GuardX helps you get more Google reviews, build local trust, and attract new customers effortlessly.",
-    h1: "Web Design, SEO & Review Generation for Littlehampton Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Littlehampton Businesses",
     intro:
       "Littlehampton may be smaller than its neighbours, but its business community is fiercely competitive. From seaside restaurants to local trades, every positive Google review counts when customers are choosing between you and a competitor. GuardX automates the process so you never miss an opportunity.\n\nOur email and SMS system prompts your satisfied customers to leave a review right after their experience, when their satisfaction is highest. It is hands-free, effective, and designed specifically for busy local businesses.",
     localContext:
@@ -99,10 +189,28 @@ export const locations: Location[] = [
     name: "Bognor Regis",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Bognor Regis — Web Design, SEO & Review Generation for Bognor Regis Businesses",
+    metaTitle: "GuardX Bognor Regis — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Bognor Regis Businesses",
     metaDescription:
       "GuardX helps Bognor Regis businesses grow with automated Google review requests. Build your reputation, increase local visibility, and win more customers.",
-    h1: "Web Design, SEO & Review Generation for Bognor Regis Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Bognor Regis Businesses",
     intro:
       "Bognor Regis thrives on tourism and a loyal local customer base. Whether you run a guest house, a restaurant, or a trades business, your Google reviews are the first thing potential customers see. GuardX makes it easy to consistently collect five-star reviews without any manual effort.\n\nOur automated system sends personalised requests via email and SMS, ensuring your happy customers share their experience online. The result: a stronger reputation, higher search rankings, and a steady flow of new enquiries.",
     localContext:
@@ -115,10 +223,28 @@ export const locations: Location[] = [
     name: "Chichester",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Chichester — Web Design, SEO & Review Generation for Chichester Businesses",
+    metaTitle: "GuardX Chichester — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Chichester Businesses",
     metaDescription:
       "Help your Chichester business stand out with GuardX. Automated review requests that grow your Google rating, attract more customers, and strengthen your local reputation.",
-    h1: "Web Design, SEO & Review Generation for Chichester Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Chichester Businesses",
     intro:
       "Chichester is a historic cathedral city with a thriving business community. From high-street retailers to independent tradespeople, competition for local customers is intense. GuardX gives Chichester businesses the edge by automating review collection, so your Google profile reflects the quality of your work.\n\nEvery completed job or customer visit triggers a personalised review request, making it simple for satisfied customers to leave positive feedback. Over time, this builds a review profile that drives new business and strengthens your local presence.",
     localContext:
@@ -131,10 +257,28 @@ export const locations: Location[] = [
     name: "Arundel",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Arundel — Web Design, SEO & Review Generation for Arundel Businesses",
+    metaTitle: "GuardX Arundel — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Arundel Businesses",
     metaDescription:
       "GuardX Arundel: automated Google review requests for local businesses. Grow your reputation, increase footfall, and attract more customers in Arundel and surrounding areas.",
-    h1: "Web Design, SEO & Review Generation for Arundel Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Arundel Businesses",
     intro:
       "Arundel is a charming market town that attracts visitors from across the region. For local businesses — from antique shops and cafes to trades and services — Google reviews are a powerful way to convert passing interest into loyal customers. GuardX automates the review collection process so you can focus on what you do best.\n\nOur system sends timely review requests after every customer interaction, ensuring a steady flow of genuine five-star reviews that build trust and boost your search visibility.",
     localContext:
@@ -147,10 +291,28 @@ export const locations: Location[] = [
     name: "Horsham",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Horsham — Web Design, SEO & Review Generation for Horsham Businesses",
+    metaTitle: "GuardX Horsham — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Horsham Businesses",
     metaDescription:
       "Grow your Horsham business with GuardX. Our automated review system helps you collect more Google reviews, improve local rankings, and win more customers.",
-    h1: "Web Design, SEO & Review Generation for Horsham Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Horsham Businesses",
     intro:
       "Horsham is one of the most prosperous market towns in West Sussex, with a strong mix of retail, professional services, and trades. Standing out in this competitive market requires more than great service — you need visible proof that customers trust you. GuardX provides that proof by automating your Google review collection.\n\nFrom the moment a job is done or a service is delivered, our system sends personalised requests that make leaving a review effortless for your customers. More reviews lead to higher rankings, more clicks, and more revenue.",
     localContext:
@@ -163,10 +325,28 @@ export const locations: Location[] = [
     name: "Crawley",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Crawley — Web Design, SEO & Review Generation for Crawley Businesses",
+    metaTitle: "GuardX Crawley — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Crawley Businesses",
     metaDescription:
       "GuardX Crawley: automated email and SMS review requests that help local businesses build five-star Google reputations and attract more customers.",
-    h1: "Web Design, SEO & Review Generation for Crawley Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Crawley Businesses",
     intro:
       "Crawley is one of the largest towns in West Sussex, with a diverse economy that spans everything from airport services to local trades. With so many businesses competing for attention, your Google reviews are one of the most powerful tools for standing out. GuardX automates the entire review collection process.\n\nOur system sends personalised email and SMS review requests after every customer interaction, ensuring you consistently build a strong, trustworthy online profile without any manual effort.",
     localContext:
@@ -179,10 +359,28 @@ export const locations: Location[] = [
     name: "Haywards Heath",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Haywards Heath — Web Design, SEO & Review Generation for Local Businesses",
+    metaTitle: "GuardX Haywards Heath — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Local Businesses",
     metaDescription:
       "GuardX helps Haywards Heath businesses generate more Google reviews automatically. Boost local visibility, build trust, and grow your customer base.",
-    h1: "Web Design, SEO & Review Generation for Haywards Heath Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Haywards Heath Businesses",
     intro:
       "Haywards Heath is a well-connected commuter town with a loyal local customer base. Whether you are a tradesperson, a salon owner, or a restaurant, your Google reviews directly influence how many new customers find and choose you. GuardX makes review collection automatic and effortless.\n\nOur done-for-you system sends personalised review requests at the perfect moment, turning everyday customer interactions into five-star reviews that boost your rankings and reputation.",
     localContext:
@@ -195,10 +393,28 @@ export const locations: Location[] = [
     name: "Burgess Hill",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Burgess Hill — Web Design, SEO & Review Generation for Burgess Hill Businesses",
+    metaTitle: "GuardX Burgess Hill — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Burgess Hill Businesses",
     metaDescription:
       "GuardX Burgess Hill: grow your Google reviews on autopilot. Our automated system helps local businesses build stronger reputations and attract more customers.",
-    h1: "Web Design, SEO & Review Generation for Burgess Hill Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Burgess Hill Businesses",
     intro:
       "Burgess Hill is growing fast, with new developments bringing more residents and more demand for local services. If your business serves this expanding community, now is the time to build a strong review profile. GuardX automates Google review collection so your reputation keeps pace with your growth.\n\nOur platform sends timely, personalised review requests via email and SMS, converting satisfied customers into visible online advocates for your business.",
     localContext:
@@ -211,10 +427,28 @@ export const locations: Location[] = [
     name: "East Grinstead",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX East Grinstead — Web Design, SEO & Review Generation for East Grinstead Businesses",
+    metaTitle: "GuardX East Grinstead — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for East Grinstead Businesses",
     metaDescription:
       "Automated review growth for East Grinstead businesses. GuardX helps you get more Google reviews, improve local search rankings, and grow your customer base.",
-    h1: "Web Design, SEO & Review Generation for East Grinstead Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for East Grinstead Businesses",
     intro:
       "East Grinstead sits at the northern edge of Sussex, close to the Surrey and Kent borders. Businesses here serve a wide catchment area, and your Google reviews are the first impression many potential customers get. GuardX automates review collection so your online reputation accurately reflects the quality of your service.\n\nOur system handles everything — from sending personalised email and SMS requests to guiding customers through the review process. You focus on your business; we handle the rest.",
     localContext:
@@ -227,10 +461,28 @@ export const locations: Location[] = [
     name: "Lewes",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Lewes — Web Design, SEO & Review Generation for Lewes Businesses",
+    metaTitle: "GuardX Lewes — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Lewes Businesses",
     metaDescription:
       "GuardX Lewes: automated Google review requests for local businesses. Build trust, boost visibility, and attract more customers in the county town of East Sussex.",
-    h1: "Web Design, SEO & Review Generation for Lewes Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Lewes Businesses",
     intro:
       "Lewes is the county town of East Sussex and a hub for independent businesses. From artisan shops and restaurants to trades and professional services, the town rewards businesses that have built visible trust. GuardX helps Lewes businesses collect Google reviews automatically, turning every customer interaction into an opportunity for growth.\n\nOur personalised email and SMS review requests are sent at just the right time, making it easy for customers to share their positive experience. The result is a growing review profile that attracts new business and strengthens your local standing.",
     localContext:
@@ -243,10 +495,28 @@ export const locations: Location[] = [
     name: "Uckfield",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Uckfield — Web Design, SEO & Review Generation for Uckfield Businesses",
+    metaTitle: "GuardX Uckfield — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Uckfield Businesses",
     metaDescription:
       "Grow your Uckfield business with GuardX. Automated review requests that build your Google reputation, increase visibility, and bring in more local customers.",
-    h1: "Web Design, SEO & Review Generation for Uckfield Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Uckfield Businesses",
     intro:
       "Uckfield is a thriving town in the Wealden district, known for its active high street and strong community. Local businesses here compete for the attention of both residents and visitors from the surrounding villages. GuardX gives you an edge by automating your Google review collection, so your reputation grows consistently.\n\nEvery satisfied customer receives a personalised review request, making it simple for them to leave positive feedback. Over time, this builds a review profile that drives new enquiries and strengthens customer loyalty.",
     localContext:
@@ -259,10 +529,28 @@ export const locations: Location[] = [
     name: "Crowborough",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Crowborough — Web Design, SEO & Review Generation for Crowborough Businesses",
+    metaTitle: "GuardX Crowborough — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Crowborough Businesses",
     metaDescription:
       "GuardX helps Crowborough businesses collect more Google reviews automatically. Improve your local reputation, rank higher in search, and win more customers.",
-    h1: "Web Design, SEO & Review Generation for Crowborough Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Crowborough Businesses",
     intro:
       "Crowborough is a popular town in the Wealden district, attracting families and professionals who value quality local services. If you are a tradesperson, retailer, or service provider here, your Google reviews influence how potential customers perceive and choose you. GuardX automates the review process so you always put your best foot forward.\n\nOur email and SMS system sends personalised requests at the right moment, capturing genuine positive feedback from your customers and turning it into visible five-star reviews on Google.",
     localContext:
@@ -275,10 +563,28 @@ export const locations: Location[] = [
     name: "Newhaven",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Newhaven — Web Design, SEO & Review Generation for Newhaven Businesses",
+    metaTitle: "GuardX Newhaven — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Newhaven Businesses",
     metaDescription:
       "Automated review growth for Newhaven businesses. GuardX helps you build a five-star Google reputation, attract local customers, and grow your business.",
-    h1: "Web Design, SEO & Review Generation for Newhaven Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Newhaven Businesses",
     intro:
       "Newhaven is a port town with a growing business community and regeneration projects bringing new opportunities. As the town evolves, local businesses need to ensure they are visible and trusted online. GuardX automates your Google review collection, helping you build the reputation that matches the quality of your work.\n\nOur system sends personalised email and SMS review requests after every job or service, making it effortless for customers to share their positive experience and for you to grow your online presence.",
     localContext:
@@ -291,10 +597,28 @@ export const locations: Location[] = [
     name: "Seaford",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Seaford — Web Design, SEO & Review Generation for Seaford Businesses",
+    metaTitle: "GuardX Seaford — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Seaford Businesses",
     metaDescription:
       "GuardX Seaford: automated Google review requests that help local businesses build trust, improve search visibility, and attract more customers.",
-    h1: "Web Design, SEO & Review Generation for Seaford Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Seaford Businesses",
     intro:
       "Seaford is a charming coastal town with a tight-knit community that values local businesses. Your reputation in Seaford is everything, and Google reviews are how new customers discover and evaluate you. GuardX makes it simple to collect five-star reviews automatically, building your online presence without any effort.\n\nOur done-for-you system sends personalised review requests via email and SMS, guiding customers through the process and ensuring a steady stream of positive feedback that reinforces your local standing.",
     localContext:
@@ -307,10 +631,28 @@ export const locations: Location[] = [
     name: "Eastbourne",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Eastbourne — Web Design, SEO & Review Generation for Eastbourne Businesses",
+    metaTitle: "GuardX Eastbourne — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Eastbourne Businesses",
     metaDescription:
       "Grow your Eastbourne business with GuardX. Automated review requests that boost your Google visibility, build customer trust, and increase local revenue.",
-    h1: "Web Design, SEO & Review Generation for Eastbourne Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Eastbourne Businesses",
     intro:
       "Eastbourne is one of the largest and most visited towns in East Sussex, with a diverse economy spanning hospitality, retail, health, and trades. Competition for local customers is fierce, and your Google reviews are often the deciding factor. GuardX automates the review collection process so your reputation grows as fast as your business.\n\nOur platform sends personalised email and SMS review requests at the perfect moment, turning satisfied customers into visible five-star advocates. The result is more reviews, higher rankings, and a steady stream of new enquiries.",
     localContext:
@@ -323,10 +665,28 @@ export const locations: Location[] = [
     name: "Bexhill",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Bexhill — Web Design, SEO & Review Generation for Bexhill Businesses",
+    metaTitle: "GuardX Bexhill — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Bexhill Businesses",
     metaDescription:
       "GuardX Bexhill: automated review requests that help local businesses build stronger Google reputations, rank higher in search, and win more customers.",
-    h1: "Web Design, SEO & Review Generation for Bexhill Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Bexhill Businesses",
     intro:
       "Bexhill-on-Sea is a characterful coastal town with a loyal residential community and a growing business scene. Whether you are a tradesperson, a cafe owner, or a service provider, your Google reviews shape how new customers find and choose you. GuardX automates the entire process, so your reputation grows effortlessly.\n\nOur system sends personalised review requests after every customer interaction, ensuring a consistent flow of genuine five-star reviews that build trust and improve your search visibility.",
     localContext:
@@ -339,10 +699,28 @@ export const locations: Location[] = [
     name: "Hastings",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Hastings — Web Design, SEO & Review Generation for Hastings Businesses",
+    metaTitle: "GuardX Hastings — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Hastings Businesses",
     metaDescription:
       "GuardX helps Hastings businesses grow with automated Google review requests. Build your five-star reputation, improve local rankings, and attract more customers.",
-    h1: "Web Design, SEO & Review Generation for Hastings Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Hastings Businesses",
     intro:
       "Hastings is a historic seaside town with a creative, entrepreneurial business community. From the Old Town's independent shops and restaurants to trades businesses across the town, Google reviews are a critical part of attracting and retaining customers. GuardX automates review collection so your online reputation keeps pace with your ambitions.\n\nOur email and SMS review system sends personalised requests at the right time, making it easy for your customers to share their positive experience. The result: a growing Google profile that drives new business and builds lasting trust.",
     localContext:
@@ -355,10 +733,28 @@ export const locations: Location[] = [
     name: "Rye",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Rye — Web Design, SEO & Review Generation for Rye Businesses",
+    metaTitle: "GuardX Rye — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Rye Businesses",
     metaDescription:
       "GuardX helps Rye businesses collect more Google reviews automatically. Perfect for hospitality, retail, and trades in this popular East Sussex town.",
-    h1: "Web Design, SEO & Review Generation for Rye Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Rye Businesses",
     intro:
       "Rye is one of the most picturesque towns in East Sussex, drawing visitors from across the UK and beyond. For businesses in Rye — from boutique hotels and restaurants to local trades — Google reviews are the digital equivalent of a personal recommendation. GuardX automates your review collection so every happy customer becomes a visible endorsement.\n\nOur system sends personalised email and SMS review requests after every visit or job, capturing positive feedback while it is fresh. The steady flow of genuine reviews strengthens your reputation and keeps you top of search results.",
     localContext:
@@ -372,10 +768,28 @@ export const locations: Location[] = [
     slug: "london",
     name: "London",
     region: "uk-cities",
-    metaTitle: "GuardX London — Web Design, SEO & Review Generation for London Businesses",
+    metaTitle: "GuardX London — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for London Businesses",
     metaDescription:
       "GuardX helps London businesses grow with automated Google review requests. Stand out in the UK's most competitive market with a five-star reputation.",
-    h1: "Web Design, SEO & Review Generation for London Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for London Businesses",
     intro:
       "London is the most competitive business market in the UK. With millions of businesses fighting for attention, your Google reviews are one of the most powerful differentiators you have. GuardX gives London businesses an automated review growth system that consistently builds your five-star reputation.\n\nWhether you are a tradesperson in South London, a restaurant in Soho, or a salon in East London, our platform sends personalised email and SMS review requests after every job or visit. More reviews mean higher rankings, more trust, and more customers.",
     localContext:
@@ -387,10 +801,28 @@ export const locations: Location[] = [
     slug: "manchester",
     name: "Manchester",
     region: "uk-cities",
-    metaTitle: "GuardX Manchester — Web Design, SEO & Review Generation for Manchester Businesses",
+    metaTitle: "GuardX Manchester — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Manchester Businesses",
     metaDescription:
       "Grow your Manchester business with GuardX. Automated review requests that boost Google visibility, build trust, and bring in more local customers.",
-    h1: "Web Design, SEO & Review Generation for Manchester Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Manchester Businesses",
     intro:
       "Manchester is one of the UK's most dynamic cities, with a thriving business scene that spans everything from hospitality to professional services. In this competitive market, your Google reviews can be the difference between a customer choosing you or a competitor. GuardX automates the review process so your reputation grows consistently.\n\nOur system sends personalised email and SMS review requests after every customer interaction. No chasing, no awkward conversations — just steady, organic review growth that puts your business ahead.",
     localContext:
@@ -402,10 +834,28 @@ export const locations: Location[] = [
     slug: "birmingham",
     name: "Birmingham",
     region: "uk-cities",
-    metaTitle: "GuardX Birmingham — Web Design, SEO & Review Generation for Birmingham Businesses",
+    metaTitle: "GuardX Birmingham — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Birmingham Businesses",
     metaDescription:
       "GuardX Birmingham: automated Google review requests that help local businesses build five-star reputations, improve visibility, and attract more customers.",
-    h1: "Web Design, SEO & Review Generation for Birmingham Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Birmingham Businesses",
     intro:
       "Birmingham is the UK's second city and a major commercial hub. From Digbeth's independent businesses to the Jewellery Quarter's established firms, competition for local customers is intense. GuardX provides Birmingham businesses with automated review collection that builds trust and boosts Google rankings.\n\nOur platform sends personalised review requests via email and SMS after every job, appointment, or purchase. The result: a steady stream of genuine five-star reviews that set you apart from the competition.",
     localContext:
@@ -417,10 +867,28 @@ export const locations: Location[] = [
     slug: "leeds",
     name: "Leeds",
     region: "uk-cities",
-    metaTitle: "GuardX Leeds — Web Design, SEO & Review Generation for Leeds Businesses",
+    metaTitle: "GuardX Leeds — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Leeds Businesses",
     metaDescription:
       "GuardX helps Leeds businesses generate more Google reviews automatically. Build your local reputation, rank higher in search, and win more customers.",
-    h1: "Web Design, SEO & Review Generation for Leeds Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Leeds Businesses",
     intro:
       "Leeds is one of the fastest-growing cities in the UK, with a vibrant economy and a strong sense of community. Whether you run a cafe in the city centre, a trades business in the suburbs, or a professional services firm, your Google reviews influence how customers find and choose you. GuardX automates the process.\n\nOur email and SMS system sends personalised review requests at the right moment, ensuring a steady flow of genuine five-star reviews that drive new business and strengthen your reputation.",
     localContext:
@@ -432,10 +900,28 @@ export const locations: Location[] = [
     slug: "liverpool",
     name: "Liverpool",
     region: "uk-cities",
-    metaTitle: "GuardX Liverpool — Web Design, SEO & Review Generation for Liverpool Businesses",
+    metaTitle: "GuardX Liverpool — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Liverpool Businesses",
     metaDescription:
       "Grow your Liverpool business with GuardX. Automated Google review requests that build trust, improve local visibility, and attract more customers.",
-    h1: "Web Design, SEO & Review Generation for Liverpool Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Liverpool Businesses",
     intro:
       "Liverpool is a city with enormous character and a fiercely loyal local customer base. But in a competitive market, word-of-mouth alone is not enough — your Google reviews need to reflect the quality of your work. GuardX automates review collection so your online reputation grows as steadily as your business.\n\nOur platform sends personalised email and SMS review requests after every customer interaction, making it easy for satisfied customers to share their experience. More reviews mean more visibility, more trust, and more revenue.",
     localContext:
@@ -447,10 +933,28 @@ export const locations: Location[] = [
     slug: "bristol",
     name: "Bristol",
     region: "uk-cities",
-    metaTitle: "GuardX Bristol — Web Design, SEO & Review Generation for Bristol Businesses",
+    metaTitle: "GuardX Bristol — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Bristol Businesses",
     metaDescription:
       "GuardX Bristol: automated review requests that help local businesses build stronger Google reputations, rank higher, and attract more customers.",
-    h1: "Web Design, SEO & Review Generation for Bristol Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Bristol Businesses",
     intro:
       "Bristol is one of the UK's most innovative and independent-minded cities. Local businesses here thrive on community support and strong reputations. GuardX helps Bristol businesses take that reputation online by automating Google review collection, ensuring every satisfied customer has the chance to share their experience.\n\nOur email and SMS system sends personalised review requests at the perfect moment, building a five-star Google profile that drives new enquiries and cements your position in the local market.",
     localContext:
@@ -462,10 +966,28 @@ export const locations: Location[] = [
     slug: "sheffield",
     name: "Sheffield",
     region: "uk-cities",
-    metaTitle: "GuardX Sheffield — Web Design, SEO & Review Generation for Sheffield Businesses",
+    metaTitle: "GuardX Sheffield — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Sheffield Businesses",
     metaDescription:
       "GuardX helps Sheffield businesses collect more Google reviews automatically. Build trust, improve local search rankings, and win more customers.",
-    h1: "Web Design, SEO & Review Generation for Sheffield Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Sheffield Businesses",
     intro:
       "Sheffield has a proud industrial heritage and a modern economy that supports thousands of local businesses. Whether you work in trades, hospitality, health, or retail, your Google reviews directly impact how many new customers find and choose you. GuardX automates the review collection process so your reputation grows without any extra work.\n\nOur personalised email and SMS review requests are sent at just the right time, converting satisfied customers into five-star advocates for your business on Google.",
     localContext:
@@ -477,10 +999,28 @@ export const locations: Location[] = [
     slug: "nottingham",
     name: "Nottingham",
     region: "uk-cities",
-    metaTitle: "GuardX Nottingham — Web Design, SEO & Review Generation for Nottingham Businesses",
+    metaTitle: "GuardX Nottingham — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Nottingham Businesses",
     metaDescription:
       "Grow your Nottingham business with GuardX. Automated Google review requests that build your reputation, improve visibility, and attract more local customers.",
-    h1: "Web Design, SEO & Review Generation for Nottingham Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Nottingham Businesses",
     intro:
       "Nottingham is a lively city with a strong independent business community. From the Lace Market to the suburbs, local businesses rely on visibility and trust to attract customers. GuardX provides an automated review growth system that ensures your Google profile reflects the quality of your service.\n\nOur platform sends personalised email and SMS review requests after every customer interaction, making it simple for happy customers to leave positive feedback. The result: more reviews, higher rankings, and steady business growth.",
     localContext:
@@ -492,10 +1032,28 @@ export const locations: Location[] = [
     slug: "leicester",
     name: "Leicester",
     region: "uk-cities",
-    metaTitle: "GuardX Leicester — Web Design, SEO & Review Generation for Leicester Businesses",
+    metaTitle: "GuardX Leicester — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Leicester Businesses",
     metaDescription:
       "GuardX Leicester: automated Google review requests that help local businesses build five-star reputations and attract more customers across the city.",
-    h1: "Web Design, SEO & Review Generation for Leicester Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Leicester Businesses",
     intro:
       "Leicester is one of the most diverse and dynamic cities in the East Midlands. Local businesses here serve a wide range of communities and need a strong online presence to stand out. GuardX automates your Google review collection, ensuring your reputation grows consistently and authentically.\n\nOur email and SMS system sends personalised review requests to your customers at the right moment, building a five-star profile that attracts new business and reinforces customer loyalty.",
     localContext:
@@ -507,10 +1065,28 @@ export const locations: Location[] = [
     slug: "newcastle",
     name: "Newcastle",
     region: "uk-cities",
-    metaTitle: "GuardX Newcastle — Web Design, SEO & Review Generation for Newcastle Businesses",
+    metaTitle: "GuardX Newcastle — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Newcastle Businesses",
     metaDescription:
       "GuardX helps Newcastle businesses grow with automated Google review requests. Build your reputation, improve local rankings, and attract more customers.",
-    h1: "Web Design, SEO & Review Generation for Newcastle Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Newcastle Businesses",
     intro:
       "Newcastle upon Tyne is a vibrant city with a strong identity and a loyal local customer base. Whether you run a restaurant on the Quayside, a trades business in Jesmond, or a salon in the city centre, your Google reviews are critical for attracting new customers. GuardX automates the process so your reputation grows steadily.\n\nOur personalised email and SMS review requests are sent after every customer interaction, making it effortless for satisfied customers to leave positive feedback on Google.",
     localContext:
@@ -522,10 +1098,28 @@ export const locations: Location[] = [
     slug: "glasgow",
     name: "Glasgow",
     region: "uk-cities",
-    metaTitle: "GuardX Glasgow — Web Design, SEO & Review Generation for Glasgow Businesses",
+    metaTitle: "GuardX Glasgow — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Glasgow Businesses",
     metaDescription:
       "Grow your Glasgow business with GuardX. Automated Google review requests that build trust, boost visibility, and bring in more local customers.",
-    h1: "Web Design, SEO & Review Generation for Glasgow Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Glasgow Businesses",
     intro:
       "Glasgow is Scotland's largest city and one of the UK's most vibrant business markets. From the Merchant City to the West End, local businesses need strong Google reviews to stand out in this competitive landscape. GuardX automates the entire review collection process, giving Glasgow businesses a reliable path to a five-star reputation.\n\nOur platform sends personalised email and SMS review requests at the right moment, turning every satisfied customer into a visible advocate for your business.",
     localContext:
@@ -537,10 +1131,28 @@ export const locations: Location[] = [
     slug: "edinburgh",
     name: "Edinburgh",
     region: "uk-cities",
-    metaTitle: "GuardX Edinburgh — Web Design, SEO & Review Generation for Edinburgh Businesses",
+    metaTitle: "GuardX Edinburgh — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Edinburgh Businesses",
     metaDescription:
       "GuardX Edinburgh: automated Google review requests that help local businesses build trust, improve visibility, and attract more customers in Scotland's capital.",
-    h1: "Web Design, SEO & Review Generation for Edinburgh Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Edinburgh Businesses",
     intro:
       "Edinburgh is a world-class city that attracts millions of visitors alongside a strong resident population. For local businesses, Google reviews are the bridge between tourist curiosity and paying customers. GuardX automates review collection so your reputation grows consistently, capturing feedback from both locals and visitors.\n\nOur email and SMS system sends personalised review requests after every interaction, ensuring a steady stream of genuine five-star reviews that boost your search visibility and build lasting trust.",
     localContext:
@@ -552,10 +1164,28 @@ export const locations: Location[] = [
     slug: "cardiff",
     name: "Cardiff",
     region: "uk-cities",
-    metaTitle: "GuardX Cardiff — Web Design, SEO & Review Generation for Cardiff Businesses",
+    metaTitle: "GuardX Cardiff — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Cardiff Businesses",
     metaDescription:
       "GuardX helps Cardiff businesses grow with automated Google review requests. Build your five-star reputation, improve local rankings, and win more customers.",
-    h1: "Web Design, SEO & Review Generation for Cardiff Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Cardiff Businesses",
     intro:
       "Cardiff is Wales's capital and its largest commercial centre. From the Bay to the city centre, local businesses compete for the attention of a growing population. GuardX gives Cardiff businesses an automated review growth system that builds a five-star Google reputation without any manual effort.\n\nOur platform sends personalised email and SMS review requests after every job, visit, or purchase. More genuine reviews mean higher search rankings, more trust, and more customers walking through your door.",
     localContext:
@@ -567,10 +1197,28 @@ export const locations: Location[] = [
     slug: "belfast",
     name: "Belfast",
     region: "uk-cities",
-    metaTitle: "GuardX Belfast — Web Design, SEO & Review Generation for Belfast Businesses",
+    metaTitle: "GuardX Belfast — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Belfast Businesses",
     metaDescription:
       "Grow your Belfast business with GuardX. Automated review requests that boost your Google visibility, build customer trust, and attract more local business.",
-    h1: "Web Design, SEO & Review Generation for Belfast Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Belfast Businesses",
     intro:
       "Belfast is a city experiencing remarkable growth and renewal. Local businesses across all sectors are competing for the attention of a confident, expanding market. GuardX helps Belfast businesses stand out by automating Google review collection, ensuring your reputation grows as fast as the city itself.\n\nOur email and SMS system sends personalised review requests to your customers at the perfect moment, making it simple for them to leave positive feedback. The result: a stronger Google profile that attracts more enquiries and builds lasting trust.",
     localContext:
@@ -582,10 +1230,28 @@ export const locations: Location[] = [
     slug: "southampton",
     name: "Southampton",
     region: "uk-cities",
-    metaTitle: "GuardX Southampton — Web Design, SEO & Review Generation for Southampton Businesses",
+    metaTitle: "GuardX Southampton — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Southampton Businesses",
     metaDescription:
       "GuardX Southampton: automated Google review requests that help local businesses build five-star reputations, improve visibility, and win more customers.",
-    h1: "Web Design, SEO & Review Generation for Southampton Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Southampton Businesses",
     intro:
       "Southampton is a major port city with a diverse business community. From the city centre to the suburbs, local businesses compete for a large and varied customer base. GuardX automates your Google review collection, ensuring your reputation reflects the quality of your work and drives new business.\n\nOur personalised email and SMS review requests are sent at the right time, making it effortless for customers to share their positive experience. Consistent reviews build trust, improve rankings, and grow revenue.",
     localContext:
@@ -597,10 +1263,28 @@ export const locations: Location[] = [
     slug: "portsmouth",
     name: "Portsmouth",
     region: "uk-cities",
-    metaTitle: "GuardX Portsmouth — Web Design, SEO & Review Generation for Portsmouth Businesses",
+    metaTitle: "GuardX Portsmouth — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Portsmouth Businesses",
     metaDescription:
       "GuardX helps Portsmouth businesses collect more Google reviews automatically. Build trust, improve local rankings, and attract more customers.",
-    h1: "Web Design, SEO & Review Generation for Portsmouth Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Portsmouth Businesses",
     intro:
       "Portsmouth is a historic naval city with a strong and growing business community. Whether you are a tradesperson, a restaurant owner, or a service provider, your Google reviews play a crucial role in how new customers find and evaluate you. GuardX automates the review process so your reputation grows consistently.\n\nOur email and SMS system sends personalised review requests after every customer interaction, capturing genuine feedback and building a visible five-star profile on Google.",
     localContext:
@@ -612,10 +1296,28 @@ export const locations: Location[] = [
     slug: "reading",
     name: "Reading",
     region: "uk-cities",
-    metaTitle: "GuardX Reading — Web Design, SEO & Review Generation for Reading Businesses",
+    metaTitle: "GuardX Reading — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Reading Businesses",
     metaDescription:
       "Grow your Reading business with GuardX. Automated Google review requests that build trust, boost local visibility, and bring in more customers.",
-    h1: "Web Design, SEO & Review Generation for Reading Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Reading Businesses",
     intro:
       "Reading is one of the UK's most prosperous and well-connected towns, with a large and demanding customer base. Local businesses here face competition from both independents and national brands. GuardX gives Reading businesses an edge by automating Google review collection, building the trust and visibility needed to win customers.\n\nOur platform sends personalised email and SMS review requests after every interaction, ensuring a steady flow of genuine five-star reviews that improve your search rankings and attract more business.",
     localContext:
@@ -627,10 +1329,28 @@ export const locations: Location[] = [
     slug: "oxford",
     name: "Oxford",
     region: "uk-cities",
-    metaTitle: "GuardX Oxford — Web Design, SEO & Review Generation for Oxford Businesses",
+    metaTitle: "GuardX Oxford — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Oxford Businesses",
     metaDescription:
       "GuardX Oxford: automated review requests that help local businesses build five-star Google reputations and attract more customers in one of the UK's most competitive markets.",
-    h1: "Web Design, SEO & Review Generation for Oxford Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Oxford Businesses",
     intro:
       "Oxford is a world-famous city with a unique blend of academic prestige and vibrant local commerce. For businesses here, standing out means having visible proof of quality. GuardX automates your Google review collection, ensuring your reputation matches the standard your customers expect.\n\nOur personalised email and SMS review requests are sent after every job, visit, or service, making it effortless for customers to leave positive feedback. The result: a growing Google profile that attracts new business from both residents and the city's many visitors.",
     localContext:
@@ -642,10 +1362,28 @@ export const locations: Location[] = [
     slug: "cambridge",
     name: "Cambridge",
     region: "uk-cities",
-    metaTitle: "GuardX Cambridge — Web Design, SEO & Review Generation for Cambridge Businesses",
+    metaTitle: "GuardX Cambridge — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Cambridge Businesses",
     metaDescription:
       "GuardX helps Cambridge businesses grow with automated Google review requests. Build your reputation, improve local visibility, and win more customers.",
-    h1: "Web Design, SEO & Review Generation for Cambridge Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Cambridge Businesses",
     intro:
       "Cambridge is a city of innovation and high expectations. Local businesses here serve a discerning customer base that values quality and reliability. GuardX helps Cambridge businesses demonstrate that quality through automated Google review collection, building a five-star profile that earns trust and drives growth.\n\nOur email and SMS system sends personalised review requests at the right moment, ensuring a steady flow of genuine reviews that strengthen your position in local search results.",
     localContext:
@@ -657,10 +1395,28 @@ export const locations: Location[] = [
     slug: "milton-keynes",
     name: "Milton Keynes",
     region: "uk-cities",
-    metaTitle: "GuardX Milton Keynes — Web Design, SEO & Review Generation for Milton Keynes Businesses",
+    metaTitle: "GuardX Milton Keynes — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Milton Keynes Businesses",
     metaDescription:
       "Grow your Milton Keynes business with GuardX. Automated Google review requests that build trust, improve search rankings, and bring in more customers.",
-    h1: "Web Design, SEO & Review Generation for Milton Keynes Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Milton Keynes Businesses",
     intro:
       "Milton Keynes is one of the UK's fastest-growing cities, with new businesses and residents arriving constantly. In this expanding market, your Google reviews are essential for establishing trust and standing out. GuardX automates the review collection process, ensuring your reputation grows alongside the city.\n\nOur platform sends personalised email and SMS review requests after every customer interaction, building a five-star Google profile that attracts new business and strengthens your market position.",
     localContext:
@@ -672,10 +1428,28 @@ export const locations: Location[] = [
     slug: "norwich",
     name: "Norwich",
     region: "uk-cities",
-    metaTitle: "GuardX Norwich — Web Design, SEO & Review Generation for Norwich Businesses",
+    metaTitle: "GuardX Norwich — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Norwich Businesses",
     metaDescription:
       "GuardX Norwich: automated Google review requests that help local businesses build five-star reputations, improve visibility, and attract more customers.",
-    h1: "Web Design, SEO & Review Generation for Norwich Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Norwich Businesses",
     intro:
       "Norwich is the regional capital of Norfolk and a thriving centre for business, culture, and tourism. Local businesses here benefit from a loyal customer base, but competition for new customers is fierce. GuardX automates your Google review collection, turning satisfied customers into visible five-star advocates for your business.\n\nOur email and SMS system sends personalised review requests at the perfect moment, building a review profile that improves your search rankings and drives new enquiries.",
     localContext:
@@ -687,10 +1461,28 @@ export const locations: Location[] = [
     slug: "plymouth",
     name: "Plymouth",
     region: "uk-cities",
-    metaTitle: "GuardX Plymouth — Web Design, SEO & Review Generation for Plymouth Businesses",
+    metaTitle: "GuardX Plymouth — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Plymouth Businesses",
     metaDescription:
       "GuardX helps Plymouth businesses collect more Google reviews automatically. Build your reputation, improve local rankings, and attract more customers.",
-    h1: "Web Design, SEO & Review Generation for Plymouth Businesses",
+    h1: "Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ for Plymouth Businesses",
     intro:
       "Plymouth is a major city in Devon's south coast with a strong maritime heritage and a growing economy. Local businesses here serve a diverse community, from city-centre retailers to suburban trades. GuardX automates your Google review collection, ensuring your online reputation accurately reflects the quality of your service.\n\nOur personalised email and SMS review requests are sent after every customer interaction, making it easy for happy customers to leave five-star reviews. The result: higher rankings, more visibility, and a steady stream of new business.",
     localContext:

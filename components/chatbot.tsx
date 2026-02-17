@@ -178,3 +178,6 @@ export default function Chatbot() {
     </>
   )
 }
+
+
+<p>Built using modern, professional technology for speed, reliability, and long-term performance.</p>

@@ -108,12 +108,42 @@ export default function PricingPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Starter Website */}
+            {/* Starter Website
+
+Includes:
+
+Fully custom website built specifically for your business
+Modern, mobile-optimised design that works on phones, tablets, and desktops
+Clear service sections designed to convert visitors into enquiries
+Click-to-call, email, and contact integration
+WhatsApp chat integration (optional)
+Social media profile integration (Facebook, Instagram, etc.)
+Contact form with direct email delivery
+Fast-loading, professional website structure
+Secure and reliable modern website build
+Google-ready structure for proper indexing
+Professional layout designed to build trust and credibility
+ */}
             <div className="rounded-xl border border-white/10 bg-[#111827] p-8 flex flex-col transition-all duration-300 hover:border-blue-400/40 hover:shadow-lg">
               <div className="w-14 h-14 bg-blue-500/10 rounded-full flex items-center justify-center mb-6">
                 <Globe className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Starter Website</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">Starter Website
+
+Includes:
+
+Fully custom website built specifically for your business
+Modern, mobile-optimised design that works on phones, tablets, and desktops
+Clear service sections designed to convert visitors into enquiries
+Click-to-call, email, and contact integration
+WhatsApp chat integration (optional)
+Social media profile integration (Facebook, Instagram, etc.)
+Contact form with direct email delivery
+Fast-loading, professional website structure
+Secure and reliable modern website build
+Google-ready structure for proper indexing
+Professional layout designed to build trust and credibility
+</h3>
               <div className="mb-6">
                 <span className="text-sm text-[#94a3b8]">from</span>
                 <span className="text-4xl font-bold text-white ml-2">{"£"}500</span>
@@ -139,7 +169,22 @@ export default function PricingPage() {
               </a>
             </div>
 
-            {/* Professional Website + SEO */}
+            {/* Professional Website
+
+Includes:
+
+Everything included in the Starter Website, plus:
+
+Full SEO-ready website structure
+Dedicated service pages for improved search visibility
+Location-based pages to help target your service areas
+Proper heading and content structure for Google indexing
+Optimised page speed and performance
+Clean URL structure for long-term scalability
+Metadata and page structure optimised for search engines
+Internal linking structure designed for clarity and performance
+Built using modern frameworks for speed, performance, and reliability
+ + SEO */}
             <div className="rounded-xl border-2 border-blue-500 bg-[#111827] p-8 flex flex-col relative transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                 <span className="bg-blue-500 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide">
@@ -149,7 +194,22 @@ export default function PricingPage() {
               <div className="w-14 h-14 bg-blue-500/10 rounded-full flex items-center justify-center mb-6">
                 <Search className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Professional Website + SEO Foundation</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">Professional Website
+
+Includes:
+
+Everything included in the Starter Website, plus:
+
+Full SEO-ready website structure
+Dedicated service pages for improved search visibility
+Location-based pages to help target your service areas
+Proper heading and content structure for Google indexing
+Optimised page speed and performance
+Clean URL structure for long-term scalability
+Metadata and page structure optimised for search engines
+Internal linking structure designed for clarity and performance
+Built using modern frameworks for speed, performance, and reliability
+ + SEO Foundation</h3>
               <div className="mb-6">
                 <span className="text-sm text-[#94a3b8]">from</span>
                 <span className="text-4xl font-bold text-white ml-2">{"£"}1,000</span>
@@ -157,7 +217,22 @@ export default function PricingPage() {
               <ul className="space-y-3 mb-8 flex-1">
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-[#cbd5e1]">Everything in Starter Website</span>
+                  <span className="text-[#cbd5e1]">Everything in Starter Website
+
+Includes:
+
+Fully custom website built specifically for your business
+Modern, mobile-optimised design that works on phones, tablets, and desktops
+Clear service sections designed to convert visitors into enquiries
+Click-to-call, email, and contact integration
+WhatsApp chat integration (optional)
+Social media profile integration (Facebook, Instagram, etc.)
+Contact form with direct email delivery
+Fast-loading, professional website structure
+Secure and reliable modern website build
+Google-ready structure for proper indexing
+Professional layout designed to build trust and credibility
+</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
@@ -175,12 +250,32 @@ export default function PricingPage() {
               </a>
             </div>
 
-            {/* Website Hosting */}
+            {/* Website Website Hosting
+
+Includes:
+
+Secure hosting to keep your website live and accessible
+Fast and reliable hosting infrastructure
+Domain connection and deployment included
+Ongoing hosting to ensure continuous availability
+Light technical support if you need help or advice
+No technical knowledge required from you
+ */}
             <div className="rounded-xl border border-white/10 bg-[#111827] p-8 flex flex-col transition-all duration-300 hover:border-blue-400/40 hover:shadow-lg">
               <div className="w-14 h-14 bg-blue-500/10 rounded-full flex items-center justify-center mb-6">
                 <Server className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Website Hosting</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">Website Website Hosting
+
+Includes:
+
+Secure hosting to keep your website live and accessible
+Fast and reliable hosting infrastructure
+Domain connection and deployment included
+Ongoing hosting to ensure continuous availability
+Light technical support if you need help or advice
+No technical knowledge required from you
+</h3>
               <div className="mb-6">
                 <span className="text-4xl font-bold text-white">{"£"}30</span>
                 <span className="text-lg text-[#94a3b8] ml-2">per month</span>
@@ -205,7 +300,16 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* SECONDARY SECTION: Optional Review Generation Add-On */}
+      {/* SECONDARY SECTION: Optional Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ Add-On */}
       <section className="py-20 bg-[#111827]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-xl border border-white/10 bg-[#0a0e1a] p-10 md:p-14">
@@ -214,10 +318,28 @@ export default function PricingPage() {
                 <span className="text-blue-400 font-bold text-sm">OPTIONAL ADD-ON</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Optional Review Generation Add-On
+                Optional Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ Add-On
               </h2>
               <p className="text-lg text-[#94a3b8] max-w-2xl mx-auto leading-relaxed">
-                GuardX Review Generation helps keep your Google profile active by automatically encouraging customer
+                GuardX Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ helps keep your Google profile active by automatically encouraging customer
                 feedback after each job.
               </p>
               <p className="text-white font-semibold text-xl mt-4">£30/week</p>
@@ -361,3 +483,6 @@ export default function PricingPage() {
     </div>
   )
 }
+
+
+<p>Built using modern, professional technology for speed, reliability, and long-term performance.</p>

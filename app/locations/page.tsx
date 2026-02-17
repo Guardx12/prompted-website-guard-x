@@ -7,7 +7,16 @@ import Link from "next/link"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "GuardX Locations — Web Design, SEO & Review Generation Across Sussex and the UK",
+  title: "GuardX Locations — Web Design, SEO & Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ Across Sussex and the UK",
   description:
     "GuardX provides professional web design, SEO foundation, and automated review generation for businesses across Sussex and major UK cities. Find your location and discover how we can help.",
 }

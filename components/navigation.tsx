@@ -33,13 +33,31 @@ export function Navigation() {
                 Home
               </Link>
               <Link href="/review-generation" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
-                Review Generation
+                Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+
               </Link>
               <Link href="/web-design" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
                 Web Design
               </Link>
               <Link href="/real-results" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
-                Review Generation Results
+                Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ Results
               </Link>
               <Link href="/calculator" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
                 Calculator
@@ -76,13 +94,31 @@ export function Navigation() {
                   Home
                 </Link>
                 <Link href="/review-generation" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
-                  Review Generation
+                  Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+
                 </Link>
                 <Link href="/web-design" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
                   Web Design
                 </Link>
                 <Link href="/real-results" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
-                  Review Generation Results
+                  Review Generation System
+
+Includes:
+
+Simple system to send customers directly to your Google review page
+Optimised review request experience for higher response rates
+Direct review links for easy customer access
+Helps improve trust and credibility for your business
+Supports long-term reputation growth through consistent review collection
+ Results
                 </Link>
                 <Link href="/calculator" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
                   Calculator
@@ -104,3 +140,6 @@ export function Navigation() {
     </>
   )
 }
+
+
+<p>Built using modern, professional technology for speed, reliability, and long-term performance.</p>

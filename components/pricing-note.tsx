@@ -37,3 +37,6 @@ export function PricingNote() {
     </div>
   )
 }
+
+
+<p>Built using modern, professional technology for speed, reliability, and long-term performance.</p>

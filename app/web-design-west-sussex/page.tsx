@@ -84,7 +84,22 @@ export default function WebDesignWestSussexPage() {
         {/* Benefits */}
         <section className="py-20 bg-[#111827]">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center">Benefits of a Professional Website</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center">Benefits of a Professional Website
+
+Includes:
+
+Everything included in the Starter Website, plus:
+
+Full SEO-ready website structure
+Dedicated service pages for improved search visibility
+Location-based pages to help target your service areas
+Proper heading and content structure for Google indexing
+Optimised page speed and performance
+Clean URL structure for long-term scalability
+Metadata and page structure optimised for search engines
+Internal linking structure designed for clarity and performance
+Built using modern frameworks for speed, performance, and reliability
+</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 { title: "Build Trust Instantly", desc: "A professional website makes customers confident in choosing your business over competitors." },
