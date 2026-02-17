@@ -105,61 +105,48 @@ export default function PricingPage() {
             <p className="text-xl text-[#94a3b8] max-w-3xl mx-auto">
               Professional websites built to generate enquiries for local UK businesses
             </p>
+            <p className="text-sm text-[#94a3b8] max-w-3xl mx-auto mt-4">Built using modern, professional technology for speed, reliability, and long-term performance.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Starter Website
-
-Includes:
-
-Fully custom website built specifically for your business
-Modern, mobile-optimised design that works on phones, tablets, and desktops
-Clear service sections designed to convert visitors into enquiries
-Click-to-call, email, and contact integration
-WhatsApp chat integration (optional)
-Social media profile integration (Facebook, Instagram, etc.)
-Contact form with direct email delivery
-Fast-loading, professional website structure
-Secure and reliable modern website build
-Google-ready structure for proper indexing
-Professional layout designed to build trust and credibility
- */}
+            {/* Starter Website */}
             <div className="rounded-xl border border-white/10 bg-[#111827] p-8 flex flex-col transition-all duration-300 hover:border-blue-400/40 hover:shadow-lg">
               <div className="w-14 h-14 bg-blue-500/10 rounded-full flex items-center justify-center mb-6">
                 <Globe className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Starter Website
-
-Includes:
-
-Fully custom website built specifically for your business
-Modern, mobile-optimised design that works on phones, tablets, and desktops
-Clear service sections designed to convert visitors into enquiries
-Click-to-call, email, and contact integration
-WhatsApp chat integration (optional)
-Social media profile integration (Facebook, Instagram, etc.)
-Contact form with direct email delivery
-Fast-loading, professional website structure
-Secure and reliable modern website build
-Google-ready structure for proper indexing
-Professional layout designed to build trust and credibility
-</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">Starter Website</h3>
               <div className="mb-6">
                 <span className="text-sm text-[#94a3b8]">from</span>
                 <span className="text-4xl font-bold text-white ml-2">{"£"}500</span>
               </div>
               <ul className="space-y-3 mb-8 flex-1">
-                <li className="flex items-start gap-3">
+                                <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-[#cbd5e1]">Modern professional website</span>
+                  <span className="text-[#cbd5e1]">Modern, professional website (built for local UK businesses)</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-[#cbd5e1]">Mobile-friendly design</span>
+                  <span className="text-[#cbd5e1]">Mobile-friendly design across phones, tablets and desktops</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-[#cbd5e1]">Built to generate enquiries</span>
+                  <span className="text-[#cbd5e1]">Clear layout designed to generate enquiries</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Click-to-call, click-to-email and contact options</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">WhatsApp chat integration (optional)</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Social media links added (Facebook, Instagram, etc.)</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Contact form that sends straight to your email</span>
                 </li>
               </ul>
               <a href="/contact">
@@ -169,22 +156,7 @@ Professional layout designed to build trust and credibility
               </a>
             </div>
 
-            {/* Professional Website
-
-Includes:
-
-Everything included in the Starter Website, plus:
-
-Full SEO-ready website structure
-Dedicated service pages for improved search visibility
-Location-based pages to help target your service areas
-Proper heading and content structure for Google indexing
-Optimised page speed and performance
-Clean URL structure for long-term scalability
-Metadata and page structure optimised for search engines
-Internal linking structure designed for clarity and performance
-Built using modern frameworks for speed, performance, and reliability
- + SEO */}
+            {/* Professional Website + SEO */}
             <div className="rounded-xl border-2 border-blue-500 bg-[#111827] p-8 flex flex-col relative transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                 <span className="bg-blue-500 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide">
@@ -194,49 +166,43 @@ Built using modern frameworks for speed, performance, and reliability
               <div className="w-14 h-14 bg-blue-500/10 rounded-full flex items-center justify-center mb-6">
                 <Search className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Professional Website
-
-Includes:
-
-Everything included in the Starter Website, plus:
-
-Full SEO-ready website structure
-Dedicated service pages for improved search visibility
-Location-based pages to help target your service areas
-Proper heading and content structure for Google indexing
-Optimised page speed and performance
-Clean URL structure for long-term scalability
-Metadata and page structure optimised for search engines
-Internal linking structure designed for clarity and performance
-Built using modern frameworks for speed, performance, and reliability
- + SEO Foundation</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">Professional Website + SEO Foundation</h3>
               <div className="mb-6">
                 <span className="text-sm text-[#94a3b8]">from</span>
                 <span className="text-4xl font-bold text-white ml-2">{"£"}1,000</span>
               </div>
               <ul className="space-y-3 mb-8 flex-1">
-                <li className="flex items-start gap-3">
+                                <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-[#cbd5e1]">Everything in Starter Website
-
-Includes:
-
-Fully custom website built specifically for your business
-Modern, mobile-optimised design that works on phones, tablets, and desktops
-Clear service sections designed to convert visitors into enquiries
-Click-to-call, email, and contact integration
-WhatsApp chat integration (optional)
-Social media profile integration (Facebook, Instagram, etc.)
-Contact form with direct email delivery
-Fast-loading, professional website structure
-Secure and reliable modern website build
-Google-ready structure for proper indexing
-Professional layout designed to build trust and credibility
-</span>
+                  <span className="text-[#cbd5e1]">Everything in Starter, plus an SEO-ready structure</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-[#cbd5e1]">Strong SEO foundation setup</span>
+                  <span className="text-[#cbd5e1]">Service pages structured for better search visibility</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Location pages to target your service areas</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Clean URL structure and internal linking</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Meta titles and descriptions set up properly</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Sitemap.xml and robots.txt included</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Speed and performance optimised</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Built using modern frameworks for reliability</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
@@ -250,44 +216,36 @@ Professional layout designed to build trust and credibility
               </a>
             </div>
 
-            {/* Website Website Hosting
-
-Includes:
-
-Secure hosting to keep your website live and accessible
-Fast and reliable hosting infrastructure
-Domain connection and deployment included
-Ongoing hosting to ensure continuous availability
-Light technical support if you need help or advice
-No technical knowledge required from you
- */}
+            {/* Website Hosting */}
             <div className="rounded-xl border border-white/10 bg-[#111827] p-8 flex flex-col transition-all duration-300 hover:border-blue-400/40 hover:shadow-lg">
               <div className="w-14 h-14 bg-blue-500/10 rounded-full flex items-center justify-center mb-6">
                 <Server className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Website Website Hosting
-
-Includes:
-
-Secure hosting to keep your website live and accessible
-Fast and reliable hosting infrastructure
-Domain connection and deployment included
-Ongoing hosting to ensure continuous availability
-Light technical support if you need help or advice
-No technical knowledge required from you
-</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">Website Hosting</h3>
               <div className="mb-6">
                 <span className="text-4xl font-bold text-white">{"£"}30</span>
                 <span className="text-lg text-[#94a3b8] ml-2">per month</span>
               </div>
               <ul className="space-y-3 mb-8 flex-1">
-                <li className="flex items-start gap-3">
+                                <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-[#cbd5e1]">Fast, secure hosting</span>
+                  <span className="text-[#cbd5e1]">Hosting to keep your website live and accessible</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-[#cbd5e1]">Ongoing support if needed</span>
+                  <span className="text-[#cbd5e1]">Fast, reliable hosting setup</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Domain connection and deployment included</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">Light support if you need help or advice</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1]">No long contracts — cancel anytime</span>
                 </li>
               </ul>
               <a href="/contact">
@@ -300,16 +258,7 @@ No technical knowledge required from you
         </div>
       </section>
 
-      {/* SECONDARY SECTION: Optional Review Generation System
-
-Includes:
-
-Simple system to send customers directly to your Google review page
-Optimised review request experience for higher response rates
-Direct review links for easy customer access
-Helps improve trust and credibility for your business
-Supports long-term reputation growth through consistent review collection
- Add-On */}
+      {/* SECONDARY SECTION: Optional Review Generation Add-On */}
       <section className="py-20 bg-[#111827]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-xl border border-white/10 bg-[#0a0e1a] p-10 md:p-14">
@@ -318,28 +267,10 @@ Supports long-term reputation growth through consistent review collection
                 <span className="text-blue-400 font-bold text-sm">OPTIONAL ADD-ON</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Optional Review Generation System
-
-Includes:
-
-Simple system to send customers directly to your Google review page
-Optimised review request experience for higher response rates
-Direct review links for easy customer access
-Helps improve trust and credibility for your business
-Supports long-term reputation growth through consistent review collection
- Add-On
+                Optional Review Generation Add-On
               </h2>
               <p className="text-lg text-[#94a3b8] max-w-2xl mx-auto leading-relaxed">
-                GuardX Review Generation System
-
-Includes:
-
-Simple system to send customers directly to your Google review page
-Optimised review request experience for higher response rates
-Direct review links for easy customer access
-Helps improve trust and credibility for your business
-Supports long-term reputation growth through consistent review collection
- helps keep your Google profile active by automatically encouraging customer
+                GuardX Review Generation helps keep your Google profile active by automatically encouraging customer
                 feedback after each job.
               </p>
               <p className="text-white font-semibold text-xl mt-4">£30/week</p>
@@ -483,6 +414,3 @@ Supports long-term reputation growth through consistent review collection
     </div>
   )
 }
-
-
-<p>Built using modern, professional technology for speed, reliability, and long-term performance.</p>

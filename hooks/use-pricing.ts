@@ -57,6 +57,3 @@ export function usePricing(): PricingData {
     formatPrice: formatPrice,
   }
 }
-
-
-<p>Built using modern, professional technology for speed, reliability, and long-term performance.</p>

@@ -58,22 +58,7 @@ export default function WebDesignPage() {
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeIn>
             <AnimatedPageTitle
-              text="Professional Website
-
-Includes:
-
-Everything included in the Starter Website, plus:
-
-Full SEO-ready website structure
-Dedicated service pages for improved search visibility
-Location-based pages to help target your service areas
-Proper heading and content structure for Google indexing
-Optimised page speed and performance
-Clean URL structure for long-term scalability
-Metadata and page structure optimised for search engines
-Internal linking structure designed for clarity and performance
-Built using modern frameworks for speed, performance, and reliability
- Design"
+              text="Professional Website Design"
               suffix="for Local Businesses"
               className="mb-6"
             />
@@ -252,6 +237,3 @@ Built using modern frameworks for speed, performance, and reliability
     </div>
   )
 }
-
-
-<p>Built using modern, professional technology for speed, reliability, and long-term performance.</p>

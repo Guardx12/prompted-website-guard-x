@@ -259,6 +259,3 @@ export default function ClickChatbot() {
     </div>
   )
 }
-
-
-<p>Built using modern, professional technology for speed, reliability, and long-term performance.</p>

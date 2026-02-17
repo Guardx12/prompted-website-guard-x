@@ -63,6 +63,3 @@ export function FreeTrialSection({ variant = "hero", className = "" }: FreeTrial
     </div>
   )
 }
-
-
-<p>Built using modern, professional technology for speed, reliability, and long-term performance.</p>

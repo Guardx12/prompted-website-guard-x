@@ -137,26 +137,7 @@ export default function FAQPage() {
             </div>
             <AnimatedPageTitle text="Frequently Asked" suffix="Questions" className="mb-6" />
             <p className="text-xl md:text-2xl text-[#94a3b8] max-w-3xl mx-auto leading-relaxed">
-              Everything you need to know about GuardX Website Design, SEO Foundation, Website Hosting
-
-Includes:
-
-Secure hosting to keep your website live and accessible
-Fast and reliable hosting infrastructure
-Domain connection and deployment included
-Ongoing hosting to ensure continuous availability
-Light technical support if you need help or advice
-No technical knowledge required from you
-, and Review Generation System
-
-Includes:
-
-Simple system to send customers directly to your Google review page
-Optimised review request experience for higher response rates
-Direct review links for easy customer access
-Helps improve trust and credibility for your business
-Supports long-term reputation growth through consistent review collection
-.
+              Everything you need to know about GuardX Website Design, SEO Foundation, Hosting, and Review Generation.
             </p>
           </div>
         </div>
@@ -188,28 +169,10 @@ Supports long-term reputation growth through consistent review collection
         </div>
       </section>
 
-      {/* Review Generation System
-
-Includes:
-
-Simple system to send customers directly to your Google review page
-Optimised review request experience for higher response rates
-Direct review links for easy customer access
-Helps improve trust and credibility for your business
-Supports long-term reputation growth through consistent review collection
- System FAQ */}
+      {/* Review Generation System FAQ */}
       <section className="py-20 bg-[#111827]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">Review Generation System
-
-Includes:
-
-Simple system to send customers directly to your Google review page
-Optimised review request experience for higher response rates
-Direct review links for easy customer access
-Helps improve trust and credibility for your business
-Supports long-term reputation growth through consistent review collection
- System</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">Review Generation System</h2>
           <Card className="bg-[#1e293b] border-white/10 shadow-lg">
             <CardContent className="p-8">
               <Accordion type="single" collapsible className="space-y-4">

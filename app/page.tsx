@@ -562,42 +562,12 @@ export default function HomePage() {
             <div className="flex-1">
               <Reveal>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
-                  SEO Foundation Included with Professional Website
-
-Includes:
-
-Everything included in the Starter Website, plus:
-
-Full SEO-ready website structure
-Dedicated service pages for improved search visibility
-Location-based pages to help target your service areas
-Proper heading and content structure for Google indexing
-Optimised page speed and performance
-Clean URL structure for long-term scalability
-Metadata and page structure optimised for search engines
-Internal linking structure designed for clarity and performance
-Built using modern frameworks for speed, performance, and reliability
- Package
+                  SEO Foundation Included with Professional Website Package
                 </h2>
               </Reveal>
               <Reveal delay={0.1}>
                 <p className="text-[#94a3b8] text-lg mb-6 leading-relaxed">
-                  Our Professional Website
-
-Includes:
-
-Everything included in the Starter Website, plus:
-
-Full SEO-ready website structure
-Dedicated service pages for improved search visibility
-Location-based pages to help target your service areas
-Proper heading and content structure for Google indexing
-Optimised page speed and performance
-Clean URL structure for long-term scalability
-Metadata and page structure optimised for search engines
-Internal linking structure designed for clarity and performance
-Built using modern frameworks for speed, performance, and reliability
- package includes strong SEO foundation setup. This ensures your website is
+                  Our Professional Website package includes strong SEO foundation setup. This ensures your website is
                   structured correctly and ready for Google indexing. This is a one-time setup built into the website.
                 </p>
               </Reveal>
@@ -664,22 +634,7 @@ Built using modern frameworks for speed, performance, and reliability
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             <PricingCard
-              title="Starter Website
-
-Includes:
-
-Fully custom website built specifically for your business
-Modern, mobile-optimised design that works on phones, tablets, and desktops
-Clear service sections designed to convert visitors into enquiries
-Click-to-call, email, and contact integration
-WhatsApp chat integration (optional)
-Social media profile integration (Facebook, Instagram, etc.)
-Contact form with direct email delivery
-Fast-loading, professional website structure
-Secure and reliable modern website build
-Google-ready structure for proper indexing
-Professional layout designed to build trust and credibility
-"
+              title="Starter Website"
               price="from &pound;500"
               features={[
                 "Modern professional website",
@@ -702,17 +657,7 @@ Professional layout designed to build trust and credibility
               delay={0.1}
             />
             <PricingCard
-              title="Website Hosting
-
-Includes:
-
-Secure hosting to keep your website live and accessible
-Fast and reliable hosting infrastructure
-Domain connection and deployment included
-Ongoing hosting to ensure continuous availability
-Light technical support if you need help or advice
-No technical knowledge required from you
-"
+              title="Hosting"
               price="&pound;30"
               unit="/ month"
               features={[
@@ -746,32 +691,12 @@ No technical knowledge required from you
             <div>
               <Reveal>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 text-balance">
-                  Website Website Hosting
-
-Includes:
-
-Secure hosting to keep your website live and accessible
-Fast and reliable hosting infrastructure
-Domain connection and deployment included
-Ongoing hosting to ensure continuous availability
-Light technical support if you need help or advice
-No technical knowledge required from you
- by GuardX
+                  Website Hosting by GuardX
                 </h2>
               </Reveal>
               <Reveal delay={0.08}>
                 <p className="text-[#94a3b8] text-lg leading-relaxed">
-                  Website Website Hosting
-
-Includes:
-
-Secure hosting to keep your website live and accessible
-Fast and reliable hosting infrastructure
-Domain connection and deployment included
-Ongoing hosting to ensure continuous availability
-Light technical support if you need help or advice
-No technical knowledge required from you
- by GuardX is <span className="text-white font-semibold">&pound;30/month</span>.
+                  Website Hosting by GuardX is <span className="text-white font-semibold">&pound;30/month</span>.
                   It keeps your website live, fast, and accessible to customers. Built on reliable modern infrastructure
                   with support available if needed.
                 </p>
@@ -874,16 +799,7 @@ No technical knowledge required from you
                   Need More Google Reviews?
                 </h2>
                 <p className="text-[#94a3b8] text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
-                  Review Generation System
-
-Includes:
-
-Simple system to send customers directly to your Google review page
-Optimised review request experience for higher response rates
-Direct review links for easy customer access
-Helps improve trust and credibility for your business
-Supports long-term reputation growth through consistent review collection
- is available as an optional add-on service to help businesses collect more Google
+                  Review Generation is available as an optional add-on service to help businesses collect more Google
                   reviews. Automated email and SMS review requests that boost your online visibility.
                 </p>
 
@@ -892,16 +808,7 @@ Supports long-term reputation growth through consistent review collection
                     href="/review-generation"
                     className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-8 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
                   >
-                    Learn About Review Generation System
-
-Includes:
-
-Simple system to send customers directly to your Google review page
-Optimised review request experience for higher response rates
-Direct review links for easy customer access
-Helps improve trust and credibility for your business
-Supports long-term reputation growth through consistent review collection
- <ArrowRight className="w-5 h-5" />
+                    Learn About Review Generation <ArrowRight className="w-5 h-5" />
                   </Link>
                   <Link
                     href="/real-results"
@@ -955,6 +862,3 @@ Supports long-term reputation growth through consistent review collection
     </div>
   )
 }
-
-
-<p>Built using modern, professional technology for speed, reliability, and long-term performance.</p>

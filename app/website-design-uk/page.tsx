@@ -20,22 +20,7 @@ export default function WebsiteDesignUKPage() {
         {/* Hero */}
         <section className="pt-32 pb-20 bg-[#0a0e1a]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <AnimatedPageTitle text="Professional Website
-
-Includes:
-
-Everything included in the Starter Website, plus:
-
-Full SEO-ready website structure
-Dedicated service pages for improved search visibility
-Location-based pages to help target your service areas
-Proper heading and content structure for Google indexing
-Optimised page speed and performance
-Clean URL structure for long-term scalability
-Metadata and page structure optimised for search engines
-Internal linking structure designed for clarity and performance
-Built using modern frameworks for speed, performance, and reliability
- Design" suffix="for UK Businesses" className="mb-6" />
+            <AnimatedPageTitle text="Professional Website Design" suffix="for UK Businesses" className="mb-6" />
             <p className="text-xl text-[#94a3b8] max-w-3xl mx-auto leading-relaxed mb-10">
               GuardX builds modern, high-performance websites for local UK businesses. Every site we create is designed to look professional, load fast, and generate real enquiries from potential customers.
             </p>
@@ -140,6 +125,3 @@ Built using modern frameworks for speed, performance, and reliability
     </div>
   )
 }
-
-
-<p>Built using modern, professional technology for speed, reliability, and long-term performance.</p>
