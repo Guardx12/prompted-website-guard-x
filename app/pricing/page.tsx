@@ -156,7 +156,7 @@ export default function PricingPage() {
               </a>
             </div>
 
-            {/* Professional Website + SEO */}
+            {/* Professional Website + SEO Foundation */}
             <div className="rounded-xl border-2 border-blue-500 bg-[#111827] p-8 flex flex-col relative transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                 <span className="bg-blue-500 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide">
@@ -166,7 +166,7 @@ export default function PricingPage() {
               <div className="w-14 h-14 bg-blue-500/10 rounded-full flex items-center justify-center mb-6">
                 <Search className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Professional Website + SEO Foundation</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">Professional Website + SEO Foundation Foundation</h3>
               <div className="mb-6">
                 <span className="text-sm text-[#94a3b8]">from</span>
                 <span className="text-4xl font-bold text-white ml-2">{"£"}1,000</span>
@@ -270,10 +270,10 @@ export default function PricingPage() {
                 Optional Review Generation Add-On
               </h2>
               <p className="text-lg text-[#94a3b8] max-w-2xl mx-auto leading-relaxed">
-                GuardX Review Generation helps keep your Google profile active by automatically encouraging customer
+                GuardX Review Generation helps keep your Google profile active by helping encourage customer
                 feedback after each job.
               </p>
-              <p className="text-white font-semibold text-xl mt-4">£30/week</p>
+              <p className="text-white font-semibold text-xl mt-4">£30/month</p>
               <p className="text-[#94a3b8] mt-2">Cancel anytime • No long contracts</p>
             </div>
 
@@ -288,7 +288,7 @@ export default function PricingPage() {
                 <div className="w-10 h-10 bg-blue-500/10 rounded-full flex items-center justify-center flex-shrink-0">
                   <Smartphone className="w-5 h-5 text-blue-400" />
                 </div>
-                <span className="text-[#cbd5e1] text-lg">SMS and email engagement options</span>
+                <span className="text-[#cbd5e1] text-lg">Direct review links via SMS</span>
               </li>
               <li className="flex items-center gap-4">
                 <div className="w-10 h-10 bg-blue-500/10 rounded-full flex items-center justify-center flex-shrink-0">

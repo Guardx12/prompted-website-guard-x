@@ -630,6 +630,7 @@ export default function HomePage() {
             <p className="text-[#94a3b8] text-lg text-center max-w-2xl mx-auto mb-16 leading-relaxed">
               Simple, honest pricing with no hidden fees.
             </p>
+            <p className="text-sm text-[#94a3b8] text-center max-w-2xl mx-auto mt-4">Built using modern, professional technology for speed, reliability, and long-term performance.</p>
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
@@ -637,32 +638,42 @@ export default function HomePage() {
               title="Starter Website"
               price="from &pound;500"
               features={[
-                "Modern professional website",
-                "Mobile-friendly design",
-                "Built to generate enquiries",
+                "Modern, professional website (built for local UK businesses)",
+                "Mobile-friendly design across phones, tablets and desktops",
+                "Clear layout designed to generate enquiries",
+                "Click-to-call, click-to-email and contact options",
+                "WhatsApp chat integration (optional)",
+                "Social media links added (Facebook, Instagram, etc.)",
+                "Contact form that sends straight to your email",
               ]}
               delay={0}
             />
             <PricingCard
-              title="Website + SEO Foundation"
+              title="Professional Website + SEO Foundation"
               price="from &pound;1,000"
               features={[
-                "Everything in Starter, plus:",
-                "Strong SEO foundation setup",
-                "Proper page structure",
-                "Optimised titles and descriptions",
-                "Built ready for Google indexing",
+                "Everything in Starter, plus an SEO-ready structure",
+                "Service pages structured for better search visibility",
+                "Location pages to target your service areas",
+                "Clean URL structure and internal linking",
+                "Meta titles and descriptions set up properly",
+                "Sitemap.xml and robots.txt included",
+                "Speed and performance optimised",
+                "Structured correctly for Google indexing",
               ]}
               highlight
               delay={0.1}
             />
             <PricingCard
-              title="Hosting"
+              title="Website Hosting"
               price="&pound;30"
               unit="/ month"
               features={[
-                "Fast, secure hosting to keep your website live",
-                "Support available if needed",
+                "Hosting to keep your website live and accessible",
+                "Fast, reliable hosting setup",
+                "Domain connection and deployment included",
+                "Light support if you need help or advice",
+                "No long contracts — cancel anytime",
               ]}
               delay={0.2}
             />
