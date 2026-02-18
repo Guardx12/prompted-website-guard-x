@@ -216,3 +216,15 @@ html {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
 }
+
+
+/* GuardX: moving Google-style reviews row */
+@keyframes guardx-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+.guardx-marquee {
+  will-change: transform;
+  animation: guardx-marquee 28s linear infinite;
+}

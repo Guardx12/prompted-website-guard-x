@@ -270,6 +270,48 @@ export default function RealResultsPage() {
         </div>
       </section>
 
+
+      {/* 8) More Feedback */}
+      <section className="py-8 md:py-12 px-4 sm:px-6 lg:px-8 bg-[#111827]">
+        <div className="max-w-3xl mx-auto">
+          <div className="mb-6 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">More feedback from GuardX customers</h2>
+          </div>
+
+          <div className="grid gap-4 md:gap-6 sm:grid-cols-2">
+            <div className="bg-[#1e293b] rounded-xl border border-white/10 p-5 sm:p-6">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-center gap-0.5 text-yellow-400">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-current" />
+                  ))}
+                </div>
+                <span className="text-xs text-[#94a3b8]">Business Owner</span>
+              </div>
+              <p className="text-white text-sm leading-relaxed">
+                "The GuardX system is great for staying on top of reviews. It's saved me time, and the reports are really clear and easy to read, making it simple to keep an eye on my average rating."
+              </p>
+              <p className="mt-4 text-sm font-semibold text-white">Holly Cox</p>
+            </div>
+
+            <div className="bg-[#1e293b] rounded-xl border border-white/10 p-5 sm:p-6">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-center gap-0.5 text-yellow-400">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-current" />
+                  ))}
+                </div>
+                <span className="text-xs text-[#94a3b8]">Business Owner</span>
+              </div>
+              <p className="text-white text-sm leading-relaxed">
+                "A very handy tool to keep track of my business reviews — simple and easy to use."
+              </p>
+              <p className="mt-4 text-sm font-semibold text-white">Joseph Yossefi</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 8) How GuardX Works + Demo Video */}
       <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-[#111827]">
         <div className="max-w-3xl mx-auto scroll-animate">

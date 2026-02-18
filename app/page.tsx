@@ -2,6 +2,7 @@
 
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import MovingGoogleReviews from "@/components/moving-google-reviews"
 import Link from "next/link"
 import Image from "next/image"
 import { useEffect, useRef, useState, useCallback } from "react"
@@ -464,10 +465,10 @@ export default function HomePage() {
               <Reveal delay={0.3}>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Link
-                    href="/portfolio"
+                    href="/web-design"
                     className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-8 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
                   >
-                    View Portfolio <ArrowRight className="w-5 h-5" />
+                    Web Design <ArrowRight className="w-5 h-5" />
                   </Link>
                   <Link
                     href="/contact"
@@ -490,6 +491,8 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/*  WEBSITE DESIGN FEATURES                                      */}
       {/* ============================================================ */}
+      <MovingGoogleReviews />
+
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <Reveal>
@@ -556,6 +559,8 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/*  SEO FOUNDATION DETAIL                                        */}
       {/* ============================================================ */}
+      <MovingGoogleReviews />
+
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -619,6 +624,8 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/*  PRICING                                                      */}
       {/* ============================================================ */}
+      <MovingGoogleReviews />
+
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <Reveal>
@@ -696,6 +703,8 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/*  WEBSITE HOSTING                                               */}
       {/* ============================================================ */}
+      <MovingGoogleReviews />
+
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
@@ -759,6 +768,8 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/*  MODERN TECHNOLOGY                                             */}
       {/* ============================================================ */}
+      <MovingGoogleReviews />
+
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <Reveal>
@@ -789,6 +800,8 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/*  REVIEW GENERATION ADD-ON                                     */}
       {/* ============================================================ */}
+      <MovingGoogleReviews />
+
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <Reveal>
@@ -837,6 +850,8 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/*  FINAL CTA                                                    */}
       {/* ============================================================ */}
+      <MovingGoogleReviews />
+
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <Reveal>
