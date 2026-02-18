@@ -559,7 +559,6 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/*  SEO FOUNDATION DETAIL                                        */}
       {/* ============================================================ */}
-      <MovingGoogleReviews />
 
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -703,7 +702,6 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/*  WEBSITE HOSTING                                               */}
       {/* ============================================================ */}
-      <MovingGoogleReviews />
 
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -768,7 +766,6 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/*  MODERN TECHNOLOGY                                             */}
       {/* ============================================================ */}
-      <MovingGoogleReviews />
 
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -800,7 +797,6 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/*  REVIEW GENERATION ADD-ON                                     */}
       {/* ============================================================ */}
-      <MovingGoogleReviews />
 
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
