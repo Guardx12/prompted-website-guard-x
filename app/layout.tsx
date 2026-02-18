@@ -77,6 +77,33 @@ export default function RootLayout({
             src="https://www.facebook.com/tr?id=643792238797788&ev=PageView&noscript=1"
           />
         </noscript>
+      
+        <Script id="guardx-localbusiness-schema" type="application/ld+json" strategy="afterInteractive">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "GuardX Limited",
+            "url": "https://www.guardxnetwork.com",
+            "logo": "https://www.guardxnetwork.com/images/guardx-logo.png",
+            "image": "https://www.guardxnetwork.com/images/guardx-logo.png",
+            "description": "Website design, SEO foundation, and review generation services for UK local businesses.",
+            "areaServed": {
+              "@type": "Country",
+              "name": "United Kingdom"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "GB",
+              "addressRegion": "West Sussex"
+            },
+            "sameAs": [
+              "https://www.guardxnetwork.com"
+            ]
+          }
+          `}
+        </Script>
+
       </body>
     </html>
   )

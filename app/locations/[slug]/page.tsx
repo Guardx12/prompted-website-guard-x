@@ -93,7 +93,20 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         {/* Hero */}
         <section className="pt-32 pb-20 bg-[#0a0e1a]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <AnimatedPageTitle text={location.h1} className="mb-6" />
+            
+      <div className="max-w-3xl mx-auto text-center mt-6">
+        <p className="text-base text-white/80">
+          GuardX is based in West Sussex and provides professional website design, SEO foundation, and review generation services for businesses in {location.name}.
+          Our fast, modern websites are built to rank in Google and generate consistent enquiries.
+        </p>
+        <div className="mt-4 flex flex-wrap justify-center gap-3">
+          <Link href="/web-design" className="underline">Website Design</Link>
+          <Link href="/seo-foundation" className="underline">SEO Foundation</Link>
+          <Link href="/review-generation" className="underline">Review Generation</Link>
+        </div>
+      </div>
+
+      <AnimatedPageTitle text={location.h1} className="mb-6" />
             {location.county && (
               <p className="text-sm text-[#64748b] mb-4">{location.county}</p>
             )}
