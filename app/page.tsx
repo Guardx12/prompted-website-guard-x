@@ -2,6 +2,7 @@
 
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import { AnimatedPageTitle } from "@/components/animated-page-title"
 import MovingGoogleReviews from "@/components/moving-google-reviews"
 import Link from "next/link"
 import Image from "next/image"
