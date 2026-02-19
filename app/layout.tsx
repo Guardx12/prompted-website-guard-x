@@ -27,6 +27,21 @@ export const metadata: Metadata = {
     siteName: "GuardX",
     type: "website",
     locale: "en_GB",
+    url: "https://guardxnetwork.com",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "GuardX" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Web Design & SEO Foundation for Local Businesses | GuardX",
+    description:
+      "Professional website design and SEO foundation for UK local businesses. Modern, fast websites built to generate enquiries.",
+    images: ["/og-image.png"],
+  },
+  alternates: { canonical: "https://guardxnetwork.com" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   },
 }
 

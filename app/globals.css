@@ -228,3 +228,10 @@ html {
   will-change: transform;
   animation: guardx-marquee 28s linear infinite;
 }
+
+
+@keyframes shimmerPass {
+  0% { background-position: 130% 50%; }
+  60% { background-position: -30% 50%; }
+  100% { background-position: -30% 50%; }
+}

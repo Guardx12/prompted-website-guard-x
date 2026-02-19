@@ -88,11 +88,18 @@ function ReviewCard({ review }: { review: Review }) {
 
 export default function MovingGoogleReviews() {
   // duplicate to loop smoothly
-  const loopItems = [...reviews, ...reviews, ...reviews]
-
   return (
     <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
+
+        {/* SEO/a11y: a single, non-duplicated list of reviews (screen-reader only) */}
+        <ul className="sr-only">
+          {reviews.map((rev) => (
+            <li key={rev.business}>
+              {rev.business}: {rev.text}
+            </li>
+          ))}
+        </ul>
         <div className="flex items-end justify-between gap-6">
           <div>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Trusted by UK businesses</h2>
@@ -116,8 +123,13 @@ export default function MovingGoogleReviews() {
 
           <div className="group">
             <div className="flex gap-4 py-2 guardx-marquee group-hover:[animation-play-state:paused] motion-reduce:animate-none">
-              {loopItems.map((r, idx) => (
+              {reviews.map((r, idx) => (
                 <ReviewCard key={`${r.business}-${idx}`} review={r} />
+              ))}
+              {reviews.map((r, idx) => (
+                <div key={`dup-${r.business}-${idx}`} aria-hidden="true">
+                  <ReviewCard review={r} />
+                </div>
               ))}
             </div>
           </div>

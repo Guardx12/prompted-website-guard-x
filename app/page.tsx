@@ -263,56 +263,7 @@ function AnimatedHeadline() {
   let globalIndex = 0
 
   return (
-    <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight mb-6">
-      <span className="relative inline">
-        {prefersReduced ? (
-          <span
-            className="text-transparent bg-clip-text"
-            style={{
-              backgroundImage: "linear-gradient(135deg, #93c5fd, #818cf8, #a78bfa, #60a5fa, #93c5fd)",
-              backgroundSize: "300% 300%",
-            }}
-          >
-            {words.join(" ")}
-          </span>
-        ) : (
-          words.map((word, wi) => (
-            <span key={wi} className="inline-block whitespace-nowrap">
-              {word.split("").map((char) => {
-                const idx = globalIndex++
-                return (
-                  <span
-                    key={idx}
-                    className="inline-block text-transparent bg-clip-text"
-                    style={{
-                      backgroundImage: "linear-gradient(135deg, #93c5fd, #818cf8, #a78bfa, #60a5fa, #93c5fd)",
-                      backgroundSize: "300% 300%",
-                      animation: `gradientShift 8s ease infinite, waveFloat 3s ease-in-out ${idx * 0.04}s infinite`,
-                    }}
-                  >
-                    {char}
-                  </span>
-                )
-              })}
-              {wi < words.length - 1 && <span className="inline-block">{"\u00A0"}</span>}
-            </span>
-          ))
-        )}
-        {/* Shimmer pass */}
-        {!prefersReduced && (
-          <span
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%)",
-              animation: "shimmer 4s ease-in-out infinite",
-              width: "40%",
-            }}
-            aria-hidden="true"
-          />
-        )}
-      </span>{" "}
-      <span className="text-white">{line2}</span>
-    </h1>
+    <AnimatedPageTitle text="Web Design & SEO Foundation for Local Businesses" />
   )
 }
 
