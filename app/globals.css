@@ -235,3 +235,42 @@ html {
   60% { background-position: -30% 50%; }
   100% { background-position: -30% 50%; }
 }
+
+
+/* ------------------------------------------------------------------ */
+/* GuardX: Premium title styling (purple shimmer + gentle wave)         */
+/* ------------------------------------------------------------------ */
+
+@keyframes guardx-title-wave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* Character styling: gradient purple + subtle glow */
+.guardx-title-char {
+  background-image: linear-gradient(90deg, #a78bfa 0%, #60a5fa 35%, #e9d5ff 50%, #60a5fa 65%, #a78bfa 100%);
+  background-size: 260% 100%;
+  background-position: 130% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 18px rgba(167, 139, 250, 0.18);
+  animation: shimmerPass 4.8s ease-in-out infinite;
+}
+
+/* Gentle "Mexican wave" */
+.guardx-wave-char {
+  animation-name: guardx-title-wave;
+  animation-duration: 2.9s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guardx-title-char,
+  .guardx-wave-char {
+    animation: none !important;
+  }
+}
+

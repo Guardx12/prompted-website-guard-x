@@ -1,59 +1,71 @@
 "use client"
 
-import * as React from "react"
+import { cn } from "@/lib/utils"
 
-type Props = {
+type AnimatedPageTitleProps = {
   text: string
-  /** Optional second line (keeps wording the same across the site) */
+  /**
+   * Optional second line shown underneath (used on some pages like Contact/Pricing).
+   * The full combined text is still output once for SEO via sr-only.
+   */
   suffix?: string
   className?: string
-  as?: "h1" | "h2" | "h3" | "div" | "span"
+  as?: keyof JSX.IntrinsicElements
 }
 
-/**
- * Premium headline with:
- * - light purple gradient
- * - subtle shimmer sweep
- * - gentle per-letter wave
- *
- * Uses real text (no canvas) so SEO + accessibility stay intact.
- */
-export function AnimatedPageTitle({ text, suffix, className = "", as = "h1" }: Props) {
+export function AnimatedPageTitle({
+  text,
+  suffix,
+  className,
+  as = "h1",
+}: AnimatedPageTitleProps) {
   const Tag: any = as
-  const line1 = text ?? ""
-  const line2 = suffix ?? ""
-  const renderLine = (line: string, baseDelay: number) => {
-    const chars = line.split("")
-    return (
-      <span className="block">
-        {chars.map((char, i) => (
-          <span
-            key={`${baseDelay}-${i}`}
-            className="inline-block animate-wave"
-            style={{ animationDelay: `${(baseDelay + i) * 0.035}s` }}
-          >
-            {char === " " ? "\u00A0" : char}
-          </span>
-        ))}
-      </span>
-    )
-  }
 
-  // Keep a stable label for screen readers
-  const ariaLabel = line2 ? `${line1} ${line2}` : line1
+  // Split into words so we can wrap between words (not mid-word).
+  const words = text.trim().split(/\s+/)
 
   return (
     <Tag
-      aria-label={ariaLabel}
-      className={[
-        "title-gradient title-shimmer font-extrabold tracking-tight",
-        "text-4xl sm:text-5xl lg:text-6xl",
-        "leading-[1.05]",
-        className,
-      ].join(" ")}
+      className={cn(
+        // Bigger, agency-style titles (responsive)
+        "mb-2 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] text-balance",
+        className
+      )}
     >
-      {renderLine(line1, 0)}
-      {line2 ? renderLine(line2, line1.length + 1) : null}
+      {/* SEO-safe full text (no animation splitting) */}
+      <span className="sr-only">{suffix ? `${text} ${suffix}` : text}</span>
+
+      {/* Visual animated text only */}
+      <span aria-hidden="true" className="inline-block">
+        {words.map((word, wi) => {
+          const chars = word.split("")
+          const baseDelay = wi * 0.18
+          return (
+            <span
+              key={`${word}-${wi}`}
+              className="inline-block whitespace-nowrap mr-[0.35em] last:mr-0"
+            >
+              {chars.map((char, ci) => (
+                <span
+                  key={`${wi}-${ci}`}
+                  className="inline-block guardx-title-char guardx-wave-char"
+                  style={{
+                    animationDelay: `${baseDelay + ci * 0.03}s`,
+                  }}
+                >
+                  {char}
+                </span>
+              ))}
+            </span>
+          )
+        })}
+      </span>
+
+      {suffix ? (
+        <span className="block mt-3 text-base sm:text-lg font-semibold text-[#94a3b8]">
+          {suffix}
+        </span>
+      ) : null}
     </Tag>
   )
 }

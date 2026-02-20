@@ -166,7 +166,7 @@ export default function PricingPage() {
               <div className="w-14 h-14 bg-blue-500/10 rounded-full flex items-center justify-center mb-6">
                 <Search className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Professional Website + SEO Foundation</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">Professional Website + SEO Foundation Foundation</h3>
               <div className="mb-6">
                 <span className="text-sm text-[#94a3b8]">from</span>
                 <span className="text-4xl font-bold text-white ml-2">{"£"}1,000</span>
