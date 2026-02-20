@@ -67,14 +67,17 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
   const introParagraphs = industry.intro.split("\n\n")
   const emailSmsIndex = introParagraphs.findIndex((p) => {
     const lower = p.trim().toLowerCase()
+    // Detect the "how reviews are collected" paragraph so we can move it under the Review Challenge section.
     return (
+      lower.startsWith("our email and sms system") ||
+      lower.startsWith("our system sends") ||
+      lower.startsWith("our platform sends") ||
       lower.includes("email and sms") ||
-      lower.includes("review requests") ||
-      lower.includes("collect reviews") ||
-      lower.includes("personalised review requests")
+      lower.includes("personalised review requests") ||
+      (lower.includes("review request") && lower.includes("sms")) ||
+      (lower.includes("review request") && lower.includes("email"))
     )
-  }).toLowerCase().startsWith("our email and sms system")
-  )
+  })
   const mainIntroParagraphs = emailSmsIndex >= 0 ? introParagraphs.slice(0, emailSmsIndex) : introParagraphs
   const emailSmsParagraphs = emailSmsIndex >= 0 ? introParagraphs.slice(emailSmsIndex) : []
 
