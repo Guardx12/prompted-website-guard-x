@@ -84,9 +84,17 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
     .filter(Boolean)
 
   const introParagraphs = location.intro.split("\n\n")
-  const emailSmsIndex = introParagraphs.findIndex((p) =>
-    p.trim().toLowerCase().startsWith("our email and sms system")
-  )
+  const emailSmsIndex = introParagraphs.findIndex((p) => {
+    const s = p.trim().toLowerCase()
+    return (
+      s.startsWith("our email and sms system") ||
+      s.startsWith("our system sends") ||
+      s.startsWith("our platform sends") ||
+      s.includes("review requests via email and sms") ||
+      s.includes("review requests through email and sms") ||
+      (s.includes("email") && s.includes("sms") && s.includes("review request"))
+    )
+  })
   const mainIntroParagraphs = emailSmsIndex >= 0 ? introParagraphs.slice(0, emailSmsIndex) : introParagraphs
   const emailSmsParagraphs = emailSmsIndex >= 0 ? introParagraphs.slice(emailSmsIndex) : []
 
@@ -240,7 +248,23 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           </section>
         )}
 
-        {/* Email & SMS */}
+        
+        {/* Review Challenge */}
+        <section className="py-20 bg-[#111827]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
+              The Review Challenge for Businesses in {location.name}
+            </h2>
+            <p className="text-lg text-[#94a3b8] leading-relaxed text-center max-w-3xl mx-auto">
+              In {location.name}, customers almost always compare a few local options before they call. Even if you do
+              great work, many happy customers never get around to leaving a review — and that makes it harder to stand
+              out in Google Maps and local search. A simple, consistent system is the difference between “the business
+              everyone recommends” and “the business people scroll past”.
+            </p>
+          </div>
+        </section>
+
+{/* Email & SMS */}
 {emailSmsParagraphs.length > 0 && (
   <section className="py-20 bg-[#111827]">
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
