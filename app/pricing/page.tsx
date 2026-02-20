@@ -67,7 +67,7 @@ export default function PricingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-block bg-blue-500/10 border border-blue-500/30 px-4 py-2 rounded-full mb-6">
-                <span className="text-blue-400 font-bold text-sm">WEBSITE DESIGN & SEO</span>
+                <span className="text-blue-400 font-bold text-sm">WEBSITE DESIGN & SEO FOUNDATION</span>
               </div>
               <AnimatedPageTitle text="Website Design &" suffix="SEO Foundation Pricing" className="mb-6" />
               <p className="text-xl md:text-2xl text-[#94a3b8] mb-8 leading-relaxed">
@@ -166,7 +166,7 @@ export default function PricingPage() {
               <div className="w-14 h-14 bg-blue-500/10 rounded-full flex items-center justify-center mb-6">
                 <Search className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Professional Website + SEO Foundation Foundation</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">Professional Website + SEO Foundation</h3>
               <div className="mb-6">
                 <span className="text-sm text-[#94a3b8]">from</span>
                 <span className="text-4xl font-bold text-white ml-2">{"£"}1,000</span>
@@ -273,7 +273,7 @@ export default function PricingPage() {
                 GuardX Review Generation helps keep your Google profile active by helping encourage customer
                 feedback after each job.
               </p>
-              <p className="text-white font-semibold text-xl mt-4">£30/month</p>
+              <p className="text-white font-semibold text-xl mt-4">£30/week</p>
               <p className="text-[#94a3b8] mt-2">Cancel anytime • No long contracts</p>
             </div>
 
