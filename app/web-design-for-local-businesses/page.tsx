@@ -8,7 +8,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Web Design for Local Businesses",
   description:
-    "Professional web design built specifically for local UK businesses. Modern websites that generate enquiries with strong SEO foundation included.",
+    "Professional web design built specifically for local UK businesses. Modern websites that generate enquiries, with an optional SEO Foundation upgrade for stronger Google visibility.",
 }
 
 export default function WebDesignLocalBusinessesPage() {
@@ -62,7 +62,7 @@ export default function WebDesignLocalBusinessesPage() {
                 "Modern, professional design tailored to your business",
                 "Fully mobile-friendly and responsive",
                 "Fast loading times for better user experience",
-                "Strong SEO foundation so Google can find you",
+                "Optional SEO Foundation upgrade to help you rank on Google",
                 "Clear contact forms and calls-to-action",
                 "Secure hosting available for \u00a330/month",
               ].map((item) => (

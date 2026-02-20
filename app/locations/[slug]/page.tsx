@@ -84,6 +84,11 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
     .filter(Boolean)
 
   const introParagraphs = location.intro.split("\n\n")
+  const emailSmsIndex = introParagraphs.findIndex((p) =>
+    p.trim().toLowerCase().startsWith("our email and sms system")
+  )
+  const mainIntroParagraphs = emailSmsIndex >= 0 ? introParagraphs.slice(0, emailSmsIndex) : introParagraphs
+  const emailSmsParagraphs = emailSmsIndex >= 0 ? introParagraphs.slice(emailSmsIndex) : []
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
@@ -123,7 +128,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
               </div>
             )}
             <p className="text-xl text-[#94a3b8] max-w-3xl mx-auto leading-relaxed mb-10">
-              {introParagraphs[0]}
+              {mainIntroParagraphs[0]}
             </p>
             <Link
               href="/contact"
@@ -135,10 +140,10 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         </section>
 
         {/* Extended Intro */}
-        {introParagraphs.length > 1 && (
+        {mainIntroParagraphs.length > 1 && (
           <section className="py-20 bg-[#111827]">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              {introParagraphs.slice(1).map((para, i) => (
+              {mainIntroParagraphs.slice(1).map((para, i) => (
                 <p key={i} className="text-lg text-[#94a3b8] leading-relaxed mb-6 last:mb-0">
                   {para}
                 </p>
@@ -146,18 +151,6 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             </div>
           </section>
         )}
-
-        {/* Local Context */}
-        <section className="py-20 bg-[#0a0e1a]">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
-              Local Context: {location.name}
-            </h2>
-            <p className="text-lg text-[#94a3b8] leading-relaxed text-center max-w-3xl mx-auto">
-              {location.localContext}
-            </p>
-          </div>
-        </section>
 
         {/* Why GuardX */}
         <section className="py-20 bg-[#111827]">
@@ -168,7 +161,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             <div className="max-w-2xl mx-auto space-y-6">
               {[
                 `Professional web design built to convert visitors into customers for ${location.name} businesses.`,
-                "SEO foundation baked into every build — proper meta tags, semantic HTML, fast load times, and mobile optimisation.",
+                "SEO foundation is included on our Professional plan — proper meta tags, semantic HTML, fast load times, and mobile optimisation.",
                 "Automated review generation with personalised email and SMS prompts sent at the right moment.",
                 "Steady, organic growth of your Google review profile — no manual chasing required.",
                 "Web design, SEO, and reviews working together for higher rankings and more local customers.",
@@ -179,6 +172,18 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Local Context */}
+        <section className="py-20 bg-[#0a0e1a]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
+              Local Context: {location.name}
+            </h2>
+            <p className="text-lg text-[#94a3b8] leading-relaxed text-center max-w-3xl mx-auto">
+              {location.localContext}
+            </p>
           </div>
         </section>
 
@@ -235,7 +240,25 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           </section>
         )}
 
-        {/* CTA */}
+        {/* Email & SMS */}
+{emailSmsParagraphs.length > 0 && (
+  <section className="py-20 bg-[#111827]">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+        How GuardX Collects Reviews in {location.name}
+      </h2>
+      <div className="max-w-3xl mx-auto">
+        {emailSmsParagraphs.map((para, i) => (
+          <p key={i} className="text-lg text-[#94a3b8] leading-relaxed mb-6 last:mb-0">
+            {para}
+          </p>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+{/* CTA */}
         <section className="py-20 bg-[#0a0e1a]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">

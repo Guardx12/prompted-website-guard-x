@@ -65,6 +65,11 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
     .filter(Boolean)
 
   const introParagraphs = industry.intro.split("\n\n")
+  const emailSmsIndex = introParagraphs.findIndex((p) =>
+    p.trim().toLowerCase().startsWith("our email and sms system")
+  )
+  const mainIntroParagraphs = emailSmsIndex >= 0 ? introParagraphs.slice(0, emailSmsIndex) : introParagraphs
+  const emailSmsParagraphs = emailSmsIndex >= 0 ? introParagraphs.slice(emailSmsIndex) : []
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
@@ -89,7 +94,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
               </div>
             )}
             <p className="text-xl text-[#94a3b8] max-w-3xl mx-auto leading-relaxed mb-10">
-              {introParagraphs[0]}
+              {mainIntroParagraphs[0]}
             </p>
             <Link
               href="/contact"
@@ -101,10 +106,10 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         </section>
 
         {/* Extended Intro */}
-        {introParagraphs.length > 1 && (
+        {mainIntroParagraphs.length > 1 && (
           <section className="py-20 bg-[#111827]">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              {introParagraphs.slice(1).map((para, i) => (
+              {mainIntroParagraphs.slice(1).map((para, i) => (
                 <p key={i} className="text-lg text-[#94a3b8] leading-relaxed mb-6 last:mb-0">
                   {para}
                 </p>
@@ -112,6 +117,29 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
             </div>
           </section>
         )}
+
+        {/* Why GuardX */}
+        <section className="py-20 bg-[#111827]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
+              Why {industry.name} Choose GuardX
+            </h2>
+            <div className="max-w-2xl mx-auto space-y-6">
+              {[
+                `Professional web design built to showcase ${industry.name.toLowerCase()} and convert visitors into enquiries.`,
+                "SEO foundation is included on our Professional plan — proper meta tags, semantic HTML, fast load times, and mobile optimisation.",
+                `Automated review generation designed specifically for ${industry.name.toLowerCase()}.`,
+                "Personalised email and SMS prompts sent at the right moment — hands-free while you focus on your business.",
+                "Web design, SEO, and reviews working together for higher rankings, more visibility, and more customers.",
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1] text-lg leading-relaxed">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Challenges */}
         <section className="py-20 bg-[#0a0e1a]">
@@ -125,28 +153,24 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
           </div>
         </section>
 
-        {/* Why GuardX */}
-        <section className="py-20 bg-[#111827]">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
-              Why {industry.name} Choose GuardX
-            </h2>
-            <div className="max-w-2xl mx-auto space-y-6">
-              {[
-                `Professional web design built to showcase ${industry.name.toLowerCase()} and convert visitors into enquiries.`,
-                "SEO foundation included — proper meta tags, semantic HTML, fast load times, and mobile optimisation from day one.",
-                `Automated review generation designed specifically for ${industry.name.toLowerCase()}.`,
-                "Personalised email and SMS prompts sent at the right moment — hands-free while you focus on your business.",
-                "Web design, SEO, and reviews working together for higher rankings, more visibility, and more customers.",
-              ].map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-[#cbd5e1] text-lg leading-relaxed">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+{/* Email & SMS */} 
+{emailSmsParagraphs.length > 0 && (
+  <section className="py-20 bg-[#111827]">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+        How GuardX Collects Reviews for {industry.name}
+      </h2>
+      <div className="max-w-3xl mx-auto">
+        {emailSmsParagraphs.map((para, i) => (
+          <p key={i} className="text-lg text-[#94a3b8] leading-relaxed mb-6 last:mb-0">
+            {para}
+          </p>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
 
         {/* Related Industries */}
         {relatedIndustries.length > 0 && (
