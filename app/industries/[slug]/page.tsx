@@ -65,8 +65,15 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
     .filter(Boolean)
 
   const introParagraphs = industry.intro.split("\n\n")
-  const emailSmsIndex = introParagraphs.findIndex((p) =>
-    p.trim().toLowerCase().startsWith("our email and sms system")
+  const emailSmsIndex = introParagraphs.findIndex((p) => {
+    const lower = p.trim().toLowerCase()
+    return (
+      lower.includes("email and sms") ||
+      lower.includes("review requests") ||
+      lower.includes("collect reviews") ||
+      lower.includes("personalised review requests")
+    )
+  }).toLowerCase().startsWith("our email and sms system")
   )
   const mainIntroParagraphs = emailSmsIndex >= 0 ? introParagraphs.slice(0, emailSmsIndex) : introParagraphs
   const emailSmsParagraphs = emailSmsIndex >= 0 ? introParagraphs.slice(emailSmsIndex) : []
