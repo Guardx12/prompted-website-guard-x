@@ -96,7 +96,8 @@ export default function WebDesignPage() {
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <div className="rounded-2xl border border-white/10 bg-[#1e293b] overflow-hidden max-w-4xl mx-auto">
+            <div className="space-y-8">
+<div className="rounded-2xl border border-white/10 bg-[#1e293b] overflow-hidden max-w-4xl mx-auto">
               {/* Browser mockup frame */}
               <div className="bg-[#0f172a] px-4 py-3 flex items-center gap-2 border-b border-white/10">
                 <div className="flex gap-1.5">
@@ -142,6 +143,54 @@ export default function WebDesignPage() {
                 </a>
               </div>
             </div>
+
+<div className="rounded-2xl border border-white/10 bg-[#1e293b] overflow-hidden max-w-4xl mx-auto">
+              {/* Browser mockup frame */}
+              <div className="bg-[#0f172a] px-4 py-3 flex items-center gap-2 border-b border-white/10">
+                <div className="flex gap-1.5">
+                  <span className="w-3 h-3 rounded-full bg-red-500/60" />
+                  <span className="w-3 h-3 rounded-full bg-yellow-500/60" />
+                  <span className="w-3 h-3 rounded-full bg-green-500/60" />
+                </div>
+                <div className="flex-1 mx-4">
+                  <div className="bg-[#1e293b] rounded-md px-3 py-1 text-xs text-[#94a3b8] text-center truncate">
+                    highview-scaffolding.vercel.app
+                  </div>
+                </div>
+              </div>
+
+              {/* Screenshot area */}
+              <div className="relative aspect-video bg-[#0f172a]">
+                <iframe
+                  src="https://highview-scaffolding.vercel.app"
+                  title="Highview Scaffolding website preview"
+                  className="w-full h-full border-0"
+                  loading="lazy"
+                  sandbox="allow-scripts allow-same-origin"
+                />
+              </div>
+
+              {/* Project info */}
+              <div className="p-6 md:p-8">
+                <h3 className="text-2xl font-bold text-white mb-3">
+                  Highview Scaffolding
+                </h3>
+                <p className="text-[#cbd5e1] leading-relaxed mb-6">
+                  Professional website built for a scaffolding company, featuring
+                  modern design, fast performance, and strong SEO foundation.
+                </p>
+                <a
+                  href="https://highview-scaffolding.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.35)]"
+                >
+                  View Live Website
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+</div>
           </FadeIn>
         </div>
       </section>

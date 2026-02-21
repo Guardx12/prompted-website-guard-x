@@ -35,7 +35,7 @@ const examples: ExampleCard[] = [
   { title: "Plumber Website", subtitle: "Homepage example for a plumbing business.",
     imageSrc: "/images/examples/plumber-card.jpg",
     href: "https://guardx-plumbing.vercel.app/", icon: Droplets, status: "live" },
-  { title: "Electrician Website", subtitle: "Homepage example for an electrical contractor.", icon: Zap, status: "coming_soon" },
+  { title: "Electrician Website", subtitle: "Homepage example for an electrical contractor.", imageSrc: "/images/examples/electrician-card.jpg", href: "https://guardx-electrician.vercel.app/", icon: Zap, status: "live" },,
   { title: "Builder Website", subtitle: "Homepage example for a building company.", icon: HardHat, status: "coming_soon" },
   { title: "Scaffolding Website", subtitle: "Homepage example for a scaffolding firm.", icon: Wind, status: "coming_soon" },
   { title: "Driveways & Landscaping", subtitle: "Homepage example for driveways / landscaping.", icon: Shovel, status: "coming_soon" },
