@@ -44,6 +44,9 @@ export function Navigation() {
               <Link href="/calculator" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
                 Calculator
               </Link>
+              <Link href="/examples" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
+                Examples
+              </Link>
               <Link href="/pricing" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
                 Pricing
               </Link>
@@ -86,6 +89,9 @@ export function Navigation() {
                 </Link>
                 <Link href="/calculator" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
                   Calculator
+                </Link>
+                <Link href="/examples" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
+                  Examples
                 </Link>
                 <Link href="/pricing" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
                   Pricing
