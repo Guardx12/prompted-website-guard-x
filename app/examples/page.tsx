@@ -27,13 +27,14 @@ const examples: ExampleCard[] = [
   {
     title: "Sussex Roofing Specialists",
     subtitle: "Roofing website homepage example (showroom demo).",
-    href: "https://guardx-plumbing.vercel.app/",
-    image: "/images/examples/plumber-card.jpg",
+    href: "https://guardx-roofing.vercel.app/",
     icon: Hammer,
     imageSrc: "/images/examples/roofer/hero.jpg",
-    status: "Live demo",
+    status: "live",
   },
-  { title: "Plumber Website", subtitle: "Homepage example for a plumbing business.", icon: Droplets, status: "Live demo" },
+  { title: "Plumber Website", subtitle: "Homepage example for a plumbing business.",
+    imageSrc: "/images/examples/plumber-card.jpg",
+    href: "https://guardx-plumbing.vercel.app/", icon: Droplets, status: "live" },
   { title: "Electrician Website", subtitle: "Homepage example for an electrical contractor.", icon: Zap, status: "coming_soon" },
   { title: "Builder Website", subtitle: "Homepage example for a building company.", icon: HardHat, status: "coming_soon" },
   { title: "Scaffolding Website", subtitle: "Homepage example for a scaffolding firm.", icon: Wind, status: "coming_soon" },
@@ -92,7 +93,7 @@ export default function ExamplesPage() {
 
                       <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-[rgba(148,163,184,0.18)] bg-[rgba(10,14,26,0.65)] px-3 py-1 text-xs text-[#e2e8f0]">
                         <Icon className="h-4 w-4 text-[#60a5fa]" />
-                        {ex.status === "live" ? "Live demo" : ex.href ? "Live demo" : "Coming soon"}
+                        {ex.status === "live" ? "Live demo" : "Coming soon"}
                       </div>
                     </div>
 
