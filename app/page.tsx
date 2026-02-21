@@ -1,838 +1,448 @@
-"use client"
 
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { AnimatedPageTitle } from "@/components/animated-page-title"
-import MovingGoogleReviews from "@/components/moving-google-reviews"
-import Link from "next/link"
-import Image from "next/image"
-import { useEffect, useRef, useState, useCallback } from "react"
-import { motion, useReducedMotion, useInView } from "framer-motion"
-import {
-  Code2,
-  Search,
-  Smartphone,
-  Zap,
-  Layers,
-  Globe,
-  BarChart3,
-  FileCode,
-  ArrowRight,
-  CheckCircle,
-  Star,
-  MessageSquare,
-} from "lucide-react"
+import Image from "next/image";
 
-/* ------------------------------------------------------------------ */
-/*  Animated gradient background (canvas)                              */
-/* ------------------------------------------------------------------ */
-function AnimatedBackground() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const prefersReduced = useReducedMotion()
+const highlights = [
+  { k: "Callout", v: "Same‑day slots" },
+  { k: "Testing", v: "Certified (demo)" },
+  { k: "Cover", v: "Domestic + Commercial" },
+  { k: "Guarantee", v: "Workmanship backed" },
+];
 
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas || prefersReduced) return
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
+const pillars = [
+  { title: "Emergency faults", desc: "Trips, sparks, burning smells, sockets down — safe diagnostics and repair." },
+  { title: "EV chargers", desc: "Home charger installs with neat trunking and a clean handover." },
+  { title: "EICR reports", desc: "Landlord & homeowner inspections (demo) with clear next steps." },
+];
 
-    let raf: number
-    let t = 0
+const services = [
+  "Consumer unit upgrades",
+  "Fault finding & repairs",
+  "Lighting installs",
+  "Partial rewires",
+  "Outdoor power",
+  "Smoke/heat alarms",
+  "Data & Wi‑Fi points",
+  "Commercial maintenance",
+];
 
-    const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-    resize()
-    window.addEventListener("resize", resize)
+const areas = ["Brighton", "Hove", "Worthing", "Chichester", "Littlehampton", "Horsham"];
 
-    const draw = () => {
-      t += 0.002
-      const w = canvas.width
-      const h = canvas.height
+const reviews = [
+  { title: "Customer Review", body: "Rapid response, explained everything clearly, and fixed the fault safely." },
+  { title: "Customer Review", body: "Very tidy install — great communication and the finish looks spot on." },
+  { title: "Customer Review", body: "Professional, punctual, and thorough testing. Would recommend." },
+];
 
-      ctx.fillStyle = "#0a0e1a"
-      ctx.fillRect(0, 0, w, h)
-
-      const spots = [
-        {
-          x: w * (0.3 + 0.15 * Math.sin(t * 0.7)),
-          y: h * (0.3 + 0.1 * Math.cos(t * 0.5)),
-          r: Math.max(w, h) * 0.55,
-          color: `rgba(30, 58, 138, ${0.35 + 0.1 * Math.sin(t)})`,
-        },
-        {
-          x: w * (0.7 + 0.1 * Math.cos(t * 0.6)),
-          y: h * (0.5 + 0.15 * Math.sin(t * 0.8)),
-          r: Math.max(w, h) * 0.5,
-          color: `rgba(88, 28, 135, ${0.25 + 0.08 * Math.cos(t * 1.1)})`,
-        },
-        {
-          x: w * (0.5 + 0.2 * Math.sin(t * 0.4)),
-          y: h * (0.7 + 0.1 * Math.cos(t * 0.9)),
-          r: Math.max(w, h) * 0.45,
-          color: `rgba(14, 116, 144, ${0.2 + 0.06 * Math.sin(t * 0.7)})`,
-        },
-        {
-          x: w * (0.2 + 0.1 * Math.cos(t * 0.3)),
-          y: h * (0.8 + 0.05 * Math.sin(t * 1.2)),
-          r: Math.max(w, h) * 0.4,
-          color: `rgba(59, 130, 246, ${0.15 + 0.05 * Math.cos(t * 0.9)})`,
-        },
-      ]
-
-      spots.forEach((s) => {
-        const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r)
-        g.addColorStop(0, s.color)
-        g.addColorStop(1, "transparent")
-        ctx.fillStyle = g
-        ctx.fillRect(0, 0, w, h)
-      })
-
-      raf = requestAnimationFrame(draw)
-    }
-    draw()
-
-    return () => {
-      cancelAnimationFrame(raf)
-      window.removeEventListener("resize", resize)
-    }
-  }, [prefersReduced])
-
+function Stars() {
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 -z-10"
-      style={{ background: "#0a0e1a" }}
-      aria-hidden="true"
-    />
-  )
-}
-
-/* ------------------------------------------------------------------ */
-/*  Floating particles (client-only to avoid hydration mismatch)       */
-/* ------------------------------------------------------------------ */
-function FloatingParticles() {
-  const prefersReduced = useReducedMotion()
-  const [particles, setParticles] = useState<
-    { id: number; x: number; y: number; size: number; duration: number; delay: number; opacity: number }[]
-  >([])
-
-  useEffect(() => {
-    if (prefersReduced) return
-    setParticles(
-      Array.from({ length: 18 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: 2 + Math.random() * 3,
-        duration: 12 + Math.random() * 20,
-        delay: Math.random() * 8,
-        opacity: 0.15 + Math.random() * 0.25,
-      }))
-    )
-  }, [prefersReduced])
-
-  if (particles.length === 0) return null
-
-  return (
-    <div className="fixed inset-0 -z-[5] overflow-hidden pointer-events-none" aria-hidden="true">
-      {particles.map((p) => (
-        <motion.div
-          key={p.id}
-          className="absolute rounded-full"
-          style={{
-            width: p.size,
-            height: p.size,
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            background: `radial-gradient(circle, rgba(147,197,253,${p.opacity}), transparent)`,
-            boxShadow: `0 0 ${p.size * 3}px rgba(147,197,253,${p.opacity * 0.5})`,
-          }}
-          animate={{
-            y: [0, -60, 0],
-            x: [0, 20 * (p.id % 2 === 0 ? 1 : -1), 0],
-            opacity: [p.opacity, p.opacity * 1.4, p.opacity],
-          }}
-          transition={{
-            duration: p.duration,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: p.delay,
-          }}
-        />
+    <div className="flex items-center gap-1 text-volt-200" aria-label="5 star rating">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <svg key={i} viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden="true">
+          <path d="M10 15.27l-5.18 3.06 1.64-5.81L1.5 8.97l6-.48L10 3l2.5 5.49 6 .48-4.96 3.55 1.64 5.81z" />
+        </svg>
       ))}
     </div>
-  )
+  );
 }
 
-/* ------------------------------------------------------------------ */
-/*  DVD-style bouncing logo orb                                        */
-/* ------------------------------------------------------------------ */
-function BouncingOrb() {
-  const prefersReduced = useReducedMotion()
-  const containerRef = useRef<HTMLDivElement>(null)
-  const posRef = useRef({ x: 60, y: 40 })
-  const velRef = useRef({ vx: 1.2, vy: 0.8 })
-  const [pos, setPos] = useState({ x: 60, y: 40 })
-
-  useEffect(() => {
-    if (prefersReduced) return
-    const container = containerRef.current
-    if (!container) return
-
-    const orbSize = 220
-    let raf: number
-
-    const step = () => {
-      const rect = container.getBoundingClientRect()
-      const maxX = rect.width - orbSize
-      const maxY = rect.height - orbSize
-
-      let { x, y } = posRef.current
-      let { vx, vy } = velRef.current
-
-      x += vx
-      y += vy
-
-      if (x <= 0) { x = 0; vx = Math.abs(vx); }
-      if (x >= maxX) { x = maxX; vx = -Math.abs(vx); }
-      if (y <= 0) { y = 0; vy = Math.abs(vy); }
-      if (y >= maxY) { y = maxY; vy = -Math.abs(vy); }
-
-      posRef.current = { x, y }
-      velRef.current = { vx, vy }
-      setPos({ x, y })
-      raf = requestAnimationFrame(step)
-    }
-    raf = requestAnimationFrame(step)
-
-    return () => cancelAnimationFrame(raf)
-  }, [prefersReduced])
-
+function Chip({ children }: { children: React.ReactNode }) {
   return (
-    <div ref={containerRef} className="relative w-full h-[340px] sm:h-[400px]">
-      <div
-        className="absolute"
-        style={{
-          transform: `translate(${pos.x}px, ${pos.y}px)`,
-          willChange: "transform",
-        }}
-      >
-        {/* Outer glow */}
-        <div
-          className="absolute -inset-10 rounded-full pointer-events-none"
-          style={{
-            background: "radial-gradient(circle, rgba(59,130,246,0.25) 0%, rgba(88,28,135,0.12) 40%, transparent 70%)",
-            filter: "blur(30px)",
-            animation: prefersReduced ? "none" : "pulse 4s ease-in-out infinite",
-          }}
-        />
-        {/* Glass orb */}
-        <div
-          className="relative w-[200px] h-[200px] sm:w-[220px] sm:h-[220px] rounded-full flex items-center justify-center overflow-hidden"
-          style={{
-            background: "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 100%)",
-            boxShadow: "0 0 60px rgba(59,130,246,0.2), inset 0 0 60px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.3)",
-            backdropFilter: "blur(12px)",
-            border: "1px solid rgba(255,255,255,0.15)",
-          }}
-        >
-          <Image
-            src="/images/guardx-final-logo.jpg"
-            alt="GuardX Logo"
-            width={180}
-            height={180}
-            className="rounded-full object-cover w-[170px] h-[170px] sm:w-[190px] sm:h-[190px]"
-            priority
-          />
-        </div>
-      </div>
-    </div>
-  )
-}
-
-/* ------------------------------------------------------------------ */
-/*  Animated headline with wave + shimmer                              */
-/* ------------------------------------------------------------------ */
-function AnimatedHeadline() {
-  const prefersReduced = useReducedMotion()
-  const words = "Website Design & SEO Foundation".split(" ")
-  const line2 = "for Local Businesses"
-
-  /* Build a flat index so each letter gets a unique wave delay */
-  let globalIndex = 0
-
-  return (
-    <AnimatedPageTitle text="Web Design & SEO Foundation for Local Businesses" />
-  )
-}
-
-/* ------------------------------------------------------------------ */
-/*  Scroll-reveal wrapper                                              */
-/* ------------------------------------------------------------------ */
-function Reveal({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: React.ReactNode
-  className?: string
-  delay?: number
-}) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-80px" })
-  const prefersReduced = useReducedMotion()
-
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial={prefersReduced ? {} : { opacity: 0, y: 36 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay, ease: "easeOut" }}
-    >
+    <span className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold tracking-wide text-white/85">
       {children}
-    </motion.div>
-  )
+    </span>
+  );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Feature card with glow hover                                       */
-/* ------------------------------------------------------------------ */
-function FeatureCard({
-  icon: Icon,
-  title,
-  description,
-  delay = 0,
-}: {
-  icon: React.ElementType
-  title: string
-  description: string
-  delay?: number
-}) {
+export default function Page() {
   return (
-    <Reveal delay={delay}>
-      <div className="group relative rounded-2xl p-6 sm:p-8 transition-all duration-500 hover:scale-[1.03] bg-white/[0.04] border border-white/10 backdrop-blur-sm hover:bg-white/[0.08] hover:border-white/20 hover:shadow-[0_0_40px_rgba(59,130,246,0.12)]">
-        <div className="flex items-center justify-center w-14 h-14 rounded-xl mb-5 bg-[rgba(59,130,246,0.15)] group-hover:bg-[rgba(59,130,246,0.25)] transition-colors duration-300">
-          <Icon className="w-7 h-7 text-blue-400" />
-        </div>
-        <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-        <p className="text-[#94a3b8] leading-relaxed">{description}</p>
-      </div>
-    </Reveal>
-  )
-}
-
-/* ------------------------------------------------------------------ */
-/*  Pricing card                                                       */
-/* ------------------------------------------------------------------ */
-function PricingCard({
-  title,
-  price,
-  unit,
-  features,
-  highlight = false,
-  delay = 0,
-}: {
-  title: string
-  price: string
-  unit?: string
-  features: string[]
-  highlight?: boolean
-  delay?: number
-}) {
-  return (
-    <Reveal delay={delay}>
-      <div
-        className={`relative rounded-2xl p-8 transition-all duration-500 hover:scale-[1.03] ${
-          highlight
-            ? "bg-white/[0.08] border-2 border-blue-500/40 shadow-[0_0_40px_rgba(59,130,246,0.15)]"
-            : "bg-white/[0.04] border border-white/10"
-        } backdrop-blur-sm`}
-      >
-        {highlight && (
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-blue-500 text-white text-xs font-bold rounded-full tracking-wider uppercase">
-            Most Popular
+    <main className="min-h-screen bg-obsidian">
+      {/* Compact demo bar */}
+      <div className="border-b border-white/10 bg-midnight">
+        <div className="container flex flex-col gap-2 py-3 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-white/75">
+            Showroom demo website • No forms collect data • Buttons are placeholders
+          </p>
+          <div className="flex items-center gap-3 text-sm">
+            <a href="#" className="text-white/80 hover:text-white">← Back to examples</a>
+            <span className="hidden text-white/20 sm:inline">|</span>
+            <a href="tel:+447000000000" className="font-semibold text-white hover:underline">Call 07000 000000</a>
           </div>
-        )}
-        <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-        <div className="mb-6">
-          <span className="text-4xl font-bold text-white">{price}</span>
-          {unit && <span className="text-[#94a3b8] ml-1 text-base">{unit}</span>}
         </div>
-        <ul className="space-y-3 mb-8">
-          {features.map((f) => (
-            <li key={f} className="flex items-start gap-3 text-[#94a3b8]">
-              <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-              <span>{f}</span>
-            </li>
-          ))}
-        </ul>
-        <Link
-          href="/contact"
-          className={`block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
-            highlight
-              ? "bg-blue-500 text-white hover:bg-blue-600 hover:shadow-[0_0_24px_rgba(59,130,246,0.4)]"
-              : "bg-white/10 text-white hover:bg-white/20"
-          }`}
-        >
-          Get a Quote
-        </Link>
       </div>
-    </Reveal>
-  )
-}
 
-/* ================================================================== */
-/*  MAIN PAGE                                                          */
-/* ================================================================== */
-export default function HomePage() {
-  return (
-    <div className="relative min-h-screen overflow-x-hidden">
-      <AnimatedBackground />
-      <FloatingParticles />
+      {/* Header (sharper, more industrial) */}
+      <header className="sticky top-0 z-30 border-b border-white/10 bg-obsidian/80 backdrop-blur">
+        <div className="container flex h-16 items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="grid h-10 w-10 place-items-center rounded-md bg-ember-600 text-white shadow-ember">
+              <span className="text-sm font-black tracking-widest">VG</span>
+            </div>
+            <div className="leading-tight">
+              <p className="text-sm font-extrabold tracking-wide text-white">VoltGuard Electrical</p>
+              <p className="text-[11px] text-white/55">Emergency • EV • EICR • Upgrades</p>
+            </div>
+          </div>
+          <nav className="hidden items-center gap-6 text-sm text-white/70 md:flex">
+            <a href="#proof" className="hover:text-white">Proof</a>
+            <a href="#services" className="hover:text-white">Services</a>
+            <a href="#compliance" className="hover:text-white">Compliance</a>
+            <a href="#areas" className="hover:text-white">Areas</a>
+            <a href="#reviews" className="hover:text-white">Reviews</a>
+          </nav>
+          <div className="flex items-center gap-2">
+            <a
+              href="#quote"
+              className="hidden rounded-md border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10 sm:inline-flex"
+            >
+              Request quote
+            </a>
+            <a
+              href="tel:+447000000000"
+              className="inline-flex rounded-md bg-ember-600 px-4 py-2 text-sm font-bold text-white shadow-ember hover:bg-ember-700"
+            >
+              Call now
+            </a>
+          </div>
+        </div>
+      </header>
 
-      <Navigation />
+      {/* Hero (distinct: diagonal split + neon) */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/hero.jpg"
+            alt="Dark electrician hero background"
+            fill
+            priority
+            className="object-cover opacity-90"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-obsidian/70 via-obsidian/60 to-obsidian" />
+        </div>
 
-      {/* ============================================================ */}
-      {/*  HERO                                                         */}
-      {/* ============================================================ */}
-      <section className="relative pt-20 pb-24 sm:pt-28 sm:pb-32 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            {/* Copy */}
-            <div className="flex-1 text-center lg:text-left">
-              <Reveal>
-                <AnimatedHeadline />
-              </Reveal>
-
-              <Reveal delay={0.15}>
-                <p className="text-lg sm:text-xl text-[#94a3b8] mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Modern, lightning-fast websites built to rank. Structured correctly for Google from day one so your
-                  business gets found by the right customers.
-                </p>
-              </Reveal>
-
-              <Reveal delay={0.3}>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <Link
-                    href="/web-design"
-                    className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-8 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
-                  >
-                    Web Design <ArrowRight className="w-5 h-5" />
-                  </Link>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center gap-2 bg-white/10 text-white hover:bg-white/20 px-8 py-4 text-lg font-bold rounded-xl border border-white/20 transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-                  >
-                    Get a Quote
-                  </Link>
+        <div className="relative">
+          <div className="container py-16 sm:py-24">
+            <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+              <div className="lg:col-span-7">
+                <div className="flex flex-wrap items-center gap-2">
+                  <Chip><span className="h-2 w-2 rounded-full bg-volt-300" /> Same‑day slots</Chip>
+                  <Chip><Stars /><span className="text-white/85">5.0 demo rating</span></Chip>
+                  <Chip>Insured (demo)</Chip>
                 </div>
-              </Reveal>
-            </div>
 
-            {/* Bouncing logo orb */}
-            <Reveal delay={0.2} className="flex-1 w-full">
-              <BouncingOrb />
-            </Reveal>
-          </div>
-        </div>
-      </section>
+                <h1 className="mt-6 text-balance text-4xl font-black tracking-tight text-white sm:text-6xl">
+                  High‑standard electrical work.
+                  <span className="text-volt-200"> Tested. Labelled. Signed off (demo).</span>
+                </h1>
 
-      {/* ============================================================ */}
-      {/*  WEBSITE DESIGN FEATURES                                      */}
-      {/* ============================================================ */}
-      <MovingGoogleReviews />
-
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <Reveal>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-center mb-4 text-balance">
-              What You Get
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="text-[#94a3b8] text-lg text-center max-w-3xl mx-auto mb-16 leading-relaxed">
-              Every site we build is custom-designed, fully responsive, and engineered for performance.
-              No templates. No shortcuts.
-            </p>
-          </Reveal>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <FeatureCard
-              icon={Code2}
-              title="Modern Professional Design"
-              description="Bespoke designs tailored to your brand identity. Hand-crafted for a premium look that builds instant trust with customers."
-              delay={0}
-            />
-            <FeatureCard
-              icon={Smartphone}
-              title="Mobile-Friendly & Responsive"
-              description="Flawless experience on every device. Mobile-first design ensures your site works perfectly wherever customers find you."
-              delay={0.1}
-            />
-            <FeatureCard
-              icon={Zap}
-              title="Fast Loading Performance"
-              description="Sub-second load times with optimised images, clean code, and modern hosting infrastructure that keeps visitors engaged."
-              delay={0.2}
-            />
-            <FeatureCard
-              icon={Layers}
-              title="Clear Structure for Enquiries"
-              description="Strategic layout and clear calls-to-action designed to guide visitors towards contacting your business."
-              delay={0.3}
-            />
-            <FeatureCard
-              icon={Search}
-              title="Strong SEO Foundation"
-              description="Proper meta tags, semantic HTML, clean URLs, and Core Web Vitals optimisation built into every page from day one."
-              delay={0.4}
-            />
-          </div>
-
-          <Reveal delay={0.5}>
-            <div className="mt-12 max-w-3xl mx-auto rounded-xl bg-white/[0.05] border border-white/10 p-6 text-center">
-              <p className="text-[#cbd5e1] leading-relaxed">
-                {"We don't run ongoing SEO campaigns \u2014 we build a strong SEO foundation so your website is ready to rank."}
-              </p>
-              <p className="text-[#94a3b8] text-sm mt-4">
-                Learn more about our{" "}
-                <Link href="/web-design" className="text-blue-400 hover:text-blue-300 underline">web design services</Link>,{" "}
-                <Link href="/website-design-uk" className="text-blue-400 hover:text-blue-300 underline">UK website design</Link>, or{" "}
-                <Link href="/seo-foundation" className="text-blue-400 hover:text-blue-300 underline">SEO foundation</Link>.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/*  SEO FOUNDATION DETAIL                                        */}
-      {/* ============================================================ */}
-
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="flex-1">
-              <Reveal>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
-                  SEO Foundation Included with Professional Website Package
-                </h2>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <p className="text-[#94a3b8] text-lg mb-6 leading-relaxed">
-                  Our Professional Website package includes strong SEO foundation setup. This ensures your website is
-                  structured correctly and ready for Google indexing. This is a one-time setup built into the website.
+                <p className="mt-5 max-w-2xl text-pretty text-lg text-white/70">
+                  For homeowners, landlords and small commercial — fault finding, EV chargers, consumer units and EICR safety reports.
                 </p>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <ul className="space-y-4">
-                  {[
-                    "Proper heading hierarchy & semantic HTML5",
-                    "Optimised meta titles & descriptions",
-                    "XML sitemap & robots.txt configuration",
-                    "Core Web Vitals optimisation",
-                    "Mobile-first indexing ready",
-                    "Fast page load speeds",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-[#94a3b8]">
-                      <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
-            </div>
 
-            {/* Visual grid */}
-            <Reveal delay={0.2} className="flex-1 flex justify-center">
-              <div className="relative w-full max-w-md">
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 blur-3xl" />
-                <div className="relative grid grid-cols-2 gap-4">
-                  {[
-                    { icon: Search, label: "SEO Ready" },
-                    { icon: Globe, label: "Clean URLs" },
-                    { icon: BarChart3, label: "Core Web Vitals" },
-                    { icon: FileCode, label: "Clean Code" },
-                  ].map((item) => (
-                    <div
-                      key={item.label}
-                      className="flex flex-col items-center gap-3 p-6 rounded-2xl bg-white/[0.05] border border-white/10 backdrop-blur-sm"
-                    >
-                      <item.icon className="w-10 h-10 text-blue-400" />
-                      <span className="text-white font-semibold text-sm text-center">{item.label}</span>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <a
+                    href="#quote"
+                    className="inline-flex items-center justify-center rounded-md bg-volt-400 px-6 py-3 text-base font-black text-obsidian shadow-neon hover:bg-volt-300"
+                  >
+                    Get a fixed quote
+                  </a>
+                  <a
+                    href="#services"
+                    className="inline-flex items-center justify-center rounded-md border border-white/10 bg-white/5 px-6 py-3 text-base font-semibold text-white hover:bg-white/10"
+                  >
+                    See services
+                  </a>
+                </div>
+
+                <div className="mt-10 grid gap-3 sm:grid-cols-4">
+                  {highlights.map((h) => (
+                    <div key={h.k} className="rounded-md border border-white/10 bg-white/5 p-4">
+                      <p className="text-xs font-semibold tracking-widest text-white/60">{h.k.toUpperCase()}</p>
+                      <p className="mt-1 text-sm font-bold text-white">{h.v}</p>
                     </div>
                   ))}
                 </div>
               </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
 
-      {/* ============================================================ */}
-      {/*  PRICING                                                      */}
-      {/* ============================================================ */}
-      <MovingGoogleReviews />
+              <div className="lg:col-span-5">
+                <div id="quote" className="rounded-md border border-white/10 bg-midnight p-6 shadow-crisp">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <p className="text-xs font-semibold tracking-widest text-volt-200">FAST CALLBACK</p>
+                      <h2 className="mt-2 text-2xl font-black text-white">Tell us what you need</h2>
+                      <p className="mt-2 text-sm text-white/60">Pick a job type — this is a demo (no data collected).</p>
+                    </div>
+                    <div className="rounded-md bg-white/5 px-3 py-2 text-right">
+                      <p className="text-[11px] font-semibold text-white/60">Callout from</p>
+                      <p className="text-lg font-black text-white">£95*</p>
+                      <p className="text-[10px] text-white/45">demo pricing</p>
+                    </div>
+                  </div>
 
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <Reveal>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-center mb-4 text-balance">
-              Transparent Pricing
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="text-[#94a3b8] text-lg text-center max-w-2xl mx-auto mb-16 leading-relaxed">
-              Simple, honest pricing with no hidden fees.
-            </p>
-            <p className="text-sm text-[#94a3b8] text-center max-w-2xl mx-auto mt-4">Built using modern, professional technology for speed, reliability, and long-term performance.</p>
-          </Reveal>
+                  <div className="mt-5 grid gap-3">
+                    {pillars.map((p) => (
+                      <div key={p.title} className="rounded-md border border-white/10 bg-white/5 p-4">
+                        <p className="text-sm font-extrabold text-white">{p.title}</p>
+                        <p className="mt-1 text-sm text-white/60">{p.desc}</p>
+                      </div>
+                    ))}
+                  </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            <PricingCard
-              title="Starter Website"
-              price="from &pound;500"
-              features={[
-                "Modern, professional website (built for local UK businesses)",
-                "Mobile-friendly design across phones, tablets and desktops",
-                "Clear layout designed to generate enquiries",
-                "Click-to-call, click-to-email and contact options",
-                "WhatsApp chat integration (optional)",
-                "Social media links added (Facebook, Instagram, etc.)",
-                "Contact form that sends straight to your email",
-              ]}
-              delay={0}
-            />
-            <PricingCard
-              title="Professional Website + SEO Foundation"
-              price="from &pound;1,000"
-              features={[
-                "Everything in Starter, plus an SEO-ready structure",
-                "Service pages structured for better search visibility",
-                "Location pages to target your service areas",
-                "Clean URL structure and internal linking",
-                "Meta titles and descriptions set up properly",
-                "Sitemap.xml and robots.txt included",
-                "Speed and performance optimised",
-                "Structured correctly for Google indexing",
-              ]}
-              highlight
-              delay={0.1}
-            />
-            <PricingCard
-              title="Website Hosting"
-              price="&pound;30"
-              unit="/ month"
-              features={[
-                "Hosting to keep your website live and accessible",
-                "Fast, reliable hosting setup",
-                "Domain connection and deployment included",
-                "Light support if you need help or advice",
-                "No long contracts — cancel anytime",
-              ]}
-              delay={0.2}
-            />
-          </div>
-
-          <Reveal delay={0.3}>
-            <div className="mt-12 text-center">
-              <Link
-                href="/pricing"
-                className="text-blue-400 hover:text-blue-300 underline text-lg font-medium"
-              >
-                View full pricing details
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-
-      {/* ============================================================ */}
-      {/*  WEBSITE HOSTING                                               */}
-      {/* ============================================================ */}
-
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-            <div>
-              <Reveal>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 text-balance">
-                  Website Hosting by GuardX
-                </h2>
-              </Reveal>
-              <Reveal delay={0.08}>
-                <p className="text-[#94a3b8] text-lg leading-relaxed">
-                  Website Hosting by GuardX is <span className="text-white font-semibold">&pound;30/month</span>.
-                  It keeps your website live, fast, and accessible to customers. Built on reliable modern infrastructure
-                  with support available if needed.
-                </p>
-              </Reveal>
-              <Reveal delay={0.14}>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  {[
-                    "Fast global delivery",
-                    "Secure by default",
-                    "Simple, reliable setup",
-                    "Support available if needed",
-                  ].map((t) => (
-                    <span
-                      key={t}
-                      className="inline-flex items-center rounded-full border border-[rgba(148,163,184,0.18)] bg-[rgba(255,255,255,0.04)] px-4 py-2 text-sm text-[#cbd5e1]"
+                  <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                    <a
+                      href="tel:+447000000000"
+                      className="inline-flex items-center justify-center rounded-md bg-ember-600 px-5 py-3 text-sm font-black text-white shadow-ember hover:bg-ember-700"
                     >
-                      <CheckCircle className="h-4 w-4 text-blue-400 mr-2" />
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </Reveal>
-            </div>
+                      Call now
+                    </a>
+                    <a
+                      href="#compliance"
+                      className="inline-flex items-center justify-center rounded-md border border-white/10 bg-white/5 px-5 py-3 text-sm font-black text-white hover:bg-white/10"
+                    >
+                      Compliance
+                    </a>
+                  </div>
 
-            <Reveal delay={0.1}>
-              <div className="rounded-3xl border border-[rgba(148,163,184,0.14)] bg-[rgba(255,255,255,0.03)] p-8 shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
-                <h3 className="text-xl font-semibold text-white mb-4">What hosting covers</h3>
-                <ul className="space-y-3 text-[#94a3b8]">
-                  {[
-                    "Keeping your website live on reliable infrastructure",
-                    "Connecting your domain and ensuring it stays online",
-                    "Ongoing monitoring of critical errors (if reported)",
-                  ].map((x) => (
-                    <li key={x} className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-blue-400 mt-0.5 flex-shrink-0" />
-                      <span>{x}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-xs text-[#94a3b8] mt-5">
-                  Note: Content changes and new pages are handled separately to keep things fair and predictable.
-                </p>
+                  <p className="mt-4 text-[11px] text-white/45">*Demo pricing shown for showroom realism.</p>
+                </div>
               </div>
-            </Reveal>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/*  MODERN TECHNOLOGY                                             */}
-      {/* ============================================================ */}
+      {/* Proof / Work (distinct: dark "console" cards) */}
+      <section id="proof" className="border-t border-white/10 bg-obsidian">
+        <div className="container py-16">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-semibold tracking-widest text-volt-200">WORK QUALITY</p>
+              <h2 className="mt-2 text-3xl font-black text-white">Neat installs, engineered for safety</h2>
+              <p className="mt-2 max-w-2xl text-white/60">
+                A premium “dark” brand style for electricians — cleaner, sharper, more technical.
+              </p>
+            </div>
+            <div className="rounded-md border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/70">
+              Images are generated locally for demo use.
+            </div>
+          </div>
 
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <Reveal>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance text-center">
-              Built Using Modern Technology
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="text-[#94a3b8] text-lg text-center max-w-3xl mx-auto mb-14 leading-relaxed">
-              Modern build quality matters. Your website is designed to load fast, look premium, and convert visitors into enquiries.
-            </p>
-          </Reveal>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
             {[
-              { icon: Zap, title: "Fast loading performance", desc: "Optimised builds and modern hosting for quick load times." },
-              { icon: Smartphone, title: "Fully mobile responsive", desc: "Designed to look perfect on phones, tablets and desktop." },
-              { icon: FileCode, title: "Modern web standards", desc: "Clean semantic structure built the right way." },
-              { icon: Search, title: "Google-ready structure", desc: "Structured correctly so Google can crawl and understand your site." },
-              { icon: Layers, title: "Built to convert", desc: "Clear calls-to-action and layout built to generate enquiries." },
-              { icon: Globe, title: "Scalable foundation", desc: "Easy to expand with new pages when your business grows." },
-            ].map((i, idx) => (
-              <FeatureCard key={i.title} icon={i.icon} title={i.title} description={i.desc} delay={idx * 0.05} />
+              { src: "/images/work-1.jpg", title: "Consumer unit upgrade", meta: "RCBO board • labelling • test results (demo)" },
+              { src: "/images/work-2.jpg", title: "EICR safety report", meta: "Landlords • homeowners • clear actions (demo)" },
+              { src: "/images/work-3.jpg", title: "EV charger install", meta: "Neat trunking • safe isolation • handover" },
+            ].map((c) => (
+              <div key={c.src} className="overflow-hidden rounded-md border border-white/10 bg-midnight shadow-crisp">
+                <Image src={c.src} alt={c.title} width={1200} height={800} className="h-64 w-full object-cover" />
+                <div className="p-6">
+                  <p className="text-lg font-black text-white">{c.title}</p>
+                  <p className="mt-2 text-sm text-white/60">{c.meta}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <span className="rounded-md bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-white/70">Tested</span>
+                    <span className="rounded-md bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-white/70">Labelled</span>
+                    <span className="rounded-md bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-white/70">Tidy finish</span>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
-      {/* ============================================================ */}
-      {/*  REVIEW GENERATION ADD-ON                                     */}
-      {/* ============================================================ */}
 
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <Reveal>
-            <div className="relative rounded-2xl overflow-hidden bg-white/[0.04] border border-white/10 backdrop-blur-sm p-8 sm:p-12 text-center">
-              {/* Subtle glow behind */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 pointer-events-none" />
+      {/* Services (distinct: list + side panel) */}
+      <section id="services" className="border-t border-white/10 bg-midnight">
+        <div className="container py-16">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
+            <div className="lg:col-span-7">
+              <p className="text-xs font-semibold tracking-widest text-volt-200">SERVICES</p>
+              <h2 className="mt-2 text-3xl font-black text-white">Domestic & commercial electrical</h2>
+              <p className="mt-2 max-w-2xl text-white/60">
+                A more “technical” presentation than the other demos: structured lists, compliance-first messaging.
+              </p>
 
-              <div className="relative">
-                <div className="flex items-center justify-center gap-3 mb-6">
-                  <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-[rgba(59,130,246,0.15)]">
-                    <Star className="w-7 h-7 text-blue-400" />
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {services.map((s) => (
+                  <div key={s} className="rounded-md border border-white/10 bg-white/5 p-4 text-sm font-semibold text-white/85">
+                    {s}
                   </div>
-                  <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-[rgba(59,130,246,0.15)]">
-                    <MessageSquare className="w-7 h-7 text-blue-400" />
-                  </div>
-                </div>
-
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 text-balance">
-                  Need More Google Reviews?
-                </h2>
-                <p className="text-[#94a3b8] text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
-                  Review Generation is available as an optional add-on service to help businesses collect more Google
-                  reviews. Automated email and SMS review requests that boost your online visibility.
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link
-                    href="/review-generation"
-                    className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-8 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
-                  >
-                    Learn About Review Generation <ArrowRight className="w-5 h-5" />
-                  </Link>
-                  <Link
-                    href="/real-results"
-                    className="inline-flex items-center justify-center gap-2 bg-white/10 text-white hover:bg-white/20 px-8 py-4 text-lg font-bold rounded-xl border border-white/20 transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-                  >
-                    See Results
-                  </Link>
-                </div>
+                ))}
               </div>
             </div>
-          </Reveal>
+
+            <aside className="lg:col-span-5">
+              <div className="rounded-md border border-white/10 bg-obsidian p-6 shadow-crisp">
+                <p className="text-xs font-semibold tracking-widest text-ember-200">EMERGENCY</p>
+                <h3 className="mt-2 text-xl font-black text-white">What we cover</h3>
+                <ul className="mt-4 space-y-3 text-sm text-white/65">
+                  <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-volt-300" /> Power trips & burning smells</li>
+                  <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-volt-300" /> Faulty sockets & lighting</li>
+                  <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-volt-300" /> Fuseboard issues</li>
+                  <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-volt-300" /> Outdoor supply problems</li>
+                </ul>
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  <a href="tel:+447000000000" className="inline-flex items-center justify-center rounded-md bg-ember-600 px-5 py-3 text-sm font-black text-white shadow-ember hover:bg-ember-700">
+                    Call now
+                  </a>
+                  <a href="#areas" className="inline-flex items-center justify-center rounded-md border border-white/10 bg-white/5 px-5 py-3 text-sm font-black text-white hover:bg-white/10">
+                    Areas served
+                  </a>
+                </div>
+              </div>
+            </aside>
+          </div>
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/*  FINAL CTA                                                    */}
-      {/* ============================================================ */}
-      <MovingGoogleReviews />
+      {/* Compliance (unique electrician section) */}
+      <section id="compliance" className="border-t border-white/10 bg-obsidian">
+        <div className="container py-16">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-7">
+              <p className="text-xs font-semibold tracking-widest text-volt-200">COMPLIANCE</p>
+              <h2 className="mt-2 text-3xl font-black text-white">Safety-first. Documentation-ready (demo).</h2>
+              <p className="mt-2 max-w-2xl text-white/60">
+                Electricians win on trust. This section is intentionally more compliance-led than other trade demos.
+              </p>
 
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <Reveal>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
-              Ready to Build a Website That Actually Works?
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="text-[#94a3b8] text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
-              Let us design and build a premium website with proper SEO foundations so your
-              business gets found by the right customers.
-            </p>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/web-design"
-                className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-8 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
-              >
-                View Our Work <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 text-white hover:bg-white/20 px-8 py-4 text-lg font-bold rounded-xl border border-white/20 transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-              >
-                Get a Quote
-              </Link>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {[
+                  ["EICR reports (demo)", "Landlord compliance checks with clear actions."],
+                  ["Part P (demo)", "Domestic work signed off correctly."],
+                  ["Insurance (demo)", "Public liability & workmanship guarantee."],
+                  ["Testing (demo)", "Results recorded, circuits labelled."],
+                ].map(([t, d]) => (
+                  <div key={t} className="rounded-md border border-white/10 bg-white/5 p-5">
+                    <p className="text-sm font-extrabold text-white">{t}</p>
+                    <p className="mt-2 text-sm text-white/60">{d}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </Reveal>
+
+            <div className="lg:col-span-5">
+              <div className="rounded-md border border-white/10 bg-midnight p-6 shadow-crisp">
+                <p className="text-xs font-semibold tracking-widest text-white/60">TRUST SIGNALS</p>
+                <div className="mt-4 flex items-center gap-3">
+                  <Stars />
+                  <p className="text-sm font-semibold text-white">5.0 demo rating</p>
+                </div>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {["NICEIC-style (demo)", "EICR (demo)", "EV installer (demo)", "Guaranteed"].map((x) => (
+                    <span key={x} className="rounded-md border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-white/70">
+                      {x}
+                    </span>
+                  ))}
+                </div>
+                <p className="mt-5 text-sm text-white/60">
+                  This demo shows a “premium electrician” brand style. Your real site would include multiple pages and navigation.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <Footer />
-    </div>
-  )
+      {/* Areas */}
+      <section id="areas" className="border-t border-white/10 bg-midnight">
+        <div className="container py-16">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-semibold tracking-widest text-volt-200">AREAS</p>
+              <h2 className="mt-2 text-3xl font-black text-white">Covering Sussex</h2>
+              <p className="mt-2 text-white/60">Local response for callouts and scheduled installs.</p>
+            </div>
+            <div className="rounded-md border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/70">
+              Call: <span className="font-bold text-white">07000 000000</span>
+            </div>
+          </div>
+
+          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {areas.map((a) => (
+              <div key={a} className="rounded-md border border-white/10 bg-obsidian p-4 text-sm font-semibold text-white/80">
+                {a}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews */}
+      <section id="reviews" className="border-t border-white/10 bg-obsidian">
+        <div className="container py-16">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-semibold tracking-widest text-volt-200">REVIEWS</p>
+              <h2 className="mt-2 text-3xl font-black text-white">Trusted workmanship</h2>
+              <div className="mt-3 flex items-center gap-3">
+                <Stars />
+                <p className="text-sm font-semibold text-white/80">5.0 (demo rating)</p>
+              </div>
+            </div>
+            <div className="rounded-md border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/70">
+              Placeholder reviews only — no fake names.
+            </div>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {reviews.map((r, i) => (
+              <figure key={i} className="rounded-md border border-white/10 bg-midnight p-7 shadow-crisp">
+                <blockquote className="text-lg font-black text-white">“{r.title}”</blockquote>
+                <p className="mt-3 text-sm text-white/60">{r.body}</p>
+                <figcaption className="mt-6 text-xs font-semibold tracking-widest text-white/55">
+                  VERIFIED CUSTOMER
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="border-t border-white/10 bg-midnight">
+        <div className="container py-14">
+          <div className="grid gap-8 rounded-md border border-white/10 bg-gradient-to-r from-ember-700/30 via-obsidian to-obsidian p-10 shadow-crisp lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-8">
+              <h2 className="text-3xl font-black text-white">Need an electrician this week?</h2>
+              <p className="mt-2 text-white/60">Fast callouts, tidy installs, and clear pricing. Safety-first from start to finish.</p>
+            </div>
+            <div className="lg:col-span-4 lg:text-right">
+              <a
+                href="tel:+447000000000"
+                className="inline-flex w-full items-center justify-center rounded-md bg-volt-400 px-6 py-3 text-base font-black text-obsidian shadow-neon hover:bg-volt-300 sm:w-auto"
+              >
+                Call 07000 000000
+              </a>
+              <p className="mt-2 text-[11px] text-white/45">Demo site — buttons are placeholders.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer (distinct: minimalist, technical) */}
+      <footer className="border-t border-white/10 bg-obsidian">
+        <div className="container py-10">
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div className="flex items-center gap-3">
+              <div className="grid h-10 w-10 place-items-center rounded-md bg-ember-600 text-white shadow-ember">
+                <span className="text-sm font-black tracking-widest">VG</span>
+              </div>
+              <div>
+                <p className="text-sm font-extrabold tracking-wide text-white">VoltGuard Electrical</p>
+                <p className="text-xs text-white/55">Emergency • EV • EICR • Upgrades</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-white/60">
+              <a href="#services" className="hover:text-white">Services</a>
+              <a href="#compliance" className="hover:text-white">Compliance</a>
+              <a href="#reviews" className="hover:text-white">Reviews</a>
+              <a href="#quote" className="hover:text-white">Quote</a>
+            </div>
+          </div>
+          <p className="mt-6 text-xs text-white/45">
+            This is a GuardX showroom example website (demo). No customer data is collected.
+          </p>
+        </div>
+      </footer>
+    </main>
+  );
 }
