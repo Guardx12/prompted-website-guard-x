@@ -294,16 +294,14 @@ export default function RooferExamplePage() {
                 <div className="flex flex-col sm:flex-row gap-3">
                   <a
                     href="#"
-                    onClick={(e) => e.preventDefault()}
-                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#3b82f6] px-6 py-3 font-semibold text-white hover:bg-[#2563eb] transition-colors"
+className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#3b82f6] px-6 py-3 font-semibold text-white hover:bg-[#2563eb] transition-colors"
                   >
                     <Phone className="h-5 w-5" />
                     Call 01273 000 000
                   </a>
                   <a
                     href="#"
-                    onClick={(e) => e.preventDefault()}
-                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-[rgba(148,163,184,0.22)] bg-[rgba(10,14,26,0.4)] px-6 py-3 font-semibold text-[#e2e8f0] hover:bg-[rgba(148,163,184,0.08)] transition-colors"
+className="inline-flex items-center justify-center gap-2 rounded-xl border border-[rgba(148,163,184,0.22)] bg-[rgba(10,14,26,0.4)] px-6 py-3 font-semibold text-[#e2e8f0] hover:bg-[rgba(148,163,184,0.08)] transition-colors"
                   >
                     <MessageCircle className="h-5 w-5 text-[#22c55e]" />
                     WhatsApp
