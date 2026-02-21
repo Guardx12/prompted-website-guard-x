@@ -27,7 +27,7 @@ const examples: ExampleCard[] = [
   {
     title: "Sussex Roofing Specialists",
     subtitle: "Roofing website homepage example (showroom demo).",
-    href: "/examples/roofer",
+    href: "https://guardx-roofing.vercel.app/",
     icon: Hammer,
     imageSrc: "/images/examples/roofer/hero.jpg",
     status: "live",
@@ -121,9 +121,15 @@ export default function ExamplesPage() {
                 )
 
                 return ex.href ? (
-                  <Link key={ex.title} href={ex.href} className="block">
-                    {CardInner}
-                  </Link>
+                  ex.href.startsWith("http") ? (
+                    <a key={ex.title} href={ex.href} target="_blank" rel="noopener noreferrer" className="block">
+                      {CardInner}
+                    </a>
+                  ) : (
+                    <Link key={ex.title} href={ex.href} className="block">
+                      {CardInner}
+                    </Link>
+                  )
                 ) : (
                   <div key={ex.title}>{CardInner}</div>
                 )
