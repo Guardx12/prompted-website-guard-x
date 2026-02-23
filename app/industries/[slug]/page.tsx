@@ -9,33 +9,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 
-const industryImages: Record<string, { src: string; alt: string }> = {
-  builders: { src: "/images/industries/builder.svg", alt: "Builder working on a residential construction site" },
-  "construction-companies": { src: "/images/industries/construction-companies.svg", alt: "Construction site with workers and steel framework" },
-  scaffolders: { src: "/images/industries/scaffolding.svg", alt: "Scaffolding erected on a residential building" },
-  "flooring-shops": { src: "/images/industries/flooring.svg", alt: "Flooring specialist installing hardwood flooring" },
-  "carpet-cleaners": { src: "/images/industries/carpet-cleaners.svg", alt: "Professional carpet cleaner at work" },
-  "driveway-companies": { src: "/images/industries/driveway-companies.svg", alt: "Driveway block paving installation" },
-  roofers: { src: "/images/industries/roofers.svg", alt: "Roofer replacing tiles on a residential roof" },
-  plumbers: { src: "/images/industries/plumber.svg", alt: "Plumber fixing pipes in a kitchen" },
-  electricians: { src: "/images/industries/electrician.svg", alt: "Electrician working on residential wiring" },
-  "painters-and-decorators": { src: "/images/industries/painters-and-decorators.svg", alt: "Painter and decorator painting a wall" },
-  "estate-agents": { src: "/images/industries/estate-agents.svg", alt: "Estate agent showing a property to buyers" },
-  "letting-agents": { src: "/images/industries/letting-agents.svg", alt: "Letting agent handing over house keys" },
-  restaurants: { src: "/images/industries/restaurants.svg", alt: "Modern restaurant interior with diners" },
-  cafes: { src: "/images/industries/cafes.svg", alt: "Cosy British cafe interior" },
-  garages: { src: "/images/industries/garages.svg", alt: "Professional car garage workshop" },
-  mechanics: { src: "/images/industries/mechanics.svg", alt: "Mechanic diagnosing an engine" },
-  "cleaning-companies": { src: "/images/industries/cleaning-companies.svg", alt: "Professional cleaning team at work" },
-  landscapers: { src: "/images/industries/landscapers.svg", alt: "Landscaper designing a garden" },
-  "tree-surgeons": { src: "/images/industries/tree-surgeons.svg", alt: "Tree surgeon working with climbing gear" },
-  locksmiths: { src: "/images/industries/locksmiths.svg", alt: "Locksmith working on a front door lock" },
-  dentists: { src: "/images/industries/dentists.svg", alt: "Modern dental surgery treatment room" },
-  physios: { src: "/images/industries/physios.svg", alt: "Physiotherapist treating a patient" },
-  gyms: { src: "/images/industries/gyms.svg", alt: "Modern gym interior with fitness equipment" },
-  salons: { src: "/images/industries/salons.svg", alt: "Hair and beauty salon interior" },
-  barbers: { src: "/images/industries/barber.svg", alt: "Barber giving a professional haircut" },
-}
+const heroImageForIndustry = (slug: string) => ({ src: `/images/heroes/industries/${slug}.webp`, alt: `${slug} hero image` })
 
 export async function generateStaticParams() {
   return industries.map((industry) => ({ slug: industry.slug }))
@@ -81,28 +55,75 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
   const mainIntroParagraphs = emailSmsIndex >= 0 ? introParagraphs.slice(0, emailSmsIndex) : introParagraphs
   const emailSmsParagraphs = emailSmsIndex >= 0 ? introParagraphs.slice(emailSmsIndex) : []
 
+  const faqItems = [
+    {
+      question: `What should a ${industry.name.toLowerCase()} website include to get more enquiries?`,
+      answer:
+        `Clear services, strong trust signals (reviews, accreditations), fast mobile performance, and simple contact options like click-to-call and WhatsApp. We build around conversions, not just looks.`,
+    },
+    {
+      question: `Can you build service pages and location pages for ${industry.name.toLowerCase()}?`,
+      answer:
+        `Yes. We can structure your site with dedicated service pages and location targeting so Google understands exactly what you do and where you work.`,
+    },
+    {
+      question: `Do I own the website when it’s finished?`,
+      answer:
+        `Yes — you own the site and content. We can also handle hosting and maintenance so everything stays fast, secure and up to date.`,
+    },
+    {
+      question: `How does GuardX help ${industry.name.toLowerCase()} get more reviews?`,
+      answer:
+        `We automate review requests via SMS and email so satisfied customers leave feedback consistently — helping you stand out on Google and win more calls.`,
+    },
+  ] as const
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
       <Navigation />
 
       <main className="flex-1">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
         {/* Hero */}
         <section className="pt-32 pb-20 bg-[#0a0e1a]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <AnimatedPageTitle text={industry.h1} className="mb-6" />
             <p className="text-sm text-[#64748b] mb-4">{industry.category}</p>
-            {industryImages[slug] && (
-              <div className="relative w-full max-w-3xl mx-auto aspect-[16/9] rounded-xl overflow-hidden mb-10">
-                <Image
-                  src={industryImages[slug].src}
-                  alt={industryImages[slug].alt}
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 768px"
-                />
-              </div>
-            )}
+            <nav aria-label="Breadcrumb" className="mb-4 text-sm text-white/70">
+              <ol className="flex flex-wrap justify-center gap-2">
+                <li><Link href="/" className="hover:underline">Home</Link></li>
+                <li className="opacity-60">/</li>
+                <li><Link href="/industries" className="hover:underline">Industries</Link></li>
+                <li className="opacity-60">/</li>
+                <li className="text-white/90">{industry.name}</li>
+              </ol>
+            </nav>
+            {(() => {
+              const hero = heroImageForIndustry(slug)
+              return (
+                <div className="relative w-full max-w-5xl mx-auto aspect-[16/9] rounded-2xl overflow-hidden mb-10 ring-1 ring-white/10">
+                  <Image
+                    src={hero.src}
+                    alt={`${industry.name} hero image`}
+                    fill
+                    className="object-cover"
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1024px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-black/10" />
+                </div>
+              )
+            })()}
             <p className="text-xl text-[#94a3b8] max-w-3xl mx-auto leading-relaxed mb-10">
               {mainIntroParagraphs[0]}
             </p>
@@ -235,7 +256,31 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
           </section>
         )}
 
-        {/* CTA */}
+        
+        {/* FAQ */}
+        <section className="py-20 bg-[#111827]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 text-center">
+              Frequently Asked Questions for {industry.name}
+            </h2>
+            <div className="space-y-4">
+              {faqItems.map((item) => (
+                <details
+                  key={item.question}
+                  className="group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/7 transition-colors"
+                >
+                  <summary className="cursor-pointer list-none text-white font-semibold text-lg flex items-center justify-between gap-4">
+                    <span>{item.question}</span>
+                    <span className="text-white/60 group-open:rotate-45 transition-transform">+</span>
+                  </summary>
+                  <p className="mt-4 text-[#94a3b8] leading-relaxed">{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+{/* CTA */}
         <section className="py-20 bg-[#0a0e1a]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">

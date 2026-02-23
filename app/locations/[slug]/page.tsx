@@ -9,52 +9,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 
-const locationImages: Record<string, { src: string; alt: string }> = {
-  sussex: { src: "/images/locations/sussex.svg", alt: "Sussex countryside and South Downs" },
-  brighton: { src: "/images/locations/brighton.svg", alt: "Brighton seafront with the iconic Palace Pier" },
-  hove: { src: "/images/locations/hove.svg", alt: "Hove seafront and Regency architecture" },
-  worthing: { src: "/images/locations/worthing.svg", alt: "Worthing seafront and pier" },
-  littlehampton: { src: "/images/locations/littlehampton.svg", alt: "Littlehampton harbour and seafront" },
-  "bognor-regis": { src: "/images/locations/bognor-regis.svg", alt: "Bognor Regis seaside promenade" },
-  chichester: { src: "/images/locations/chichester.svg", alt: "Chichester Cathedral and city centre" },
-  arundel: { src: "/images/locations/arundel.svg", alt: "Arundel Castle overlooking the town" },
-  horsham: { src: "/images/locations/horsham.svg", alt: "Horsham town centre high street" },
-  crawley: { src: "/images/locations/crawley.svg", alt: "Crawley town centre commercial area" },
-  "haywards-heath": { src: "/images/locations/haywards-heath.svg", alt: "Haywards Heath town centre" },
-  "burgess-hill": { src: "/images/locations/burgess-hill.svg", alt: "Burgess Hill town centre" },
-  "east-grinstead": { src: "/images/locations/east-grinstead.svg", alt: "East Grinstead historic High Street" },
-  lewes: { src: "/images/locations/lewes.svg", alt: "Lewes town with castle ruins on the hilltop" },
-  uckfield: { src: "/images/locations/uckfield.svg", alt: "Uckfield market town high street" },
-  crowborough: { src: "/images/locations/crowborough.svg", alt: "Crowborough overlooking Ashdown Forest" },
-  newhaven: { src: "/images/locations/newhaven.svg", alt: "Newhaven harbour and white cliffs" },
-  seaford: { src: "/images/locations/seaford.svg", alt: "Seaford Head and Seven Sisters cliffs" },
-  eastbourne: { src: "/images/locations/eastbourne.svg", alt: "Eastbourne seafront and Victorian pier" },
-  bexhill: { src: "/images/locations/bexhill.svg", alt: "Bexhill-on-Sea De La Warr Pavilion" },
-  hastings: { src: "/images/locations/hastings.svg", alt: "Hastings Old Town and net huts on the Stade" },
-  rye: { src: "/images/locations/rye.svg", alt: "Rye cobblestone Mermaid Street" },
-  london: { src: "/images/locations/london.svg", alt: "London skyline with Tower Bridge" },
-  manchester: { src: "/images/locations/manchester.svg", alt: "Manchester city centre skyline" },
-  birmingham: { src: "/images/locations/birmingham.svg", alt: "Birmingham city centre and Bullring" },
-  leeds: { src: "/images/locations/leeds.svg", alt: "Leeds city centre and Town Hall" },
-  liverpool: { src: "/images/locations/liverpool.svg", alt: "Liverpool waterfront and Albert Dock" },
-  bristol: { src: "/images/locations/bristol.svg", alt: "Bristol harbourside and Clifton Suspension Bridge" },
-  sheffield: { src: "/images/locations/sheffield.svg", alt: "Sheffield city centre Peace Gardens" },
-  nottingham: { src: "/images/locations/nottingham.svg", alt: "Nottingham Castle and Old Market Square" },
-  leicester: { src: "/images/locations/leicester.svg", alt: "Leicester city centre Clock Tower" },
-  newcastle: { src: "/images/locations/newcastle.svg", alt: "Newcastle upon Tyne skyline with the Tyne Bridge" },
-  glasgow: { src: "/images/locations/glasgow.svg", alt: "Glasgow George Square and City Chambers" },
-  edinburgh: { src: "/images/locations/edinburgh.svg", alt: "Edinburgh Castle and Royal Mile" },
-  cardiff: { src: "/images/locations/cardiff.svg", alt: "Cardiff Bay and Millennium Centre" },
-  belfast: { src: "/images/locations/belfast.svg", alt: "Belfast City Hall and Donegall Square" },
-  southampton: { src: "/images/locations/southampton.svg", alt: "Southampton waterfront and docks" },
-  portsmouth: { src: "/images/locations/portsmouth.svg", alt: "Portsmouth Harbour and Spinnaker Tower" },
-  reading: { src: "/images/locations/reading.svg", alt: "Reading town centre and Oracle" },
-  oxford: { src: "/images/locations/oxford.svg", alt: "Oxford University dreaming spires" },
-  cambridge: { src: "/images/locations/cambridge.svg", alt: "Cambridge Kings College Chapel and River Cam" },
-  "milton-keynes": { src: "/images/locations/milton-keynes.svg", alt: "Milton Keynes modern city centre" },
-  norwich: { src: "/images/locations/norwich.svg", alt: "Norwich Cathedral and city centre" },
-  plymouth: { src: "/images/locations/plymouth.svg", alt: "Plymouth Hoe and Smeaton Tower" },
-}
+const heroImageForLocation = (slug: string) => ({ src: `/images/heroes/locations/${slug}.webp`, alt: `${slug} hero image` })
 
 export async function generateStaticParams() {
   return locations.map((location) => ({ slug: location.slug }))
@@ -98,11 +53,45 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
   const mainIntroParagraphs = emailSmsIndex >= 0 ? introParagraphs.slice(0, emailSmsIndex) : introParagraphs
   const emailSmsParagraphs = emailSmsIndex >= 0 ? introParagraphs.slice(emailSmsIndex) : []
 
+  const faqItems = [
+    {
+      question: `How quickly can I get a new website live in ${location.name}?`,
+      answer:
+        `Most small business websites can be designed, built and launched within 7–14 days (depending on pages and content). We keep it simple, fast and mobile-first.`,
+    },
+    {
+      question: `Do you help businesses in nearby areas around ${location.name}?`,
+      answer:
+        `Yes — if you serve surrounding towns or villages, we can structure your website and SEO foundation to cover nearby areas as well.`,
+    },
+    {
+      question: `Will this help me show up more on Google in ${location.name}?`,
+      answer:
+        `A modern website with a solid SEO foundation helps Google understand your services and locations. Pair that with steady review growth and you’ll generally see stronger visibility over time.`,
+    },
+    {
+      question: `Do you handle review requests for my customers?`,
+      answer:
+        `Yes. GuardX can automatically send polite review requests by SMS and email at the right time, so you get more genuine Google reviews without chasing.`,
+    },
+  ] as const
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
       <Navigation />
 
       <main className="flex-1">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
         {/* Hero */}
         <section className="pt-32 pb-20 bg-[#0a0e1a]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -123,18 +112,31 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             {location.county && (
               <p className="text-sm text-[#64748b] mb-4">{location.county}</p>
             )}
-            {locationImages[slug] && (
-              <div className="relative w-full max-w-3xl mx-auto aspect-[16/9] rounded-xl overflow-hidden mb-10">
-                <Image
-                  src={locationImages[slug].src}
-                  alt={locationImages[slug].alt}
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 768px"
-                />
-              </div>
-            )}
+            <nav aria-label="Breadcrumb" className="mb-4 text-sm text-white/70">
+              <ol className="flex flex-wrap justify-center gap-2">
+                <li><Link href="/" className="hover:underline">Home</Link></li>
+                <li className="opacity-60">/</li>
+                <li><Link href="/locations" className="hover:underline">Locations</Link></li>
+                <li className="opacity-60">/</li>
+                <li className="text-white/90">{location.name}</li>
+              </ol>
+            </nav>
+            {(() => {
+              const hero = heroImageForLocation(slug)
+              return (
+                <div className="relative w-full max-w-5xl mx-auto aspect-[16/9] rounded-2xl overflow-hidden mb-10 ring-1 ring-white/10">
+                  <Image
+                    src={hero.src}
+                    alt={`${location.name} hero image`}
+                    fill
+                    className="object-cover"
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1024px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-black/10" />
+                </div>
+              )
+            })()}
             <p className="text-xl text-[#94a3b8] max-w-3xl mx-auto leading-relaxed mb-10">
               {mainIntroParagraphs[0]}
             </p>
@@ -281,6 +283,30 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
     </div>
   </section>
 )}
+
+
+        {/* FAQ */}
+        <section className="py-20 bg-[#111827]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 text-center">
+              Frequently Asked Questions in {location.name}
+            </h2>
+            <div className="space-y-4">
+              {faqItems.map((item) => (
+                <details
+                  key={item.question}
+                  className="group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/7 transition-colors"
+                >
+                  <summary className="cursor-pointer list-none text-white font-semibold text-lg flex items-center justify-between gap-4">
+                    <span>{item.question}</span>
+                    <span className="text-white/60 group-open:rotate-45 transition-transform">+</span>
+                  </summary>
+                  <p className="mt-4 text-[#94a3b8] leading-relaxed">{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
 
 {/* CTA */}
         <section className="py-20 bg-[#0a0e1a]">
