@@ -4,6 +4,7 @@ import { AnimatedPageTitle } from "@/components/animated-page-title"
 import { industries, industryCategories, getIndustriesByCategory } from "@/lib/industries-data"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -50,6 +51,17 @@ export default function IndustriesPage() {
                       href={`/industries/${industry.slug}`}
                       className="group rounded-xl border border-white/10 bg-[#1e293b] p-6 transition-all duration-300 hover:border-blue-500/50 hover:bg-[#1e293b]/80"
                     >
+                      <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden mb-4 ring-1 ring-white/10">
+                        <Image
+                          src={`/images/heroes/industries/${industry.slug}.webp`}
+                          alt={`${industry.name} hero image`}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
+                      </div>
+
                       <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors mb-3">
                         {industry.name}
                       </h3>
