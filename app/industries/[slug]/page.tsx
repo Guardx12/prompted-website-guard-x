@@ -20,10 +20,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const industry = getIndustryBySlug(slug)
   if (!industry) return {}
   return {
-    title: industry.metaTitle,
-    description: industry.metaDescription,
-  }
-}
+    title: `${industry.name} Web Design | Local SEO + Google Reviews (UK) | GuardX`,
+    description: `Web design for ${industry.name.toLowerCase()} businesses in the UK — conversion-focused pages, local SEO foundations and automated Google review growth to win more calls and enquiries.`,
+  }}
 
 export default async function IndustryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -298,6 +297,64 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
             </Link>
           </div>
         </section>
+        {/* Aggressive SEO Section */}
+        <section className="max-w-6xl mx-auto px-4 py-12">
+          <div className="bg-white/60 backdrop-blur rounded-2xl border border-gray-200 p-8">
+            <h2 className="text-2xl font-bold mb-4">
+              {industry.name} web design, local SEO & Google review growth — built to rank and convert
+            </h2>
+            <p className="text-gray-700 mb-6">
+              If someone searches for a <strong>{industry.name.toLowerCase()}</strong> near them, Google looks for relevance, trust and clarity.
+              We build industry landing pages that make it obvious what you do, where you work, and why you’re the safest choice — then we back it up
+              with a review system that keeps fresh feedback coming in.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-lg font-semibold mb-3">High-intent keywords we target</h3>
+                <ul className="space-y-2 text-gray-700">
+                  {[
+                    `${industry.name} web design`,
+                    `${industry.name} website`,
+                    `local SEO for ${industry.name.toLowerCase()}`,
+                    `${industry.name.toLowerCase()} near me`,
+                    `best ${industry.name.toLowerCase()} reviews`,
+                    `${industry.name.toLowerCase()} Google reviews`,
+                  ].map((k) => (
+                    <li key={k} className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5" />
+                      <span>{k}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-3">What we build for your industry</h3>
+                <ul className="space-y-2 text-gray-700">
+                  {[
+                    "A fast, mobile-first website that converts visitors into calls",
+                    "Dedicated service pages so Google understands your offer",
+                    "Location targeting (areas you serve) to capture local searches",
+                    "Trust assets: reviews, galleries, accreditations and guarantees",
+                    "Clear CTAs: click-to-call, WhatsApp and quote forms",
+                    "Automated review requests (SMS + email) to grow ratings consistently",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <p className="text-gray-700 mt-6">
+              Want this built for your business? We can create a clean structure with service pages + location pages so you rank for the searches that actually bring customers.
+            </p>
+          </div>
+        </section>
+
       </main>
 
       <Footer />
