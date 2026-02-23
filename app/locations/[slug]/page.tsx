@@ -2,6 +2,7 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
+import { industries } from "@/lib/industries-data"
 import type { Metadata } from "next"
 
 type Props = { params: { slug: string } }
@@ -10,16 +11,30 @@ function formatName(slug: string) {
   return slug.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())
 }
 
+function pickWindow<T>(items: T[], seed: string, windowSize: number) {
+  if (!items?.length) return []
+  const hash = Array.from(seed).reduce((acc, ch) => acc + ch.charCodeAt(0), 0)
+  const start = hash % items.length
+  const out: T[] = []
+  for (let i = 0; i < Math.min(windowSize, items.length); i++) {
+    out.push(items[(start + i) % items.length])
+  }
+  return out
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const name = formatName(params.slug)
   return {
     title: `Web Design & Local SEO in ${name} | GuardX`,
-    description: `GuardX helps businesses in ${name} rank higher on Google, improve reviews, and generate more enquiries with SEO-ready websites and review automation.`
+    description: `High-performance websites and structured local SEO for businesses in ${name} — built for speed, trust and enquiries.`
   }
 }
 
 export default function LocationPage({ params }: Props) {
   const name = formatName(params.slug)
+
+  // Rotate which industries are linked from each location page
+  const linkedIndustries = pickWindow(industries, params.slug, 12)
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
@@ -31,56 +46,36 @@ export default function LocationPage({ params }: Props) {
         </h1>
 
         <p className="mb-6 text-lg">
-          Businesses in {name} compete heavily in local search results. When customers search for services,
-          they compare websites and reviews before deciding who to contact. GuardX builds SEO-ready websites
-          and automated review systems to ensure your business stands out.
-        </p>
-
-        <p className="mb-6">
-          We structure your website to rank for "{name} + service" searches, optimise for mobile performance,
-          and strengthen your Google presence through consistent review growth and internal linking.
+          GuardX builds SEO-ready websites for businesses in {name} — designed for visibility, speed and conversion.
+          When customers search for services in {name}, they compare options quickly. Your website and reviews are often the difference.
         </p>
 
         <h2 className="text-2xl font-semibold text-white mt-12 mb-4">
-          Why Local SEO Matters in {name}
+          Industries We Support in {name}
         </h2>
 
-        <p className="mb-6">
-          Local customers rarely scroll far. Appearing prominently in search results increases trust and
-          dramatically improves enquiry rates. Our SEO framework ensures your business is positioned for
-          long-term growth in {name}.
+        <p className="text-[#94a3b8] mb-6">
+          Explore a few industries we commonly support below, or view the full industry list.
         </p>
 
-        <h2 className="text-2xl font-semibold text-white mt-12 mb-4">
-          What We Deliver for {name} Businesses
-        </h2>
-
-        <ul className="list-disc pl-6 space-y-3 mb-10">
-          <li>SEO-structured websites targeting "{name}" search terms</li>
-          <li>Conversion-focused layout and messaging</li>
-          <li>Automated Google review generation</li>
-          <li>Internal linking to strengthen authority</li>
-          <li>Scalable long-term SEO growth framework</li>
-        </ul>
-
-        <h2 className="text-2xl font-semibold text-white mt-12 mb-4">
-          Frequently Asked Questions
-        </h2>
-
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-xl font-semibold text-white">Do you work with businesses across {name}?</h3>
-            <p>Yes — we support businesses throughout {name} and surrounding areas.</p>
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold text-white">How quickly can we improve rankings?</h3>
-            <p>Initial improvements are often visible within 2–3 months depending on competition.</p>
-          </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
+          {linkedIndustries.map((ind) => (
+            <Link
+              key={ind.slug}
+              href={`/industries/${ind.slug}`}
+              className="text-blue-400 hover:text-blue-300 transition-colors"
+            >
+              {ind.name} in {name}
+            </Link>
+          ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <Link href="/contact" className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold">
-            Get Started
+        <div className="flex flex-wrap gap-3 mb-14">
+          <Link href="/industries" className="inline-flex items-center rounded-lg border border-white/10 px-4 py-2 text-sm text-white hover:border-blue-500/50">
+            View all industries
+          </Link>
+          <Link href="/contact" className="inline-flex items-center rounded-lg bg-blue-500 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-600">
+            Get a website quote
           </Link>
         </div>
 
