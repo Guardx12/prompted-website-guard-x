@@ -72,9 +72,9 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         `Yes — you own the site and content. We can also handle hosting and maintenance so everything stays fast, secure and up to date.`,
     },
     {
-      question: `Do you offer review generation as well?`,
+      question: `How does GuardX help ${industry.name.toLowerCase()} get more reviews?`,
       answer:
-        `Yes — review generation is an optional add-on once your new site is live. It helps you build steady Google review momentum without chasing customers.`,
+        `We automate review requests via SMS and email so satisfied customers leave feedback consistently — helping you stand out on Google and win more calls.`,
     },
   ] as const
 
@@ -156,13 +156,12 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
               Why {industry.name} Choose GuardX
             </h2>
             <div className="max-w-2xl mx-auto space-y-6">
-              {
-              [
-                `Modern website design built for ${industry.name.toLowerCase()} — clear services, strong proof, and conversion-first layout.`,
-                "SEO foundation included on our Professional plan — semantic structure, metadata, internal links, and fast load times.",
-                "Industry-specific pages (services, FAQs, case studies) so Google and customers understand exactly what you do.",
-                "Mobile-first contact: click-to-call, WhatsApp, and enquiry forms that remove friction.",
-                "Optional add-on: automated review requests after launch to build steady Google trust over time.",
+              {[
+                `Professional web design built to showcase ${industry.name.toLowerCase()} and convert visitors into enquiries.`,
+                "SEO foundation is included on our Professional plan — proper meta tags, semantic HTML, fast load times, and mobile optimisation.",
+                `Automated review generation designed specifically for ${industry.name.toLowerCase()}.`,
+                "Personalised email and SMS prompts sent at the right moment — hands-free while you focus on your business.",
+                "Web design, SEO, and reviews working together for higher rankings, more visibility, and more customers.",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
@@ -177,13 +176,31 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         <section className="py-20 bg-[#0a0e1a]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
-              Website & SEO Challenges for {industry.name}
+              The Review Challenge for {industry.name}
             </h2>
             <p className="text-lg text-[#94a3b8] leading-relaxed text-center max-w-3xl mx-auto">
               {industry.challenges}
             </p>
           </div>
         </section>
+
+{/* Email & SMS */} 
+{emailSmsParagraphs.length > 0 && (
+  <section className="py-20 bg-[#111827]">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+        How GuardX Collects Reviews for {industry.name}
+      </h2>
+      <div className="max-w-3xl mx-auto">
+        {emailSmsParagraphs.map((para, i) => (
+          <p key={i} className="text-lg text-[#94a3b8] leading-relaxed mb-6 last:mb-0">
+            {para}
+          </p>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
 
 
         {/* Related Industries */}
