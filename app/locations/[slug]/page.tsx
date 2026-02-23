@@ -4,8 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { getLocationBySlug, getNearbyLocations, locations } from "@/lib/locations-data"
-import { industries } from "@/lib/industries-data"
+import { getLocationBySlug, locations } from "@/lib/locations-data"import { industries } from "@/lib/industries-data"
 import { ArrowRight, CheckCircle, MapPin } from "lucide-react"
 
 type Props = { params: { slug: string } }
@@ -33,9 +32,7 @@ function pickWindow<T>(items: T[], seed: string, windowSize: number) {
 export default function LocationPage({ params }: Props) {
   const location = getLocationBySlug(params.slug)
   if (!location) return notFound()
-
-  const nearby = getNearbyLocations(location.slug).slice(0, 8)
-  const relatedIndustries = location.relatedIndustries
+const relatedIndustries = location.relatedIndustries
     .map((slug) => industries.find((i) => i.slug === slug))
     .filter(Boolean)
 
@@ -43,7 +40,7 @@ export default function LocationPage({ params }: Props) {
   const showIndustries = (relatedIndustries.length ? relatedIndustries : rotatedIndustries).slice(0, 12)
 
   const rotatedNearby = pickWindow(locations, params.slug, 8)
-  const showNearby = (nearby.length ? nearby : rotatedNearby).slice(0, 8)
+  const showNearby = rotatedNearby.slice(0, 8)
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
