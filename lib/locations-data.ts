@@ -14,355 +14,355 @@ export interface Location {
 
 export const locations: Location[] = [
   // ─── Sussex Locations ──────────────────────────────────────────────
-  {
+    {
     slug: "sussex",
     name: "Sussex",
     region: "sussex",
     county: "Sussex",
-    metaTitle: "GuardX Sussex — Web Design, SEO & Review Generation for Sussex Businesses",
+    metaTitle: "Website Design in Sussex | SEO Foundation Included | GuardX",
     metaDescription:
-      "GuardX helps Sussex businesses grow through automated review requests, reputation monitoring, and Google visibility. Serving East Sussex, West Sussex, and Brighton & Hove.",
-    h1: "Web Design, SEO & Review Generation for Sussex Businesses",
+      "Professional website design for Sussex businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Sussex Businesses",
     intro:
-      "Sussex is home to thousands of thriving local businesses, from seaside hospitality in Brighton to established trades across Horsham and Crawley. GuardX provides Sussex businesses with an automated review growth system that turns every satisfied customer into a five-star Google review, boosting your visibility and building lasting trust.\n\nOur done-for-you system sends personalised email and SMS review requests on your behalf, so you can focus on running your business while your online reputation grows steadily. Whether you are a plumber in Worthing or a salon in Eastbourne, GuardX makes reputation management simple and effective.",
+      "If you're a business in Sussex, your website is often the first real impression someone gets after they find you on Google. In a from the coast to the South Downs, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Sussex businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Sussex stretches from the South Downs to the coast, encompassing a diverse economy of tourism, trades, retail, and professional services. With intense local competition across both East and West Sussex, standing out on Google Maps and local search is essential for attracting new customers.",
+      "Sussex has a strong mix of trades, retail, hospitality and professional services. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["brighton", "hove", "worthing", "eastbourne", "crawley", "horsham", "chichester"],
     relatedIndustries: ["builders", "plumbers", "electricians", "restaurants", "estate-agents", "salons"],
   },
-  {
+    {
     slug: "brighton",
     name: "Brighton",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Brighton — Web Design, SEO & Review Generation for Brighton Businesses",
+    metaTitle: "Website Design in Brighton | SEO Foundation Included | GuardX",
     metaDescription:
-      "Grow your Brighton business with GuardX. Automated email and SMS review requests that boost your Google visibility, attract more customers, and build a five-star reputation.",
-    h1: "Web Design, SEO & Review Generation for Brighton Businesses",
+      "Professional website design for Brighton businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Brighton Businesses",
     intro:
-      "Brighton is one of the most competitive local markets in the south of England. Whether you run a restaurant in The Lanes, a salon in Kemptown, or a trades business across the city, your Google reviews can make or break your growth. GuardX gives Brighton businesses an automated system that consistently generates genuine five-star reviews.\n\nOur platform sends personalised review requests via email and SMS after every job or visit, making it effortless for your happy customers to leave feedback. No chasing, no awkward conversations — just steady, organic review growth that puts you ahead of local competitors.",
+      "If you're a business in Brighton, your website is often the first real impression someone gets after they find you on Google. In a a fast-moving, review-driven market, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Brighton businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Brighton and Hove is a vibrant city with over 300,000 residents and millions of annual visitors. The local economy thrives on hospitality, creative industries, retail, and a strong trades sector. With so many businesses competing for attention on Google, a strong review profile is one of the most effective ways to stand out.",
+      "Brighton has a strong mix of hospitality, retailers, clinics and trades. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["hove", "sussex", "lewes", "worthing", "seaford", "newhaven"],
     relatedIndustries: ["restaurants", "cafes", "salons", "barbers", "plumbers", "electricians"],
   },
-  {
+    {
     slug: "hove",
     name: "Hove",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Hove — Web Design, SEO & Review Generation for Hove Businesses",
+    metaTitle: "Website Design in Hove | SEO Foundation Included | GuardX",
     metaDescription:
-      "GuardX helps Hove businesses generate more Google reviews automatically. Boost your local reputation, attract new customers, and grow revenue with our done-for-you system.",
-    h1: "Web Design, SEO & Review Generation for Hove Businesses",
+      "Professional website design for Hove businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Hove Businesses",
     intro:
-      "Hove businesses benefit from the affluent, loyal customer base that defines this coastal neighbourhood. But even in Hove, standing out on Google means having a strong, consistent stream of positive reviews. GuardX automates the entire process so your reputation grows without lifting a finger.\n\nFrom independent cafes on Church Road to established estate agents and tradespeople, our system sends timely, personalised review requests that convert satisfied customers into glowing online testimonials.",
+      "If you're a business in Hove, your website is often the first real impression someone gets after they find you on Google. In a a premium local market where presentation matters, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Hove businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Hove sits alongside Brighton as part of the Brighton and Hove unitary authority. Known for its residential charm, independent shops, and strong community feel, Hove has a thriving local economy where word-of-mouth and online reviews are deeply intertwined. Businesses that actively manage their reviews consistently outperform those that leave it to chance.",
+      "Hove has a strong mix of home services, boutiques, clinics and property professionals. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["brighton", "sussex", "worthing", "littlehampton", "lewes"],
     relatedIndustries: ["estate-agents", "cafes", "restaurants", "cleaning-companies", "landscapers", "dentists"],
   },
-  {
+    {
     slug: "worthing",
     name: "Worthing",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Worthing — Web Design, SEO & Review Generation in Worthing",
+    metaTitle: "Website Design in Worthing | SEO Foundation Included | GuardX",
     metaDescription:
-      "GuardX Worthing: automated review requests that help local businesses build a five-star Google reputation, attract more customers, and increase revenue.",
-    h1: "Web Design, SEO & Review Generation in Worthing",
+      "Professional website design for Worthing businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Worthing Businesses",
     intro:
-      "Worthing is experiencing a renaissance, with new businesses opening alongside established local firms. As the town grows, so does competition on Google. GuardX gives Worthing businesses a reliable, automated way to generate more five-star reviews and climb local search rankings.\n\nOur system works in the background, sending review requests to your customers at the right moment after every job, appointment, or purchase. More reviews mean more visibility, more trust, and ultimately more revenue.",
+      "If you're a business in Worthing, your website is often the first real impression someone gets after they find you on Google. In a a growing town with busy 'near me' search demand, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Worthing businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Worthing is a growing coastal town in West Sussex with a population of over 110,000. Its economy spans retail, hospitality, health services, and a strong trades sector. With regeneration projects attracting new residents and visitors, local businesses have a real opportunity to grow — but only if they are visible and trusted online.",
+      "Worthing has a strong mix of trades, health services and independent shops. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["littlehampton", "hove", "brighton", "sussex", "bognor-regis", "chichester"],
     relatedIndustries: ["builders", "plumbers", "roofers", "restaurants", "dentists", "gyms"],
   },
-  {
+    {
     slug: "littlehampton",
     name: "Littlehampton",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Littlehampton — Web Design, SEO & Review Generation for Littlehampton Businesses",
+    metaTitle: "Website Design in Littlehampton | SEO Foundation Included | GuardX",
     metaDescription:
-      "Automated review growth for Littlehampton businesses. GuardX helps you get more Google reviews, build local trust, and attract new customers effortlessly.",
-    h1: "Web Design, SEO & Review Generation for Littlehampton Businesses",
+      "Professional website design for Littlehampton businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Littlehampton Businesses",
     intro:
-      "Littlehampton may be smaller than its neighbours, but its business community is fiercely competitive. From seaside restaurants to local trades, every positive Google review counts when customers are choosing between you and a competitor. GuardX automates the process so you never miss an opportunity.\n\nOur email and SMS system prompts your satisfied customers to leave a review right after their experience, when their satisfaction is highest. It is hands-free, effective, and designed specifically for busy local businesses.",
+      "If you're a business in Littlehampton, your website is often the first real impression someone gets after they find you on Google. In a a coastal town with seasonal peaks and strong word-of-mouth, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Littlehampton businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Littlehampton is a coastal town in the Arun district of West Sussex. With a growing population and a mix of tourism, retail, and trades, the town has a strong local economy. Businesses here rely heavily on local search and recommendations, making Google reviews a critical growth lever.",
+      "Littlehampton has a strong mix of cafes, trades and local services. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["worthing", "bognor-regis", "arundel", "chichester", "sussex"],
     relatedIndustries: ["builders", "plumbers", "restaurants", "cafes", "garages", "cleaning-companies"],
   },
-  {
+    {
     slug: "bognor-regis",
     name: "Bognor Regis",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Bognor Regis — Web Design, SEO & Review Generation for Bognor Regis Businesses",
+    metaTitle: "Website Design in Bognor Regis | SEO Foundation Included | GuardX",
     metaDescription:
-      "GuardX helps Bognor Regis businesses grow with automated Google review requests. Build your reputation, increase local visibility, and win more customers.",
-    h1: "Web Design, SEO & Review Generation for Bognor Regis Businesses",
+      "Professional website design for Bognor Regis businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Bognor Regis Businesses",
     intro:
-      "Bognor Regis thrives on tourism and a loyal local customer base. Whether you run a guest house, a restaurant, or a trades business, your Google reviews are the first thing potential customers see. GuardX makes it easy to consistently collect five-star reviews without any manual effort.\n\nOur automated system sends personalised requests via email and SMS, ensuring your happy customers share their experience online. The result: a stronger reputation, higher search rankings, and a steady flow of new enquiries.",
+      "If you're a business in Bognor Regis, your website is often the first real impression someone gets after they find you on Google. In a a seaside market shaped by visitors and loyal locals, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Bognor Regis businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Bognor Regis is a popular seaside resort and residential town in the Arun district. Its economy is driven by tourism, retail, hospitality, and a solid trades sector. Seasonal businesses especially benefit from building a strong review profile during peak times to maintain visibility year-round.",
+      "Bognor Regis has a strong mix of hospitality, leisure and trades. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["chichester", "littlehampton", "arundel", "worthing", "sussex"],
     relatedIndustries: ["restaurants", "cafes", "plumbers", "electricians", "painters-and-decorators", "cleaning-companies"],
   },
-  {
+    {
     slug: "chichester",
     name: "Chichester",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Chichester — Web Design, SEO & Review Generation for Chichester Businesses",
+    metaTitle: "Website Design in Chichester | SEO Foundation Included | GuardX",
     metaDescription:
-      "Help your Chichester business stand out with GuardX. Automated review requests that grow your Google rating, attract more customers, and strengthen your local reputation.",
-    h1: "Web Design, SEO & Review Generation for Chichester Businesses",
+      "Professional website design for Chichester businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Chichester Businesses",
     intro:
-      "Chichester is a historic cathedral city with a thriving business community. From high-street retailers to independent tradespeople, competition for local customers is intense. GuardX gives Chichester businesses the edge by automating review collection, so your Google profile reflects the quality of your work.\n\nEvery completed job or customer visit triggers a personalised review request, making it simple for satisfied customers to leave positive feedback. Over time, this builds a review profile that drives new business and strengthens your local presence.",
+      "If you're a business in Chichester, your website is often the first real impression someone gets after they find you on Google. In a a well-connected city where people compare options online, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Chichester businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Chichester sits at the heart of West Sussex, serving as a cultural and commercial hub for the surrounding area. With a mix of heritage tourism, retail, professional services, and trades, the city supports a diverse business community. A strong online reputation is essential for businesses competing in this well-connected market.",
+      "Chichester has a strong mix of professional services, retail and home improvement. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["bognor-regis", "arundel", "littlehampton", "worthing", "horsham", "sussex"],
     relatedIndustries: ["estate-agents", "restaurants", "builders", "roofers", "dentists", "landscapers"],
   },
-  {
+    {
     slug: "arundel",
     name: "Arundel",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Arundel — Web Design, SEO & Review Generation for Arundel Businesses",
+    metaTitle: "Website Design in Arundel | SEO Foundation Included | GuardX",
     metaDescription:
-      "GuardX Arundel: automated Google review requests for local businesses. Grow your reputation, increase footfall, and attract more customers in Arundel and surrounding areas.",
-    h1: "Web Design, SEO & Review Generation for Arundel Businesses",
+      "Professional website design for Arundel businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Arundel Businesses",
     intro:
-      "Arundel is a charming market town that attracts visitors from across the region. For local businesses — from antique shops and cafes to trades and services — Google reviews are a powerful way to convert passing interest into loyal customers. GuardX automates the review collection process so you can focus on what you do best.\n\nOur system sends timely review requests after every customer interaction, ensuring a steady flow of genuine five-star reviews that build trust and boost your search visibility.",
+      "If you're a business in Arundel, your website is often the first real impression someone gets after they find you on Google. In a a destination town where visitors plan ahead on Google, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Arundel businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Arundel is known for its castle, independent shops, and strong tourism trade. The town has a tight-knit business community where reputation matters enormously. With visitors researching businesses online before they arrive, a strong Google review profile can be the difference between a busy day and an empty one.",
+      "Arundel has a strong mix of cafes, shops and local services. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["chichester", "littlehampton", "bognor-regis", "worthing", "sussex"],
     relatedIndustries: ["restaurants", "cafes", "estate-agents", "builders", "painters-and-decorators"],
   },
-  {
+    {
     slug: "horsham",
     name: "Horsham",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Horsham — Web Design, SEO & Review Generation for Horsham Businesses",
+    metaTitle: "Website Design in Horsham | SEO Foundation Included | GuardX",
     metaDescription:
-      "Grow your Horsham business with GuardX. Our automated review system helps you collect more Google reviews, improve local rankings, and win more customers.",
-    h1: "Web Design, SEO & Review Generation for Horsham Businesses",
+      "Professional website design for Horsham businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Horsham Businesses",
     intro:
-      "Horsham is one of the most prosperous market towns in West Sussex, with a strong mix of retail, professional services, and trades. Standing out in this competitive market requires more than great service — you need visible proof that customers trust you. GuardX provides that proof by automating your Google review collection.\n\nFrom the moment a job is done or a service is delivered, our system sends personalised requests that make leaving a review effortless for your customers. More reviews lead to higher rankings, more clicks, and more revenue.",
+      "If you're a business in Horsham, your website is often the first real impression someone gets after they find you on Google. In a a high-intent market with strong competition in trades and services, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Horsham businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Horsham is a thriving town with excellent transport links to London and the wider South East. Its economy is diverse, with a strong presence of professional services, retail, hospitality, and trades. Businesses here serve both local residents and commuters, making a strong online reputation essential for capturing a wide audience.",
+      "Horsham has a strong mix of trades, clinics and professional services. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["crawley", "haywards-heath", "sussex", "burgess-hill", "chichester", "worthing"],
     relatedIndustries: ["estate-agents", "builders", "plumbers", "electricians", "landscapers", "dentists"],
   },
-  {
+    {
     slug: "crawley",
     name: "Crawley",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Crawley — Web Design, SEO & Review Generation for Crawley Businesses",
+    metaTitle: "Website Design in Crawley | SEO Foundation Included | GuardX",
     metaDescription:
-      "GuardX Crawley: automated email and SMS review requests that help local businesses build five-star Google reputations and attract more customers.",
-    h1: "Web Design, SEO & Review Generation for Crawley Businesses",
+      "Professional website design for Crawley businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Crawley Businesses",
     intro:
-      "Crawley is one of the largest towns in West Sussex, with a diverse economy that spans everything from airport services to local trades. With so many businesses competing for attention, your Google reviews are one of the most powerful tools for standing out. GuardX automates the entire review collection process.\n\nOur system sends personalised email and SMS review requests after every customer interaction, ensuring you consistently build a strong, trustworthy online profile without any manual effort.",
+      "If you're a business in Crawley, your website is often the first real impression someone gets after they find you on Google. In a a busy town with fast-moving search behaviour, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Crawley businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Crawley sits near Gatwick Airport and benefits from excellent transport links. The town has a large, diverse population and a busy commercial centre. Local businesses compete not only with each other but also with national chains, making a strong Google review profile essential for attracting and retaining local customers.",
+      "Crawley has a strong mix of trades, automotive and local services. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["horsham", "haywards-heath", "east-grinstead", "sussex", "burgess-hill"],
     relatedIndustries: ["garages", "mechanics", "plumbers", "electricians", "cleaning-companies", "builders"],
   },
-  {
+    {
     slug: "haywards-heath",
     name: "Haywards Heath",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Haywards Heath — Web Design, SEO & Review Generation for Local Businesses",
+    metaTitle: "Website Design in Haywards Heath | SEO Foundation Included | GuardX",
     metaDescription:
-      "GuardX helps Haywards Heath businesses generate more Google reviews automatically. Boost local visibility, build trust, and grow your customer base.",
-    h1: "Web Design, SEO & Review Generation for Haywards Heath Businesses",
+      "Professional website design for Haywards Heath businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Haywards Heath Businesses",
     intro:
-      "Haywards Heath is a well-connected commuter town with a loyal local customer base. Whether you are a tradesperson, a salon owner, or a restaurant, your Google reviews directly influence how many new customers find and choose you. GuardX makes review collection automatic and effortless.\n\nOur done-for-you system sends personalised review requests at the perfect moment, turning everyday customer interactions into five-star reviews that boost your rankings and reputation.",
+      "If you're a business in Haywards Heath, your website is often the first real impression someone gets after they find you on Google. In a a commuter town where mobile search drives enquiries, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Haywards Heath businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Haywards Heath is centrally located in West Sussex with direct train links to London and Brighton. The town supports a healthy mix of independent retailers, professional services, and trades. Residents often search online before choosing local businesses, making a strong Google presence critical for growth.",
+      "Haywards Heath has a strong mix of home services and health providers. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["burgess-hill", "horsham", "lewes", "crawley", "sussex"],
     relatedIndustries: ["plumbers", "electricians", "estate-agents", "dentists", "salons", "builders"],
   },
-  {
+    {
     slug: "burgess-hill",
     name: "Burgess Hill",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX Burgess Hill — Web Design, SEO & Review Generation for Burgess Hill Businesses",
+    metaTitle: "Website Design in Burgess Hill | SEO Foundation Included | GuardX",
     metaDescription:
-      "GuardX Burgess Hill: grow your Google reviews on autopilot. Our automated system helps local businesses build stronger reputations and attract more customers.",
-    h1: "Web Design, SEO & Review Generation for Burgess Hill Businesses",
+      "Professional website design for Burgess Hill businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Burgess Hill Businesses",
     intro:
-      "Burgess Hill is growing fast, with new developments bringing more residents and more demand for local services. If your business serves this expanding community, now is the time to build a strong review profile. GuardX automates Google review collection so your reputation keeps pace with your growth.\n\nOur platform sends timely, personalised review requests via email and SMS, converting satisfied customers into visible online advocates for your business.",
+      "If you're a business in Burgess Hill, your website is often the first real impression someone gets after they find you on Google. In a an expanding town with rising demand for local services, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Burgess Hill businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Burgess Hill is one of the fastest-growing towns in West Sussex, with significant residential and commercial development. New housing estates mean new customers searching for local trades, services, and retailers. Businesses that invest in their Google reputation now will be best positioned to capture this growing market.",
+      "Burgess Hill has a strong mix of trades and family-focused services. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["haywards-heath", "horsham", "lewes", "crawley", "sussex"],
     relatedIndustries: ["builders", "plumbers", "electricians", "landscapers", "cleaning-companies", "estate-agents"],
   },
-  {
+    {
     slug: "east-grinstead",
     name: "East Grinstead",
     region: "sussex",
     county: "West Sussex",
-    metaTitle: "GuardX East Grinstead — Web Design, SEO & Review Generation for East Grinstead Businesses",
+    metaTitle: "Website Design in East Grinstead | SEO Foundation Included | GuardX",
     metaDescription:
-      "Automated review growth for East Grinstead businesses. GuardX helps you get more Google reviews, improve local search rankings, and grow your customer base.",
-    h1: "Web Design, SEO & Review Generation for East Grinstead Businesses",
+      "Professional website design for East Grinstead businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for East Grinstead Businesses",
     intro:
-      "East Grinstead sits at the northern edge of Sussex, close to the Surrey and Kent borders. Businesses here serve a wide catchment area, and your Google reviews are the first impression many potential customers get. GuardX automates review collection so your online reputation accurately reflects the quality of your service.\n\nOur system handles everything — from sending personalised email and SMS requests to guiding customers through the review process. You focus on your business; we handle the rest.",
+      "If you're a business in East Grinstead, your website is often the first real impression someone gets after they find you on Google. In a a border-town catchment where coverage pages matter, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for East Grinstead businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "East Grinstead is a historic market town with a strong retail centre and active trades community. Its location near the county borders means businesses compete with those in neighbouring areas, making Google visibility and reviews even more important for attracting local customers.",
+      "East Grinstead has a strong mix of trades and professional services. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["crawley", "haywards-heath", "sussex", "horsham", "uckfield"],
     relatedIndustries: ["builders", "roofers", "plumbers", "garages", "dentists", "physios"],
   },
-  {
+    {
     slug: "lewes",
     name: "Lewes",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Lewes — Web Design, SEO & Review Generation for Lewes Businesses",
+    metaTitle: "Website Design in Lewes | SEO Foundation Included | GuardX",
     metaDescription:
-      "GuardX Lewes: automated Google review requests for local businesses. Build trust, boost visibility, and attract more customers in the county town of East Sussex.",
-    h1: "Web Design, SEO & Review Generation for Lewes Businesses",
+      "Professional website design for Lewes businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Lewes Businesses",
     intro:
-      "Lewes is the county town of East Sussex and a hub for independent businesses. From artisan shops and restaurants to trades and professional services, the town rewards businesses that have built visible trust. GuardX helps Lewes businesses collect Google reviews automatically, turning every customer interaction into an opportunity for growth.\n\nOur personalised email and SMS review requests are sent at just the right time, making it easy for customers to share their positive experience. The result is a growing review profile that attracts new business and strengthens your local standing.",
+      "If you're a business in Lewes, your website is often the first real impression someone gets after they find you on Google. In a an independent town where brand trust and local reputation carry weight, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Lewes businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Lewes has a strong identity as an independent, community-focused town. Its residents actively support local businesses and often research online before making choices. A strong Google review profile in Lewes signals trustworthiness and quality, which directly translates into footfall and enquiries.",
+      "Lewes has a strong mix of independents, hospitality and services. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["brighton", "haywards-heath", "uckfield", "newhaven", "seaford", "sussex"],
     relatedIndustries: ["restaurants", "cafes", "estate-agents", "builders", "painters-and-decorators", "landscapers"],
   },
-  {
+    {
     slug: "uckfield",
     name: "Uckfield",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Uckfield — Web Design, SEO & Review Generation for Uckfield Businesses",
+    metaTitle: "Website Design in Uckfield | SEO Foundation Included | GuardX",
     metaDescription:
-      "Grow your Uckfield business with GuardX. Automated review requests that build your Google reputation, increase visibility, and bring in more local customers.",
-    h1: "Web Design, SEO & Review Generation for Uckfield Businesses",
+      "Professional website design for Uckfield businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Uckfield Businesses",
     intro:
-      "Uckfield is a thriving town in the Wealden district, known for its active high street and strong community. Local businesses here compete for the attention of both residents and visitors from the surrounding villages. GuardX gives you an edge by automating your Google review collection, so your reputation grows consistently.\n\nEvery satisfied customer receives a personalised review request, making it simple for them to leave positive feedback. Over time, this builds a review profile that drives new enquiries and strengthens customer loyalty.",
+      "If you're a business in Uckfield, your website is often the first real impression someone gets after they find you on Google. In a a market town serving surrounding villages, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Uckfield businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Uckfield serves as a commercial centre for the surrounding rural Wealden area. Its economy includes retail, trades, health services, and hospitality. Businesses that invest in their online reputation gain a significant advantage in attracting customers from both the town and neighbouring villages.",
+      "Uckfield has a strong mix of trades and family-run businesses. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["lewes", "crowborough", "east-grinstead", "haywards-heath", "sussex"],
     relatedIndustries: ["builders", "plumbers", "roofers", "landscapers", "tree-surgeons", "garages"],
   },
-  {
+    {
     slug: "crowborough",
     name: "Crowborough",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Crowborough — Web Design, SEO & Review Generation for Crowborough Businesses",
+    metaTitle: "Website Design in Crowborough | SEO Foundation Included | GuardX",
     metaDescription:
-      "GuardX helps Crowborough businesses collect more Google reviews automatically. Improve your local reputation, rank higher in search, and win more customers.",
-    h1: "Web Design, SEO & Review Generation for Crowborough Businesses",
+      "Professional website design for Crowborough businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Crowborough Businesses",
     intro:
-      "Crowborough is a popular town in the Wealden district, attracting families and professionals who value quality local services. If you are a tradesperson, retailer, or service provider here, your Google reviews influence how potential customers perceive and choose you. GuardX automates the review process so you always put your best foot forward.\n\nOur email and SMS system sends personalised requests at the right moment, capturing genuine positive feedback from your customers and turning it into visible five-star reviews on Google.",
+      "If you're a business in Crowborough, your website is often the first real impression someone gets after they find you on Google. In a a town where customers often search across a wider radius, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Crowborough businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Crowborough sits on the edge of the Ashdown Forest and serves a wide catchment area. The town has a strong community spirit and a preference for local businesses. With customers increasingly checking Google before making decisions, building a strong review profile is essential for sustained growth.",
+      "Crowborough has a strong mix of trades and home services. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["uckfield", "east-grinstead", "lewes", "sussex"],
     relatedIndustries: ["builders", "roofers", "tree-surgeons", "landscapers", "plumbers", "electricians"],
   },
-  {
+    {
     slug: "newhaven",
     name: "Newhaven",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Newhaven — Web Design, SEO & Review Generation for Newhaven Businesses",
+    metaTitle: "Website Design in Newhaven | SEO Foundation Included | GuardX",
     metaDescription:
-      "Automated review growth for Newhaven businesses. GuardX helps you build a five-star Google reputation, attract local customers, and grow your business.",
-    h1: "Web Design, SEO & Review Generation for Newhaven Businesses",
+      "Professional website design for Newhaven businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Newhaven Businesses",
     intro:
-      "Newhaven is a port town with a growing business community and regeneration projects bringing new opportunities. As the town evolves, local businesses need to ensure they are visible and trusted online. GuardX automates your Google review collection, helping you build the reputation that matches the quality of your work.\n\nOur system sends personalised email and SMS review requests after every job or service, making it effortless for customers to share their positive experience and for you to grow your online presence.",
+      "If you're a business in Newhaven, your website is often the first real impression someone gets after they find you on Google. In a a practical, service-led market with high local intent, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Newhaven businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Newhaven sits at the mouth of the River Ouse and benefits from its ferry port connection to France. The town is undergoing regeneration, with new businesses and services emerging. For local companies, a strong Google review profile helps attract both existing residents and newcomers to the area.",
+      "Newhaven has a strong mix of trades and service businesses. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["lewes", "seaford", "brighton", "sussex", "peacehaven"],
     relatedIndustries: ["builders", "plumbers", "garages", "restaurants", "cleaning-companies"],
   },
-  {
+    {
     slug: "seaford",
     name: "Seaford",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Seaford — Web Design, SEO & Review Generation for Seaford Businesses",
+    metaTitle: "Website Design in Seaford | SEO Foundation Included | GuardX",
     metaDescription:
-      "GuardX Seaford: automated Google review requests that help local businesses build trust, improve search visibility, and attract more customers.",
-    h1: "Web Design, SEO & Review Generation for Seaford Businesses",
+      "Professional website design for Seaford businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Seaford Businesses",
     intro:
-      "Seaford is a charming coastal town with a tight-knit community that values local businesses. Your reputation in Seaford is everything, and Google reviews are how new customers discover and evaluate you. GuardX makes it simple to collect five-star reviews automatically, building your online presence without any effort.\n\nOur done-for-you system sends personalised review requests via email and SMS, guiding customers through the process and ensuring a steady stream of positive feedback that reinforces your local standing.",
+      "If you're a business in Seaford, your website is often the first real impression someone gets after they find you on Google. In a a coastal community where trust and clarity win the call, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Seaford businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Seaford sits between Newhaven and Eastbourne along the East Sussex coast. The town has a loyal residential base and a seasonal tourism boost. Local businesses benefit from word-of-mouth, but extending that trust online through Google reviews is key to reaching new customers and sustaining growth year-round.",
+      "Seaford has a strong mix of local services and trades. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["newhaven", "eastbourne", "lewes", "brighton", "sussex"],
     relatedIndustries: ["restaurants", "cafes", "plumbers", "builders", "landscapers", "cleaning-companies"],
   },
-  {
+    {
     slug: "eastbourne",
     name: "Eastbourne",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Eastbourne — Web Design, SEO & Review Generation for Eastbourne Businesses",
+    metaTitle: "Website Design in Eastbourne | SEO Foundation Included | GuardX",
     metaDescription:
-      "Grow your Eastbourne business with GuardX. Automated review requests that boost your Google visibility, build customer trust, and increase local revenue.",
-    h1: "Web Design, SEO & Review Generation for Eastbourne Businesses",
+      "Professional website design for Eastbourne businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Eastbourne Businesses",
     intro:
-      "Eastbourne is one of the largest and most visited towns in East Sussex, with a diverse economy spanning hospitality, retail, health, and trades. Competition for local customers is fierce, and your Google reviews are often the deciding factor. GuardX automates the review collection process so your reputation grows as fast as your business.\n\nOur platform sends personalised email and SMS review requests at the perfect moment, turning satisfied customers into visible five-star advocates. The result is more reviews, higher rankings, and a steady stream of new enquiries.",
+      "If you're a business in Eastbourne, your website is often the first real impression someone gets after they find you on Google. In a a competitive seaside market with strong 'near me' intent, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Eastbourne businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Eastbourne is a major seaside resort with a population of over 100,000 and millions of annual visitors. The town supports a wide range of businesses, from hotels and restaurants to trades and professional services. With tourism driving much of the local economy, a strong Google review profile is essential for capturing both resident and visitor custom.",
+      "Eastbourne has a strong mix of hospitality, clinics and trades. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["seaford", "bexhill", "lewes", "hastings", "sussex"],
     relatedIndustries: ["restaurants", "cafes", "salons", "plumbers", "builders", "dentists"],
   },
-  {
+    {
     slug: "bexhill",
     name: "Bexhill",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Bexhill — Web Design, SEO & Review Generation for Bexhill Businesses",
+    metaTitle: "Website Design in Bexhill | SEO Foundation Included | GuardX",
     metaDescription:
-      "GuardX Bexhill: automated review requests that help local businesses build stronger Google reputations, rank higher in search, and win more customers.",
-    h1: "Web Design, SEO & Review Generation for Bexhill Businesses",
+      "Professional website design for Bexhill businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Bexhill Businesses",
     intro:
-      "Bexhill-on-Sea is a characterful coastal town with a loyal residential community and a growing business scene. Whether you are a tradesperson, a cafe owner, or a service provider, your Google reviews shape how new customers find and choose you. GuardX automates the entire process, so your reputation grows effortlessly.\n\nOur system sends personalised review requests after every customer interaction, ensuring a consistent flow of genuine five-star reviews that build trust and improve your search visibility.",
+      "If you're a business in Bexhill, your website is often the first real impression someone gets after they find you on Google. In a a local market where consistency beats flashy marketing, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Bexhill businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Bexhill sits between Eastbourne and Hastings along the East Sussex coast. The town is known for the De La Warr Pavilion and its Edwardian heritage, attracting visitors and new residents. Local businesses benefit from a strong community but need Google visibility to reach newcomers and visitors searching online.",
+      "Bexhill has a strong mix of home services and health. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["eastbourne", "hastings", "sussex", "lewes", "rye"],
     relatedIndustries: ["builders", "plumbers", "restaurants", "cafes", "painters-and-decorators", "estate-agents"],
   },
-  {
+    {
     slug: "hastings",
     name: "Hastings",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Hastings — Web Design, SEO & Review Generation for Hastings Businesses",
+    metaTitle: "Website Design in Hastings | SEO Foundation Included | GuardX",
     metaDescription:
-      "GuardX helps Hastings businesses grow with automated Google review requests. Build your five-star reputation, improve local rankings, and attract more customers.",
-    h1: "Web Design, SEO & Review Generation for Hastings Businesses",
+      "Professional website design for Hastings businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Hastings Businesses",
     intro:
-      "Hastings is a historic seaside town with a creative, entrepreneurial business community. From the Old Town's independent shops and restaurants to trades businesses across the town, Google reviews are a critical part of attracting and retaining customers. GuardX automates review collection so your online reputation keeps pace with your ambitions.\n\nOur email and SMS review system sends personalised requests at the right time, making it easy for your customers to share their positive experience. The result: a growing Google profile that drives new business and builds lasting trust.",
+      "If you're a business in Hastings, your website is often the first real impression someone gets after they find you on Google. In a a mixed economy where strong positioning helps you stand out, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Hastings businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Hastings and St Leonards form a vibrant coastal community with a strong independent business scene. The town attracts tourists, creative professionals, and new residents. With regeneration projects underway, the business landscape is evolving fast — and businesses with strong online reputations are best positioned to benefit.",
+      "Hastings has a strong mix of hospitality, trades and creative services. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["bexhill", "rye", "eastbourne", "sussex"],
     relatedIndustries: ["restaurants", "cafes", "builders", "plumbers", "salons", "barbers"],
   },
-  {
+    {
     slug: "rye",
     name: "Rye",
     region: "sussex",
     county: "East Sussex",
-    metaTitle: "GuardX Rye — Web Design, SEO & Review Generation for Rye Businesses",
+    metaTitle: "Website Design in Rye | SEO Foundation Included | GuardX",
     metaDescription:
-      "GuardX helps Rye businesses collect more Google reviews automatically. Perfect for hospitality, retail, and trades in this popular East Sussex town.",
-    h1: "Web Design, SEO & Review Generation for Rye Businesses",
+      "Professional website design for Rye businesses, built fast with an SEO foundation included on our Professional tier. Turn Google visitors into enquiries.",
+    h1: "Website Design & SEO Foundation for Rye Businesses",
     intro:
-      "Rye is one of the most picturesque towns in East Sussex, drawing visitors from across the UK and beyond. For businesses in Rye — from boutique hotels and restaurants to local trades — Google reviews are the digital equivalent of a personal recommendation. GuardX automates your review collection so every happy customer becomes a visible endorsement.\n\nOur system sends personalised email and SMS review requests after every visit or job, capturing positive feedback while it is fresh. The steady flow of genuine reviews strengthens your reputation and keeps you top of search results.",
+      "If you're a business in Rye, your website is often the first real impression someone gets after they find you on Google. In a a destination town where visitors research before they arrive, that first impression needs to be clear, fast and trustworthy.\n\nGuardX is based in West Sussex and builds modern websites for Rye businesses — designed to generate enquiries, not just look nice. Our Professional tier includes the SEO foundations that help Google understand what you do and where you work (site structure, performance, metadata and internal links).\n\nWe mainly build websites. If you want an extra boost after launch, review generation is available as an optional add-on to build steady Google trust over time.",
     localContext:
-      "Rye is a medieval town with a thriving tourism economy. Visitors frequently research restaurants, hotels, and local services on Google before arriving, making a strong review profile essential. For local businesses, each five-star review is an investment in future bookings and enquiries.",
+      "Rye has a strong mix of hospitality and independents. Customers here typically compare a few options online before they call, which is why clear service pages, location coverage and fast mobile performance make a measurable difference.",
     relatedLocations: ["hastings", "bexhill", "sussex"],
     relatedIndustries: ["restaurants", "cafes", "estate-agents", "builders", "painters-and-decorators", "locksmiths"],
   },

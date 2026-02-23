@@ -7,9 +7,9 @@ import Link from "next/link"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "GuardX Industries — Web Design, SEO & Review Generation for Every Business Type",
+  title: "GuardX Industries — Website Design & SEO Foundation for Service Businesses",
   description:
-    "GuardX provides professional web design, SEO foundation, and automated review generation for trades, hospitality, health, beauty, property, automotive, and home service businesses across the UK.",
+    "GuardX provides modern website design with an SEO foundation included on our Professional tier, built for trades and local service businesses across the UK. Review generation is available as an optional add-on after launch.",
 }
 
 export default function IndustriesPage() {
@@ -23,8 +23,7 @@ export default function IndustriesPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <AnimatedPageTitle text="All Industries" className="mb-6" />
             <p className="text-xl text-[#94a3b8] max-w-3xl mx-auto leading-relaxed">
-              GuardX helps businesses across every industry with professional web design, SEO foundation, and automated
-              review generation. Find your industry below.
+              GuardX builds modern websites for service businesses — with an SEO foundation included on the Professional tier. Find your industry below.
             </p>
           </div>
         </section>
@@ -41,7 +40,7 @@ export default function IndustriesPage() {
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">{category}</h2>
                 <p className="text-[#94a3b8] text-center mb-12 max-w-2xl mx-auto">
-                  Web design, SEO foundation, and review generation for {category.toLowerCase()} businesses across the UK.
+                  Website design and SEO foundation for {category.toLowerCase()} businesses across the UK. Review generation available as an add-on.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {categoryIndustries.map((industry) => (
@@ -74,8 +73,7 @@ export default function IndustriesPage() {
               {"Don't See Your Industry?"}
             </h2>
             <p className="text-lg text-[#94a3b8] mb-10 max-w-2xl mx-auto leading-relaxed">
-              GuardX works with businesses of all types. Get in touch and we will show you how our web design, SEO
-              foundation, and review generation services can transform your online presence.
+              GuardX works with businesses of all types. Get in touch and we will show you how a modern website and SEO foundation can transform your online presence.
             </p>
             <Link
               href="/contact"

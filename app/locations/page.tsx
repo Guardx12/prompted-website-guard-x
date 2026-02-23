@@ -7,9 +7,9 @@ import Link from "next/link"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "GuardX Locations — Web Design, SEO & Review Generation Across Sussex and the UK",
+  title: "GuardX Locations — Website Design & SEO Foundation Across Sussex and the UK",
   description:
-    "GuardX provides professional web design, SEO foundation, and automated review generation for businesses across Sussex and major UK cities. Find your location and discover how we can help.",
+    "GuardX provides modern website design with an SEO foundation included on our Professional tier for businesses across Sussex and major UK cities. Find your location and discover how we can help.",
 }
 
 export default function LocationsPage() {
@@ -26,8 +26,7 @@ export default function LocationsPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <AnimatedPageTitle text="All Locations" className="mb-6" />
             <p className="text-xl text-[#94a3b8] max-w-3xl mx-auto leading-relaxed">
-              GuardX helps businesses grow across Sussex and major UK cities with professional web design, SEO
-              foundation, and automated review generation. Find your area below.
+              GuardX builds fast, modern websites across Sussex and major UK cities — with an SEO foundation included on the Professional tier. Find your area below.
             </p>
           </div>
         </section>
@@ -72,7 +71,7 @@ export default function LocationsPage() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">UK Cities</h2>
             <p className="text-[#94a3b8] text-center mb-12 max-w-2xl mx-auto">
-              Helping businesses grow their Google reputation in major cities across the United Kingdom.
+              Helping businesses improve their websites and local visibility across major cities in the United Kingdom.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {ukCityLocations.map((location) => (
@@ -106,8 +105,7 @@ export default function LocationsPage() {
               {"Don't See Your Area?"}
             </h2>
             <p className="text-lg text-[#94a3b8] mb-10 max-w-2xl mx-auto leading-relaxed">
-              GuardX works with businesses across the UK. Get in touch and we will show you how our web design, SEO
-              foundation, and review generation services can work for your location.
+              GuardX works with businesses across the UK. Get in touch and we will show you how a modern website and SEO foundation can work for your location.
             </p>
             <Link
               href="/contact"

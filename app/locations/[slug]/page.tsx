@@ -70,9 +70,9 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         `A modern website with a solid SEO foundation helps Google understand your services and locations. Pair that with steady review growth and you’ll generally see stronger visibility over time.`,
     },
     {
-      question: `Do you handle review requests for my customers?`,
+      question: `What’s included in the SEO foundation for my ${location.name} website?`,
       answer:
-        `Yes. GuardX can automatically send polite review requests by SMS and email at the right time, so you get more genuine Google reviews without chasing.`,
+        `On the Professional plan we include the essentials that help you rank: clean page structure, sensible internal linking, fast performance, metadata, and mobile-first layout. We also make sure your service and location pages are set up in a way Google can understand.`,
     },
   ] as const
 
@@ -98,13 +98,12 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             
       <div className="max-w-3xl mx-auto text-center mt-6">
         <p className="text-base text-white/80">
-          GuardX is based in West Sussex and provides professional website design, SEO foundation, and review generation services for businesses in {location.name}.
-          Our fast, modern websites are built to rank in Google and generate consistent enquiries.
+          GuardX is based in West Sussex and builds modern, fast websites for businesses in {location.name}. Our Professional tier includes an SEO foundation (structure, metadata, performance and internal links) so Google can understand what you do and where you work. Review generation is available as an optional add-on after launch.
         </p>
         <div className="mt-4 flex flex-wrap justify-center gap-3">
           <Link href="/web-design" className="underline">Website Design</Link>
           <Link href="/seo-foundation" className="underline">SEO Foundation</Link>
-          <Link href="/review-generation" className="underline">Review Generation</Link>
+          <Link href="/pricing" className="underline">Pricing</Link>
         </div>
       </div>
 
@@ -169,12 +168,13 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
               Why {location.name} Businesses Choose GuardX
             </h2>
             <div className="max-w-2xl mx-auto space-y-6">
-              {[
-                `Professional web design built to convert visitors into customers for ${location.name} businesses.`,
-                "SEO foundation is included on our Professional plan — proper meta tags, semantic HTML, fast load times, and mobile optimisation.",
-                "Automated review generation with personalised email and SMS prompts sent at the right moment.",
-                "Steady, organic growth of your Google review profile — no manual chasing required.",
-                "Web design, SEO, and reviews working together for higher rankings and more local customers.",
+              {
+              [
+                `Modern website design built to convert visitors into enquiries for ${location.name} businesses.`,
+                "SEO foundation included on our Professional plan — semantic structure, metadata, internal links, and fast load times.",
+                "Clear service pages and location coverage so Google understands what you do and where you work.",
+                "Conversion-first layout: click-to-call, WhatsApp, and enquiry forms that are easy on mobile.",
+                "Optional add-on: automated review requests after launch to build steady Google trust over time.",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
@@ -255,34 +255,13 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <section className="py-20 bg-[#111827]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
-              The Review Challenge for Businesses in {location.name}
+              What a High‑Performing Website in {location.name} Needs
             </h2>
             <p className="text-lg text-[#94a3b8] leading-relaxed text-center max-w-3xl mx-auto">
-              In {location.name}, customers almost always compare a few local options before they call. Even if you do
-              great work, many happy customers never get around to leaving a review — and that makes it harder to stand
-              out in Google Maps and local search. A simple, consistent system is the difference between “the business
-              everyone recommends” and “the business people scroll past”.
+              In {location.name}, customers compare a few local options before they call. A high‑performing website makes that comparison easy: it loads fast on mobile, explains your services clearly, shows proof (projects, accreditations, testimonials), and makes it effortless to contact you. The SEO foundation then helps Google connect your services with the areas you serve.
             </p>
           </div>
         </section>
-
-{/* Email & SMS */}
-{emailSmsParagraphs.length > 0 && (
-  <section className="py-20 bg-[#111827]">
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-        How GuardX Collects Reviews in {location.name}
-      </h2>
-      <div className="max-w-3xl mx-auto">
-        {emailSmsParagraphs.map((para, i) => (
-          <p key={i} className="text-lg text-[#94a3b8] leading-relaxed mb-6 last:mb-0">
-            {para}
-          </p>
-        ))}
-      </div>
-    </div>
-  </section>
-)}
 
 
         {/* FAQ */}
@@ -315,8 +294,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
               Ready to Grow Your {location.name} Business?
             </h2>
             <p className="text-lg text-[#94a3b8] mb-10 max-w-2xl mx-auto leading-relaxed">
-              Contact GuardX today for a free, no-obligation conversation about how our web design, SEO foundation,
-              and review generation services can transform your online presence in {location.name}.
+              Contact GuardX today for a free, no-obligation conversation about how a modern website and SEO foundation can transform your online presence in {location.name}.
             </p>
             <Link
               href="/contact"
