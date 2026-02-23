@@ -15,23 +15,7 @@ export const metadata: Metadata = {
 
 export default function IndustriesPage() {
   return (
-<>
-
-{/* SEO Enhanced Intro Section */}
-<section className="max-w-5xl mx-auto text-center mb-12">
-  <h1 className="text-4xl font-bold mb-6">
-    Web Design, Local SEO & Automated Review Growth for UK Industries
-  </h1>
-  <p className="text-lg text-gray-600">
-    GuardX helps UK businesses across multiple industries increase visibility,
-    build trust and generate more enquiries through conversion-focused web design,
-    strong local SEO foundations and automated Google review growth systems.
-    Whether you’re a builder, carpet shop, estate agent or café, our industry-specific
-    approach ensures your business ranks locally and converts visitors into customers.
-  </p>
-</section>
-
-    <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
+<div className="min-h-screen flex flex-col bg-[#0a0e1a]">
       <Navigation />
 
       <main className="flex-1">
@@ -40,8 +24,8 @@ export default function IndustriesPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <AnimatedPageTitle text="All Industries" className="mb-6" />
             <p className="text-xl text-[#94a3b8] max-w-3xl mx-auto leading-relaxed">
-              GuardX helps businesses across every industry with professional web design, SEO foundation, and automated
-              review generation. Find your industry below.
+              GuardX helps businesses across every industry with conversion-focused web design, strong local SEO foundations, and automated Google review growth.
+              Explore your industry below to see how we help you rank higher, build trust faster, and generate more enquiries.
             </p>
           </div>
         </section>
@@ -51,23 +35,7 @@ export default function IndustriesPage() {
           const categoryIndustries = getIndustriesByCategory(category)
           if (categoryIndustries.length === 0) return null
           return (
-<>
-
-{/* SEO Enhanced Intro Section */}
-<section className="max-w-5xl mx-auto text-center mb-12">
-  <h1 className="text-4xl font-bold mb-6">
-    Web Design, Local SEO & Automated Review Growth for UK Industries
-  </h1>
-  <p className="text-lg text-gray-600">
-    GuardX helps UK businesses across multiple industries increase visibility,
-    build trust and generate more enquiries through conversion-focused web design,
-    strong local SEO foundations and automated Google review growth systems.
-    Whether you’re a builder, carpet shop, estate agent or café, our industry-specific
-    approach ensures your business ranks locally and converts visitors into customers.
-  </p>
-</section>
-
-            <section
+<section
               key={category}
               className={`py-20 ${idx % 2 === 0 ? "bg-[#111827]" : "bg-[#0a0e1a]"}`}
             >
@@ -135,5 +103,3 @@ export default function IndustriesPage() {
     </div>
   )
 }
-
-</>

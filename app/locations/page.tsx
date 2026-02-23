@@ -17,23 +17,7 @@ export default function LocationsPage() {
   const ukCityLocations = getUKCityLocations()
 
   return (
-<>
-
-{/* SEO Enhanced Intro Section */}
-<section className="max-w-5xl mx-auto text-center mb-12">
-  <h1 className="text-4xl font-bold mb-6">
-    Web Design, Local SEO & Review Generation Across Sussex & UK Cities
-  </h1>
-  <p className="text-lg text-gray-600">
-    GuardX supports businesses across Sussex and major UK cities with
-    SEO-optimised websites, strong local search foundations and automated
-    review systems designed to increase trust and drive enquiries.
-    From Brighton and Worthing to Manchester and London, we help local
-    businesses rank higher in Google and convert more visitors into customers.
-  </p>
-</section>
-
-    <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
+<div className="min-h-screen flex flex-col bg-[#0a0e1a]">
       <Navigation />
 
       <main className="flex-1">
@@ -42,8 +26,8 @@ export default function LocationsPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <AnimatedPageTitle text="All Locations" className="mb-6" />
             <p className="text-xl text-[#94a3b8] max-w-3xl mx-auto leading-relaxed">
-              GuardX helps businesses grow across Sussex and major UK cities with professional web design, SEO
-              foundation, and automated review generation. Find your area below.
+              GuardX helps businesses grow across Sussex and major UK cities with SEO-ready websites, strong local search foundations and automated Google review growth.
+              Explore your area below to see how we help you rank higher, build trust faster, and drive more enquiries.
             </p>
           </div>
         </section>
@@ -139,5 +123,3 @@ export default function LocationsPage() {
     </div>
   )
 }
-
-</>
