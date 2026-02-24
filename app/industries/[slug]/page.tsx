@@ -30,6 +30,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+export async function generateStaticParams() {
+  return industries.map((item) => ({ slug: item.slug }))
+}
+
+
 export default function IndustryPage({ params }: Props) {
   const industry = getIndustry(params.slug)
   if (!industry) return notFound()
@@ -102,11 +107,4 @@ export default function IndustryPage({ params }: Props) {
       <Footer />
     </div>
   )
-}
-
-
-import { industries } from "@/lib/industries-data"
-
-export async function generateStaticParams() {
-  return industries.map((item) => ({ slug: item.slug }))
 }

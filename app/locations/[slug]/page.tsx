@@ -30,6 +30,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+export async function generateStaticParams() {
+  return locations.map((item) => ({ slug: item.slug }))
+}
+
+
 export default function LocationPage({ params }: Props) {
   const location = getLocation(params.slug)
   if (!location) return notFound()
@@ -102,11 +107,4 @@ export default function LocationPage({ params }: Props) {
       <Footer />
     </div>
   )
-}
-
-
-import { locations } from "@/lib/locations-data"
-
-export async function generateStaticParams() {
-  return locations.map((item) => ({ slug: item.slug }))
 }
