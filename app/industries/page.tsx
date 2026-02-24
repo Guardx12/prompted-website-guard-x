@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function IndustriesPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
+<div className="min-h-screen flex flex-col bg-[#0a0e1a]">
       <Navigation />
 
       <main className="flex-1">
@@ -24,8 +24,8 @@ export default function IndustriesPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <AnimatedPageTitle text="All Industries" className="mb-6" />
             <p className="text-xl text-[#94a3b8] max-w-3xl mx-auto leading-relaxed">
-              GuardX helps businesses across every industry with professional web design, SEO foundation, and automated
-              review generation. Find your industry below.
+              GuardX helps businesses across every industry with conversion-focused web design, strong local SEO foundations, and automated Google review growth.
+              Explore your industry below to see how we help you rank higher, build trust faster, and generate more enquiries.
             </p>
           </div>
         </section>
@@ -35,7 +35,7 @@ export default function IndustriesPage() {
           const categoryIndustries = getIndustriesByCategory(category)
           if (categoryIndustries.length === 0) return null
           return (
-            <section
+<section
               key={category}
               className={`py-20 ${idx % 2 === 0 ? "bg-[#111827]" : "bg-[#0a0e1a]"}`}
             >
