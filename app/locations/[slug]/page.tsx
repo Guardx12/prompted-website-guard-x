@@ -3,22 +3,16 @@ import { Footer } from "@/components/footer"
 import { AnimatedPageTitle } from "@/components/animated-page-title"
 import Link from "next/link"
 import Image from "next/image"
-import { JsonLd } from "@/components/json-ld"
 import { locations } from "@/lib/locations-data"
 import { industries } from "@/lib/industries-data"
 import type { Metadata } from "next"
-import { buildBreadcrumbSchema, buildFaqSchema, buildServiceSchema, locationFaqs } from "@/lib/seo"
 
 type Props = { params: { slug?: string } }
 
 export const dynamicParams = true
 
-function safeSlug(slug?: string) {
-  return (slug ?? "").trim()
-}
-
 function slugToName(slug?: string) {
-  const safe = safeSlug(slug)
+  const safe = (slug ?? "").trim()
   if (!safe) return "Location"
   return safe
     .split("-")
@@ -28,19 +22,12 @@ function slugToName(slug?: string) {
 }
 
 function getLocation(slug?: string) {
-  const safe = safeSlug(slug)
-  if (!safe) return undefined
-  return locations.find((l) => l.slug === safe)
-}
-
-function resolveIndustries(slugs: string[]) {
-  return slugs
-    .map((s) => industries.find((i) => i.slug === s))
-    .filter((x): x is (typeof industries)[number] => Boolean(x))
+  if (!slug) return undefined
+  return locations.find((l) => l.slug === slug)
 }
 
 function heroFor(slug?: string) {
-  const safe = safeSlug(slug) || "placeholder"
+  const safe = (slug ?? "").trim() || "placeholder"
   return `/images/heroes/locations/${safe}.webp`
 }
 
@@ -52,20 +39,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params?.slug
   const loc = getLocation(slug)
   const name = loc?.name ?? slugToName(slug)
-
-  const title = loc?.metaTitle ?? `Web Design, Local SEO & Review Generation in ${name} | GuardX`
+  const title = loc?.metaTitle ?? `${name} — Local SEO Websites & Review Growth | GuardX`
   const description =
     loc?.metaDescription ??
-    `Grow enquiries in ${name} with a fast website, SEO foundations and automated Google review growth. Built to rank locally and convert on mobile.`
+    `GuardX helps businesses in ${name} with fast websites, SEO-ready structure and automated Google review growth — built to rank locally and convert.`
 
   return {
     title,
     description,
-    alternates: { canonical: slug ? `/locations/${safeSlug(slug)}` : "/locations" },
+    alternates: { canonical: slug ? `/locations/${slug}` : "/locations" },
     openGraph: {
       title,
       description,
-      url: slug ? `/locations/${safeSlug(slug)}` : "/locations",
+      url: slug ? `/locations/${slug}` : "/locations",
       siteName: "GuardX",
       type: "website",
       images: [{ url: heroFor(slug) }],
@@ -77,254 +63,127 @@ export default function LocationPage({ params }: Props) {
   const slug = params?.slug
   const loc = getLocation(slug)
 
-  // IMPORTANT: do not 404. Render a strong page even if the slug isn't in the dataset yet.
+  // IMPORTANT: do not 404. Render a strong generic template if slug isn't in the dataset yet.
   const name = loc?.name ?? slugToName(slug)
-  const county = loc?.county
-  const region = loc?.region ?? "uk"
+  const region = loc?.region ?? "United Kingdom"
 
-  const title = loc?.h1 ?? `Web Design, Local SEO & Review Growth in ${name}`
+  const title = loc?.h1 ?? `GuardX in ${name}: Websites + Local SEO Foundation + Review Growth`
   const intro =
     loc?.intro ??
-    `Most customers decide from Google results, reviews and the first screen of your website. In ${name}, your Google profile and website usually decide who gets contacted. GuardX builds fast, conversion-focused websites with a clean SEO foundation — and we install an automated review system so your reputation keeps moving forward.`
+    `Most customers decide from Google results, reviews and the first screen of your website. In ${name}, your Google profile and website usually decide who gets contacted. GuardX builds fast, conversion-focused websites with a clean SEO foundation — and we install an automated review system so your proof keeps improving.`
 
-  const localContext =
-    loc?.localContext ??
-    `Local searches are high-intent. People in ${name} are comparing options quickly — the business that looks most credible usually wins the call.`
-
-  const relatedLocations = (loc?.relatedLocations ?? [])
-    .map((s) => locations.find((l) => l.slug === s))
-    .filter((x): x is (typeof locations)[number] => Boolean(x))
-
-  const relatedIndustries = resolveIndustries(loc?.relatedIndustries ?? [])
+  const relatedIndustrySlugs = loc?.relatedIndustries ?? []
+  const relatedIndustries = relatedIndustrySlugs
+    .map((s) => industries.find((i) => i.slug === s))
+    .filter((x): x is (typeof industries)[number] => Boolean(x))
 
   const heroImage = heroFor(slug)
-
-  const canonical = slug ? `https://www.guardxnetwork.com/locations/${safeSlug(slug)}` : "https://www.guardxnetwork.com/locations"
-
-  const faqs = locationFaqs(name, regionLabel)
-  const schemas = [
-    buildBreadcrumbSchema([
-      { name: "Home", url: "https://www.guardxnetwork.com" },
-      { name: "Locations", url: "https://www.guardxnetwork.com/locations" },
-      { name, url: canonical },
-    ]),
-    buildServiceSchema({
-      serviceName: `Web design, SEO foundation & review growth in ${name}`,
-      description,
-      url: canonical,
-      areaServedName: name,
-      image: `https://www.guardxnetwork.com${heroImage}`,
-    }),
-    buildFaqSchema(canonical, faqs),
-  ]
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
       <Navigation />
 
       <main className="flex-1">
-        {/* Hero */}
-        <section className="relative pt-32 pb-16 overflow-hidden border-b border-white/10">
+        <section className="relative pt-32 pb-20 overflow-hidden border-b border-white/10">
           <div className="absolute inset-0">
-            <Image src={heroImage} alt={`${name} location hero image`} fill className="object-cover opacity-20" priority />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e1a]/30 via-[#0a0e1a]/80 to-[#0a0e1a]" />
+            <Image
+              src={heroImage}
+              alt={`${name} hero image`}
+              fill
+              className="object-cover opacity-25"
+              priority            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e1a]/35 via-[#0a0e1a]/75 to-[#0a0e1a]" />
           </div>
 
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              <div className="lg:col-span-7">
-                <AnimatedPageTitle
-                  title={title}
-                  subtitle={loc?.metaDescription ?? `Web design, SEO foundation and review generation for businesses in ${county ? `${name}, ${county}` : name}.`}
-                />
-                <p className="mt-6 text-white/75 leading-relaxed whitespace-pre-line">{intro}</p>
+            <AnimatedPageTitle title={title} subtitle={loc?.metaDescription ?? `${region}`} />
 
-                <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#0a0e1a] hover:bg-white/90"
+              >
+                Get a scorecard
+              </Link>
+              <Link
+                href="/pricing"
+                className="inline-flex items-center justify-center rounded-xl bg-white/5 px-5 py-3 text-sm font-semibold text-white ring-1 ring-white/15 hover:bg-white/10"
+              >
+                View pricing
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div className="lg:col-span-2 space-y-8">
+              <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+                <h2 className="text-xl font-semibold text-white">How GuardX helps businesses in {name}</h2>
+                <p className="mt-3 text-white/75 leading-relaxed whitespace-pre-line">{intro}</p>
+              </div>
+
+              <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+                <h2 className="text-xl font-semibold text-white">What we build (SEO foundation included)</h2>
+                <ul className="mt-4 grid gap-3 sm:grid-cols-2 text-sm text-white/75">
+                  <li className="rounded-xl bg-white/5 ring-1 ring-white/10 p-4">Service + location structure (how people search)</li>
+                  <li className="rounded-xl bg-white/5 ring-1 ring-white/10 p-4">Fast mobile performance + clean technical setup</li>
+                  <li className="rounded-xl bg-white/5 ring-1 ring-white/10 p-4">Strong proof sections (reviews, photos, FAQs)</li>
+                  <li className="rounded-xl bg-white/5 ring-1 ring-white/10 p-4">Clear enquiry paths (call, WhatsApp, quote form)</li>
+                </ul>
+              </div>
+
+              <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+                <h2 className="text-xl font-semibold text-white">Next steps</h2>
+                <p className="mt-3 text-white/75 leading-relaxed">
+                  Want to rank better in {name} and convert more clicks into enquiries? We can send a quick scorecard showing the highest-impact fixes.
+                </p>
+                <div className="mt-5 flex flex-wrap gap-3">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center justify-center rounded-full bg-blue-500 px-6 py-3 text-white font-semibold hover:bg-blue-400 transition"
+                    className="inline-flex items-center justify-center rounded-xl bg-blue-500 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-600"
                   >
                     Get a scorecard
                   </Link>
                   <Link
-                    href="/pricing"
-                    className="inline-flex items-center justify-center rounded-full bg-white/10 px-6 py-3 text-white font-semibold hover:bg-white/15 transition ring-1 ring-white/10"
+                    href="/real-results"
+                    className="inline-flex items-center justify-center rounded-xl bg-white/5 px-5 py-3 text-sm font-semibold text-white ring-1 ring-white/15 hover:bg-white/10"
                   >
-                    View pricing
+                    See results
                   </Link>
                 </div>
               </div>
-
-              {/* Visible hero image (same image as the location card) */}
-              <div className="lg:col-span-5">
-                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden ring-1 ring-white/10 shadow-[0_0_0_1px_rgba(255,255,255,0.06)]">
-                  <Image src={heroImage} alt={`${name} feature image`} fill className="object-cover" />
-                </div>
-              </div>
             </div>
-          </div>
 
-          {schemas.map((schema, idx) => (
-          <JsonLd key={idx} data={schema} />
-        ))}
-        </section>
-
-        {/* Local relevance */}
-        <section className="py-14 border-b border-white/10">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2 space-y-6">
+            <aside className="space-y-6">
+              {relatedIndustries.length > 0 && (
                 <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
-                  <h2 className="text-xl font-semibold text-white">What wins in {name}</h2>
-                  <p className="mt-3 text-white/75 leading-relaxed whitespace-pre-line">{localContext}</p>
-                </div>
-
-                <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
-                  <h2 className="text-xl font-semibold text-white">Local SEO foundation for {name}</h2>
-                  <ul className="mt-4 space-y-3 text-white/75">
-                    <li className="flex gap-3">
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-400/80" />
-                      <span>Location-led site structure: service pages + area pages + proof sections</span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-400/80" />
-                      <span>Fast mobile performance (most local searches happen on phones)</span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-400/80" />
-                      <span>Clear conversion paths: click-to-call, WhatsApp, quote forms and map directions</span>
-                    </li>
+                  <h3 className="text-lg font-semibold text-white">Popular industries in {name}</h3>
+                  <ul className="mt-4 space-y-2">
+                    {relatedIndustries.map((ri) => (
+                      <li key={ri.slug}>
+                        <Link href={`/industries/${ri.slug}`} className="text-blue-400 hover:text-blue-300">
+                          {ri.name}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
+              )}
 
-                <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
-                  <h2 className="text-xl font-semibold text-white">Proof that converts</h2>
-                  <p className="mt-3 text-white/75 leading-relaxed">
-                    In {name}, customers compare quickly. We help businesses stand out with stronger proof: more recent Google reviews, clearer
-                    service coverage, and job-specific examples — then we place that proof where it increases enquiries most.
-                  </p>
-                </div>
-              </div>
-
-              <aside className="space-y-6">
-                {relatedIndustries.length > 0 && (
-                  <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
-                    <h3 className="text-white font-semibold">Industries we help in {name}</h3>
-                    <div className="mt-4 grid gap-2">
-                      {relatedIndustries.slice(0, 10).map((i) => (
-                        <Link
-                          key={i.slug}
-                          href={`/industries/${i.slug}`}
-                          className="rounded-xl bg-white/5 hover:bg-white/10 ring-1 ring-white/10 px-4 py-3 text-white/85 transition"
-                        >
-                          {i.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {relatedLocations.length > 0 && (
-                  <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
-                    <h3 className="text-white font-semibold">Nearby areas</h3>
-                    <div className="mt-4 grid gap-2">
-                      {relatedLocations.slice(0, 10).map((l) => (
-                        <Link
-                          key={l.slug}
-                          href={`/locations/${l.slug}`}
-                          className="rounded-xl bg-white/5 hover:bg-white/10 ring-1 ring-white/10 px-4 py-3 text-white/85 transition"
-                        >
-                          {l.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
-                  <h3 className="text-white font-semibold">Next step</h3>
-                  <p className="mt-2 text-white/75 text-sm">
-                    Want a quick plan for ranking and converting better in {name}? We’ll send a scorecard and a clear build path.
-                  </p>
-                  <Link
-                    href="/contact"
-                    className="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-blue-500 px-4 py-3 text-white font-semibold hover:bg-blue-400 transition"
-                  >
-                    Get a scorecard
-                  </Link>
-                </div>
-              </aside>
-            </div>
-          </div>
-        </section>
-
-        {/* Bottom CTA */}
-        <section className="py-14 border-t border-white/10 bg-white/[0.02]">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="rounded-3xl bg-white/5 ring-1 ring-white/10 p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-              <div>
-                <h2 className="text-2xl font-semibold text-white">Ready to grow enquiries in {name}?</h2>
-                <p className="mt-2 text-white/75">
-                  Fast website. Elite local SEO foundation. Automated review growth. Built to convert on mobile.
-                </p>
-              </div>
-              <div className="flex gap-3">
-                <Link href="/contact" className="rounded-full bg-blue-500 px-6 py-3 text-white font-semibold hover:bg-blue-400 transition">
-                  Contact GuardX
-                </Link>
-                <Link href="/examples" className="rounded-full bg-white/10 px-6 py-3 text-white font-semibold hover:bg-white/15 transition ring-1 ring-white/10">
-                  See examples
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQs (unique + schema-backed) */}
-        <section className="py-20 border-t border-white/10">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <h2 className="text-3xl font-bold text-white">FAQs for {name}</h2>
-              <p className="mt-3 text-white/70">
-                Location-specific answers — built for trust, conversions and local intent.
-              </p>
-            </div>
-
-            <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {faqs.map((f) => (
-                <details
-                  key={f.question}
-                  className="group rounded-2xl bg-white/5 ring-1 ring-white/10 p-6 open:bg-white/7 transition"
+              <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+                <h3 className="text-lg font-semibold text-white">Explore all areas</h3>
+                <p className="mt-3 text-white/75 text-sm leading-relaxed">See the full locations list and jump to your area.</p>
+                <Link
+                  href="/locations"
+                  className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#0a0e1a] hover:bg-white/90"
                 >
-                  <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
-                    <span className="text-white font-semibold">{f.question}</span>
-                    <span className="text-white/60 group-open:rotate-45 transition">+</span>
-                  </summary>
-                  <div className="mt-4 text-white/75 leading-relaxed">{f.answer}</div>
-                </details>
-              ))}
-            </div>
-
-            <div className="mt-10 rounded-3xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 ring-1 ring-white/10 p-8">
-              <h3 className="text-xl font-bold text-white">Service pages built for {name} intent</h3>
-              <p className="mt-2 text-white/70">
-                These pages help you capture high-intent local searches and strengthen internal linking.
-              </p>
-              <div className="mt-5 flex flex-wrap gap-3">
-                <Link href={`/solutions/web-design/${safeSlug(slug) || "london"}`} className="rounded-full bg-white/10 px-5 py-2 text-white font-semibold hover:bg-white/15 transition ring-1 ring-white/10">
-                  Web design in {name}
-                </Link>
-                <Link href={`/solutions/seo-foundation/${safeSlug(slug) || "london"}`} className="rounded-full bg-white/10 px-5 py-2 text-white font-semibold hover:bg-white/15 transition ring-1 ring-white/10">
-                  SEO foundation in {name}
-                </Link>
-                <Link href={`/solutions/review-generation/${safeSlug(slug) || "london"}`} className="rounded-full bg-white/10 px-5 py-2 text-white font-semibold hover:bg-white/15 transition ring-1 ring-white/10">
-                  Review growth in {name}
+                  View all locations
                 </Link>
               </div>
-            </div>
+            </aside>
           </div>
         </section>
-
       </main>
 
       <Footer />
