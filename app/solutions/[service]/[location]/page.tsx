@@ -78,7 +78,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locationSlug = safeSlug(params?.location)
 
   const loc = locations.find((l) => l.slug === locationSlug)
-  const place = loc?.name ?? locationSlug.replaceAll("-", " ") || "UK"
+  const place = loc?.name ?? (locationSlug ? locationSlug.replaceAll("-", " ") : "UK")
 
   const svc = SERVICES[serviceKey] ?? SERVICES["seo-foundation"]
   const { title, description } = svc.meta(place)
@@ -105,7 +105,7 @@ export default function SolutionPage({ params }: Props) {
   const locationSlug = safeSlug(params?.location)
 
   const loc = locations.find((l) => l.slug === locationSlug)
-  const place = loc?.name ?? locationSlug.replaceAll("-", " ") || "United Kingdom"
+  const place = loc?.name ?? (locationSlug ? locationSlug.replaceAll("-", " ") : "United Kingdom")
   const region = loc?.region === "sussex" ? "Sussex" : "United Kingdom"
 
   const svc = SERVICES[serviceKey] ?? SERVICES["seo-foundation"]
