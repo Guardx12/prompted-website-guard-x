@@ -103,3 +103,10 @@ export default function IndustryPage({ params }: Props) {
     </div>
   )
 }
+
+
+import { industries } from "@/lib/industries-data"
+
+export async function generateStaticParams() {
+  return industries.map((item) => ({ slug: item.slug }))
+}

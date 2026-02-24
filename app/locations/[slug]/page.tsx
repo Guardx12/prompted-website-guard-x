@@ -103,3 +103,10 @@ export default function LocationPage({ params }: Props) {
     </div>
   )
 }
+
+
+import { locations } from "@/lib/locations-data"
+
+export async function generateStaticParams() {
+  return locations.map((item) => ({ slug: item.slug }))
+}
