@@ -14,22 +14,22 @@ export interface Industry {
   relatedLocations: string[]
 }
 
-/** Map of slug → hosted image URL for industries with uploaded photos */
+/** Map of slug → local image path for industries with uploaded photos */
 export const INDUSTRY_IMAGES: Record<string, string> = {
-  "opticians": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/DAY-2_SLIT-LAMP-TEST_117-960x700_241004_202228-j5TGzj3yw4n2FULs5gABwQ6dAF2o1d.jpg",
-  "landscapers": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1e05f944-ca1c-41b9-8f70-9e5adff4b9a9-KJGh11cIxayYBU1RTeHiV2giKyhMVg.webp",
-  "cafes": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coffee-shop_header_6ab776df-1982-41a9-a07c-f81eaa9328e4-YvqiMp1H9DpYIGZaXkgQb6i04yB3y4.jpg",
-  "barbers": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/8JS5FWLV1WuEOxw1nhWXVSZDcM3YiY89atby2TojUDJT8vDUZ3McZb3-67iGymC4s9QR6_ItA0AspdniVLGY60Aj3YRT5LCtStO5NJLKfKTWrNWj6JW62XrHvNvfj2hf-8FSmVK28FRbXBuB0G0Nmt6orDZbRod.jpg",
-  "mot-centres": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/dedicated-mot-bay-and-service-bay-with-4-post-lift-MvZ8z5ZUaljyxqLYvyGjMPx1sdk1rb.jpg",
-  "removal-companies": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5562c1_63fa8a6b5cc9452e9f391bc4ae9df4f8~mv2-LwZkHgYjXHqq5qikZrTxvScEeYFQYy.jpg",
-  "restaurants": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Copy20220322_TheTwentyTwo_Restaurant_SHOT_10_006_FINAL_RGB-zNOEhcvUZWgXZPu0fRIa5i3n9BDwz6.webp",
-  "security-installers": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1695006274913-Home-security-near-me-fHyPabCddOGE0KvdJ22oLBmsdFu8ah.jpg",
-  "car-detailers": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/a5-QT3PaN5CxpOcj6j1MR9OCIqgdHgFuo.webp",
-  "salons": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cd471b_8f88468efd8349d198950f748a625406~mv2-SS0SevOZ8E7nXP0jXaCtpJJ1kabNyg.avif",
-  "window-cleaners": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Details-Glasreinigerleiter-8OONEO7FI04QVkFRqN2hnFqmEOSc0b.jpg",
-  "locksmiths": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AdobeStock_106833609_img1-OrICdFi2Lj2y4cOFHQXTbR1t2czNay.jpg",
-  "hvac-engineers": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/APD_AirCon_Hero_Image-1W3gjWGnYlDO4gAjhWnus5oomuGYfO.jpg",
-  "car-dealers": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/20250228_141201433_iOS-1365x1024-xhqj1sOCjydhBSOnihyIKtvwEub9Cs.jpg",
+  "opticians": "/images/heroes/industries/opticians.jpg",
+  "landscapers": "/images/heroes/industries/landscapers.webp",
+  "cafes": "/images/heroes/industries/cafes.jpg",
+  "barbers": "/images/heroes/industries/barbers.jpg",
+  "mot-centres": "/images/heroes/industries/mot-centres.jpg",
+  "removal-companies": "/images/heroes/industries/removal-companies.jpg",
+  "restaurants": "/images/heroes/industries/restaurants.webp",
+  "security-installers": "/images/heroes/industries/security-installers.jpg",
+  "car-detailers": "/images/heroes/industries/car-detailers.webp",
+  "salons": "/images/heroes/industries/salons.avif",
+  "window-cleaners": "/images/heroes/industries/window-cleaners.jpg",
+  "locksmiths": "/images/heroes/industries/locksmiths.jpg",
+  "hvac-engineers": "/images/heroes/industries/hvac-engineers.jpg",
+  "car-dealers": "/images/heroes/industries/car-dealers.jpg",
 }
 
 /** Get the image URL for an industry slug, falling back to a placeholder path */
@@ -229,7 +229,7 @@ export const industries: Industry[] = [
     relatedIndustries: ["restaurants", "salons", "barbers", "cleaning-companies"],
     relatedLocations: ["brighton", "hove", "london", "lewes", "edinburgh"],
   },
-  // ─── Automotive ────────────────────────────────────────────────────────
+  // ─── Automotive ─��──────────────────────────────────────────────────────
   {
     slug: "garages",
     name: "Garages",
@@ -398,7 +398,7 @@ export const industries: Industry[] = [
     metaDescription: "Get more enquiries for your bathroom fitters business with a fast website, SEO foundations and automated Google review growth. Built to rank locally and convert on mobile.",
     h1: "Bathroom Fitters Websites Built to Rank Locally and Win More Enquiries",
     intro: "In trades, one weak Google profile can cost you £££ each week. If you run a bathroom fitters business, your website and Google profile should do two jobs: rank for high-intent local searches and make it obvious why you’re the safe choice.\\n\\nGuardX builds conversion-focused websites for bathroom fitters businesses with an SEO-ready structure, fast mobile performance and clear CTAs. We also plug in an automated review system so your reputation keeps moving forward — not just a one-time ‘launch and forget’ site.\\n\\nTypical leaks we fix for bathroom fitters businesses: confusing navigation and no clear next step, thin proof (few recent reviews, weak testimonials, no project photos). Then we strengthen the proof: conversion paths that make contacting you effortless, proof sections that answer objections quickly, and proof sections that answer objections quickly — so visitors turn into calls, quote requests and bookings.",
-    challenges: "What we see most often in bathroom fitters websites is not a lack of effort — it’s a lack of structure. Google can’t understand what you do, and customers can’t quickly see the proof. GuardX fixes that with a simple, repeatable system:\\n\\n• A review growth system to generate recent Google reviews consistently (without being pushy)\\n• Internal linking and page structure designed to scale as you add more services or areas\\n• SEO foundations that target “Bathroom Fitters near me”, “Bathroom Fitters services”, and location-based searches\\n• Trust signals that reduce hesitation: reviews, photo proof, accreditations and guarantees\\n• Conversion UX: click-to-call, WhatsApp, quote forms, and fast-loading pages on mobile\\n\\nBottom line: you get a site that ranks, a profile that builds trust, and a pipeline that turns search traffic into enquiries for your bathroom fitters business.",
+    challenges: "What we see most often in bathroom fitters websites is not a lack of effort — it’s a lack of structure. Google can’t understand what you do, and customers can’t quickly see the proof. GuardX fixes that with a simple, repeatable system:\\n\\n�� A review growth system to generate recent Google reviews consistently (without being pushy)\\n• Internal linking and page structure designed to scale as you add more services or areas\\n• SEO foundations that target “Bathroom Fitters near me”, “Bathroom Fitters services”, and location-based searches\\n• Trust signals that reduce hesitation: reviews, photo proof, accreditations and guarantees\\n• Conversion UX: click-to-call, WhatsApp, quote forms, and fast-loading pages on mobile\\n\\nBottom line: you get a site that ranks, a profile that builds trust, and a pipeline that turns search traffic into enquiries for your bathroom fitters business.",
     relatedIndustries: ["dental-implants", "locksmiths", "tyre-shops", "bricklayers", "opticians"],
     relatedLocations: ["sussex", "brighton", "london", "manchester", "birmingham"],
   },
