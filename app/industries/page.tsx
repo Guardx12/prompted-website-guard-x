@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { AnimatedPageTitle } from "@/components/animated-page-title"
-import { industries, industryCategories, getIndustriesByCategory } from "@/lib/industries-data"
+import { industries, industryCategories, getIndustriesByCategory, getIndustryImage } from "@/lib/industries-data"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
@@ -53,7 +53,7 @@ export default function IndustriesPage() {
                     >
                       <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden mb-4 ring-1 ring-white/10">
                         <Image
-                          src={`/images/heroes/industries/${industry.slug}.webp`}
+                          src={getIndustryImage(industry.slug)}
                           alt={`${industry.name} hero image`}
                           fill
                           className="object-cover transition-transform duration-300 group-hover:scale-105"

@@ -3,7 +3,7 @@ import { Footer } from "@/components/footer"
 import { AnimatedPageTitle } from "@/components/animated-page-title"
 import Link from "next/link"
 import Image from "next/image"
-import { industries } from "@/lib/industries-data"
+import { industries, getIndustryImage } from "@/lib/industries-data"
 import { locations } from "@/lib/locations-data"
 import type { Metadata } from "next"
 
@@ -33,9 +33,8 @@ function resolveLocations(slugs: string[]) {
 }
 
 function heroFor(slug?: string) {
-  // If an image doesn't exist for a slug, we fall back to a placeholder instead of 404ing the *page*.
   const safe = (slug ?? "").trim() || "placeholder"
-  return `/images/heroes/industries/${safe}.webp`
+  return getIndustryImage(safe)
 }
 
 export async function generateStaticParams() {

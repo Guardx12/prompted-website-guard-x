@@ -1,6 +1,7 @@
 export interface Industry {
   slug: string
   name: string
+  image?: string
   category: "Trades" | "Home Services" | "Property" | "Automotive" | "Health" | "Beauty" | "Hospitality"
   metaTitle: string
   metaDescription: string
@@ -11,6 +12,29 @@ export interface Industry {
   faqs?: { question: string; answer: string }[]
   relatedIndustries: string[]
   relatedLocations: string[]
+}
+
+/** Map of slug → hosted image URL for industries with uploaded photos */
+export const INDUSTRY_IMAGES: Record<string, string> = {
+  "opticians": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/DAY-2_SLIT-LAMP-TEST_117-960x700_241004_202228-j5TGzj3yw4n2FULs5gABwQ6dAF2o1d.jpg",
+  "landscapers": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1e05f944-ca1c-41b9-8f70-9e5adff4b9a9-KJGh11cIxayYBU1RTeHiV2giKyhMVg.webp",
+  "cafes": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coffee-shop_header_6ab776df-1982-41a9-a07c-f81eaa9328e4-YvqiMp1H9DpYIGZaXkgQb6i04yB3y4.jpg",
+  "barbers": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/8JS5FWLV1WuEOxw1nhWXVSZDcM3YiY89atby2TojUDJT8vDUZ3McZb3-67iGymC4s9QR6_ItA0AspdniVLGY60Aj3YRT5LCtStO5NJLKfKTWrNWj6JW62XrHvNvfj2hf-8FSmVK28FRbXBuB0G0Nmt6orDZbRod.jpg",
+  "mot-centres": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/dedicated-mot-bay-and-service-bay-with-4-post-lift-MvZ8z5ZUaljyxqLYvyGjMPx1sdk1rb.jpg",
+  "removal-companies": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5562c1_63fa8a6b5cc9452e9f391bc4ae9df4f8~mv2-LwZkHgYjXHqq5qikZrTxvScEeYFQYy.jpg",
+  "restaurants": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Copy20220322_TheTwentyTwo_Restaurant_SHOT_10_006_FINAL_RGB-zNOEhcvUZWgXZPu0fRIa5i3n9BDwz6.webp",
+  "security-installers": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1695006274913-Home-security-near-me-fHyPabCddOGE0KvdJ22oLBmsdFu8ah.jpg",
+  "car-detailers": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/a5-QT3PaN5CxpOcj6j1MR9OCIqgdHgFuo.webp",
+  "salons": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cd471b_8f88468efd8349d198950f748a625406~mv2-SS0SevOZ8E7nXP0jXaCtpJJ1kabNyg.avif",
+  "window-cleaners": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Details-Glasreinigerleiter-8OONEO7FI04QVkFRqN2hnFqmEOSc0b.jpg",
+  "locksmiths": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AdobeStock_106833609_img1-OrICdFi2Lj2y4cOFHQXTbR1t2czNay.jpg",
+  "hvac-engineers": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/APD_AirCon_Hero_Image-1W3gjWGnYlDO4gAjhWnus5oomuGYfO.jpg",
+  "car-dealers": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/20250228_141201433_iOS-1365x1024-xhqj1sOCjydhBSOnihyIKtvwEub9Cs.jpg",
+}
+
+/** Get the image URL for an industry slug, falling back to a placeholder path */
+export function getIndustryImage(slug: string): string {
+  return INDUSTRY_IMAGES[slug] ?? `/images/heroes/industries/${slug}.webp`
 }
 
 export const industries: Industry[] = [
