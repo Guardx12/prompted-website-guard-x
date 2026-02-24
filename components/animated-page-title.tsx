@@ -3,26 +3,39 @@
 import { cn } from "@/lib/utils"
 
 type AnimatedPageTitleProps = {
-  text: string
+  /** Preferred prop: the main title text */
+  text?: string
+  /** Backwards-compatible alias for `text` */
+  title?: string
+
   /**
    * Optional second line shown underneath (used on some pages like Contact/Pricing).
    * The full combined text is still output once for SEO via sr-only.
    */
   suffix?: string
+  /** Backwards-compatible alias for `suffix` */
+  subtitle?: string
+
   className?: string
   as?: keyof JSX.IntrinsicElements
 }
 
 export function AnimatedPageTitle({
   text,
+  title,
   suffix,
+  subtitle,
   className,
   as = "h1",
 }: AnimatedPageTitleProps) {
   const Tag: any = as
 
+  const mainText = (text ?? title ?? "").toString()
+  const secondLine = (suffix ?? subtitle)?.toString()
+
   // Split into words so we can wrap between words (not mid-word).
-  const words = text.trim().split(/\s+/)
+  // Be defensive: mainText could be empty in edge cases; avoid crashing prerender.
+  const words = mainText.trim() ? mainText.trim().split(/\s+/) : []
 
   return (
     <Tag
@@ -33,7 +46,9 @@ export function AnimatedPageTitle({
       )}
     >
       {/* SEO-safe full text (no animation splitting) */}
-      <span className="sr-only">{suffix ? `${text} ${suffix}` : text}</span>
+      <span className="sr-only">
+        {secondLine ? `${mainText} ${secondLine}` : mainText}
+      </span>
 
       {/* Visual animated text only */}
       <span aria-hidden="true" className="inline-block">
@@ -61,9 +76,9 @@ export function AnimatedPageTitle({
         })}
       </span>
 
-      {suffix ? (
+      {secondLine ? (
         <span className="block mt-3 text-base sm:text-lg font-semibold text-[#94a3b8]">
-          {suffix}
+          {secondLine}
         </span>
       ) : null}
     </Tag>
