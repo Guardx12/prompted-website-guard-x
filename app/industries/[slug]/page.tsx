@@ -1,85 +1,362 @@
-
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import { AnimatedPageTitle } from "@/components/animated-page-title"
+import { industries, getIndustryBySlug } from "@/lib/industries-data"
+import { getLocationBySlug } from "@/lib/locations-data"
+import { CheckCircle2, ArrowRight, MapPin } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
-import { locations } from "@/lib/locations-data"
+import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 
-type Props = { params: { slug: string } }
+const heroImageForIndustry = (slug: string) => ({ src: `/images/heroes/industries/${slug}.webp`, alt: `${slug} hero image` })
 
-function formatName(slug: string) {
-  return slug.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())
+export async function generateStaticParams() {
+  return industries.map((industry) => ({ slug: industry.slug }))
 }
 
-function pickWindow<T>(items: T[], seed: string, windowSize: number) {
-  if (!items?.length) return []
-  const hash = Array.from(seed).reduce((acc, ch) => acc + ch.charCodeAt(0), 0)
-  const start = hash % items.length
-  const out: T[] = []
-  for (let i = 0; i < Math.min(windowSize, items.length); i++) {
-    out.push(items[(start + i) % items.length])
-  }
-  return out
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const name = formatName(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const industry = getIndustryBySlug(slug)
+  if (!industry) return {}
   return {
-    title: `Web Design & Local SEO for ${name} Businesses | GuardX`,
-    description: `High-performance websites and structured local SEO for ${name} businesses across the UK — built for speed, trust and enquiries.`
+    title: `${industry.name} Web Design | Local SEO + Google Reviews (UK) | GuardX`,
+    description: `Web design for ${industry.name.toLowerCase()} businesses in the UK — conversion-focused pages, local SEO foundations and automated Google review growth to win more calls and enquiries.`,
+  }}
+
+export default async function IndustryPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const industry = getIndustryBySlug(slug)
+  if (!industry) notFound()
+
+  const relatedIndustries = industry.relatedIndustries
+    .map((s) => getIndustryBySlug(s))
+    .filter(Boolean)
+
+  const relatedLocations = industry.relatedLocations
+    .map((s) => getLocationBySlug(s))
+    .filter(Boolean)
+
+  const introParagraphs = industry.intro.split("\n\n")
+  const emailSmsIndex = introParagraphs.findIndex((p) => {
+    const lower = p.trim().toLowerCase()
+    // Detect the "how reviews are collected" paragraph so we can move it under the Review Challenge section.
+    return (
+      lower.startsWith("our email and sms system") ||
+      lower.startsWith("our system sends") ||
+      lower.startsWith("our platform sends") ||
+      lower.includes("email and sms") ||
+      lower.includes("personalised review requests") ||
+      (lower.includes("review request") && lower.includes("sms")) ||
+      (lower.includes("review request") && lower.includes("email"))
+    )
+  })
+  const mainIntroParagraphs = emailSmsIndex >= 0 ? introParagraphs.slice(0, emailSmsIndex) : introParagraphs
+  const emailSmsParagraphs = emailSmsIndex >= 0 ? introParagraphs.slice(emailSmsIndex) : []
+
+  const faqItems = [
+    {
+      question: `What should a ${industry.name.toLowerCase()} website include to get more enquiries?`,
+      answer:
+        `Clear services, strong trust signals (reviews, accreditations), fast mobile performance, and simple contact options like click-to-call and WhatsApp. We build around conversions, not just looks.`,
+    },
+    {
+      question: `Can you build service pages and location pages for ${industry.name.toLowerCase()}?`,
+      answer:
+        `Yes. We can structure your site with dedicated service pages and location targeting so Google understands exactly what you do and where you work.`,
+    },
+    {
+      question: `Do I own the website when it’s finished?`,
+      answer:
+        `Yes — you own the site and content. We can also handle hosting and maintenance so everything stays fast, secure and up to date.`,
+    },
+    {
+      question: `How does GuardX help ${industry.name.toLowerCase()} get more reviews?`,
+      answer:
+        `We automate review requests via SMS and email so satisfied customers leave feedback consistently — helping you stand out on Google and win more calls.`,
+    },
+  ] as const
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
   }
-}
-
-export default function IndustryPage({ params }: Props) {
-  const name = formatName(params.slug)
-
-  // Rotate which locations are linked from each industry page
-  const linkedLocations = pickWindow(locations, params.slug, 12)
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
       <Navigation />
-      <main className="flex-1 pt-32 pb-20 max-w-5xl mx-auto px-6 text-gray-300">
 
-        <h1 className="text-4xl font-bold text-white mb-8">
-          Web Design, Local SEO & Review Growth for {name} Businesses
-        </h1>
-
-        <p className="mb-6 text-lg">
-          GuardX builds modern, conversion-focused websites for {name.toLowerCase()} businesses — structured properly from day one with
-          strong local SEO foundations and a clear enquiry path.
-        </p>
-
-        <h2 className="text-2xl font-semibold text-white mt-12 mb-4">
-          We Support {name} Businesses Across the UK
-        </h2>
-
-        <p className="text-[#94a3b8] mb-6">
-          Explore a few areas we serve below, or view the full location list.
-        </p>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
-          {linkedLocations.map((loc) => (
+      <main className="flex-1">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+        {/* Hero */}
+        <section className="pt-32 pb-20 bg-[#0a0e1a]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <AnimatedPageTitle text={industry.h1} className="mb-6" />
+            <p className="text-sm text-[#64748b] mb-4">{industry.category}</p>
+            <nav aria-label="Breadcrumb" className="mb-4 text-sm text-white/70">
+              <ol className="flex flex-wrap justify-center gap-2">
+                <li><Link href="/" className="hover:underline">Home</Link></li>
+                <li className="opacity-60">/</li>
+                <li><Link href="/industries" className="hover:underline">Industries</Link></li>
+                <li className="opacity-60">/</li>
+                <li className="text-white/90">{industry.name}</li>
+              </ol>
+            </nav>
+            {(() => {
+              const hero = heroImageForIndustry(slug)
+              return (
+                <div className="relative w-full max-w-5xl mx-auto aspect-[16/9] rounded-2xl overflow-hidden mb-10 ring-1 ring-white/10">
+                  <Image
+                    src={hero.src}
+                    alt={`${industry.name} hero image`}
+                    fill
+                    className="object-cover"
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1024px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-black/10" />
+                </div>
+              )
+            })()}
+            <p className="text-xl text-[#94a3b8] max-w-3xl mx-auto leading-relaxed mb-10">
+              {mainIntroParagraphs[0]}
+            </p>
             <Link
-              key={loc.slug}
-              href={`/locations/${loc.slug}`}
-              className="text-blue-400 hover:text-blue-300 transition-colors"
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
             >
-              {name} in {loc.name}
+              Get Started <ArrowRight className="w-5 h-5" />
             </Link>
-          ))}
-        </div>
+          </div>
+        </section>
 
-        <div className="flex flex-wrap gap-3 mb-14">
-          <Link href="/locations" className="inline-flex items-center rounded-lg border border-white/10 px-4 py-2 text-sm text-white hover:border-blue-500/50">
-            View all locations
-          </Link>
-          <Link href="/contact" className="inline-flex items-center rounded-lg bg-blue-500 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-600">
-            Get a website quote
-          </Link>
-        </div>
+        {/* Extended Intro */}
+        {mainIntroParagraphs.length > 1 && (
+          <section className="py-20 bg-[#111827]">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              {mainIntroParagraphs.slice(1).map((para, i) => (
+                <p key={i} className="text-lg text-[#94a3b8] leading-relaxed mb-6 last:mb-0">
+                  {para}
+                </p>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Why GuardX */}
+        <section className="py-20 bg-[#111827]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
+              Why {industry.name} Choose GuardX
+            </h2>
+            <div className="max-w-2xl mx-auto space-y-6">
+              {[
+                `Professional web design built to showcase ${industry.name.toLowerCase()} and convert visitors into enquiries.`,
+                "SEO foundation is included on our Professional plan — proper meta tags, semantic HTML, fast load times, and mobile optimisation.",
+                `Automated review generation designed specifically for ${industry.name.toLowerCase()}.`,
+                "Personalised email and SMS prompts sent at the right moment — hands-free while you focus on your business.",
+                "Web design, SEO, and reviews working together for higher rankings, more visibility, and more customers.",
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-[#cbd5e1] text-lg leading-relaxed">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Challenges */}
+        <section className="py-20 bg-[#0a0e1a]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
+              The Review Challenge for {industry.name}
+            </h2>
+            <p className="text-lg text-[#94a3b8] leading-relaxed text-center max-w-3xl mx-auto">
+              {industry.challenges}
+            </p>
+          </div>
+        </section>
+
+{/* Email & SMS */} 
+{emailSmsParagraphs.length > 0 && (
+  <section className="py-20 bg-[#111827]">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+        How GuardX Collects Reviews for {industry.name}
+      </h2>
+      <div className="max-w-3xl mx-auto">
+        {emailSmsParagraphs.map((para, i) => (
+          <p key={i} className="text-lg text-[#94a3b8] leading-relaxed mb-6 last:mb-0">
+            {para}
+          </p>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+
+        {/* Related Industries */}
+        {relatedIndustries.length > 0 && (
+          <section className="py-20 bg-[#0a0e1a]">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">
+                Related Industries
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {relatedIndustries.map((ind) => (
+                  <Link
+                    key={ind!.slug}
+                    href={`/industries/${ind!.slug}`}
+                    className="group rounded-xl border border-white/10 bg-[#1e293b] p-6 transition-all duration-300 hover:border-blue-500/50"
+                  >
+                    <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors mb-2">
+                      {ind!.name}
+                    </h3>
+                    <p className="text-[#94a3b8] text-sm line-clamp-2">{ind!.intro.split("\n")[0]}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Related Locations */}
+        {relatedLocations.length > 0 && (
+          <section className="py-20 bg-[#111827]">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">
+                {industry.name} in These Locations
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {relatedLocations.map((loc) => (
+                  <Link
+                    key={loc!.slug}
+                    href={`/locations/${loc!.slug}`}
+                    className="group rounded-xl border border-white/10 bg-[#1e293b] p-6 transition-all duration-300 hover:border-blue-500/50"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <MapPin className="w-4 h-4 text-blue-400" />
+                      <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">
+                        {loc!.name}
+                      </h3>
+                    </div>
+                    <p className="text-[#94a3b8] text-sm line-clamp-2">{loc!.intro.split("\n")[0]}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        
+        {/* FAQ */}
+        <section className="py-20 bg-[#111827]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 text-center">
+              Frequently Asked Questions for {industry.name}
+            </h2>
+            <div className="space-y-4">
+              {faqItems.map((item) => (
+                <details
+                  key={item.question}
+                  className="group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/7 transition-colors"
+                >
+                  <summary className="cursor-pointer list-none text-white font-semibold text-lg flex items-center justify-between gap-4">
+                    <span>{item.question}</span>
+                    <span className="text-white/60 group-open:rotate-45 transition-transform">+</span>
+                  </summary>
+                  <p className="mt-4 text-[#94a3b8] leading-relaxed">{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+{/* CTA */}
+        <section className="py-20 bg-[#0a0e1a]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Ready to Grow Your {industry.name} Business?
+            </h2>
+            <p className="text-lg text-[#94a3b8] mb-10 max-w-2xl mx-auto leading-relaxed">
+              Contact GuardX today for a free, no-obligation conversation about how our web design, SEO foundation,
+              and review generation services can transform your online presence.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
+            >
+              Contact Us <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </section>
+        {/* Aggressive SEO Section */}
+        <section className="max-w-6xl mx-auto px-4 py-12">
+          <div className="bg-white/60 backdrop-blur rounded-2xl border border-gray-200 p-8">
+            <h2 className="text-2xl font-bold mb-4">
+              {industry.name} web design, local SEO & Google review growth — built to rank and convert
+            </h2>
+            <p className="text-gray-700 mb-6">
+              If someone searches for a <strong>{industry.name.toLowerCase()}</strong> near them, Google looks for relevance, trust and clarity.
+              We build industry landing pages that make it obvious what you do, where you work, and why you’re the safest choice — then we back it up
+              with a review system that keeps fresh feedback coming in.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-lg font-semibold mb-3">High-intent keywords we target</h3>
+                <ul className="space-y-2 text-gray-700">
+                  {[
+                    `${industry.name} web design`,
+                    `${industry.name} website`,
+                    `local SEO for ${industry.name.toLowerCase()}`,
+                    `${industry.name.toLowerCase()} near me`,
+                    `best ${industry.name.toLowerCase()} reviews`,
+                    `${industry.name.toLowerCase()} Google reviews`,
+                  ].map((k) => (
+                    <li key={k} className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5" />
+                      <span>{k}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-3">What we build for your industry</h3>
+                <ul className="space-y-2 text-gray-700">
+                  {[
+                    "A fast, mobile-first website that converts visitors into calls",
+                    "Dedicated service pages so Google understands your offer",
+                    "Location targeting (areas you serve) to capture local searches",
+                    "Trust assets: reviews, galleries, accreditations and guarantees",
+                    "Clear CTAs: click-to-call, WhatsApp and quote forms",
+                    "Automated review requests (SMS + email) to grow ratings consistently",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <p className="text-gray-700 mt-6">
+              Want this built for your business? We can create a clean structure with service pages + location pages so you rank for the searches that actually bring customers.
+            </p>
+          </div>
+        </section>
 
       </main>
+
       <Footer />
     </div>
   )
