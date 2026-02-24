@@ -91,12 +91,7 @@ export default function LocationPage({ params }: Props) {
               alt={`${name} hero image`}
               fill
               className="object-cover opacity-25"
-              priority
-              onError={(e) => {
-                // @ts-expect-error - next/image wraps the underlying img
-                if (e?.currentTarget) e.currentTarget.src = "/placeholder.jpg"
-              }}
-            />
+              priority            />
             <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e1a]/35 via-[#0a0e1a]/75 to-[#0a0e1a]" />
           </div>
 
