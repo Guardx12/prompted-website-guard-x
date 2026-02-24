@@ -2,7 +2,7 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { AnimatedPageTitle } from "@/components/animated-page-title"
 import Link from "next/link"
-import Image from "next/image"
+/* next/image removed — plain <img> tags match the rest of the codebase */
 import { industries, getIndustryImage } from "@/lib/industries-data"
 import { locations } from "@/lib/locations-data"
 import type { Metadata } from "next"
@@ -100,12 +100,11 @@ export default function IndustryPage({ params }: Props) {
       <main className="flex-1">
         <section className="relative pt-32 pb-20 overflow-hidden border-b border-white/10">
           <div className="absolute inset-0">
-            <Image
+            <img
               src={heroImage}
               alt={`${name} hero image`}
-              fill
-              className="object-cover opacity-25"
-              priority            />
+              className="absolute inset-0 w-full h-full object-cover opacity-25"
+            />
             <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e1a]/35 via-[#0a0e1a]/75 to-[#0a0e1a]" />
           </div>
 
@@ -152,11 +151,11 @@ export default function IndustryPage({ params }: Props) {
                 <p className="mt-3 text-white/75 leading-relaxed whitespace-pre-line">{intro}</p>
               <div className="mt-8 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
                 <div className="relative aspect-[16/10] w-full">
-                  <Image
+                  <img
                     src={heroImage}
                     alt={`${name} card image`}
-                    fill
-                    className="object-cover"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
                 {industry?.highlights?.length ? (
