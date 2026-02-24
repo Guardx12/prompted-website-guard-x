@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next"
 import { locations } from "@/lib/locations-data"
 import { industries } from "@/lib/industries-data"
 
-const BASE_URL = "https://guardxnetwork.com"
+const BASE_URL = "https://www.guardxnetwork.com"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
@@ -132,5 +132,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...staticPages, ...locationPages, ...industryPages]
+
+  const solutionServices = ["web-design", "seo-foundation", "review-generation"] as const
+
+  const solutionPages: MetadataRoute.Sitemap = locations.flatMap((location) =>
+    solutionServices.map((service) => ({
+      url: `${BASE_URL}/solutions/${service}/${location.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }))
+  )
+
+  return [...staticPages, ...locationPages, ...industryPages, ...solutionPages]
 }

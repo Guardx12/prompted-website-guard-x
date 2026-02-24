@@ -3,9 +3,11 @@ import { Footer } from "@/components/footer"
 import { AnimatedPageTitle } from "@/components/animated-page-title"
 import Link from "next/link"
 import Image from "next/image"
+import { JsonLd } from "@/components/json-ld"
 import { industries } from "@/lib/industries-data"
 import { locations } from "@/lib/locations-data"
 import type { Metadata } from "next"
+import { buildBreadcrumbSchema, buildFaqSchema, buildServiceSchema, industryFaqs } from "@/lib/seo"
 
 type Props = { params: { slug?: string } }
 
@@ -151,22 +153,24 @@ export default function IndustryPage({ params }: Props) {
   const bullets = intentBullets(name, slug)
 
   // Structured data (helps “elite tier” SEO basics: entities + page intent)
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: title,
-    description: industry?.metaDescription ?? undefined,
-    url: slug ? `https://www.guardxnetwork.com/industries/${safeSlug(slug)}` : "https://www.guardxnetwork.com/industries",
-    about: {
-      "@type": "Thing",
-      name,
-    },
-    isPartOf: {
-      "@type": "WebSite",
-      name: "GuardX",
-      url: "https://www.guardxnetwork.com",
-    },
-  }
+  const canonical = slug ? `https://www.guardxnetwork.com/industries/${safeSlug(slug)}` : "https://www.guardxnetwork.com/industries"
+
+  const faqs = industryFaqs(name, safeSlug(slug))
+  const schemas = [
+    buildBreadcrumbSchema([
+      { name: "Home", url: "https://www.guardxnetwork.com" },
+      { name: "Industries", url: "https://www.guardxnetwork.com/industries" },
+      { name, url: canonical },
+    ]),
+    buildServiceSchema({
+      serviceName: `${name} web design, SEO foundation & review growth`,
+      description,
+      url: canonical,
+      areaServedName: "United Kingdom",
+      image: `https://www.guardxnetwork.com${heroImage}`,
+    }),
+    buildFaqSchema(canonical, faqs),
+  ]
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
@@ -220,7 +224,9 @@ export default function IndustryPage({ params }: Props) {
             </div>
           </div>
 
-          <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+          {schemas.map((schema, idx) => (
+          <JsonLd key={idx} data={schema} />
+        ))}
         </section>
 
         {/* Value props */}
@@ -349,6 +355,52 @@ export default function IndustryPage({ params }: Props) {
             </div>
           </div>
         </section>
+
+        {/* FAQs (unique + schema-backed) */}
+        <section className="py-20 border-t border-white/10">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <h2 className="text-3xl font-bold text-white">FAQs for {name}</h2>
+              <p className="mt-3 text-white/70">
+                Quick answers for {name.toLowerCase()} businesses — written for real buyers and structured for search.
+              </p>
+            </div>
+
+            <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {faqs.map((f) => (
+                <details
+                  key={f.question}
+                  className="group rounded-2xl bg-white/5 ring-1 ring-white/10 p-6 open:bg-white/7 transition"
+                >
+                  <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
+                    <span className="text-white font-semibold">{f.question}</span>
+                    <span className="text-white/60 group-open:rotate-45 transition">+</span>
+                  </summary>
+                  <div className="mt-4 text-white/75 leading-relaxed">{f.answer}</div>
+                </details>
+              ))}
+            </div>
+
+            <div className="mt-10 rounded-3xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 ring-1 ring-white/10 p-8">
+              <h3 className="text-xl font-bold text-white">Want {name} pages that rank in specific areas?</h3>
+              <p className="mt-2 text-white/70">
+                Explore service + location pages built for intent, internal linking, and compounding authority.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <Link href={`/solutions/web-design/${(relatedLocations[0]?.slug ?? "london")}`} className="rounded-full bg-white/10 px-5 py-2 text-white font-semibold hover:bg-white/15 transition ring-1 ring-white/10">
+                  Web design in {relatedLocations[0]?.name ?? "London"}
+                </Link>
+                <Link href={`/solutions/seo-foundation/${(relatedLocations[0]?.slug ?? "london")}`} className="rounded-full bg-white/10 px-5 py-2 text-white font-semibold hover:bg-white/15 transition ring-1 ring-white/10">
+                  SEO foundation in {relatedLocations[0]?.name ?? "London"}
+                </Link>
+                <Link href={`/solutions/review-generation/${(relatedLocations[0]?.slug ?? "london")}`} className="rounded-full bg-white/10 px-5 py-2 text-white font-semibold hover:bg-white/15 transition ring-1 ring-white/10">
+                  Review growth in {relatedLocations[0]?.name ?? "London"}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
 
       <Footer />
