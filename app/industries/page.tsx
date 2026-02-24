@@ -53,11 +53,14 @@ export default function IndustriesPage() {
                       className="group rounded-xl border border-white/10 bg-[#1e293b] p-6 transition-all duration-300 hover:border-blue-500/50 hover:bg-[#1e293b]/80"
                     >
                       <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden mb-4 ring-1 ring-white/10">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={getIndustryImage(industry.slug)}
                           alt={`${industry.name} hero image`}
                           className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                           loading="lazy"
+                          onLoad={() => console.log("[v0] Image loaded:", industry.slug)}
+                          onError={(e) => console.log("[v0] Image FAILED:", industry.slug, (e.target as HTMLImageElement).src)}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
                       </div>
