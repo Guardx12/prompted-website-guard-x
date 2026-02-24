@@ -106,13 +106,13 @@ export default function SampleCustomerReportPage() {
                 See our affordable pricing →
               </Button>
             </Link>
-            <Link href="/how-it-works">
+            <Link href="/how-we-help">
               <Button
                 variant="outline"
                 size="lg"
                 className="border-muted-foreground/30 text-muted-foreground hover:bg-muted/10 px-6 py-3 text-base bg-transparent"
               >
-                Learn how GuardX works →
+                See how GuardX helps →
               </Button>
             </Link>
           </div>
