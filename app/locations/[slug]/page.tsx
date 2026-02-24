@@ -20,9 +20,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const location = getLocationBySlug(slug)
   if (!location) return {}
   return {
-    title: `Web Design ${location.name} | Local SEO + Google Reviews | GuardX`,
-    description: `Web design, local SEO foundations and automated Google review growth for businesses in ${location.name}${location.county ? `, ${location.county}` : ""}. Built to rank locally and drive calls and enquiries.`,
-  }}
+    title: location.metaTitle,
+    description: location.metaDescription,
+  }
+}
 
 export default async function LocationPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -325,63 +326,6 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             </Link>
           </div>
         </section>
-        {/* Aggressive SEO Section */}
-        <section className="max-w-6xl mx-auto px-4 py-12">
-          <div className="bg-white/60 backdrop-blur rounded-2xl border border-gray-200 p-8">
-            <h2 className="text-2xl font-bold mb-4">
-              Web design in {location.name}{location.county ? `, ${location.county}` : ""} — local SEO + review growth that drives enquiries
-            </h2>
-            <p className="text-gray-700 mb-6">
-              Local searches are won by the businesses that look credible, load fast, and make it easy to contact them. GuardX helps {location.name} businesses
-              rank for high-intent searches and build trust with fresh Google reviews — so more people choose you.
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-lg font-semibold mb-3">Search terms we help you win</h3>
-                <ul className="space-y-2 text-gray-700">
-                  {[
-                    `web design ${location.name}`,
-                    `SEO ${location.name}`,
-                    `local SEO services ${location.name}`,
-                    `website designer ${location.name}`,
-                    `Google reviews ${location.name}`,
-                    `best businesses in ${location.name}`,
-                  ].map((k) => (
-                    <li key={k} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5" />
-                      <span>{k}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-3">How we strengthen your local presence</h3>
-                <ul className="space-y-2 text-gray-700">
-                  {[
-                    "Conversion-first pages (clear offers, trust signals, strong CTAs)",
-                    "Service + location structure so Google understands relevance",
-                    "Technical foundations: speed, mobile UX, clean indexing",
-                    "Review automation (SMS + email) to keep your profile active",
-                    "Internal linking that builds topical authority across the site",
-                    "Tracking-ready setup for enquiries and performance",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <p className="text-gray-700 mt-6">
-              We can also build a full cluster of pages around {location.name} (services + nearby areas) so you capture more local searches without relying on ads.
-            </p>
-          </div>
-        </section>
-
       </main>
 
       <Footer />
