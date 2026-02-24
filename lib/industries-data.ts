@@ -17,15 +17,15 @@ export interface Industry {
 /** Map of slug → local image path for industries with uploaded photos */
 export const INDUSTRY_IMAGES: Record<string, string> = {
   "opticians": "/images/heroes/industries/opticians.jpg",
-  "landscapers": "/images/heroes/industries/landscapers.webp",
+  "landscapers": "/images/heroes/industries/landscapers.jpg",
   "cafes": "/images/heroes/industries/cafes.jpg",
   "barbers": "/images/heroes/industries/barbers.jpg",
   "mot-centres": "/images/heroes/industries/mot-centres.jpg",
   "removal-companies": "/images/heroes/industries/removal-companies.jpg",
-  "restaurants": "/images/heroes/industries/restaurants.webp",
+  "restaurants": "/images/heroes/industries/restaurants.jpg",
   "security-installers": "/images/heroes/industries/security-installers.jpg",
-  "car-detailers": "/images/heroes/industries/car-detailers.webp",
-  "salons": "/images/heroes/industries/salons.avif",
+  "car-detailers": "/images/heroes/industries/car-detailers.jpg",
+  "salons": "/images/heroes/industries/salons.jpg",
   "window-cleaners": "/images/heroes/industries/window-cleaners.jpg",
   "locksmiths": "/images/heroes/industries/locksmiths.jpg",
   "hvac-engineers": "/images/heroes/industries/hvac-engineers.jpg",
@@ -34,7 +34,7 @@ export const INDUSTRY_IMAGES: Record<string, string> = {
 
 /** Get the image URL for an industry slug, falling back to a placeholder path */
 export function getIndustryImage(slug: string): string {
-  return INDUSTRY_IMAGES[slug] ?? `/images/heroes/industries/${slug}.webp`
+  return INDUSTRY_IMAGES[slug] ?? `/images/heroes/industries/${slug}.jpg`
 }
 
 export const industries: Industry[] = [
@@ -365,7 +365,7 @@ export const industries: Industry[] = [
     relatedIndustries: ["salons", "gyms", "restaurants", "cafes"],
     relatedLocations: ["brighton", "sussex", "london", "manchester", "hastings"],
   },
-  // ─── Trades ────────────────────────────────────────────────────────
+  // ─── Trades ───────────────────────────────���────────────────────────
   {
     slug: "tilers",
     name: "Tilers",
