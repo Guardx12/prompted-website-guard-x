@@ -1,76 +1,57 @@
 
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { AnimatedPageTitle } from "@/components/animated-page-title"
 import Link from "next/link"
-import Image from "next/image"
-import { notFound } from "next/navigation"
 import { industries } from "@/lib/industries-data"
-import { locations } from "@/lib/locations-data"
 import type { Metadata } from "next"
 
 type Props = { params: { slug: string } }
 
-function getLocation(slug: string) {
-  return locations.find((l) => l.slug === slug)
+function formatName(slug: string) {
+  return slug.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())
 }
 
-function resolveIndustries(slugs: string[]) {
-  return slugs
-    .map((s) => industries.find((i) => i.slug === s))
-    .filter(Boolean)
+function pickWindow<T>(items: T[], seed: string, windowSize: number) {
+  if (!items?.length) return []
+  const hash = Array.from(seed).reduce((acc, ch) => acc + ch.charCodeAt(0), 0)
+  const start = hash % items.length
+  const out: T[] = []
+  for (let i = 0; i < Math.min(windowSize, items.length); i++) {
+    out.push(items[(start + i) % items.length])
+  }
+  return out
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const location = getLocation(params.slug)
-  if (!location) return { title: "Location Not Found | GuardX" }
+  const name = formatName(params.slug)
   return {
-    title: location.metaTitle,
-    description: location.metaDescription,
+    title: `Web Design & Local SEO in ${name} | GuardX`,
+    description: `High-performance websites and structured local SEO for businesses in ${name} — built for speed, trust and enquiries.`
   }
 }
 
 export default function LocationPage({ params }: Props) {
-  const location = getLocation(params.slug)
-  if (!location) return notFound()
+  const name = formatName(params.slug)
 
-  const relatedIndustries = resolveIndustries(location.relatedIndustries || [])
-  const locationIcon = `/images/locations/${location.slug}.svg`
+  // Rotate which industries are linked from each location page
+  const linkedIndustries = pickWindow(industries, params.slug, 12)
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
       <Navigation />
       <main className="flex-1 pt-32 pb-20 max-w-5xl mx-auto px-6 text-gray-300">
 
-        <div className="flex items-start gap-4 mb-6">
-          <div className="shrink-0 rounded-2xl border border-white/10 bg-white/5 p-3">
-            <Image src={locationIcon} alt="" width={44} height={44} />
-          </div>
-          <div className="min-w-0">
-            <AnimatedPageTitle text={location.name} className="mb-2" />
-            <p className="text-[#94a3b8]">{location.metaDescription}</p>
-          </div>
-        </div>
-
-        <h1 className="text-2xl md:text-3xl font-semibold text-white mt-8 mb-4">
-          {location.h1}
+        <h1 className="text-4xl font-bold text-white mb-8">
+          Web Design, Local SEO & Review Growth in {name}
         </h1>
 
-        <div className="prose prose-invert max-w-none prose-p:text-gray-300 prose-li:text-gray-300">
-          {location.intro.split("\n\n").map((p, idx) => (
-            <p key={idx}>{p}</p>
-          ))}
-        </div>
-
-        <h2 className="text-2xl font-semibold text-white mt-12 mb-4">Local context</h2>
-        <div className="prose prose-invert max-w-none prose-p:text-gray-300 prose-li:text-gray-300">
-          {location.localContext.split("\n\n").map((p, idx) => (
-            <p key={idx}>{p}</p>
-          ))}
-        </div>
+        <p className="mb-6 text-lg">
+          GuardX builds SEO-ready websites for businesses in {name} — designed for visibility, speed and conversion.
+          When customers search for services in {name}, they compare options quickly. Your website and reviews are often the difference.
+        </p>
 
         <h2 className="text-2xl font-semibold text-white mt-12 mb-4">
-          Industries We Support in {location.name}
+          Industries We Support in {name}
         </h2>
 
         <p className="text-[#94a3b8] mb-6">
@@ -78,13 +59,13 @@ export default function LocationPage({ params }: Props) {
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
-          {relatedIndustries.map((ind) => (
+          {linkedIndustries.map((ind) => (
             <Link
               key={ind.slug}
               href={`/industries/${ind.slug}`}
               className="text-blue-400 hover:text-blue-300 transition-colors"
             >
-              {ind.name} in {location.name}
+              {ind.name} in {name}
             </Link>
           ))}
         </div>
@@ -102,11 +83,4 @@ export default function LocationPage({ params }: Props) {
       <Footer />
     </div>
   )
-}
-
-
-import { locations } from "@/lib/locations-data"
-
-export async function generateStaticParams() {
-  return locations.map((item) => ({ slug: item.slug }))
 }
