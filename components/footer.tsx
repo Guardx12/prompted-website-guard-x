@@ -74,7 +74,17 @@ export function Footer() {
           <div>
             <h3 className="text-[#e2e8f0] font-semibold mb-4">Explore</h3>
             <ul className="space-y-2">
-<li>
+              <li>
+                <Link href="/locations" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors">
+                  All Locations
+                </Link>
+              </li>
+              <li>
+                <Link href="/industries" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors">
+                  All Industries
+                </Link>
+              </li>
+              <li>
                 <Link href="/privacy" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors">
                   Privacy Policy
                 </Link>
