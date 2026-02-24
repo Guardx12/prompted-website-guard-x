@@ -4,7 +4,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { getLocationBySlug, locations } from "@/lib/locations-data"import { industries } from "@/lib/industries-data"
+import { getLocationBySlug, locations } from "@/lib/locations-data"
+import { industries } from "@/lib/industries-data"
+import { AnimatedPageTitle } from "@/components/animated-page-title"
 import { ArrowRight, CheckCircle, MapPin } from "lucide-react"
 
 type Props = { params: { slug: string } }
@@ -32,7 +34,8 @@ function pickWindow<T>(items: T[], seed: string, windowSize: number) {
 export default function LocationPage({ params }: Props) {
   const location = getLocationBySlug(params.slug)
   if (!location) return notFound()
-const relatedIndustries = location.relatedIndustries
+
+  const relatedIndustries = location.relatedIndustries
     .map((slug) => industries.find((i) => i.slug === slug))
     .filter(Boolean)
 
@@ -56,9 +59,8 @@ const relatedIndustries = location.relatedIndustries
                   <MapPin className="w-4 h-4" />
                   <span>{location.county ? `${location.county}` : "United Kingdom"}</span>
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-                  {location.h1}
-                </h1>
+
+                <AnimatedPageTitle text={location.h1} className="text-white" />
                 <p className="text-lg text-[#94a3b8] leading-relaxed mb-8">
                   {location.intro}
                 </p>

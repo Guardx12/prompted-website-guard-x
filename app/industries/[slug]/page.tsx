@@ -6,6 +6,7 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getIndustryBySlug, industries } from "@/lib/industries-data"
 import { locations } from "@/lib/locations-data"
+import { AnimatedPageTitle } from "@/components/animated-page-title"
 import { ArrowRight, CheckCircle } from "lucide-react"
 
 type Props = { params: { slug: string } }
@@ -66,9 +67,7 @@ export default function IndustryPage({ params }: Props) {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
               <div>
                 <p className="text-blue-400 font-semibold mb-3">{industry.category}</p>
-                <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-                  {industry.h1}
-                </h1>
+                <AnimatedPageTitle text={industry.h1} className="text-white" />
                 <p className="text-lg text-[#94a3b8] leading-relaxed mb-8">
                   {industry.intro}
                 </p>
