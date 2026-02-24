@@ -1,6 +1,4 @@
 import type { MetadataRoute } from "next"
-import { locations } from "@/lib/locations-data"
-import { industries } from "@/lib/industries-data"
 
 const BASE_URL = "https://guardxnetwork.com"
 
@@ -55,19 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/locations`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/industries`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
+    }
     {
       url: `${BASE_URL}/website-design-uk`,
       lastModified: now,
@@ -118,19 +104,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  const locationPages: MetadataRoute.Sitemap = locations.map((location) => ({
-    url: `${BASE_URL}/locations/${location.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }))
-
-  const industryPages: MetadataRoute.Sitemap = industries.map((industry) => ({
-    url: `${BASE_URL}/industries/${industry.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }))
-
-  return [...staticPages, ...locationPages, ...industryPages]
+  return [...staticPages]
 }
