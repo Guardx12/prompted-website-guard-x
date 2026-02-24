@@ -7,19 +7,22 @@ import { industries } from "@/lib/industries-data"
 import { locations } from "@/lib/locations-data"
 import type { Metadata } from "next"
 
-type Props = { params: { slug: string } }
+type Props = { params: { slug?: string } }
 
 export const dynamicParams = true
 
-function slugToName(slug: string) {
-  return slug
+function slugToName(slug?: string) {
+  const safe = (slug ?? "").trim()
+  if (!safe) return "Industry"
+  return safe
     .split("-")
     .filter(Boolean)
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
     .join(" ")
 }
 
-function getIndustry(slug: string) {
+function getIndustry(slug?: string) {
+  if (!slug) return undefined
   return industries.find((i) => i.slug === slug)
 }
 
@@ -29,18 +32,21 @@ function resolveLocations(slugs: string[]) {
     .filter((x): x is (typeof locations)[number] => Boolean(x))
 }
 
-function heroFor(slug: string) {
+function heroFor(slug?: string) {
   // If an image doesn't exist for a slug, we fall back to a placeholder instead of 404ing the *page*.
-  return `/images/heroes/industries/${slug}.webp`
+  const safe = (slug ?? "").trim() || "placeholder"
+  return `/images/heroes/industries/${safe}.webp`
 }
 
 export async function generateStaticParams() {
-  return industries.map((item) => ({ slug: item.slug }))
+  // Be defensive: a single bad item (missing slug) should not crash the whole build.
+  return industries.filter((item) => Boolean(item.slug)).map((item) => ({ slug: item.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const industry = getIndustry(params.slug)
-  const name = industry?.name ?? slugToName(params.slug)
+  const slug = params?.slug
+  const industry = getIndustry(slug)
+  const name = industry?.name ?? slugToName(slug)
 
   const title = industry?.metaTitle ?? `${name} Web Design, SEO & Review Growth (UK) | GuardX`
   const description =
@@ -50,23 +56,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
-    alternates: { canonical: `/industries/${params.slug}` },
+    alternates: { canonical: slug ? `/industries/${slug}` : "/industries" },
     openGraph: {
       title,
       description,
-      url: `/industries/${params.slug}`,
+      url: slug ? `/industries/${slug}` : "/industries",
       siteName: "GuardX",
       type: "website",
-      images: [{ url: heroFor(params.slug) }],
+      images: [{ url: heroFor(slug) }],
     },
   }
 }
 
 export default function IndustryPage({ params }: Props) {
-  const industry = getIndustry(params.slug)
+  const slug = params?.slug
+  const industry = getIndustry(slug)
 
   // IMPORTANT: we do NOT 404 here. If data isn't found for a slug, we still render a solid template page.
-  const name = industry?.name ?? slugToName(params.slug)
+  const name = industry?.name ?? slugToName(slug)
   const title = industry?.h1 ?? `${name} Websites Built to Rank Locally and Win More Enquiries`
   const intro =
     industry?.intro ??
@@ -85,7 +92,7 @@ export default function IndustryPage({ params }: Props) {
 
   const relatedLocations = resolveLocations(relatedLocationSlugs)
 
-  const heroImage = heroFor(params.slug)
+  const heroImage = heroFor(slug)
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0e1a]">

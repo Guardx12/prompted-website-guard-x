@@ -7,33 +7,38 @@ import { locations } from "@/lib/locations-data"
 import { industries } from "@/lib/industries-data"
 import type { Metadata } from "next"
 
-type Props = { params: { slug: string } }
+type Props = { params: { slug?: string } }
 
 export const dynamicParams = true
 
-function slugToName(slug: string) {
-  return slug
+function slugToName(slug?: string) {
+  const safe = (slug ?? "").trim()
+  if (!safe) return "Location"
+  return safe
     .split("-")
     .filter(Boolean)
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
     .join(" ")
 }
 
-function getLocation(slug: string) {
+function getLocation(slug?: string) {
+  if (!slug) return undefined
   return locations.find((l) => l.slug === slug)
 }
 
-function heroFor(slug: string) {
-  return `/images/heroes/locations/${slug}.webp`
+function heroFor(slug?: string) {
+  const safe = (slug ?? "").trim() || "placeholder"
+  return `/images/heroes/locations/${safe}.webp`
 }
 
 export async function generateStaticParams() {
-  return locations.map((item) => ({ slug: item.slug }))
+  return locations.filter((item) => Boolean(item.slug)).map((item) => ({ slug: item.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const loc = getLocation(params.slug)
-  const name = loc?.name ?? slugToName(params.slug)
+  const slug = params?.slug
+  const loc = getLocation(slug)
+  const name = loc?.name ?? slugToName(slug)
   const title = loc?.metaTitle ?? `${name} — Local SEO Websites & Review Growth | GuardX`
   const description =
     loc?.metaDescription ??
@@ -42,23 +47,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
-    alternates: { canonical: `/locations/${params.slug}` },
+    alternates: { canonical: slug ? `/locations/${slug}` : "/locations" },
     openGraph: {
       title,
       description,
-      url: `/locations/${params.slug}`,
+      url: slug ? `/locations/${slug}` : "/locations",
       siteName: "GuardX",
       type: "website",
-      images: [{ url: heroFor(params.slug) }],
+      images: [{ url: heroFor(slug) }],
     },
   }
 }
 
 export default function LocationPage({ params }: Props) {
-  const loc = getLocation(params.slug)
+  const slug = params?.slug
+  const loc = getLocation(slug)
 
   // IMPORTANT: do not 404. Render a strong generic template if slug isn't in the dataset yet.
-  const name = loc?.name ?? slugToName(params.slug)
+  const name = loc?.name ?? slugToName(slug)
   const region = loc?.region ?? "United Kingdom"
 
   const title = loc?.h1 ?? `GuardX in ${name}: Websites + Local SEO Foundation + Review Growth`
@@ -71,7 +77,7 @@ export default function LocationPage({ params }: Props) {
     .map((s) => industries.find((i) => i.slug === s))
     .filter((x): x is (typeof industries)[number] => Boolean(x))
 
-  const heroImage = heroFor(params.slug)
+  const heroImage = heroFor(slug)
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
