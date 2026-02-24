@@ -18,13 +18,11 @@ export function Footer() {
               />
             </div>
             <p className="text-[#94a3b8] mb-4">
-              GuardX -- Helping UK businesses grow through automated review requests and simple, done-for-you review
-              growth systems.
+              GuardX -- Helping UK businesses grow through automated review requests and simple, done-for-you review growth
+              systems.
             </p>
             <p className="text-[#94a3b8] mb-4">GuardX Limited – Web Design &amp; Review Generation for UK Businesses.</p>
-            <p className="text-sm text-[#64748b]">
-              &copy; {new Date().getFullYear()} GuardX. All rights reserved.
-            </p>
+            <p className="text-sm text-[#64748b]">&copy; {new Date().getFullYear()} GuardX. All rights reserved.</p>
           </div>
 
           {/* Quick Links */}
@@ -75,7 +73,25 @@ export function Footer() {
             <h3 className="text-[#e2e8f0] font-semibold mb-4">Explore</h3>
             <ul className="space-y-2">
               <li>
+                <Link href="/services" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors">
+                  Services
+                </Link>
+              </li>
               <li>
+                <Link href="/how-it-works" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors">
+                  How it works
+                </Link>
+              </li>
+              <li>
+                <Link href="/portfolio" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors">
+                  Portfolio
+                </Link>
+              </li>
+              <li>
+                <Link href="/calculator" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors">
+                  Calculator
+                </Link>
+              </li>
               <li>
                 <Link href="/privacy" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors">
                   Privacy Policy
