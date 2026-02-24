@@ -53,7 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.6,
-    }
+    },
     {
       url: `${BASE_URL}/website-design-uk`,
       lastModified: now,
