@@ -1,149 +1,187 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { AnimatedPageTitle } from "@/components/animated-page-title"
+import Link from "next/link"
+import Image from "next/image"
 import { locations } from "@/lib/locations-data"
 import { industries } from "@/lib/industries-data"
-import { notFound } from "next/navigation"
-import Link from "next/link"
 import type { Metadata } from "next"
 
-type PageProps = {
-  params: { slug: string }
+type Props = { params: { slug: string } }
+
+export const dynamicParams = true
+
+function slugToName(slug: string) {
+  return slug
+    .split("-")
+    .filter(Boolean)
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ")
+}
+
+function getLocation(slug: string) {
+  return locations.find((l) => l.slug === slug)
+}
+
+function heroFor(slug: string) {
+  return `/images/heroes/locations/${slug}.webp`
 }
 
 export async function generateStaticParams() {
   return locations.map((item) => ({ slug: item.slug }))
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const location = locations.find((l) => l.slug === params.slug)
-  if (!location) return { title: "Location Not Found — GuardX" }
-
-  const title = location.metaTitle || `${location.name} — GuardX`
-  const description = location.metaDescription || location.intro
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const loc = getLocation(params.slug)
+  const name = loc?.name ?? slugToName(params.slug)
+  const title = loc?.metaTitle ?? `${name} — Local SEO Websites & Review Growth | GuardX`
+  const description =
+    loc?.metaDescription ??
+    `GuardX helps businesses in ${name} with fast websites, SEO-ready structure and automated Google review growth — built to rank locally and convert.`
 
   return {
     title,
     description,
-    alternates: { canonical: `/locations/${location.slug}` },
+    alternates: { canonical: `/locations/${params.slug}` },
     openGraph: {
       title,
       description,
-      url: `/locations/${location.slug}`,
+      url: `/locations/${params.slug}`,
       siteName: "GuardX",
       type: "website",
+      images: [{ url: heroFor(params.slug) }],
     },
   }
 }
 
-function toPlainText(input: string) {
-  return input.replace(/\s+/g, " ").trim()
-}
+export default function LocationPage({ params }: Props) {
+  const loc = getLocation(params.slug)
 
-export default function LocationDetailPage({ params }: PageProps) {
-  const location = locations.find((l) => l.slug === params.slug)
-  if (!location) return notFound()
+  // IMPORTANT: do not 404. Render a strong generic template if slug isn't in the dataset yet.
+  const name = loc?.name ?? slugToName(params.slug)
+  const region = loc?.region ?? "United Kingdom"
 
-  const locationIcon = `/images/locations/${location.slug}.svg`
+  const title = loc?.h1 ?? `GuardX in ${name}: Websites + Local SEO Foundation + Review Growth`
+  const intro =
+    loc?.intro ??
+    `Most customers decide from Google results, reviews and the first screen of your website. In ${name}, your Google profile and website usually decide who gets contacted. GuardX builds fast, conversion-focused websites with a clean SEO foundation — and we install an automated review system so your proof keeps improving.`
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Place",
-    name: `GuardX in ${location.name}`,
-    url: `https://guardxnetwork.com/locations/${location.slug}`,
-    description: toPlainText(location.metaDescription || location.intro),
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: location.name,
-      addressCountry: "GB",
-    },
-  }
+  const relatedIndustrySlugs = loc?.relatedIndustries ?? []
+  const relatedIndustries = relatedIndustrySlugs
+    .map((s) => industries.find((i) => i.slug === s))
+    .filter((x): x is (typeof industries)[number] => Boolean(x))
 
-  const suggestedIndustries = (location.relatedIndustries || [])
-    .map((slug) => industries.find((i) => i.slug === slug))
-    .filter(Boolean) as typeof industries
+  const heroImage = heroFor(params.slug)
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
       <Navigation />
 
       <main className="flex-1">
-        <section className="mx-auto max-w-6xl px-4 py-14">
-          <AnimatedPageTitle title={location.h1 || `GuardX in ${location.name}`} subtitle={location.metaDescription} />
+        <section className="relative pt-32 pb-20 overflow-hidden border-b border-white/10">
+          <div className="absolute inset-0">
+            <Image
+              src={heroImage}
+              alt={`${name} hero image`}
+              fill
+              className="object-cover opacity-25"
+              priority
+              onError={(e) => {
+                // @ts-expect-error - next/image wraps the underlying img
+                if (e?.currentTarget) e.currentTarget.src = "/placeholder.jpg"
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e1a]/35 via-[#0a0e1a]/75 to-[#0a0e1a]" />
+          </div>
 
-          <div className="mt-8 grid gap-8 lg:grid-cols-3">
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <AnimatedPageTitle title={title} subtitle={loc?.metaDescription ?? `${region}`} />
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#0a0e1a] hover:bg-white/90"
+              >
+                Get a scorecard
+              </Link>
+              <Link
+                href="/pricing"
+                className="inline-flex items-center justify-center rounded-xl bg-white/5 px-5 py-3 text-sm font-semibold text-white ring-1 ring-white/15 hover:bg-white/10"
+              >
+                View pricing
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-10">
             <div className="lg:col-span-2 space-y-8">
               <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
-                <div className="flex items-start gap-4">
-                  <div className="h-12 w-12 rounded-xl bg-white/5 ring-1 ring-white/10 flex items-center justify-center">
-                    <img src={locationIcon} alt={`${location.name} icon`} className="h-7 w-7 opacity-90" />
-                  </div>
-                  <div>
-                    <h2 className="text-xl font-semibold text-white">How we help in {location.name}</h2>
-                    <p className="mt-2 text-white/75 leading-relaxed whitespace-pre-line">{location.intro}</p>
-                  </div>
-                </div>
+                <h2 className="text-xl font-semibold text-white">How GuardX helps businesses in {name}</h2>
+                <p className="mt-3 text-white/75 leading-relaxed whitespace-pre-line">{intro}</p>
               </div>
 
               <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
-                <h2 className="text-xl font-semibold text-white">Local SEO foundation</h2>
-                <p className="mt-3 text-white/75 leading-relaxed whitespace-pre-line">{location.seoFocus}</p>
+                <h2 className="text-xl font-semibold text-white">What we build (SEO foundation included)</h2>
                 <ul className="mt-4 grid gap-3 sm:grid-cols-2 text-sm text-white/75">
-                  <li className="rounded-xl bg-white/5 ring-1 ring-white/10 p-4">Service + location page structure</li>
+                  <li className="rounded-xl bg-white/5 ring-1 ring-white/10 p-4">Service + location structure (how people search)</li>
                   <li className="rounded-xl bg-white/5 ring-1 ring-white/10 p-4">Fast mobile performance + clean technical setup</li>
-                  <li className="rounded-xl bg-white/5 ring-1 ring-white/10 p-4">Strong proof sections that answer objections</li>
-                  <li className="rounded-xl bg-white/5 ring-1 ring-white/10 p-4">Review growth system to increase trust</li>
+                  <li className="rounded-xl bg-white/5 ring-1 ring-white/10 p-4">Strong proof sections (reviews, photos, FAQs)</li>
+                  <li className="rounded-xl bg-white/5 ring-1 ring-white/10 p-4">Clear enquiry paths (call, WhatsApp, quote form)</li>
                 </ul>
               </div>
 
               <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
-                <h2 className="text-xl font-semibold text-white">Next step</h2>
+                <h2 className="text-xl font-semibold text-white">Next steps</h2>
                 <p className="mt-3 text-white/75 leading-relaxed">
-                  If you want a site that converts and a Google profile that keeps getting stronger, we’ll send a quick scorecard with the highest-impact fixes.
+                  Want to rank better in {name} and convert more clicks into enquiries? We can send a quick scorecard showing the highest-impact fixes.
                 </p>
-                <div className="mt-4 flex flex-wrap gap-3">
+                <div className="mt-5 flex flex-wrap gap-3">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#0a0e1a] hover:bg-white/90"
+                    className="inline-flex items-center justify-center rounded-xl bg-blue-500 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-600"
                   >
-                    Request a scorecard
+                    Get a scorecard
                   </Link>
                   <Link
-                    href="/pricing"
+                    href="/real-results"
                     className="inline-flex items-center justify-center rounded-xl bg-white/5 px-5 py-3 text-sm font-semibold text-white ring-1 ring-white/15 hover:bg-white/10"
                   >
-                    View pricing
+                    See results
                   </Link>
                 </div>
               </div>
             </div>
 
             <aside className="space-y-6">
-              {!!suggestedIndustries.length && (
+              {relatedIndustries.length > 0 && (
                 <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
-                  <div className="text-white font-semibold">Popular industries in {location.name}</div>
-                  <div className="mt-3 grid gap-2">
-                    {suggestedIndustries.slice(0, 8).map((ind) => (
-                      <Link key={ind.slug} href={`/industries/${ind.slug}`} className="text-sm text-white/80 hover:text-white">
-                        {ind.name}
-                      </Link>
+                  <h3 className="text-lg font-semibold text-white">Popular industries in {name}</h3>
+                  <ul className="mt-4 space-y-2">
+                    {relatedIndustries.map((ri) => (
+                      <li key={ri.slug}>
+                        <Link href={`/industries/${ri.slug}`} className="text-blue-400 hover:text-blue-300">
+                          {ri.name}
+                        </Link>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               )}
 
               <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
-                <div className="text-white font-semibold">Explore</div>
-                <div className="mt-3 grid gap-2">
-                  <Link className="text-sm text-white/80 hover:text-white" href="/industries">All industries</Link>
-                  <Link className="text-sm text-white/80 hover:text-white" href="/locations">All locations</Link>
-                  <Link className="text-sm text-white/80 hover:text-white" href="/examples">Examples</Link>
-                </div>
+                <h3 className="text-lg font-semibold text-white">Explore all areas</h3>
+                <p className="mt-3 text-white/75 text-sm leading-relaxed">See the full locations list and jump to your area.</p>
+                <Link
+                  href="/locations"
+                  className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#0a0e1a] hover:bg-white/90"
+                >
+                  View all locations
+                </Link>
               </div>
             </aside>
           </div>
-
-          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         </section>
       </main>
 
