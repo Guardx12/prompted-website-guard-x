@@ -186,6 +186,9 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.2.3(@types/react@19.2.13)
+      prettier:
+        specifier: ^3.3.3
+        version: 3.8.1
       postcss:
         specifier: ^8.5
         version: 8.5.6
