@@ -102,7 +102,7 @@ Google tends to reward profiles that feel active and well cared for. Put simply:
 
 That is why review activity can affect revenue more than most businesses realise.`,
     `Many local businesses do not realise how much their Google profile influences who gets contacted first until a competitor starts looking more active than they do.`,
-    `This is where GuardX comes in. We manage the whole process for you — generating genuine reviews, sending branded review requests, replying to reviews, and keeping the profile looking active and professionally managed.`,
+    `This is where GuardX comes in. We manage the whole process for you — generating genuine reviews from your real customers, sending branded review requests, replying to reviews, and keeping the profile looking active and professionally managed.`,
     `You can run it by email, SMS, or both. Some businesses use a simple staff form, some upload customers in batches, and many just send us their customer details weekly so we handle the rest.`,
     `You can try everything free for 30 days first. After that, most businesses invest around £25 per week for the fully managed system.`,
     `At this point, most businesses either want to see the review request in action, get a free scorecard, ask a question, or simply try the system for themselves.`,
