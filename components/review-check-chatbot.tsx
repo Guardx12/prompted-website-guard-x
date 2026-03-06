@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useRef, useState } from "react"
-import { Bot, Loader2, MessageCircle, PlayCircle } from "lucide-react"
+import { Bot, CheckCircle2, ChevronRight, Loader2, MessageSquareText, PlayCircle, Volume2, VolumeX } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -10,6 +10,7 @@ type Message = {
   id: string
   role: "assistant" | "user"
   content: React.ReactNode
+  highlight?: boolean
 }
 
 type Stage =
@@ -31,24 +32,81 @@ const standoutOptions = ["Yes", "Not always", "Not sure"]
 const deliveryOptions = ["Email + SMS", "SMS only", "Email only", "Not sure yet"]
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrbypyzv"
 
-const pitchSteps = [
-  "When customers compare businesses on Google, the ones with the most recent reviews and active responses often appear more trusted and professional.\n\nThat is usually the business that gets the enquiry first.",
-  "For example, imagine 100 potential customers searching for your service this month.\n\nEven if only a small portion choose a competitor because their profile looks more active, that can still mean missed enquiries without realising it.",
-  "GuardX is a fully managed review system designed to help your business look active, trusted and competitive.\n\nWe help you generate more genuine reviews, send branded review requests, reply to reviews for you, and keep your profile looking professional.",
-  "Businesses can run it by email, SMS, or both. Some use bulk uploads, some use a simple staff form, and many just send customers weekly so we handle the rest.\n\nThe goal is simple: keep your Google presence active enough that more customers feel confident choosing you.",
-  "You can try it free for 30 days.\n\nAfter that, most businesses invest around £25 per week for the fully managed system.\n\nWould you like to see the review request in action, ask a question, or start your free trial?",
-]
+function buildPitchSteps({ standingAnswer, reviewAnswer, customerAnswer }: { standingAnswer: string | null; reviewAnswer: string | null; customerAnswer: string | null }) {
+  const opening =
+    standingAnswer === "Yes"
+      ? "That is a strong position to be in — the key is keeping it that way. When customers compare businesses on Google, the one with the most recent reviews and active responses often looks the safest option."
+      : standingAnswer === "Not always"
+        ? "That is usually where businesses start losing easy enquiries. When customers compare businesses on Google, the one with the most recent reviews and active responses often looks more trusted and gets the first call."
+        : "That uncertainty matters. When customers compare businesses on Google, the one with the most recent reviews and active responses often looks more trusted and gets the first call."
 
-function TypingBubble() {
+  const reviewsLine =
+    reviewAnswer && reviewAnswer !== "Not sure"
+      ? `If your profile is sitting around ${reviewAnswer} reviews, keeping them recent and well-managed matters just as much as the number itself.`
+      : "It is not just about total review count — recency and active responses make a big difference when someone is deciding who looks most credible."
+
+  const customersLine =
+    customerAnswer && customerAnswer !== "Not sure"
+      ? `If you serve around ${customerAnswer} customers in a typical month, even a small lift in how many people choose you can mean valuable extra enquiries.`
+      : "Even a small shift in who looks more active on Google can quietly change who gets the enquiry first."
+
+  return [
+    `${opening}\n\n${reviewsLine}`,
+    `Now picture potential customers comparing you with nearby competitors. ${customersLine}\n\nThat is why inactivity on Google can cost more than most businesses realise.`,
+    `GuardX is a fully managed review system designed to keep your business looking active, trusted and professional.\n\nWe help generate genuine reviews, send branded review requests, reply to reviews for you, and keep your profile looking looked-after.` ,
+    `You can run it by email, SMS, or both. Some businesses use a simple staff form, some send customers in batches, and many just send us their customer details weekly so we handle the rest.`,
+    `You can try everything free for 30 days first.\n\nAfter that, most businesses invest around £25 per week for the fully managed system.`,
+    `Would you like to see the review request in action, ask a question, or start your 30-day free trial?`,
+  ]
+}
+
+function playUiTone(kind: "soft" | "complete" | "tap") {
+  if (typeof window === "undefined") return
+  const AudioContextClass = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+  if (!AudioContextClass) return
+
+  try {
+    const context = new AudioContextClass()
+    const oscillator = context.createOscillator()
+    const gain = context.createGain()
+    oscillator.connect(gain)
+    gain.connect(context.destination)
+
+    const now = context.currentTime
+    const config =
+      kind === "tap"
+        ? { freq: 620, endFreq: 560, duration: 0.05, volume: 0.012 }
+        : kind === "complete"
+          ? { freq: 720, endFreq: 860, duration: 0.12, volume: 0.016 }
+          : { freq: 520, endFreq: 600, duration: 0.07, volume: 0.01 }
+
+    oscillator.type = "sine"
+    oscillator.frequency.setValueAtTime(config.freq, now)
+    oscillator.frequency.linearRampToValueAtTime(config.endFreq, now + config.duration)
+
+    gain.gain.setValueAtTime(0.0001, now)
+    gain.gain.linearRampToValueAtTime(config.volume, now + 0.01)
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + config.duration)
+
+    oscillator.start(now)
+    oscillator.stop(now + config.duration)
+
+    window.setTimeout(() => context.close().catch(() => undefined), 180)
+  } catch {
+    // ignore audio errors
+  }
+}
+
+function TypingIndicator() {
   return (
     <div className="flex items-end gap-3">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#DADCE0] bg-white shadow-sm">
-        <Bot className="h-5 w-5 text-[#4285F4]" />
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#4285F4,#34A853)] shadow-[0_8px_24px_rgba(66,133,244,0.22)]">
+        <Bot className="h-5 w-5 text-white" />
       </div>
-      <div className="rounded-[22px] rounded-bl-md border border-[#D2E3FC] bg-white px-4 py-3 shadow-sm">
+      <div className="rounded-[24px] rounded-bl-md border border-white/70 bg-white/95 px-4 py-3 shadow-[0_18px_40px_rgba(60,64,67,0.10)] backdrop-blur">
         <div className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-[#4285F4] [animation-delay:-0.2s]" />
-          <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-[#34A853] [animation-delay:-0.1s]" />
+          <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-[#4285F4] [animation-delay:-0.24s]" />
+          <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-[#34A853] [animation-delay:-0.12s]" />
           <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-[#FBBC05]" />
         </div>
       </div>
@@ -59,14 +117,14 @@ function TypingBubble() {
 function AssistantBubble({ children, highlight = false }: { children: React.ReactNode; highlight?: boolean }) {
   return (
     <div className="flex items-end gap-3">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#DADCE0] bg-white shadow-sm">
-        <Bot className="h-5 w-5 text-[#4285F4]" />
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#4285F4,#34A853)] shadow-[0_8px_24px_rgba(66,133,244,0.22)]">
+        <Bot className="h-5 w-5 text-white" />
       </div>
       <div
-        className={`max-w-[86%] rounded-[22px] rounded-bl-md border px-4 py-3 text-[15px] leading-6 shadow-sm sm:max-w-[78%] ${
+        className={`max-w-[88%] rounded-[24px] rounded-bl-md border px-4 py-3.5 text-[16px] leading-7 shadow-[0_18px_40px_rgba(60,64,67,0.10)] sm:max-w-[82%] sm:px-5 sm:py-4 sm:text-[17px] ${
           highlight
-            ? "border-[#D2E3FC] bg-gradient-to-br from-white to-[#EEF4FF] text-[#202124]"
-            : "border-[#E8EAED] bg-white text-[#202124]"
+            ? "border-[#D2E3FC] bg-[linear-gradient(180deg,#FFFFFF_0%,#EEF5FF_100%)] text-[#202124]"
+            : "border-white/70 bg-white/95 text-[#202124] backdrop-blur"
         }`}
       >
         {children}
@@ -78,7 +136,7 @@ function AssistantBubble({ children, highlight = false }: { children: React.Reac
 function UserBubble({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex justify-end">
-      <div className="max-w-[86%] rounded-[22px] rounded-br-md bg-gradient-to-r from-[#4285F4] to-[#1A73E8] px-4 py-3 text-[15px] font-medium leading-6 text-white shadow-sm sm:max-w-[78%]">
+      <div className="max-w-[84%] rounded-[24px] rounded-br-md bg-[linear-gradient(135deg,#1A73E8,#4285F4)] px-4 py-3.5 text-[15px] font-medium leading-6 text-white shadow-[0_16px_36px_rgba(26,115,232,0.28)] sm:max-w-[76%] sm:text-[16px]">
         {children}
       </div>
     </div>
@@ -87,38 +145,55 @@ function UserBubble({ children }: { children: React.ReactNode }) {
 
 function OptionButtons({ options, onChoose }: { options: string[]; onChoose: (value: string) => void }) {
   return (
-    <div className="grid gap-2">
+    <div className="grid gap-2.5">
       {options.map((option) => (
         <button
           key={option}
           type="button"
           onClick={() => onChoose(option)}
-          className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-left text-[15px] font-medium text-[#202124] shadow-sm transition hover:border-[#4285F4] hover:bg-[#F8FAFF] active:scale-[0.99]"
+          className="w-full rounded-[20px] border border-white/80 bg-white px-4 py-4 text-left text-[15px] font-semibold text-[#202124] shadow-[0_10px_28px_rgba(60,64,67,0.08)] transition duration-200 hover:-translate-y-0.5 hover:border-[#AECBFA] hover:shadow-[0_14px_32px_rgba(66,133,244,0.16)] active:translate-y-0 active:scale-[0.995]"
         >
-          {option}
+          <div className="flex items-center justify-between gap-3">
+            <span>{option}</span>
+            <ChevronRight className="h-4 w-4 text-[#5F6368]" />
+          </div>
         </button>
       ))}
     </div>
   )
 }
 
-function TypewriterText({ text, onDone }: { text: string; onDone: () => void }) {
+function TypewriterText({ text, messageKey, onDone, soundEnabled = false }: { text: string; messageKey: string; onDone: () => void; soundEnabled?: boolean }) {
   const [visibleCount, setVisibleCount] = useState(0)
+  const onDoneRef = useRef(onDone)
 
   useEffect(() => {
-    setVisibleCount(0)
+    onDoneRef.current = onDone
+  }, [onDone])
+
+  useEffect(() => {
     let index = 0
+    let tickCounter = 0
+    setVisibleCount(0)
+
     const interval = window.setInterval(() => {
       index += 1
+      tickCounter += 1
       setVisibleCount(index)
+
+      if (soundEnabled && tickCounter % 8 === 0) {
+        playUiTone("soft")
+      }
+
       if (index >= text.length) {
         window.clearInterval(interval)
-        window.setTimeout(onDone, 150)
+        if (soundEnabled) playUiTone("complete")
+        window.setTimeout(() => onDoneRef.current(), 220)
       }
-    }, 16)
+    }, 18)
 
     return () => window.clearInterval(interval)
-  }, [text, onDone])
+  }, [messageKey, text, soundEnabled])
 
   const visibleText = text.slice(0, visibleCount)
   const paragraphs = visibleText.split("\n\n")
@@ -126,37 +201,52 @@ function TypewriterText({ text, onDone }: { text: string; onDone: () => void }) 
   return (
     <div>
       {paragraphs.map((paragraph, index) => (
-        <p key={`${index}-${paragraph.slice(0, 10)}`} className={index > 0 ? "mt-3" : ""}>
+        <p key={`${messageKey}-${index}`} className={index > 0 ? "mt-3.5" : ""}>
           {paragraph}
         </p>
       ))}
-      {visibleCount < text.length ? <span className="ml-1 inline-block h-5 w-[2px] animate-pulse bg-[#1A73E8] align-middle" /> : null}
+      {visibleCount < text.length ? <span className="ml-1 inline-block h-5 w-[2px] animate-pulse rounded-full bg-[#1A73E8] align-middle" /> : null}
     </div>
   )
 }
 
-function ChatShell({ children, actionArea }: { children: React.ReactNode; actionArea?: React.ReactNode }) {
+function ChatShell({ children, actionArea, soundEnabled, onToggleSound }: { children: React.ReactNode; actionArea?: React.ReactNode; soundEnabled: boolean; onToggleSound: () => void }) {
   return (
-    <div className="min-h-screen bg-[#F3F6FB]">
-      <div className="mx-auto flex min-h-screen max-w-3xl flex-col">
-        <div className="sticky top-0 z-20 border-b border-[#DCE5F3] bg-white/95 px-4 py-3 backdrop-blur sm:px-6">
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-[#DCE5F3]">
-              <MessageCircle className="h-5 w-5 text-[#4285F4]" />
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-[#202124]">GuardX Assistant</p>
-              <p className="text-xs text-[#5F6368]">Review check</p>
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,#E8F0FE_0%,#F7F9FC_38%,#EEF3F9_100%)] text-[#202124]">
+      <div className="mx-auto flex min-h-screen max-w-3xl flex-col sm:px-4 sm:py-4">
+        <div className="flex min-h-screen flex-col overflow-hidden bg-transparent sm:min-h-[calc(100vh-2rem)] sm:rounded-[32px] sm:border sm:border-white/70 sm:bg-white/55 sm:shadow-[0_28px_80px_rgba(60,64,67,0.14)] sm:backdrop-blur-xl">
+          <div className="sticky top-0 z-20 border-b border-white/70 bg-white/82 px-4 py-3 backdrop-blur-xl sm:px-6 sm:py-4">
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[linear-gradient(135deg,#4285F4,#34A853)] shadow-[0_8px_24px_rgba(66,133,244,0.22)]">
+                  <MessageSquareText className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold tracking-tight text-[#202124] sm:text-[15px]">GuardX Assistant</p>
+                  <div className="mt-0.5 flex items-center gap-2 text-xs text-[#5F6368]">
+                    <span className="inline-flex h-2 w-2 rounded-full bg-[#34A853] shadow-[0_0_0_4px_rgba(52,168,83,0.12)]" />
+                    Live review check
+                  </div>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={onToggleSound}
+                className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/90 px-3 py-2 text-xs font-medium text-[#5F6368] shadow-sm transition hover:border-[#AECBFA] hover:text-[#202124]"
+              >
+                {soundEnabled ? <Volume2 className="h-4 w-4 text-[#1A73E8]" /> : <VolumeX className="h-4 w-4" />}
+                Sound
+              </button>
             </div>
           </div>
-        </div>
 
-        <div className="flex-1 px-4 py-5 sm:px-6 sm:py-6">
-          <div className="space-y-4">{children}</div>
-        </div>
+          <div className="flex-1 px-4 py-5 sm:px-6 sm:py-6">
+            <div className="space-y-4">{children}</div>
+          </div>
 
-        <div className="sticky bottom-0 z-20 border-t border-[#DCE5F3] bg-white/96 px-4 py-4 backdrop-blur sm:px-6">
-          {actionArea}
+          <div className="sticky bottom-0 z-20 border-t border-white/70 bg-white/88 px-4 py-4 backdrop-blur-xl sm:px-6 sm:py-5">
+            {actionArea}
+          </div>
         </div>
       </div>
     </div>
@@ -171,10 +261,10 @@ export default function ReviewCheckChatbot() {
   const [reviewAnswer, setReviewAnswer] = useState<string | null>(null)
   const [customerAnswer, setCustomerAnswer] = useState<string | null>(null)
   const [pitchIndex, setPitchIndex] = useState(0)
-  const [pitchTyping, setPitchTyping] = useState(false)
   const [pitchTypedDone, setPitchTypedDone] = useState(false)
   const [submitState, setSubmitState] = useState<SubmitState>("idle")
   const [submitError, setSubmitError] = useState("")
+  const [soundEnabled, setSoundEnabled] = useState(true)
   const [questionForm, setQuestionForm] = useState({ businessName: "", email: "", question: "" })
   const [setupForm, setSetupForm] = useState({
     businessName: "",
@@ -182,42 +272,58 @@ export default function ReviewCheckChatbot() {
     address: "",
     method: "Email + SMS",
   })
+
   const scrollerRef = useRef<HTMLDivElement | null>(null)
   const timeoutsRef = useRef<number[]>([])
 
-  const enqueueAssistant = (entries: React.ReactNode[], after?: () => void) => {
+  const pitchSteps = useMemo(
+    () => buildPitchSteps({ standingAnswer, reviewAnswer, customerAnswer }),
+    [standingAnswer, reviewAnswer, customerAnswer],
+  )
+
+  const enqueueAssistant = (entries: Array<{ content: React.ReactNode; highlight?: boolean }>, after?: () => void) => {
     setIsTyping(true)
     const localTimeouts: number[] = []
+
     entries.forEach((entry, index) => {
       const timeout = window.setTimeout(
         () => {
-          setMessages((prev) => [...prev, { id: `${Date.now()}-${index}-${Math.random()}`, role: "assistant", content: entry }])
+          setMessages((prev) => [
+            ...prev,
+            {
+              id: `${Date.now()}-${index}-${Math.random()}`,
+              role: "assistant",
+              content: entry.content,
+              highlight: entry.highlight,
+            },
+          ])
+          if (soundEnabled) playUiTone("complete")
+
           if (index === entries.length - 1) {
             setIsTyping(false)
             after?.()
           }
         },
-        450 + index * 850,
+        420 + index * 760,
       )
       localTimeouts.push(timeout)
     })
-    timeoutsRef.current.push(...localTimeouts)
-  }
 
-  const startPitchStep = (index: number) => {
-    setPitchIndex(index)
-    setPitchTyping(true)
-    setPitchTypedDone(false)
-    setStage("pitch")
+    timeoutsRef.current.push(...localTimeouts)
   }
 
   useEffect(() => {
     enqueueAssistant([
-      <>
-        <p>Hi 👋</p>
-        <p className="mt-3">When customers find your business on Google, they usually compare a few local businesses.</p>
-        <p className="mt-3 font-medium text-[#1A73E8]">Do you feel your business stands out as the most trusted option when they do that?</p>
-      </>,
+      {
+        content: (
+          <>
+            <p className="text-[17px] font-semibold tracking-tight text-[#202124] sm:text-[18px]">Hi 👋</p>
+            <p className="mt-3">When customers find your business on Google, they usually compare a few local businesses.</p>
+            <p className="mt-3 font-semibold text-[#1A73E8]">Do you feel your business stands out as the most trusted option when they do that?</p>
+          </>
+        ),
+        highlight: true,
+      },
     ])
 
     return () => {
@@ -228,7 +334,7 @@ export default function ReviewCheckChatbot() {
 
   useEffect(() => {
     scrollerRef.current?.scrollIntoView({ behavior: "smooth", block: "end" })
-  }, [messages, isTyping, stage, submitState, pitchTyping, pitchTypedDone, pitchIndex])
+  }, [messages, isTyping, stage, submitState, pitchIndex, pitchTypedDone])
 
   const chatSummary = useMemo(
     () =>
@@ -251,27 +357,45 @@ export default function ReviewCheckChatbot() {
     }
   }
 
-  const chooseStanding = (value: string) => {
-    setStandingAnswer(value)
-    setMessages((prev) => [...prev, { id: `user-standing-${Date.now()}`, role: "user", content: value }])
-    setStage("reviews")
-    enqueueAssistant([<p className="font-medium text-[#1A73E8]">Roughly how many Google reviews do you have at the moment?</p>])
-  }
+  const handleChoose = (stageName: "standing" | "reviews" | "customers", value: string) => {
+    if (soundEnabled) playUiTone("tap")
 
-  const chooseReviews = (value: string) => {
-    setReviewAnswer(value)
-    setMessages((prev) => [...prev, { id: `user-reviews-${Date.now()}`, role: "user", content: value }])
-    setStage("customers")
-    enqueueAssistant([<p className="font-medium text-[#1A73E8]">Roughly how many customers do you serve in a typical month?</p>])
-  }
+    if (stageName === "standing") {
+      setStandingAnswer(value)
+      setMessages((prev) => [...prev, { id: `user-standing-${Date.now()}`, role: "user", content: value }])
+      setStage("reviews")
+      enqueueAssistant([
+        {
+          content: <p className="font-semibold text-[#1A73E8]">Roughly how many Google reviews do you have at the moment?</p>,
+        },
+      ])
+      return
+    }
 
-  const chooseCustomers = (value: string) => {
+    if (stageName === "reviews") {
+      setReviewAnswer(value)
+      setMessages((prev) => [...prev, { id: `user-reviews-${Date.now()}`, role: "user", content: value }])
+      setStage("customers")
+      enqueueAssistant([
+        {
+          content: <p className="font-semibold text-[#1A73E8]">Roughly how many customers do you serve in a typical month?</p>,
+        },
+      ])
+      return
+    }
+
     setCustomerAnswer(value)
     setMessages((prev) => [...prev, { id: `user-customers-${Date.now()}`, role: "user", content: value }])
-    window.setTimeout(() => startPitchStep(0), 250)
+    window.setTimeout(() => {
+      setPitchIndex(0)
+      setPitchTypedDone(false)
+      setStage("pitch")
+    }, 240)
   }
 
   const nextPitchStep = () => {
+    if (soundEnabled) playUiTone("tap")
+
     const currentText = pitchSteps[pitchIndex]
     setMessages((prev) => [
       ...prev,
@@ -281,68 +405,84 @@ export default function ReviewCheckChatbot() {
         content: (
           <div>
             {currentText.split("\n\n").map((paragraph, index) => (
-              <p key={`${pitchIndex}-${index}`} className={index > 0 ? "mt-3" : ""}>
+              <p key={`${pitchIndex}-${index}`} className={index > 0 ? "mt-3.5" : ""}>
                 {paragraph}
               </p>
             ))}
           </div>
         ),
+        highlight: pitchIndex < pitchSteps.length - 1,
       },
     ])
 
     const nextIndex = pitchIndex + 1
     if (nextIndex >= pitchSteps.length) {
-      setPitchTyping(false)
       setPitchTypedDone(false)
       setStage("pitch-actions")
       return
     }
 
-    window.setTimeout(() => startPitchStep(nextIndex), 150)
+    setPitchIndex(nextIndex)
+    setPitchTypedDone(false)
   }
 
   const showDemo = () => {
+    if (soundEnabled) playUiTone("tap")
     setMessages((prev) => [...prev, { id: `user-demo-${Date.now()}`, role: "user", content: "See quick demo" }])
     setStage("demo")
     enqueueAssistant([
-      <>
-        <p className="mb-3">Here’s a quick example of the branded review request customers receive.</p>
-        <div className="overflow-hidden rounded-2xl border border-[#D2E3FC] bg-black shadow-sm">
-          <div className="aspect-video">
-            <iframe
-              className="h-full w-full"
-              src="https://www.youtube.com/embed/2bWvt6aJQSk"
-              title="GuardX review request demo"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            />
-          </div>
-        </div>
-        <p className="mt-3">If you want, you can start the 30-day free trial below.</p>
-      </>,
+      {
+        content: (
+          <>
+            <p className="font-semibold text-[#202124]">Here’s a quick example of the branded review request customers receive.</p>
+            <div className="mt-4 overflow-hidden rounded-[22px] border border-[#D2E3FC] bg-black shadow-[0_16px_38px_rgba(60,64,67,0.12)]">
+              <div className="aspect-video">
+                <iframe
+                  className="h-full w-full"
+                  src="https://www.youtube.com/embed/2bWvt6aJQSk"
+                  title="GuardX review request demo"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+            <p className="mt-4">If it looks right for your business, you can start the 30-day free trial below.</p>
+          </>
+        ),
+      },
     ])
   }
 
   const openQuestionForm = () => {
+    if (soundEnabled) playUiTone("tap")
     setMessages((prev) => [...prev, { id: `user-question-${Date.now()}`, role: "user", content: "Ask a question" }])
     setStage("question")
     enqueueAssistant([
-      <>
-        <p className="font-medium text-[#1A73E8]">Ask a question</p>
-        <p className="mt-3">Drop your details below and I’ll send your question through.</p>
-      </>,
+      {
+        content: (
+          <>
+            <p className="font-semibold text-[#1A73E8]">Ask a question</p>
+            <p className="mt-3">Drop your details below and I’ll send your question through.</p>
+          </>
+        ),
+      },
     ])
   }
 
   const openSetupForm = () => {
+    if (soundEnabled) playUiTone("tap")
     setMessages((prev) => [...prev, { id: `user-form-${Date.now()}`, role: "user", content: "Start 30-Day Free Trial" }])
     setStage("form")
     enqueueAssistant([
-      <>
-        <p className="font-medium text-[#1A73E8]">Great — let’s get your 30-day free trial ready.</p>
-        <p className="mt-3">This takes about 30 seconds. If SMS is included, we’ll email the separate verification/documents step afterwards.</p>
-      </>,
+      {
+        content: (
+          <>
+            <p className="font-semibold text-[#1A73E8]">Great — let’s get your 30-day free trial ready.</p>
+            <p className="mt-3">This takes about 30 seconds. If SMS is included, we’ll email the separate verification/documents step afterwards.</p>
+          </>
+        ),
+      },
     ])
   }
 
@@ -367,10 +507,14 @@ export default function ReviewCheckChatbot() {
       setSubmitState("success")
       setStage("submitted")
       enqueueAssistant([
-        <>
-          <p className="font-medium text-[#1A73E8]">All set — thanks.</p>
-          <p className="mt-3">Your details have been sent through. We’ll follow up by email with the next step.</p>
-        </>,
+        {
+          content: (
+            <>
+              <p className="font-semibold text-[#1A73E8]">All set — thanks.</p>
+              <p className="mt-3">Your details have been sent through. We’ll follow up by email with the next step.</p>
+            </>
+          ),
+        },
       ])
     } catch (error) {
       setSubmitState("error")
@@ -399,10 +543,14 @@ export default function ReviewCheckChatbot() {
       setSubmitState("success")
       setStage("submitted")
       enqueueAssistant([
-        <>
-          <p className="font-medium text-[#1A73E8]">Your question has been sent.</p>
-          <p className="mt-3">We’ll reply by email as soon as we can.</p>
-        </>,
+        {
+          content: (
+            <>
+              <p className="font-semibold text-[#1A73E8]">Your question has been sent.</p>
+              <p className="mt-3">We’ll reply by email as soon as we can.</p>
+            </>
+          ),
+        },
       ])
     } catch (error) {
       setSubmitState("error")
@@ -411,11 +559,13 @@ export default function ReviewCheckChatbot() {
   }
 
   const actionArea = (() => {
-    if (isTyping) return <div className="text-sm text-[#5F6368]">GuardX assistant is typing…</div>
+    if (isTyping) {
+      return <div className="text-sm font-medium text-[#5F6368]">GuardX assistant is typing…</div>
+    }
 
-    if (stage === "intro") return <OptionButtons options={standoutOptions} onChoose={chooseStanding} />
-    if (stage === "reviews") return <OptionButtons options={reviewOptions} onChoose={chooseReviews} />
-    if (stage === "customers") return <OptionButtons options={customerOptions} onChoose={chooseCustomers} />
+    if (stage === "intro") return <OptionButtons options={standoutOptions} onChoose={(value) => handleChoose("standing", value)} />
+    if (stage === "reviews") return <OptionButtons options={reviewOptions} onChoose={(value) => handleChoose("reviews", value)} />
+    if (stage === "customers") return <OptionButtons options={customerOptions} onChoose={(value) => handleChoose("customers", value)} />
 
     if (stage === "pitch") {
       return (
@@ -423,7 +573,7 @@ export default function ReviewCheckChatbot() {
           type="button"
           onClick={nextPitchStep}
           disabled={!pitchTypedDone}
-          className="w-full rounded-2xl bg-[#1A73E8] py-6 text-base font-semibold text-white hover:bg-[#1765cc] disabled:cursor-not-allowed disabled:opacity-50"
+          className="h-14 w-full rounded-[20px] bg-[linear-gradient(135deg,#1A73E8,#4285F4)] text-base font-semibold text-white shadow-[0_18px_36px_rgba(26,115,232,0.28)] hover:opacity-95 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Next
         </Button>
@@ -432,14 +582,14 @@ export default function ReviewCheckChatbot() {
 
     if (stage === "pitch-actions" || stage === "demo") {
       return (
-        <div className="grid gap-2 sm:grid-cols-3">
-          <Button type="button" onClick={openSetupForm} className="rounded-2xl bg-[#34A853] py-6 text-base font-semibold text-white hover:bg-[#2b8a45]">
+        <div className="grid gap-2.5 sm:grid-cols-3">
+          <Button type="button" onClick={openSetupForm} className="h-14 rounded-[20px] bg-[linear-gradient(135deg,#34A853,#2D9B47)] text-base font-semibold text-white shadow-[0_18px_36px_rgba(52,168,83,0.26)] hover:opacity-95">
             Start 30-Day Free Trial
           </Button>
-          <Button type="button" variant="outline" onClick={showDemo} className="rounded-2xl border-[#DADCE0] bg-white py-6 text-base text-[#202124] hover:bg-[#F8FAFF]">
+          <Button type="button" variant="outline" onClick={showDemo} className="h-14 rounded-[20px] border-white/80 bg-white text-base font-semibold text-[#202124] shadow-sm hover:bg-[#F8FAFF]">
             <PlayCircle className="mr-2 h-4 w-4" /> See quick demo
           </Button>
-          <Button type="button" variant="outline" onClick={openQuestionForm} className="rounded-2xl border-[#DADCE0] bg-white py-6 text-base text-[#202124] hover:bg-[#F8FAFF]">
+          <Button type="button" variant="outline" onClick={openQuestionForm} className="h-14 rounded-[20px] border-white/80 bg-white text-base font-semibold text-[#202124] shadow-sm hover:bg-[#F8FAFF]">
             Ask a question
           </Button>
         </div>
@@ -454,7 +604,7 @@ export default function ReviewCheckChatbot() {
             value={questionForm.businessName}
             onChange={(e) => setQuestionForm((prev) => ({ ...prev, businessName: e.target.value }))}
             placeholder="Business name"
-            className="h-12 rounded-2xl border-[#DADCE0] bg-white text-[#202124] placeholder:text-[#5F6368]"
+            className="h-12 rounded-[18px] border-white/80 bg-white text-[15px] text-[#202124] shadow-sm placeholder:text-[#5F6368]"
           />
           <Input
             required
@@ -462,22 +612,22 @@ export default function ReviewCheckChatbot() {
             value={questionForm.email}
             onChange={(e) => setQuestionForm((prev) => ({ ...prev, email: e.target.value }))}
             placeholder="Business email"
-            className="h-12 rounded-2xl border-[#DADCE0] bg-white text-[#202124] placeholder:text-[#5F6368]"
+            className="h-12 rounded-[18px] border-white/80 bg-white text-[15px] text-[#202124] shadow-sm placeholder:text-[#5F6368]"
           />
           <Textarea
             required
             value={questionForm.question}
             onChange={(e) => setQuestionForm((prev) => ({ ...prev, question: e.target.value }))}
             placeholder="Type your question"
-            className="min-h-28 rounded-2xl border-[#DADCE0] bg-white text-[#202124] placeholder:text-[#5F6368]"
+            className="min-h-28 rounded-[18px] border-white/80 bg-white text-[15px] text-[#202124] shadow-sm placeholder:text-[#5F6368]"
           />
           {submitState === "error" && <p className="text-sm text-[#D93025]">{submitError}</p>}
           <div className="grid gap-2 sm:grid-cols-2">
-            <Button type="submit" disabled={submitState === "loading"} className="rounded-2xl bg-[#4285F4] py-6 text-base font-semibold text-white hover:bg-[#3367D6]">
+            <Button type="submit" disabled={submitState === "loading"} className="h-14 rounded-[20px] bg-[linear-gradient(135deg,#1A73E8,#4285F4)] text-base font-semibold text-white shadow-[0_18px_36px_rgba(26,115,232,0.28)] hover:opacity-95">
               {submitState === "loading" ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
               Send question
             </Button>
-            <Button type="button" variant="outline" onClick={() => setStage("pitch-actions")} className="rounded-2xl border-[#DADCE0] bg-white py-6 text-base text-[#202124] hover:bg-[#F8FAFF]">
+            <Button type="button" variant="outline" onClick={() => setStage("pitch-actions")} className="h-14 rounded-[20px] border-white/80 bg-white text-base font-semibold text-[#202124] shadow-sm hover:bg-[#F8FAFF]">
               Back
             </Button>
           </div>
@@ -493,7 +643,7 @@ export default function ReviewCheckChatbot() {
             value={setupForm.businessName}
             onChange={(e) => setSetupForm((prev) => ({ ...prev, businessName: e.target.value }))}
             placeholder="Business name"
-            className="h-12 rounded-2xl border-[#DADCE0] bg-white text-[#202124] placeholder:text-[#5F6368]"
+            className="h-12 rounded-[18px] border-white/80 bg-white text-[15px] text-[#202124] shadow-sm placeholder:text-[#5F6368]"
           />
           <Input
             required
@@ -501,17 +651,17 @@ export default function ReviewCheckChatbot() {
             value={setupForm.email}
             onChange={(e) => setSetupForm((prev) => ({ ...prev, email: e.target.value }))}
             placeholder="Business email"
-            className="h-12 rounded-2xl border-[#DADCE0] bg-white text-[#202124] placeholder:text-[#5F6368]"
+            className="h-12 rounded-[18px] border-white/80 bg-white text-[15px] text-[#202124] shadow-sm placeholder:text-[#5F6368]"
           />
           <Input
             required
             value={setupForm.address}
             onChange={(e) => setSetupForm((prev) => ({ ...prev, address: e.target.value }))}
             placeholder="Business address"
-            className="h-12 rounded-2xl border-[#DADCE0] bg-white text-[#202124] placeholder:text-[#5F6368]"
+            className="h-12 rounded-[18px] border-white/80 bg-white text-[15px] text-[#202124] shadow-sm placeholder:text-[#5F6368]"
           />
-          <div className="grid gap-2">
-            <p className="text-sm font-medium text-[#5F6368]">How would you like review requests sent?</p>
+          <div className="grid gap-2.5">
+            <p className="text-sm font-semibold text-[#5F6368]">How would you like review requests sent?</p>
             <div className="grid gap-2 sm:grid-cols-2">
               {deliveryOptions.map((option) => {
                 const active = setupForm.method === option
@@ -519,11 +669,14 @@ export default function ReviewCheckChatbot() {
                   <button
                     key={option}
                     type="button"
-                    onClick={() => setSetupForm((prev) => ({ ...prev, method: option }))}
-                    className={`rounded-2xl border px-4 py-3 text-left text-sm font-medium transition ${
+                    onClick={() => {
+                      if (soundEnabled) playUiTone("tap")
+                      setSetupForm((prev) => ({ ...prev, method: option }))
+                    }}
+                    className={`rounded-[18px] border px-4 py-3 text-left text-sm font-semibold transition ${
                       active
-                        ? "border-[#4285F4] bg-[#E8F0FE] text-[#174EA6]"
-                        : "border-[#DADCE0] bg-white text-[#202124] hover:bg-[#F8FAFF]"
+                        ? "border-[#AECBFA] bg-[#E8F0FE] text-[#174EA6] shadow-[0_10px_24px_rgba(66,133,244,0.16)]"
+                        : "border-white/80 bg-white text-[#202124] shadow-sm hover:bg-[#F8FAFF]"
                     }`}
                   >
                     {option}
@@ -533,7 +686,7 @@ export default function ReviewCheckChatbot() {
             </div>
           </div>
           {submitState === "error" && <p className="text-sm text-[#D93025]">{submitError}</p>}
-          <Button type="submit" disabled={submitState === "loading"} className="rounded-2xl bg-[#34A853] py-6 text-base font-semibold text-white hover:bg-[#2b8a45]">
+          <Button type="submit" disabled={submitState === "loading"} className="h-14 rounded-[20px] bg-[linear-gradient(135deg,#34A853,#2D9B47)] text-base font-semibold text-white shadow-[0_18px_36px_rgba(52,168,83,0.26)] hover:opacity-95">
             {submitState === "loading" ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
             Start 30-Day Free Trial
           </Button>
@@ -543,7 +696,8 @@ export default function ReviewCheckChatbot() {
 
     if (stage === "submitted") {
       return (
-        <div className="rounded-2xl border border-[#D2E3FC] bg-[#F8FAFF] px-4 py-3 text-sm text-[#5F6368]">
+        <div className="flex items-center gap-3 rounded-[20px] border border-[#D2E3FC] bg-[linear-gradient(180deg,#FFFFFF_0%,#EEF5FF_100%)] px-4 py-4 text-sm text-[#5F6368] shadow-sm">
+          <CheckCircle2 className="h-5 w-5 shrink-0 text-[#34A853]" />
           Your details have been submitted successfully.
         </div>
       )
@@ -553,27 +707,29 @@ export default function ReviewCheckChatbot() {
   })()
 
   return (
-    <ChatShell actionArea={actionArea}>
+    <ChatShell soundEnabled={soundEnabled} onToggleSound={() => setSoundEnabled((prev) => !prev)} actionArea={actionArea}>
       {messages.map((message) =>
         message.role === "assistant" ? (
-          <AssistantBubble key={message.id}>{message.content}</AssistantBubble>
+          <AssistantBubble key={message.id} highlight={message.highlight}>
+            {message.content}
+          </AssistantBubble>
         ) : (
           <UserBubble key={message.id}>{message.content}</UserBubble>
         ),
       )}
 
-      {stage === "pitch" && pitchTyping ? (
+      {stage === "pitch" ? (
         <AssistantBubble highlight>
           <TypewriterText
+            messageKey={`pitch-live-${pitchIndex}`}
             text={pitchSteps[pitchIndex]}
-            onDone={() => {
-              setPitchTypedDone(true)
-            }}
+            soundEnabled={soundEnabled}
+            onDone={() => setPitchTypedDone(true)}
           />
         </AssistantBubble>
       ) : null}
 
-      {isTyping && <TypingBubble />}
+      {isTyping ? <TypingIndicator /> : null}
       <div ref={scrollerRef} />
     </ChatShell>
   )
