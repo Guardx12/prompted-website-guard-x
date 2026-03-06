@@ -24,6 +24,8 @@ type Stage =
   | "form"
   | "submitted"
 
+type FormMode = "trial" | "scorecard"
+
 type SubmitState = "idle" | "loading" | "success" | "error"
 
 const reviewOptions = ["0–20", "21–50", "51–100", "100+", "Not sure"]
@@ -72,7 +74,20 @@ function buildPitchSteps({ standingAnswer, reviewAnswer, customerAnswer }: { sta
       ? "A lot of owners assume total reviews and star rating are the whole story. They are not. Customers still notice whether the latest feedback is recent and whether the business is replying."
       : "A lot of owners assume it is only about total reviews or star rating. It is not. Customers also notice whether the latest reviews are recent and whether the profile feels active right now."
 
+
+  const insightLine =
+    customerAnswer === "1–25"
+      ? "Quick insight: with around 1–25 customers a month, even a handful of genuine reviews can quickly strengthen how trusted your business looks on Google."
+      : customerAnswer === "26–50"
+        ? "Quick insight: serving around 26–50 customers a month means you already have a steady opportunity to keep your review profile moving and visible."
+        : customerAnswer === "51–100"
+          ? "Quick insight: with roughly 51–100 customers monthly, even a small increase in enquiries from Google could translate into meaningful extra revenue."
+          : customerAnswer === "100+"
+            ? "Quick insight: at 100+ customers a month, small shifts in who customers choose first can add up to significant revenue over time."
+            : "Quick insight: consistent review activity can quietly influence which business customers choose first.";
+
   return [
+    insightLine,
     `${standingLine}
 
 ${reviewLine}
@@ -87,10 +102,11 @@ Google tends to reward profiles that feel active and well cared for. Put simply:
     `Now picture customers comparing you with nearby competitors. ${customerLine}
 
 That is why review activity can affect revenue more than most businesses realise.`,
+    `Many local businesses do not realise how much their Google profile influences who gets contacted first until a competitor starts looking more active than they do.`,
     `This is where GuardX comes in. We manage the whole process for you — generating genuine reviews, sending branded review requests, replying to reviews, and keeping the profile looking active and professionally managed.`,
     `You can run it by email, SMS, or both. Some businesses use a simple staff form, some upload customers in batches, and many just send us their customer details weekly so we handle the rest.`,
     `You can try everything free for 30 days first. After that, most businesses invest around £25 per week for the fully managed system.`,
-    `Would you like to see the review request in action, ask a question, or start your 30-day free trial?`,
+    `At this point, most businesses either want to see the review request in action, get a free scorecard, ask a question, or simply try the system for themselves.`,
   ]
 }
 
@@ -162,9 +178,7 @@ function ReviewStars() {
           ★
         </span>
       ))}
-      <span className="ml-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#C58B00]">
-        Genuine customer reviews
-      </span>
+      
     </div>
   )
 }
@@ -266,7 +280,16 @@ function TypewriterText({ text, messageKey, onDone, soundEnabled = false }: { te
   )
 }
 
-function ChatShell({ children, actionArea, soundEnabled, onToggleSound }: { children: React.ReactNode; actionArea?: React.ReactNode; soundEnabled: boolean; onToggleSound: () => void }) {
+
+function getStepMeta(stage: Stage) {
+  if (stage === "intro") return { current: 1, total: 5, label: "Quick question" }
+  if (stage === "reviews") return { current: 2, total: 5, label: "Review activity" }
+  if (stage === "customers") return { current: 3, total: 5, label: "Customer volume" }
+  if (stage === "pitch" || stage === "pitch-actions" || stage === "demo" || stage === "question") return { current: 4, total: 5, label: "Opportunity" }
+  return { current: 5, total: 5, label: "Next step" }
+}
+
+function ChatShell({ children, actionArea, soundEnabled, onToggleSound, stage }: { children: React.ReactNode; actionArea?: React.ReactNode; soundEnabled: boolean; onToggleSound: () => void; stage: Stage }) {
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top,#E8F0FE_0%,#F7F9FC_38%,#EEF3F9_100%)] text-[#202124]">
       <div className="mx-auto flex min-h-screen max-w-3xl flex-col sm:px-4 sm:py-4">
@@ -293,6 +316,18 @@ function ChatShell({ children, actionArea, soundEnabled, onToggleSound }: { chil
                 {soundEnabled ? <Volume2 className="h-4 w-4 text-[#1A73E8]" /> : <VolumeX className="h-4 w-4" />}
                 Sound
               </button>
+            </div>
+            <div className="mt-3">
+              <div className="mb-1 flex items-center justify-between text-[11px] font-medium uppercase tracking-[0.08em] text-[#5F6368]">
+                <span>Step {getStepMeta(stage).current} of {getStepMeta(stage).total}</span>
+                <span>{getStepMeta(stage).label}</span>
+              </div>
+              <div className="h-2 overflow-hidden rounded-full bg-[#E8EAED]">
+                <div
+                  className="h-full rounded-full bg-[linear-gradient(90deg,#4285F4,#34A853)] transition-all duration-500"
+                  style={{ width: `${(getStepMeta(stage).current / getStepMeta(stage).total) * 100}%` }}
+                />
+              </div>
             </div>
           </div>
 
@@ -328,6 +363,7 @@ export default function ReviewCheckChatbot() {
     address: "",
     method: "Email + SMS",
   })
+  const [formMode, setFormMode] = useState<FormMode>("trial")
 
   const scrollerRef = useRef<HTMLDivElement | null>(null)
   const timeoutsRef = useRef<number[]>([])
@@ -374,6 +410,8 @@ export default function ReviewCheckChatbot() {
         content: (
           <>
             <p className="text-[17px] font-semibold tracking-tight text-[#202124] sm:text-[18px]">Hi 👋</p>
+            <p className="mt-3 text-[#5F6368]">Let’s quickly check how your business appears to customers on Google.</p>
+            <p className="mt-3 font-medium">Quick question.</p>
             <p className="mt-3">When customers find your business on Google, they usually compare a few local businesses.</p>
             <p className="mt-3 font-semibold text-[#1A73E8]">Do you feel your business stands out as the most trusted option when they do that?</p>
           </>
@@ -438,6 +476,9 @@ export default function ReviewCheckChatbot() {
       setMessages((prev) => [...prev, { id: `user-reviews-${Date.now()}`, role: "user", content: value }])
       setStage("customers")
       enqueueAssistant([
+        {
+          content: <p className="text-[#5F6368]">Got it — just checking one more thing…</p>,
+        },
         {
           content: <p className="font-semibold text-[#1A73E8]">Roughly how many customers do you serve in a typical month?</p>,
         },
@@ -533,6 +574,7 @@ export default function ReviewCheckChatbot() {
 
   const openSetupForm = () => {
     if (soundEnabled) playUiTone("tap")
+    setFormMode("trial")
     setMessages((prev) => [...prev, { id: `user-form-${Date.now()}`, role: "user", content: "Start 30-Day Free Trial" }])
     setStage("form")
     enqueueAssistant([
@@ -541,6 +583,23 @@ export default function ReviewCheckChatbot() {
           <>
             <p className="font-semibold text-[#1A73E8]">Great — let’s get your 30-day free trial ready.</p>
             <p className="mt-3">This takes about 30 seconds. If SMS is included, we’ll email the separate verification/documents step afterwards.</p>
+          </>
+        ),
+      },
+    ])
+  }
+
+  const openScorecardForm = () => {
+    if (soundEnabled) playUiTone("tap")
+    setFormMode("scorecard")
+    setMessages((prev) => [...prev, { id: `user-scorecard-${Date.now()}`, role: "user", content: "Get my free scorecard" }])
+    setStage("form")
+    enqueueAssistant([
+      {
+        content: (
+          <>
+            <p className="font-semibold text-[#1A73E8]">Great — let’s get your free scorecard ready.</p>
+            <p className="mt-3">This takes about 30 seconds. We’ll use these details to send your scorecard and next step.</p>
           </>
         ),
       },
@@ -562,7 +621,8 @@ export default function ReviewCheckChatbot() {
         review_count: reviewAnswer ?? "Not answered",
         monthly_customers: customerAnswer ?? "Not answered",
         chat_summary: chatSummary,
-        source: "/check chatbot free trial",
+        request_type: formMode === "trial" ? "30-day free trial" : "free scorecard",
+        source: formMode === "trial" ? "/check chatbot free trial" : "/check chatbot free scorecard",
       })
 
       setSubmitState("success")
@@ -571,8 +631,8 @@ export default function ReviewCheckChatbot() {
         {
           content: (
             <>
-              <p className="font-semibold text-[#1A73E8]">All set — thanks.</p>
-              <p className="mt-3">Your details have been sent through. We’ll follow up by email with the next step.</p>
+              <p className="font-semibold text-[#1A73E8]">You’re all set 👍</p>
+              <p className="mt-3">{formMode === "trial" ? "We’ll now prepare your review system and email you the next step shortly." : "We’ll now prepare your free scorecard and email it to you with the next step shortly."}</p>
             </>
           ),
         },
@@ -643,12 +703,15 @@ export default function ReviewCheckChatbot() {
 
     if (stage === "pitch-actions" || stage === "demo") {
       return (
-        <div className="grid gap-2.5 sm:grid-cols-3">
+        <div className="grid gap-2.5 sm:grid-cols-2">
           <Button type="button" onClick={openSetupForm} className="h-14 rounded-[20px] bg-[linear-gradient(135deg,#34A853,#2D9B47)] text-base font-semibold text-white shadow-[0_18px_36px_rgba(52,168,83,0.26)] hover:opacity-95">
             Start 30-Day Free Trial
           </Button>
           <Button type="button" variant="outline" onClick={showDemo} className="h-14 rounded-[20px] border-white/80 bg-white text-base font-semibold text-[#202124] shadow-sm hover:bg-[#F8FAFF]">
             <PlayCircle className="mr-2 h-4 w-4" /> See quick demo
+          </Button>
+          <Button type="button" variant="outline" onClick={openScorecardForm} className="h-14 rounded-[20px] border-white/80 bg-white text-base font-semibold text-[#202124] shadow-sm hover:bg-[#F8FAFF]">
+            Get my free scorecard
           </Button>
           <Button type="button" variant="outline" onClick={openQuestionForm} className="h-14 rounded-[20px] border-white/80 bg-white text-base font-semibold text-[#202124] shadow-sm hover:bg-[#F8FAFF]">
             Ask a question
@@ -749,7 +812,7 @@ export default function ReviewCheckChatbot() {
           {submitState === "error" && <p className="text-sm text-[#D93025]">{submitError}</p>}
           <Button type="submit" disabled={submitState === "loading"} className="h-14 rounded-[20px] bg-[linear-gradient(135deg,#34A853,#2D9B47)] text-base font-semibold text-white shadow-[0_18px_36px_rgba(52,168,83,0.26)] hover:opacity-95">
             {submitState === "loading" ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-            Start 30-Day Free Trial
+            {formMode === "trial" ? "Start 30-Day Free Trial" : "Get my free scorecard"}
           </Button>
         </form>
       )
@@ -759,7 +822,7 @@ export default function ReviewCheckChatbot() {
       return (
         <div className="flex items-center gap-3 rounded-[20px] border border-[#D2E3FC] bg-[linear-gradient(180deg,#FFFFFF_0%,#EEF5FF_100%)] px-4 py-4 text-sm text-[#5F6368] shadow-sm">
           <CheckCircle2 className="h-5 w-5 shrink-0 text-[#34A853]" />
-          Your details have been submitted successfully.
+          {formMode === "trial" ? "We’re preparing your free trial now." : "We’re preparing your free scorecard now."}
         </div>
       )
     }
@@ -768,7 +831,7 @@ export default function ReviewCheckChatbot() {
   })()
 
   return (
-    <ChatShell soundEnabled={soundEnabled} onToggleSound={() => setSoundEnabled((prev) => !prev)} actionArea={actionArea}>
+    <ChatShell stage={stage} soundEnabled={soundEnabled} onToggleSound={() => setSoundEnabled((prev) => !prev)} actionArea={actionArea}>
       {messages.map((message) =>
         message.role === "assistant" ? (
           <AssistantBubble key={message.id} highlight={message.highlight}>
