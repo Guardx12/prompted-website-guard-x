@@ -11,6 +11,7 @@ type Message = {
   role: "assistant" | "user"
   content: React.ReactNode
   highlight?: boolean
+  speechText?: string
 }
 
 type Stage =
@@ -90,9 +91,7 @@ function buildPitchSteps({ standingAnswer, reviewAnswer, customerAnswer }: { sta
     insightLine,
     `${standingLine}
 
-${reviewLine}
-
-And to be clear, GuardX only helps you collect genuine reviews from your real customers — nothing fake, nothing bought, and nothing dodgy.`,
+${reviewLine}`,
     `${recencyLine}
 
 A profile with fresh reviews can often look more trusted than one with an older review total that has barely moved for months.`,
@@ -147,6 +146,30 @@ function playUiTone(kind: "soft" | "complete" | "tap") {
   }
 }
 
+
+
+function getPreferredVoice() {
+  if (typeof window === "undefined" || !("speechSynthesis" in window)) return null
+
+  const voices = window.speechSynthesis.getVoices()
+  if (!voices.length) return null
+
+  const preferredNames = [
+    "Google UK English Female",
+    "Google UK English Male",
+    "Samantha",
+    "Daniel",
+    "Serena",
+  ]
+
+  return (
+    voices.find((voice) => preferredNames.includes(voice.name)) ||
+    voices.find((voice) => voice.lang.toLowerCase().startsWith("en-gb")) ||
+    voices.find((voice) => voice.lang.toLowerCase().startsWith("en")) ||
+    voices[0]
+  )
+}
+
 function TypingIndicator() {
   return (
     <div className="flex items-end gap-3">
@@ -183,7 +206,7 @@ function ReviewStars() {
   )
 }
 
-function AssistantBubble({ children, highlight = false }: { children: React.ReactNode; highlight?: boolean }) {
+function AssistantBubble({ children, highlight = false, speechText, onSpeak, isSpeaking = false }: { children: React.ReactNode; highlight?: boolean; speechText?: string; onSpeak?: (text: string) => void; isSpeaking?: boolean }) {
   return (
     <div className="flex items-end gap-3">
       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#4285F4,#34A853)] shadow-[0_8px_24px_rgba(66,133,244,0.22)]">
@@ -196,7 +219,19 @@ function AssistantBubble({ children, highlight = false }: { children: React.Reac
             : "border-white/70 bg-white/95 text-[#202124] backdrop-blur"
         }`}
       >
-        <ReviewStars />
+        <div className="mb-2 flex items-center justify-between gap-3">
+          <ReviewStars />
+          {speechText && onSpeak ? (
+            <button
+              type="button"
+              onClick={() => onSpeak(speechText)}
+              className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-[12px] font-semibold transition ${isSpeaking ? "border-[#AECBFA] bg-[#E8F0FE] text-[#174EA6]" : "border-[#DADCE0] bg-white/85 text-[#5F6368] hover:border-[#AECBFA] hover:text-[#202124]"}`}
+            >
+              {isSpeaking ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+              {isSpeaking ? "Stop" : "Listen"}
+            </button>
+          ) : null}
+        </div>
         {children}
       </div>
     </div>
@@ -302,9 +337,10 @@ function ChatShell({ children, actionArea, soundEnabled, onToggleSound, stage }:
                 </div>
                 <div>
                   <p className="text-sm font-semibold tracking-tight text-[#202124] sm:text-[15px]">GuardX Assistant</p>
-                  <div className="mt-0.5 flex items-center gap-2 text-xs text-[#5F6368]">
+                  <div className="mt-0.5 flex flex-wrap items-center gap-2 text-xs text-[#5F6368]">
                     <span className="inline-flex h-2 w-2 rounded-full bg-[#34A853] shadow-[0_0_0_4px_rgba(52,168,83,0.12)]" />
-                    Live review check
+                    <span>Live review check</span>
+                    <span className="rounded-full bg-[#E8F0FE] px-2 py-0.5 font-medium text-[#174EA6]">Takes about 60 seconds</span>
                   </div>
                 </div>
               </div>
@@ -357,6 +393,7 @@ export default function ReviewCheckChatbot() {
   const [submitError, setSubmitError] = useState("")
   const [soundEnabled, setSoundEnabled] = useState(true)
   const [questionForm, setQuestionForm] = useState({ businessName: "", email: "", question: "" })
+  const [speakingText, setSpeakingText] = useState<string | null>(null)
   const [setupForm, setSetupForm] = useState({
     businessName: "",
     email: "",
@@ -373,7 +410,18 @@ export default function ReviewCheckChatbot() {
     [standingAnswer, reviewAnswer, customerAnswer],
   )
 
-  const enqueueAssistant = (entries: Array<{ content: React.ReactNode; highlight?: boolean }>, after?: () => void) => {
+  useEffect(() => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return
+    const loadVoices = () => window.speechSynthesis.getVoices()
+    loadVoices()
+    window.speechSynthesis.addEventListener?.("voiceschanged", loadVoices)
+    return () => {
+      window.speechSynthesis.cancel()
+      window.speechSynthesis.removeEventListener?.("voiceschanged", loadVoices)
+    }
+  }, [])
+
+  const enqueueAssistant = (entries: Array<{ content: React.ReactNode; highlight?: boolean; speechText?: string }>, after?: () => void) => {
     setIsTyping(true)
     const localTimeouts: number[] = []
 
@@ -387,6 +435,7 @@ export default function ReviewCheckChatbot() {
               role: "assistant",
               content: entry.content,
               highlight: entry.highlight,
+              speechText: entry.speechText,
             },
           ])
           if (soundEnabled) playUiTone("complete")
@@ -416,6 +465,7 @@ export default function ReviewCheckChatbot() {
             <p className="mt-3 font-semibold text-[#1A73E8]">Do you feel your business stands out as the most trusted option when they do that?</p>
           </>
         ),
+        speechText: "Hi. Let’s quickly check how your business appears to customers on Google. Quick question. When customers find your business on Google, they usually compare a few local businesses. Do you feel your business stands out as the most trusted option when they do that?",
         highlight: true,
       },
     ])
@@ -453,6 +503,10 @@ export default function ReviewCheckChatbot() {
 
   const handleChoose = (stageName: "standing" | "reviews" | "customers", value: string) => {
     if (soundEnabled) playUiTone("tap")
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel()
+      setSpeakingText(null)
+    }
 
     if (stageName === "standing") {
       setStandingAnswer(value)
@@ -466,6 +520,7 @@ export default function ReviewCheckChatbot() {
               <p className="mt-2 text-sm text-[#5F6368]">We’re talking about genuine reviews from real customers here — the kind that build trust properly.</p>
             </>
           ),
+          speechText: "Roughly how many Google reviews do you have at the moment? We’re talking about genuine reviews from real customers here — the kind that build trust properly.",
         },
       ])
       return
@@ -478,9 +533,11 @@ export default function ReviewCheckChatbot() {
       enqueueAssistant([
         {
           content: <p className="text-[#5F6368]">Got it — just checking one more thing…</p>,
+          speechText: "Got it — just checking one more thing.",
         },
         {
           content: <p className="font-semibold text-[#1A73E8]">Roughly how many customers do you serve in a typical month?</p>,
+          speechText: "Roughly how many customers do you serve in a typical month?",
         },
       ])
       return
@@ -497,6 +554,10 @@ export default function ReviewCheckChatbot() {
 
   const nextPitchStep = () => {
     if (soundEnabled) playUiTone("tap")
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel()
+      setSpeakingText(null)
+    }
 
     const currentText = pitchSteps[pitchIndex]
     setMessages((prev) => [
@@ -679,6 +740,29 @@ export default function ReviewCheckChatbot() {
     }
   }
 
+  const handleSpeak = (text: string) => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return
+
+    const synth = window.speechSynthesis
+    if (speakingText === text) {
+      synth.cancel()
+      setSpeakingText(null)
+      return
+    }
+
+    synth.cancel()
+    const utterance = new SpeechSynthesisUtterance(text.replace(/\n\n/g, ". "))
+    const preferredVoice = getPreferredVoice()
+    if (preferredVoice) utterance.voice = preferredVoice
+    utterance.lang = preferredVoice?.lang || "en-GB"
+    utterance.rate = 1
+    utterance.pitch = 1
+    utterance.onend = () => setSpeakingText(null)
+    utterance.onerror = () => setSpeakingText(null)
+    setSpeakingText(text)
+    synth.speak(utterance)
+  }
+
   const actionArea = (() => {
     if (isTyping) {
       return <div className="text-sm font-medium text-[#5F6368]">GuardX assistant is typing…</div>
@@ -834,7 +918,7 @@ export default function ReviewCheckChatbot() {
     <ChatShell stage={stage} soundEnabled={soundEnabled} onToggleSound={() => setSoundEnabled((prev) => !prev)} actionArea={actionArea}>
       {messages.map((message) =>
         message.role === "assistant" ? (
-          <AssistantBubble key={message.id} highlight={message.highlight}>
+          <AssistantBubble key={message.id} highlight={message.highlight} speechText={message.speechText} onSpeak={handleSpeak} isSpeaking={speakingText === message.speechText}>
             {message.content}
           </AssistantBubble>
         ) : (
@@ -843,7 +927,7 @@ export default function ReviewCheckChatbot() {
       )}
 
       {stage === "pitch" ? (
-        <AssistantBubble highlight>
+        <AssistantBubble highlight speechText={pitchSteps[pitchIndex]} onSpeak={handleSpeak} isSpeaking={speakingText === pitchSteps[pitchIndex]}>
           <TypewriterText
             messageKey={`pitch-live-${pitchIndex}`}
             text={pitchSteps[pitchIndex]}
