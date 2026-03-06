@@ -33,29 +33,63 @@ const deliveryOptions = ["Email + SMS", "SMS only", "Email only", "Not sure yet"
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrbypyzv"
 
 function buildPitchSteps({ standingAnswer, reviewAnswer, customerAnswer }: { standingAnswer: string | null; reviewAnswer: string | null; customerAnswer: string | null }) {
-  const opening =
+  const standingLine =
     standingAnswer === "Yes"
-      ? "That is a strong position to be in — the key is keeping it that way. When customers compare businesses on Google, the one with the most recent reviews and active responses often looks the safest option."
+      ? "That is a strong starting point. The next job is protecting it, because nearby competitors can still look more active if they keep collecting recent reviews and replying consistently."
       : standingAnswer === "Not always"
-        ? "That is usually where businesses start losing easy enquiries. When customers compare businesses on Google, the one with the most recent reviews and active responses often looks more trusted and gets the first call."
-        : "That uncertainty matters. When customers compare businesses on Google, the one with the most recent reviews and active responses often looks more trusted and gets the first call."
+        ? "That is usually where easy enquiries start leaking away. When a nearby competitor looks more active and more trusted, they often get the first click or call."
+        : "That uncertainty matters. If a customer is comparing a few local businesses, the one that looks more active and better looked-after often feels like the safer option."
 
-  const reviewsLine =
-    reviewAnswer && reviewAnswer !== "Not sure"
-      ? `If your profile is sitting around ${reviewAnswer} reviews, keeping them recent and well-managed matters just as much as the number itself.`
-      : "It is not just about total review count — recency and active responses make a big difference when someone is deciding who looks most credible."
+  const reviewLine =
+    reviewAnswer === "0–20"
+      ? "At that level, every genuine review can noticeably strengthen how your business appears."
+      : reviewAnswer === "21–50"
+        ? "With around 21–50 reviews, the opportunity is not just to add more — it is to keep them coming in consistently so the profile looks alive."
+        : reviewAnswer === "51–100"
+          ? "With 51–100 reviews, many businesses already have a decent base. The difference usually comes from keeping reviews recent and replies consistent."
+          : reviewAnswer === "100+"
+            ? "A 100+ review base is strong. At that point, recency, momentum and active replies often become the thing customers notice first."
+            : "Many businesses focus on total review count. In reality, customers often notice how recent the reviews are and whether the business is actively replying."
 
-  const customersLine =
-    customerAnswer && customerAnswer !== "Not sure"
-      ? `If you serve around ${customerAnswer} customers in a typical month, even a small lift in how many people choose you can mean valuable extra enquiries.`
-      : "Even a small shift in who looks more active on Google can quietly change who gets the enquiry first."
+  const customerLine =
+    customerAnswer === "1–25"
+      ? "Even with 1–25 customers a month, a steady stream of genuine reviews can quickly change how trusted the profile looks."
+      : customerAnswer === "26–50"
+        ? "With 26–50 customers a month, there is a real opportunity to keep review activity moving instead of letting the profile go stale."
+        : customerAnswer === "51–100"
+          ? "If you serve around 51–100 customers in a month, even a small lift in enquiries from Google can become a meaningful revenue difference over time."
+          : customerAnswer === "100+"
+            ? "At 100+ customers a month, even a modest change in how often people choose you first can translate into serious extra revenue over time."
+            : "Even a small change in who looks more trusted on Google can quietly change who gets the enquiry first."
+
+  const visibilityLine =
+    reviewAnswer === "0–20" || reviewAnswer === "21–50"
+      ? "Google Business Profile local ranking partly uses prominence, and Google says more reviews and positive ratings can help local ranking. That means building the review base matters."
+      : "Google Business Profile local ranking partly uses prominence, and Google says more reviews and positive ratings can help local ranking. Once the base is there, keeping the profile active becomes the extra edge."
+
+  const recencyLine =
+    reviewAnswer === "100+"
+      ? "A lot of owners assume total reviews and star rating are the whole story. They are not. Customers still notice whether the latest feedback is recent and whether the business is replying."
+      : "A lot of owners assume it is only about total reviews or star rating. It is not. Customers also notice whether the latest reviews are recent and whether the profile feels active right now."
 
   return [
-    `${opening}\n\n${reviewsLine}`,
-    `Now picture potential customers comparing you with nearby competitors. ${customersLine}\n\nThat is why inactivity on Google can cost more than most businesses realise.`,
-    `GuardX is a fully managed review system designed to keep your business looking active, trusted and professional.\n\nWe help generate genuine reviews, send branded review requests, reply to reviews for you, and keep your profile looking looked-after.` ,
-    `You can run it by email, SMS, or both. Some businesses use a simple staff form, some send customers in batches, and many just send us their customer details weekly so we handle the rest.`,
-    `You can try everything free for 30 days first.\n\nAfter that, most businesses invest around £25 per week for the fully managed system.`,
+    `${standingLine}
+
+${reviewLine}
+
+And to be clear, GuardX only helps you collect genuine reviews from your real customers — nothing fake, nothing bought, and nothing dodgy.`,
+    `${recencyLine}
+
+A profile with fresh reviews can often look more trusted than one with an older review total that has barely moved for months.`,
+    `${visibilityLine}
+
+Google tends to reward profiles that feel active and well cared for. Put simply: stronger recent review activity and active replies can help your business get seen more often and chosen more often when people search locally.` ,
+    `Now picture customers comparing you with nearby competitors. ${customerLine}
+
+That is why review activity can affect revenue more than most businesses realise.`,
+    `This is where GuardX comes in. We manage the whole process for you — generating genuine reviews, sending branded review requests, replying to reviews, and keeping the profile looking active and professionally managed.`,
+    `You can run it by email, SMS, or both. Some businesses use a simple staff form, some upload customers in batches, and many just send us their customer details weekly so we handle the rest.`,
+    `You can try everything free for 30 days first. After that, most businesses invest around £25 per week for the fully managed system.`,
     `Would you like to see the review request in action, ask a question, or start your 30-day free trial?`,
   ]
 }
@@ -114,6 +148,27 @@ function TypingIndicator() {
   )
 }
 
+
+function ReviewStars() {
+  return (
+    <div className="mb-2.5 flex items-center gap-1.5">
+      {Array.from({ length: 5 }).map((_, index) => (
+        <span
+          key={index}
+          className="inline-block text-[15px] leading-none text-[#FBBC04] drop-shadow-[0_1px_3px_rgba(251,188,4,0.45)] animate-[pulse_2.8s_ease-in-out_infinite]"
+          style={{ animationDelay: `${index * 120}ms` }}
+          aria-hidden="true"
+        >
+          ★
+        </span>
+      ))}
+      <span className="ml-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#C58B00]">
+        Genuine customer reviews
+      </span>
+    </div>
+  )
+}
+
 function AssistantBubble({ children, highlight = false }: { children: React.ReactNode; highlight?: boolean }) {
   return (
     <div className="flex items-end gap-3">
@@ -127,6 +182,7 @@ function AssistantBubble({ children, highlight = false }: { children: React.Reac
             : "border-white/70 bg-white/95 text-[#202124] backdrop-blur"
         }`}
       >
+        <ReviewStars />
         {children}
       </div>
     </div>
@@ -366,7 +422,12 @@ export default function ReviewCheckChatbot() {
       setStage("reviews")
       enqueueAssistant([
         {
-          content: <p className="font-semibold text-[#1A73E8]">Roughly how many Google reviews do you have at the moment?</p>,
+          content: (
+            <>
+              <p className="font-semibold text-[#1A73E8]">Roughly how many Google reviews do you have at the moment?</p>
+              <p className="mt-2 text-sm text-[#5F6368]">We’re talking about genuine reviews from real customers here — the kind that build trust properly.</p>
+            </>
+          ),
         },
       ])
       return
