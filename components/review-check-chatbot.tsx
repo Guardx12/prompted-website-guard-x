@@ -156,14 +156,23 @@ function getPreferredVoice() {
 
   const preferredNames = [
     "Google UK English Female",
-    "Google UK English Male",
+    "Microsoft Sonia Online (Natural) - English (United Kingdom)",
+    "Microsoft Libby Online (Natural) - English (United Kingdom)",
     "Samantha",
-    "Daniel",
     "Serena",
+    "Karen",
+    "Moira",
+    "Tessa",
+    "Veena",
+    "Fiona",
   ]
+
+  const femaleHints = ["female", "woman", "samantha", "serena", "karen", "moira", "tessa", "veena", "fiona", "libby", "sonia"]
 
   return (
     voices.find((voice) => preferredNames.includes(voice.name)) ||
+    voices.find((voice) => voice.lang.toLowerCase().startsWith("en-gb") && femaleHints.some((hint) => voice.name.toLowerCase().includes(hint))) ||
+    voices.find((voice) => voice.lang.toLowerCase().startsWith("en") && femaleHints.some((hint) => voice.name.toLowerCase().includes(hint))) ||
     voices.find((voice) => voice.lang.toLowerCase().startsWith("en-gb")) ||
     voices.find((voice) => voice.lang.toLowerCase().startsWith("en")) ||
     voices[0]
@@ -201,7 +210,30 @@ function ReviewStars() {
           ★
         </span>
       ))}
-      
+    </div>
+  )
+}
+
+function ReviewCard({ title = "Recent customer feedback", text = "Brilliant service — quick, professional and very easy to deal with.", reviewer = "Local customer" }: { title?: string; text?: string; reviewer?: string }) {
+  return (
+    <div className="mt-4 overflow-hidden rounded-[22px] border border-[#D2E3FC] bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FBFF_100%)] shadow-[0_18px_38px_rgba(60,64,67,0.10)]">
+      <div className="border-b border-[#E8F0FE] px-4 py-3">
+        <div className="flex items-center justify-between gap-3">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#5F6368]">{title}</p>
+            <p className="mt-1 text-sm font-semibold text-[#202124]">How an active profile feels to customers</p>
+          </div>
+          <div className="flex items-center gap-1 text-[15px] text-[#FBBC04] drop-shadow-[0_1px_3px_rgba(251,188,4,0.35)]">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <span key={index} className="inline-block animate-[pulse_2.4s_ease-in-out_infinite]" style={{ animationDelay: `${index * 120}ms` }}>★</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="px-4 py-4">
+        <p className="text-[15px] leading-7 text-[#202124]">“{text}”</p>
+        <p className="mt-3 text-sm font-medium text-[#5F6368]">— {reviewer}</p>
+      </div>
     </div>
   )
 }
@@ -610,6 +642,11 @@ export default function ReviewCheckChatbot() {
                 />
               </div>
             </div>
+            <ReviewCard
+              title="Example review feel"
+              text="Great communication, very professional and easy to deal with from start to finish."
+              reviewer="Genuine customer"
+            />
             <p className="mt-4">If it looks right for your business, you can start the 30-day free trial below.</p>
           </>
         ),
@@ -755,8 +792,8 @@ export default function ReviewCheckChatbot() {
     const preferredVoice = getPreferredVoice()
     if (preferredVoice) utterance.voice = preferredVoice
     utterance.lang = preferredVoice?.lang || "en-GB"
-    utterance.rate = 1
-    utterance.pitch = 1
+    utterance.rate = 0.98
+    utterance.pitch = 1.12
     utterance.onend = () => setSpeakingText(null)
     utterance.onerror = () => setSpeakingText(null)
     setSpeakingText(text)
