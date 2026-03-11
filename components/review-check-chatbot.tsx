@@ -792,7 +792,7 @@ export default function ReviewCheckChatbot() {
     const preferredVoice = getPreferredVoice()
     if (preferredVoice) utterance.voice = preferredVoice
     utterance.lang = preferredVoice?.lang || "en-GB"
-    utterance.rate = 0.98
+    utterance.rate = 1.1
     utterance.pitch = 1.12
     utterance.onend = () => setSpeakingText(null)
     utterance.onerror = () => setSpeakingText(null)
