@@ -49,7 +49,7 @@ const openingMessage: ChatMessage = {
   id: "george-opening",
   role: "assistant",
   content:
-    "Hi — I’m George. I’m the digital receptionist and sales assistant built into GuardX websites. My job is to answer questions, explain how things work, deal with the common customer conversations businesses usually have, and help turn visitors into customers. I’m given the knowledge I need about the business I’m working for — services, pricing, how things work, the kinds of jobs they take on, and the questions customers normally ask — so I can handle those repetitive explanations properly instead of the business owner having to keep doing them all day. Ask me anything.",
+    "Hi — I’m George. I’m the friendly digital receptionist and sales assistant built into GuardX websites. I answer questions, explain how things work, and help guide visitors toward becoming customers — without sounding stiff or pushy. I can be trained on the business I’m working for, so I can talk through services, pricing, and the usual questions customers ask. Ask me anything.",
 }
 
 function buildTranscript(messages: ChatMessage[]) {
@@ -77,10 +77,19 @@ export function GeorgeAssistant() {
   const mediaStreamRef = useRef<MediaStream | null>(null)
   const audioChunksRef = useRef<Blob[]>([])
   const audioRef = useRef<HTMLAudioElement | null>(null)
-  const endRef = useRef<HTMLDivElement | null>(null)
+  const chatScrollRef = useRef<HTMLDivElement | null>(null)
+  const hasMountedRef = useRef(false)
 
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: "smooth" })
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true
+      return
+    }
+
+    const container = chatScrollRef.current
+    if (container) {
+      container.scrollTo({ top: container.scrollHeight, behavior: "smooth" })
+    }
   }, [messages, isTyping, leadIntent])
 
   useEffect(() => {
@@ -347,7 +356,7 @@ export function GeorgeAssistant() {
   return (
     <section className="mx-auto flex min-h-[calc(100vh-88px)] w-full max-w-6xl flex-col px-4 pb-10 pt-8 sm:px-6 lg:px-8 lg:pt-10">
       <div className="mx-auto mb-6 max-w-4xl text-center">
-        <h1 className="text-4xl font-semibold tracking-tight text-[#202124] sm:text-5xl lg:text-6xl">
+        <h1 className="guardx-hero-title text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight animate-[pulse_6s_ease-in-out_infinite]">
           Turn your website into a 24/7 salesperson.
         </h1>
         <p className="mt-4 text-xl font-medium text-[#202124] sm:text-2xl">Meet George.</p>
@@ -386,7 +395,7 @@ export function GeorgeAssistant() {
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto bg-[#F8FAFD] px-4 py-6 sm:px-6 sm:py-8">
+        <div ref={chatScrollRef} className="flex-1 overflow-y-auto bg-[#F8FAFD] px-4 py-6 sm:px-6 sm:py-8">
           <div className="mx-auto flex w-full max-w-4xl flex-col gap-5">
             {messages.map((message) => (
               <div key={message.id} className={`flex ${message.role === "assistant" ? "justify-start" : "justify-end"}`}>
@@ -461,7 +470,6 @@ export function GeorgeAssistant() {
               </div>
             )}
 
-            <div ref={endRef} />
           </div>
         </div>
 
