@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useRef, useState } from "react"
-import { Loader2, Mic, MicOff, Send, Volume2, VolumeX } from "lucide-react"
+import { Loader2, Mic, Send, Volume2, VolumeX } from "lucide-react"
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrbypyzv"
 
@@ -22,11 +22,33 @@ type LeadIntent = "none" | "offer"
 
 declare global {
   interface Window {
-    webkitAudioContext?: typeof AudioContext
+    webkitSpeechRecognition?: new () => SpeechRecognitionInstance
+    SpeechRecognition?: new () => SpeechRecognitionInstance
   }
-  interface MediaRecorderOptions {
-    mimeType?: string
-  }
+}
+
+type SpeechRecognitionInstance = {
+  lang: string
+  interimResults: boolean
+  continuous: boolean
+  maxAlternatives?: number
+  onstart: (() => void) | null
+  onresult: ((event: SpeechRecognitionEventLike) => void) | null
+  onerror: ((event: { error?: string }) => void) | null
+  onend: (() => void) | null
+  start: () => void
+  stop: () => void
+  abort: () => void
+}
+
+type SpeechRecognitionEventLike = {
+  resultIndex: number
+  results: ArrayLike<{
+    isFinal: boolean
+    0: {
+      transcript: string
+    }
+  }>
 }
 
 const FORWARD_INTENT_PHRASES = [
@@ -68,19 +90,41 @@ export function GeorgeAssistant() {
   const [input, setInput] = useState("")
   const [isTyping, setIsTyping] = useState(false)
   const [isRecording, setIsRecording] = useState(false)
-  const [isTranscribing, setIsTranscribing] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)
   const [voiceEnabled, setVoiceEnabled] = useState(true)
+  const [voiceConversationMode, setVoiceConversationMode] = useState(false)
+  const [speechRecognitionSupported, setSpeechRecognitionSupported] = useState(false)
+  const [listeningTranscript, setListeningTranscript] = useState("")
   const [leadState, setLeadState] = useState<LeadState>({ businessName: "", email: "", phone: "" })
   const [submitState, setSubmitState] = useState<SubmitState>("idle")
   const [leadIntent, setLeadIntent] = useState<LeadIntent>("none")
-  const mediaRecorderRef = useRef<MediaRecorder | null>(null)
-  const mediaStreamRef = useRef<MediaStream | null>(null)
-  const audioChunksRef = useRef<Blob[]>([])
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const currentAudioUrlRef = useRef<string | null>(null)
   const chatScrollRef = useRef<HTMLDivElement | null>(null)
   const hasMountedRef = useRef(false)
+  const recognitionRef = useRef<SpeechRecognitionInstance | null>(null)
+  const voiceConversationModeRef = useRef(false)
+  const isSpeakingRef = useRef(false)
+  const restartTimeoutRef = useRef<number | null>(null)
+  const listeningTranscriptRef = useRef("")
+
+  useEffect(() => {
+    setSpeechRecognitionSupported(
+      typeof window !== "undefined" && Boolean(window.SpeechRecognition || window.webkitSpeechRecognition),
+    )
+  }, [])
+
+  useEffect(() => {
+    voiceConversationModeRef.current = voiceConversationMode
+  }, [voiceConversationMode])
+
+  useEffect(() => {
+    isSpeakingRef.current = isSpeaking
+  }, [isSpeaking])
+
+  useEffect(() => {
+    listeningTranscriptRef.current = listeningTranscript
+  }, [listeningTranscript])
 
   useEffect(() => {
     if (!hasMountedRef.current) {
@@ -92,12 +136,16 @@ export function GeorgeAssistant() {
     if (container) {
       container.scrollTo({ top: container.scrollHeight, behavior: "smooth" })
     }
-  }, [messages, isTyping, leadIntent])
+  }, [messages, isTyping, leadIntent, listeningTranscript])
 
   useEffect(() => {
     return () => {
-      mediaRecorderRef.current?.stop()
-      mediaStreamRef.current?.getTracks().forEach((track) => track.stop())
+      if (recognitionRef.current) {
+        recognitionRef.current.abort()
+      }
+      if (restartTimeoutRef.current) {
+        window.clearTimeout(restartTimeoutRef.current)
+      }
       if (audioRef.current) {
         audioRef.current.pause()
         audioRef.current.src = ""
@@ -110,9 +158,37 @@ export function GeorgeAssistant() {
 
   const transcript = useMemo(() => buildTranscript(messages), [messages])
 
+  const stopAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current.currentTime = 0
+    }
+    setIsSpeaking(false)
+    isSpeakingRef.current = false
+  }
+
+  const stopVoiceConversation = () => {
+    voiceConversationModeRef.current = false
+    setVoiceConversationMode(false)
+    setIsRecording(false)
+    setListeningTranscript("")
+    if (restartTimeoutRef.current) {
+      window.clearTimeout(restartTimeoutRef.current)
+      restartTimeoutRef.current = null
+    }
+    if (recognitionRef.current) {
+      recognitionRef.current.onend = null
+      recognitionRef.current.abort()
+      recognitionRef.current = null
+    }
+    stopAudio()
+  }
+
   const speakText = async (text: string) => {
     try {
       setIsSpeaking(true)
+      isSpeakingRef.current = true
+
       const response = await fetch("/api/george/speak", {
         method: "POST",
         headers: {
@@ -138,23 +214,131 @@ export function GeorgeAssistant() {
       audio.pause()
       audio.src = url
       audio.currentTime = 0
-      audio.onended = () => {
-        setIsSpeaking(false)
-      }
-      audio.onerror = () => {
-        setIsSpeaking(false)
-      }
 
-      await audio.play()
+      await new Promise<void>((resolve, reject) => {
+        audio.onended = () => {
+          setIsSpeaking(false)
+          isSpeakingRef.current = false
+          resolve()
+        }
+        audio.onerror = () => {
+          setIsSpeaking(false)
+          isSpeakingRef.current = false
+          reject(new Error("Audio playback failed"))
+        }
+        audio
+          .play()
+          .then(() => undefined)
+          .catch((error) => {
+            setIsSpeaking(false)
+            isSpeakingRef.current = false
+            reject(error)
+          })
+      })
     } catch (error) {
       console.error("George voice playback error", error)
       setIsSpeaking(false)
+      isSpeakingRef.current = false
     }
+  }
+
+  const startListening = async () => {
+    if (!speechRecognitionSupported || typeof window === "undefined") {
+      const fallbackReply = "Voice conversation needs a browser that supports live speech recognition, such as Chrome on desktop or Android."
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          role: "assistant",
+          content: fallbackReply,
+        },
+      ])
+      if (voiceEnabled) {
+        void speakText(fallbackReply)
+      }
+      setVoiceConversationMode(false)
+      return
+    }
+
+    if (recognitionRef.current || isRecording) return
+
+    const RecognitionCtor = window.SpeechRecognition || window.webkitSpeechRecognition
+    if (!RecognitionCtor) return
+
+    const recognition = new RecognitionCtor()
+    recognition.lang = "en-GB"
+    recognition.interimResults = true
+    recognition.continuous = false
+    recognition.maxAlternatives = 1
+
+    let finalTranscript = ""
+
+    recognition.onstart = () => {
+      setIsRecording(true)
+      setListeningTranscript("")
+    }
+
+    recognition.onresult = (event) => {
+      let interim = ""
+      for (let i = event.resultIndex; i < event.results.length; i += 1) {
+        const result = event.results[i]
+        const transcriptPart = result[0]?.transcript ?? ""
+        if (result.isFinal) {
+          finalTranscript += `${transcriptPart} `
+        } else {
+          interim += transcriptPart
+        }
+      }
+      const combined = `${finalTranscript}${interim}`.trim()
+      setListeningTranscript(combined)
+    }
+
+    recognition.onerror = (event) => {
+      console.error("George live voice error", event)
+      recognitionRef.current = null
+      setIsRecording(false)
+      if (event.error !== "aborted" && voiceConversationModeRef.current) {
+        const fallbackReply = "I had a little trouble hearing that. Give me a second and try again."
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: crypto.randomUUID(),
+            role: "assistant",
+            content: fallbackReply,
+          },
+        ])
+        if (voiceEnabled) {
+          void speakText(fallbackReply)
+        }
+      }
+    }
+
+    recognition.onend = async () => {
+      recognitionRef.current = null
+      setIsRecording(false)
+      const spoken = finalTranscript.trim() || listeningTranscriptRef.current.trim()
+      setListeningTranscript("")
+
+      if (!voiceConversationModeRef.current) return
+
+      if (spoken) {
+        await sendMessage(spoken)
+      } else if (voiceConversationModeRef.current && !isSpeakingRef.current) {
+        restartTimeoutRef.current = window.setTimeout(() => {
+          if (voiceConversationModeRef.current && !recognitionRef.current) {
+            void startListening()
+          }
+        }, 350)
+      }
+    }
+
+    recognitionRef.current = recognition
+    recognition.start()
   }
 
   const sendMessage = async (raw: string) => {
     const value = raw.trim()
-    if (!value || isTyping || isTranscribing) return
+    if (!value || isTyping) return
 
     const userMessage: ChatMessage = {
       id: crypto.randomUUID(),
@@ -166,6 +350,7 @@ export function GeorgeAssistant() {
     setMessages(nextMessages)
     setInput("")
     setIsTyping(true)
+    setListeningTranscript("")
 
     try {
       const history = nextMessages.slice(0, -1).map((message) => ({
@@ -202,7 +387,18 @@ export function GeorgeAssistant() {
       setMessages((prev) => [...prev, assistantMessage])
 
       if (voiceEnabled) {
-        void speakText(reply)
+        if (voiceConversationModeRef.current) {
+          await speakText(reply)
+          if (voiceConversationModeRef.current) {
+            restartTimeoutRef.current = window.setTimeout(() => {
+              if (voiceConversationModeRef.current && !recognitionRef.current) {
+                void startListening()
+              }
+            }, 250)
+          }
+        } else {
+          void speakText(reply)
+        }
       }
 
       if (shouldOfferLeadCapture(value)) {
@@ -220,117 +416,32 @@ export function GeorgeAssistant() {
         },
       ])
       if (voiceEnabled) {
-        void speakText(fallbackReply)
+        if (voiceConversationModeRef.current) {
+          await speakText(fallbackReply)
+          if (voiceConversationModeRef.current) {
+            restartTimeoutRef.current = window.setTimeout(() => {
+              if (voiceConversationModeRef.current && !recognitionRef.current) {
+                void startListening()
+              }
+            }, 250)
+          }
+        } else {
+          void speakText(fallbackReply)
+        }
       }
     } finally {
       setIsTyping(false)
     }
   }
 
-  const transcribeAudio = async (blob: Blob) => {
-    setIsTranscribing(true)
-    try {
-      const formData = new FormData()
-      const extension = blob.type.includes("webm") ? "webm" : blob.type.includes("ogg") ? "ogg" : "wav"
-      formData.append("file", new File([blob], `george-audio.${extension}`, { type: blob.type || "audio/webm" }))
-
-      const response = await fetch("/api/george/transcribe", {
-        method: "POST",
-        body: formData,
-      })
-
-      if (!response.ok) {
-        throw new Error("Transcription failed")
-      }
-
-      const data = await response.json()
-      const text = typeof data.text === "string" ? data.text.trim() : ""
-
-      if (text) {
-        await sendMessage(text)
-      }
-    } catch (error) {
-      console.error("George transcription error", error)
-      const fallbackReply = "I couldn’t hear that properly. Give it another go and I’ll listen again."
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: crypto.randomUUID(),
-          role: "assistant",
-          content: fallbackReply,
-        },
-      ])
-      if (voiceEnabled) {
-        void speakText(fallbackReply)
-      }
-    } finally {
-      setIsTranscribing(false)
-    }
-  }
-
-  const startRecording = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-      mediaStreamRef.current = stream
-
-      const supportedMimeType = [
-        "audio/webm;codecs=opus",
-        "audio/webm",
-        "audio/ogg;codecs=opus",
-      ].find((mimeType) => typeof MediaRecorder !== "undefined" && MediaRecorder.isTypeSupported(mimeType))
-
-      const recorder = new MediaRecorder(stream, supportedMimeType ? { mimeType: supportedMimeType } : undefined)
-      audioChunksRef.current = []
-
-      recorder.ondataavailable = (event) => {
-        if (event.data.size > 0) {
-          audioChunksRef.current.push(event.data)
-        }
-      }
-
-      recorder.onstop = async () => {
-        const blob = new Blob(audioChunksRef.current, { type: recorder.mimeType || "audio/webm" })
-        mediaStreamRef.current?.getTracks().forEach((track) => track.stop())
-        mediaStreamRef.current = null
-        mediaRecorderRef.current = null
-        if (blob.size > 0) {
-          await transcribeAudio(blob)
-        }
-      }
-
-      recorder.start()
-      mediaRecorderRef.current = recorder
-      setIsRecording(true)
-    } catch (error) {
-      console.error("George microphone error", error)
-      const fallbackReply = "I couldn’t access the microphone just then. If you allow microphone access, I can listen and reply by voice."
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: crypto.randomUUID(),
-          role: "assistant",
-          content: fallbackReply,
-        },
-      ])
-      if (voiceEnabled) {
-        void speakText(fallbackReply)
-      }
-    }
-  }
-
-  const stopRecording = () => {
-    if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
-      mediaRecorderRef.current.stop()
-    }
-    setIsRecording(false)
-  }
-
-  const toggleRecording = async () => {
-    if (isRecording) {
-      stopRecording()
+  const toggleVoiceConversation = async () => {
+    if (voiceConversationModeRef.current) {
+      stopVoiceConversation()
       return
     }
-    await startRecording()
+    setVoiceEnabled(true)
+    setVoiceConversationMode(true)
+    await startListening()
   }
 
   const handleLeadSubmit = async (event: React.FormEvent) => {
@@ -379,7 +490,7 @@ export function GeorgeAssistant() {
   return (
     <section className="mx-auto flex min-h-[calc(100vh-88px)] w-full max-w-6xl flex-col px-4 pb-10 pt-8 sm:px-6 lg:px-8 lg:pt-10">
       <div className="mx-auto mb-6 max-w-4xl text-center">
-        <h1 className="guardx-hero-title text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight animate-[pulse_6s_ease-in-out_infinite]">
+        <h1 className="guardx-hero-title text-4xl font-extrabold tracking-tight animate-[pulse_6s_ease-in-out_infinite] sm:text-5xl lg:text-6xl">
           Turn your website into a 24/7 salesperson.
         </h1>
         <p className="mt-4 text-xl font-medium text-[#202124] sm:text-2xl">Meet George.</p>
@@ -403,9 +514,17 @@ export function GeorgeAssistant() {
             <p className="text-sm text-[#5F6368]">Digital receptionist and sales assistant by GuardX</p>
           </div>
           <div className="flex items-center gap-2 text-xs font-medium text-[#5F6368] sm:text-sm">
-            <span className={`inline-flex items-center gap-2 rounded-full px-3 py-2 ${isRecording ? "bg-[#FDECEA] text-[#B3261E]" : voiceEnabled ? "bg-[#EAF6EE] text-[#1E8E3E]" : "bg-[#F1F3F4] text-[#5F6368]"}`}>
-              {isRecording ? <MicOff className="h-4 w-4" /> : voiceEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-              <span>{isRecording ? "Listening" : voiceEnabled ? "Voice conversation on" : "Voice off"}</span>
+            <span
+              className={`inline-flex items-center gap-2 rounded-full px-3 py-2 ${
+                voiceConversationMode
+                  ? "bg-[#E8F0FE] text-[#1A73E8]"
+                  : voiceEnabled
+                    ? "bg-[#EAF6EE] text-[#1E8E3E]"
+                    : "bg-[#F1F3F4] text-[#5F6368]"
+              }`}
+            >
+              {voiceConversationMode ? <Mic className="h-4 w-4" /> : voiceEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+              <span>{voiceConversationMode ? (isRecording ? "George is listening" : isSpeaking ? "George is speaking" : "Voice chat active") : voiceEnabled ? "Voice replies on" : "Voice off"}</span>
             </span>
           </div>
         </div>
@@ -434,10 +553,10 @@ export function GeorgeAssistant() {
               </div>
             )}
 
-            {isTranscribing && (
-              <div className="flex justify-start">
-                <div className="inline-flex items-center gap-3 rounded-[24px] rounded-bl-md border border-[#E5E7EB] bg-white px-5 py-4 text-[#5F6368] shadow-sm">
-                  <Loader2 className="h-4 w-4 animate-spin" /> George is listening…
+            {voiceConversationMode && isRecording && (
+              <div className="flex justify-end">
+                <div className="max-w-[92%] rounded-[24px] rounded-br-md bg-[#E8F0FE] px-5 py-4 text-[15px] leading-7 text-[#174EA6] shadow-sm sm:max-w-[86%] sm:text-[16px]">
+                  {listeningTranscript || "Listening…"}
                 </div>
               </div>
             )}
@@ -484,7 +603,6 @@ export function GeorgeAssistant() {
                 </div>
               </div>
             )}
-
           </div>
         </div>
 
@@ -498,18 +616,15 @@ export function GeorgeAssistant() {
           >
             <button
               type="button"
-              onClick={() => {
-                setVoiceEnabled(true)
-                void toggleRecording()
-              }}
+              onClick={() => void toggleVoiceConversation()}
               className={`inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-white shadow-[0_10px_25px_rgba(26,115,232,0.28)] transition disabled:opacity-60 ${
-                isRecording ? "bg-[#D93025] hover:bg-[#b3261e]" : "bg-[#34A853] hover:bg-[#2b8a46]"
+                voiceConversationMode ? "bg-[#D93025] hover:bg-[#b3261e]" : "bg-[#34A853] hover:bg-[#2b8a46]"
               }`}
-              disabled={isTyping || isTranscribing}
-              aria-label={isRecording ? "Stop recording" : "Start voice input"}
-              title={isRecording ? "Stop recording" : "Talk to George"}
+              disabled={isTyping}
+              aria-label={voiceConversationMode ? "Stop voice conversation" : "Start voice conversation"}
+              title={voiceConversationMode ? "Stop voice conversation" : "Talk to George"}
             >
-              {isRecording ? <MicOff className="h-5 w-5" /> : <Mic className="h-5 w-5" />}
+              <Mic className="h-5 w-5" />
             </button>
 
             <div className="flex-1 rounded-[28px] border border-[#DADCE0] bg-[#F8FAFD] px-4 py-3 shadow-sm focus-within:border-[#AECBFA]">
@@ -517,7 +632,7 @@ export function GeorgeAssistant() {
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
                 rows={1}
-                placeholder={isRecording ? "Listening… tap stop when you're done" : "Message George… or tap the microphone to talk"}
+                placeholder={voiceConversationMode ? "Voice conversation is live — you can still type if you want" : "Message George… or tap the microphone once to start talking"}
                 className="w-full resize-none bg-transparent text-[15px] leading-6 text-[#202124] outline-none placeholder:text-[#80868B]"
               />
             </div>
@@ -527,21 +642,29 @@ export function GeorgeAssistant() {
               className={`inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition disabled:opacity-60 ${voiceEnabled ? "border-[#CDE7D4] bg-[#EAF6EE] text-[#1E8E3E] hover:bg-[#dff0e5]" : "border-[#DADCE0] bg-white text-[#5F6368] hover:bg-[#F1F3F4]"}`}
               aria-label={voiceEnabled ? "Turn George voice off" : "Turn George voice on"}
               title={voiceEnabled ? "Voice replies on" : "Voice replies off"}
-              disabled={isRecording || isTranscribing}
+              disabled={isRecording}
             >
               {voiceEnabled ? <Volume2 className="h-5 w-5" /> : <VolumeX className="h-5 w-5" />}
             </button>
             <button
               type="submit"
               className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#1A73E8] text-white shadow-[0_10px_25px_rgba(26,115,232,0.28)] transition hover:bg-[#1558B0] disabled:opacity-60"
-              disabled={!input.trim() || isTyping || isTranscribing || isRecording}
+              disabled={!input.trim() || isTyping || isRecording}
               aria-label="Send"
             >
               <Send className="h-5 w-5" />
             </button>
           </form>
           <div className="mx-auto mt-3 flex w-full max-w-4xl items-center justify-between px-1 text-xs text-[#5F6368] sm:text-sm">
-            <p>{isRecording ? "George is listening now — tap stop when you’ve finished speaking." : "Tap the microphone once to start a voice conversation with George."}</p>
+            <p>
+              {voiceConversationMode
+                ? isRecording
+                  ? "George is listening now — just talk naturally and he’ll answer on his own."
+                  : isSpeaking
+                    ? "George is talking back now."
+                    : "Voice conversation is live — George will listen again after he replies."
+                : "Tap the microphone once to start a proper voice conversation with George."}
+            </p>
             <button
               type="button"
               onClick={() => {
