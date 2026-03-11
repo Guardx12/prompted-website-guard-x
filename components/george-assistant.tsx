@@ -55,9 +55,7 @@ const openingMessage: ChatMessage = {
 function buildTranscript(messages: ChatMessage[]) {
   return messages
     .map((message) => `${message.role === "assistant" ? "George" : "Visitor"}: ${message.content}`)
-    .join("
-
-")
+    .join("\n\n")
 }
 
 function shouldOfferLeadCapture(text: string) {
