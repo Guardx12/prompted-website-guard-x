@@ -64,6 +64,11 @@ function shouldOfferLeadCapture(text: string) {
 }
 
 export function GeorgeAssistant() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior })
+    }
+  }, [])
   const [messages, setMessages] = useState<ChatMessage[]>([openingMessage])
   const [input, setInput] = useState("")
   const [isTyping, setIsTyping] = useState(false)
@@ -347,7 +352,7 @@ export function GeorgeAssistant() {
   return (
     <section className="mx-auto flex min-h-[calc(100vh-88px)] w-full max-w-6xl flex-col px-4 pb-10 pt-8 sm:px-6 lg:px-8 lg:pt-10">
       <div className="mx-auto mb-6 max-w-4xl text-center">
-        <h1 className="text-4xl font-semibold tracking-tight text-[#202124] sm:text-5xl lg:text-6xl">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-[#2563eb] via-[#7c3aed] to-[#22c55e] bg-clip-text text-transparent animate-[pulse_6s_ease-in-out_infinite]">
           Turn your website into a 24/7 salesperson.
         </h1>
         <p className="mt-4 text-xl font-medium text-[#202124] sm:text-2xl">Meet George.</p>
