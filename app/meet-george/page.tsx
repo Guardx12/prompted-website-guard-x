@@ -4,7 +4,7 @@ import { useLayoutEffect } from "react"
 import { Footer } from "@/components/footer"
 import { GeorgeAssistant } from "@/components/george-assistant"
 import { Navigation } from "@/components/navigation"
-import VoiceGeorge from "@/components/VoiceGeorge"
+import VoiceGeorge from "@/components/voicegeorge"
 
 export default function MeetGeorgePage() {
   useLayoutEffect(() => {
