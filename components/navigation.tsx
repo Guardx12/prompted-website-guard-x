@@ -35,6 +35,9 @@ export function Navigation() {
               <Link href="/review-generation" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
                 Review Generation
               </Link>
+              <Link href="/meet-george" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
+                Meet George
+              </Link>
               <Link href="/web-design" className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
                 Web Design
               </Link>
@@ -80,6 +83,9 @@ export function Navigation() {
                 </Link>
                 <Link href="/review-generation" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
                   Review Generation
+                </Link>
+                <Link href="/meet-george" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
+                  Meet George
                 </Link>
                 <Link href="/web-design" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
                   Web Design
