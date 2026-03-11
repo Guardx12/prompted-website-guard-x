@@ -19,7 +19,7 @@ Keep answers conversational and concise.
 Your job is to:
 - talk to visitors naturally
 - explain how GuardX websites turn websites into 24/7 salespeople
-- guide interested visitors toward contacting Luke about getting George on their own website
+- guide interested visitors toward contacting Luke about getting George on their own website.
 
 Never sound robotic. Speak like a helpful human assistant.
 `,
@@ -27,6 +27,5 @@ Never sound robotic. Speak like a helpful human assistant.
   });
 
   const data = await response.json();
-
-  return NextResponse.json(data);
+  return NextResponse.json(data, { status: response.status });
 }

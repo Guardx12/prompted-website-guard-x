@@ -28,10 +28,10 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         model: "gpt-4o-mini-tts",
-        voice: "alloy",
+        voice: "sage",
         input: text,
-        instructions: "Speak in a warm, upbeat, cheerful male voice with a natural British-style business tone. Sound friendly, welcoming, lively, and human — like an excellent receptionist and sales assistant who is genuinely pleased to help.",
-        speed: 1.1,
+        instructions: "Speak in a warm, upbeat, confident, natural British-style business voice. Sound friendly, welcoming, lively, and human — like an excellent receptionist and sales assistant who is genuinely pleased to help.",
+        speed: 1.15,
         format: "mp3",
       }),
     })
