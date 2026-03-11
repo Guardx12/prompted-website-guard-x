@@ -1,11 +1,6 @@
-import OpenAI from "openai"
 import { NextResponse } from "next/server"
 
 export const runtime = "nodejs"
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
 
 type ChatMessage = {
   role: "assistant" | "user"
@@ -54,6 +49,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Message is required." }, { status: 400 })
     }
 
+    const apiKey = process.env.OPENAI_API_KEY
+    if (!apiKey) {
+      return NextResponse.json({ error: "Missing OpenAI API key." }, { status: 500 })
+    }
+
     const messages: Array<{ role: "system" | "assistant" | "user"; content: string }> = [
       { role: "system", content: georgeSystemPrompt },
       ...history
@@ -63,13 +63,31 @@ export async function POST(request: Request) {
       { role: "user", content: message },
     ]
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      temperature: 0.6,
-      messages,
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: "gpt-4o-mini",
+        temperature: 0.6,
+        messages,
+      }),
     })
 
-    const reply = completion.choices[0]?.message?.content?.trim() ||
+    const data = await response.json()
+
+    if (!response.ok) {
+      console.error("George chat API error", data)
+      return NextResponse.json(
+        { error: data?.error?.message || "George couldn’t reply properly just now. Please try again in a moment." },
+        { status: response.status },
+      )
+    }
+
+    const reply =
+      data?.choices?.[0]?.message?.content?.trim() ||
       "That’s a good question. I’m George, the digital receptionist and sales assistant built into GuardX websites, and my job is to answer questions clearly and help visitors understand how a website like this can turn more visitors into real enquiries."
 
     return NextResponse.json({ reply })

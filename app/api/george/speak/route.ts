@@ -1,8 +1,4 @@
-import OpenAI from "openai"
-
 export const runtime = "nodejs"
-
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 
 export async function POST(request: Request) {
   try {
@@ -16,15 +12,39 @@ export async function POST(request: Request) {
       })
     }
 
-    const speech = await openai.audio.speech.create({
-      model: "gpt-4o-mini-tts",
-      voice: "onyx",
-      input: text,
-      instructions: "Speak in a calm, confident, natural male voice. Sound helpful, professional, and human.",
-      format: "mp3",
+    const apiKey = process.env.OPENAI_API_KEY
+    if (!apiKey) {
+      return new Response(JSON.stringify({ error: "Missing OpenAI API key." }), {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      })
+    }
+
+    const response = await fetch("https://api.openai.com/v1/audio/speech", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: "gpt-4o-mini-tts",
+        voice: "onyx",
+        input: text,
+        instructions: "Speak in a calm, confident, natural male voice. Sound helpful, professional, and human.",
+        format: "mp3",
+      }),
     })
 
-    const audioBuffer = Buffer.from(await speech.arrayBuffer())
+    if (!response.ok) {
+      const error = await response.text()
+      console.error("George speech API error", error)
+      return new Response(JSON.stringify({ error: "George couldn’t speak just now." }), {
+        status: response.status,
+        headers: { "Content-Type": "application/json" },
+      })
+    }
+
+    const audioBuffer = Buffer.from(await response.arrayBuffer())
 
     return new Response(audioBuffer, {
       headers: {
