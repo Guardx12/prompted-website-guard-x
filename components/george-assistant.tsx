@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useRef, useState } from "react"
-import { Loader2, Mic, MicOff, Send, Volume2 } from "lucide-react"
+import { Loader2, Mic, MicOff, Send, Volume2, VolumeX } from "lucide-react"
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrbypyzv"
 
@@ -70,6 +70,7 @@ export function GeorgeAssistant() {
   const [isRecording, setIsRecording] = useState(false)
   const [isTranscribing, setIsTranscribing] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)
+  const [voiceEnabled, setVoiceEnabled] = useState(true)
   const [leadState, setLeadState] = useState<LeadState>({ businessName: "", email: "", phone: "" })
   const [submitState, setSubmitState] = useState<SubmitState>("idle")
   const [leadIntent, setLeadIntent] = useState<LeadIntent>("none")
@@ -77,6 +78,7 @@ export function GeorgeAssistant() {
   const mediaStreamRef = useRef<MediaStream | null>(null)
   const audioChunksRef = useRef<Blob[]>([])
   const audioRef = useRef<HTMLAudioElement | null>(null)
+  const currentAudioUrlRef = useRef<string | null>(null)
   const chatScrollRef = useRef<HTMLDivElement | null>(null)
   const hasMountedRef = useRef(false)
 
@@ -99,6 +101,9 @@ export function GeorgeAssistant() {
       if (audioRef.current) {
         audioRef.current.pause()
         audioRef.current.src = ""
+      }
+      if (currentAudioUrlRef.current) {
+        URL.revokeObjectURL(currentAudioUrlRef.current)
       }
     }
   }, [])
@@ -123,23 +128,24 @@ export function GeorgeAssistant() {
       const blob = await response.blob()
       const url = URL.createObjectURL(blob)
 
-      if (audioRef.current) {
-        audioRef.current.pause()
-        audioRef.current.src = url
-      } else {
-        audioRef.current = new Audio(url)
+      if (currentAudioUrlRef.current) {
+        URL.revokeObjectURL(currentAudioUrlRef.current)
+      }
+      currentAudioUrlRef.current = url
+
+      const audio = audioRef.current ?? new Audio()
+      audioRef.current = audio
+      audio.pause()
+      audio.src = url
+      audio.currentTime = 0
+      audio.onended = () => {
+        setIsSpeaking(false)
+      }
+      audio.onerror = () => {
+        setIsSpeaking(false)
       }
 
-      audioRef.current.onended = () => {
-        setIsSpeaking(false)
-        URL.revokeObjectURL(url)
-      }
-      audioRef.current.onerror = () => {
-        setIsSpeaking(false)
-        URL.revokeObjectURL(url)
-      }
-
-      await audioRef.current.play()
+      await audio.play()
     } catch (error) {
       console.error("George voice playback error", error)
       setIsSpeaking(false)
@@ -195,20 +201,27 @@ export function GeorgeAssistant() {
 
       setMessages((prev) => [...prev, assistantMessage])
 
+      if (voiceEnabled) {
+        void speakText(reply)
+      }
+
       if (shouldOfferLeadCapture(value)) {
         setLeadIntent("offer")
       }
     } catch (error) {
       console.error("George chat error", error)
+      const fallbackReply = "I couldn’t reply properly just then. Please try again in a moment and I’ll carry on from there."
       setMessages((prev) => [
         ...prev,
         {
           id: crypto.randomUUID(),
           role: "assistant",
-          content:
-            "I couldn’t reply properly just then. Please try again in a moment and I’ll carry on from there.",
+          content: fallbackReply,
         },
       ])
+      if (voiceEnabled) {
+        void speakText(fallbackReply)
+      }
     } finally {
       setIsTyping(false)
     }
@@ -238,14 +251,18 @@ export function GeorgeAssistant() {
       }
     } catch (error) {
       console.error("George transcription error", error)
+      const fallbackReply = "I couldn’t hear that properly. Give it another go and I’ll listen again."
       setMessages((prev) => [
         ...prev,
         {
           id: crypto.randomUUID(),
           role: "assistant",
-          content: "I couldn’t hear that properly. Give it another go and I’ll listen again.",
+          content: fallbackReply,
         },
       ])
+      if (voiceEnabled) {
+        void speakText(fallbackReply)
+      }
     } finally {
       setIsTranscribing(false)
     }
@@ -286,15 +303,18 @@ export function GeorgeAssistant() {
       setIsRecording(true)
     } catch (error) {
       console.error("George microphone error", error)
+      const fallbackReply = "I couldn’t access the microphone just then. If you allow microphone access, I can listen and reply by voice."
       setMessages((prev) => [
         ...prev,
         {
           id: crypto.randomUUID(),
           role: "assistant",
-          content:
-            "I couldn’t access the microphone just then. If you allow microphone access, I can listen and reply by voice.",
+          content: fallbackReply,
         },
       ])
+      if (voiceEnabled) {
+        void speakText(fallbackReply)
+      }
     }
   }
 
@@ -339,15 +359,18 @@ export function GeorgeAssistant() {
 
       setSubmitState("success")
       setLeadIntent("none")
+      const successReply = "Perfect — that’s been passed on properly. The conversation can now be seen together with your details, which makes the follow-up far more useful than a normal contact form."
       setMessages((prev) => [
         ...prev,
         {
           id: crypto.randomUUID(),
           role: "assistant",
-          content:
-            "Perfect — that’s been passed on properly. The conversation can now be seen together with your details, which makes the follow-up far more useful than a normal contact form.",
+          content: successReply,
         },
       ])
+      if (voiceEnabled) {
+        void speakText(successReply)
+      }
     } catch {
       setSubmitState("error")
     }
@@ -379,20 +402,32 @@ export function GeorgeAssistant() {
             <p className="text-base font-semibold text-[#202124] sm:text-lg">George</p>
             <p className="text-sm text-[#5F6368]">Digital receptionist and sales assistant by GuardX</p>
           </div>
-          <button
-            type="button"
-            onClick={() => {
-              const latestAssistant = [...messages].reverse().find((message) => message.role === "assistant")
-              if (latestAssistant?.content) {
-                void speakText(latestAssistant.content)
-              }
-            }}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#DADCE0] bg-white text-[#202124] transition hover:bg-[#F1F3F4] disabled:opacity-60"
-            aria-label="Play George's latest reply"
-            disabled={isSpeaking || messages.filter((message) => message.role === "assistant").length === 0}
-          >
-            {isSpeaking ? <Loader2 className="h-4 w-4 animate-spin" /> : <Volume2 className="h-4 w-4" />}
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setVoiceEnabled((prev) => !prev)}
+              className={`inline-flex h-10 items-center gap-2 rounded-full border px-3 text-sm font-medium transition ${voiceEnabled ? "border-[#CDE7D4] bg-[#EAF6EE] text-[#1E8E3E] hover:bg-[#dff0e5]" : "border-[#DADCE0] bg-white text-[#5F6368] hover:bg-[#F1F3F4]"}`}
+              aria-label={voiceEnabled ? "Turn George voice off" : "Turn George voice on"}
+              title={voiceEnabled ? "Voice replies on" : "Voice replies off"}
+            >
+              {voiceEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+              <span className="hidden sm:inline">{voiceEnabled ? "Voice on" : "Voice off"}</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                const latestAssistant = [...messages].reverse().find((message) => message.role === "assistant")
+                if (latestAssistant?.content) {
+                  void speakText(latestAssistant.content)
+                }
+              }}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#DADCE0] bg-white text-[#202124] transition hover:bg-[#F1F3F4] disabled:opacity-60"
+              aria-label="Play George's latest reply"
+              disabled={isSpeaking || messages.filter((message) => message.role === "assistant").length === 0}
+            >
+              {isSpeaking ? <Loader2 className="h-4 w-4 animate-spin" /> : <Volume2 className="h-4 w-4" />}
+            </button>
+          </div>
         </div>
 
         <div ref={chatScrollRef} className="flex-1 overflow-y-auto bg-[#F8FAFD] px-4 py-6 sm:px-6 sm:py-8">
@@ -483,7 +518,10 @@ export function GeorgeAssistant() {
           >
             <button
               type="button"
-              onClick={() => void toggleRecording()}
+              onClick={() => {
+                setVoiceEnabled(true)
+                void toggleRecording()
+              }}
               className={`inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-white shadow-[0_10px_25px_rgba(26,115,232,0.28)] transition disabled:opacity-60 ${
                 isRecording ? "bg-[#D93025] hover:bg-[#b3261e]" : "bg-[#34A853] hover:bg-[#2b8a46]"
               }`}
