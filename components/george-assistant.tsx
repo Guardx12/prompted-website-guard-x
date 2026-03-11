@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useRef, useState } from "react"
-import { Loader2, Send } from "lucide-react"
+import { Loader2, Mic, MicOff, Send, Volume2 } from "lucide-react"
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrbypyzv"
 
@@ -18,8 +18,32 @@ type LeadState = {
 }
 
 type SubmitState = "idle" | "loading" | "success" | "error"
-
 type LeadIntent = "none" | "offer"
+
+declare global {
+  interface Window {
+    webkitAudioContext?: typeof AudioContext
+  }
+  interface MediaRecorderOptions {
+    mimeType?: string
+  }
+}
+
+const FORWARD_INTENT_PHRASES = [
+  "i want this",
+  "i'm interested",
+  "im interested",
+  "sounds good",
+  "can i get this",
+  "next step",
+  "contact",
+  "speak to luke",
+  "speak with luke",
+  "let's do it",
+  "lets do it",
+  "how do we start",
+  "how do i start",
+]
 
 const openingMessage: ChatMessage = {
   id: "george-opening",
@@ -28,156 +52,96 @@ const openingMessage: ChatMessage = {
     "Hi — I’m George. I’m the digital receptionist and sales assistant built into GuardX websites. My job is to answer questions, explain how things work, deal with the common customer conversations businesses usually have, and help turn visitors into customers. I’m given the knowledge I need about the business I’m working for — services, pricing, how things work, the kinds of jobs they take on, and the questions customers normally ask — so I can handle those repetitive explanations properly instead of the business owner having to keep doing them all day. Ask me anything.",
 }
 
-function containsAny(text: string, phrases: string[]) {
-  return phrases.some((phrase) => text.includes(phrase))
-}
-
 function buildTranscript(messages: ChatMessage[]) {
   return messages
     .map((message) => `${message.role === "assistant" ? "George" : "Visitor"}: ${message.content}`)
-    .join("\n\n")
+    .join("
+
+")
 }
 
-function formatReply(paragraphs: string[]) {
-  return paragraphs.join("\n\n")
-}
-
-function getGeorgeReply(input: string) {
-  const text = input.toLowerCase().trim()
-
-  if (!text) {
-    return formatReply([
-      "Go ahead — ask me anything about George, GuardX, how I would work on a website, or why a business would want me there in the first place.",
-    ])
-  }
-
-  if (containsAny(text, ["what are you", "who are you", "what do you do", "what exactly do you do", "explain yourself", "your job role", "your job bro", "what is your role"])) {
-    return formatReply([
-      "I’m George — the digital receptionist and sales assistant built into GuardX websites.",
-      "Think of me like the member of staff on the website who handles that first conversation properly. I answer questions, explain how things work, deal with the obvious customer interactions, and help guide visitors towards becoming real enquiries instead of leaving the site quietly.",
-      "I’m trained on the business I’m working for, so I can explain the services, pricing, areas covered, the kinds of jobs they do and don’t take on, and the usual things customers want to know before they’re ready to call.",
-    ])
-  }
-
-  if (containsAny(text, ["how does this work", "my website", "on my website", "on our website", "on my site", "how would this work"])) {
-    return formatReply([
-      "On your website, I’d sit there like the digital receptionist and first point of contact.",
-      "A visitor lands on the page, asks what they want to know, and I answer in a clear, natural way using the knowledge I’ve been given about your business. That means I can explain your services, talk through the obvious early questions, deal with the repetitive explanations, and guide the visitor towards the next step.",
-      "Then, when the conversation becomes serious, I can collect the right details and pass the enquiry over with context — so instead of getting a cold form submission, you know what the person was asking and where they’re up to.",
-      "The whole point is that your website stops being a dead brochure and starts acting more like a member of staff.",
-    ])
-  }
-
-  if (containsAny(text, ["why would i need", "why need", "why would we need", "why do i need george", "why george", "why would a business need"])) {
-    return formatReply([
-      "Because most websites lose good visitors for very ordinary reasons.",
-      "Someone lands on the page, has a question, doesn’t quite want to ring yet, can’t get an answer instantly, and leaves. That happens far more than most businesses realise.",
-      "I’m there to stop that. I save time by handling the repetitive questions, save money by helping reduce wasted traffic, and help create more revenue by turning more visitors into real enquiries.",
-      "So really, why a business needs George is simple: I fill the receptionist and sales-assistant gap that most websites don’t have.",
-    ])
-  }
-
-  if (containsAny(text, ["pricing", "prices", "price", "cost", "how much"])) {
-    return formatReply([
-      "Part of my job is to explain pricing clearly where the business wants that information shared.",
-      "That might mean exact prices, starting prices, rough ranges, or just explaining how quotes work — it depends on how the business wants me trained.",
-      "The important part is that customers can ask the question and get a proper answer instead of bouncing off the site or having to ring up for every small thing.",
-    ])
-  }
-
-  if (containsAny(text, ["services", "what do you explain", "what can you answer", "questions", "what do you talk about"])) {
-    return formatReply([
-      "I’m there to explain the services, how the business works, what kind of jobs they do, what they don’t do, how pricing works, what areas they cover, and what the next step should be.",
-      "In other words, the exact sort of back-and-forth that normally happens on the phone before someone becomes a proper enquiry.",
-    ])
-  }
-
-  if (containsAny(text, ["just a chatbot", "chatbot", "bot"])) {
-    return formatReply([
-      "That’s exactly the impression I’m there to beat.",
-      "A generic chatbot usually feels like a menu in disguise. George is meant to feel more like a calm receptionist or sales assistant who can actually explain things properly and keep the conversation moving.",
-      "The difference is not just that I reply — it’s that I’m trained on the business, I explain things in a more human way, and I guide the visitor instead of just throwing buttons at them.",
-    ])
-  }
-
-  if (containsAny(text, ["member of staff", "receptionist", "sales assistant", "salesperson", "front desk"])) {
-    return formatReply([
-      "Yes — that is the right way to think about me.",
-      "I’m effectively the digital receptionist and sales assistant on the website. First conversation, first explanation, first guidance, and then handoff when the visitor is serious.",
-      "That’s why the idea is stronger than just ‘a website with a chatbot’. It’s really about giving the website a member of staff.",
-    ])
-  }
-
-  if (containsAny(text, ["businesses", "what kind of businesses", "who is this for", "good for", "which businesses"])) {
-    return formatReply([
-      "I work best for businesses where customers usually have questions before they buy or enquire.",
-      "Trades, roofers, scaffolders, builders, flooring businesses, aesthetics clinics, dog groomers, storage companies, estate agents, service businesses — anything where a proper first conversation helps move the customer forward.",
-      "If customers normally need a bit of explanation before becoming a lead, I’m useful.",
-    ])
-  }
-
-  if (containsAny(text, ["seo", "google", "rank", "ranking", "fast website", "modern website", "website side"])) {
-    return formatReply([
-      "George doesn’t replace the website side — he sits on top of it.",
-      "The foundation is still a modern, fast, well-structured GuardX website with strong SEO foundations, built properly so it’s ready to rank on Google.",
-      "Then I make that website work harder once the visitors actually arrive.",
-    ])
-  }
-
-  if (containsAny(text, ["knowledge", "how do you know", "how can you answer", "trained", "fed the knowledge"])) {
-    return formatReply([
-      "I’m fed the knowledge I need based on the business I’m working for.",
-      "That means I’m given the service information, the pricing or pricing structure, areas covered, the kinds of jobs the business wants, the jobs they don’t want, and the common customer questions that come up all the time.",
-      "So I’m not just guessing — I’m answering from the brief I’ve been given and using that to deal with the repetitive conversations properly.",
-    ])
-  }
-
-  if (containsAny(text, ["lead", "enquiry", "transcript", "handoff", "pass it on", "send details", "email"])) {
-    return formatReply([
-      "When someone becomes a serious prospect, I should be able to collect the useful details and pass the conversation over with context.",
-      "That means the business sees who the person is, what they asked, and where the conversation got to — which is far more useful than a basic contact form with no story behind it.",
-    ])
-  }
-
-  if (containsAny(text, ["want this", "interested", "sounds good", "can i get this", "next step", "speak to", "contact"])) {
-    return formatReply([
-      "Brilliant.",
-      "The next step is simply to leave your details and a few lines about your business so the conversation can be passed on properly and GuardX can look at what version of George and what kind of website would suit you best.",
-    ])
-  }
-
-  if (containsAny(text, ["joke", "politics", "weather", "football", "random", "off topic"])) {
-    return formatReply([
-      "Happy to keep this useful for you — I’m mainly here to help with George, GuardX, and how a website like this can help turn more visitors into customers.",
-      "Ask me anything around that and I’ll give you a proper answer.",
-    ])
-  }
-
-  return formatReply([
-    "That’s a fair question.",
-    "The main thing to know is that I’m there to do the first part of the job a real receptionist or sales assistant would normally do on a website — answer the obvious questions, explain the offer properly, keep the visitor engaged, and guide the right people towards becoming customers.",
-    "If you want, ask me how this would work on your website, why a business would need me, or what my role actually is, and I’ll explain it clearly.",
-  ])
+function shouldOfferLeadCapture(text: string) {
+  const lower = text.toLowerCase()
+  return FORWARD_INTENT_PHRASES.some((phrase) => lower.includes(phrase))
 }
 
 export function GeorgeAssistant() {
   const [messages, setMessages] = useState<ChatMessage[]>([openingMessage])
   const [input, setInput] = useState("")
   const [isTyping, setIsTyping] = useState(false)
+  const [isRecording, setIsRecording] = useState(false)
+  const [isTranscribing, setIsTranscribing] = useState(false)
+  const [isSpeaking, setIsSpeaking] = useState(false)
   const [leadState, setLeadState] = useState<LeadState>({ businessName: "", email: "", phone: "" })
   const [submitState, setSubmitState] = useState<SubmitState>("idle")
   const [leadIntent, setLeadIntent] = useState<LeadIntent>("none")
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null)
+  const mediaStreamRef = useRef<MediaStream | null>(null)
+  const audioChunksRef = useRef<Blob[]>([])
+  const audioRef = useRef<HTMLAudioElement | null>(null)
   const endRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [messages, isTyping, leadIntent])
 
+  useEffect(() => {
+    return () => {
+      mediaRecorderRef.current?.stop()
+      mediaStreamRef.current?.getTracks().forEach((track) => track.stop())
+      if (audioRef.current) {
+        audioRef.current.pause()
+        audioRef.current.src = ""
+      }
+    }
+  }, [])
+
   const transcript = useMemo(() => buildTranscript(messages), [messages])
 
-  const sendMessage = (raw: string) => {
+  const speakText = async (text: string) => {
+    try {
+      setIsSpeaking(true)
+      const response = await fetch("/api/george/speak", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text }),
+      })
+
+      if (!response.ok) {
+        throw new Error("Speech failed")
+      }
+
+      const blob = await response.blob()
+      const url = URL.createObjectURL(blob)
+
+      if (audioRef.current) {
+        audioRef.current.pause()
+        audioRef.current.src = url
+      } else {
+        audioRef.current = new Audio(url)
+      }
+
+      audioRef.current.onended = () => {
+        setIsSpeaking(false)
+        URL.revokeObjectURL(url)
+      }
+      audioRef.current.onerror = () => {
+        setIsSpeaking(false)
+        URL.revokeObjectURL(url)
+      }
+
+      await audioRef.current.play()
+    } catch (error) {
+      console.error("George voice playback error", error)
+      setIsSpeaking(false)
+    }
+  }
+
+  const sendMessage = async (raw: string) => {
     const value = raw.trim()
-    if (!value || isTyping) return
+    if (!value || isTyping || isTranscribing) return
 
     const userMessage: ChatMessage = {
       id: crypto.randomUUID(),
@@ -185,24 +149,161 @@ export function GeorgeAssistant() {
       content: value,
     }
 
-    setMessages((prev) => [...prev, userMessage])
+    const nextMessages = [...messages, userMessage]
+    setMessages(nextMessages)
     setInput("")
     setIsTyping(true)
 
-    window.setTimeout(() => {
-      const reply = getGeorgeReply(value)
+    try {
+      const history = nextMessages.slice(0, -1).map((message) => ({
+        role: message.role,
+        content: message.content,
+      }))
+
+      const response = await fetch("/api/george", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: value,
+          history,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error("George reply failed")
+      }
+
+      const data = await response.json()
+      const reply = typeof data.reply === "string" && data.reply.trim()
+        ? data.reply.trim()
+        : "That’s a good question. I’m George, the digital receptionist and sales assistant built into GuardX websites, and my job is to answer questions clearly and help visitors understand how a website like this can turn more visitors into real enquiries."
+
       const assistantMessage: ChatMessage = {
         id: crypto.randomUUID(),
         role: "assistant",
         content: reply,
       }
-      setMessages((prev) => [...prev, assistantMessage])
-      setIsTyping(false)
 
-      if (containsAny(value.toLowerCase(), ["want this", "interested", "sounds good", "can i get this", "next step", "speak to", "contact"])) {
+      setMessages((prev) => [...prev, assistantMessage])
+
+      if (shouldOfferLeadCapture(value)) {
         setLeadIntent("offer")
       }
-    }, 900)
+    } catch (error) {
+      console.error("George chat error", error)
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          role: "assistant",
+          content:
+            "I couldn’t reply properly just then. Please try again in a moment and I’ll carry on from there.",
+        },
+      ])
+    } finally {
+      setIsTyping(false)
+    }
+  }
+
+  const transcribeAudio = async (blob: Blob) => {
+    setIsTranscribing(true)
+    try {
+      const formData = new FormData()
+      const extension = blob.type.includes("webm") ? "webm" : blob.type.includes("ogg") ? "ogg" : "wav"
+      formData.append("file", new File([blob], `george-audio.${extension}`, { type: blob.type || "audio/webm" }))
+
+      const response = await fetch("/api/george/transcribe", {
+        method: "POST",
+        body: formData,
+      })
+
+      if (!response.ok) {
+        throw new Error("Transcription failed")
+      }
+
+      const data = await response.json()
+      const text = typeof data.text === "string" ? data.text.trim() : ""
+
+      if (text) {
+        await sendMessage(text)
+      }
+    } catch (error) {
+      console.error("George transcription error", error)
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          role: "assistant",
+          content: "I couldn’t hear that properly. Give it another go and I’ll listen again.",
+        },
+      ])
+    } finally {
+      setIsTranscribing(false)
+    }
+  }
+
+  const startRecording = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      mediaStreamRef.current = stream
+
+      const supportedMimeType = [
+        "audio/webm;codecs=opus",
+        "audio/webm",
+        "audio/ogg;codecs=opus",
+      ].find((mimeType) => typeof MediaRecorder !== "undefined" && MediaRecorder.isTypeSupported(mimeType))
+
+      const recorder = new MediaRecorder(stream, supportedMimeType ? { mimeType: supportedMimeType } : undefined)
+      audioChunksRef.current = []
+
+      recorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          audioChunksRef.current.push(event.data)
+        }
+      }
+
+      recorder.onstop = async () => {
+        const blob = new Blob(audioChunksRef.current, { type: recorder.mimeType || "audio/webm" })
+        mediaStreamRef.current?.getTracks().forEach((track) => track.stop())
+        mediaStreamRef.current = null
+        mediaRecorderRef.current = null
+        if (blob.size > 0) {
+          await transcribeAudio(blob)
+        }
+      }
+
+      recorder.start()
+      mediaRecorderRef.current = recorder
+      setIsRecording(true)
+    } catch (error) {
+      console.error("George microphone error", error)
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          role: "assistant",
+          content:
+            "I couldn’t access the microphone just then. If you allow microphone access, I can listen and reply by voice.",
+        },
+      ])
+    }
+  }
+
+  const stopRecording = () => {
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
+      mediaRecorderRef.current.stop()
+    }
+    setIsRecording(false)
+  }
+
+  const toggleRecording = async () => {
+    if (isRecording) {
+      stopRecording()
+      return
+    }
+    await startRecording()
   }
 
   const handleLeadSubmit = async (event: React.FormEvent) => {
@@ -267,10 +368,24 @@ export function GeorgeAssistant() {
           <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[linear-gradient(135deg,#4285F4,#34A853)] text-base font-semibold text-white shadow-[0_10px_24px_rgba(66,133,244,0.25)]">
             G
           </div>
-          <div>
+          <div className="min-w-0 flex-1">
             <p className="text-base font-semibold text-[#202124] sm:text-lg">George</p>
             <p className="text-sm text-[#5F6368]">Digital receptionist and sales assistant by GuardX</p>
           </div>
+          <button
+            type="button"
+            onClick={() => {
+              const latestAssistant = [...messages].reverse().find((message) => message.role === "assistant")
+              if (latestAssistant?.content) {
+                void speakText(latestAssistant.content)
+              }
+            }}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#DADCE0] bg-white text-[#202124] transition hover:bg-[#F1F3F4] disabled:opacity-60"
+            aria-label="Play George's latest reply"
+            disabled={isSpeaking || messages.filter((message) => message.role === "assistant").length === 0}
+          >
+            {isSpeaking ? <Loader2 className="h-4 w-4 animate-spin" /> : <Volume2 className="h-4 w-4" />}
+          </button>
         </div>
 
         <div className="flex-1 overflow-y-auto bg-[#F8FAFD] px-4 py-6 sm:px-6 sm:py-8">
@@ -293,6 +408,14 @@ export function GeorgeAssistant() {
               <div className="flex justify-start">
                 <div className="inline-flex items-center gap-3 rounded-[24px] rounded-bl-md border border-[#E5E7EB] bg-white px-5 py-4 text-[#5F6368] shadow-sm">
                   <Loader2 className="h-4 w-4 animate-spin" /> George is replying…
+                </div>
+              </div>
+            )}
+
+            {isTranscribing && (
+              <div className="flex justify-start">
+                <div className="inline-flex items-center gap-3 rounded-[24px] rounded-bl-md border border-[#E5E7EB] bg-white px-5 py-4 text-[#5F6368] shadow-sm">
+                  <Loader2 className="h-4 w-4 animate-spin" /> George is listening…
                 </div>
               </div>
             )}
@@ -348,23 +471,36 @@ export function GeorgeAssistant() {
           <form
             onSubmit={(event) => {
               event.preventDefault()
-              sendMessage(input)
+              void sendMessage(input)
             }}
             className="mx-auto flex w-full max-w-4xl items-end gap-3"
           >
+            <button
+              type="button"
+              onClick={() => void toggleRecording()}
+              className={`inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-white shadow-[0_10px_25px_rgba(26,115,232,0.28)] transition disabled:opacity-60 ${
+                isRecording ? "bg-[#D93025] hover:bg-[#b3261e]" : "bg-[#34A853] hover:bg-[#2b8a46]"
+              }`}
+              disabled={isTyping || isTranscribing}
+              aria-label={isRecording ? "Stop recording" : "Start voice input"}
+              title={isRecording ? "Stop recording" : "Talk to George"}
+            >
+              {isRecording ? <MicOff className="h-5 w-5" /> : <Mic className="h-5 w-5" />}
+            </button>
+
             <div className="flex-1 rounded-[28px] border border-[#DADCE0] bg-[#F8FAFD] px-4 py-3 shadow-sm focus-within:border-[#AECBFA]">
               <textarea
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
                 rows={1}
-                placeholder="Message George…"
+                placeholder={isRecording ? "Listening… tap the microphone again when you're done" : "Message George… or tap the microphone to talk"}
                 className="w-full resize-none bg-transparent text-[15px] leading-6 text-[#202124] outline-none placeholder:text-[#80868B]"
               />
             </div>
             <button
               type="submit"
               className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#1A73E8] text-white shadow-[0_10px_25px_rgba(26,115,232,0.28)] transition hover:bg-[#1558B0] disabled:opacity-60"
-              disabled={!input.trim() || isTyping}
+              disabled={!input.trim() || isTyping || isTranscribing || isRecording}
               aria-label="Send"
             >
               <Send className="h-5 w-5" />
