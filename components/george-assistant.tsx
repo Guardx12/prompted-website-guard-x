@@ -402,31 +402,11 @@ export function GeorgeAssistant() {
             <p className="text-base font-semibold text-[#202124] sm:text-lg">George</p>
             <p className="text-sm text-[#5F6368]">Digital receptionist and sales assistant by GuardX</p>
           </div>
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setVoiceEnabled((prev) => !prev)}
-              className={`inline-flex h-10 items-center gap-2 rounded-full border px-3 text-sm font-medium transition ${voiceEnabled ? "border-[#CDE7D4] bg-[#EAF6EE] text-[#1E8E3E] hover:bg-[#dff0e5]" : "border-[#DADCE0] bg-white text-[#5F6368] hover:bg-[#F1F3F4]"}`}
-              aria-label={voiceEnabled ? "Turn George voice off" : "Turn George voice on"}
-              title={voiceEnabled ? "Voice replies on" : "Voice replies off"}
-            >
-              {voiceEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-              <span className="hidden sm:inline">{voiceEnabled ? "Voice on" : "Voice off"}</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                const latestAssistant = [...messages].reverse().find((message) => message.role === "assistant")
-                if (latestAssistant?.content) {
-                  void speakText(latestAssistant.content)
-                }
-              }}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#DADCE0] bg-white text-[#202124] transition hover:bg-[#F1F3F4] disabled:opacity-60"
-              aria-label="Play George's latest reply"
-              disabled={isSpeaking || messages.filter((message) => message.role === "assistant").length === 0}
-            >
-              {isSpeaking ? <Loader2 className="h-4 w-4 animate-spin" /> : <Volume2 className="h-4 w-4" />}
-            </button>
+          <div className="flex items-center gap-2 text-xs font-medium text-[#5F6368] sm:text-sm">
+            <span className={`inline-flex items-center gap-2 rounded-full px-3 py-2 ${isRecording ? "bg-[#FDECEA] text-[#B3261E]" : voiceEnabled ? "bg-[#EAF6EE] text-[#1E8E3E]" : "bg-[#F1F3F4] text-[#5F6368]"}`}>
+              {isRecording ? <MicOff className="h-4 w-4" /> : voiceEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+              <span>{isRecording ? "Listening" : voiceEnabled ? "Voice conversation on" : "Voice off"}</span>
+            </span>
           </div>
         </div>
 
@@ -537,10 +517,20 @@ export function GeorgeAssistant() {
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
                 rows={1}
-                placeholder={isRecording ? "Listening… tap the microphone again when you're done" : "Message George… or tap the microphone to talk"}
+                placeholder={isRecording ? "Listening… tap stop when you're done" : "Message George… or tap the microphone to talk"}
                 className="w-full resize-none bg-transparent text-[15px] leading-6 text-[#202124] outline-none placeholder:text-[#80868B]"
               />
             </div>
+            <button
+              type="button"
+              onClick={() => setVoiceEnabled((prev) => !prev)}
+              className={`inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition disabled:opacity-60 ${voiceEnabled ? "border-[#CDE7D4] bg-[#EAF6EE] text-[#1E8E3E] hover:bg-[#dff0e5]" : "border-[#DADCE0] bg-white text-[#5F6368] hover:bg-[#F1F3F4]"}`}
+              aria-label={voiceEnabled ? "Turn George voice off" : "Turn George voice on"}
+              title={voiceEnabled ? "Voice replies on" : "Voice replies off"}
+              disabled={isRecording || isTranscribing}
+            >
+              {voiceEnabled ? <Volume2 className="h-5 w-5" /> : <VolumeX className="h-5 w-5" />}
+            </button>
             <button
               type="submit"
               className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#1A73E8] text-white shadow-[0_10px_25px_rgba(26,115,232,0.28)] transition hover:bg-[#1558B0] disabled:opacity-60"
@@ -550,6 +540,23 @@ export function GeorgeAssistant() {
               <Send className="h-5 w-5" />
             </button>
           </form>
+          <div className="mx-auto mt-3 flex w-full max-w-4xl items-center justify-between px-1 text-xs text-[#5F6368] sm:text-sm">
+            <p>{isRecording ? "George is listening now — tap stop when you’ve finished speaking." : "Tap the microphone once to start a voice conversation with George."}</p>
+            <button
+              type="button"
+              onClick={() => {
+                const latestAssistant = [...messages].reverse().find((message) => message.role === "assistant")
+                if (latestAssistant?.content) {
+                  void speakText(latestAssistant.content)
+                }
+              }}
+              className="inline-flex items-center gap-2 rounded-full px-3 py-2 font-medium text-[#1A73E8] transition hover:bg-[#EEF4FF] disabled:opacity-60"
+              disabled={isSpeaking || messages.filter((message) => message.role === "assistant").length === 0}
+            >
+              {isSpeaking ? <Loader2 className="h-4 w-4 animate-spin" /> : <Volume2 className="h-4 w-4" />}
+              <span className="hidden sm:inline">Replay George</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
