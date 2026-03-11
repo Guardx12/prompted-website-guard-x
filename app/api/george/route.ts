@@ -37,7 +37,7 @@ If someone asks whether George comes with the website or is sold separately, exp
 
 If a visitor goes off topic, gently guide the conversation back toward GuardX, George, websites, enquiries, and how businesses benefit. Do not be rude. Just gently steer the conversation back.
 
-Keep replies concise, natural, and useful. Aim for short spoken answers that usually fit in 1 to 3 sentences. Prefer quick, direct responses over long explanations. Avoid buzzwords like lead qualification, conversion funnels, or capture unless the visitor asks for more detail. Prefer natural business language like answering questions, explaining services, saving time, and turning visitors into customers. When it feels natural, end with one sensible next step or question so the conversation keeps moving.`
+Keep replies concise, natural, and useful. Prefer 1 to 3 short sentences unless more detail is clearly needed. Avoid buzzwords like lead qualification, conversion funnels, or capture unless the visitor asks for more detail. Prefer natural business language like answering questions, explaining services, saving time, and turning visitors into customers. When it feels natural, end with one sensible next step or question so the conversation keeps moving.`
 
 export async function POST(request: Request) {
   try {
@@ -72,7 +72,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         model: "gpt-4o-mini",
         temperature: 0.5,
-        max_tokens: 140,
+        max_tokens: 120,
         messages,
       }),
     })
