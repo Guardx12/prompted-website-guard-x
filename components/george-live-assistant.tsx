@@ -24,6 +24,8 @@ type LeadPayload = {
   userMessageCount: number
 }
 
+const INACTIVITY_TIMEOUT_MS = 10000
+
 const INITIAL_MESSAGES: LiveMessage[] = [
   {
     id: "intro",
@@ -140,7 +142,7 @@ export function GeorgeLiveAssistant() {
   const scrollRef = useRef<HTMLDivElement | null>(null)
   const messagesRef = useRef<LiveMessage[]>(INITIAL_MESSAGES)
   const submittingLeadRef = useRef(false)
-  const hasSubmittedThisSessionRef = useRef(false)
+  const transcriptSentRef = useRef(false)
   const inactivityTimeoutRef = useRef<number | null>(null)
 
   useEffect(() => {
@@ -153,53 +155,53 @@ export function GeorgeLiveAssistant() {
 
   useEffect(() => {
     return () => {
-      if (inactivityTimeoutRef.current) {
-        window.clearTimeout(inactivityTimeoutRef.current)
-        inactivityTimeoutRef.current = null
-      }
-      void cleanupConversation()
+      clearInactivityTimeout()
     }
   }, [])
+
+  useEffect(() => {
+    if (connectionState !== "connected" || transcriptSentRef.current) {
+      clearInactivityTimeout()
+      return
+    }
+
+    const hasUserMessage = messages.some((message) => message.role === "user")
+    if (!hasUserMessage) return
+
+    clearInactivityTimeout()
+    inactivityTimeoutRef.current = window.setTimeout(() => {
+      void submitLeadCapture("timeout")
+    }, INACTIVITY_TIMEOUT_MS)
+
+    return () => {
+      clearInactivityTimeout()
+    }
+  }, [messages, connectionState])
 
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
 
   function clearInactivityTimeout() {
-    if (inactivityTimeoutRef.current) {
+    if (inactivityTimeoutRef.current !== null) {
       window.clearTimeout(inactivityTimeoutRef.current)
       inactivityTimeoutRef.current = null
     }
   }
 
-  function scheduleInactivityTimeout() {
-    clearInactivityTimeout()
-
-    if (connectionState !== "connected" || hasSubmittedThisSessionRef.current) {
-      return
-    }
-
-    inactivityTimeoutRef.current = window.setTimeout(() => {
-      void submitLeadCapture("timeout")
-    }, 10000)
-  }
-
   async function submitLeadCapture(reason: "details_detected" | "conversation_ended" | "timeout") {
+    if (transcriptSentRef.current || submittingLeadRef.current) return false
+
     const transcript = buildTranscript(messagesRef.current)
     if (!transcript.trim()) return false
 
     const extracted = extractLeadData(transcript)
     const shouldSubmit =
-      reason === "details_detected"
-        ? extracted.hasEnoughToSubmit && hasMeaningfulTranscript(messagesRef.current)
-        : hasMeaningfulTranscript(messagesRef.current)
+      reason === "details_detected" ? extracted.hasEnoughToSubmit : hasMeaningfulTranscript(messagesRef.current)
 
-    if (!shouldSubmit || hasSubmittedThisSessionRef.current || submittingLeadRef.current) {
-      return false
-    }
+    if (!shouldSubmit) return false
 
     submittingLeadRef.current = true
 
     const userMessageCount = messagesRef.current.filter((message) => message.role === "user").length
-
     const payload: LeadPayload = {
       source: `Meet George live voice (${reason})`,
       name: extracted.name,
@@ -209,8 +211,7 @@ export function GeorgeLiveAssistant() {
       transcript,
       submittedAt: new Date().toISOString(),
       page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
-      submissionMode:
-        reason === "details_detected" ? "lead_detected" : reason === "timeout" ? "timeout" : "conversation_end",
+      submissionMode: reason === "details_detected" ? "lead_detected" : reason === "timeout" ? "timeout" : "conversation_end",
       userMessageCount,
     }
 
@@ -229,7 +230,7 @@ export function GeorgeLiveAssistant() {
         throw new Error(details || `Lead capture error ${response.status}`)
       }
 
-      hasSubmittedThisSessionRef.current = true
+      transcriptSentRef.current = true
       clearInactivityTimeout()
       return true
     } catch (submitError) {
@@ -241,12 +242,7 @@ export function GeorgeLiveAssistant() {
   }
 
   async function maybeSubmitLeadFromTranscript() {
-    scheduleInactivityTimeout()
-    const transcript = buildTranscript(messagesRef.current)
-    const extracted = extractLeadData(transcript)
-    if (extracted.hasEnoughToSubmit) {
-      await submitLeadCapture("details_detected")
-    }
+    await submitLeadCapture("details_detected")
   }
 
   async function cleanupConversation(options?: { submitTranscript?: boolean }) {
@@ -329,30 +325,24 @@ export function GeorgeLiveAssistant() {
       case "session.created":
       case "session.updated":
         setStatusText("Live conversation on")
-        scheduleInactivityTimeout()
         break
       case "input_audio_buffer.speech_started":
         setStatusText("Listening…")
-        clearInactivityTimeout()
         break
       case "input_audio_buffer.speech_stopped":
         setStatusText("Thinking…")
-        scheduleInactivityTimeout()
         break
       case "response.created":
         setIsModelSpeaking(true)
         setStatusText("George is replying…")
-        clearInactivityTimeout()
         break
       case "response.output_audio.delta":
         setIsModelSpeaking(true)
         setStatusText("George is replying…")
-        clearInactivityTimeout()
         break
       case "response.output_audio.done":
         setIsModelSpeaking(false)
         setStatusText("Listening…")
-        scheduleInactivityTimeout()
         break
       case "response.output_audio_transcript.delta":
         appendOrUpdateAssistantPartial(typeof event.delta === "string" ? event.delta : "")
@@ -362,7 +352,6 @@ export function GeorgeLiveAssistant() {
         break
       case "conversation.item.input_audio_transcription.completed":
         addUserTranscript(typeof event.transcript === "string" ? event.transcript : "")
-        scheduleInactivityTimeout()
         break
       case "response.output_item.done": {
         const content = Array.isArray(event?.item?.content) ? event.item.content : []
@@ -377,7 +366,6 @@ export function GeorgeLiveAssistant() {
 
         if (transcript) {
           appendOrUpdateAssistantPartial(transcript, true)
-          scheduleInactivityTimeout()
         }
         break
       }
@@ -387,11 +375,6 @@ export function GeorgeLiveAssistant() {
         if (connectionState === "connected") {
           setError(message)
           setStatusText("There was a connection problem")
-        } else {
-          void cleanupConversation()
-          setConnectionState("error")
-          setStatusText("Could not connect George")
-          setError(message)
         }
         break
       }
@@ -404,11 +387,10 @@ export function GeorgeLiveAssistant() {
     if (!canStart) return
 
     await cleanupConversation()
+    transcriptSentRef.current = false
     setConnectionState("connecting")
     setError(null)
     setStatusText("Connecting George…")
-    clearInactivityTimeout()
-    hasSubmittedThisSessionRef.current = false
     setMessages(INITIAL_MESSAGES)
     messagesRef.current = INITIAL_MESSAGES
 
@@ -455,7 +437,6 @@ export function GeorgeLiveAssistant() {
       dc.addEventListener("open", () => {
         setConnectionState("connected")
         setStatusText("Listening…")
-        scheduleInactivityTimeout()
         window.setTimeout(() => {
           dc.send(JSON.stringify(FIRST_RESPONSE_EVENT))
         }, 150)
@@ -573,23 +554,27 @@ export function GeorgeLiveAssistant() {
                       : "bg-[#F1F3F4] text-[#5F6368]"
               }`}
             >
-              {connectionState === "connected" ? <Volume2 className="h-4 w-4" /> : <Radio className="h-4 w-4" />}
-              <span>{isModelSpeaking ? "George is talking" : statusText}</span>
+              <Radio className="h-4 w-4" />
+              {statusText}
             </span>
+            {isModelSpeaking ? (
+              <span className="inline-flex items-center gap-2 rounded-full bg-[#EEF4FF] px-3 py-2 text-[#174EA6]">
+                <Volume2 className="h-4 w-4" /> Voice on
+              </span>
+            ) : null}
           </div>
         </div>
 
-        <div ref={scrollRef} className="flex-1 overflow-y-auto bg-[#F8FAFD] px-4 py-6 sm:px-6 sm:py-8">
-          <div className="mx-auto flex w-full max-w-4xl flex-col gap-5">
-            {messages.map((message) => (
+        <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto bg-[#F8FAFD] px-4 py-5 sm:px-6 sm:py-6">
+          {messages
+            .filter((message) => message.role !== "system")
+            .map((message) => (
               <div key={message.id} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
                 <div
-                  className={`max-w-[92%] whitespace-pre-wrap rounded-[24px] px-5 py-4 text-[15px] leading-7 shadow-sm sm:max-w-[86%] sm:text-[16px] ${
-                    message.role === "user"
-                      ? "rounded-br-md bg-[#1A73E8] text-white"
-                      : message.role === "assistant"
-                        ? "rounded-bl-md border border-[#E5E7EB] bg-white text-[#202124]"
-                        : "rounded-bl-md border border-[#D2E3FC] bg-[#EEF4FF] text-[#174EA6]"
+                  className={`max-w-[88%] rounded-[24px] px-5 py-4 text-sm leading-7 shadow-sm sm:max-w-[78%] sm:text-[15px] ${
+                    message.role === "assistant"
+                      ? "rounded-bl-md border border-[#E5E7EB] bg-white text-[#202124]"
+                      : "rounded-bl-md border border-[#D2E3FC] bg-[#EEF4FF] text-[#174EA6]"
                   }`}
                 >
                   {message.content}
@@ -597,14 +582,13 @@ export function GeorgeLiveAssistant() {
               </div>
             ))}
 
-            {connectionState === "connecting" && (
-              <div className="flex justify-start">
-                <div className="inline-flex items-center gap-3 rounded-[24px] rounded-bl-md border border-[#E5E7EB] bg-white px-5 py-4 text-[#5F6368] shadow-sm">
-                  <Loader2 className="h-4 w-4 animate-spin" /> George is joining the call…
-                </div>
+          {connectionState === "connecting" && (
+            <div className="flex justify-start">
+              <div className="inline-flex items-center gap-3 rounded-[24px] rounded-bl-md border border-[#E5E7EB] bg-white px-5 py-4 text-[#5F6368] shadow-sm">
+                <Loader2 className="h-4 w-4 animate-spin" /> George is joining the call…
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
         <div className="border-t border-[#E8EAED] bg-white px-4 py-4 sm:px-6">
