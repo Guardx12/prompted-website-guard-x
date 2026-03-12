@@ -63,9 +63,7 @@ const openingMessage: ChatMessage = {
 function buildTranscript(messages: ChatMessage[]) {
   return messages
     .map((message) => `${message.role === "assistant" ? "George" : "Visitor"}: ${message.content}`)
-    .join("
-
-")
+    .join("\n\n")
 }
 
 function shouldOfferLeadCapture(text: string) {
@@ -74,7 +72,9 @@ function shouldOfferLeadCapture(text: string) {
 }
 
 function detectBusinessType(messages: ChatMessage[]) {
-  const userMessages = messages.filter((m) => m.role === "user").map((m) => m.content).join(" ").toLowerCase()
+  const userMessages = messages.filter((m) => m.role === "user").map((m) => m.content).join("
+
+").toLowerCase()
   const patterns = [
     "scaffold", "builder", "plumber", "electric", "floor", "carpet", "roofer", "gym", "shop", "garage", "landscap", "groundwork", "storage", "cleaner", "decorator",
   ]
