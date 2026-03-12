@@ -20,7 +20,7 @@ type LeadPayload = {
   source: string
   submittedAt: string
   page: string
-  submissionMode: "lead_detected" | "conversation_end" | "page_unload"
+  submissionMode: "lead_detected" | "conversation_end" | "timeout"
   userMessageCount: number
 }
 
@@ -140,7 +140,8 @@ export function GeorgeLiveAssistant() {
   const scrollRef = useRef<HTMLDivElement | null>(null)
   const messagesRef = useRef<LiveMessage[]>(INITIAL_MESSAGES)
   const submittingLeadRef = useRef(false)
-  const submittedLeadFingerprintRef = useRef("")
+  const hasSubmittedThisSessionRef = useRef(false)
+  const inactivityTimeoutRef = useRef<number | null>(null)
 
   useEffect(() => {
     messagesRef.current = messages
@@ -152,38 +153,52 @@ export function GeorgeLiveAssistant() {
 
   useEffect(() => {
     return () => {
-      void cleanupConversation({ submitTranscript: true })
+      if (inactivityTimeoutRef.current) {
+        window.clearTimeout(inactivityTimeoutRef.current)
+        inactivityTimeoutRef.current = null
+      }
+      void cleanupConversation()
     }
   }, [])
 
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
 
-  async function submitLeadCapture(reason: "details_detected" | "conversation_ended" | "page_unload") {
+  function clearInactivityTimeout() {
+    if (inactivityTimeoutRef.current) {
+      window.clearTimeout(inactivityTimeoutRef.current)
+      inactivityTimeoutRef.current = null
+    }
+  }
+
+  function scheduleInactivityTimeout() {
+    clearInactivityTimeout()
+
+    if (connectionState !== "connected" || hasSubmittedThisSessionRef.current) {
+      return
+    }
+
+    inactivityTimeoutRef.current = window.setTimeout(() => {
+      void submitLeadCapture("timeout")
+    }, 10000)
+  }
+
+  async function submitLeadCapture(reason: "details_detected" | "conversation_ended" | "timeout") {
     const transcript = buildTranscript(messagesRef.current)
     if (!transcript.trim()) return false
 
     const extracted = extractLeadData(transcript)
     const shouldSubmit =
-      reason === "details_detected" ? extracted.hasEnoughToSubmit : hasMeaningfulTranscript(messagesRef.current)
+      reason === "details_detected"
+        ? extracted.hasEnoughToSubmit && hasMeaningfulTranscript(messagesRef.current)
+        : hasMeaningfulTranscript(messagesRef.current)
 
-    if (!shouldSubmit) return false
-
-    const userMessageCount = messagesRef.current.filter((message) => message.role === "user").length
-
-    const fingerprint = JSON.stringify({
-      reason,
-      name: extracted.name,
-      phone: extracted.phone,
-      email: extracted.email,
-      businessName: extracted.businessName,
-      transcript,
-    })
-
-    if (submittedLeadFingerprintRef.current === fingerprint || submittingLeadRef.current) {
+    if (!shouldSubmit || hasSubmittedThisSessionRef.current || submittingLeadRef.current) {
       return false
     }
 
     submittingLeadRef.current = true
+
+    const userMessageCount = messagesRef.current.filter((message) => message.role === "user").length
 
     const payload: LeadPayload = {
       source: `Meet George live voice (${reason})`,
@@ -195,7 +210,7 @@ export function GeorgeLiveAssistant() {
       submittedAt: new Date().toISOString(),
       page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
       submissionMode:
-        reason === "details_detected" ? "lead_detected" : reason === "page_unload" ? "page_unload" : "conversation_end",
+        reason === "details_detected" ? "lead_detected" : reason === "timeout" ? "timeout" : "conversation_end",
       userMessageCount,
     }
 
@@ -207,7 +222,6 @@ export function GeorgeLiveAssistant() {
           Accept: "application/json",
         },
         body: JSON.stringify(payload),
-        keepalive: reason === "page_unload",
       })
 
       if (!response.ok) {
@@ -215,7 +229,8 @@ export function GeorgeLiveAssistant() {
         throw new Error(details || `Lead capture error ${response.status}`)
       }
 
-      submittedLeadFingerprintRef.current = fingerprint
+      hasSubmittedThisSessionRef.current = true
+      clearInactivityTimeout()
       return true
     } catch (submitError) {
       console.error("George live lead capture error", submitError)
@@ -226,10 +241,17 @@ export function GeorgeLiveAssistant() {
   }
 
   async function maybeSubmitLeadFromTranscript() {
-    await submitLeadCapture("details_detected")
+    scheduleInactivityTimeout()
+    const transcript = buildTranscript(messagesRef.current)
+    const extracted = extractLeadData(transcript)
+    if (extracted.hasEnoughToSubmit) {
+      await submitLeadCapture("details_detected")
+    }
   }
 
   async function cleanupConversation(options?: { submitTranscript?: boolean }) {
+    clearInactivityTimeout()
+
     if (options?.submitTranscript) {
       await submitLeadCapture("conversation_ended")
     }
@@ -307,24 +329,30 @@ export function GeorgeLiveAssistant() {
       case "session.created":
       case "session.updated":
         setStatusText("Live conversation on")
+        scheduleInactivityTimeout()
         break
       case "input_audio_buffer.speech_started":
         setStatusText("Listening…")
+        clearInactivityTimeout()
         break
       case "input_audio_buffer.speech_stopped":
         setStatusText("Thinking…")
+        scheduleInactivityTimeout()
         break
       case "response.created":
         setIsModelSpeaking(true)
         setStatusText("George is replying…")
+        clearInactivityTimeout()
         break
       case "response.output_audio.delta":
         setIsModelSpeaking(true)
         setStatusText("George is replying…")
+        clearInactivityTimeout()
         break
       case "response.output_audio.done":
         setIsModelSpeaking(false)
         setStatusText("Listening…")
+        scheduleInactivityTimeout()
         break
       case "response.output_audio_transcript.delta":
         appendOrUpdateAssistantPartial(typeof event.delta === "string" ? event.delta : "")
@@ -334,6 +362,7 @@ export function GeorgeLiveAssistant() {
         break
       case "conversation.item.input_audio_transcription.completed":
         addUserTranscript(typeof event.transcript === "string" ? event.transcript : "")
+        scheduleInactivityTimeout()
         break
       case "response.output_item.done": {
         const content = Array.isArray(event?.item?.content) ? event.item.content : []
@@ -348,6 +377,7 @@ export function GeorgeLiveAssistant() {
 
         if (transcript) {
           appendOrUpdateAssistantPartial(transcript, true)
+          scheduleInactivityTimeout()
         }
         break
       }
@@ -377,6 +407,8 @@ export function GeorgeLiveAssistant() {
     setConnectionState("connecting")
     setError(null)
     setStatusText("Connecting George…")
+    clearInactivityTimeout()
+    hasSubmittedThisSessionRef.current = false
     setMessages(INITIAL_MESSAGES)
     messagesRef.current = INITIAL_MESSAGES
 
@@ -423,6 +455,7 @@ export function GeorgeLiveAssistant() {
       dc.addEventListener("open", () => {
         setConnectionState("connected")
         setStatusText("Listening…")
+        scheduleInactivityTimeout()
         window.setTimeout(() => {
           dc.send(JSON.stringify(FIRST_RESPONSE_EVENT))
         }, 150)
