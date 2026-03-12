@@ -1,112 +1,37 @@
-"use client"
-
-import { useEffect, useLayoutEffect } from "react"
+import type { Metadata } from "next"
 import { Footer } from "@/components/footer"
 import { GeorgeLiveAssistant } from "@/components/george-live-assistant"
 import { Navigation } from "@/components/navigation"
 
-declare global {
-  interface Window {
-    georgeTranscript?: string
-    __georgeTranscriptSent?: boolean
-    __georgeInactivityTimer?: number
-  }
-}
-
-const INACTIVITY_TIMEOUT = 10000
-
-function sendTranscriptOnce(reason: "timeout" | "details" | "end") {
-  if (typeof window === "undefined") return
-  if (window.__georgeTranscriptSent) return
-
-  const transcript = typeof window.georgeTranscript === "string" ? window.georgeTranscript.trim() : ""
-  if (!transcript) return
-
-  window.__georgeTranscriptSent = true
-
-  const payload = JSON.stringify({ transcript, source: `meet-george:${reason}` })
-
-  fetch("/api/george-lead", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: payload,
-    keepalive: true,
-  }).catch(() => {
-    window.__georgeTranscriptSent = false
-  })
-}
-
-function resetInactivityTimer() {
-  if (typeof window === "undefined") return
-
-  if (window.__georgeInactivityTimer) {
-    window.clearTimeout(window.__georgeInactivityTimer)
-  }
-
-  window.__georgeInactivityTimer = window.setTimeout(() => {
-    sendTranscriptOnce("timeout")
-  }, INACTIVITY_TIMEOUT)
+export const metadata: Metadata = {
+  title: "Meet George — Your AI Website Sales Assistant",
+  description:
+    "George answers customer questions, captures enquiries, and helps turn your website into a 24/7 salesperson.",
+  alternates: { canonical: "https://guardxnetwork.com/meet-george" },
+  openGraph: {
+    title: "Meet George — Your AI Website Sales Assistant",
+    description:
+      "George answers customer questions, captures enquiries, and works 24/7 — turning your website into a salesperson.",
+    url: "https://guardxnetwork.com/meet-george",
+    type: "website",
+    images: [
+      {
+        url: "https://guardxnetwork.com/george-preview.png?v=4",
+        width: 1200,
+        height: 630,
+        alt: "Meet George — Your AI Website Sales Assistant",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Meet George — Your AI Website Sales Assistant",
+    description: "Turn your website into a 24/7 salesperson with George.",
+    images: ["https://guardxnetwork.com/george-preview.png?v=4"],
+  },
 }
 
 export default function MeetGeorgePage() {
-  useLayoutEffect(() => {
-    if (typeof window === "undefined") return
-
-    const scrollToTop = () => {
-      window.scrollTo(0, 0)
-      document.documentElement.scrollTop = 0
-      document.body.scrollTop = 0
-    }
-
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual"
-    }
-
-    scrollToTop()
-    const raf1 = requestAnimationFrame(() => {
-      scrollToTop()
-      requestAnimationFrame(scrollToTop)
-    })
-    const timeout = window.setTimeout(scrollToTop, 120)
-
-    return () => {
-      cancelAnimationFrame(raf1)
-      window.clearTimeout(timeout)
-    }
-  }, [])
-
-  useEffect(() => {
-    if (typeof window === "undefined") return
-
-    window.__georgeTranscriptSent = false
-    resetInactivityTimer()
-
-    const handleActivity = () => {
-      resetInactivityTimer()
-    }
-
-    const handleDetailsCollected = () => {
-      sendTranscriptOnce("details")
-    }
-
-    const handleConversationEnded = () => {
-      sendTranscriptOnce("end")
-    }
-
-    window.addEventListener("george-activity", handleActivity)
-    window.addEventListener("george-details-collected", handleDetailsCollected)
-    window.addEventListener("george-conversation-ended", handleConversationEnded)
-
-    return () => {
-      window.removeEventListener("george-activity", handleActivity)
-      window.removeEventListener("george-details-collected", handleDetailsCollected)
-      window.removeEventListener("george-conversation-ended", handleConversationEnded)
-      if (window.__georgeInactivityTimer) {
-        window.clearTimeout(window.__georgeInactivityTimer)
-      }
-    }
-  }, [])
-
   return (
     <div className="min-h-screen bg-[linear-gradient(180deg,#eef4ff_0%,#f8fbff_35%,#ffffff_100%)]">
       <Navigation />
