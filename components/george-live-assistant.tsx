@@ -12,15 +12,11 @@ type LiveMessage = {
 type ConnectionState = "idle" | "connecting" | "connected" | "error"
 
 type LeadPayload = {
-  name: string
-  phone: string
-  email: string
-  businessName: string
   transcript: string
   source: string
   submittedAt: string
   page: string
-  submissionMode: "lead_detected" | "conversation_end" | "page_unload"
+  submissionMode: "message_snapshot" | "conversation_end"
   userMessageCount: number
 }
 
@@ -63,60 +59,6 @@ function buildTranscript(messages: LiveMessage[]) {
     .join("\n\n")
 }
 
-function extractLeadData(transcript: string) {
-  const cleaned = normalizeWhitespace(transcript)
-  const lower = cleaned.toLowerCase()
-
-  const phoneMatch = cleaned.match(/(?:\+?44\s?7\d{3}|0\d{4}|0\d{3}|0\d{2}|\+?44\s?\d{2,4})[\d\s()-]{6,16}/)
-  const emailMatch = cleaned.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i)
-
-  const namePatterns = [
-    /(?:my name is|i am|i'm|im|this is|it's|it is|name is)\s+([a-z][a-z]+(?:\s+[a-z][a-z]+){0,2})/i,
-    /(?:call me)\s+([a-z][a-z]+(?:\s+[a-z][a-z]+){0,2})/i,
-  ]
-
-  const businessPatterns = [
-    /(?:business is called|company is called|company name is|business name is)\s+([A-Za-z0-9&'.,\- ]{2,80})/i,
-    /(?:i'm from|im from|from)\s+([A-Za-z0-9&'.,\- ]{2,80})/i,
-  ]
-
-  let name = ""
-  for (const pattern of namePatterns) {
-    const match = cleaned.match(pattern)
-    if (match?.[1]) {
-      name = normalizeWhitespace(match[1]).replace(/[.,!?]+$/, "")
-      break
-    }
-  }
-
-  let businessName = ""
-  for (const pattern of businessPatterns) {
-    const match = cleaned.match(pattern)
-    if (match?.[1]) {
-      const candidate = normalizeWhitespace(match[1]).replace(/[.,!?]+$/, "")
-      if (!/^(brighton|london|sussex|west sussex|uk|england)$/i.test(candidate)) {
-        businessName = candidate
-        break
-      }
-    }
-  }
-
-  const phone = phoneMatch ? normalizeWhitespace(phoneMatch[0]) : ""
-  const email = emailMatch ? emailMatch[0].trim() : ""
-
-  const hasContactIntent =
-    /(?:phone|number|mobile|email|contact|call me|ring me|quote|get in touch|reach me|details|whatsapp|text me)/i.test(lower) ||
-    Boolean(phone || email)
-
-  return {
-    name,
-    phone,
-    email,
-    businessName,
-    hasEnoughToSubmit: Boolean(phone || email || (hasContactIntent && name)),
-  }
-}
-
 function hasMeaningfulTranscript(messages: LiveMessage[]) {
   const userMessages = messages.filter(
     (message) => message.role === "user" && normalizeWhitespace(message.content).length >= 4,
@@ -140,7 +82,7 @@ export function GeorgeLiveAssistant() {
   const scrollRef = useRef<HTMLDivElement | null>(null)
   const messagesRef = useRef<LiveMessage[]>(INITIAL_MESSAGES)
   const submittingLeadRef = useRef(false)
-  const submittedLeadFingerprintRef = useRef("")
+  const lastSubmittedTranscriptRef = useRef("")
 
   useEffect(() => {
     messagesRef.current = messages
@@ -158,28 +100,14 @@ export function GeorgeLiveAssistant() {
 
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
 
-  async function submitLeadCapture(reason: "details_detected" | "conversation_ended" | "page_unload") {
+  async function submitLeadCapture(reason: "message_snapshot" | "conversation_ended") {
     const transcript = buildTranscript(messagesRef.current)
     if (!transcript.trim()) return false
-
-    const extracted = extractLeadData(transcript)
-    const shouldSubmit =
-      reason === "details_detected" ? extracted.hasEnoughToSubmit : hasMeaningfulTranscript(messagesRef.current)
-
-    if (!shouldSubmit) return false
+    if (!hasMeaningfulTranscript(messagesRef.current)) return false
 
     const userMessageCount = messagesRef.current.filter((message) => message.role === "user").length
 
-    const fingerprint = JSON.stringify({
-      reason,
-      name: extracted.name,
-      phone: extracted.phone,
-      email: extracted.email,
-      businessName: extracted.businessName,
-      transcript,
-    })
-
-    if (submittedLeadFingerprintRef.current === fingerprint || submittingLeadRef.current) {
+    if (lastSubmittedTranscriptRef.current === transcript || submittingLeadRef.current) {
       return false
     }
 
@@ -187,15 +115,10 @@ export function GeorgeLiveAssistant() {
 
     const payload: LeadPayload = {
       source: `Meet George live voice (${reason})`,
-      name: extracted.name,
-      phone: extracted.phone,
-      email: extracted.email,
-      businessName: extracted.businessName,
       transcript,
       submittedAt: new Date().toISOString(),
       page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
-      submissionMode:
-        reason === "details_detected" ? "lead_detected" : reason === "page_unload" ? "page_unload" : "conversation_end",
+      submissionMode: reason === "message_snapshot" ? "message_snapshot" : "conversation_end",
       userMessageCount,
     }
 
@@ -207,7 +130,6 @@ export function GeorgeLiveAssistant() {
           Accept: "application/json",
         },
         body: JSON.stringify(payload),
-        keepalive: reason === "page_unload",
       })
 
       if (!response.ok) {
@@ -215,7 +137,7 @@ export function GeorgeLiveAssistant() {
         throw new Error(details || `Lead capture error ${response.status}`)
       }
 
-      submittedLeadFingerprintRef.current = fingerprint
+      lastSubmittedTranscriptRef.current = transcript
       return true
     } catch (submitError) {
       console.error("George live lead capture error", submitError)
@@ -226,7 +148,7 @@ export function GeorgeLiveAssistant() {
   }
 
   async function maybeSubmitLeadFromTranscript() {
-    await submitLeadCapture("details_detected")
+    await submitLeadCapture("message_snapshot")
   }
 
   async function cleanupConversation(options?: { submitTranscript?: boolean }) {
@@ -293,10 +215,12 @@ export function GeorgeLiveAssistant() {
   function addUserTranscript(text: string) {
     const cleaned = text.trim()
     if (!cleaned) return
-    setMessages((prev) => [...prev, makeMessage("user", cleaned)])
+    const nextMessages = [...messagesRef.current, makeMessage("user", cleaned)]
+    messagesRef.current = nextMessages
+    setMessages(nextMessages)
     window.setTimeout(() => {
       void maybeSubmitLeadFromTranscript()
-    }, 50)
+    }, 400)
   }
 
   function handleRealtimeEvent(event: any) {
