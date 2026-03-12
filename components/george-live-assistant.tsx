@@ -12,8 +12,6 @@ type LiveMessage = {
 type ConnectionState = "idle" | "connecting" | "connected" | "error"
 
 type LeadPayload = {
-  sessionId: string
-  action: "snapshot" | "finalize"
   name: string
   phone: string
   email: string
@@ -22,7 +20,7 @@ type LeadPayload = {
   source: string
   submittedAt: string
   page: string
-  submissionMode: "snapshot" | "conversation_end" | "page_unload" | "inactivity_timeout"
+  submissionMode: "conversation_end" | "page_unload" | "inactivity_timeout"
   userMessageCount: number
 }
 
@@ -54,12 +52,6 @@ function makeMessage(role: LiveMessage["role"], content: string): LiveMessage {
   }
 }
 
-function newSessionId() {
-  return typeof crypto !== "undefined" && "randomUUID" in crypto
-    ? crypto.randomUUID()
-    : `session-${Date.now()}-${Math.random()}`
-}
-
 function normalizeWhitespace(value: string) {
   return value.replace(/\s+/g, " ").trim()
 }
@@ -71,25 +63,10 @@ function buildTranscript(messages: LiveMessage[]) {
     .join("\n\n")
 }
 
-function extractLeadData(transcript: string) {
-  const cleaned = normalizeWhitespace(transcript)
-  const phoneMatch = cleaned.match(/(?:\+?44\s?7\d{3}|0\d{4}|0\d{3}|0\d{2}|\+?44\s?\d{2,4})[\d\s()-]{6,16}/)
-  const emailMatch = cleaned.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i)
-  const strictNameMatch = cleaned.match(/(?:my name is|name is|this is)\s+([a-z][a-z]+(?:\s+[a-z][a-z]+){0,2})/i)
-  const businessMatch = cleaned.match(
-    /(?:business is called|company is called|company name is|business name is|i'm from|im from)\s+([A-Za-z0-9&'.,\- ]{2,80})/i,
-  )
-
-  return {
-    name: strictNameMatch?.[1] ? normalizeWhitespace(strictNameMatch[1]).replace(/[.,!?]+$/, "") : "",
-    phone: phoneMatch ? normalizeWhitespace(phoneMatch[0]) : "",
-    email: emailMatch ? emailMatch[0].trim() : "",
-    businessName: businessMatch?.[1] ? normalizeWhitespace(businessMatch[1]).replace(/[.,!?]+$/, "") : "",
-  }
-}
-
 function hasMeaningfulTranscript(messages: LiveMessage[]) {
-  const userMessages = messages.filter((message) => message.role === "user" && normalizeWhitespace(message.content).length >= 2)
+  const userMessages = messages.filter(
+    (message) => message.role === "user" && normalizeWhitespace(message.content).length >= 4,
+  )
   return userMessages.length >= 1
 }
 
@@ -108,10 +85,36 @@ export function GeorgeLiveAssistant() {
   const currentAssistantMessageIdRef = useRef<string | null>(null)
   const scrollRef = useRef<HTMLDivElement | null>(null)
   const messagesRef = useRef<LiveMessage[]>(INITIAL_MESSAGES)
-  const sessionIdRef = useRef(newSessionId())
+  const submittingLeadRef = useRef(false)
+  const submittedLeadFingerprintRef = useRef("")
   const inactivityTimerRef = useRef<number | null>(null)
-  const finalTranscriptSentRef = useRef(false)
-  const finalizingRef = useRef(false)
+  const conversationSessionIdRef = useRef("")
+  const sentConversationRef = useRef(false)
+
+  useEffect(() => {
+    const sessionId =
+      typeof crypto !== "undefined" && "randomUUID" in crypto
+        ? crypto.randomUUID()
+        : `george-${Date.now()}-${Math.random()}`
+    conversationSessionIdRef.current = sessionId
+
+    const handlePageLeave = () => {
+      void submitLeadCapture("page_unload", true)
+    }
+
+    window.addEventListener("pagehide", handlePageLeave)
+    window.addEventListener("beforeunload", handlePageLeave)
+
+    return () => {
+      if (inactivityTimerRef.current) {
+        window.clearTimeout(inactivityTimerRef.current)
+        inactivityTimerRef.current = null
+      }
+      window.removeEventListener("pagehide", handlePageLeave)
+      window.removeEventListener("beforeunload", handlePageLeave)
+      void submitLeadCapture("page_unload", true)
+    }
+  }, [])
 
   useEffect(() => {
     messagesRef.current = messages
@@ -123,139 +126,101 @@ export function GeorgeLiveAssistant() {
 
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
 
-  function clearInactivityTimer() {
+  function scheduleInactivitySubmission() {
+    if (inactivityTimerRef.current) {
+      window.clearTimeout(inactivityTimerRef.current)
+    }
+
+    inactivityTimerRef.current = window.setTimeout(() => {
+      void submitLeadCapture("inactivity_timeout")
+    }, 10000)
+  }
+
+  async function submitLeadCapture(reason: "conversation_ended" | "page_unload" | "inactivity_timeout", useBeacon = false) {
+    const transcript = buildTranscript(messagesRef.current)
+    if (!transcript.trim()) return false
+    if (!hasMeaningfulTranscript(messagesRef.current)) return false
+    if (sentConversationRef.current || submittingLeadRef.current) return false
+
+    const userMessageCount = messagesRef.current.filter((message) => message.role === "user").length
+    const fingerprint = JSON.stringify({ transcript, reason, userMessageCount })
+
+    if (submittedLeadFingerprintRef.current === fingerprint) {
+      return false
+    }
+
+    const payload: LeadPayload = {
+      source: `Meet George live voice (${reason})`,
+      name: "",
+      phone: "",
+      email: "",
+      businessName: "",
+      transcript,
+      submittedAt: new Date().toISOString(),
+      page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
+      submissionMode:
+        reason === "page_unload" ? "page_unload" : reason === "inactivity_timeout" ? "inactivity_timeout" : "conversation_end",
+      userMessageCount,
+    }
+
+    if (typeof window !== "undefined") {
+      try {
+        sessionStorage.setItem(`george-sent-${conversationSessionIdRef.current}`, "1")
+      } catch {}
+    }
+
+    sentConversationRef.current = true
+    submittingLeadRef.current = !useBeacon
+
+    try {
+      if (useBeacon && typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
+        const blob = new Blob([JSON.stringify({ ...payload, sessionId: conversationSessionIdRef.current })], {
+          type: "application/json",
+        })
+        const queued = navigator.sendBeacon("/api/george-lead", blob)
+        if (!queued) {
+          sentConversationRef.current = false
+          return false
+        }
+      } else {
+        const response = await fetch("/api/george-lead", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({ ...payload, sessionId: conversationSessionIdRef.current }),
+          keepalive: reason === "page_unload",
+        })
+
+        if (!response.ok) {
+          const details = await response.text().catch(() => "")
+          throw new Error(details || `Lead capture error ${response.status}`)
+        }
+      }
+
+      submittedLeadFingerprintRef.current = fingerprint
+      return true
+    } catch (submitError) {
+      console.error("George live lead capture error", submitError)
+      sentConversationRef.current = false
+      return false
+    } finally {
+      if (!useBeacon) {
+        submittingLeadRef.current = false
+      }
+    }
+  }
+
+
+  async function cleanupConversation(options?: { submitTranscript?: boolean }) {
     if (inactivityTimerRef.current) {
       window.clearTimeout(inactivityTimerRef.current)
       inactivityTimerRef.current = null
     }
-  }
 
-  async function persistTranscriptSnapshot() {
-    const transcript = buildTranscript(messagesRef.current)
-    if (!transcript.trim()) return false
-
-    const extracted = extractLeadData(transcript)
-    const userMessageCount = messagesRef.current.filter((message) => message.role === "user").length
-
-    const payload: LeadPayload = {
-      sessionId: sessionIdRef.current,
-      action: "snapshot",
-      source: "Meet George live voice",
-      name: extracted.name,
-      phone: extracted.phone,
-      email: extracted.email,
-      businessName: extracted.businessName,
-      transcript,
-      submittedAt: new Date().toISOString(),
-      page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
-      submissionMode: "snapshot",
-      userMessageCount,
-    }
-
-    try {
-      await fetch("/api/george-lead", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(payload),
-      })
-      return true
-    } catch (snapshotError) {
-      console.error("George snapshot save error", snapshotError)
-      return false
-    }
-  }
-
-  async function finalizeTranscript(reason: "conversation_end" | "page_unload" | "inactivity_timeout") {
-    if (finalTranscriptSentRef.current || finalizingRef.current) return false
-
-    const transcript = buildTranscript(messagesRef.current)
-    if (!transcript.trim() || !hasMeaningfulTranscript(messagesRef.current)) return false
-
-    const extracted = extractLeadData(transcript)
-    const userMessageCount = messagesRef.current.filter((message) => message.role === "user").length
-
-    const payload: LeadPayload = {
-      sessionId: sessionIdRef.current,
-      action: "finalize",
-      source: `Meet George live voice (${reason})`,
-      name: extracted.name,
-      phone: extracted.phone,
-      email: extracted.email,
-      businessName: extracted.businessName,
-      transcript,
-      submittedAt: new Date().toISOString(),
-      page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
-      submissionMode: reason,
-      userMessageCount,
-    }
-
-    finalizingRef.current = true
-
-    try {
-      if (reason === "page_unload" && typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
-        const blob = new Blob([JSON.stringify(payload)], { type: "application/json" })
-        const queued = navigator.sendBeacon("/api/george-lead", blob)
-        if (queued) {
-          finalTranscriptSentRef.current = true
-          return true
-        }
-      }
-
-      const response = await fetch("/api/george-lead", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(payload),
-        keepalive: reason === "page_unload",
-      })
-
-      if (!response.ok) {
-        const details = await response.text().catch(() => "")
-        throw new Error(details || `Lead capture error ${response.status}`)
-      }
-
-      finalTranscriptSentRef.current = true
-      return true
-    } catch (submitError) {
-      console.error("George transcript finalize error", submitError)
-      return false
-    } finally {
-      finalizingRef.current = false
-    }
-  }
-
-  function scheduleInactivityFinalize() {
-    clearInactivityTimer()
-    inactivityTimerRef.current = window.setTimeout(() => {
-      void finalizeTranscript("inactivity_timeout")
-    }, 10000)
-  }
-
-  useEffect(() => {
-    const handlePageLeave = () => {
-      void finalizeTranscript("page_unload")
-    }
-
-    window.addEventListener("pagehide", handlePageLeave)
-    window.addEventListener("beforeunload", handlePageLeave)
-
-    return () => {
-      window.removeEventListener("pagehide", handlePageLeave)
-      window.removeEventListener("beforeunload", handlePageLeave)
-      clearInactivityTimer()
-    }
-  }, [])
-
-  async function cleanupConversation(options?: { finalizeTranscript?: boolean }) {
-    clearInactivityTimer()
-
-    if (options?.finalizeTranscript) {
-      await finalizeTranscript("conversation_end")
+    if (options?.submitTranscript) {
+      await submitLeadCapture("conversation_ended")
     }
 
     dcRef.current?.close()
@@ -295,10 +260,6 @@ export function GeorgeLiveAssistant() {
       if (isFinal) {
         currentAssistantMessageIdRef.current = null
         currentAssistantTextRef.current = ""
-        window.setTimeout(() => {
-          void persistTranscriptSnapshot()
-          scheduleInactivityFinalize()
-        }, 50)
       }
       return
     }
@@ -315,10 +276,7 @@ export function GeorgeLiveAssistant() {
     if (isFinal) {
       currentAssistantMessageIdRef.current = null
       currentAssistantTextRef.current = ""
-      window.setTimeout(() => {
-        void persistTranscriptSnapshot()
-        scheduleInactivityFinalize()
-      }, 50)
+      scheduleInactivitySubmission()
     }
   }
 
@@ -326,10 +284,7 @@ export function GeorgeLiveAssistant() {
     const cleaned = text.trim()
     if (!cleaned) return
     setMessages((prev) => [...prev, makeMessage("user", cleaned)])
-    window.setTimeout(() => {
-      void persistTranscriptSnapshot()
-      scheduleInactivityFinalize()
-    }, 50)
+    scheduleInactivitySubmission()
   }
 
   function handleRealtimeEvent(event: any) {
@@ -342,14 +297,12 @@ export function GeorgeLiveAssistant() {
         setStatusText("Live conversation on")
         break
       case "input_audio_buffer.speech_started":
-        clearInactivityTimer()
         setStatusText("Listening…")
         break
       case "input_audio_buffer.speech_stopped":
         setStatusText("Thinking…")
         break
       case "response.created":
-        clearInactivityTimer()
         setIsModelSpeaking(true)
         setStatusText("George is replying…")
         break
@@ -360,7 +313,6 @@ export function GeorgeLiveAssistant() {
       case "response.output_audio.done":
         setIsModelSpeaking(false)
         setStatusText("Listening…")
-        scheduleInactivityFinalize()
         break
       case "response.output_audio_transcript.delta":
         appendOrUpdateAssistantPartial(typeof event.delta === "string" ? event.delta : "")
@@ -415,10 +367,13 @@ export function GeorgeLiveAssistant() {
     setStatusText("Connecting George…")
     setMessages(INITIAL_MESSAGES)
     messagesRef.current = INITIAL_MESSAGES
-    finalTranscriptSentRef.current = false
-    finalizingRef.current = false
-    sessionIdRef.current = newSessionId()
-    clearInactivityTimer()
+    sentConversationRef.current = false
+    submittingLeadRef.current = false
+    submittedLeadFingerprintRef.current = ""
+    if (inactivityTimerRef.current) {
+      window.clearTimeout(inactivityTimerRef.current)
+      inactivityTimerRef.current = null
+    }
 
     try {
       const tokenResponse = await fetch("/api/george-session", {
@@ -463,7 +418,6 @@ export function GeorgeLiveAssistant() {
       dc.addEventListener("open", () => {
         setConnectionState("connected")
         setStatusText("Listening…")
-        scheduleInactivityFinalize()
         window.setTimeout(() => {
           dc.send(JSON.stringify(FIRST_RESPONSE_EVENT))
         }, 150)
@@ -522,7 +476,7 @@ export function GeorgeLiveAssistant() {
   }
 
   async function stopConversation() {
-    await cleanupConversation({ finalizeTranscript: true })
+    await cleanupConversation({ submitTranscript: true })
     setError(null)
     setConnectionState("idle")
     setStatusText("Ready when you are")
