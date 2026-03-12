@@ -20,71 +20,9 @@ const INITIAL_MESSAGES: LiveMessage[] = [
   },
 ]
 
-const SESSION_UPDATE_EVENT = {
-  type: "session.update",
-  session: {
-    type: "realtime",
-    model: "gpt-realtime",
-    output_modalities: ["audio", "text"],
-    audio: {
-      input: {
-        turn_detection: {
-          type: "semantic_vad",
-          eagerness: "high",
-          interrupt_response: true,
-          create_response: true,
-        },
-      },
-      output: {
-        voice: "cedar",
-        speed: 1.1,
-      },
-    },
-    instructions: `You are George, the friendly AI receptionist built into GuardX websites.
-
-Speak directly to the business owner you are talking to. Use plain English, not jargon.
-
-Your job is to help them understand that GuardX builds modern, fast business websites with you built in as the AI receptionist.
-
-What you do:
-- answer visitor questions
-- explain services and pricing clearly
-- keep people engaged instead of letting them quietly leave the site
-- help turn more website visitors into genuine enquiries
-- save the owner time by handling the same early questions customers ask again and again
-- collect details and pass serious enquiries through to the GuardX team
-
-GuardX websites are typically around £99 per month depending on the setup. That includes the website, hosting, and you as the AI receptionist built into the site.
-
-GuardX is best for trades, local service businesses, carpet and flooring shops, scaffolders, builders, contractors, and similar businesses that get repetitive questions.
-
-GuardX does not focus on large ecommerce stores, custom software systems, or complex booking platforms.
-
-If someone asks whether £99 is expensive, calmly explain that they are not just getting a website that sits there. They are getting a professional website plus an assistant that can answer questions, keep visitors engaged, and help turn more of that traffic into enquiries. If it helps bring in one extra customer, it often pays for itself.
-
-Keep your answers conversational, warm, upbeat, and concise. Sound like a sharp, cheerful receptionist rather than a pushy salesperson.
-
-Use little phrases like:
-- That's a really good question.
-- A lot of business owners ask that.
-- Out of curiosity...
-
-Ask natural questions back when helpful, such as:
-- What type of business do you run?
-- Do you currently have a website?
-- Do customers often ask the same questions about your services?
-- What would you want a website assistant like me to help with most?
-
-If the user gives their name, use it naturally later.
-
-When someone is clearly interested, invite them to leave their details so GuardX can follow up.`,
-  },
-}
-
 const FIRST_RESPONSE_EVENT = {
   type: "response.create",
   response: {
-    output_modalities: ["audio", "text"],
     instructions:
       "Briefly introduce yourself as George, the AI receptionist built into GuardX websites, then ask in a warm natural way: 'Out of curiosity, what type of business do you run?'",
   },
@@ -213,37 +151,59 @@ export function GeorgeLiveAssistant() {
         setIsModelSpeaking(true)
         setStatusText("George is replying…")
         break
-      case "response.audio.delta":
+      case "response.output_audio.delta":
         setIsModelSpeaking(true)
         setStatusText("George is replying…")
         break
-      case "response.audio.done":
+      case "response.output_audio.done":
         setIsModelSpeaking(false)
         setStatusText("Listening…")
         break
-      case "response.audio_transcript.delta":
+      case "response.output_audio_transcript.delta":
         appendOrUpdateAssistantPartial(typeof event.delta === "string" ? event.delta : "")
         break
-      case "response.audio_transcript.done":
+      case "response.output_audio_transcript.done":
         appendOrUpdateAssistantPartial(typeof event.transcript === "string" ? event.transcript : "", true)
         break
       case "response.output_text.delta":
-      case "response.text.delta":
         appendOrUpdateAssistantPartial(typeof event.delta === "string" ? event.delta : "")
         break
       case "response.output_text.done":
-      case "response.text.done":
         appendOrUpdateAssistantPartial(typeof event.text === "string" ? event.text : "", true)
         break
       case "conversation.item.input_audio_transcription.completed":
         addUserTranscript(typeof event.transcript === "string" ? event.transcript : "")
         break
-      case "error":
-        cleanupConversation()
-        setError(event?.error?.message || "George hit a voice error.")
-        setConnectionState("error")
-        setStatusText("There was a connection problem")
+      case "response.output_item.done": {
+        const content = Array.isArray(event?.item?.content) ? event.item.content : []
+        const transcript = content
+          .map((part: any) => {
+            if (typeof part?.transcript === "string") return part.transcript
+            if (typeof part?.text === "string") return part.text
+            return ""
+          })
+          .filter(Boolean)
+          .join("\n")
+
+        if (transcript) {
+          appendOrUpdateAssistantPartial(transcript, true)
+        }
         break
+      }
+      case "error": {
+        const message = event?.error?.message || "George hit a voice error."
+        console.error("Realtime error event", event)
+        if (connectionState === "connected") {
+          setError(message)
+          setStatusText("There was a connection problem")
+        } else {
+          cleanupConversation()
+          setConnectionState("error")
+          setStatusText("Could not connect George")
+          setError(message)
+        }
+        break
+      }
       default:
         break
     }
@@ -301,10 +261,9 @@ export function GeorgeLiveAssistant() {
       dc.addEventListener("open", () => {
         setConnectionState("connected")
         setStatusText("Listening…")
-        dc.send(JSON.stringify(SESSION_UPDATE_EVENT))
         window.setTimeout(() => {
           dc.send(JSON.stringify(FIRST_RESPONSE_EVENT))
-        }, 200)
+        }, 150)
       })
 
       dc.addEventListener("message", (event) => {
@@ -342,7 +301,7 @@ export function GeorgeLiveAssistant() {
           if (answerText.includes("<html") || answerText.includes("<!DOCTYPE html")) {
             message = "The live voice service timed out while connecting. Please try again."
           } else if (answerText.trim()) {
-            message = answerText
+            message = answerText.trim()
           }
         }
 

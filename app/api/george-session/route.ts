@@ -43,10 +43,14 @@ const SESSION_CONFIG = {
   session: {
     type: "realtime",
     model: "gpt-realtime",
-    output_modalities: ["audio", "text"],
+    output_modalities: ["audio"],
     instructions: GEORGE_INSTRUCTIONS,
     audio: {
       input: {
+        transcription: {
+          model: "gpt-4o-mini-transcribe",
+          language: "en",
+        },
         turn_detection: {
           type: "semantic_vad",
           eagerness: "high",
