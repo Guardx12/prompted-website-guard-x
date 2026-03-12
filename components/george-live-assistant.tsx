@@ -20,11 +20,9 @@ type LeadPayload = {
   source: string
   submittedAt: string
   page: string
-  submissionMode: "lead_detected" | "conversation_end" | "timeout"
+  submissionMode: "lead_detected" | "conversation_end" | "page_unload"
   userMessageCount: number
 }
-
-const INACTIVITY_TIMEOUT_MS = 10000
 
 const INITIAL_MESSAGES: LiveMessage[] = [
   {
@@ -142,8 +140,7 @@ export function GeorgeLiveAssistant() {
   const scrollRef = useRef<HTMLDivElement | null>(null)
   const messagesRef = useRef<LiveMessage[]>(INITIAL_MESSAGES)
   const submittingLeadRef = useRef(false)
-  const transcriptSentRef = useRef(false)
-  const inactivityTimeoutRef = useRef<number | null>(null)
+  const submittedLeadFingerprintRef = useRef("")
 
   useEffect(() => {
     messagesRef.current = messages
@@ -155,41 +152,13 @@ export function GeorgeLiveAssistant() {
 
   useEffect(() => {
     return () => {
-      clearInactivityTimeout()
+      void cleanupConversation({ submitTranscript: true })
     }
   }, [])
 
-  useEffect(() => {
-    if (connectionState !== "connected" || transcriptSentRef.current) {
-      clearInactivityTimeout()
-      return
-    }
-
-    const hasUserMessage = messages.some((message) => message.role === "user")
-    if (!hasUserMessage) return
-
-    clearInactivityTimeout()
-    inactivityTimeoutRef.current = window.setTimeout(() => {
-      void submitLeadCapture("timeout")
-    }, INACTIVITY_TIMEOUT_MS)
-
-    return () => {
-      clearInactivityTimeout()
-    }
-  }, [messages, connectionState])
-
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
 
-  function clearInactivityTimeout() {
-    if (inactivityTimeoutRef.current !== null) {
-      window.clearTimeout(inactivityTimeoutRef.current)
-      inactivityTimeoutRef.current = null
-    }
-  }
-
-  async function submitLeadCapture(reason: "details_detected" | "conversation_ended" | "timeout") {
-    if (transcriptSentRef.current || submittingLeadRef.current) return false
-
+  async function submitLeadCapture(reason: "details_detected" | "conversation_ended" | "page_unload") {
     const transcript = buildTranscript(messagesRef.current)
     if (!transcript.trim()) return false
 
@@ -199,9 +168,23 @@ export function GeorgeLiveAssistant() {
 
     if (!shouldSubmit) return false
 
+    const userMessageCount = messagesRef.current.filter((message) => message.role === "user").length
+
+    const fingerprint = JSON.stringify({
+      reason,
+      name: extracted.name,
+      phone: extracted.phone,
+      email: extracted.email,
+      businessName: extracted.businessName,
+      transcript,
+    })
+
+    if (submittedLeadFingerprintRef.current === fingerprint || submittingLeadRef.current) {
+      return false
+    }
+
     submittingLeadRef.current = true
 
-    const userMessageCount = messagesRef.current.filter((message) => message.role === "user").length
     const payload: LeadPayload = {
       source: `Meet George live voice (${reason})`,
       name: extracted.name,
@@ -211,7 +194,8 @@ export function GeorgeLiveAssistant() {
       transcript,
       submittedAt: new Date().toISOString(),
       page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
-      submissionMode: reason === "details_detected" ? "lead_detected" : reason === "timeout" ? "timeout" : "conversation_end",
+      submissionMode:
+        reason === "details_detected" ? "lead_detected" : reason === "page_unload" ? "page_unload" : "conversation_end",
       userMessageCount,
     }
 
@@ -223,6 +207,7 @@ export function GeorgeLiveAssistant() {
           Accept: "application/json",
         },
         body: JSON.stringify(payload),
+        keepalive: reason === "page_unload",
       })
 
       if (!response.ok) {
@@ -230,8 +215,7 @@ export function GeorgeLiveAssistant() {
         throw new Error(details || `Lead capture error ${response.status}`)
       }
 
-      transcriptSentRef.current = true
-      clearInactivityTimeout()
+      submittedLeadFingerprintRef.current = fingerprint
       return true
     } catch (submitError) {
       console.error("George live lead capture error", submitError)
@@ -246,8 +230,6 @@ export function GeorgeLiveAssistant() {
   }
 
   async function cleanupConversation(options?: { submitTranscript?: boolean }) {
-    clearInactivityTimeout()
-
     if (options?.submitTranscript) {
       await submitLeadCapture("conversation_ended")
     }
@@ -375,6 +357,11 @@ export function GeorgeLiveAssistant() {
         if (connectionState === "connected") {
           setError(message)
           setStatusText("There was a connection problem")
+        } else {
+          void cleanupConversation()
+          setConnectionState("error")
+          setStatusText("Could not connect George")
+          setError(message)
         }
         break
       }
@@ -387,7 +374,6 @@ export function GeorgeLiveAssistant() {
     if (!canStart) return
 
     await cleanupConversation()
-    transcriptSentRef.current = false
     setConnectionState("connecting")
     setError(null)
     setStatusText("Connecting George…")
@@ -554,27 +540,23 @@ export function GeorgeLiveAssistant() {
                       : "bg-[#F1F3F4] text-[#5F6368]"
               }`}
             >
-              <Radio className="h-4 w-4" />
-              {statusText}
+              {connectionState === "connected" ? <Volume2 className="h-4 w-4" /> : <Radio className="h-4 w-4" />}
+              <span>{isModelSpeaking ? "George is talking" : statusText}</span>
             </span>
-            {isModelSpeaking ? (
-              <span className="inline-flex items-center gap-2 rounded-full bg-[#EEF4FF] px-3 py-2 text-[#174EA6]">
-                <Volume2 className="h-4 w-4" /> Voice on
-              </span>
-            ) : null}
           </div>
         </div>
 
-        <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto bg-[#F8FAFD] px-4 py-5 sm:px-6 sm:py-6">
-          {messages
-            .filter((message) => message.role !== "system")
-            .map((message) => (
+        <div ref={scrollRef} className="flex-1 overflow-y-auto bg-[#F8FAFD] px-4 py-6 sm:px-6 sm:py-8">
+          <div className="mx-auto flex w-full max-w-4xl flex-col gap-5">
+            {messages.map((message) => (
               <div key={message.id} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
                 <div
-                  className={`max-w-[88%] rounded-[24px] px-5 py-4 text-sm leading-7 shadow-sm sm:max-w-[78%] sm:text-[15px] ${
-                    message.role === "assistant"
-                      ? "rounded-bl-md border border-[#E5E7EB] bg-white text-[#202124]"
-                      : "rounded-bl-md border border-[#D2E3FC] bg-[#EEF4FF] text-[#174EA6]"
+                  className={`max-w-[92%] whitespace-pre-wrap rounded-[24px] px-5 py-4 text-[15px] leading-7 shadow-sm sm:max-w-[86%] sm:text-[16px] ${
+                    message.role === "user"
+                      ? "rounded-br-md bg-[#1A73E8] text-white"
+                      : message.role === "assistant"
+                        ? "rounded-bl-md border border-[#E5E7EB] bg-white text-[#202124]"
+                        : "rounded-bl-md border border-[#D2E3FC] bg-[#EEF4FF] text-[#174EA6]"
                   }`}
                 >
                   {message.content}
@@ -582,13 +564,14 @@ export function GeorgeLiveAssistant() {
               </div>
             ))}
 
-          {connectionState === "connecting" && (
-            <div className="flex justify-start">
-              <div className="inline-flex items-center gap-3 rounded-[24px] rounded-bl-md border border-[#E5E7EB] bg-white px-5 py-4 text-[#5F6368] shadow-sm">
-                <Loader2 className="h-4 w-4 animate-spin" /> George is joining the call…
+            {connectionState === "connecting" && (
+              <div className="flex justify-start">
+                <div className="inline-flex items-center gap-3 rounded-[24px] rounded-bl-md border border-[#E5E7EB] bg-white px-5 py-4 text-[#5F6368] shadow-sm">
+                  <Loader2 className="h-4 w-4 animate-spin" /> George is joining the call…
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
         <div className="border-t border-[#E8EAED] bg-white px-4 py-4 sm:px-6">
