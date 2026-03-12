@@ -84,22 +84,18 @@ export default function MeetGeorgePage() {
     window.__georgeTranscriptSent = false
     resetTranscriptTimeout()
 
-    const handleBeforeUnload = () => {
-      sendTranscriptOnce()
-    }
-
     const handleActivity = () => {
       resetTranscriptTimeout()
     }
 
-    window.addEventListener("beforeunload", handleBeforeUnload)
     window.addEventListener("pointerdown", handleActivity)
     window.addEventListener("keydown", handleActivity)
+    window.addEventListener("george-activity", handleActivity)
 
     return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload)
       window.removeEventListener("pointerdown", handleActivity)
       window.removeEventListener("keydown", handleActivity)
+      window.removeEventListener("george-activity", handleActivity)
       if (window.__georgeTranscriptTimeout) {
         window.clearTimeout(window.__georgeTranscriptTimeout)
       }

@@ -3,6 +3,12 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Loader2, Mic, PhoneOff, Radio, Volume2 } from "lucide-react"
 
+declare global {
+  interface Window {
+    georgeTranscript?: string
+  }
+}
+
 type LiveMessage = {
   id: string
   role: "assistant" | "user" | "system"
@@ -26,6 +32,12 @@ const FIRST_RESPONSE_EVENT = {
     instructions:
       "Briefly introduce yourself as George, the AI receptionist built into GuardX websites, then ask in a warm natural way: 'Out of curiosity, what type of business do you run?'",
   },
+}
+
+
+function pingGeorgeActivity() {
+  if (typeof window === "undefined") return
+  window.dispatchEvent(new Event("george-activity"))
 }
 
 function makeMessage(role: LiveMessage["role"], content: string): LiveMessage {
@@ -60,6 +72,19 @@ export function GeorgeLiveAssistant() {
       el.scrollTo({ top: el.scrollHeight, behavior: "smooth" })
     }
   }, [messages, statusText])
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+
+    const transcript = messages
+      .filter((message) => message.role === "user" || message.role === "assistant")
+      .map((message) => `${message.role === "user" ? "Visitor" : "George"}: ${message.content}`)
+      .join("
+
+")
+
+    window.georgeTranscript = transcript
+  }, [messages])
 
   useEffect(() => {
     return () => {
@@ -98,6 +123,7 @@ export function GeorgeLiveAssistant() {
 
   function appendOrUpdateAssistantPartial(delta: string, isFinal = false) {
     if (!delta) return
+    pingGeorgeActivity()
 
     if (!currentAssistantMessageIdRef.current) {
       const message = makeMessage("assistant", delta)
@@ -129,6 +155,7 @@ export function GeorgeLiveAssistant() {
   function addUserTranscript(text: string) {
     const cleaned = text.trim()
     if (!cleaned) return
+    pingGeorgeActivity()
     setMessages((prev) => [...prev, makeMessage("user", cleaned)])
   }
 
@@ -142,6 +169,7 @@ export function GeorgeLiveAssistant() {
         setStatusText("Live conversation on")
         break
       case "input_audio_buffer.speech_started":
+        pingGeorgeActivity()
         setStatusText("Listening…")
         break
       case "input_audio_buffer.speech_stopped":
@@ -259,6 +287,7 @@ export function GeorgeLiveAssistant() {
       dcRef.current = dc
 
       dc.addEventListener("open", () => {
+        pingGeorgeActivity()
         setConnectionState("connected")
         setStatusText("Listening…")
         window.setTimeout(() => {
