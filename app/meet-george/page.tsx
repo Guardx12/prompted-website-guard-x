@@ -9,7 +9,6 @@ declare global {
   interface Window {
     georgeTranscript?: string
     __georgeTranscriptSent?: boolean
-    __georgeTranscriptTimeout?: number
   }
 }
 
@@ -26,7 +25,10 @@ function sendTranscriptOnce() {
 
   if (navigator.sendBeacon) {
     const blob = new Blob([payload], { type: "application/json" })
-    navigator.sendBeacon("/api/george-lead", blob)
+    const sent = navigator.sendBeacon("/api/george-lead", blob)
+    if (!sent) {
+      window.__georgeTranscriptSent = false
+    }
     return
   }
 
@@ -38,17 +40,6 @@ function sendTranscriptOnce() {
   }).catch(() => {
     window.__georgeTranscriptSent = false
   })
-}
-
-function resetTranscriptTimeout() {
-  if (typeof window === "undefined") return
-  if (window.__georgeTranscriptTimeout) {
-    window.clearTimeout(window.__georgeTranscriptTimeout)
-  }
-
-  window.__georgeTranscriptTimeout = window.setTimeout(() => {
-    sendTranscriptOnce()
-  }, 90_000)
 }
 
 export default function MeetGeorgePage() {
@@ -82,23 +73,21 @@ export default function MeetGeorgePage() {
     if (typeof window === "undefined") return
 
     window.__georgeTranscriptSent = false
-    resetTranscriptTimeout()
 
-    const handleActivity = () => {
-      resetTranscriptTimeout()
+    const handlePageHide = () => {
+      sendTranscriptOnce()
     }
 
-    window.addEventListener("pointerdown", handleActivity)
-    window.addEventListener("keydown", handleActivity)
-    window.addEventListener("george-activity", handleActivity)
+    const handleBeforeUnload = () => {
+      sendTranscriptOnce()
+    }
+
+    window.addEventListener("pagehide", handlePageHide)
+    window.addEventListener("beforeunload", handleBeforeUnload)
 
     return () => {
-      window.removeEventListener("pointerdown", handleActivity)
-      window.removeEventListener("keydown", handleActivity)
-      window.removeEventListener("george-activity", handleActivity)
-      if (window.__georgeTranscriptTimeout) {
-        window.clearTimeout(window.__georgeTranscriptTimeout)
-      }
+      window.removeEventListener("pagehide", handlePageHide)
+      window.removeEventListener("beforeunload", handleBeforeUnload)
     }
   }, [])
 
