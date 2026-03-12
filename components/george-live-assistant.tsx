@@ -11,19 +11,6 @@ type LiveMessage = {
 
 type ConnectionState = "idle" | "connecting" | "connected" | "error"
 
-type LeadPayload = {
-  name: string
-  phone: string
-  email: string
-  businessName: string
-  transcript: string
-  source: string
-  submittedAt: string
-  page: string
-  submissionMode: "lead_detected" | "conversation_end" | "page_unload"
-  userMessageCount: number
-}
-
 const INITIAL_MESSAGES: LiveMessage[] = [
   {
     id: "intro",
@@ -52,78 +39,6 @@ function makeMessage(role: LiveMessage["role"], content: string): LiveMessage {
   }
 }
 
-function normalizeWhitespace(value: string) {
-  return value.replace(/\s+/g, " ").trim()
-}
-
-function buildTranscript(messages: LiveMessage[]) {
-  return messages
-    .filter((message) => message.role === "assistant" || message.role === "user")
-    .map((message) => `${message.role === "assistant" ? "George" : "Visitor"}: ${normalizeWhitespace(message.content)}`)
-    .join("\n\n")
-}
-
-function extractLeadData(transcript: string) {
-  const cleaned = normalizeWhitespace(transcript)
-  const lower = cleaned.toLowerCase()
-
-  const phoneMatch = cleaned.match(/(?:\+?44\s?7\d{3}|0\d{4}|0\d{3}|0\d{2}|\+?44\s?\d{2,4})[\d\s()-]{6,16}/)
-  const emailMatch = cleaned.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i)
-
-  const namePatterns = [
-    /(?:my name is|i am|i'm|im|this is|it's|it is|name is)\s+([a-z][a-z]+(?:\s+[a-z][a-z]+){0,2})/i,
-    /(?:call me)\s+([a-z][a-z]+(?:\s+[a-z][a-z]+){0,2})/i,
-  ]
-
-  const businessPatterns = [
-    /(?:business is called|company is called|company name is|business name is)\s+([A-Za-z0-9&'.,\- ]{2,80})/i,
-    /(?:i'm from|im from|from)\s+([A-Za-z0-9&'.,\- ]{2,80})/i,
-  ]
-
-  let name = ""
-  for (const pattern of namePatterns) {
-    const match = cleaned.match(pattern)
-    if (match?.[1]) {
-      name = normalizeWhitespace(match[1]).replace(/[.,!?]+$/, "")
-      break
-    }
-  }
-
-  let businessName = ""
-  for (const pattern of businessPatterns) {
-    const match = cleaned.match(pattern)
-    if (match?.[1]) {
-      const candidate = normalizeWhitespace(match[1]).replace(/[.,!?]+$/, "")
-      if (!/^(brighton|london|sussex|west sussex|uk|england)$/i.test(candidate)) {
-        businessName = candidate
-        break
-      }
-    }
-  }
-
-  const phone = phoneMatch ? normalizeWhitespace(phoneMatch[0]) : ""
-  const email = emailMatch ? emailMatch[0].trim() : ""
-
-  const hasContactIntent =
-    /(?:phone|number|mobile|email|contact|call me|ring me|quote|get in touch|reach me|details|whatsapp|text me)/i.test(lower) ||
-    Boolean(phone || email)
-
-  return {
-    name,
-    phone,
-    email,
-    businessName,
-    hasEnoughToSubmit: Boolean(phone || email || (hasContactIntent && name)),
-  }
-}
-
-function hasMeaningfulTranscript(messages: LiveMessage[]) {
-  const userMessages = messages.filter(
-    (message) => message.role === "user" && normalizeWhitespace(message.content).length >= 4,
-  )
-  return userMessages.length >= 1
-}
-
 export function GeorgeLiveAssistant() {
   const [messages, setMessages] = useState<LiveMessage[]>(INITIAL_MESSAGES)
   const [connectionState, setConnectionState] = useState<ConnectionState>("idle")
@@ -138,12 +53,8 @@ export function GeorgeLiveAssistant() {
   const currentAssistantTextRef = useRef("")
   const currentAssistantMessageIdRef = useRef<string | null>(null)
   const scrollRef = useRef<HTMLDivElement | null>(null)
-  const messagesRef = useRef<LiveMessage[]>(INITIAL_MESSAGES)
-  const submittingLeadRef = useRef(false)
-  const submittedLeadFingerprintRef = useRef("")
 
   useEffect(() => {
-    messagesRef.current = messages
     const el = scrollRef.current
     if (el) {
       el.scrollTo({ top: el.scrollHeight, behavior: "smooth" })
@@ -152,88 +63,13 @@ export function GeorgeLiveAssistant() {
 
   useEffect(() => {
     return () => {
-      void cleanupConversation({ submitTranscript: true })
+      cleanupConversation()
     }
   }, [])
 
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
 
-  async function submitLeadCapture(reason: "details_detected" | "conversation_ended" | "page_unload") {
-    const transcript = buildTranscript(messagesRef.current)
-    if (!transcript.trim()) return false
-
-    const extracted = extractLeadData(transcript)
-    const shouldSubmit =
-      reason === "details_detected" ? extracted.hasEnoughToSubmit : hasMeaningfulTranscript(messagesRef.current)
-
-    if (!shouldSubmit) return false
-
-    const userMessageCount = messagesRef.current.filter((message) => message.role === "user").length
-
-    const fingerprint = JSON.stringify({
-      reason,
-      name: extracted.name,
-      phone: extracted.phone,
-      email: extracted.email,
-      businessName: extracted.businessName,
-      transcript,
-    })
-
-    if (submittedLeadFingerprintRef.current === fingerprint || submittingLeadRef.current) {
-      return false
-    }
-
-    submittingLeadRef.current = true
-
-    const payload: LeadPayload = {
-      source: `Meet George live voice (${reason})`,
-      name: extracted.name,
-      phone: extracted.phone,
-      email: extracted.email,
-      businessName: extracted.businessName,
-      transcript,
-      submittedAt: new Date().toISOString(),
-      page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
-      submissionMode:
-        reason === "details_detected" ? "lead_detected" : reason === "page_unload" ? "page_unload" : "conversation_end",
-      userMessageCount,
-    }
-
-    try {
-      const response = await fetch("/api/george-lead", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(payload),
-        keepalive: reason === "page_unload",
-      })
-
-      if (!response.ok) {
-        const details = await response.text().catch(() => "")
-        throw new Error(details || `Lead capture error ${response.status}`)
-      }
-
-      submittedLeadFingerprintRef.current = fingerprint
-      return true
-    } catch (submitError) {
-      console.error("George live lead capture error", submitError)
-      return false
-    } finally {
-      submittingLeadRef.current = false
-    }
-  }
-
-  async function maybeSubmitLeadFromTranscript() {
-    await submitLeadCapture("details_detected")
-  }
-
-  async function cleanupConversation(options?: { submitTranscript?: boolean }) {
-    if (options?.submitTranscript) {
-      await submitLeadCapture("conversation_ended")
-    }
-
+  function cleanupConversation() {
     dcRef.current?.close()
     dcRef.current = null
 
@@ -294,9 +130,6 @@ export function GeorgeLiveAssistant() {
     const cleaned = text.trim()
     if (!cleaned) return
     setMessages((prev) => [...prev, makeMessage("user", cleaned)])
-    window.setTimeout(() => {
-      void maybeSubmitLeadFromTranscript()
-    }, 50)
   }
 
   function handleRealtimeEvent(event: any) {
@@ -332,6 +165,12 @@ export function GeorgeLiveAssistant() {
       case "response.output_audio_transcript.done":
         appendOrUpdateAssistantPartial(typeof event.transcript === "string" ? event.transcript : "", true)
         break
+      case "response.output_text.delta":
+        appendOrUpdateAssistantPartial(typeof event.delta === "string" ? event.delta : "")
+        break
+      case "response.output_text.done":
+        appendOrUpdateAssistantPartial(typeof event.text === "string" ? event.text : "", true)
+        break
       case "conversation.item.input_audio_transcription.completed":
         addUserTranscript(typeof event.transcript === "string" ? event.transcript : "")
         break
@@ -358,7 +197,7 @@ export function GeorgeLiveAssistant() {
           setError(message)
           setStatusText("There was a connection problem")
         } else {
-          void cleanupConversation()
+          cleanupConversation()
           setConnectionState("error")
           setStatusText("Could not connect George")
           setError(message)
@@ -373,12 +212,11 @@ export function GeorgeLiveAssistant() {
   async function startConversation() {
     if (!canStart) return
 
-    await cleanupConversation()
+    cleanupConversation()
     setConnectionState("connecting")
     setError(null)
     setStatusText("Connecting George…")
     setMessages(INITIAL_MESSAGES)
-    messagesRef.current = INITIAL_MESSAGES
 
     try {
       const tokenResponse = await fetch("/api/george-session", {
@@ -473,15 +311,15 @@ export function GeorgeLiveAssistant() {
       await pc.setRemoteDescription({ type: "answer", sdp: answerText })
     } catch (err) {
       console.error("George live voice error", err)
-      await cleanupConversation()
+      cleanupConversation()
       setConnectionState("error")
       setStatusText("Could not connect George")
       setError(err instanceof Error ? err.message : "Could not connect George")
     }
   }
 
-  async function stopConversation() {
-    await cleanupConversation({ submitTranscript: true })
+  function stopConversation() {
+    cleanupConversation()
     setError(null)
     setConnectionState("idle")
     setStatusText("Ready when you are")
@@ -490,22 +328,9 @@ export function GeorgeLiveAssistant() {
   return (
     <section className="mx-auto flex min-h-[calc(100vh-88px)] w-full max-w-6xl flex-col px-4 pb-10 pt-8 sm:px-6 lg:px-8 lg:pt-10">
       <div className="mx-auto mb-6 max-w-4xl text-center">
-        <div className="mx-auto mb-5 flex max-w-4xl items-center justify-center overflow-hidden rounded-[28px] border border-[#DADCE0] bg-[linear-gradient(135deg,#0f172a_0%,#111827_42%,#1d4ed8_100%)] px-6 py-7 text-left shadow-[0_24px_80px_rgba(17,24,39,0.24)] sm:px-8">
-          <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#BFDBFE] sm:text-sm">Meet George</p>
-            <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
-              Your AI website sales assistant.
-            </h1>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
-              George answers questions, captures enquiries, and helps turn website visitors into customers — day or
-              night.
-            </p>
-            <p className="mt-4 text-sm font-semibold text-[#93C5FD] sm:text-base">
-              Answers questions • Captures leads • Works 24/7
-            </p>
-          </div>
-        </div>
-
+        <h1 className="guardx-hero-title text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight animate-[pulse_6s_ease-in-out_infinite]">
+          Websites that can actually talk to your visitors.
+        </h1>
         <p className="mt-4 text-xl font-medium text-[#202124] sm:text-2xl">Meet George.</p>
         <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-[#5F6368] sm:text-lg sm:leading-8">
           George is the AI receptionist built into GuardX websites. He answers visitor questions, explains services,
@@ -578,7 +403,7 @@ export function GeorgeLiveAssistant() {
           <div className="mx-auto flex w-full max-w-4xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-[#5F6368]">
               {connectionState === "connected"
-                ? "You’re in a live conversation. Just speak naturally and George should reply automatically. If someone leaves their details, George can pass the transcript on."
+                ? "You’re in a live conversation. Just speak naturally and George should reply automatically."
                 : "Start the live conversation and George will greet you, listen, and reply automatically without push-to-talk."}
             </p>
             <div className="flex items-center gap-3">
