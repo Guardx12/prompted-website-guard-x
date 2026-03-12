@@ -2,7 +2,7 @@
 
 import { useLayoutEffect } from "react"
 import { Footer } from "@/components/footer"
-import { GeorgeAssistant } from "@/components/george-assistant"
+import { GeorgeLiveAssistant } from "@/components/george-live-assistant"
 import { Navigation } from "@/components/navigation"
 
 export default function MeetGeorgePage() {
@@ -36,7 +36,7 @@ export default function MeetGeorgePage() {
     <div className="min-h-screen bg-[linear-gradient(180deg,#eef4ff_0%,#f8fbff_35%,#ffffff_100%)]">
       <Navigation />
       <main>
-        <GeorgeAssistant />
+        <GeorgeLiveAssistant />
       </main>
       <Footer />
     </div>
