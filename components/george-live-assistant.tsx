@@ -79,9 +79,7 @@ export function GeorgeLiveAssistant() {
     const transcript = messages
       .filter((message) => message.role === "user" || message.role === "assistant")
       .map((message) => `${message.role === "user" ? "Visitor" : "George"}: ${message.content}`)
-      .join("
-
-")
+      .join("\n\n")
 
     window.georgeTranscript = transcript
   }, [messages])
