@@ -65,6 +65,7 @@ export function GeorgeLiveAssistant() {
   const currentAssistantTextRef = useRef("")
   const currentAssistantMessageIdRef = useRef<string | null>(null)
   const scrollRef = useRef<HTMLDivElement | null>(null)
+  const detailsTriggeredRef = useRef(false)
 
   useEffect(() => {
     const el = scrollRef.current
@@ -82,6 +83,16 @@ export function GeorgeLiveAssistant() {
       .join("\n\n")
 
     window.georgeTranscript = transcript
+
+    if (!detailsTriggeredRef.current) {
+      const hasPhone = /(?:\+?44\s?7\d{3}|0\d{4}|07\d{3}|\+?\d{1,3})[\d\s()\-]{6,}/.test(transcript)
+      const hasEmail = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i.test(transcript)
+
+      if (hasPhone || hasEmail) {
+        detailsTriggeredRef.current = true
+        window.dispatchEvent(new Event("george-details-collected"))
+      }
+    }
   }, [messages])
 
   useEffect(() => {
@@ -243,6 +254,7 @@ export function GeorgeLiveAssistant() {
     setError(null)
     setStatusText("Connecting George…")
     setMessages(INITIAL_MESSAGES)
+    detailsTriggeredRef.current = false
 
     try {
       const tokenResponse = await fetch("/api/george-session", {
@@ -346,6 +358,9 @@ export function GeorgeLiveAssistant() {
   }
 
   function stopConversation() {
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new Event("george-conversation-ended"))
+    }
     cleanupConversation()
     setError(null)
     setConnectionState("idle")

@@ -9,10 +9,13 @@ declare global {
   interface Window {
     georgeTranscript?: string
     __georgeTranscriptSent?: boolean
+    __georgeInactivityTimer?: number
   }
 }
 
-function sendTranscriptOnce() {
+const INACTIVITY_TIMEOUT = 10000
+
+function sendTranscriptOnce(reason: "timeout" | "details" | "end") {
   if (typeof window === "undefined") return
   if (window.__georgeTranscriptSent) return
 
@@ -21,16 +24,7 @@ function sendTranscriptOnce() {
 
   window.__georgeTranscriptSent = true
 
-  const payload = JSON.stringify({ transcript, source: "meet-george" })
-
-  if (navigator.sendBeacon) {
-    const blob = new Blob([payload], { type: "application/json" })
-    const sent = navigator.sendBeacon("/api/george-lead", blob)
-    if (!sent) {
-      window.__georgeTranscriptSent = false
-    }
-    return
-  }
+  const payload = JSON.stringify({ transcript, source: `meet-george:${reason}` })
 
   fetch("/api/george-lead", {
     method: "POST",
@@ -40,6 +34,18 @@ function sendTranscriptOnce() {
   }).catch(() => {
     window.__georgeTranscriptSent = false
   })
+}
+
+function resetInactivityTimer() {
+  if (typeof window === "undefined") return
+
+  if (window.__georgeInactivityTimer) {
+    window.clearTimeout(window.__georgeInactivityTimer)
+  }
+
+  window.__georgeInactivityTimer = window.setTimeout(() => {
+    sendTranscriptOnce("timeout")
+  }, INACTIVITY_TIMEOUT)
 }
 
 export default function MeetGeorgePage() {
@@ -73,21 +79,31 @@ export default function MeetGeorgePage() {
     if (typeof window === "undefined") return
 
     window.__georgeTranscriptSent = false
+    resetInactivityTimer()
 
-    const handlePageHide = () => {
-      sendTranscriptOnce()
+    const handleActivity = () => {
+      resetInactivityTimer()
     }
 
-    const handleBeforeUnload = () => {
-      sendTranscriptOnce()
+    const handleDetailsCollected = () => {
+      sendTranscriptOnce("details")
     }
 
-    window.addEventListener("pagehide", handlePageHide)
-    window.addEventListener("beforeunload", handleBeforeUnload)
+    const handleConversationEnded = () => {
+      sendTranscriptOnce("end")
+    }
+
+    window.addEventListener("george-activity", handleActivity)
+    window.addEventListener("george-details-collected", handleDetailsCollected)
+    window.addEventListener("george-conversation-ended", handleConversationEnded)
 
     return () => {
-      window.removeEventListener("pagehide", handlePageHide)
-      window.removeEventListener("beforeunload", handleBeforeUnload)
+      window.removeEventListener("george-activity", handleActivity)
+      window.removeEventListener("george-details-collected", handleDetailsCollected)
+      window.removeEventListener("george-conversation-ended", handleConversationEnded)
+      if (window.__georgeInactivityTimer) {
+        window.clearTimeout(window.__georgeInactivityTimer)
+      }
     }
   }, [])
 
