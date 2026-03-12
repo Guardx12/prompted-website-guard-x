@@ -20,9 +20,9 @@ type LeadPayload = {
   source: string
   submittedAt: string
   page: string
+  submissionMode: "lead_detected" | "conversation_end" | "page_unload"
+  userMessageCount: number
 }
-
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrbypyzv"
 
 const INITIAL_MESSAGES: LiveMessage[] = [
   {
@@ -67,17 +67,17 @@ function extractLeadData(transcript: string) {
   const cleaned = normalizeWhitespace(transcript)
   const lower = cleaned.toLowerCase()
 
-  const phoneMatch = cleaned.match(/(?:\+?44\s?7\d{3}|0\d{4}|0\d{3}|0\d{2}|\+?44\s?\d{2,4})[\d\s]{6,12}/)
+  const phoneMatch = cleaned.match(/(?:\+?44\s?7\d{3}|0\d{4}|0\d{3}|0\d{2}|\+?44\s?\d{2,4})[\d\s()-]{6,16}/)
   const emailMatch = cleaned.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i)
 
   const namePatterns = [
-    /(?:my name is|i am|i'm|im|this is|it's|it is)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})/i,
-    /(?:call me)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})/i,
+    /(?:my name is|i am|i'm|im|this is|it's|it is|name is)\s+([a-z][a-z]+(?:\s+[a-z][a-z]+){0,2})/i,
+    /(?:call me)\s+([a-z][a-z]+(?:\s+[a-z][a-z]+){0,2})/i,
   ]
 
   const businessPatterns = [
     /(?:business is called|company is called|company name is|business name is)\s+([A-Za-z0-9&'.,\- ]{2,80})/i,
-    /(?:from)\s+([A-Z][A-Za-z0-9&'.,\- ]{2,80})/i,
+    /(?:i'm from|im from|from)\s+([A-Za-z0-9&'.,\- ]{2,80})/i,
   ]
 
   let name = ""
@@ -94,7 +94,7 @@ function extractLeadData(transcript: string) {
     const match = cleaned.match(pattern)
     if (match?.[1]) {
       const candidate = normalizeWhitespace(match[1]).replace(/[.,!?]+$/, "")
-      if (!/^(brighton|london|sussex|uk)$/i.test(candidate)) {
+      if (!/^(brighton|london|sussex|west sussex|uk|england)$/i.test(candidate)) {
         businessName = candidate
         break
       }
@@ -105,7 +105,7 @@ function extractLeadData(transcript: string) {
   const email = emailMatch ? emailMatch[0].trim() : ""
 
   const hasContactIntent =
-    /(?:phone|number|mobile|email|contact|call me|ring me|quote|get in touch|reach me|details)/i.test(lower) ||
+    /(?:phone|number|mobile|email|contact|call me|ring me|quote|get in touch|reach me|details|whatsapp|text me)/i.test(lower) ||
     Boolean(phone || email)
 
   return {
@@ -113,8 +113,15 @@ function extractLeadData(transcript: string) {
     phone,
     email,
     businessName,
-    hasEnoughToSubmit: Boolean(hasContactIntent && (phone || email || name)),
+    hasEnoughToSubmit: Boolean(phone || email || (hasContactIntent && name)),
   }
+}
+
+function hasMeaningfulTranscript(messages: LiveMessage[]) {
+  const userMessages = messages.filter(
+    (message) => message.role === "user" && normalizeWhitespace(message.content).length >= 4,
+  )
+  return userMessages.length >= 1
 }
 
 export function GeorgeLiveAssistant() {
@@ -156,9 +163,15 @@ export function GeorgeLiveAssistant() {
     if (!transcript.trim()) return false
 
     const extracted = extractLeadData(transcript)
-    if (!extracted.hasEnoughToSubmit) return false
+    const shouldSubmit =
+      reason === "details_detected" ? extracted.hasEnoughToSubmit : hasMeaningfulTranscript(messagesRef.current)
+
+    if (!shouldSubmit) return false
+
+    const userMessageCount = messagesRef.current.filter((message) => message.role === "user").length
 
     const fingerprint = JSON.stringify({
+      reason,
       name: extracted.name,
       phone: extracted.phone,
       email: extracted.email,
@@ -181,21 +194,25 @@ export function GeorgeLiveAssistant() {
       transcript,
       submittedAt: new Date().toISOString(),
       page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
+      submissionMode:
+        reason === "details_detected" ? "lead_detected" : reason === "page_unload" ? "page_unload" : "conversation_end",
+      userMessageCount,
     }
 
     try {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
+      const response = await fetch("/api/george-lead", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify(payload),
+        keepalive: reason === "page_unload",
       })
 
       if (!response.ok) {
         const details = await response.text().catch(() => "")
-        throw new Error(details || `Formspree error ${response.status}`)
+        throw new Error(details || `Lead capture error ${response.status}`)
       }
 
       submittedLeadFingerprintRef.current = fingerprint
