@@ -28,11 +28,12 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         model: "gpt-4o-mini-tts",
-        voice: "ash",
+        voice: "cedar",
         input: text,
-        instructions: "Speak in a warm, upbeat, confident, natural British-style business voice. Sound friendly, welcoming, lively, and human — like an excellent receptionist and sales assistant who is genuinely pleased to help.",
-        speed: 1.22,
-        format: "mp3",
+        instructions:
+          "Speak in a warm, upbeat, confident, natural British male voice. Sound like a friendly receptionist who is sharp, reassuring, cheerful, and easy to talk to. Keep the pace slightly lively but still clear and professional.",
+        speed: 1.12,
+        response_format: "mp3",
       }),
     })
 

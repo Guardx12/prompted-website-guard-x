@@ -12,6 +12,7 @@ type ChatMessage = {
 }
 
 type LeadState = {
+  name: string
   businessName: string
   email: string
   phone: string
@@ -23,7 +24,6 @@ type LeadIntent = "none" | "offer"
 declare global {
   interface Window {
     webkitAudioContext?: typeof AudioContext
-    speechSynthesis?: SpeechSynthesis
   }
   interface MediaRecorderOptions {
     mimeType?: string
@@ -44,24 +44,41 @@ const FORWARD_INTENT_PHRASES = [
   "lets do it",
   "how do we start",
   "how do i start",
+  "i'd like to go ahead",
+  "id like to go ahead",
+  "get a quote",
+  "request a quote",
+  "can someone contact me",
+  "pass me on",
+  "go ahead",
 ]
 
 const openingMessage: ChatMessage = {
   id: "george-opening",
   role: "assistant",
   content:
-    "Hi — I’m George. I’m the friendly digital receptionist and sales assistant built into GuardX websites. I answer questions, explain how things work, and help guide visitors toward becoming customers — without sounding stiff or pushy. I can be trained on the business I’m working for, so I can talk through services, pricing, and the usual questions customers ask. Ask me anything.",
+    "Hi — I’m George, the AI receptionist built into GuardX websites. I answer visitor questions, explain how GuardX works, and help people understand how something like this could help their business. Businesses can train me on their services, pricing, and the questions customers usually ask — and the more I know, the more I can handle automatically. Out of curiosity, what type of business do you run?",
 }
 
 function buildTranscript(messages: ChatMessage[]) {
   return messages
     .map((message) => `${message.role === "assistant" ? "George" : "Visitor"}: ${message.content}`)
-    .join("\n\n")
+    .join("
+
+")
 }
 
 function shouldOfferLeadCapture(text: string) {
   const lower = text.toLowerCase()
   return FORWARD_INTENT_PHRASES.some((phrase) => lower.includes(phrase))
+}
+
+function detectBusinessType(messages: ChatMessage[]) {
+  const userMessages = messages.filter((m) => m.role === "user").map((m) => m.content).join(" ").toLowerCase()
+  const patterns = [
+    "scaffold", "builder", "plumber", "electric", "floor", "carpet", "roofer", "gym", "shop", "garage", "landscap", "groundwork", "storage", "cleaner", "decorator",
+  ]
+  return patterns.find((p) => userMessages.includes(p)) || ""
 }
 
 export function GeorgeAssistant() {
@@ -72,7 +89,7 @@ export function GeorgeAssistant() {
   const [isTranscribing, setIsTranscribing] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)
   const [voiceEnabled, setVoiceEnabled] = useState(true)
-  const [leadState, setLeadState] = useState<LeadState>({ businessName: "", email: "", phone: "" })
+  const [leadState, setLeadState] = useState<LeadState>({ name: "", businessName: "", email: "", phone: "" })
   const [submitState, setSubmitState] = useState<SubmitState>("idle")
   const [leadIntent, setLeadIntent] = useState<LeadIntent>("none")
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
@@ -80,10 +97,9 @@ export function GeorgeAssistant() {
   const audioChunksRef = useRef<Blob[]>([])
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const currentAudioUrlRef = useRef<string | null>(null)
-  const speechVoiceRef = useRef<SpeechSynthesisVoice | null>(null)
-  const speechVoicesLoadedRef = useRef(false)
   const chatScrollRef = useRef<HTMLDivElement | null>(null)
   const hasMountedRef = useRef(false)
+  const transcriptSentRef = useRef(false)
 
   useEffect(() => {
     if (!hasMountedRef.current) {
@@ -97,32 +113,6 @@ export function GeorgeAssistant() {
     }
   }, [messages, isTyping, leadIntent])
 
-
-  useEffect(() => {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return
-
-    const pickVoice = () => {
-      const voices = window.speechSynthesis.getVoices()
-      if (!voices.length) return
-
-      const preferred = voices.find((voice) => {
-        const name = voice.name.toLowerCase()
-        const lang = voice.lang.toLowerCase()
-        return (lang.includes("en-gb") || lang.includes("en_us") || lang.includes("en-")) && (name.includes("male") || name.includes("david") || name.includes("daniel") || name.includes("george") || name.includes("tom") || name.includes("ryan") || name.includes("google uk english male"))
-      })
-
-      const english = voices.find((voice) => voice.lang.toLowerCase().startsWith("en"))
-      speechVoiceRef.current = preferred ?? english ?? voices[0] ?? null
-      speechVoicesLoadedRef.current = true
-    }
-
-    pickVoice()
-    window.speechSynthesis.addEventListener?.("voiceschanged", pickVoice)
-    return () => {
-      window.speechSynthesis.removeEventListener?.("voiceschanged", pickVoice)
-    }
-  }, [])
-
   useEffect(() => {
     return () => {
       mediaRecorderRef.current?.stop()
@@ -131,9 +121,6 @@ export function GeorgeAssistant() {
         audioRef.current.pause()
         audioRef.current.src = ""
       }
-      if (typeof window !== "undefined" && "speechSynthesis" in window) {
-        window.speechSynthesis.cancel()
-      }
       if (currentAudioUrlRef.current) {
         URL.revokeObjectURL(currentAudioUrlRef.current)
       }
@@ -141,30 +128,47 @@ export function GeorgeAssistant() {
   }, [])
 
   const transcript = useMemo(() => buildTranscript(messages), [messages])
+  const businessType = useMemo(() => detectBusinessType(messages), [messages])
+
+  useEffect(() => {
+    const sendTranscript = async () => {
+      if (transcriptSentRef.current) return
+      if (messages.length < 3) return
+      transcriptSentRef.current = true
+      try {
+        await fetch("/api/george/log", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ transcript, businessType, messageCount: messages.length }),
+          keepalive: true,
+        })
+      } catch (error) {
+        console.error("Transcript send failed", error)
+      }
+    }
+
+    const handleVisibility = () => {
+      if (document.visibilityState === "hidden") {
+        void sendTranscript()
+      }
+    }
+
+    const handleBeforeUnload = () => {
+      void sendTranscript()
+    }
+
+    document.addEventListener("visibilitychange", handleVisibility)
+    window.addEventListener("beforeunload", handleBeforeUnload)
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibility)
+      window.removeEventListener("beforeunload", handleBeforeUnload)
+    }
+  }, [messages.length, transcript, businessType])
 
   const speakText = async (text: string) => {
-    if (!text.trim()) return
-
     try {
-      if (typeof window !== "undefined" && "speechSynthesis" in window) {
-        window.speechSynthesis.cancel()
-        const utterance = new SpeechSynthesisUtterance(text)
-        utterance.rate = 1.18
-        utterance.pitch = 0.92
-        utterance.volume = 1
-
-        const voices = window.speechSynthesis.getVoices()
-        const voice = speechVoiceRef.current ?? voices.find((item) => item.lang.toLowerCase().startsWith("en")) ?? null
-        if (voice) utterance.voice = voice
-
-        utterance.onstart = () => setIsSpeaking(true)
-        utterance.onend = () => setIsSpeaking(false)
-        utterance.onerror = () => setIsSpeaking(false)
-
-        window.speechSynthesis.speak(utterance)
-        return
-      }
-
       setIsSpeaking(true)
       const response = await fetch("/api/george/speak", {
         method: "POST",
@@ -219,6 +223,7 @@ export function GeorgeAssistant() {
     setMessages(nextMessages)
     setInput("")
     setIsTyping(true)
+    transcriptSentRef.current = false
 
     try {
       const history = nextMessages.slice(0, -1).map((message) => ({
@@ -244,7 +249,7 @@ export function GeorgeAssistant() {
       const data = await response.json()
       const reply = typeof data.reply === "string" && data.reply.trim()
         ? data.reply.trim()
-        : "That’s a good question. I’m George, the digital receptionist and sales assistant built into GuardX websites, and my job is to answer questions clearly and help visitors understand how a website like this can turn more visitors into real enquiries."
+        : "That’s a really good question. I’m George, the AI receptionist built into GuardX websites. If I was on your website, I could help answer the questions your customers normally ask and guide more visitors toward becoming enquiries. Out of curiosity, what type of business do you run?"
 
       const assistantMessage: ChatMessage = {
         id: crypto.randomUUID(),
@@ -258,7 +263,7 @@ export function GeorgeAssistant() {
         void speakText(reply)
       }
 
-      if (shouldOfferLeadCapture(value)) {
+      if (shouldOfferLeadCapture(value) || shouldOfferLeadCapture(reply)) {
         setLeadIntent("offer")
       }
     } catch (error) {
@@ -326,11 +331,9 @@ export function GeorgeAssistant() {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
       mediaStreamRef.current = stream
 
-      const supportedMimeType = [
-        "audio/webm;codecs=opus",
-        "audio/webm",
-        "audio/ogg;codecs=opus",
-      ].find((mimeType) => typeof MediaRecorder !== "undefined" && MediaRecorder.isTypeSupported(mimeType))
+      const supportedMimeType = ["audio/webm;codecs=opus", "audio/webm", "audio/ogg;codecs=opus"].find(
+        (mimeType) => typeof MediaRecorder !== "undefined" && MediaRecorder.isTypeSupported(mimeType),
+      )
 
       const recorder = new MediaRecorder(stream, supportedMimeType ? { mimeType: supportedMimeType } : undefined)
       audioChunksRef.current = []
@@ -388,7 +391,7 @@ export function GeorgeAssistant() {
 
   const handleLeadSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
-    if (!leadState.businessName || !leadState.email) return
+    if (!leadState.name || (!leadState.email && !leadState.phone)) return
 
     setSubmitState("loading")
 
@@ -400,10 +403,13 @@ export function GeorgeAssistant() {
           Accept: "application/json",
         },
         body: JSON.stringify({
+          subject: "New George lead",
           source: "Meet George page",
+          name: leadState.name,
           businessName: leadState.businessName,
           email: leadState.email,
           phone: leadState.phone,
+          businessType,
           transcript,
         }),
       })
@@ -412,7 +418,7 @@ export function GeorgeAssistant() {
 
       setSubmitState("success")
       setLeadIntent("none")
-      const successReply = "Perfect — that’s been passed on properly. The conversation can now be seen together with your details, which makes the follow-up far more useful than a normal contact form."
+      const successReply = "Perfect — I’ve passed that on properly. Your details and the conversation have both gone through, which makes the follow-up much more useful than a normal contact form."
       setMessages((prev) => [
         ...prev,
         {
@@ -433,16 +439,17 @@ export function GeorgeAssistant() {
     <section className="mx-auto flex min-h-[calc(100vh-88px)] w-full max-w-6xl flex-col px-4 pb-10 pt-8 sm:px-6 lg:px-8 lg:pt-10">
       <div className="mx-auto mb-6 max-w-4xl text-center">
         <h1 className="guardx-hero-title text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight animate-[pulse_6s_ease-in-out_infinite]">
-          Turn your website into a 24/7 salesperson.
+          Websites that can actually talk to your visitors.
         </h1>
         <p className="mt-4 text-xl font-medium text-[#202124] sm:text-2xl">Meet George.</p>
         <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-[#5F6368] sm:text-lg sm:leading-8">
-          George is the digital receptionist and sales assistant built into GuardX websites. He answers
-          questions, explains how things work, deals with customer interactions, and helps turn visitors into
-          customers.
+          George is the AI receptionist built into GuardX websites. He answers visitor questions, explains services, and helps turn website visitors into enquiries.
         </p>
-        <p className="mt-3 text-sm font-medium uppercase tracking-[0.18em] text-[#5F6368] sm:text-base">
-          Saves time · Saves money · Helps create more revenue
+        <p className="mt-4 text-base font-semibold text-[#1A73E8] sm:text-lg">
+          Try asking George how he could help your business handle customer enquiries.
+        </p>
+        <p className="mx-auto mt-3 max-w-3xl text-sm leading-6 text-[#5F6368] sm:text-base">
+          This page shows George in demo mode. On most websites, George appears as a small assistant in the corner ready to answer visitor questions whenever they need help.
         </p>
       </div>
 
@@ -453,12 +460,12 @@ export function GeorgeAssistant() {
           </div>
           <div className="min-w-0 flex-1">
             <p className="text-base font-semibold text-[#202124] sm:text-lg">George</p>
-            <p className="text-sm text-[#5F6368]">Digital receptionist and sales assistant by GuardX</p>
+            <p className="text-sm text-[#5F6368]">AI receptionist by GuardX</p>
           </div>
           <div className="flex items-center gap-2 text-xs font-medium text-[#5F6368] sm:text-sm">
             <span className={`inline-flex items-center gap-2 rounded-full px-3 py-2 ${isRecording ? "bg-[#FDECEA] text-[#B3261E]" : voiceEnabled ? "bg-[#EAF6EE] text-[#1E8E3E]" : "bg-[#F1F3F4] text-[#5F6368]"}`}>
               {isRecording ? <MicOff className="h-4 w-4" /> : voiceEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-              <span>{isRecording ? "Listening" : voiceEnabled ? "Voice conversation on" : "Voice off"}</span>
+              <span>{isRecording ? "Listening" : voiceEnabled ? "Voice on" : "Voice muted"}</span>
             </span>
           </div>
         </div>
@@ -498,11 +505,18 @@ export function GeorgeAssistant() {
             {leadIntent === "offer" && submitState !== "success" && (
               <div className="flex justify-start">
                 <div className="w-full max-w-[92%] rounded-[24px] rounded-bl-md border border-[#DADCE0] bg-white px-5 py-5 shadow-sm sm:max-w-[86%]">
-                  <p className="text-base font-semibold text-[#202124]">Leave your details</p>
+                  <p className="text-base font-semibold text-[#202124]">Pass your details on</p>
                   <p className="mt-2 text-sm leading-6 text-[#5F6368]">
-                    If you want this for your business, leave your details below and the conversation can be passed on properly.
+                    If you’d like to go ahead, leave a couple of details below and I’ll pass the conversation on properly.
                   </p>
                   <form onSubmit={handleLeadSubmit} className="mt-4 space-y-3">
+                    <input
+                      type="text"
+                      placeholder="Your name"
+                      value={leadState.name}
+                      onChange={(e) => setLeadState((prev) => ({ ...prev, name: e.target.value }))}
+                      className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
+                    />
                     <input
                       type="text"
                       placeholder="Business name"
@@ -519,7 +533,7 @@ export function GeorgeAssistant() {
                     />
                     <input
                       type="text"
-                      placeholder="Phone or WhatsApp (optional)"
+                      placeholder="Phone or WhatsApp"
                       value={leadState.phone}
                       onChange={(e) => setLeadState((prev) => ({ ...prev, phone: e.target.value }))}
                       className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
@@ -530,14 +544,13 @@ export function GeorgeAssistant() {
                       className="inline-flex items-center gap-2 rounded-full bg-[#1A73E8] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1558B0] disabled:opacity-70"
                     >
                       {submitState === "loading" ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-                      Send conversation
+                      Send details
                     </button>
                     {submitState === "error" ? <p className="text-sm text-red-600">That didn’t go through properly. Please try again.</p> : null}
                   </form>
                 </div>
               </div>
             )}
-
           </div>
         </div>
 
@@ -594,7 +607,7 @@ export function GeorgeAssistant() {
             </button>
           </form>
           <div className="mx-auto mt-3 flex w-full max-w-4xl items-center justify-between px-1 text-xs text-[#5F6368] sm:text-sm">
-            <p>{isRecording ? "George is listening now — tap stop when you've finished speaking." : "Tap the microphone to talk with George."}</p>
+            <p>{isRecording ? "George is listening now — tap stop when you’ve finished speaking." : "Tap the microphone once to start a voice conversation with George."}</p>
             <button
               type="button"
               onClick={() => {
