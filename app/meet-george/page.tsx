@@ -1,41 +1,55 @@
-
-// --- George Transcript Mode Guard ---
-// ensures transcript only sent once per conversation
-let georgeEmailSent = false;
-function sendTranscriptOnce(data:any){
-  if(georgeEmailSent) return;
-  georgeEmailSent = true;
-  fetch('/api/george', {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify(data)
-  }).catch(()=>{});
-}
-
-// triggers
-window.addEventListener('beforeunload',()=>{
-  if(!georgeEmailSent && (window as any).georgeTranscript){
-    sendTranscriptOnce({ transcript:(window as any).georgeTranscript });
-  }
-});
-
-// example timeout trigger (90s inactivity)
-let georgeTimer:any;
-function resetGeorgeTimer(){
-  clearTimeout(georgeTimer);
-  georgeTimer=setTimeout(()=>{
-    if(!georgeEmailSent && (window as any).georgeTranscript){
-      sendTranscriptOnce({ transcript:(window as any).georgeTranscript });
-    }
-  },90000);
-}
-
 "use client"
 
-import { useLayoutEffect } from "react"
+import { useEffect, useLayoutEffect } from "react"
 import { Footer } from "@/components/footer"
 import { GeorgeLiveAssistant } from "@/components/george-live-assistant"
 import { Navigation } from "@/components/navigation"
+
+declare global {
+  interface Window {
+    georgeTranscript?: string
+    __georgeTranscriptSent?: boolean
+    __georgeTranscriptTimeout?: number
+  }
+}
+
+function sendTranscriptOnce() {
+  if (typeof window === "undefined") return
+  if (window.__georgeTranscriptSent) return
+
+  const transcript = typeof window.georgeTranscript === "string" ? window.georgeTranscript.trim() : ""
+  if (!transcript) return
+
+  window.__georgeTranscriptSent = true
+
+  const payload = JSON.stringify({ transcript, source: "meet-george" })
+
+  if (navigator.sendBeacon) {
+    const blob = new Blob([payload], { type: "application/json" })
+    navigator.sendBeacon("/api/george-lead", blob)
+    return
+  }
+
+  fetch("/api/george-lead", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: payload,
+    keepalive: true,
+  }).catch(() => {
+    window.__georgeTranscriptSent = false
+  })
+}
+
+function resetTranscriptTimeout() {
+  if (typeof window === "undefined") return
+  if (window.__georgeTranscriptTimeout) {
+    window.clearTimeout(window.__georgeTranscriptTimeout)
+  }
+
+  window.__georgeTranscriptTimeout = window.setTimeout(() => {
+    sendTranscriptOnce()
+  }, 90_000)
+}
 
 export default function MeetGeorgePage() {
   useLayoutEffect(() => {
@@ -61,6 +75,34 @@ export default function MeetGeorgePage() {
     return () => {
       cancelAnimationFrame(raf1)
       window.clearTimeout(timeout)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+
+    window.__georgeTranscriptSent = false
+    resetTranscriptTimeout()
+
+    const handleBeforeUnload = () => {
+      sendTranscriptOnce()
+    }
+
+    const handleActivity = () => {
+      resetTranscriptTimeout()
+    }
+
+    window.addEventListener("beforeunload", handleBeforeUnload)
+    window.addEventListener("pointerdown", handleActivity)
+    window.addEventListener("keydown", handleActivity)
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload)
+      window.removeEventListener("pointerdown", handleActivity)
+      window.removeEventListener("keydown", handleActivity)
+      if (window.__georgeTranscriptTimeout) {
+        window.clearTimeout(window.__georgeTranscriptTimeout)
+      }
     }
   }, [])
 
