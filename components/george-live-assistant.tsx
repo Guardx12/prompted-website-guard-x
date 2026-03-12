@@ -92,7 +92,10 @@ const FIRST_RESPONSE_EVENT = {
 
 function makeMessage(role: LiveMessage["role"], content: string): LiveMessage {
   return {
-    id: typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${role}-${Date.now()}-${Math.random()}`,
+    id:
+      typeof crypto !== "undefined" && "randomUUID" in crypto
+        ? crypto.randomUUID()
+        : `${role}-${Date.now()}-${Math.random()}`,
     role,
     content,
   }
@@ -122,12 +125,38 @@ export function GeorgeLiveAssistant() {
 
   useEffect(() => {
     return () => {
-      stopConversation()
+      cleanupConversation()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
+
+  function cleanupConversation() {
+    dcRef.current?.close()
+    dcRef.current = null
+
+    if (pcRef.current) {
+      pcRef.current.getSenders().forEach((sender) => sender.track?.stop())
+      pcRef.current.close()
+      pcRef.current = null
+    }
+
+    if (localStreamRef.current) {
+      localStreamRef.current.getTracks().forEach((track) => track.stop())
+      localStreamRef.current = null
+    }
+
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current.srcObject = null
+      audioRef.current.remove()
+      audioRef.current = null
+    }
+
+    currentAssistantTextRef.current = ""
+    currentAssistantMessageIdRef.current = null
+    setIsModelSpeaking(false)
+  }
 
   function appendOrUpdateAssistantPartial(delta: string, isFinal = false) {
     if (!delta) return
@@ -210,6 +239,7 @@ export function GeorgeLiveAssistant() {
         addUserTranscript(typeof event.transcript === "string" ? event.transcript : "")
         break
       case "error":
+        cleanupConversation()
         setError(event?.error?.message || "George hit a voice error.")
         setConnectionState("error")
         setStatusText("There was a connection problem")
@@ -222,21 +252,43 @@ export function GeorgeLiveAssistant() {
   async function startConversation() {
     if (!canStart) return
 
+    cleanupConversation()
     setConnectionState("connecting")
     setError(null)
     setStatusText("Connecting George…")
     setMessages(INITIAL_MESSAGES)
 
     try {
+      const tokenResponse = await fetch("/api/george-session", {
+        method: "GET",
+        cache: "no-store",
+      })
+
+      const tokenData = await tokenResponse.json().catch(() => null)
+      if (!tokenResponse.ok) {
+        throw new Error(
+          typeof tokenData?.error === "string" ? tokenData.error : "Could not create a secure live session.",
+        )
+      }
+
+      const ephemeralKey = tokenData?.value
+      if (typeof ephemeralKey !== "string" || !ephemeralKey) {
+        throw new Error("Live voice token was missing.")
+      }
+
       const pc = new RTCPeerConnection()
       pcRef.current = pc
 
       const audio = document.createElement("audio")
       audio.autoplay = true
+      audio.playsInline = true
       audioRef.current = audio
 
       pc.ontrack = (event) => {
         audio.srcObject = event.streams[0]
+        void audio.play().catch(() => {
+          // Browser autoplay can still block occasionally; audio element remains attached to stream.
+        })
       }
 
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
@@ -267,54 +319,49 @@ export function GeorgeLiveAssistant() {
       const offer = await pc.createOffer()
       await pc.setLocalDescription(offer)
 
-      const response = await fetch("/api/george-session", {
+      const response = await fetch("https://api.openai.com/v1/realtime/calls", {
         method: "POST",
         headers: {
+          Authorization: `Bearer ${ephemeralKey}`,
           "Content-Type": "application/sdp",
         },
         body: offer.sdp,
       })
 
+      const answerText = await response.text()
+
       if (!response.ok) {
-        const message = await response.text()
-        throw new Error(message || "Could not connect George.")
+        let message = "Could not connect George."
+
+        try {
+          const parsed = JSON.parse(answerText)
+          if (typeof parsed?.error?.message === "string") {
+            message = parsed.error.message
+          }
+        } catch {
+          if (answerText.includes("<html") || answerText.includes("<!DOCTYPE html")) {
+            message = "The live voice service timed out while connecting. Please try again."
+          } else if (answerText.trim()) {
+            message = answerText
+          }
+        }
+
+        throw new Error(message)
       }
 
-      const answerSdp = await response.text()
-      await pc.setRemoteDescription({ type: "answer", sdp: answerSdp })
+      await pc.setRemoteDescription({ type: "answer", sdp: answerText })
     } catch (err) {
       console.error("George live voice error", err)
+      cleanupConversation()
       setConnectionState("error")
       setStatusText("Could not connect George")
       setError(err instanceof Error ? err.message : "Could not connect George")
-      stopConversation()
     }
   }
 
   function stopConversation() {
-    dcRef.current?.close()
-    dcRef.current = null
-
-    if (pcRef.current) {
-      pcRef.current.getSenders().forEach((sender) => sender.track?.stop())
-      pcRef.current.close()
-      pcRef.current = null
-    }
-
-    if (localStreamRef.current) {
-      localStreamRef.current.getTracks().forEach((track) => track.stop())
-      localStreamRef.current = null
-    }
-
-    if (audioRef.current) {
-      audioRef.current.pause()
-      audioRef.current.srcObject = null
-      audioRef.current = null
-    }
-
-    currentAssistantTextRef.current = ""
-    currentAssistantMessageIdRef.current = null
-    setIsModelSpeaking(false)
+    cleanupConversation()
+    setError(null)
     setConnectionState("idle")
     setStatusText("Ready when you are")
   }

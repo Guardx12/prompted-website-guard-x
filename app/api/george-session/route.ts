@@ -39,69 +39,80 @@ If the user gives their name, use it naturally later.
 
 When someone is clearly interested, invite them to leave their details so GuardX can follow up.`
 
-export async function POST(request: Request) {
+const SESSION_CONFIG = {
+  session: {
+    type: "realtime",
+    model: "gpt-realtime",
+    output_modalities: ["audio", "text"],
+    instructions: GEORGE_INSTRUCTIONS,
+    audio: {
+      input: {
+        turn_detection: {
+          type: "semantic_vad",
+          eagerness: "high",
+          create_response: true,
+          interrupt_response: true,
+        },
+      },
+      output: {
+        voice: "cedar",
+        speed: 1.1,
+      },
+    },
+  },
+} as const
+
+export async function GET() {
   try {
-    const sdp = await request.text()
     const apiKey = process.env.OPENAI_API_KEY
 
     if (!apiKey) {
-      return new Response("Missing OpenAI API key.", { status: 500 })
+      return Response.json({ error: "Missing OpenAI API key." }, { status: 500 })
     }
 
-    if (!sdp) {
-      return new Response("Missing SDP offer.", { status: 400 })
-    }
-
-    const formData = new FormData()
-    formData.set("sdp", sdp)
-    formData.set(
-      "session",
-      JSON.stringify({
-        type: "realtime",
-        model: "gpt-realtime",
-        output_modalities: ["audio", "text"],
-        instructions: GEORGE_INSTRUCTIONS,
-        audio: {
-          input: {
-            turn_detection: {
-              type: "semantic_vad",
-              eagerness: "high",
-              create_response: true,
-              interrupt_response: true,
-            },
-          },
-          output: {
-            voice: "cedar",
-            speed: 1.1,
-          },
-        },
-      }),
-    )
-
-    const response = await fetch("https://api.openai.com/v1/realtime/calls", {
+    const response = await fetch("https://api.openai.com/v1/realtime/client_secrets", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
       },
-      body: formData,
+      body: JSON.stringify(SESSION_CONFIG),
+      cache: "no-store",
     })
+
+    const data = await response.json().catch(() => null)
 
     if (!response.ok) {
-      const errorText = await response.text()
-      console.error("Realtime session error", errorText)
-      return new Response(errorText || "Could not start realtime session.", { status: response.status })
+      console.error("Realtime client secret error", data)
+      const message =
+        typeof data?.error?.message === "string"
+          ? data.error.message
+          : "Could not create a secure live voice session."
+
+      return Response.json({ error: message }, { status: response.status })
     }
 
-    const answerSdp = await response.text()
-    return new Response(answerSdp, {
-      status: 200,
-      headers: {
-        "Content-Type": "application/sdp",
-        "Cache-Control": "no-store",
+    const value = data?.client_secret?.value ?? data?.value
+
+    if (typeof value !== "string" || !value) {
+      console.error("Realtime client secret missing value", data)
+      return Response.json({ error: "Live voice token was missing from OpenAI." }, { status: 500 })
+    }
+
+    return Response.json(
+      {
+        value,
+        expires_at: data?.client_secret?.expires_at ?? data?.expires_at ?? null,
       },
-    })
+      {
+        status: 200,
+        headers: {
+          "Cache-Control": "no-store",
+        },
+      },
+    )
   } catch (error) {
-    console.error("Realtime session route error", error)
-    return new Response("Could not start realtime session.", { status: 500 })
+    console.error("Realtime client secret route error", error)
+    return Response.json({ error: "Could not start live voice right now." }, { status: 500 })
   }
 }
