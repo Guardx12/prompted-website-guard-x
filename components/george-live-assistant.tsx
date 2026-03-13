@@ -29,7 +29,7 @@ const INITIAL_MESSAGES: LiveMessage[] = [
     id: "intro",
     role: "system",
     content:
-      "Hi — I’m George, the AI receptionist and sales assistant built into GuardX websites. Try asking me how I could help your business handle customer enquiries.",
+      "Hi — I’m George, the AI receptionist and sales assistant built into GuardX websites. Try asking me in English how I could help your business handle customer enquiries.",
   },
 ]
 
@@ -37,7 +37,7 @@ const FIRST_RESPONSE_EVENT = {
   type: "response.create",
   response: {
     instructions:
-      "Briefly introduce yourself as George, the AI receptionist and sales assistant built into GuardX websites, then ask in a warm natural way: 'Out of curiosity, what type of business do you run?'",
+      "Briefly introduce yourself as George, the English-speaking AI receptionist and sales assistant built into GuardX websites, then ask in a warm natural way: 'Out of curiosity, what type of business do you run?' Never use any language other than English.",
   },
 }
 
@@ -78,38 +78,48 @@ function extractLeadDetailsFromTranscript(transcript: string) {
 
   let name = ""
   const namePatterns = [
-    /my name is\s+([A-Za-z][A-Za-z' -]{1,40})/i,
-    /i am\s+([A-Za-z][A-Za-z' -]{1,40})/i,
-    /i'm\s+([A-Za-z][A-Za-z' -]{1,40})/i,
+    /name\s*[:\-]\s*([^\n,]+)/i,
+    /my name is\s+([A-Za-z][A-Za-z' -]{1,60})/i,
+    /i am\s+([A-Za-z][A-Za-z' -]{1,60})/i,
+    /i'm\s+([A-Za-z][A-Za-z' -]{1,60})/i,
   ]
   for (const pattern of namePatterns) {
     const match = transcript.match(pattern)
     if (match?.[1]) {
-      name = normalizeWhitespace(match[1])
+      name = normalizeWhitespace(match[1]).replace(/[.!,]$/, "")
       break
     }
   }
 
   let businessName = ""
   const businessPatterns = [
-    /business(?: name)? is\s+([A-Za-z0-9&'., -]{2,60})/i,
-    /(?:it's|it is|called)\s+([A-Za-z0-9&'., -]{2,60})/i,
-    /i have\s+(?:a|an)?\s*([A-Za-z0-9&'., -]{2,60})/i,
+    /business name\s*[:\-]\s*([^\n]+)/i,
+    /business(?: name)? is\s+([A-Za-z0-9&'., -]{2,80})/i,
+    /(?:it'?s|it is|called)\s+([A-Za-z0-9&'., -]{2,80})/i,
   ]
   for (const pattern of businessPatterns) {
     const match = transcript.match(pattern)
     if (match?.[1]) {
-      businessName = normalizeWhitespace(match[1])
+      businessName = normalizeWhitespace(match[1]).replace(/[.!,]$/, "")
       break
     }
   }
 
+  const askedForConfirmation =
+    /are those details correct/i.test(normalized) ||
+    /are the details correct/i.test(normalized) ||
+    /have i got that right/i.test(normalized) ||
+    /is that all correct/i.test(normalized)
+
   const confirmed =
-    /that(?:'s| is) correct/i.test(normalized) ||
-    /yes(?:[,! ]|$)/i.test(normalized) ||
-    /correct/i.test(normalized) ||
-    /that's right/i.test(normalized) ||
-    /those details are correct/i.test(normalized)
+    askedForConfirmation &&
+    (/(yes[,! ]+that'?s correct)/i.test(normalized) ||
+      /(yes[,! ]+that'?s right)/i.test(normalized) ||
+      /those details are correct/i.test(normalized) ||
+      /yes[,! ]+correct/i.test(normalized) ||
+      /that'?s correct/i.test(normalized) ||
+      /that'?s right/i.test(normalized) ||
+      /correct[,! ]*$/i.test(normalized))
 
   return {
     name,

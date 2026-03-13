@@ -3,8 +3,6 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Loader2, Mic, MicOff, Send, Volume2, VolumeX } from "lucide-react"
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrbypyzv"
-
 type ChatMessage = {
   id: string
   role: "assistant" | "user"
@@ -12,6 +10,7 @@ type ChatMessage = {
 }
 
 type LeadState = {
+  name: string
   businessName: string
   email: string
   phone: string
@@ -72,7 +71,7 @@ export function GeorgeAssistant() {
   const [isTranscribing, setIsTranscribing] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)
   const [voiceEnabled, setVoiceEnabled] = useState(true)
-  const [leadState, setLeadState] = useState<LeadState>({ businessName: "", email: "", phone: "" })
+  const [leadState, setLeadState] = useState<LeadState>({ name: "", businessName: "", email: "", phone: "" })
   const [submitState, setSubmitState] = useState<SubmitState>("idle")
   const [leadIntent, setLeadIntent] = useState<LeadIntent>("none")
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
@@ -388,23 +387,29 @@ export function GeorgeAssistant() {
 
   const handleLeadSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
-    if (!leadState.businessName || !leadState.email) return
+    if (!leadState.name || !leadState.businessName || !leadState.email) return
 
     setSubmitState("loading")
 
     try {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
+      const response = await fetch("/api/george-lead", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
-          source: "Meet George page",
+          source: "Meet George text chat",
+          name: leadState.name,
           businessName: leadState.businessName,
           email: leadState.email,
           phone: leadState.phone,
           transcript,
+          submittedAt: new Date().toISOString(),
+          page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
+          submissionMode: "conversation_end",
+          userMessageCount: messages.filter((message) => message.role === "user").length,
+          sessionId: typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `george-text-${Date.now()}`,
         }),
       })
 
@@ -500,9 +505,16 @@ export function GeorgeAssistant() {
                 <div className="w-full max-w-[92%] rounded-[24px] rounded-bl-md border border-[#DADCE0] bg-white px-5 py-5 shadow-sm sm:max-w-[86%]">
                   <p className="text-base font-semibold text-[#202124]">Leave your details</p>
                   <p className="mt-2 text-sm leading-6 text-[#5F6368]">
-                    If you want this for your business, leave your details below and the conversation can be passed on properly.
+                    If you want this for your business, leave your details below and George will only pass the conversation on once the key contact details have been collected.
                   </p>
                   <form onSubmit={handleLeadSubmit} className="mt-4 space-y-3">
+                    <input
+                      type="text"
+                      placeholder="Your name"
+                      value={leadState.name}
+                      onChange={(e) => setLeadState((prev) => ({ ...prev, name: e.target.value }))}
+                      className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
+                    />
                     <input
                       type="text"
                       placeholder="Business name"
