@@ -1,927 +1,188 @@
 "use client"
 
+import Link from "next/link"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { AnimatedPageTitle } from "@/components/animated-page-title"
-import MovingGoogleReviews from "@/components/moving-google-reviews"
-import Link from "next/link"
-import Image from "next/image"
-import { useEffect, useRef, useState, useCallback } from "react"
-import { motion, useReducedMotion, useInView } from "framer-motion"
-import {
-  Code2,
-  Search,
-  Smartphone,
-  Zap,
-  Layers,
-  Globe,
-  BarChart3,
-  FileCode,
-  ArrowRight,
-  CheckCircle,
-  Star,
-  MessageSquare,
-} from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, Bot, MessageSquare, PhoneCall, Clock3, CheckCircle2, Star } from "lucide-react"
 
-/* ------------------------------------------------------------------ */
-/*  Animated gradient background (canvas)                              */
-/* ------------------------------------------------------------------ */
-function AnimatedBackground() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const prefersReduced = useReducedMotion()
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas || prefersReduced) return
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
-
-    let raf: number
-    let t = 0
-
-    const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-    resize()
-    window.addEventListener("resize", resize)
-
-    const draw = () => {
-      t += 0.002
-      const w = canvas.width
-      const h = canvas.height
-
-      ctx.fillStyle = "#0a0e1a"
-      ctx.fillRect(0, 0, w, h)
-
-      const spots = [
-        {
-          x: w * (0.3 + 0.15 * Math.sin(t * 0.7)),
-          y: h * (0.3 + 0.1 * Math.cos(t * 0.5)),
-          r: Math.max(w, h) * 0.55,
-          color: `rgba(30, 58, 138, ${0.35 + 0.1 * Math.sin(t)})`,
-        },
-        {
-          x: w * (0.7 + 0.1 * Math.cos(t * 0.6)),
-          y: h * (0.5 + 0.15 * Math.sin(t * 0.8)),
-          r: Math.max(w, h) * 0.5,
-          color: `rgba(88, 28, 135, ${0.25 + 0.08 * Math.cos(t * 1.1)})`,
-        },
-        {
-          x: w * (0.5 + 0.2 * Math.sin(t * 0.4)),
-          y: h * (0.7 + 0.1 * Math.cos(t * 0.9)),
-          r: Math.max(w, h) * 0.45,
-          color: `rgba(14, 116, 144, ${0.2 + 0.06 * Math.sin(t * 0.7)})`,
-        },
-        {
-          x: w * (0.2 + 0.1 * Math.cos(t * 0.3)),
-          y: h * (0.8 + 0.05 * Math.sin(t * 1.2)),
-          r: Math.max(w, h) * 0.4,
-          color: `rgba(59, 130, 246, ${0.15 + 0.05 * Math.cos(t * 0.9)})`,
-        },
-      ]
-
-      spots.forEach((s) => {
-        const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r)
-        g.addColorStop(0, s.color)
-        g.addColorStop(1, "transparent")
-        ctx.fillStyle = g
-        ctx.fillRect(0, 0, w, h)
-      })
-
-      raf = requestAnimationFrame(draw)
-    }
-    draw()
-
-    return () => {
-      cancelAnimationFrame(raf)
-      window.removeEventListener("resize", resize)
-    }
-  }, [prefersReduced])
-
+function PromptBar() {
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 -z-10"
-      style={{ background: "#0a0e1a" }}
-      aria-hidden="true"
-    />
-  )
-}
-
-/* ------------------------------------------------------------------ */
-/*  Floating particles (client-only to avoid hydration mismatch)       */
-/* ------------------------------------------------------------------ */
-function FloatingParticles() {
-  const prefersReduced = useReducedMotion()
-  const [particles, setParticles] = useState<
-    { id: number; x: number; y: number; size: number; duration: number; delay: number; opacity: number }[]
-  >([])
-
-  useEffect(() => {
-    if (prefersReduced) return
-    setParticles(
-      Array.from({ length: 18 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: 2 + Math.random() * 3,
-        duration: 12 + Math.random() * 20,
-        delay: Math.random() * 8,
-        opacity: 0.15 + Math.random() * 0.25,
-      }))
-    )
-  }, [prefersReduced])
-
-  if (particles.length === 0) return null
-
-  return (
-    <div className="fixed inset-0 -z-[5] overflow-hidden pointer-events-none" aria-hidden="true">
-      {particles.map((p) => (
-        <motion.div
-          key={p.id}
-          className="absolute rounded-full"
-          style={{
-            width: p.size,
-            height: p.size,
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            background: `radial-gradient(circle, rgba(147,197,253,${p.opacity}), transparent)`,
-            boxShadow: `0 0 ${p.size * 3}px rgba(147,197,253,${p.opacity * 0.5})`,
-          }}
-          animate={{
-            y: [0, -60, 0],
-            x: [0, 20 * (p.id % 2 === 0 ? 1 : -1), 0],
-            opacity: [p.opacity, p.opacity * 1.4, p.opacity],
-          }}
-          transition={{
-            duration: p.duration,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: p.delay,
-          }}
-        />
-      ))}
-    </div>
-  )
-}
-
-/* ------------------------------------------------------------------ */
-/*  DVD-style bouncing logo orb                                        */
-/* ------------------------------------------------------------------ */
-function BouncingOrb() {
-  const prefersReduced = useReducedMotion()
-  const containerRef = useRef<HTMLDivElement>(null)
-  const posRef = useRef({ x: 60, y: 40 })
-  const velRef = useRef({ vx: 1.2, vy: 0.8 })
-  const [pos, setPos] = useState({ x: 60, y: 40 })
-
-  useEffect(() => {
-    if (prefersReduced) return
-    const container = containerRef.current
-    if (!container) return
-
-    const orbSize = 220
-    let raf: number
-
-    const step = () => {
-      const rect = container.getBoundingClientRect()
-      const maxX = rect.width - orbSize
-      const maxY = rect.height - orbSize
-
-      let { x, y } = posRef.current
-      let { vx, vy } = velRef.current
-
-      x += vx
-      y += vy
-
-      if (x <= 0) { x = 0; vx = Math.abs(vx); }
-      if (x >= maxX) { x = maxX; vx = -Math.abs(vx); }
-      if (y <= 0) { y = 0; vy = Math.abs(vy); }
-      if (y >= maxY) { y = maxY; vy = -Math.abs(vy); }
-
-      posRef.current = { x, y }
-      velRef.current = { vx, vy }
-      setPos({ x, y })
-      raf = requestAnimationFrame(step)
-    }
-    raf = requestAnimationFrame(step)
-
-    return () => cancelAnimationFrame(raf)
-  }, [prefersReduced])
-
-  return (
-    <div ref={containerRef} className="relative w-full h-[340px] sm:h-[400px]">
-      <div
-        className="absolute"
-        style={{
-          transform: `translate(${pos.x}px, ${pos.y}px)`,
-          willChange: "transform",
-        }}
-      >
-        {/* Outer glow */}
-        <div
-          className="absolute -inset-10 rounded-full pointer-events-none"
-          style={{
-            background: "radial-gradient(circle, rgba(59,130,246,0.25) 0%, rgba(88,28,135,0.12) 40%, transparent 70%)",
-            filter: "blur(30px)",
-            animation: prefersReduced ? "none" : "pulse 4s ease-in-out infinite",
-          }}
-        />
-        {/* Glass orb */}
-        <div
-          className="relative w-[200px] h-[200px] sm:w-[220px] sm:h-[220px] rounded-full flex items-center justify-center overflow-hidden"
-          style={{
-            background: "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 100%)",
-            boxShadow: "0 0 60px rgba(59,130,246,0.2), inset 0 0 60px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.3)",
-            backdropFilter: "blur(12px)",
-            border: "1px solid rgba(255,255,255,0.15)",
-          }}
-        >
-          <Image
-            src="/images/guardx-final-logo.jpg"
-            alt="GuardX Logo"
-            width={180}
-            height={180}
-            className="rounded-full object-cover w-[170px] h-[170px] sm:w-[190px] sm:h-[190px]"
-            priority
-          />
-        </div>
-      </div>
-    </div>
-  )
-}
-
-/* ------------------------------------------------------------------ */
-/*  Animated headline with wave + shimmer                              */
-/* ------------------------------------------------------------------ */
-function AnimatedHeadline() {
-  const prefersReduced = useReducedMotion()
-  const words = "Website Design & SEO Foundation".split(" ")
-  const line2 = "for Local Businesses"
-
-  /* Build a flat index so each letter gets a unique wave delay */
-  let globalIndex = 0
-
-  return (
-    <AnimatedPageTitle text="Turn Your Website Into a 24/7 Salesperson" />
-  )
-}
-
-/* ------------------------------------------------------------------ */
-/*  Scroll-reveal wrapper                                              */
-/* ------------------------------------------------------------------ */
-function Reveal({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: React.ReactNode
-  className?: string
-  delay?: number
-}) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-80px" })
-  const prefersReduced = useReducedMotion()
-
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial={prefersReduced ? {} : { opacity: 0, y: 36 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay, ease: "easeOut" }}
-    >
-      {children}
-    </motion.div>
-  )
-}
-
-/* ------------------------------------------------------------------ */
-/*  Feature card with glow hover                                       */
-/* ------------------------------------------------------------------ */
-function FeatureCard({
-  icon: Icon,
-  title,
-  description,
-  delay = 0,
-}: {
-  icon: React.ElementType
-  title: string
-  description: string
-  delay?: number
-}) {
-  return (
-    <Reveal delay={delay}>
-      <div className="group relative rounded-2xl p-6 sm:p-8 transition-all duration-500 hover:scale-[1.03] bg-white/[0.04] border border-white/10 backdrop-blur-sm hover:bg-white/[0.08] hover:border-white/20 hover:shadow-[0_0_40px_rgba(59,130,246,0.12)]">
-        <div className="flex items-center justify-center w-14 h-14 rounded-xl mb-5 bg-[rgba(59,130,246,0.15)] group-hover:bg-[rgba(59,130,246,0.25)] transition-colors duration-300">
-          <Icon className="w-7 h-7 text-blue-400" />
-        </div>
-        <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-        <p className="text-[#94a3b8] leading-relaxed">{description}</p>
-      </div>
-    </Reveal>
-  )
-}
-
-/* ------------------------------------------------------------------ */
-/*  Pricing card                                                       */
-/* ------------------------------------------------------------------ */
-function PricingCard({
-  title,
-  price,
-  unit,
-  features,
-  highlight = false,
-  delay = 0,
-}: {
-  title: string
-  price: string
-  unit?: string
-  features: string[]
-  highlight?: boolean
-  delay?: number
-}) {
-  return (
-    <Reveal delay={delay}>
-      <div
-        className={`relative rounded-2xl p-8 transition-all duration-500 hover:scale-[1.03] ${
-          highlight
-            ? "bg-white/[0.08] border-2 border-blue-500/40 shadow-[0_0_40px_rgba(59,130,246,0.15)]"
-            : "bg-white/[0.04] border border-white/10"
-        } backdrop-blur-sm`}
-      >
-        {highlight && (
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-blue-500 text-white text-xs font-bold rounded-full tracking-wider uppercase">
-            Most Popular
+    <div className="fixed bottom-4 left-4 right-4 z-40">
+      <div className="mx-auto max-w-5xl rounded-2xl border border-white/10 bg-[#0f172a]/95 backdrop-blur-xl shadow-2xl">
+        <div className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+          <div>
+            <p className="text-white font-semibold">Meet George</p>
+            <p className="text-sm text-[#cbd5e1]">
+              Ask George how he can answer customer questions and capture enquiries for you 24/7.
+            </p>
           </div>
-        )}
-        <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-        <div className="mb-6">
-          <span className="text-4xl font-bold text-white">{price}</span>
-          {unit && <span className="text-[#94a3b8] ml-1 text-base">{unit}</span>}
+          <Link href="/meet-george" className="inline-flex items-center justify-center rounded-xl bg-blue-500 px-5 py-3 text-sm font-bold text-white hover:bg-blue-600">
+            Start Conversation
+          </Link>
         </div>
-        <ul className="space-y-3 mb-8">
-          {features.map((f) => (
-            <li key={f} className="flex items-start gap-3 text-[#94a3b8]">
-              <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-              <span>{f}</span>
-            </li>
-          ))}
-        </ul>
-        <Link
-          href="/contact"
-          className={`block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
-            highlight
-              ? "bg-blue-500 text-white hover:bg-blue-600 hover:shadow-[0_0_24px_rgba(59,130,246,0.4)]"
-              : "bg-white/10 text-white hover:bg-white/20"
-          }`}
-        >
-          Get a Quote
-        </Link>
       </div>
-    </Reveal>
+    </div>
   )
 }
 
-/* ================================================================== */
-/*  MAIN PAGE                                                          */
-/* ================================================================== */
 export default function HomePage() {
-  const [showGeorgePrompt, setShowGeorgePrompt] = useState(false)
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => setShowGeorgePrompt(true), 3500)
-    return () => window.clearTimeout(timer)
-  }, [])
-
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
-      <AnimatedBackground />
-      <FloatingParticles />
-
+    <main className="min-h-screen bg-[#0a0e1a] text-white">
       <Navigation />
 
-      {/* ============================================================ */}
-      {/*  HERO                                                         */}
-      {/* ============================================================ */}
-      <section className="relative pt-20 pb-24 sm:pt-28 sm:pb-32 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            {/* Copy */}
-            <div className="flex-1 text-center lg:text-left">
-              <Reveal>
-                <AnimatedHeadline />
-              </Reveal>
-
-              <Reveal delay={0.15}>
-                <p className="text-lg sm:text-xl text-[#94a3b8] mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Meet George — the AI assistant built into GuardX websites to answer customer questions and capture enquiries for your business 24/7.
-                </p>
-              </Reveal>
-
-              <Reveal delay={0.3}>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <Link
-                    href="/meet-george"
-                    className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-8 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
-                  >
-                    Meet George <ArrowRight className="w-5 h-5" />
-                  </Link>
-                  <Link
-                    href="/pricing"
-                    className="inline-flex items-center justify-center gap-2 bg-white/10 text-white hover:bg-white/20 px-8 py-4 text-lg font-bold rounded-xl border border-white/20 transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-                  >
-                    See Pricing
-                  </Link>
-                </div>
-              </Reveal>
-            </div>
-
-            {/* Bouncing logo orb */}
-            <Reveal delay={0.2} className="flex-1 w-full">
-              <BouncingOrb />
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/*  WEBSITE DESIGN FEATURES                                      */}
-      {/* ============================================================ */}
-      
-<section className="px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-10 relative z-20">
-  <div className="max-w-5xl mx-auto">
-    <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-6 py-5 text-center shadow-2xl">
-      <p className="text-sm uppercase tracking-[0.2em] text-blue-300 font-semibold mb-2">Meet George</p>
-      <h2 className="text-xl sm:text-2xl font-bold text-white">
-        Ask George how he can answer customer questions and capture enquiries for you 24/7.
-      </h2>
-      <div className="mt-5">
-        <Link
-          href="/meet-george"
-          className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-6 py-3 text-base font-bold rounded-xl transition-all duration-300 hover:scale-105"
-        >
-          Start Conversation <ArrowRight className="w-4 h-4" />
-        </Link>
-      </div>
-    </div>
-  </div>
-</section>
-
-<MovingGoogleReviews />
-
-
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <Reveal>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-center mb-4 text-balance">
-              What You Get
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="text-[#94a3b8] text-lg text-center max-w-3xl mx-auto mb-16 leading-relaxed">
-              Every site we build is custom-designed, fully responsive, and engineered for performance.
-              No templates. No shortcuts.
-            </p>
-          </Reveal>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <FeatureCard
-              icon={Code2}
-              title="Modern Professional Design"
-              description="Bespoke designs tailored to your brand identity. Hand-crafted for a premium look that builds instant trust with customers."
-              delay={0}
-            />
-            <FeatureCard
-              icon={Smartphone}
-              title="Mobile-Friendly & Responsive"
-              description="Flawless experience on every device. Mobile-first design ensures your site works perfectly wherever customers find you."
-              delay={0.1}
-            />
-            <FeatureCard
-              icon={Zap}
-              title="Fast Loading Performance"
-              description="Sub-second load times with optimised images, clean code, and modern hosting infrastructure that keeps visitors engaged."
-              delay={0.2}
-            />
-            <FeatureCard
-              icon={Layers}
-              title="Clear Structure for Enquiries"
-              description="Strategic layout and clear calls-to-action designed to guide visitors towards contacting your business."
-              delay={0.3}
-            />
-            <FeatureCard
-              icon={Search}
-              title="Strong SEO Foundation"
-              description="Proper meta tags, semantic HTML, clean URLs, and Core Web Vitals optimisation built into every page from day one."
-              delay={0.4}
-            />
-          </div>
-
-          <Reveal delay={0.5}>
-            <div className="mt-12 max-w-3xl mx-auto rounded-xl bg-white/[0.05] border border-white/10 p-6 text-center">
-              <p className="text-[#cbd5e1] leading-relaxed">
-                {"We don't run ongoing SEO campaigns \u2014 we build a strong SEO foundation so your website is ready to rank."}
+      <section className="px-4 pb-20 pt-16 sm:px-6 lg:px-8 lg:pt-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <div>
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-4 py-2 text-sm text-blue-300">
+                <Bot className="h-4 w-4" />
+                Websites powered by George
+              </div>
+              <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
+                Turn your website into a 24/7 salesperson
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#94a3b8]">
+                Meet George — an AI assistant that answers customer questions, keeps visitors engaged, and captures enquiries automatically.
               </p>
-              <p className="text-[#94a3b8] text-sm mt-4">
-                Learn more about our{" "}
-                <Link href="/web-design" className="text-blue-400 hover:text-blue-300 underline">web design services</Link>,{" "}
-                <Link href="/website-design-uk" className="text-blue-400 hover:text-blue-300 underline">UK website design</Link>, or{" "}
-                <Link href="/seo-foundation" className="text-blue-400 hover:text-blue-300 underline">SEO foundation</Link>.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/*  SEO FOUNDATION DETAIL                                        */}
-      {/* ============================================================ */}
-
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="flex-1">
-              <Reveal>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
-                  SEO Foundation Included with Professional Website Package
-                </h2>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <p className="text-[#94a3b8] text-lg mb-6 leading-relaxed">
-                  Our Professional Website package includes strong SEO foundation setup. This ensures your website is
-                  structured correctly and ready for Google indexing. This is a one-time setup built into the website.
-                </p>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <ul className="space-y-4">
-                  {[
-                    "Proper heading hierarchy & semantic HTML5",
-                    "Optimised meta titles & descriptions",
-                    "XML sitemap & robots.txt configuration",
-                    "Core Web Vitals optimisation",
-                    "Mobile-first indexing ready",
-                    "Fast page load speeds",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-[#94a3b8]">
-                      <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                <Link href="/meet-george" className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-500 px-8 py-4 text-lg font-bold text-white hover:bg-blue-600">
+                  Meet George <ArrowRight className="h-5 w-5" />
+                </Link>
+                <Link href="/pricing" className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-8 py-4 text-lg font-bold text-white hover:bg-white/10">
+                  £99/month pricing
+                </Link>
+              </div>
             </div>
 
-            {/* Visual grid */}
-            <Reveal delay={0.2} className="flex-1 flex justify-center">
-              <div className="relative w-full max-w-md">
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 blur-3xl" />
-                <div className="relative grid grid-cols-2 gap-4">
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur-xl">
+              <div className="rounded-2xl border border-blue-500/20 bg-[#0f172a] p-6">
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">What George does</p>
+                <div className="mt-6 space-y-5">
                   {[
-                    { icon: Search, label: "SEO Ready" },
-                    { icon: Globe, label: "Clean URLs" },
-                    { icon: BarChart3, label: "Core Web Vitals" },
-                    { icon: FileCode, label: "Clean Code" },
-                  ].map((item) => (
-                    <div
-                      key={item.label}
-                      className="flex flex-col items-center gap-3 p-6 rounded-2xl bg-white/[0.05] border border-white/10 backdrop-blur-sm"
-                    >
-                      <item.icon className="w-10 h-10 text-blue-400" />
-                      <span className="text-white font-semibold text-sm text-center">{item.label}</span>
+                    ["Answers customer questions instantly", MessageSquare],
+                    ["Captures enquiries automatically", PhoneCall],
+                    ["Works day and night without missing a lead", Clock3],
+                  ].map(([label, Icon]) => (
+                    <div key={label} className="flex items-start gap-4">
+                      <div className="rounded-xl bg-blue-500/10 p-3">
+                        <Icon className="h-5 w-5 text-blue-400" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-white">{label}</p>
+                        <p className="mt-1 text-sm text-[#94a3b8]">
+                          George helps stop visitors quietly leaving your website without asking the questions that matter.
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/*  PRICING                                                      */}
-      {/* ============================================================ */}
-      
-<section className="px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-10 relative z-20">
-  <div className="max-w-5xl mx-auto">
-    <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-6 py-5 text-center shadow-2xl">
-      <p className="text-sm uppercase tracking-[0.2em] text-blue-300 font-semibold mb-2">Meet George</p>
-      <h2 className="text-xl sm:text-2xl font-bold text-white">
-        Ask George how he can answer customer questions and capture enquiries for you 24/7.
-      </h2>
-      <div className="mt-5">
-        <Link
-          href="/meet-george"
-          className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-6 py-3 text-base font-bold rounded-xl transition-all duration-300 hover:scale-105"
-        >
-          Start Conversation <ArrowRight className="w-4 h-4" />
-        </Link>
-      </div>
-    </div>
-  </div>
-</section>
-
-<MovingGoogleReviews />
-
-
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <Reveal>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-center mb-4 text-balance">
-              Simple Pricing
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="text-[#94a3b8] text-lg text-center max-w-2xl mx-auto mb-16 leading-relaxed">
-              Everything focused around George — your website, hosting, and AI assistant in one simple monthly price.
-            </p>
-            <p className="text-sm text-[#94a3b8] text-center max-w-2xl mx-auto mt-4">No confusing packages. Just a clean offer built to help local businesses capture more enquiries.</p>
-          </Reveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            <PricingCard
-              title="George Website"
-              price="&pound;99"
-              features={[
-                "Custom website build included",
-                "George AI assistant built into your website",
-                "Hosting included",
-                "Enquiry capture built in",
-                "Ongoing updates and improvements",
-                "Social media links added (Facebook, Instagram, etc.)",
-                "Contact form that sends straight to your email",
-              ]}
-              delay={0}
-            />
-            <PricingCard
-              title="George in Action"
-              price="Alderwood Ponds"
-              features={[
-                "George answers questions about fishing, camping, bookings and facilities automatically",
-                "A real example of George working on a live business website",
-                "Helps visitors get answers before they leave the site",
-                "Perfect for showing businesses how George works in the real world",
-                "Use this as a live example when you speak to prospects",
-                
-                
-                
-              ]}
-              highlight
-              delay={0.1}
-            />
-            <PricingCard
-              title="Review Generation"
-              price="Learn more"
-              unit=""
-              features={[
-                "Need more Google reviews as well?",
-                "Review generation is still available as a separate service",
-                "Leave this as the small secondary offer at the bottom of the site",
-                
-                
-              ]}
-              delay={0.2}
-            />
-          </div>
-
-          <Reveal delay={0.3}>
-            <div className="mt-12 text-center">
-              <Link
-                href="/pricing"
-                className="text-blue-400 hover:text-blue-300 underline text-lg font-medium"
-              >
-                View full pricing details
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-
-      {/* ============================================================ */}
-      {/*  WEBSITE HOSTING                                               */}
-      {/* ============================================================ */}
-
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-            <div>
-              <Reveal>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 text-balance">
-                  Review Generation by GuardX
-                </h2>
-              </Reveal>
-              <Reveal delay={0.08}>
-                <p className="text-[#94a3b8] text-lg leading-relaxed">
-                  Review Generation by GuardX is <span className="text-white font-semibold">Learn more/month</span>.
-                  It keeps your website live, fast, and accessible to customers. Built on reliable modern infrastructure
-                  with support available if needed.
-                </p>
-              </Reveal>
-              <Reveal delay={0.14}>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  {[
-                    "Fast global delivery",
-                    "Secure by default",
-                    "Simple, reliable setup",
-                    "Support available if needed",
-                  ].map((t) => (
-                    <span
-                      key={t}
-                      className="inline-flex items-center rounded-full border border-[rgba(148,163,184,0.18)] bg-[rgba(255,255,255,0.04)] px-4 py-2 text-sm text-[#cbd5e1]"
-                    >
-                      <CheckCircle className="h-4 w-4 text-blue-400 mr-2" />
-                      {t}
-                    </span>
-                  ))}
+                <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <p className="text-sm text-[#cbd5e1]">Ask George how he can answer customer questions and capture enquiries for you 24/7.</p>
                 </div>
-              </Reveal>
-            </div>
-
-            <Reveal delay={0.1}>
-              <div className="rounded-3xl border border-[rgba(148,163,184,0.14)] bg-[rgba(255,255,255,0.03)] p-8 shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
-                <h3 className="text-xl font-semibold text-white mb-4">What hosting covers</h3>
-                <ul className="space-y-3 text-[#94a3b8]">
-                  {[
-                    "Keeping your website live on reliable infrastructure",
-                    "Connecting your domain and ensuring it stays online",
-                    "Ongoing monitoring of critical errors (if reported)",
-                  ].map((x) => (
-                    <li key={x} className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-blue-400 mt-0.5 flex-shrink-0" />
-                      <span>{x}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-xs text-[#94a3b8] mt-5">
-                  Note: Content changes and new pages are handled separately to keep things fair and predictable.
-                </p>
               </div>
-            </Reveal>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/*  MODERN TECHNOLOGY                                             */}
-      {/* ============================================================ */}
-
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <Reveal>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance text-center">
-              Built Using Modern Technology
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="text-[#94a3b8] text-lg text-center max-w-3xl mx-auto mb-14 leading-relaxed">
-              Modern build quality matters. Your website is designed to load fast, look premium, and convert visitors into enquiries.
+      <section className="px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold sm:text-4xl">Most websites lose customers</h2>
+            <p className="mx-auto mt-4 max-w-3xl text-lg text-[#94a3b8]">
+              Visitors land on your website, have a question, and leave because nobody answers them. George fixes that.
             </p>
-          </Reveal>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
             {[
-              { icon: Zap, title: "Fast loading performance", desc: "Optimised builds and modern hosting for quick load times." },
-              { icon: Smartphone, title: "Fully mobile responsive", desc: "Designed to look perfect on phones, tablets and desktop." },
-              { icon: FileCode, title: "Modern web standards", desc: "Clean semantic structure built the right way." },
-              { icon: Search, title: "Google-ready structure", desc: "Structured correctly so Google can crawl and understand your site." },
-              { icon: Layers, title: "Built to convert", desc: "Clear calls-to-action and layout built to generate enquiries." },
-              { icon: Globe, title: "Scalable foundation", desc: "Easy to expand with new pages when your business grows." },
-            ].map((i, idx) => (
-              <FeatureCard key={i.title} icon={i.icon} title={i.title} description={i.desc} delay={idx * 0.05} />
+              "Do you offer this service?",
+              "How much does it cost?",
+              "Can somebody get back to me?",
+            ].map((item) => (
+              <div key={item} className="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <p className="text-lg text-white">{item}</p>
+                <p className="mt-3 text-sm text-[#94a3b8]">If nobody answers quickly, that visitor often leaves and finds someone else.</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
-      {/* ============================================================ */}
-      {/*  REVIEW GENERATION ADD-ON                                     */}
-      {/* ============================================================ */}
 
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <Reveal>
-            <div className="relative rounded-2xl overflow-hidden bg-white/[0.04] border border-white/10 backdrop-blur-sm p-8 sm:p-12 text-center">
-              {/* Subtle glow behind */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 pointer-events-none" />
-
-              <div className="relative">
-                <div className="flex items-center justify-center gap-3 mb-6">
-                  <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-[rgba(59,130,246,0.15)]">
-                    <Star className="w-7 h-7 text-blue-400" />
-                  </div>
-                  <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-[rgba(59,130,246,0.15)]">
-                    <MessageSquare className="w-7 h-7 text-blue-400" />
-                  </div>
-                </div>
-
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 text-balance">
-                  Need More Google Reviews?
-                </h2>
-                <p className="text-[#94a3b8] text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
-                  Review Generation is available as an optional add-on service to help businesses collect more Google
-                  reviews. Automated email and SMS review requests that boost your online visibility.
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link
-                    href="/review-generation"
-                    className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-8 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
-                  >
-                    Learn About Review Generation <ArrowRight className="w-5 h-5" />
-                  </Link>
-                  <Link
-                    href="/real-results"
-                    className="inline-flex items-center justify-center gap-2 bg-white/10 text-white hover:bg-white/20 px-8 py-4 text-lg font-bold rounded-xl border border-white/20 transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-                  >
-                    See Results
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/*  FINAL CTA                                                    */}
-      {/* ============================================================ */}
-      
-<section className="px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-10 relative z-20">
-  <div className="max-w-5xl mx-auto">
-    <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-6 py-5 text-center shadow-2xl">
-      <p className="text-sm uppercase tracking-[0.2em] text-blue-300 font-semibold mb-2">Meet George</p>
-      <h2 className="text-xl sm:text-2xl font-bold text-white">
-        Ask George how he can answer customer questions and capture enquiries for you 24/7.
-      </h2>
-      <div className="mt-5">
-        <Link
-          href="/meet-george"
-          className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-6 py-3 text-base font-bold rounded-xl transition-all duration-300 hover:scale-105"
-        >
-          Start Conversation <ArrowRight className="w-4 h-4" />
-        </Link>
-      </div>
-    </div>
-  </div>
-</section>
-
-<MovingGoogleReviews />
-
-
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <Reveal>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
-              Ready to Build a Website That Actually Works?
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="text-[#94a3b8] text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
-              Let us design and build a premium website with proper SEO foundations so your
-              business gets found by the right customers.
+      <section className="px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl rounded-3xl border border-white/10 bg-white/5 p-8 sm:p-10">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">George in action</p>
+            <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Alderwood Ponds</h2>
+            <p className="mt-4 text-lg text-[#94a3b8]">
+              George answers visitor questions about fishing, camping, bookings and facilities automatically — giving people answers quickly instead of losing them.
             </p>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/web-design"
-                className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-8 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
-              >
-                View Our Work <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 text-white hover:bg-white/20 px-8 py-4 text-lg font-bold rounded-xl border border-white/20 transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-              >
-                Get a Quote
-              </Link>
+            <div className="mt-8">
+              <a href="https://www.alderwoodponds.com" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-4 text-white hover:bg-white/10">
+                See Alderwood Ponds <ArrowRight className="h-5 w-5" />
+              </a>
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
 
+      <section className="px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold sm:text-4xl">Simple pricing</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-[#94a3b8]">Everything centred around George, kept simple.</p>
+          </div>
 
-      {showGeorgePrompt && (
-        <div className="fixed bottom-4 left-1/2 z-40 w-[calc(100%-1.5rem)] max-w-3xl -translate-x-1/2 rounded-2xl border border-white/15 bg-[#0f172a]/95 px-4 py-4 shadow-[0_18px_60px_rgba(15,23,42,0.45)] backdrop-blur-xl sm:bottom-6 sm:px-6">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-300">Meet George</p>
-              <p className="mt-1 text-sm leading-6 text-white sm:text-base">
-                Ask George how he can answer customer questions and capture enquiries for you 24/7.
-              </p>
+          <div className="mx-auto mt-12 max-w-3xl rounded-3xl border border-blue-500/30 bg-gradient-to-b from-blue-500/10 to-white/5 p-8 shadow-2xl">
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">George Website</p>
+                <h3 className="mt-2 text-3xl font-bold text-white">£99/month</h3>
+              </div>
+              <Link href="/meet-george" className="inline-flex items-center justify-center rounded-xl bg-blue-500 px-6 py-3 font-bold text-white hover:bg-blue-600">
+                Try George
+              </Link>
             </div>
-            <Link
-              href="/meet-george"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-600"
-            >
-              Start Conversation <ArrowRight className="h-4 w-4" />
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {[
+                "Custom website build",
+                "George AI assistant",
+                "Hosting included",
+                "Enquiry capture",
+                "Ongoing updates",
+                "Business-specific setup",
+              ].map((feature) => (
+                <div key={feature} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 text-blue-400" />
+                  <span className="text-[#e2e8f0]">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl rounded-3xl border border-white/10 bg-white/5 p-8 text-center sm:p-10">
+          <div className="mx-auto flex w-fit items-center gap-3 rounded-full bg-blue-500/10 px-4 py-2 text-blue-300">
+            <Star className="h-4 w-4" />
+            Review generation still available
+          </div>
+          <h2 className="mt-5 text-3xl font-bold sm:text-4xl">Need more Google reviews?</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-[#94a3b8]">
+            Review Generation is still available as a separate service. We’ve just moved George to the front because that’s the main focus right now.
+          </p>
+          <div className="mt-8">
+            <Link href="/review-generation" className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-4 text-white hover:bg-white/10">
+              Learn about review generation <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
         </div>
-      )}
+      </section>
 
       <Footer />
-    </div>
+      <PromptBar />
+    </main>
   )
 }

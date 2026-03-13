@@ -1,4 +1,3 @@
-
 export default function Head() {
   return (
     <>
@@ -12,8 +11,8 @@ export default function Head() {
         property="og:description"
         content="Ask George how he can answer customer questions and capture enquiries for you 24/7."
       />
-      <meta property="og:image" content="https://www.guardxnetwork.com/george-preview.png?v=6" />
-      <meta property="og:url" content="https://www.guardxnetwork.com/meet-george" />
+      <meta property="og:image" content="https://guardxnetwork.com/george-preview.png?v=5" />
+      <meta property="og:url" content="https://guardxnetwork.com/meet-george" />
       <meta property="og:type" content="website" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="Meet George" />
@@ -21,7 +20,7 @@ export default function Head() {
         name="twitter:description"
         content="Ask George how he can answer customer questions and capture enquiries for you 24/7."
       />
-      <meta name="twitter:image" content="https://www.guardxnetwork.com/george-preview.png?v=6" />
+      <meta name="twitter:image" content="https://guardxnetwork.com/george-preview.png?v=5" />
     </>
   )
 }

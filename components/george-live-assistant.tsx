@@ -20,7 +20,7 @@ type LeadPayload = {
   source: string
   submittedAt: string
   page: string
-  submissionMode: "conversation_end" | "page_unload" | "inactivity_timeout" | "confirmed_details"
+  submissionMode: "conversation_end" | "page_unload" | "inactivity_timeout"
   userMessageCount: number
 }
 
@@ -70,27 +70,20 @@ function hasMeaningfulTranscript(messages: LiveMessage[]) {
   return userMessages.length >= 1
 }
 
-function extractLeadData(messages: LiveMessage[]) {
-  const visitorText = messages
-    .filter((message) => message.role === "user")
-    .map((message) => normalizeWhitespace(message.content))
-    .join("\n")
+function extractLeadDetailsFromTranscript(transcript: string) {
+  const normalized = transcript.toLowerCase()
 
-  const phoneMatch = visitorText.match(/(\+?\d[\d\s().-]{7,}\d)/)
-  const emailMatch = visitorText.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i)
-
-  const namePatterns = [
-    /(?:my name is|this is)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})/,
-    /(?:i am|i'm|im)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})/,
-  ]
-  const businessPatterns = [
-    /(?:business name is|company name is|business is|company is)\s+([A-Z0-9][A-Za-z0-9&'’.,\- ]{1,60})/,
-    /(?:we are|we're)\s+([A-Z0-9][A-Za-z0-9&'’.,\- ]{1,60})/,
-  ]
+  const emailMatch = transcript.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i)
+  const phoneMatch = transcript.match(/(?:\+?44\s?7\d{3}|0\d{4}|0\d{3}|0\d{2})[\s\d]{6,12}/)
 
   let name = ""
+  const namePatterns = [
+    /my name is\s+([A-Za-z][A-Za-z' -]{1,40})/i,
+    /i am\s+([A-Za-z][A-Za-z' -]{1,40})/i,
+    /i'm\s+([A-Za-z][A-Za-z' -]{1,40})/i,
+  ]
   for (const pattern of namePatterns) {
-    const match = visitorText.match(pattern)
+    const match = transcript.match(pattern)
     if (match?.[1]) {
       name = normalizeWhitespace(match[1])
       break
@@ -98,60 +91,39 @@ function extractLeadData(messages: LiveMessage[]) {
   }
 
   let businessName = ""
+  const businessPatterns = [
+    /business(?: name)? is\s+([A-Za-z0-9&'., -]{2,60})/i,
+    /(?:it's|it is|called)\s+([A-Za-z0-9&'., -]{2,60})/i,
+    /i have\s+(?:a|an)?\s*([A-Za-z0-9&'., -]{2,60})/i,
+  ]
   for (const pattern of businessPatterns) {
-    const match = visitorText.match(pattern)
+    const match = transcript.match(pattern)
     if (match?.[1]) {
       businessName = normalizeWhitespace(match[1])
       break
     }
   }
 
+  const confirmed =
+    /that(?:'s| is) correct/i.test(normalized) ||
+    /yes(?:[,! ]|$)/i.test(normalized) ||
+    /correct/i.test(normalized) ||
+    /that's right/i.test(normalized) ||
+    /those details are correct/i.test(normalized)
+
   return {
     name,
     businessName,
-    phone: phoneMatch ? normalizeWhitespace(phoneMatch[1]) : "",
+    phone: phoneMatch ? normalizeWhitespace(phoneMatch[0]) : "",
     email: emailMatch ? normalizeWhitespace(emailMatch[0]) : "",
+    confirmed,
   }
 }
 
-function lastAssistantAskedForConfirmation(messages: LiveMessage[]) {
-  const assistantMessages = messages.filter((message) => message.role === "assistant")
-  const lastAssistant = assistantMessages[assistantMessages.length - 1]
-  if (!lastAssistant) return false
-  const lower = normalizeWhitespace(lastAssistant.content).toLowerCase()
-  return (
-    lower.includes("confirm") &&
-    (lower.includes("correct") || lower.includes("right") || lower.includes("double-check") || lower.includes("double check"))
-  )
-}
-
-function latestUserConfirmed(messages: LiveMessage[]) {
-  const userMessages = messages.filter((message) => message.role === "user")
-  const lastUser = userMessages[userMessages.length - 1]
-  if (!lastUser) return false
-  const lower = normalizeWhitespace(lastUser.content).toLowerCase()
-  return [
-    "yes",
-    "yes that's right",
-    "yes thats right",
-    "that's right",
-    "thats right",
-    "correct",
-    "they are correct",
-    "that is correct",
-    "that's correct",
-    "thats correct",
-    "yeah",
-    "yeah that's right",
-    "yeah thats right",
-    "yes correct",
-  ].some((phrase) => lower === phrase || lower.includes(phrase))
-}
-
 function hasConfirmedLead(messages: LiveMessage[]) {
-  const lead = extractLeadData(messages)
-  const hasCoreDetails = Boolean(lead.name && lead.businessName && (lead.phone || lead.email))
-  return hasCoreDetails && lastAssistantAskedForConfirmation(messages) && latestUserConfirmed(messages)
+  const transcript = buildTranscript(messages)
+  const details = extractLeadDetailsFromTranscript(transcript)
+  return Boolean(details.name && details.businessName && (details.phone || details.email) && details.confirmed)
 }
 
 export function GeorgeLiveAssistant() {
@@ -182,12 +154,21 @@ export function GeorgeLiveAssistant() {
         : `george-${Date.now()}-${Math.random()}`
     conversationSessionIdRef.current = sessionId
 
+    const handlePageLeave = () => {
+      void submitLeadCapture("page_unload", true)
+    }
+
+    window.addEventListener("pagehide", handlePageLeave)
+    window.addEventListener("beforeunload", handlePageLeave)
 
     return () => {
       if (inactivityTimerRef.current) {
         window.clearTimeout(inactivityTimerRef.current)
         inactivityTimerRef.current = null
       }
+      window.removeEventListener("pagehide", handlePageLeave)
+      window.removeEventListener("beforeunload", handlePageLeave)
+      void submitLeadCapture("page_unload", true)
     }
   }, [])
 
@@ -211,10 +192,11 @@ export function GeorgeLiveAssistant() {
     }, 10000)
   }
 
-  async function submitLeadCapture(reason: "conversation_ended" | "page_unload" | "inactivity_timeout" | "confirmed_details", useBeacon = false) {
+  async function submitLeadCapture(reason: "conversation_ended" | "page_unload" | "inactivity_timeout", useBeacon = false) {
     const transcript = buildTranscript(messagesRef.current)
     if (!transcript.trim()) return false
     if (!hasMeaningfulTranscript(messagesRef.current)) return false
+    if (!hasConfirmedLead(messagesRef.current)) return false
     if (sentConversationRef.current || submittingLeadRef.current) return false
 
     const userMessageCount = messagesRef.current.filter((message) => message.role === "user").length
@@ -224,30 +206,19 @@ export function GeorgeLiveAssistant() {
       return false
     }
 
-    const lead = extractLeadData(messagesRef.current)
-    const confirmedLead = hasConfirmedLead(messagesRef.current)
-
-    if (!confirmedLead) {
-      return false
-    }
+    const details = extractLeadDetailsFromTranscript(transcript)
 
     const payload: LeadPayload = {
       source: `Meet George live voice (${reason})`,
-      name: lead.name,
-      phone: lead.phone,
-      email: lead.email,
-      businessName: lead.businessName,
+      name: details.name,
+      phone: details.phone,
+      email: details.email,
+      businessName: details.businessName,
       transcript,
       submittedAt: new Date().toISOString(),
       page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
       submissionMode:
-        reason === "page_unload"
-          ? "page_unload"
-          : reason === "inactivity_timeout"
-            ? "inactivity_timeout"
-            : reason === "confirmed_details"
-              ? "confirmed_details"
-              : "conversation_end",
+        reason === "page_unload" ? "page_unload" : reason === "inactivity_timeout" ? "inactivity_timeout" : "conversation_end",
       userMessageCount,
     }
 
@@ -368,20 +339,11 @@ export function GeorgeLiveAssistant() {
     }
   }
 
-  async function maybeSubmitConfirmedLead(nextMessages: LiveMessage[]) {
-    if (!hasConfirmedLead(nextMessages)) return
-    messagesRef.current = nextMessages
-    await submitLeadCapture("confirmed_details")
-  }
-
   function addUserTranscript(text: string) {
     const cleaned = text.trim()
     if (!cleaned) return
-    const nextMessages = [...messagesRef.current, makeMessage("user", cleaned)]
-    messagesRef.current = nextMessages
-    setMessages(nextMessages)
+    setMessages((prev) => [...prev, makeMessage("user", cleaned)])
     scheduleInactivitySubmission()
-    void maybeSubmitConfirmedLead(nextMessages)
   }
 
   function handleRealtimeEvent(event: any) {
@@ -670,7 +632,7 @@ export function GeorgeLiveAssistant() {
           <div className="mx-auto flex w-full max-w-4xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-[#5F6368]">
               {connectionState === "connected"
-                ? "You’re in a live conversation. Just speak naturally and George should reply automatically. If someone leaves their details, George can pass the transcript on."
+                ? "You’re in a live conversation. Just speak naturally and George should reply automatically. George will only pass the transcript on after the details have been read back and confirmed."
                 : "Start the live conversation and George will greet you, listen, and reply automatically without push-to-talk."}
             </p>
             <div className="flex items-center gap-3">

@@ -37,12 +37,16 @@ Ask natural questions back when helpful, such as:
 
 If the user gives their name, use it naturally later.
 
-When someone is clearly interested, invite them to leave these details so GuardX can follow up:
-- name
-- business name
-- phone number or email address
+When someone is clearly interested, invite them to leave their details so GuardX can follow up.
 
-Once you have those details, read them back clearly and ask the visitor to confirm they are correct before you wrap up. For example: "Great, thank you. Just before I go, can you quickly confirm those details are correct?" After they confirm, thank them warmly and finish naturally.`
+Important lead handling rule:
+- collect their name
+- collect their business name
+- collect either their phone number or their email address
+- once you have those, read the details back clearly
+- then ask them to confirm the details are correct
+- only after they confirm should the enquiry be treated as complete
+- do not act as though the lead is complete before that confirmation step.`
 
 const SESSION_CONFIG = {
   session: {

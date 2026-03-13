@@ -5,18 +5,16 @@ import { Navigation } from "@/components/navigation"
 
 export const metadata: Metadata = {
   title: "Meet George",
-  description:
-    "Ask George how he can answer customer questions and capture enquiries for you 24/7.",
+  description: "Ask George how he can answer customer questions and capture enquiries for you 24/7.",
   alternates: { canonical: "https://guardxnetwork.com/meet-george" },
   openGraph: {
     title: "Meet George",
-    description:
-      "Ask George how he can answer customer questions and capture enquiries for you 24/7.",
+    description: "Ask George how he can answer customer questions and capture enquiries for you 24/7.",
     url: "https://guardxnetwork.com/meet-george",
     type: "website",
     images: [
       {
-        url: "https://guardxnetwork.com/george-preview.png?v=6",
+        url: "https://guardxnetwork.com/george-preview.png?v=5",
         width: 1200,
         height: 630,
         alt: "Meet George",
@@ -27,18 +25,16 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Meet George",
     description: "Ask George how he can answer customer questions and capture enquiries for you 24/7.",
-    images: ["https://guardxnetwork.com/george-preview.png?v=6"],
+    images: ["https://guardxnetwork.com/george-preview.png?v=5"],
   },
 }
 
 export default function MeetGeorgePage() {
   return (
-    <div className="min-h-screen bg-[linear-gradient(180deg,#eef4ff_0%,#f8fbff_35%,#ffffff_100%)]">
+    <main className="min-h-screen bg-[#0a0e1a] text-white">
       <Navigation />
-      <main>
-        <GeorgeLiveAssistant />
-      </main>
+      <GeorgeLiveAssistant />
       <Footer />
-    </div>
+    </main>
   )
 }
