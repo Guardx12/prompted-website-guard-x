@@ -182,21 +182,12 @@ export function GeorgeLiveAssistant() {
         : `george-${Date.now()}-${Math.random()}`
     conversationSessionIdRef.current = sessionId
 
-    const handlePageLeave = () => {
-      void submitLeadCapture("page_unload", true)
-    }
-
-    window.addEventListener("pagehide", handlePageLeave)
-    window.addEventListener("beforeunload", handlePageLeave)
 
     return () => {
       if (inactivityTimerRef.current) {
         window.clearTimeout(inactivityTimerRef.current)
         inactivityTimerRef.current = null
       }
-      window.removeEventListener("pagehide", handlePageLeave)
-      window.removeEventListener("beforeunload", handlePageLeave)
-      void submitLeadCapture("page_unload", true)
     }
   }, [])
 
@@ -234,6 +225,11 @@ export function GeorgeLiveAssistant() {
     }
 
     const lead = extractLeadData(messagesRef.current)
+    const confirmedLead = hasConfirmedLead(messagesRef.current)
+
+    if (!confirmedLead) {
+      return false
+    }
 
     const payload: LeadPayload = {
       source: `Meet George live voice (${reason})`,

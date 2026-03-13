@@ -81,6 +81,23 @@ export function Navigation() {
                 <Link href="/" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
                   Home
                 </Link>
+                <Link href="/meet-george" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
+                  Meet George
+                </Link>
+                <Link href="/pricing" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
+                  Pricing
+                </Link>
+                <Link href="/faq" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
+                  FAQ
+                </Link>
+                <Link href="/contact" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
+                  Contact
+                </Link>
+              </div>
+            </div>
+          )}>
+                  Home
+                </Link>
                 <Link href="/review-generation" className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors" onClick={() => setIsOpen(false)}>
                   Review Generation
                 </Link>

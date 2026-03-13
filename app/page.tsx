@@ -416,8 +416,7 @@ export default function HomePage() {
 
               <Reveal delay={0.15}>
                 <p className="text-lg sm:text-xl text-[#94a3b8] mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Meet George — the AI assistant built into GuardX websites to answer customer questions, keep visitors engaged,
-                  and capture more enquiries for your business 24/7.
+                  Meet George — the AI assistant built into GuardX websites to answer customer questions and capture enquiries for your business 24/7.
                 </p>
               </Reveal>
 
@@ -430,10 +429,10 @@ export default function HomePage() {
                     Meet George <ArrowRight className="w-5 h-5" />
                   </Link>
                   <Link
-                    href="/real-results"
+                    href="/pricing"
                     className="inline-flex items-center justify-center gap-2 bg-white/10 text-white hover:bg-white/20 px-8 py-4 text-lg font-bold rounded-xl border border-white/20 transition-all duration-300 hover:scale-105 backdrop-blur-sm"
                   >
-                    See Real Results
+                    See Pricing
                   </Link>
                 </div>
               </Reveal>
@@ -450,7 +449,28 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/*  WEBSITE DESIGN FEATURES                                      */}
       {/* ============================================================ */}
-      <MovingGoogleReviews />
+      
+<section className="px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-10 relative z-20">
+  <div className="max-w-5xl mx-auto">
+    <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-6 py-5 text-center shadow-2xl">
+      <p className="text-sm uppercase tracking-[0.2em] text-blue-300 font-semibold mb-2">Meet George</p>
+      <h2 className="text-xl sm:text-2xl font-bold text-white">
+        Ask George how he can answer customer questions and capture enquiries for you 24/7.
+      </h2>
+      <div className="mt-5">
+        <Link
+          href="/meet-george"
+          className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-6 py-3 text-base font-bold rounded-xl transition-all duration-300 hover:scale-105"
+        >
+          Start Conversation <ArrowRight className="w-4 h-4" />
+        </Link>
+      </div>
+    </div>
+  </div>
+</section>
+
+<MovingGoogleReviews />
+
 
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -582,63 +602,84 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/*  PRICING                                                      */}
       {/* ============================================================ */}
-      <MovingGoogleReviews />
+      
+<section className="px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-10 relative z-20">
+  <div className="max-w-5xl mx-auto">
+    <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-6 py-5 text-center shadow-2xl">
+      <p className="text-sm uppercase tracking-[0.2em] text-blue-300 font-semibold mb-2">Meet George</p>
+      <h2 className="text-xl sm:text-2xl font-bold text-white">
+        Ask George how he can answer customer questions and capture enquiries for you 24/7.
+      </h2>
+      <div className="mt-5">
+        <Link
+          href="/meet-george"
+          className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-6 py-3 text-base font-bold rounded-xl transition-all duration-300 hover:scale-105"
+        >
+          Start Conversation <ArrowRight className="w-4 h-4" />
+        </Link>
+      </div>
+    </div>
+  </div>
+</section>
+
+<MovingGoogleReviews />
+
 
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <Reveal>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-center mb-4 text-balance">
-              Transparent Pricing
+              Simple Pricing
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="text-[#94a3b8] text-lg text-center max-w-2xl mx-auto mb-16 leading-relaxed">
-              Simple, honest pricing with no hidden fees.
+              Everything focused around George — your website, hosting, and AI assistant in one simple monthly price.
             </p>
-            <p className="text-sm text-[#94a3b8] text-center max-w-2xl mx-auto mt-4">Built using modern, professional technology for speed, reliability, and long-term performance.</p>
+            <p className="text-sm text-[#94a3b8] text-center max-w-2xl mx-auto mt-4">No confusing packages. Just a clean offer built to help local businesses capture more enquiries.</p>
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             <PricingCard
-              title="Starter Website"
-              price="from &pound;500"
+              title="George Website"
+              price="&pound;99"
               features={[
-                "Modern, professional website (built for local UK businesses)",
-                "Mobile-friendly design across phones, tablets and desktops",
-                "Clear layout designed to generate enquiries",
-                "Click-to-call, click-to-email and contact options",
-                "WhatsApp chat integration (optional)",
+                "Custom website build included",
+                "George AI assistant built into your website",
+                "Hosting included",
+                "Enquiry capture built in",
+                "Ongoing updates and improvements",
                 "Social media links added (Facebook, Instagram, etc.)",
                 "Contact form that sends straight to your email",
               ]}
               delay={0}
             />
             <PricingCard
-              title="Professional Website + SEO Foundation"
-              price="from &pound;1,000"
+              title="George in Action"
+              price="Alderwood Ponds"
               features={[
-                "Everything in Starter, plus an SEO-ready structure",
-                "Service pages structured for better search visibility",
-                "Location pages to target your service areas",
-                "Clean URL structure and internal linking",
-                "Meta titles and descriptions set up properly",
-                "Sitemap.xml and robots.txt included",
-                "Speed and performance optimised",
-                "Structured correctly for Google indexing",
+                "George answers questions about fishing, camping, bookings and facilities automatically",
+                "A real example of George working on a live business website",
+                "Helps visitors get answers before they leave the site",
+                "Perfect for showing businesses how George works in the real world",
+                "Use this as a live example when you speak to prospects",
+                
+                
+                
               ]}
               highlight
               delay={0.1}
             />
             <PricingCard
-              title="Website Hosting"
-              price="&pound;30"
-              unit="/ month"
+              title="Review Generation"
+              price="Learn more"
+              unit=""
               features={[
-                "Hosting to keep your website live and accessible",
-                "Fast, reliable hosting setup",
-                "Domain connection and deployment included",
-                "Light support if you need help or advice",
-                "No long contracts — cancel anytime",
+                "Need more Google reviews as well?",
+                "Review generation is still available as a separate service",
+                "Leave this as the small secondary offer at the bottom of the site",
+                
+                
               ]}
               delay={0.2}
             />
@@ -668,12 +709,12 @@ export default function HomePage() {
             <div>
               <Reveal>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 text-balance">
-                  Website Hosting by GuardX
+                  Review Generation by GuardX
                 </h2>
               </Reveal>
               <Reveal delay={0.08}>
                 <p className="text-[#94a3b8] text-lg leading-relaxed">
-                  Website Hosting by GuardX is <span className="text-white font-semibold">&pound;30/month</span>.
+                  Review Generation by GuardX is <span className="text-white font-semibold">Learn more/month</span>.
                   It keeps your website live, fast, and accessible to customers. Built on reliable modern infrastructure
                   with support available if needed.
                 </p>
@@ -805,7 +846,28 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/*  FINAL CTA                                                    */}
       {/* ============================================================ */}
-      <MovingGoogleReviews />
+      
+<section className="px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-10 relative z-20">
+  <div className="max-w-5xl mx-auto">
+    <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-6 py-5 text-center shadow-2xl">
+      <p className="text-sm uppercase tracking-[0.2em] text-blue-300 font-semibold mb-2">Meet George</p>
+      <h2 className="text-xl sm:text-2xl font-bold text-white">
+        Ask George how he can answer customer questions and capture enquiries for you 24/7.
+      </h2>
+      <div className="mt-5">
+        <Link
+          href="/meet-george"
+          className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-6 py-3 text-base font-bold rounded-xl transition-all duration-300 hover:scale-105"
+        >
+          Start Conversation <ArrowRight className="w-4 h-4" />
+        </Link>
+      </div>
+    </div>
+  </div>
+</section>
+
+<MovingGoogleReviews />
+
 
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
