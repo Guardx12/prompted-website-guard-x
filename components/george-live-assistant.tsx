@@ -17,19 +17,30 @@ type LeadPayload = {
   email: string
   businessName: string
   transcript: string
+  summary: string
   source: string
   submittedAt: string
   page: string
-  submissionMode: "conversation_end" | "page_unload" | "inactivity_timeout"
+  submissionMode: "manual_submit"
   userMessageCount: number
 }
+
+type LeadFormState = {
+  name: string
+  businessName: string
+  email: string
+  phone: string
+  summary: string
+}
+
+type FormSubmitState = "idle" | "loading" | "success" | "error"
 
 const INITIAL_MESSAGES: LiveMessage[] = [
   {
     id: "intro",
     role: "system",
     content:
-      "Hi — I’m George, the AI receptionist and sales assistant built into GuardX websites. Try asking me in English how I could help your business handle customer enquiries.",
+      "Hi — I’m George, the AI receptionist and sales assistant built into GuardX websites. Try asking me how I could help your business handle customer enquiries.",
   },
 ]
 
@@ -37,7 +48,7 @@ const FIRST_RESPONSE_EVENT = {
   type: "response.create",
   response: {
     instructions:
-      "Briefly introduce yourself as George, the English-speaking AI receptionist and sales assistant built into GuardX websites, then ask in a warm natural way: 'Out of curiosity, what type of business do you run?' Never use any language other than English.",
+      "Briefly introduce yourself as George, the AI receptionist and sales assistant built into GuardX websites, then ask in a warm natural way: 'Out of curiosity, what type of business do you run?'",
   },
 }
 
@@ -78,48 +89,38 @@ function extractLeadDetailsFromTranscript(transcript: string) {
 
   let name = ""
   const namePatterns = [
-    /name\s*[:\-]\s*([^\n,]+)/i,
-    /my name is\s+([A-Za-z][A-Za-z' -]{1,60})/i,
-    /i am\s+([A-Za-z][A-Za-z' -]{1,60})/i,
-    /i'm\s+([A-Za-z][A-Za-z' -]{1,60})/i,
+    /my name is\s+([A-Za-z][A-Za-z' -]{1,40})/i,
+    /i am\s+([A-Za-z][A-Za-z' -]{1,40})/i,
+    /i'm\s+([A-Za-z][A-Za-z' -]{1,40})/i,
   ]
   for (const pattern of namePatterns) {
     const match = transcript.match(pattern)
     if (match?.[1]) {
-      name = normalizeWhitespace(match[1]).replace(/[.!,]$/, "")
+      name = normalizeWhitespace(match[1])
       break
     }
   }
 
   let businessName = ""
   const businessPatterns = [
-    /business name\s*[:\-]\s*([^\n]+)/i,
-    /business(?: name)? is\s+([A-Za-z0-9&'., -]{2,80})/i,
-    /(?:it'?s|it is|called)\s+([A-Za-z0-9&'., -]{2,80})/i,
+    /business(?: name)? is\s+([A-Za-z0-9&'., -]{2,60})/i,
+    /(?:it's|it is|called)\s+([A-Za-z0-9&'., -]{2,60})/i,
+    /i have\s+(?:a|an)?\s*([A-Za-z0-9&'., -]{2,60})/i,
   ]
   for (const pattern of businessPatterns) {
     const match = transcript.match(pattern)
     if (match?.[1]) {
-      businessName = normalizeWhitespace(match[1]).replace(/[.!,]$/, "")
+      businessName = normalizeWhitespace(match[1])
       break
     }
   }
 
-  const askedForConfirmation =
-    /are those details correct/i.test(normalized) ||
-    /are the details correct/i.test(normalized) ||
-    /have i got that right/i.test(normalized) ||
-    /is that all correct/i.test(normalized)
-
   const confirmed =
-    askedForConfirmation &&
-    (/(yes[,! ]+that'?s correct)/i.test(normalized) ||
-      /(yes[,! ]+that'?s right)/i.test(normalized) ||
-      /those details are correct/i.test(normalized) ||
-      /yes[,! ]+correct/i.test(normalized) ||
-      /that'?s correct/i.test(normalized) ||
-      /that'?s right/i.test(normalized) ||
-      /correct[,! ]*$/i.test(normalized))
+    /that(?:'s| is) correct/i.test(normalized) ||
+    /yes(?:[,! ]|$)/i.test(normalized) ||
+    /correct/i.test(normalized) ||
+    /that's right/i.test(normalized) ||
+    /those details are correct/i.test(normalized)
 
   return {
     name,
@@ -136,12 +137,32 @@ function hasConfirmedLead(messages: LiveMessage[]) {
   return Boolean(details.name && details.businessName && (details.phone || details.email) && details.confirmed)
 }
 
+function buildLeadSummary(messages: LiveMessage[]) {
+  const userMessages = messages
+    .filter((message) => message.role === "user")
+    .map((message) => normalizeWhitespace(message.content))
+    .filter(Boolean)
+
+  if (!userMessages.length) return "Interested in George and wants to discuss how it could help the business."
+
+  const relevant = userMessages.slice(-3).join(" ")
+  return relevant.length > 500 ? `${relevant.slice(0, 497)}...` : relevant
+}
+
 export function GeorgeLiveAssistant() {
   const [messages, setMessages] = useState<LiveMessage[]>(INITIAL_MESSAGES)
   const [connectionState, setConnectionState] = useState<ConnectionState>("idle")
   const [statusText, setStatusText] = useState("Ready when you are")
   const [isModelSpeaking, setIsModelSpeaking] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [leadForm, setLeadForm] = useState<LeadFormState>({
+    name: "",
+    businessName: "",
+    email: "",
+    phone: "",
+    summary: "",
+  })
+  const [formSubmitState, setFormSubmitState] = useState<FormSubmitState>("idle")
 
   const pcRef = useRef<RTCPeerConnection | null>(null)
   const dcRef = useRef<RTCDataChannel | null>(null)
@@ -151,11 +172,7 @@ export function GeorgeLiveAssistant() {
   const currentAssistantMessageIdRef = useRef<string | null>(null)
   const scrollRef = useRef<HTMLDivElement | null>(null)
   const messagesRef = useRef<LiveMessage[]>(INITIAL_MESSAGES)
-  const submittingLeadRef = useRef(false)
-  const submittedLeadFingerprintRef = useRef("")
-  const inactivityTimerRef = useRef<number | null>(null)
   const conversationSessionIdRef = useRef("")
-  const sentConversationRef = useRef(false)
 
   useEffect(() => {
     const sessionId =
@@ -163,23 +180,6 @@ export function GeorgeLiveAssistant() {
         ? crypto.randomUUID()
         : `george-${Date.now()}-${Math.random()}`
     conversationSessionIdRef.current = sessionId
-
-    const handlePageLeave = () => {
-      void submitLeadCapture("page_unload", true)
-    }
-
-    window.addEventListener("pagehide", handlePageLeave)
-    window.addEventListener("beforeunload", handlePageLeave)
-
-    return () => {
-      if (inactivityTimerRef.current) {
-        window.clearTimeout(inactivityTimerRef.current)
-        inactivityTimerRef.current = null
-      }
-      window.removeEventListener("pagehide", handlePageLeave)
-      window.removeEventListener("beforeunload", handlePageLeave)
-      void submitLeadCapture("page_unload", true)
-    }
   }, [])
 
   useEffect(() => {
@@ -188,109 +188,83 @@ export function GeorgeLiveAssistant() {
     if (el) {
       el.scrollTo({ top: el.scrollHeight, behavior: "smooth" })
     }
+
+    const transcript = buildTranscript(messages)
+    const details = extractLeadDetailsFromTranscript(transcript)
+    const summary = buildLeadSummary(messages)
+
+    setLeadForm((prev) => ({
+      name: details.name || prev.name,
+      businessName: details.businessName || prev.businessName,
+      email: details.email || prev.email,
+      phone: details.phone || prev.phone,
+      summary: summary || prev.summary,
+    }))
   }, [messages, statusText])
 
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
 
-  function scheduleInactivitySubmission() {
-    if (inactivityTimerRef.current) {
-      window.clearTimeout(inactivityTimerRef.current)
+  const transcript = useMemo(() => buildTranscript(messages), [messages])
+  const detailsFromTranscript = useMemo(() => extractLeadDetailsFromTranscript(transcript), [transcript])
+  const suggestedSummary = useMemo(() => buildLeadSummary(messages), [messages])
+  const canShowLeadForm = useMemo(() => {
+    return Boolean(
+      detailsFromTranscript.confirmed ||
+        leadForm.name ||
+        leadForm.businessName ||
+        leadForm.email ||
+        leadForm.phone ||
+        messages.filter((message) => message.role === "user").length >= 2,
+    )
+  }, [detailsFromTranscript.confirmed, leadForm, messages])
+
+  async function handleLeadFormSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    if (!leadForm.name || !leadForm.businessName || (!leadForm.email && !leadForm.phone)) {
+      setFormSubmitState("error")
+      return
     }
 
-    inactivityTimerRef.current = window.setTimeout(() => {
-      void submitLeadCapture("inactivity_timeout")
-    }, 10000)
-  }
-
-  async function submitLeadCapture(reason: "conversation_ended" | "page_unload" | "inactivity_timeout", useBeacon = false) {
-    const transcript = buildTranscript(messagesRef.current)
-    if (!transcript.trim()) return false
-    if (!hasMeaningfulTranscript(messagesRef.current)) return false
-    if (!hasConfirmedLead(messagesRef.current)) return false
-    if (sentConversationRef.current || submittingLeadRef.current) return false
-
-    const userMessageCount = messagesRef.current.filter((message) => message.role === "user").length
-    const fingerprint = JSON.stringify({ transcript, reason, userMessageCount })
-
-    if (submittedLeadFingerprintRef.current === fingerprint) {
-      return false
-    }
-
-    const details = extractLeadDetailsFromTranscript(transcript)
+    setFormSubmitState("loading")
 
     const payload: LeadPayload = {
-      source: `Meet George live voice (${reason})`,
-      name: details.name,
-      phone: details.phone,
-      email: details.email,
-      businessName: details.businessName,
+      source: "Meet George manual form",
+      name: leadForm.name,
+      phone: leadForm.phone,
+      email: leadForm.email,
+      businessName: leadForm.businessName,
       transcript,
+      summary: leadForm.summary || suggestedSummary,
       submittedAt: new Date().toISOString(),
       page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
-      submissionMode:
-        reason === "page_unload" ? "page_unload" : reason === "inactivity_timeout" ? "inactivity_timeout" : "conversation_end",
-      userMessageCount,
+      submissionMode: "manual_submit",
+      userMessageCount: messages.filter((message) => message.role === "user").length,
     }
-
-    if (typeof window !== "undefined") {
-      try {
-        sessionStorage.setItem(`george-sent-${conversationSessionIdRef.current}`, "1")
-      } catch {}
-    }
-
-    sentConversationRef.current = true
-    submittingLeadRef.current = !useBeacon
 
     try {
-      if (useBeacon && typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
-        const blob = new Blob([JSON.stringify({ ...payload, sessionId: conversationSessionIdRef.current })], {
-          type: "application/json",
-        })
-        const queued = navigator.sendBeacon("/api/george-lead", blob)
-        if (!queued) {
-          sentConversationRef.current = false
-          return false
-        }
-      } else {
-        const response = await fetch("/api/george-lead", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({ ...payload, sessionId: conversationSessionIdRef.current }),
-          keepalive: reason === "page_unload",
-        })
+      const response = await fetch("/api/george-lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ ...payload, sessionId: conversationSessionIdRef.current }),
+      })
 
-        if (!response.ok) {
-          const details = await response.text().catch(() => "")
-          throw new Error(details || `Lead capture error ${response.status}`)
-        }
+      if (!response.ok) {
+        const message = await response.text().catch(() => "")
+        throw new Error(message || `Lead form error ${response.status}`)
       }
 
-      submittedLeadFingerprintRef.current = fingerprint
-      return true
+      setFormSubmitState("success")
     } catch (submitError) {
-      console.error("George live lead capture error", submitError)
-      sentConversationRef.current = false
-      return false
-    } finally {
-      if (!useBeacon) {
-        submittingLeadRef.current = false
-      }
+      console.error("George form submit error", submitError)
+      setFormSubmitState("error")
     }
   }
 
-
-  async function cleanupConversation(options?: { submitTranscript?: boolean }) {
-    if (inactivityTimerRef.current) {
-      window.clearTimeout(inactivityTimerRef.current)
-      inactivityTimerRef.current = null
-    }
-
-    if (options?.submitTranscript) {
-      await submitLeadCapture("conversation_ended")
-    }
+  async function cleanupConversation() {
 
     dcRef.current?.close()
     dcRef.current = null
@@ -345,7 +319,6 @@ export function GeorgeLiveAssistant() {
     if (isFinal) {
       currentAssistantMessageIdRef.current = null
       currentAssistantTextRef.current = ""
-      scheduleInactivitySubmission()
     }
   }
 
@@ -353,7 +326,6 @@ export function GeorgeLiveAssistant() {
     const cleaned = text.trim()
     if (!cleaned) return
     setMessages((prev) => [...prev, makeMessage("user", cleaned)])
-    scheduleInactivitySubmission()
   }
 
   function handleRealtimeEvent(event: any) {
@@ -436,13 +408,8 @@ export function GeorgeLiveAssistant() {
     setStatusText("Connecting George…")
     setMessages(INITIAL_MESSAGES)
     messagesRef.current = INITIAL_MESSAGES
-    sentConversationRef.current = false
-    submittingLeadRef.current = false
-    submittedLeadFingerprintRef.current = ""
-    if (inactivityTimerRef.current) {
-      window.clearTimeout(inactivityTimerRef.current)
-      inactivityTimerRef.current = null
-    }
+    setLeadForm({ name: "", businessName: "", email: "", phone: "", summary: "" })
+    setFormSubmitState("idle")
 
     try {
       const tokenResponse = await fetch("/api/george-session", {
@@ -545,7 +512,7 @@ export function GeorgeLiveAssistant() {
   }
 
   async function stopConversation() {
-    await cleanupConversation({ submitTranscript: true })
+    await cleanupConversation()
     setError(null)
     setConnectionState("idle")
     setStatusText("Ready when you are")
@@ -636,11 +603,99 @@ export function GeorgeLiveAssistant() {
           </div>
         </div>
 
+
+        {canShowLeadForm && formSubmitState !== "success" && (
+          <div className="border-t border-[#E8EAED] bg-[#F8FAFD] px-4 py-5 sm:px-6">
+            <div className="mx-auto w-full max-w-4xl rounded-[28px] border border-[#DADCE0] bg-white p-5 shadow-sm sm:p-6">
+              <h2 className="text-lg font-semibold text-[#202124]">Ready to send your details?</h2>
+              <p className="mt-2 text-sm leading-6 text-[#5F6368]">
+                George has filled this in from the conversation. Just check it, make any changes you want, then press submit.
+              </p>
+              <form onSubmit={handleLeadFormSubmit} className="mt-4 space-y-3">
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <input
+                    type="text"
+                    placeholder="Your name"
+                    value={leadForm.name}
+                    onChange={(event) => {
+                      setLeadForm((prev) => ({ ...prev, name: event.target.value }))
+                      setFormSubmitState("idle")
+                    }}
+                    className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Business name"
+                    value={leadForm.businessName}
+                    onChange={(event) => {
+                      setLeadForm((prev) => ({ ...prev, businessName: event.target.value }))
+                      setFormSubmitState("idle")
+                    }}
+                    className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email address"
+                    value={leadForm.email}
+                    onChange={(event) => {
+                      setLeadForm((prev) => ({ ...prev, email: event.target.value }))
+                      setFormSubmitState("idle")
+                    }}
+                    className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Phone or WhatsApp"
+                    value={leadForm.phone}
+                    onChange={(event) => {
+                      setLeadForm((prev) => ({ ...prev, phone: event.target.value }))
+                      setFormSubmitState("idle")
+                    }}
+                    className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
+                  />
+                </div>
+                <textarea
+                  placeholder="Summary of what you need help with"
+                  value={leadForm.summary}
+                  onChange={(event) => {
+                    setLeadForm((prev) => ({ ...prev, summary: event.target.value }))
+                    setFormSubmitState("idle")
+                  }}
+                  rows={5}
+                  className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
+                />
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <p className="text-xs leading-5 text-[#5F6368]">The full conversation transcript will be sent with this enquiry as well.</p>
+                  <button
+                    type="submit"
+                    disabled={formSubmitState === "loading"}
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1A73E8] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1558b0] disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {formSubmitState === "loading" ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+                    Submit enquiry
+                  </button>
+                </div>
+                {formSubmitState === "error" ? (
+                  <p className="text-sm text-[#B3261E]">Please add your name, business name, and either an email address or phone number, then try again.</p>
+                ) : null}
+              </form>
+            </div>
+          </div>
+        )}
+
+        {formSubmitState === "success" && (
+          <div className="border-t border-[#E8EAED] bg-[#F8FAFD] px-4 py-5 sm:px-6">
+            <div className="mx-auto w-full max-w-4xl rounded-[28px] border border-[#CDE7D4] bg-[#EAF6EE] p-5 text-[#1E4620] shadow-sm sm:p-6">
+              <h2 className="text-lg font-semibold">Thanks — your enquiry has been sent.</h2>
+              <p className="mt-2 text-sm leading-6">We’ve passed your details and the conversation summary on properly, so the team can pick things up from there.</p>
+            </div>
+          </div>
+        )}
         <div className="border-t border-[#E8EAED] bg-white px-4 py-4 sm:px-6">
           <div className="mx-auto flex w-full max-w-4xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-[#5F6368]">
               {connectionState === "connected"
-                ? "You’re in a live conversation. Just speak naturally and George should reply automatically. George will only pass the transcript on after the details have been read back and confirmed."
+                ? "You’re in a live conversation. Just speak naturally and George should reply automatically. George can pre-fill the enquiry form below as you talk, then you can check it and press submit yourself."
                 : "Start the live conversation and George will greet you, listen, and reply automatically without push-to-talk."}
             </p>
             <div className="flex items-center gap-3">
