@@ -20,7 +20,7 @@ type LeadPayload = {
   source: string
   submittedAt: string
   page: string
-  submissionMode: "conversation_end" | "page_unload" | "inactivity_timeout"
+  submissionMode: "conversation_end" | "page_unload" | "inactivity_timeout" | "confirmed_details"
   userMessageCount: number
 }
 
@@ -68,6 +68,90 @@ function hasMeaningfulTranscript(messages: LiveMessage[]) {
     (message) => message.role === "user" && normalizeWhitespace(message.content).length >= 4,
   )
   return userMessages.length >= 1
+}
+
+function extractLeadData(messages: LiveMessage[]) {
+  const visitorText = messages
+    .filter((message) => message.role === "user")
+    .map((message) => normalizeWhitespace(message.content))
+    .join("\n")
+
+  const phoneMatch = visitorText.match(/(\+?\d[\d\s().-]{7,}\d)/)
+  const emailMatch = visitorText.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i)
+
+  const namePatterns = [
+    /(?:my name is|this is)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})/,
+    /(?:i am|i'm|im)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})/,
+  ]
+  const businessPatterns = [
+    /(?:business name is|company name is|business is|company is)\s+([A-Z0-9][A-Za-z0-9&'’.,\- ]{1,60})/,
+    /(?:we are|we're)\s+([A-Z0-9][A-Za-z0-9&'’.,\- ]{1,60})/,
+  ]
+
+  let name = ""
+  for (const pattern of namePatterns) {
+    const match = visitorText.match(pattern)
+    if (match?.[1]) {
+      name = normalizeWhitespace(match[1])
+      break
+    }
+  }
+
+  let businessName = ""
+  for (const pattern of businessPatterns) {
+    const match = visitorText.match(pattern)
+    if (match?.[1]) {
+      businessName = normalizeWhitespace(match[1])
+      break
+    }
+  }
+
+  return {
+    name,
+    businessName,
+    phone: phoneMatch ? normalizeWhitespace(phoneMatch[1]) : "",
+    email: emailMatch ? normalizeWhitespace(emailMatch[0]) : "",
+  }
+}
+
+function lastAssistantAskedForConfirmation(messages: LiveMessage[]) {
+  const assistantMessages = messages.filter((message) => message.role === "assistant")
+  const lastAssistant = assistantMessages[assistantMessages.length - 1]
+  if (!lastAssistant) return false
+  const lower = normalizeWhitespace(lastAssistant.content).toLowerCase()
+  return (
+    lower.includes("confirm") &&
+    (lower.includes("correct") || lower.includes("right") || lower.includes("double-check") || lower.includes("double check"))
+  )
+}
+
+function latestUserConfirmed(messages: LiveMessage[]) {
+  const userMessages = messages.filter((message) => message.role === "user")
+  const lastUser = userMessages[userMessages.length - 1]
+  if (!lastUser) return false
+  const lower = normalizeWhitespace(lastUser.content).toLowerCase()
+  return [
+    "yes",
+    "yes that's right",
+    "yes thats right",
+    "that's right",
+    "thats right",
+    "correct",
+    "they are correct",
+    "that is correct",
+    "that's correct",
+    "thats correct",
+    "yeah",
+    "yeah that's right",
+    "yeah thats right",
+    "yes correct",
+  ].some((phrase) => lower === phrase || lower.includes(phrase))
+}
+
+function hasConfirmedLead(messages: LiveMessage[]) {
+  const lead = extractLeadData(messages)
+  const hasCoreDetails = Boolean(lead.name && lead.businessName && (lead.phone || lead.email))
+  return hasCoreDetails && lastAssistantAskedForConfirmation(messages) && latestUserConfirmed(messages)
 }
 
 export function GeorgeLiveAssistant() {
@@ -136,7 +220,7 @@ export function GeorgeLiveAssistant() {
     }, 10000)
   }
 
-  async function submitLeadCapture(reason: "conversation_ended" | "page_unload" | "inactivity_timeout", useBeacon = false) {
+  async function submitLeadCapture(reason: "conversation_ended" | "page_unload" | "inactivity_timeout" | "confirmed_details", useBeacon = false) {
     const transcript = buildTranscript(messagesRef.current)
     if (!transcript.trim()) return false
     if (!hasMeaningfulTranscript(messagesRef.current)) return false
@@ -149,17 +233,25 @@ export function GeorgeLiveAssistant() {
       return false
     }
 
+    const lead = extractLeadData(messagesRef.current)
+
     const payload: LeadPayload = {
       source: `Meet George live voice (${reason})`,
-      name: "",
-      phone: "",
-      email: "",
-      businessName: "",
+      name: lead.name,
+      phone: lead.phone,
+      email: lead.email,
+      businessName: lead.businessName,
       transcript,
       submittedAt: new Date().toISOString(),
       page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
       submissionMode:
-        reason === "page_unload" ? "page_unload" : reason === "inactivity_timeout" ? "inactivity_timeout" : "conversation_end",
+        reason === "page_unload"
+          ? "page_unload"
+          : reason === "inactivity_timeout"
+            ? "inactivity_timeout"
+            : reason === "confirmed_details"
+              ? "confirmed_details"
+              : "conversation_end",
       userMessageCount,
     }
 
@@ -280,11 +372,20 @@ export function GeorgeLiveAssistant() {
     }
   }
 
+  async function maybeSubmitConfirmedLead(nextMessages: LiveMessage[]) {
+    if (!hasConfirmedLead(nextMessages)) return
+    messagesRef.current = nextMessages
+    await submitLeadCapture("confirmed_details")
+  }
+
   function addUserTranscript(text: string) {
     const cleaned = text.trim()
     if (!cleaned) return
-    setMessages((prev) => [...prev, makeMessage("user", cleaned)])
+    const nextMessages = [...messagesRef.current, makeMessage("user", cleaned)]
+    messagesRef.current = nextMessages
+    setMessages(nextMessages)
     scheduleInactivitySubmission()
+    void maybeSubmitConfirmedLead(nextMessages)
   }
 
   function handleRealtimeEvent(event: any) {

@@ -264,7 +264,7 @@ function AnimatedHeadline() {
   let globalIndex = 0
 
   return (
-    <AnimatedPageTitle text="Web Design & SEO Foundation for Local Businesses" />
+    <AnimatedPageTitle text="Turn Your Website Into a 24/7 Salesperson" />
   )
 }
 
@@ -388,6 +388,13 @@ function PricingCard({
 /*  MAIN PAGE                                                          */
 /* ================================================================== */
 export default function HomePage() {
+  const [showGeorgePrompt, setShowGeorgePrompt] = useState(false)
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setShowGeorgePrompt(true), 3500)
+    return () => window.clearTimeout(timer)
+  }, [])
+
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <AnimatedBackground />
@@ -409,24 +416,24 @@ export default function HomePage() {
 
               <Reveal delay={0.15}>
                 <p className="text-lg sm:text-xl text-[#94a3b8] mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Modern, lightning-fast websites built to rank. Structured correctly for Google from day one so your
-                  business gets found by the right customers.
+                  Meet George — the AI assistant built into GuardX websites to answer customer questions, keep visitors engaged,
+                  and capture more enquiries for your business 24/7.
                 </p>
               </Reveal>
 
               <Reveal delay={0.3}>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Link
-                    href="/web-design"
+                    href="/meet-george"
                     className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-600 px-8 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]"
                   >
-                    Web Design <ArrowRight className="w-5 h-5" />
+                    Meet George <ArrowRight className="w-5 h-5" />
                   </Link>
                   <Link
-                    href="/contact"
+                    href="/real-results"
                     className="inline-flex items-center justify-center gap-2 bg-white/10 text-white hover:bg-white/20 px-8 py-4 text-lg font-bold rounded-xl border border-white/20 transition-all duration-300 hover:scale-105 backdrop-blur-sm"
                   >
-                    Get a Quote
+                    See Real Results
                   </Link>
                 </div>
               </Reveal>
@@ -831,6 +838,26 @@ export default function HomePage() {
           </Reveal>
         </div>
       </section>
+
+
+      {showGeorgePrompt && (
+        <div className="fixed bottom-4 left-1/2 z-40 w-[calc(100%-1.5rem)] max-w-3xl -translate-x-1/2 rounded-2xl border border-white/15 bg-[#0f172a]/95 px-4 py-4 shadow-[0_18px_60px_rgba(15,23,42,0.45)] backdrop-blur-xl sm:bottom-6 sm:px-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-300">Meet George</p>
+              <p className="mt-1 text-sm leading-6 text-white sm:text-base">
+                Ask George how he can answer customer questions and capture enquiries for you 24/7.
+              </p>
+            </div>
+            <Link
+              href="/meet-george"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-600"
+            >
+              Start Conversation <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
