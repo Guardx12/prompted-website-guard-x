@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
@@ -52,7 +53,8 @@ export default function HomePage() {
                   href="/meet-george"
                   className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#1D4ED8] px-7 py-4 text-base font-bold text-white shadow-[0_18px_50px_rgba(29,78,216,0.25)] transition hover:bg-[#1E40AF]"
                 >
-                  Meet George <ArrowRight className="h-5 w-5" />
+                  <Image src="/george-logo.png" alt="George" width={26} height={26} className="h-6 w-6 rounded-md" />
+                  <span>Meet George</span> <ArrowRight className="h-5 w-5" />
                 </Link>
                 <Link
                   href="/pricing"
@@ -64,10 +66,9 @@ export default function HomePage() {
             </div>
 
             <div className="rounded-[32px] border border-[#DADCE0] bg-[linear-gradient(135deg,#0f172a_0%,#111827_42%,#1d4ed8_100%)] px-6 py-7 text-left shadow-[0_24px_80px_rgba(17,24,39,0.24)] sm:px-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#BFDBFE] sm:text-sm">Meet George</p>
-              <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                Your AI website sales assistant.
-              </h2>
+              <div className="flex items-center gap-4">
+                <Image src="/george-logo.png" alt="George" width={220} height={80} className="h-14 w-auto sm:h-16" priority />
+              </div>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
                 George answers questions, captures enquiries, and helps turn website visitors into customers — day or night.
               </p>
@@ -89,6 +90,7 @@ export default function HomePage() {
                 href="/meet-george"
                 className="mt-6 inline-flex items-center justify-center rounded-2xl bg-white px-6 py-3 font-bold text-[#1D4ED8] transition hover:bg-[#EFF6FF]"
               >
+                <Image src="/george-logo.png" alt="George" width={24} height={24} className="mr-2 inline-block h-6 w-6 rounded-md" />
                 Start Conversation
               </Link>
             </div>
@@ -109,7 +111,8 @@ export default function HomePage() {
               href="/meet-george"
               className="inline-flex items-center justify-center rounded-2xl bg-[#1D4ED8] px-6 py-3 font-bold text-white transition hover:bg-[#1E40AF]"
             >
-              Meet George
+              <Image src="/george-logo.png" alt="George" width={24} height={24} className="h-6 w-6 rounded-md" />
+              <span>Meet George</span>
             </Link>
           </div>
         </div>
@@ -274,7 +277,7 @@ export default function HomePage() {
               href="/meet-george"
               className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#1D4ED8] px-5 py-3 text-sm font-bold text-white shadow-[0_18px_40px_rgba(29,78,216,0.25)] transition hover:bg-[#1E40AF]"
             >
-              Meet George <ArrowRight className="h-4 w-4" />
+              <Image src="/george-logo.png" alt="George" width={22} height={22} className="h-5 w-5 rounded-md" /> <span>Meet George</span> <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>

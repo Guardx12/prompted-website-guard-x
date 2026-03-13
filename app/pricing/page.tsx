@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
@@ -55,7 +56,7 @@ export default function PricingPage() {
                 href="/meet-george"
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-3 font-bold text-[#1D4ED8] transition hover:bg-[#EFF6FF]"
               >
-                Meet George <ArrowRight className="h-5 w-5" />
+                <Image src="/george-logo.png" alt="George" width={24} height={24} className="h-6 w-6 rounded-md" /> <span>Meet George</span> <ArrowRight className="h-5 w-5" />
               </Link>
             </div>
             <p className="mt-6 max-w-3xl text-base leading-7 text-[#DBEAFE]">

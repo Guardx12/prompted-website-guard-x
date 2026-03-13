@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import { Footer } from "@/components/footer"
 import { GeorgeLiveAssistant } from "@/components/george-live-assistant"
 import { Navigation } from "@/components/navigation"
@@ -33,6 +34,11 @@ export default function MeetGeorgePage() {
   return (
     <main className="min-h-screen bg-white text-[#0F172A]">
       <Navigation />
+      <section className="px-4 pt-8 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <Image src="/george-logo.png" alt="George" width={340} height={120} className="h-20 w-auto sm:h-24" priority />
+        </div>
+      </section>
       <GeorgeLiveAssistant />
       <Footer />
     </main>

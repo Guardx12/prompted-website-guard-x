@@ -20,9 +20,9 @@ export function Navigation() {
     <nav className="sticky top-0 z-50 border-b border-[#E5E7EB] bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center transition-opacity hover:opacity-80">
-          <div className="relative h-12 w-20 sm:h-14 sm:w-24 md:h-16 md:w-28 lg:h-[72px] lg:w-32">
+          <div className="relative h-12 w-36 sm:h-14 sm:w-40 md:h-16 md:w-44 lg:h-[72px] lg:w-48">
             <Image
-              src="/images/guardx-final-logo.jpg"
+              src="/guardx-logo.png"
               alt="GuardX"
               fill
               className="object-contain"
