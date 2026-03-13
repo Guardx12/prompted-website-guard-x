@@ -1,75 +1,72 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import Link from "next/link"
 
 const faqs = [
   {
     question: "What is George?",
     answer:
-      "George is an AI assistant built into your website. He answers customer questions, keeps visitors engaged, and helps capture enquiries automatically.",
+      "George is an AI assistant built into your website. He can answer customer questions, explain your services, give contact details, and help capture enquiries automatically.",
   },
   {
-    question: "How does George work?",
+    question: "What can visitors ask George?",
     answer:
-      "George is trained around your business and website offer. Visitors can speak to him directly and he replies in a natural way, guiding them and helping move them towards an enquiry.",
+      "Visitors can ask George about pricing, FAQs, contact details, how your business works, what services you offer, and anything else you train him on.",
   },
   {
-    question: "How does George capture enquiries?",
+    question: "Do I still need loads of pages on my website?",
     answer:
-      "When a visitor is interested, George can collect contact details and pass the conversation through so you know who engaged and what they asked about.",
+      "Not as many as a traditional site. George can take a lot of the repetitive answering work off the website, but we still keep the key information visible on the page for people who prefer to read.",
   },
   {
-    question: "Do I need an existing website?",
+    question: "What is included in the £99 per month?",
     answer:
-      "No. The current GuardX offer is a website with George built in, hosting included, and everything set up for you.",
+      "The package includes a fast modern website, George built into the site, hosting, enquiry capture, mobile-friendly design, and a solid SEO foundation setup.",
   },
   {
-    question: "How much does it cost?",
+    question: "Do you do ongoing SEO?",
     answer:
-      "The current George Website offer is £99 per month, including the website, hosting, and George built into the site.",
+      "No, not in this package. We build the website with the right structure, speed, indexing setup, and SEO foundation so your site is in a strong position from the start.",
   },
   {
     question: "Can George be trained for my business?",
     answer:
-      "Yes. George can be tailored to your services, the questions customers ask most often, and the type of enquiries you want to capture.",
+      "Yes. George can be trained around your business, your services, your pricing approach, your FAQs, and the kind of enquiries you want him to help capture.",
+  },
+  {
+    question: "What happens when someone leaves their details?",
+    answer:
+      "George can collect details and pass the conversation through so you know who engaged and what they asked about.",
   },
 ]
 
 export default function FAQPage() {
   return (
-    <main className="min-h-screen bg-[#0a0e1a] text-white">
+    <main className="min-h-screen bg-white text-[#0F172A]">
       <Navigation />
-      <section className="px-4 pb-20 pt-16 sm:px-6 lg:px-8 lg:pt-24">
+      <section className="px-4 pb-16 pt-10 sm:px-6 lg:px-8 lg:pb-20 lg:pt-16">
         <div className="mx-auto max-w-4xl">
-          <div className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">FAQ</p>
-            <h1 className="mt-4 text-4xl font-bold sm:text-5xl">Questions about George</h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-[#94a3b8]">
-              The most common questions business owners ask before putting George on their website.
+          <div className="rounded-[28px] border border-[#DADCE0] bg-[linear-gradient(135deg,#0f172a_0%,#111827_42%,#1d4ed8_100%)] px-6 py-7 text-left shadow-[0_24px_80px_rgba(17,24,39,0.18)] sm:px-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#BFDBFE] sm:text-sm">FAQ</p>
+            <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+              Questions about George.
+            </h1>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
+              The main idea is simple: George helps answer the questions visitors normally click around the site looking for.
             </p>
           </div>
 
-          <div className="mt-12 rounded-3xl border border-white/10 bg-white/5 p-4 sm:p-6">
+          <div className="mt-8 rounded-[28px] border border-[#E5E7EB] bg-white p-4 shadow-sm sm:p-6">
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border-white/10">
-                  <AccordionTrigger className="text-left text-white hover:no-underline">
+                <AccordionItem key={index} value={`item-${index}`} className="border-b border-[#E5E7EB]">
+                  <AccordionTrigger className="text-left text-base font-semibold text-[#0F172A] hover:no-underline">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-base leading-relaxed text-[#94a3b8]">
-                    {faq.answer}
-                  </AccordionContent>
+                  <AccordionContent className="text-base leading-7 text-[#475569]">{faq.answer}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
-          </div>
-
-          <div className="mt-10 text-center text-[#94a3b8]">
-            Want to hear George for yourself?{" "}
-            <Link href="/meet-george" className="text-blue-300 hover:text-blue-200">
-              Meet George
-            </Link>
           </div>
         </div>
       </section>

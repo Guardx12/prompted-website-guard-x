@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
@@ -18,59 +17,59 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-[rgba(148,163,184,0.1)] bg-[#0a0e1a]/80 backdrop-blur-xl supports-[backdrop-filter]:bg-[#0a0e1a]/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
-            <div className="relative w-20 h-12 sm:w-24 sm:h-14 md:w-28 md:h-16 lg:w-32 lg:h-18">
-              <Image
-                src="/images/guardx-final-logo.jpg"
-                alt="GuardX"
-                fill
-                className="object-contain"
-                priority
-                sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 112px, 128px"
-              />
-            </div>
-          </Link>
+    <nav className="sticky top-0 z-50 border-b border-[#E5E7EB] bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link href="/" className="flex items-center transition-opacity hover:opacity-80">
+          <div className="relative h-12 w-20 sm:h-14 sm:w-24 md:h-16 md:w-28 lg:h-[72px] lg:w-32">
+            <Image
+              src="/images/guardx-final-logo.jpg"
+              alt="GuardX"
+              fill
+              className="object-contain"
+              priority
+              sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 112px, 128px"
+            />
+          </div>
+        </Link>
 
-          <div className="hidden md:flex items-center gap-6">
+        <div className="hidden items-center gap-6 md:flex">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium text-[#475569] transition-colors hover:text-[#1D4ED8]"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setIsOpen((value) => !value)}
+          className="inline-flex items-center justify-center rounded-xl border border-[#E5E7EB] bg-white p-2 text-[#0F172A] shadow-sm md:hidden"
+          aria-label="Toggle navigation menu"
+        >
+          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </div>
+
+      {isOpen && (
+        <div className="border-t border-[#E5E7EB] bg-white md:hidden">
+          <div className="mx-auto flex max-w-7xl flex-col px-4 py-4 sm:px-6">
             {links.map((link) => (
-              <Link key={link.href} href={link.href} className="text-[#94a3b8] hover:text-[#60a5fa] transition-colors text-sm font-medium">
+              <Link
+                key={link.href}
+                href={link.href}
+                className="rounded-lg px-3 py-2 text-[#475569] transition-colors hover:bg-[#EFF6FF] hover:text-[#1D4ED8]"
+                onClick={() => setIsOpen(false)}
+              >
                 {link.label}
               </Link>
             ))}
           </div>
-
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-[#e2e8f0] hover:bg-[rgba(148,163,184,0.1)]"
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
-          </div>
         </div>
-
-        {isOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-[rgba(148,163,184,0.1)]">
-              {links.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="block px-3 py-2 text-[#94a3b8] hover:text-[#60a5fa] transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
+      )}
     </nav>
   )
 }

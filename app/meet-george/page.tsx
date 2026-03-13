@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
 export default function MeetGeorgePage() {
   return (
-    <main className="min-h-screen bg-[#0a0e1a] text-white">
+    <main className="min-h-screen bg-white text-[#0F172A]">
       <Navigation />
       <GeorgeLiveAssistant />
       <Footer />
