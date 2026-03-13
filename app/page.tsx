@@ -6,14 +6,14 @@ import { Footer } from "@/components/footer"
 import { ArrowRight, Bot, Clock3, MessageSquare, PhoneCall, Sparkles, Zap } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Meet George | 24/7 AI Receptionist for Business Websites, Even While You Sleep",
+  title: "Meet George | 24/7 AI Receptionist for Business Websites",
   description:
-    "Meet George, your 24/7 AI receptionist for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers — even while you sleep.",
+    "Meet George, your 24/7 AI receptionist for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
   alternates: { canonical: "https://guardxnetwork.com" },
   openGraph: {
-    title: "Meet George | 24/7 AI Receptionist for Business Websites, Even While You Sleep",
+    title: "Meet George | 24/7 AI Receptionist for Business Websites",
     description:
-      "Meet George, your 24/7 AI receptionist for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers — even while you sleep.",
+      "Meet George, your 24/7 AI receptionist for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
     url: "https://guardxnetwork.com",
     type: "website",
     images: [
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Meet George | 24/7 AI Receptionist for Business Websites, Even While You Sleep",
+    title: "Meet George | 24/7 AI Receptionist for Business Websites",
     description:
-      "Meet George, your 24/7 AI receptionist for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers — even while you sleep.",
+      "Meet George, your 24/7 AI receptionist for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
     images: ["https://guardxnetwork.com/george-preview.png?v=8"],
   },
 }
@@ -62,99 +62,78 @@ export default function HomePage() {
     <main className="min-h-screen bg-white text-[#0F172A]">
       <Navigation />
 
-      <section className="px-4 pb-16 pt-10 sm:px-6 lg:px-8 lg:pb-20 lg:pt-16">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.52fr_0.8fr]">
-            <div>
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#BFDBFE] bg-[#EFF6FF] px-4 py-2 text-sm font-semibold text-[#1D4ED8]">
-                <Bot className="h-4 w-4" />
-                Websites powered by George
+      <section className="px-4 pb-10 pt-10 sm:px-6 lg:px-8 lg:pb-12 lg:pt-16">
+        <div className="mx-auto max-w-6xl rounded-[32px] border border-[#DADCE0] bg-white p-6 shadow-sm sm:p-8 lg:p-12">
+          <div className="text-center">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#BFDBFE] bg-[#EFF6FF] px-4 py-2 text-sm font-semibold text-[#1D4ED8]">
+              <Bot className="h-4 w-4" />
+              Meet George
+            </div>
+
+            <h1 className="mx-auto max-w-5xl text-balance text-4xl font-extrabold tracking-tight text-[#0F172A] sm:text-5xl lg:text-6xl">
+              Turn your website into a 24/7 AI receptionist that helps turn visitors into customers.
+            </h1>
+
+            <div className="mt-8 flex justify-center">
+              <Image
+                src="/george-logo.png"
+                alt="George"
+                width={760}
+                height={280}
+                className="h-auto w-full max-w-[720px]"
+                priority
+              />
+            </div>
+
+            <p className="mx-auto mt-8 max-w-4xl text-lg leading-8 text-[#475569] sm:text-xl">
+              Meet George — an AI receptionist and sales assistant for business websites. He answers questions,
+              explains services, gives pricing guidance, captures enquiries, and helps people know what to do next.
+            </p>
+
+            <p className="mx-auto mt-4 max-w-4xl text-base leading-7 text-[#475569] sm:text-lg">
+              Ask George about {questions.join(", ")}. He helps people understand what you do, what it costs, how it
+              works, and how to take the next step — even while you sleep.
+            </p>
+
+            <div className="mx-auto mt-8 grid max-w-5xl gap-4 md:grid-cols-3">
+              <div className="rounded-2xl bg-[#F8FAFC] p-5 text-left">
+                <MessageSquare className="h-8 w-8 text-[#1D4ED8]" />
+                <h3 className="mt-4 text-lg font-bold text-[#0F172A]">Answers questions instantly</h3>
+                <p className="mt-2 text-sm leading-6 text-[#475569]">
+                  George can answer everyday questions about your services, pricing, FAQs, and contact details 24/7.
+                </p>
               </div>
-
-              <h1 className="max-w-4xl text-balance text-4xl font-extrabold tracking-tight text-[#0F172A] sm:text-5xl lg:text-6xl">
-                Turn your website into a 24/7 AI receptionist that helps turn visitors into customers.
-              </h1>
-
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-[#475569] sm:text-xl">
-                Meet George — an AI receptionist and sales assistant for business websites. He answers questions,
-                explains services, gives pricing guidance, captures enquiries, and helps people know what to do next — even while you sleep.
-              </p>
-
-              <p className="mt-5 max-w-3xl text-base leading-7 text-[#475569] sm:text-lg">
-                Ask George about {questions.join(", ")}. He helps people understand what you do, what it costs, how it
-                works, and how to take the next step — without them needing to dig through page after page.
-              </p>
-
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <Link
-                  href="/meet-george"
-                  className="inline-flex items-center justify-center gap-3 rounded-2xl bg-[#1D4ED8] px-7 py-4 text-base font-bold text-white shadow-[0_18px_50px_rgba(29,78,216,0.25)] transition hover:bg-[#1E40AF]"
-                >
-                  <Image src="/george-logo.png" alt="George" width={40} height={40} className="h-9 w-9 rounded-md" />
-                  <span>Meet George</span> <ArrowRight className="h-5 w-5" />
-                </Link>
-                <Link
-                  href="/pricing"
-                  className="inline-flex items-center justify-center rounded-2xl border border-[#D1D5DB] bg-white px-7 py-4 text-base font-semibold text-[#0F172A] transition hover:border-[#BFDBFE] hover:bg-[#F8FAFC]"
-                >
-                  View pricing
-                </Link>
+              <div className="rounded-2xl bg-[#F8FAFC] p-5 text-left">
+                <Bot className="h-8 w-8 text-[#1D4ED8]" />
+                <h3 className="mt-4 text-lg font-bold text-[#0F172A]">Explains how your business works</h3>
+                <p className="mt-2 text-sm leading-6 text-[#475569]">
+                  He helps visitors understand what you do, how it works, what it costs, and what to do next.
+                </p>
+              </div>
+              <div className="rounded-2xl bg-[#F8FAFC] p-5 text-left">
+                <Clock3 className="h-8 w-8 text-[#1D4ED8]" />
+                <h3 className="mt-4 text-lg font-bold text-[#0F172A]">Works while you sleep</h3>
+                <p className="mt-2 text-sm leading-6 text-[#475569]">
+                  George keeps helping visitors in the evenings, out of hours, at weekends, and whenever you are busy.
+                </p>
               </div>
             </div>
 
-            <div className="order-3 flex justify-center lg:order-2 lg:justify-center">
-              <div className="flex h-full min-h-[220px] items-center justify-center rounded-[32px] bg-white px-2 py-2">
-                <Image src="/george-logo.png" alt="George" width={440} height={440} className="h-auto w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[360px]" priority />
-              </div>
-            </div>
-
-            <div className="order-2 rounded-[32px] border border-[#DADCE0] bg-[linear-gradient(135deg,#0f172a_0%,#111827_42%,#1d4ed8_100%)] px-6 py-7 text-left shadow-[0_24px_80px_rgba(17,24,39,0.24)] sm:px-8 lg:order-3">
-              <p className="max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
-                George works like a trained member of staff on your website. He can answer everyday questions,
-                explain your services, give rough pricing, collect enquiries, and guide people toward becoming a real customer.
-              </p>
-              <p className="mt-4 text-sm font-semibold text-[#93C5FD] sm:text-base">
-                That means less missed enquiries, less repetitive answering, and a better experience for every visitor — including evenings, weekends, out-of-hours, and while you sleep.
-              </p>
-              <div className="mt-6 rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur">
-                <div className="flex items-start gap-3">
-                  <Sparkles className="mt-1 h-5 w-5 text-[#BFDBFE]" />
-                  <div>
-                    <p className="font-semibold text-white">In plain English, George can:</p>
-                    <p className="mt-2 text-sm leading-6 text-[#DBEAFE]">
-                      answer service questions, explain pricing, handle FAQs, give contact information, and help move a website visitor toward getting in touch — even when you are busy, closed, or asleep.
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
                 href="/meet-george"
-                className="mt-6 inline-flex items-center justify-center rounded-2xl bg-white px-6 py-3 font-bold text-[#1D4ED8] transition hover:bg-[#EFF6FF]"
+                className="inline-flex items-center justify-center gap-3 rounded-2xl bg-[#1D4ED8] px-7 py-4 text-base font-bold text-white shadow-[0_18px_50px_rgba(29,78,216,0.25)] transition hover:bg-[#1E40AF]"
               >
-                <Image src="/george-logo.png" alt="George" width={40} height={40} className="mr-3 inline-block h-9 w-9 rounded-md" />
-                Start conversation
+                <Image src="/george-logo.png" alt="George" width={40} height={40} className="h-9 w-9 rounded-md" />
+                <span>Meet George</span> <ArrowRight className="h-5 w-5" />
+              </Link>
+              <Link
+                href="/pricing"
+                className="inline-flex items-center justify-center rounded-2xl border border-[#D1D5DB] bg-white px-7 py-4 text-base font-semibold text-[#0F172A] transition hover:border-[#BFDBFE] hover:bg-[#F8FAFC]"
+              >
+                View pricing
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-4 pb-10 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl rounded-[28px] border border-[#DBEAFE] bg-[#F8FBFF] p-5 shadow-sm sm:p-6">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">Ask George</p>
-              <p className="mt-2 text-xl font-semibold text-[#0F172A]">
-                See how George helps real businesses answer questions, explain services, collect enquiries, and move visitors closer to becoming customers.
-              </p>
-            </div>
-            <Link
-              href="/meet-george"
-              className="inline-flex items-center justify-center gap-3 rounded-2xl bg-[#1D4ED8] px-6 py-3 font-bold text-white transition hover:bg-[#1E40AF]"
-            >
-              <Image src="/george-logo.png" alt="George" width={38} height={38} className="h-8 w-8 rounded-md" />
-              <span>Meet George</span>
-            </Link>
           </div>
         </div>
       </section>
@@ -169,7 +148,7 @@ export default function HomePage() {
                 On Alderwood Ponds, George can answer questions about fishing prices, camping, facilities, rules, and bookings — the kind of everyday questions that normally take up the owner’s time.
               </p>
               <p className="mt-4 text-base leading-7 text-[#475569]">
-                That is the point of George: he gives visitors instant answers, helps them understand what is available, and moves them closer to getting in touch or booking — even outside business hours.
+                That is the point of George: he gives visitors instant answers, helps them understand what is available, and moves them closer to getting in touch or booking.
               </p>
               <div className="mt-6">
                 <Link
@@ -190,7 +169,7 @@ export default function HomePage() {
                   "Explain your services, pricing, FAQs, and contact details",
                   "Give rough quotes and useful guidance",
                   "Point visitors to the right next step",
-                  "Capture enquiries even when you are busy, closed, or asleep",
+                  "Capture enquiries even when you are busy or closed",
                 ].map((point) => (
                   <li key={point} className="flex items-start gap-3">
                     <PhoneCall className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" />
@@ -239,14 +218,14 @@ export default function HomePage() {
               <MessageSquare className="h-8 w-8 text-[#1D4ED8]" />
               <h3 className="mt-4 text-lg font-bold text-[#0F172A]">George built into the site</h3>
               <p className="mt-2 text-sm leading-6 text-[#475569]">
-                George can answer questions about services, pricing, FAQs, opening information, and contact details without the visitor digging around the site — even after hours.
+                George can answer questions about services, pricing, FAQs, opening information, and contact details without the visitor digging around the site.
               </p>
             </div>
             <div className="rounded-2xl bg-[#F8FAFC] p-5">
               <Clock3 className="h-8 w-8 text-[#1D4ED8]" />
               <h3 className="mt-4 text-lg font-bold text-[#0F172A]">SEO foundation included</h3>
               <p className="mt-2 text-sm leading-6 text-[#475569]">
-                We build the website with the right structure, speed, and setup to give you a solid foundation and make George easier for visitors to use at any time of day.
+                We build the website with the right structure, speed, and setup to give you a solid foundation and make George easier for visitors to use.
               </p>
             </div>
           </div>
