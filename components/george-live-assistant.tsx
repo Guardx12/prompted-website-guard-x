@@ -11,20 +11,6 @@ type LiveMessage = {
 
 type ConnectionState = "idle" | "connecting" | "connected" | "error"
 
-type LeadPayload = {
-  name: string
-  phone: string
-  email: string
-  businessName: string
-  transcript: string
-  summary: string
-  source: string
-  submittedAt: string
-  page: string
-  submissionMode: "manual_submit"
-  userMessageCount: number
-}
-
 type LeadFormState = {
   name: string
   businessName: string
@@ -33,7 +19,6 @@ type LeadFormState = {
   summary: string
 }
 
-type FormSubmitState = "idle" | "loading" | "success" | "error"
 
 const INITIAL_MESSAGES: LiveMessage[] = [
   {
@@ -162,7 +147,6 @@ export function GeorgeLiveAssistant() {
     phone: "",
     summary: "",
   })
-  const [formSubmitState, setFormSubmitState] = useState<FormSubmitState>("idle")
 
   const pcRef = useRef<RTCPeerConnection | null>(null)
   const dcRef = useRef<RTCDataChannel | null>(null)
@@ -207,62 +191,7 @@ export function GeorgeLiveAssistant() {
   const transcript = useMemo(() => buildTranscript(messages), [messages])
   const detailsFromTranscript = useMemo(() => extractLeadDetailsFromTranscript(transcript), [transcript])
   const suggestedSummary = useMemo(() => buildLeadSummary(messages), [messages])
-  const canShowLeadForm = useMemo(() => {
-    return Boolean(
-      detailsFromTranscript.confirmed ||
-        leadForm.name ||
-        leadForm.businessName ||
-        leadForm.email ||
-        leadForm.phone ||
-        messages.filter((message) => message.role === "user").length >= 2,
-    )
-  }, [detailsFromTranscript.confirmed, leadForm, messages])
-
-  async function handleLeadFormSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-
-    if (!leadForm.name || !leadForm.businessName || (!leadForm.email && !leadForm.phone)) {
-      setFormSubmitState("error")
-      return
-    }
-
-    setFormSubmitState("loading")
-
-    const payload: LeadPayload = {
-      source: "Meet George manual form",
-      name: leadForm.name,
-      phone: leadForm.phone,
-      email: leadForm.email,
-      businessName: leadForm.businessName,
-      transcript,
-      summary: leadForm.summary || suggestedSummary,
-      submittedAt: new Date().toISOString(),
-      page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
-      submissionMode: "manual_submit",
-      userMessageCount: messages.filter((message) => message.role === "user").length,
-    }
-
-    try {
-      const response = await fetch("/api/george-lead", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({ ...payload, sessionId: conversationSessionIdRef.current }),
-      })
-
-      if (!response.ok) {
-        const message = await response.text().catch(() => "")
-        throw new Error(message || `Lead form error ${response.status}`)
-      }
-
-      setFormSubmitState("success")
-    } catch (submitError) {
-      console.error("George form submit error", submitError)
-      setFormSubmitState("error")
-    }
-  }
+  const canShowLeadForm = true
 
   async function cleanupConversation() {
 
@@ -409,7 +338,6 @@ export function GeorgeLiveAssistant() {
     setMessages(INITIAL_MESSAGES)
     messagesRef.current = INITIAL_MESSAGES
     setLeadForm({ name: "", businessName: "", email: "", phone: "", summary: "" })
-    setFormSubmitState("idle")
 
     try {
       const tokenResponse = await fetch("/api/george-session", {
@@ -604,63 +532,75 @@ export function GeorgeLiveAssistant() {
         </div>
 
 
-        {canShowLeadForm && formSubmitState !== "success" && (
+        {canShowLeadForm && (
           <div className="border-t border-[#E8EAED] bg-[#F8FAFD] px-4 py-5 sm:px-6">
             <div className="mx-auto w-full max-w-4xl rounded-[28px] border border-[#DADCE0] bg-white p-5 shadow-sm sm:p-6">
               <h2 className="text-lg font-semibold text-[#202124]">Ready to send your details?</h2>
               <p className="mt-2 text-sm leading-6 text-[#5F6368]">
-                George has filled this in from the conversation. Just check it, make any changes you want, then press submit.
+                George can fill this in from the conversation as you talk. Just check it, make any changes you want, then press submit yourself.
               </p>
-              <form onSubmit={handleLeadFormSubmit} className="mt-4 space-y-3">
+              <form action="https://formspree.io/f/mrbypyzv" method="POST" className="mt-4 space-y-3">
+                <input type="hidden" name="source" value="Meet George manual form" />
+                <input type="hidden" name="page" value={typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george"} />
+                <input type="hidden" name="submissionMode" value="manual_submit" />
+                <input type="hidden" name="userMessageCount" value={String(messages.filter((message) => message.role === "user").length)} />
+                <input type="hidden" name="sessionId" value={conversationSessionIdRef.current} />
+                <input type="hidden" name="submittedAt" value={new Date().toISOString()} />
+                <input type="hidden" name="transcript" value={transcript} />
+                <input type="hidden" name="summary" value={leadForm.summary || suggestedSummary} />
+                <input type="hidden" name="_subject" value="New George enquiry" />
+                <input type="hidden" name="_replyto" value={leadForm.email} />
                 <div className="grid gap-3 sm:grid-cols-2">
                   <input
                     type="text"
+                    name="name"
                     placeholder="Your name"
                     value={leadForm.name}
                     onChange={(event) => {
                       setLeadForm((prev) => ({ ...prev, name: event.target.value }))
-                      setFormSubmitState("idle")
-                    }}
+                                      }}
+                    required
+                    required
                     className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
                   />
                   <input
                     type="text"
+                    name="businessName"
                     placeholder="Business name"
                     value={leadForm.businessName}
                     onChange={(event) => {
                       setLeadForm((prev) => ({ ...prev, businessName: event.target.value }))
-                      setFormSubmitState("idle")
-                    }}
+                                      }}
                     className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
                   />
                   <input
                     type="email"
+                    name="email"
                     placeholder="Email address"
                     value={leadForm.email}
                     onChange={(event) => {
                       setLeadForm((prev) => ({ ...prev, email: event.target.value }))
-                      setFormSubmitState("idle")
-                    }}
+                                      }}
                     className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
                   />
                   <input
                     type="text"
+                    name="phone"
                     placeholder="Phone or WhatsApp"
                     value={leadForm.phone}
                     onChange={(event) => {
                       setLeadForm((prev) => ({ ...prev, phone: event.target.value }))
-                      setFormSubmitState("idle")
-                    }}
+                                      }}
                     className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
                   />
                 </div>
                 <textarea
+                  name="message"
                   placeholder="Summary of what you need help with"
                   value={leadForm.summary}
                   onChange={(event) => {
                     setLeadForm((prev) => ({ ...prev, summary: event.target.value }))
-                    setFormSubmitState("idle")
-                  }}
+                                  }}
                   rows={5}
                   className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
                 />
@@ -668,26 +608,12 @@ export function GeorgeLiveAssistant() {
                   <p className="text-xs leading-5 text-[#5F6368]">The full conversation transcript will be sent with this enquiry as well.</p>
                   <button
                     type="submit"
-                    disabled={formSubmitState === "loading"}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1A73E8] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1558b0] disabled:cursor-not-allowed disabled:opacity-60"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1A73E8] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1558b0]"
                   >
-                    {formSubmitState === "loading" ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
                     Submit enquiry
                   </button>
                 </div>
-                {formSubmitState === "error" ? (
-                  <p className="text-sm text-[#B3261E]">Please add your name, business name, and either an email address or phone number, then try again.</p>
-                ) : null}
               </form>
-            </div>
-          </div>
-        )}
-
-        {formSubmitState === "success" && (
-          <div className="border-t border-[#E8EAED] bg-[#F8FAFD] px-4 py-5 sm:px-6">
-            <div className="mx-auto w-full max-w-4xl rounded-[28px] border border-[#CDE7D4] bg-[#EAF6EE] p-5 text-[#1E4620] shadow-sm sm:p-6">
-              <h2 className="text-lg font-semibold">Thanks — your enquiry has been sent.</h2>
-              <p className="mt-2 text-sm leading-6">We’ve passed your details and the conversation summary on properly, so the team can pick things up from there.</p>
             </div>
           </div>
         )}
@@ -695,7 +621,7 @@ export function GeorgeLiveAssistant() {
           <div className="mx-auto flex w-full max-w-4xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-[#5F6368]">
               {connectionState === "connected"
-                ? "You’re in a live conversation. Just speak naturally and George should reply automatically. George can pre-fill the enquiry form below as you talk, then you can check it and press submit yourself."
+                ? "You’re in a live conversation. Just speak naturally and George should reply automatically. George can fill in the enquiry form below as you talk, then you can check it and press submit yourself."
                 : "Start the live conversation and George will greet you, listen, and reply automatically without push-to-talk."}
             </p>
             <div className="flex items-center gap-3">
