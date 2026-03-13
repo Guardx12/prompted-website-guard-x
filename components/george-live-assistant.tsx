@@ -16,6 +16,7 @@ type LeadFormState = {
   businessName: string
   email: string
   phone: string
+  packageChoice: string
   summary: string
 }
 
@@ -145,6 +146,7 @@ export function GeorgeLiveAssistant() {
     businessName: "",
     email: "",
     phone: "",
+    packageChoice: "",
     summary: "",
   })
 
@@ -560,7 +562,6 @@ export function GeorgeLiveAssistant() {
                       setLeadForm((prev) => ({ ...prev, name: event.target.value }))
                                       }}
                     required
-                    required
                     className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
                   />
                   <input
@@ -594,18 +595,25 @@ export function GeorgeLiveAssistant() {
                     className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
                   />
                 </div>
-                <textarea
-                  name="message"
-                  placeholder="Summary of what you need help with"
-                  value={leadForm.summary}
-                  onChange={(event) => {
-                    setLeadForm((prev) => ({ ...prev, summary: event.target.value }))
-                                  }}
-                  rows={5}
-                  className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
-                />
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <p className="text-xs leading-5 text-[#5F6368]">The full conversation transcript will be sent with this enquiry as well.</p>
+                <div className="grid gap-3 sm:grid-cols-1">
+                  <select
+                    name="package"
+                    value={leadForm.packageChoice}
+                    onChange={(event) => {
+                      setLeadForm((prev) => ({ ...prev, packageChoice: event.target.value }))
+                    }}
+                    required
+                    className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
+                  >
+                    <option value="" disabled>
+                      Choose package
+                    </option>
+                    <option value="George AI Assistant (£99/month)">George AI Assistant (£99/month)</option>
+                    <option value="Website + George (£149/month)">Website + George (£149/month)</option>
+                  </select>
+                </div>
+                <input type="hidden" name="message" value={leadForm.summary || suggestedSummary} />
+                <div className="flex justify-end">
                   <button
                     type="submit"
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1A73E8] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1558b0]"
