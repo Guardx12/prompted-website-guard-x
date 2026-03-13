@@ -5,28 +5,28 @@ import { GeorgeLiveAssistant } from "@/components/george-live-assistant"
 import { Navigation } from "@/components/navigation"
 
 export const metadata: Metadata = {
-  title: "Meet George",
-  description: "Ask George how he can answer customer questions and capture enquiries for you 24/7.",
+  title: "Meet George | 24/7 AI Assistant for Business Websites",
+  description: "Meet George, the AI assistant that answers questions, explains services, gives pricing guidance, and captures enquiries for business websites.",
   alternates: { canonical: "https://guardxnetwork.com/meet-george" },
   openGraph: {
-    title: "Meet George",
-    description: "Ask George how he can answer customer questions and capture enquiries for you 24/7.",
+    title: "Meet George | 24/7 AI Assistant for Business Websites",
+    description: "Meet George, the AI assistant that answers questions, explains services, gives pricing guidance, and captures enquiries for business websites.",
     url: "https://guardxnetwork.com/meet-george",
     type: "website",
     images: [
       {
-        url: "https://guardxnetwork.com/george-preview.png?v=5",
+        url: "https://guardxnetwork.com/george-preview.png?v=7",
         width: 1200,
         height: 630,
-        alt: "Meet George",
+        alt: "Meet George, your AI assistant",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Meet George",
-    description: "Ask George how he can answer customer questions and capture enquiries for you 24/7.",
-    images: ["https://guardxnetwork.com/george-preview.png?v=5"],
+    title: "Meet George | 24/7 AI Assistant for Business Websites",
+    description: "Meet George, the AI assistant that answers questions, explains services, gives pricing guidance, and captures enquiries for business websites.",
+    images: ["https://guardxnetwork.com/george-preview.png?v=7"],
   },
 }
 

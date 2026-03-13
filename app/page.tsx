@@ -1,8 +1,39 @@
 import Image from "next/image"
 import Link from "next/link"
+import type { Metadata } from "next"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { ArrowRight, Bot, CheckCircle2, Clock3, MessageSquare, PhoneCall, Sparkles, Zap } from "lucide-react"
+
+
+export const metadata: Metadata = {
+  title: "Meet George | 24/7 AI Assistant for Business Websites",
+  description:
+    "Meet George, your 24/7 AI assistant for business websites. He answers questions, explains services, gives pricing guidance, and captures enquiries.",
+  alternates: { canonical: "https://guardxnetwork.com" },
+  openGraph: {
+    title: "Meet George | 24/7 AI Assistant for Business Websites",
+    description:
+      "Meet George, your 24/7 AI assistant for business websites. He answers questions, explains services, gives pricing guidance, and captures enquiries.",
+    url: "https://guardxnetwork.com",
+    type: "website",
+    images: [
+      {
+        url: "https://guardxnetwork.com/george-preview.png?v=7",
+        width: 1200,
+        height: 630,
+        alt: "Meet George, your AI assistant",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Meet George | 24/7 AI Assistant for Business Websites",
+    description:
+      "Meet George, your 24/7 AI assistant for business websites. He answers questions, explains services, gives pricing guidance, and captures enquiries.",
+    images: ["https://guardxnetwork.com/george-preview.png?v=7"],
+  },
+}
 
 const included = [
   "Fast, modern website built for your business",
@@ -36,16 +67,15 @@ export default function HomePage() {
               </div>
 
               <h1 className="max-w-4xl text-balance text-4xl font-extrabold tracking-tight text-[#0F172A] sm:text-5xl lg:text-6xl">
-                Turn your website into a 24/7 salesperson.
+                Turn your website into a 24/7 AI receptionist.
               </h1>
 
               <p className="mt-6 max-w-3xl text-lg leading-8 text-[#475569] sm:text-xl">
-                Meet George — an AI assistant that answers customer questions and captures enquiries automatically.
+                Meet George — an AI assistant that answers questions, explains services, gives pricing guidance, and captures enquiries for your business.
               </p>
 
               <p className="mt-5 max-w-3xl text-base leading-7 text-[#475569] sm:text-lg">
-                Ask George about {questions.join(", ")}. Instead of making visitors dig through page after page,
-                George can guide them, answer them, and help turn more of your traffic into real enquiries.
+                Ask George about {questions.join(", ")}. He can help people understand what you do, what it costs, how it works, and what to do next — without them needing to dig through page after page.
               </p>
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -60,7 +90,7 @@ export default function HomePage() {
                   href="/pricing"
                   className="inline-flex items-center justify-center rounded-2xl border border-[#D1D5DB] bg-white px-7 py-4 text-base font-semibold text-[#0F172A] transition hover:border-[#BFDBFE] hover:bg-[#F8FAFC]"
                 >
-                  See what is included
+                  See how George helps
                 </Link>
               </div>
             </div>
@@ -70,18 +100,18 @@ export default function HomePage() {
                 <Image src="/george-logo.png" alt="George" width={220} height={80} className="h-14 w-auto sm:h-16" priority />
               </div>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
-                George answers questions, captures enquiries, and helps turn website visitors into customers — day or night.
+                George works like a trained member of staff on your website. He can answer everyday questions, explain your services, give rough pricing, and guide people toward becoming an enquiry.
               </p>
               <p className="mt-4 text-sm font-semibold text-[#93C5FD] sm:text-base">
-                Ask George how he can answer customer questions and capture enquiries for you 24/7.
+                That means less missed enquiries, less repetitive answering, and a better experience for every visitor.
               </p>
               <div className="mt-6 rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur">
                 <div className="flex items-start gap-3">
                   <Sparkles className="mt-1 h-5 w-5 text-[#BFDBFE]" />
                   <div>
-                    <p className="font-semibold text-white">Ask George about:</p>
+                    <p className="font-semibold text-white">For example, George can:</p>
                     <p className="mt-2 text-sm leading-6 text-[#DBEAFE]">
-                      Pricing, FAQs, contact details, how the website works, what is included, and how George could help your business handle enquiries.
+                      answer service questions, explain pricing, give opening information, handle FAQs, and collect the details needed for the business to follow up.
                     </p>
                   </div>
                 </div>
@@ -104,7 +134,7 @@ export default function HomePage() {
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">Ask George</p>
               <p className="mt-2 text-xl font-semibold text-[#0F172A]">
-                Ask George how he can answer customer questions and capture enquiries for you 24/7.
+                See how George helps real businesses answer questions, explain services, and turn visitors into enquiries.
               </p>
             </div>
             <Link
@@ -125,10 +155,10 @@ export default function HomePage() {
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">George in action</p>
               <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">Alderwood Ponds</h2>
               <p className="mt-4 text-lg leading-8 text-[#475569]">
-                George can answer visitor questions about fishing, camping, facilities, and bookings — helping a real business deal with the same questions people ask over and over again.
+                On Alderwood Ponds, George can answer questions about fishing prices, camping, facilities, rules, and bookings — the kind of everyday questions that normally take up the owner’s time.
               </p>
               <p className="mt-4 text-base leading-7 text-[#475569]">
-                That is the whole point: George takes the repetitive answering off the business owner and helps keep visitors engaged.
+                That is the point of George: he gives visitors instant answers, helps them understand what is available, and moves them closer to getting in touch or booking.
               </p>
               <div className="mt-6">
                 <Link
@@ -145,11 +175,11 @@ export default function HomePage() {
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">What George can do</p>
               <ul className="mt-5 space-y-4">
                 {[
-                  "Answer customer questions instantly",
-                  "Explain your services and pricing",
-                  "Give visitors contact information",
-                  "Capture enquiries through conversation",
-                  "Work even when you are busy or closed",
+                  "Answer everyday customer questions instantly",
+                  "Explain your services, rules, and pricing",
+                  "Give rough quotes and useful guidance",
+                  "Point visitors to the right next step",
+                  "Capture enquiries even when you are busy or closed",
                 ].map((point) => (
                   <li key={point} className="flex items-start gap-3">
                     <PhoneCall className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" />
@@ -167,11 +197,10 @@ export default function HomePage() {
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">What is included</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">
-              A fast modern website, built properly, with George built in.
+              A website that actually helps people, with George built in.
             </h2>
             <p className="mt-4 text-lg leading-8 text-[#475569]">
-              This is not just a chatbot bolted on top. GuardX websites are built to look professional, load fast,
-              work well on mobile, and give your business a strong SEO foundation from the start.
+              This is not just a generic chatbot bolted on top. George is trained on your business, while the website itself is built to look professional, load fast, work well on mobile, and give you a strong foundation.
             </p>
           </div>
 
@@ -191,21 +220,21 @@ export default function HomePage() {
               <Zap className="h-8 w-8 text-[#1D4ED8]" />
               <h3 className="mt-4 text-lg font-bold text-[#0F172A]">Fast modern websites</h3>
               <p className="mt-2 text-sm leading-6 text-[#475569]">
-                Built using modern technology for speed, reliability, and a more professional feel than old template websites.
+                Built using modern technology for speed, reliability, and a stronger first impression than old template websites.
               </p>
             </div>
             <div className="rounded-2xl bg-[#F8FAFC] p-5">
               <MessageSquare className="h-8 w-8 text-[#1D4ED8]" />
               <h3 className="mt-4 text-lg font-bold text-[#0F172A]">George built into the site</h3>
               <p className="mt-2 text-sm leading-6 text-[#475569]">
-                George can answer questions about pricing, services, FAQs, and contact details without the visitor needing to dig around the site.
+                George can answer questions about services, pricing, FAQs, opening information, and contact details without the visitor digging around the site.
               </p>
             </div>
             <div className="rounded-2xl bg-[#F8FAFC] p-5">
               <Clock3 className="h-8 w-8 text-[#1D4ED8]" />
               <h3 className="mt-4 text-lg font-bold text-[#0F172A]">SEO foundation included</h3>
               <p className="mt-2 text-sm leading-6 text-[#475569]">
-                We do not offer ongoing SEO in this package, but we do build the website with the right structure, speed, and setup to give you a solid foundation.
+                We build the website with the right structure, speed, and setup to give you a solid foundation and make George easier for visitors to use.
               </p>
             </div>
           </div>
@@ -220,7 +249,7 @@ export default function HomePage() {
               Clear monthly pricing for a website powered by George.
             </h2>
             <p className="mt-4 text-lg leading-8 text-[#475569]">
-              The aim is simple: give your business a modern website with George built in, hosting included, and a proper foundation underneath it.
+              The aim is simple: give your business a modern website with a trained AI assistant built in, hosting included, and a proper foundation underneath it.
             </p>
           </div>
 
@@ -270,7 +299,7 @@ export default function HomePage() {
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">Meet George</p>
               <p className="mt-1 text-sm font-semibold leading-6 text-[#0F172A] sm:text-base">
-                Ask George how he can answer customer questions and capture enquiries 24/7.
+                See how George answers questions, explains services, and captures enquiries for business websites.
               </p>
             </div>
             <Link

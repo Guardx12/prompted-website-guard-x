@@ -13,11 +13,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Web Design & SEO Foundation for Local Businesses | GuardX",
+    default: "Meet George | 24/7 AI Assistant for Business Websites | GuardX",
     template: "%s | GuardX",
   },
   description:
-    "Professional website design and SEO foundation for UK local businesses. Modern, fast websites built to generate enquiries.",
+    "Meet George, your 24/7 AI assistant for business websites. He answers questions, explains services, gives pricing guidance, and captures enquiries.",
   generator: "v0.app",
   icons: {
     icon: "/favicon.ico",
@@ -28,14 +28,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     url: "https://guardxnetwork.com",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "GuardX" }],
+    images: [{ url: "/george-preview.png?v=7", width: 1200, height: 630, alt: "Meet George, your AI assistant" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Web Design & SEO Foundation for Local Businesses | GuardX",
+    title: "Meet George | 24/7 AI Assistant for Business Websites | GuardX",
     description:
-      "Professional website design and SEO foundation for UK local businesses. Modern, fast websites built to generate enquiries.",
-    images: ["/og-image.png"],
+      "Meet George, your 24/7 AI assistant for business websites. He answers questions, explains services, gives pricing guidance, and captures enquiries.",
+    images: ["/george-preview.png?v=7"],
   },
   alternates: { canonical: "https://guardxnetwork.com" },
   robots: {
@@ -102,7 +102,7 @@ export default function RootLayout({
             "url": "https://www.guardxnetwork.com",
             "logo": "https://www.guardxnetwork.com/images/guardx-logo.png",
             "image": "https://www.guardxnetwork.com/images/guardx-logo.png",
-            "description": "Website design, SEO foundation, and review generation services for UK local businesses.",
+            "description": "Meet George, the AI assistant that answers questions, explains services, gives pricing guidance, and captures enquiries for business websites.",
             "areaServed": {
               "@type": "Country",
               "name": "United Kingdom"
