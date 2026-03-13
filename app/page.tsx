@@ -116,6 +116,50 @@ export default function HomePage() {
       </section>
 
       <section className="px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+        <div className="mx-auto max-w-6xl rounded-[30px] border border-[#DADCE0] bg-white p-6 shadow-sm sm:p-8">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">George in action</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">Alderwood Ponds</h2>
+              <p className="mt-4 text-lg leading-8 text-[#475569]">
+                George can answer visitor questions about fishing, camping, facilities, and bookings — helping a real business deal with the same questions people ask over and over again.
+              </p>
+              <p className="mt-4 text-base leading-7 text-[#475569]">
+                That is the whole point: George takes the repetitive answering off the business owner and helps keep visitors engaged.
+              </p>
+              <div className="mt-6">
+                <Link
+                  href="https://Alderwood-Ponds.Vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#1D4ED8] px-6 py-3 font-bold text-white transition hover:bg-[#1E40AF]"
+                >
+                  Visit Alderwood Ponds <ArrowRight className="h-5 w-5" />
+                </Link>
+              </div>
+            </div>
+            <div className="rounded-[28px] border border-[#DBEAFE] bg-[linear-gradient(180deg,#EFF6FF_0%,#FFFFFF_100%)] p-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">What George can do</p>
+              <ul className="mt-5 space-y-4">
+                {[
+                  "Answer customer questions instantly",
+                  "Explain your services and pricing",
+                  "Give visitors contact information",
+                  "Capture enquiries through conversation",
+                  "Work even when you are busy or closed",
+                ].map((point) => (
+                  <li key={point} className="flex items-start gap-3">
+                    <PhoneCall className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" />
+                    <span className="text-sm leading-6 text-[#334155]">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">What is included</p>
@@ -160,48 +204,6 @@ export default function HomePage() {
               <p className="mt-2 text-sm leading-6 text-[#475569]">
                 We do not offer ongoing SEO in this package, but we do build the website with the right structure, speed, and setup to give you a solid foundation.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-        <div className="mx-auto max-w-6xl rounded-[30px] border border-[#DADCE0] bg-white p-6 shadow-sm sm:p-8">
-          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">George in action</p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">Alderwood Ponds</h2>
-              <p className="mt-4 text-lg leading-8 text-[#475569]">
-                George can answer visitor questions about fishing, camping, facilities, and bookings — helping a real business deal with the same questions people ask over and over again.
-              </p>
-              <p className="mt-4 text-base leading-7 text-[#475569]">
-                That is the whole point: George takes the repetitive answering off the business owner and helps keep visitors engaged.
-              </p>
-              <div className="mt-6">
-                <Link
-                  href="/meet-george"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#1D4ED8] px-6 py-3 font-bold text-white transition hover:bg-[#1E40AF]"
-                >
-                  Try George <ArrowRight className="h-5 w-5" />
-                </Link>
-              </div>
-            </div>
-            <div className="rounded-[28px] border border-[#DBEAFE] bg-[linear-gradient(180deg,#EFF6FF_0%,#FFFFFF_100%)] p-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">What George can do</p>
-              <ul className="mt-5 space-y-4">
-                {[
-                  "Answer customer questions instantly",
-                  "Explain your services and pricing",
-                  "Give visitors contact information",
-                  "Capture enquiries through conversation",
-                  "Work even when you are busy or closed",
-                ].map((point) => (
-                  <li key={point} className="flex items-start gap-3">
-                    <PhoneCall className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" />
-                    <span className="text-sm leading-6 text-[#334155]">{point}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </div>
@@ -258,6 +260,26 @@ export default function HomePage() {
       </section>
 
       <Footer />
+
+      <div className="fixed inset-x-4 bottom-4 z-50 sm:inset-x-auto sm:left-1/2 sm:w-[min(760px,calc(100%-2rem))] sm:-translate-x-1/2">
+        <div className="rounded-[24px] border border-[#BFDBFE] bg-white/95 p-4 shadow-[0_24px_60px_rgba(15,23,42,0.18)] backdrop-blur">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">Meet George</p>
+              <p className="mt-1 text-sm font-semibold leading-6 text-[#0F172A] sm:text-base">
+                Ask George how he can answer customer questions and capture enquiries 24/7.
+              </p>
+            </div>
+            <Link
+              href="/meet-george"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#1D4ED8] px-5 py-3 text-sm font-bold text-white shadow-[0_18px_40px_rgba(29,78,216,0.25)] transition hover:bg-[#1E40AF]"
+            >
+              Meet George <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </div>
+
     </main>
   )
 }
