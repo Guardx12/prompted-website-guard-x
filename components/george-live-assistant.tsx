@@ -560,7 +560,6 @@ export function GeorgeLiveAssistant() {
                       setLeadForm((prev) => ({ ...prev, name: event.target.value }))
                                       }}
                     required
-                    required
                     className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
                   />
                   <input
@@ -594,16 +593,7 @@ export function GeorgeLiveAssistant() {
                     className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
                   />
                 </div>
-                <textarea
-                  name="message"
-                  placeholder="Summary of what you need help with"
-                  value={leadForm.summary}
-                  onChange={(event) => {
-                    setLeadForm((prev) => ({ ...prev, summary: event.target.value }))
-                                  }}
-                  rows={5}
-                  className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
-                />
+                <input type="hidden" name="message" value={leadForm.summary || suggestedSummary} />
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <p className="text-xs leading-5 text-[#5F6368]">The full conversation transcript will be sent with this enquiry as well.</p>
                   <button
