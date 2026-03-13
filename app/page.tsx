@@ -6,14 +6,14 @@ import { Footer } from "@/components/footer"
 import { ArrowRight, Bot, Clock3, MessageSquare, PhoneCall, Sparkles, Zap } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Meet George | 24/7 AI Receptionist for Business Websites",
+  title: "Meet George | 24/7 AI Receptionist for Business Websites, Even While You Sleep",
   description:
-    "Meet George, your 24/7 AI receptionist for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
+    "Meet George, your 24/7 AI receptionist for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers — even while you sleep.",
   alternates: { canonical: "https://guardxnetwork.com" },
   openGraph: {
-    title: "Meet George | 24/7 AI Receptionist for Business Websites",
+    title: "Meet George | 24/7 AI Receptionist for Business Websites, Even While You Sleep",
     description:
-      "Meet George, your 24/7 AI receptionist for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
+      "Meet George, your 24/7 AI receptionist for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers — even while you sleep.",
     url: "https://guardxnetwork.com",
     type: "website",
     images: [
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Meet George | 24/7 AI Receptionist for Business Websites",
+    title: "Meet George | 24/7 AI Receptionist for Business Websites, Even While You Sleep",
     description:
-      "Meet George, your 24/7 AI receptionist for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
+      "Meet George, your 24/7 AI receptionist for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers — even while you sleep.",
     images: ["https://guardxnetwork.com/george-preview.png?v=8"],
   },
 }
@@ -77,7 +77,7 @@ export default function HomePage() {
 
               <p className="mt-6 max-w-3xl text-lg leading-8 text-[#475569] sm:text-xl">
                 Meet George — an AI receptionist and sales assistant for business websites. He answers questions,
-                explains services, gives pricing guidance, captures enquiries, and helps people know what to do next.
+                explains services, gives pricing guidance, captures enquiries, and helps people know what to do next — even while you sleep.
               </p>
 
               <p className="mt-5 max-w-3xl text-base leading-7 text-[#475569] sm:text-lg">
@@ -114,7 +114,7 @@ export default function HomePage() {
                 explain your services, give rough pricing, collect enquiries, and guide people toward becoming a real customer.
               </p>
               <p className="mt-4 text-sm font-semibold text-[#93C5FD] sm:text-base">
-                That means less missed enquiries, less repetitive answering, and a better experience for every visitor.
+                That means less missed enquiries, less repetitive answering, and a better experience for every visitor — including evenings, weekends, out-of-hours, and while you sleep.
               </p>
               <div className="mt-6 rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur">
                 <div className="flex items-start gap-3">
@@ -122,7 +122,7 @@ export default function HomePage() {
                   <div>
                     <p className="font-semibold text-white">In plain English, George can:</p>
                     <p className="mt-2 text-sm leading-6 text-[#DBEAFE]">
-                      answer service questions, explain pricing, handle FAQs, give contact information, and help move a website visitor toward getting in touch.
+                      answer service questions, explain pricing, handle FAQs, give contact information, and help move a website visitor toward getting in touch — even when you are busy, closed, or asleep.
                     </p>
                   </div>
                 </div>
@@ -169,7 +169,7 @@ export default function HomePage() {
                 On Alderwood Ponds, George can answer questions about fishing prices, camping, facilities, rules, and bookings — the kind of everyday questions that normally take up the owner’s time.
               </p>
               <p className="mt-4 text-base leading-7 text-[#475569]">
-                That is the point of George: he gives visitors instant answers, helps them understand what is available, and moves them closer to getting in touch or booking.
+                That is the point of George: he gives visitors instant answers, helps them understand what is available, and moves them closer to getting in touch or booking — even outside business hours.
               </p>
               <div className="mt-6">
                 <Link
@@ -190,7 +190,7 @@ export default function HomePage() {
                   "Explain your services, pricing, FAQs, and contact details",
                   "Give rough quotes and useful guidance",
                   "Point visitors to the right next step",
-                  "Capture enquiries even when you are busy or closed",
+                  "Capture enquiries even when you are busy, closed, or asleep",
                 ].map((point) => (
                   <li key={point} className="flex items-start gap-3">
                     <PhoneCall className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" />
@@ -239,14 +239,14 @@ export default function HomePage() {
               <MessageSquare className="h-8 w-8 text-[#1D4ED8]" />
               <h3 className="mt-4 text-lg font-bold text-[#0F172A]">George built into the site</h3>
               <p className="mt-2 text-sm leading-6 text-[#475569]">
-                George can answer questions about services, pricing, FAQs, opening information, and contact details without the visitor digging around the site.
+                George can answer questions about services, pricing, FAQs, opening information, and contact details without the visitor digging around the site — even after hours.
               </p>
             </div>
             <div className="rounded-2xl bg-[#F8FAFC] p-5">
               <Clock3 className="h-8 w-8 text-[#1D4ED8]" />
               <h3 className="mt-4 text-lg font-bold text-[#0F172A]">SEO foundation included</h3>
               <p className="mt-2 text-sm leading-6 text-[#475569]">
-                We build the website with the right structure, speed, and setup to give you a solid foundation and make George easier for visitors to use.
+                We build the website with the right structure, speed, and setup to give you a solid foundation and make George easier for visitors to use at any time of day.
               </p>
             </div>
           </div>

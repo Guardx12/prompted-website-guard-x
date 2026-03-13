@@ -13,11 +13,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Meet George | 24/7 AI Assistant for Business Websites | GuardX",
+    default: "Meet George | 24/7 AI Assistant for Business Websites, Even While You Sleep | GuardX",
     template: "%s | GuardX",
   },
   description:
-    "Meet George, your 24/7 AI assistant for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
+    "Meet George, your 24/7 AI assistant for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers — even while you sleep.",
   generator: "v0.app",
   icons: {
     icon: "/favicon.ico",
@@ -32,9 +32,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Meet George | 24/7 AI Assistant for Business Websites | GuardX",
+    title: "Meet George | 24/7 AI Assistant for Business Websites, Even While You Sleep | GuardX",
     description:
-      "Meet George, your 24/7 AI assistant for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
+      "Meet George, your 24/7 AI assistant for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers — even while you sleep.",
     images: ["/george-preview.png?v=8"],
   },
   alternates: { canonical: "https://guardxnetwork.com" },
@@ -102,7 +102,7 @@ export default function RootLayout({
             "url": "https://www.guardxnetwork.com",
             "logo": "https://www.guardxnetwork.com/images/guardx-logo.png",
             "image": "https://www.guardxnetwork.com/images/guardx-logo.png",
-            "description": "Meet George, the AI receptionist that answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
+            "description": "Meet George, the AI receptionist that answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers — even while you sleep.",
             "areaServed": {
               "@type": "Country",
               "name": "United Kingdom"

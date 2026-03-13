@@ -5,11 +5,11 @@ import { GeorgeLiveAssistant } from "@/components/george-live-assistant"
 import { Navigation } from "@/components/navigation"
 
 export const metadata: Metadata = {
-  title: "Meet George | 24/7 AI Receptionist for Business Websites",
+  title: "Meet George | 24/7 AI Receptionist for Business Websites, Even While You Sleep",
   description: "Meet George, the AI receptionist that answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
   alternates: { canonical: "https://guardxnetwork.com/meet-george" },
   openGraph: {
-    title: "Meet George | 24/7 AI Receptionist for Business Websites",
+    title: "Meet George | 24/7 AI Receptionist for Business Websites, Even While You Sleep",
     description: "Meet George, the AI receptionist that answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
     url: "https://guardxnetwork.com/meet-george",
     type: "website",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Meet George | 24/7 AI Receptionist for Business Websites",
+    title: "Meet George | 24/7 AI Receptionist for Business Websites, Even While You Sleep",
     description: "Meet George, the AI receptionist that answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
     images: ["https://guardxnetwork.com/george-preview.png?v=8"],
   },
