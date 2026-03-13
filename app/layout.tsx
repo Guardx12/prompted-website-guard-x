@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: "%s | GuardX",
   },
   description:
-    "Meet George, your 24/7 AI assistant for business websites. He answers questions, explains services, gives pricing guidance, and captures enquiries.",
+    "Meet George, your 24/7 AI assistant for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
   generator: "v0.app",
   icons: {
     icon: "/favicon.ico",
@@ -28,14 +28,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     url: "https://guardxnetwork.com",
-    images: [{ url: "/george-preview.png?v=7", width: 1200, height: 630, alt: "Meet George, your AI assistant" }],
+    images: [{ url: "/george-preview.png?v=8", width: 1200, height: 630, alt: "Meet George, your AI assistant" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Meet George | 24/7 AI Assistant for Business Websites | GuardX",
     description:
-      "Meet George, your 24/7 AI assistant for business websites. He answers questions, explains services, gives pricing guidance, and captures enquiries.",
-    images: ["/george-preview.png?v=7"],
+      "Meet George, your 24/7 AI assistant for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
+    images: ["/george-preview.png?v=8"],
   },
   alternates: { canonical: "https://guardxnetwork.com" },
   robots: {
@@ -102,7 +102,7 @@ export default function RootLayout({
             "url": "https://www.guardxnetwork.com",
             "logo": "https://www.guardxnetwork.com/images/guardx-logo.png",
             "image": "https://www.guardxnetwork.com/images/guardx-logo.png",
-            "description": "Meet George, the AI assistant that answers questions, explains services, gives pricing guidance, and captures enquiries for business websites.",
+            "description": "Meet George, the AI receptionist that answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
             "areaServed": {
               "@type": "Country",
               "name": "United Kingdom"

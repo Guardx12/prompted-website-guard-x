@@ -29,7 +29,7 @@ const INITIAL_MESSAGES: LiveMessage[] = [
     id: "intro",
     role: "system",
     content:
-      "Hi — I’m George, the AI receptionist built into GuardX websites. Try asking me how I could help your business handle customer enquiries.",
+      "Hi — I’m George, the AI receptionist and sales assistant built into GuardX websites. Try asking me how I could help your business handle customer enquiries.",
   },
 ]
 
@@ -37,7 +37,7 @@ const FIRST_RESPONSE_EVENT = {
   type: "response.create",
   response: {
     instructions:
-      "Briefly introduce yourself as George, the AI receptionist built into GuardX websites, then ask in a warm natural way: 'Out of curiosity, what type of business do you run?'",
+      "Briefly introduce yourself as George, the AI receptionist and sales assistant built into GuardX websites, then ask in a warm natural way: 'Out of curiosity, what type of business do you run?'",
   },
 }
 
@@ -548,22 +548,20 @@ export function GeorgeLiveAssistant() {
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#BFDBFE] sm:text-sm">Meet George</p>
             <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
-              Your AI website sales assistant.
+              Your AI receptionist and sales assistant.
             </h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
-              George answers questions, captures enquiries, and helps turn website visitors into customers — day or
-              night.
+              George answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn website visitors into customers — day or night.
             </p>
             <p className="mt-4 text-sm font-semibold text-[#93C5FD] sm:text-base">
-              Answers questions • Captures leads • Works 24/7
+              Answers questions • Explains services • Captures leads • Works 24/7
             </p>
           </div>
         </div>
 
         <p className="mt-4 text-xl font-medium text-[#202124] sm:text-2xl">Meet George.</p>
         <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-[#5F6368] sm:text-lg sm:leading-8">
-          George is the AI receptionist built into GuardX websites. He answers visitor questions, explains services,
-          and helps turn more of your website traffic into real enquiries.
+          George is the AI receptionist and sales assistant built into GuardX websites. He answers visitor questions, explains services, gives pricing guidance, and helps turn more of your website traffic into real enquiries.
         </p>
         <p className="mt-4 text-sm font-semibold text-[#1A73E8] sm:text-base">
           Try asking George how he could help your business handle customer enquiries.

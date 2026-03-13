@@ -23,7 +23,7 @@ export default function ContactPage() {
                 Want George on your website?
               </h1>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
-                Get in touch if you want a website powered by George, or if you want to ask anything about how it works.
+                Get in touch if you want George on his own, or if you want a full website with George built in. We can help with both.
               </p>
             </div>
           </div>

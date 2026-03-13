@@ -18,16 +18,16 @@ export function Navigation() {
 
   return (
     <nav className="sticky top-0 z-50 border-b border-[#E5E7EB] bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center transition-opacity hover:opacity-80">
-          <div className="relative h-12 w-36 sm:h-14 sm:w-40 md:h-16 md:w-44 lg:h-[72px] lg:w-48">
+          <div className="relative h-16 w-44 sm:h-[72px] sm:w-48 md:h-20 md:w-56 lg:h-24 lg:w-64">
             <Image
               src="/guardx-logo.png"
               alt="GuardX"
               fill
               className="object-contain"
               priority
-              sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 112px, 128px"
+              sizes="(max-width: 640px) 176px, (max-width: 768px) 192px, (max-width: 1024px) 224px, 256px"
             />
           </div>
         </Link>

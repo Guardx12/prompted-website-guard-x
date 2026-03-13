@@ -7,22 +7,13 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-5">
           <div className="col-span-1 md:col-span-2">
-            <div className="mb-4 flex items-center space-x-2">
-              <Image
-                src="/images/guardx-final-logo.jpg"
-                alt="GuardX Logo"
-                width={120}
-                height={40}
-                className="h-10 w-auto"
-              />
+            <div className="mb-5 flex items-center space-x-2">
+              <Image src="/guardx-logo.png" alt="GuardX Logo" width={220} height={70} className="h-16 w-auto sm:h-20" />
             </div>
             <p className="mb-4 text-[#475569]">
-              GuardX builds fast, modern websites with George — an AI assistant that answers customer questions and
-              captures enquiries for your business 24/7.
+              GuardX builds fast, modern websites with George — an AI receptionist and sales assistant that answers customer questions, explains services, and captures enquiries for your business 24/7.
             </p>
-            <p className="mb-4 text-[#475569]">
-              GuardX Limited — websites powered by George for UK businesses.
-            </p>
+            <p className="mb-4 text-[#475569]">GuardX Limited — websites powered by George for UK businesses.</p>
             <p className="text-sm text-[#64748B]">&copy; {new Date().getFullYear()} GuardX. All rights reserved.</p>
           </div>
 
@@ -41,8 +32,9 @@ export function Footer() {
             <h3 className="mb-4 font-semibold text-[#0F172A]">What George does</h3>
             <ul className="space-y-2 text-[#475569]">
               <li>Answers customer questions</li>
+              <li>Explains services and pricing</li>
               <li>Captures enquiries</li>
-              <li>Explains pricing and services</li>
+              <li>Helps guide visitors</li>
               <li>Works day and night</li>
             </ul>
           </div>

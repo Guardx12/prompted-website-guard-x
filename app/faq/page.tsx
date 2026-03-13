@@ -6,7 +6,7 @@ const faqs = [
   {
     question: "What is George?",
     answer:
-      "George is an AI assistant built into your website. He can answer customer questions, explain your services, give contact details, and help capture enquiries automatically.",
+      "George is an AI receptionist and sales assistant built into your website. He can answer customer questions, explain your services, give contact details, give rough pricing guidance, and help capture enquiries automatically.",
   },
   {
     question: "What can visitors ask George?",
@@ -14,14 +14,29 @@ const faqs = [
       "Visitors can ask George about pricing, FAQs, contact details, how your business works, what services you offer, and anything else you train him on.",
   },
   {
+    question: "Can George be trained for my business?",
+    answer:
+      "Yes. George can be trained around your business, your services, your pricing approach, your FAQs, and the kind of enquiries you want him to help capture. He can also explain examples for different business types.",
+  },
+  {
+    question: "How much is George on his own?",
+    answer:
+      "George on his own is £99 per month. That is for businesses that already have a website and want to add George as a hosted AI assistant managed by GuardX.",
+  },
+  {
+    question: "How much is Website + George?",
+    answer:
+      "Website + George is £149 per month. That includes the website, George built in, hosting, maintenance, enquiry capture, and SEO foundations.",
+  },
+  {
+    question: "Do you have an early adopter offer?",
+    answer:
+      "Yes. The first 10 clients can get George for £79 per month or Website + George for £129 per month, with that early adopter price locked in.",
+  },
+  {
     question: "Do I still need loads of pages on my website?",
     answer:
       "Not as many as a traditional site. George can take a lot of the repetitive answering work off the website, but we still keep the key information visible on the page for people who prefer to read.",
-  },
-  {
-    question: "What is included in the £99 per month?",
-    answer:
-      "The package includes a fast modern website, George built into the site, hosting, enquiry capture, mobile-friendly design, and a solid SEO foundation setup.",
   },
   {
     question: "Do you do ongoing SEO?",
@@ -29,14 +44,9 @@ const faqs = [
       "No, not in this package. We build the website with the right structure, speed, indexing setup, and SEO foundation so your site is in a strong position from the start.",
   },
   {
-    question: "Can George be trained for my business?",
-    answer:
-      "Yes. George can be trained around your business, your services, your pricing approach, your FAQs, and the kind of enquiries you want him to help capture.",
-  },
-  {
     question: "What happens when someone leaves their details?",
     answer:
-      "George can collect details and pass the conversation through so you know who engaged and what they asked about.",
+      "George can collect details and pass the conversation through so you know who engaged and what they asked about. On hosted George pages, the lead handoff can still be routed to the right place.",
   },
 ]
 
@@ -48,11 +58,9 @@ export default function FAQPage() {
         <div className="mx-auto max-w-4xl">
           <div className="rounded-[28px] border border-[#DADCE0] bg-[linear-gradient(135deg,#0f172a_0%,#111827_42%,#1d4ed8_100%)] px-6 py-7 text-left shadow-[0_24px_80px_rgba(17,24,39,0.18)] sm:px-8">
             <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#BFDBFE] sm:text-sm">FAQ</p>
-            <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-              Questions about George.
-            </h1>
+            <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Questions about George.</h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
-              The main idea is simple: George helps answer the questions visitors normally click around the site looking for.
+              The main idea is simple: George helps answer the questions visitors normally click around the site looking for, and helps move them toward becoming an enquiry.
             </p>
           </div>
 

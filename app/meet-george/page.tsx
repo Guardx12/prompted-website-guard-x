@@ -5,17 +5,17 @@ import { GeorgeLiveAssistant } from "@/components/george-live-assistant"
 import { Navigation } from "@/components/navigation"
 
 export const metadata: Metadata = {
-  title: "Meet George | 24/7 AI Assistant for Business Websites",
-  description: "Meet George, the AI assistant that answers questions, explains services, gives pricing guidance, and captures enquiries for business websites.",
+  title: "Meet George | 24/7 AI Receptionist for Business Websites",
+  description: "Meet George, the AI receptionist that answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
   alternates: { canonical: "https://guardxnetwork.com/meet-george" },
   openGraph: {
-    title: "Meet George | 24/7 AI Assistant for Business Websites",
-    description: "Meet George, the AI assistant that answers questions, explains services, gives pricing guidance, and captures enquiries for business websites.",
+    title: "Meet George | 24/7 AI Receptionist for Business Websites",
+    description: "Meet George, the AI receptionist that answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
     url: "https://guardxnetwork.com/meet-george",
     type: "website",
     images: [
       {
-        url: "https://guardxnetwork.com/george-preview.png?v=7",
+        url: "https://guardxnetwork.com/george-preview.png?v=8",
         width: 1200,
         height: 630,
         alt: "Meet George, your AI assistant",
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Meet George | 24/7 AI Assistant for Business Websites",
-    description: "Meet George, the AI assistant that answers questions, explains services, gives pricing guidance, and captures enquiries for business websites.",
-    images: ["https://guardxnetwork.com/george-preview.png?v=7"],
+    title: "Meet George | 24/7 AI Receptionist for Business Websites",
+    description: "Meet George, the AI receptionist that answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
+    images: ["https://guardxnetwork.com/george-preview.png?v=8"],
   },
 }
 
@@ -36,7 +36,7 @@ export default function MeetGeorgePage() {
       <Navigation />
       <section className="px-4 pt-8 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <Image src="/george-logo.png" alt="George" width={340} height={120} className="h-20 w-auto sm:h-24" priority />
+          <Image src="/george-logo.png" alt="George" width={340} height={120} className="h-28 w-auto sm:h-32" priority />
         </div>
       </section>
       <GeorgeLiveAssistant />
