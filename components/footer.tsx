@@ -11,9 +11,9 @@ export function Footer() {
               <Image src="/guardx-logo.png" alt="GuardX Logo" width={220} height={70} className="h-16 w-auto sm:h-20" />
             </div>
             <p className="mb-4 text-[#475569]">
-              GuardX builds fast, modern websites with George — an AI receptionist and sales assistant that answers customer questions, explains services, and captures enquiries for your business 24/7.
+              GuardX introduces George — a trained digital member of staff for your website that answers customer questions, explains services, and captures enquiries 24/7.
             </p>
-            <p className="mb-4 text-[#475569]">GuardX Limited — websites powered by George for UK businesses.</p>
+            <p className="mb-4 text-[#475569]">GuardX Limited — George for UK businesses.</p>
             <p className="text-sm text-[#64748B]">&copy; {new Date().getFullYear()} GuardX. All rights reserved.</p>
           </div>
 

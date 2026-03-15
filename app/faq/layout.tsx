@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "FAQ | GuardX Website Design & SEO Foundation",
+  title: "George FAQ",
   description:
-    "Frequently asked questions about GuardX website design, hosting, SEO foundation, and review generation.",
+    "Frequently asked questions about George, the trained digital member of staff for your website.",
 }
 
 export default function FAQLayout({ children }: { children: React.ReactNode }) {

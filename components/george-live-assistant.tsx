@@ -26,7 +26,7 @@ const INITIAL_MESSAGES: LiveMessage[] = [
     id: "intro",
     role: "system",
     content:
-      "Hi — I’m George, the AI receptionist and sales assistant built into GuardX websites. Try asking me how I could help your business handle customer enquiries.",
+      "Hi — I’m George, a trained digital member of staff for your website. Try asking me how I could help your business handle customer enquiries.",
   },
 ]
 
@@ -34,7 +34,7 @@ const FIRST_RESPONSE_EVENT = {
   type: "response.create",
   response: {
     instructions:
-      "Briefly introduce yourself as George, the AI receptionist and sales assistant built into GuardX websites, then ask in a warm natural way: 'Out of curiosity, what type of business do you run?'",
+      "Briefly introduce yourself as George, a trained digital member of staff for the website, then ask in a warm natural way: 'Out of curiosity, what type of business do you run?'",
   },
 }
 
@@ -146,7 +146,7 @@ export function GeorgeLiveAssistant() {
     businessName: "",
     email: "",
     phone: "",
-    packageChoice: "",
+    packageChoice: "George (£49/month)",
     summary: "",
   })
 
@@ -455,10 +455,10 @@ export function GeorgeLiveAssistant() {
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#BFDBFE] sm:text-sm">Meet George</p>
             <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
-              Your AI receptionist and sales assistant.
+              Your trained digital member of staff.
             </h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
-              George answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn website visitors into customers — day or night.
+              George answers questions, explains services, captures enquiries, and helps turn website visitors into customers — day or night.
             </p>
             <p className="mt-4 text-sm font-semibold text-[#93C5FD] sm:text-base">
               Answers questions • Explains services • Captures leads • Works 24/7
@@ -468,7 +468,7 @@ export function GeorgeLiveAssistant() {
 
         <p className="mt-4 text-xl font-medium text-[#202124] sm:text-2xl">Meet George.</p>
         <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-[#5F6368] sm:text-lg sm:leading-8">
-          George is the AI receptionist and sales assistant built into GuardX websites. He answers visitor questions, explains services, gives pricing guidance, and helps turn more of your website traffic into real enquiries.
+          George is a trained digital member of staff for your website. He answers visitor questions, explains services, and helps turn more of your website traffic into real enquiries.
         </p>
         <p className="mt-4 text-sm font-semibold text-[#1A73E8] sm:text-base">
           Try asking George how he could help your business handle customer enquiries.
@@ -485,7 +485,7 @@ export function GeorgeLiveAssistant() {
           </div>
           <div className="min-w-0 flex-1">
             <p className="text-base font-semibold text-[#202124] sm:text-lg">George</p>
-            <p className="text-sm text-[#5F6368]">Live AI receptionist by GuardX</p>
+            <p className="text-sm text-[#5F6368]">Live digital staff member by GuardX</p>
           </div>
           <div className="flex items-center gap-2 text-xs font-medium text-[#5F6368] sm:text-sm">
             <span
@@ -595,22 +595,9 @@ export function GeorgeLiveAssistant() {
                     className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
                   />
                 </div>
-                <div className="grid gap-3 sm:grid-cols-1">
-                  <select
-                    name="package"
-                    value={leadForm.packageChoice}
-                    onChange={(event) => {
-                      setLeadForm((prev) => ({ ...prev, packageChoice: event.target.value }))
-                    }}
-                    required
-                    className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
-                  >
-                    <option value="" disabled>
-                      Choose package
-                    </option>
-                    <option value="George AI Assistant (£99/month)">George AI Assistant (£99/month)</option>
-                    <option value="Website + George (£149/month)">Website + George (£149/month)</option>
-                  </select>
+                <input type="hidden" name="package" value={leadForm.packageChoice} />
+                <div className="rounded-2xl border border-[#DADCE0] bg-[#F8FAFD] px-4 py-3 text-sm text-[#475569]">
+                  Package: <strong>George (£49/month)</strong>
                 </div>
                 <input type="hidden" name="message" value={leadForm.summary || suggestedSummary} />
                 <div className="flex justify-end">

@@ -50,7 +50,7 @@ const openingMessage: ChatMessage = {
   id: "george-opening",
   role: "assistant",
   content:
-    "Hi — I’m George. I’m the friendly digital receptionist and sales assistant built into GuardX websites. I answer questions, explain how things work, and help guide visitors toward becoming customers — without sounding stiff or pushy. I can be trained on the business I’m working for, so I can talk through services, pricing, and the usual questions customers ask. Ask me anything.",
+    "Hi — I’m George. I’m a trained digital member of staff for your website. I answer questions, explain how things work, and help guide visitors toward becoming customers — without sounding stiff or pushy. I can be trained on the business I’m working for, so I can talk through services, pricing, and the usual questions customers ask. Ask me anything.",
 }
 
 function buildTranscript(messages: ChatMessage[]) {
@@ -244,7 +244,7 @@ export function GeorgeAssistant() {
       const data = await response.json()
       const reply = typeof data.reply === "string" && data.reply.trim()
         ? data.reply.trim()
-        : "That’s a good question. I’m George, the digital receptionist and sales assistant built into GuardX websites, and my job is to answer questions clearly and help visitors understand how a website like this can turn more visitors into real enquiries."
+        : "That’s a good question. I’m George, a trained digital member of staff for the website, and my job is to answer questions clearly and help visitors understand how I can turn more website visitors into real enquiries."
 
       const assistantMessage: ChatMessage = {
         id: crypto.randomUUID(),
@@ -437,7 +437,7 @@ export function GeorgeAssistant() {
         </h1>
         <p className="mt-4 text-xl font-medium text-[#202124] sm:text-2xl">Meet George.</p>
         <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-[#5F6368] sm:text-lg sm:leading-8">
-          George is the digital receptionist and sales assistant built into GuardX websites. He answers
+          George is a trained digital member of staff for the website. He answers
           questions, explains how things work, deals with customer interactions, and helps turn visitors into
           customers.
         </p>

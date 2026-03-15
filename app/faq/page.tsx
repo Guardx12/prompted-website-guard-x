@@ -6,7 +6,7 @@ const faqs = [
   {
     question: "What is George?",
     answer:
-      "George is an AI receptionist and sales assistant built into your website. He can answer customer questions, explain your services, give contact details, give rough pricing guidance, and help capture enquiries automatically.",
+      "George is a trained digital member of staff for your website. He can answer customer questions, explain your services, give contact details, give rough pricing guidance, and help capture enquiries automatically.",
   },
   {
     question: "What can visitors ask George?",
@@ -16,37 +16,22 @@ const faqs = [
   {
     question: "Can George be trained for my business?",
     answer:
-      "Yes. George can be trained around your business, your services, your pricing approach, your FAQs, and the kind of enquiries you want him to help capture. He can also explain examples for different business types.",
+      "Yes. George can be trained around your business, your services, your pricing approach, your FAQs, and the kind of enquiries you want him to help capture.",
   },
   {
-    question: "How much is George on his own?",
+    question: "How much is George?",
     answer:
-      "George on his own is £99 per month. That is for businesses that already have a website and want to add George as a hosted AI assistant managed by GuardX.",
-  },
-  {
-    question: "How much is Website + George?",
-    answer:
-      "Website + George is £149 per month. That includes the website, George built in, hosting, maintenance, enquiry capture, and SEO foundations.",
-  },
-  {
-    question: "Do you have an early adopter offer?",
-    answer:
-      "Yes. The first 10 clients can get George for £79 per month or Website + George for £129 per month, with that early adopter price locked in.",
+      "George is £49 per month. We set George up and train him on your business so he can start helping visitors straight away.",
   },
   {
     question: "Do I still need loads of pages on my website?",
     answer:
-      "Not as many as a traditional site. George can take a lot of the repetitive answering work off the website, but we still keep the key information visible on the page for people who prefer to read.",
-  },
-  {
-    question: "Do you do ongoing SEO?",
-    answer:
-      "No, not in this package. We build the website with the right structure, speed, indexing setup, and SEO foundation so your site is in a strong position from the start.",
+      "Not as many as a traditional site. George can take a lot of the repetitive answering work off the website, but you still want the key information visible on the page for people who prefer to read.",
   },
   {
     question: "What happens when someone leaves their details?",
     answer:
-      "George can collect details and pass the conversation through so you know who engaged and what they asked about. On hosted George pages, the lead handoff can still be routed to the right place.",
+      "George can collect details and pass the enquiry through so you know who engaged and what they wanted help with.",
   },
 ]
 

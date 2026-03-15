@@ -13,11 +13,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Meet George | 24/7 AI Assistant for Business Websites | GuardX",
+    default: "George | Digital Member of Staff for Your Website | GuardX",
     template: "%s | GuardX",
   },
   description:
-    "Meet George, your 24/7 AI assistant for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
+    "Meet George, a trained digital member of staff for your website. He answers customer questions, explains services, and captures enquiries 24/7.",
   generator: "v0.app",
   icons: {
     icon: "/favicon.ico",
@@ -28,13 +28,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     url: "https://guardxnetwork.com",
-    images: [{ url: "/george-preview.png?v=8", width: 1200, height: 630, alt: "Meet George, your AI assistant" }],
+    images: [{ url: "/george-preview.png?v=8", width: 1200, height: 630, alt: "Meet George, your digital member of staff" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Meet George | 24/7 AI Assistant for Business Websites | GuardX",
+    title: "George | Digital Member of Staff for Your Website | GuardX",
     description:
-      "Meet George, your 24/7 AI assistant for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
+      "Meet George, a trained digital member of staff for your website. He answers customer questions, explains services, and captures enquiries 24/7.",
     images: ["/george-preview.png?v=8"],
   },
   alternates: { canonical: "https://guardxnetwork.com" },
@@ -102,7 +102,7 @@ export default function RootLayout({
             "url": "https://www.guardxnetwork.com",
             "logo": "https://www.guardxnetwork.com/images/guardx-logo.png",
             "image": "https://www.guardxnetwork.com/images/guardx-logo.png",
-            "description": "Meet George, the AI receptionist that answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
+            "description": "Meet George, a trained digital member of staff for your website that answers customer questions, explains services, and captures enquiries 24/7.",
             "areaServed": {
               "@type": "Country",
               "name": "United Kingdom"

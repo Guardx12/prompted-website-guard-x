@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Website Design Pricing & Hosting",
+  title: "George Pricing",
   description:
-    "Website design starting from \u00a3500 with optional SEO foundation and \u00a330/month hosting.",
+    "George is a trained digital member of staff for your website. £49 per month.",
 }
 
 export default function PricingLayout({ children }: { children: React.ReactNode }) {
