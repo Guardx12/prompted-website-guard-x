@@ -244,7 +244,7 @@ export function GeorgeAssistant() {
       const data = await response.json()
       const reply = typeof data.reply === "string" && data.reply.trim()
         ? data.reply.trim()
-        : "That’s a good question. I’m George, a trained digital member of staff for the website, and my job is to answer questions clearly and help visitors understand how I can turn more website visitors into real enquiries."
+        : "That’s a good question. I’m George, a trained digital member of staff for your website, and my job is to answer questions clearly and help visitors understand how a website like this can turn more visitors into real enquiries."
 
       const assistantMessage: ChatMessage = {
         id: crypto.randomUUID(),

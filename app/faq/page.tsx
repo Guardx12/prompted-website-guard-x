@@ -16,22 +16,37 @@ const faqs = [
   {
     question: "Can George be trained for my business?",
     answer:
-      "Yes. George can be trained around your business, your services, your pricing approach, your FAQs, and the kind of enquiries you want him to help capture.",
+      "Yes. George can be trained around your business, your services, your pricing approach, your FAQs, and the kind of enquiries you want him to help capture. He can also explain examples for different business types.",
   },
   {
     question: "How much is George?",
     answer:
-      "George is £49 per month. We set George up and train him on your business so he can start helping visitors straight away.",
+      "George is £49 per month. We set George up and train him on your business so he can start helping your website visitors straight away.",
+  },
+  {
+    question: "How much is George?",
+    answer:
+      "George is a trained digital member of staff for your website. He is £49 per month and is trained on your business so he can answer questions, explain services, and capture enquiries.",
+  },
+  {
+    question: "Do you have an early adopter offer?",
+    answer:
+      "George is available for a simple monthly price of £49 per month.",
   },
   {
     question: "Do I still need loads of pages on my website?",
     answer:
-      "Not as many as a traditional site. George can take a lot of the repetitive answering work off the website, but you still want the key information visible on the page for people who prefer to read.",
+      "Not as many as a traditional site. George can take a lot of the repetitive answering work off the website, but we still keep the key information visible on the page for people who prefer to read.",
+  },
+  {
+    question: "Do you do ongoing SEO?",
+    answer:
+      "George is focused on helping visitors on your website. We set him up and train him on your business so he can start helping straight away.",
   },
   {
     question: "What happens when someone leaves their details?",
     answer:
-      "George can collect details and pass the enquiry through so you know who engaged and what they wanted help with.",
+      "George can collect details and pass the conversation through so you know who engaged and what they asked about. On hosted George pages, the lead handoff can still be routed to the right place.",
   },
 ]
 

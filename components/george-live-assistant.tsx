@@ -146,7 +146,7 @@ export function GeorgeLiveAssistant() {
     businessName: "",
     email: "",
     phone: "",
-    packageChoice: "George (£49/month)",
+    packageChoice: "",
     summary: "",
   })
 
@@ -458,7 +458,7 @@ export function GeorgeLiveAssistant() {
               Your trained digital member of staff.
             </h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
-              George answers questions, explains services, captures enquiries, and helps turn website visitors into customers — day or night.
+              George answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn website visitors into customers — day or night.
             </p>
             <p className="mt-4 text-sm font-semibold text-[#93C5FD] sm:text-base">
               Answers questions • Explains services • Captures leads • Works 24/7
@@ -468,7 +468,7 @@ export function GeorgeLiveAssistant() {
 
         <p className="mt-4 text-xl font-medium text-[#202124] sm:text-2xl">Meet George.</p>
         <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-[#5F6368] sm:text-lg sm:leading-8">
-          George is a trained digital member of staff for your website. He answers visitor questions, explains services, and helps turn more of your website traffic into real enquiries.
+          George is a trained digital member of staff for the website. He answers visitor questions, explains services, gives pricing guidance, and helps turn more of your website traffic into real enquiries.
         </p>
         <p className="mt-4 text-sm font-semibold text-[#1A73E8] sm:text-base">
           Try asking George how he could help your business handle customer enquiries.
@@ -595,9 +595,22 @@ export function GeorgeLiveAssistant() {
                     className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
                   />
                 </div>
-                <input type="hidden" name="package" value={leadForm.packageChoice} />
-                <div className="rounded-2xl border border-[#DADCE0] bg-[#F8FAFD] px-4 py-3 text-sm text-[#475569]">
-                  Package: <strong>George (£49/month)</strong>
+                <div className="grid gap-3 sm:grid-cols-1">
+                  <select
+                    name="package"
+                    value={leadForm.packageChoice}
+                    onChange={(event) => {
+                      setLeadForm((prev) => ({ ...prev, packageChoice: event.target.value }))
+                    }}
+                    required
+                    className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
+                  >
+                    <option value="" disabled>
+                      Choose package
+                    </option>
+                    <option value="George (£49/month)">George (£49/month)</option>
+                    <option value="George (£49/month)">George (£49/month)</option>
+                  </select>
                 </div>
                 <input type="hidden" name="message" value={leadForm.summary || suggestedSummary} />
                 <div className="flex justify-end">

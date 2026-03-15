@@ -6,7 +6,7 @@ export default function Head() {
         name="description"
         content="Ask George how he can answer customer questions and capture enquiries for you 24/7."
       />
-      <meta property="og:title" content="Meet George | Digital Member of Staff" />
+      <meta property="og:title" content="Meet George" />
       <meta
         property="og:description"
         content="Ask George how he can answer customer questions and capture enquiries for you 24/7."
@@ -15,7 +15,7 @@ export default function Head() {
       <meta property="og:url" content="https://guardxnetwork.com/meet-george" />
       <meta property="og:type" content="website" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Meet George | Digital Member of Staff" />
+      <meta name="twitter:title" content="Meet George" />
       <meta
         name="twitter:description"
         content="Ask George how he can answer customer questions and capture enquiries for you 24/7."

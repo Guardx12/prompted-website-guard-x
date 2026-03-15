@@ -23,7 +23,7 @@ export default function ContactPage() {
                 Want George on your website?
               </h1>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
-                Get in touch if you want George trained on your business and working on your website for £49 per month.
+                Get in touch if you want George on his own, or if you want a full website with George built in. We can help with both.
               </p>
             </div>
           </div>
@@ -77,9 +77,9 @@ export default function ContactPage() {
                 <h2 className="mb-6 text-2xl font-bold text-[#0F172A]">What to ask about</h2>
                 <ul className="space-y-4 text-[#475569]">
                   <li className="flex items-start gap-3"><Phone className="mt-0.5 h-5 w-5 text-[#1D4ED8]" /><span>How George would work for your business</span></li>
-                  <li className="flex items-start gap-3"><Phone className="mt-0.5 h-5 w-5 text-[#1D4ED8]" /><span>What George can answer on your website</span></li>
-                  <li className="flex items-start gap-3"><Phone className="mt-0.5 h-5 w-5 text-[#1D4ED8]" /><span>How we train George on your services and pricing</span></li>
-                  <li className="flex items-start gap-3"><Phone className="mt-0.5 h-5 w-5 text-[#1D4ED8]" /><span>The monthly price and getting started</span></li>
+                  <li className="flex items-start gap-3"><Phone className="mt-0.5 h-5 w-5 text-[#1D4ED8]" /><span>What is included in the website package</span></li>
+                  <li className="flex items-start gap-3"><Phone className="mt-0.5 h-5 w-5 text-[#1D4ED8]" /><span>Pricing and what George can answer on the site</span></li>
+                  <li className="flex items-start gap-3"><Phone className="mt-0.5 h-5 w-5 text-[#1D4ED8]" /><span>Whether the website is right for your business</span></li>
                 </ul>
               </CardContent>
             </Card>

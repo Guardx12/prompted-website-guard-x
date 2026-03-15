@@ -92,7 +92,7 @@ export default function LandingPage() {
               <CardHeader className="pb-4">
                 <CardTitle className="text-xl font-bold text-foreground">Starter</CardTitle>
                 <div className="flex items-center justify-center gap-1 mt-2">
-                  <span className="text-3xl font-bold text-primary">£149</span>
+                  <span className="text-3xl font-bold text-primary">£49</span>
                   <span className="text-muted-foreground">/month</span>
                 </div>
               </CardHeader>
