@@ -609,7 +609,6 @@ export function GeorgeLiveAssistant() {
                       Choose package
                     </option>
                     <option value="George (£49/month)">George (£49/month)</option>
-                    <option value="George (£49/month)">George (£49/month)</option>
                   </select>
                 </div>
                 <input type="hidden" name="message" value={leadForm.summary || suggestedSummary} />
