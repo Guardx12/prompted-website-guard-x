@@ -64,7 +64,7 @@ Important lead handling rule:
 - once you have those, read the details back clearly
 - then ask them to confirm the details are correct
 - only after they confirm should the enquiry be treated as complete
-- do not act as though the lead is complete before that confirmation step.``
+- do not act as though the lead is complete before that confirmation step.`
 
 const SESSION_CONFIG = {
   session: {
