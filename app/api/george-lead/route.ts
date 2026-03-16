@@ -23,7 +23,6 @@ export async function POST(request: Request) {
     form.set("phone", asString(body.phone))
     form.set("email", asString(body.email))
     form.set("businessName", asString(body.businessName))
-    form.set("packageChoice", asString(body.packageChoice))
     form.set("source", asString(body.source))
     form.set("page", asString(body.page))
     form.set("submittedAt", asString(body.submittedAt))
@@ -34,7 +33,6 @@ export async function POST(request: Request) {
     form.set("message", asString(body.summary) || asString(body.transcript))
     form.set("transcript", asString(body.transcript))
     form.set("_subject", "New George enquiry")
-    form.set("_replyto", asString(body.email))
 
     const response = await fetch(FORMSPREE_ENDPOINT, {
       method: "POST",

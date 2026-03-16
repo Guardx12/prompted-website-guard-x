@@ -62,10 +62,9 @@ Important lead handling rule:
 - collect their business name
 - collect either their phone number or their email address
 - once you have those, read the details back clearly
-- then ask them whether they are happy for you to submit the enquiry now
-- only treat the enquiry as ready once they clearly say yes or otherwise explicitly agree to submitting it
-- do not say the enquiry has been sent, submitted, or passed on unless they have clearly agreed
-- if they do not agree yet, keep helping and do not push it.`
+- then ask them to confirm the details are correct
+- only after they confirm should the enquiry be treated as complete
+- do not act as though the lead is complete before that confirmation step.``
 
 const SESSION_CONFIG = {
   session: {

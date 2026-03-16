@@ -10,7 +10,6 @@ type LiveMessage = {
 }
 
 type ConnectionState = "idle" | "connecting" | "connected" | "error"
-type LeadSubmissionState = "idle" | "submitting" | "success" | "error"
 
 type LeadFormState = {
   name: string
@@ -118,54 +117,10 @@ function extractLeadDetailsFromTranscript(transcript: string) {
   }
 }
 
-
-function hasSufficientLeadDetails(details: ReturnType<typeof extractLeadDetailsFromTranscript>, leadForm: LeadFormState) {
-  const name = normalizeWhitespace(details.name || leadForm.name)
-  const businessName = normalizeWhitespace(details.businessName || leadForm.businessName)
-  const email = normalizeWhitespace(details.email || leadForm.email)
-  const phone = normalizeWhitespace(details.phone || leadForm.phone)
-
-  return Boolean(name && businessName && (email || phone))
-}
-
-function assistantAskedForSubmission(message: LiveMessage | undefined) {
-  if (!message || message.role !== "assistant") return false
-  const lower = normalizeWhitespace(message.content).toLowerCase()
-  const promptWords = ["submit", "send", "pass", "forward"]
-  const consentWords = ["happy", "okay", "ok", "shall i", "would you like me", "are you happy"]
-  return promptWords.some((word) => lower.includes(word)) && consentWords.some((word) => lower.includes(word))
-}
-
-function userExplicitlyApprovedSubmission(message: LiveMessage | undefined) {
-  if (!message || message.role !== "user") return false
-  const lower = ` ${normalizeWhitespace(message.content).toLowerCase()} `
-  const approvals = [
-    " yes ",
-    " yes please ",
-    " yeah ",
-    " yeah please ",
-    " yep ",
-    " absolutely ",
-    " go ahead ",
-    " send it ",
-    " submit it ",
-    " you can submit ",
-    " that's fine ",
-    " that is fine ",
-    " happy for you to submit ",
-    " i'm happy for you to submit ",
-    " i am happy for you to submit ",
-    " please do ",
-  ]
-  const rejections = [" don't ", " do not ", " not yet ", " wait ", " stop ", " no ", " no thanks "]
-  return approvals.some((phrase) => lower.includes(phrase)) && !rejections.some((phrase) => lower.includes(phrase))
-}
-
-function shouldAutoSubmitLead(messages: LiveMessage[], details: ReturnType<typeof extractLeadDetailsFromTranscript>, leadForm: LeadFormState) {
-  if (messages.length < 2) return false
-  const latest = messages[messages.length - 1]
-  const previousAssistant = [...messages].reverse().find((message, index) => index > 0 && message.role === "assistant")
-  return hasSufficientLeadDetails(details, leadForm) && assistantAskedForSubmission(previousAssistant) && userExplicitlyApprovedSubmission(latest)
+function hasConfirmedLead(messages: LiveMessage[]) {
+  const transcript = buildTranscript(messages)
+  const details = extractLeadDetailsFromTranscript(transcript)
+  return Boolean(details.name && details.businessName && (details.phone || details.email) && details.confirmed)
 }
 
 function buildLeadSummary(messages: LiveMessage[]) {
@@ -191,11 +146,9 @@ export function GeorgeLiveAssistant() {
     businessName: "",
     email: "",
     phone: "",
-    packageChoice: "George (£49/month)",
+    packageChoice: "",
     summary: "",
   })
-  const [leadSubmissionState, setLeadSubmissionState] = useState<LeadSubmissionState>("idle")
-  const [leadSubmissionError, setLeadSubmissionError] = useState<string | null>(null)
 
   const pcRef = useRef<RTCPeerConnection | null>(null)
   const dcRef = useRef<RTCDataChannel | null>(null)
@@ -206,7 +159,6 @@ export function GeorgeLiveAssistant() {
   const scrollRef = useRef<HTMLDivElement | null>(null)
   const messagesRef = useRef<LiveMessage[]>(INITIAL_MESSAGES)
   const conversationSessionIdRef = useRef("")
-  const autoSubmissionTriggeredRef = useRef(false)
 
   useEffect(() => {
     const sessionId =
@@ -242,51 +194,6 @@ export function GeorgeLiveAssistant() {
   const detailsFromTranscript = useMemo(() => extractLeadDetailsFromTranscript(transcript), [transcript])
   const suggestedSummary = useMemo(() => buildLeadSummary(messages), [messages])
   const canShowLeadForm = true
-
-  async function submitLead({ source, submissionMode }: { source: string; submissionMode: string }) {
-    if (leadSubmissionState === "submitting" || leadSubmissionState === "success") return
-
-    setLeadSubmissionState("submitting")
-    setLeadSubmissionError(null)
-
-    const payload = {
-      name: normalizeWhitespace(leadForm.name || detailsFromTranscript.name),
-      businessName: normalizeWhitespace(leadForm.businessName || detailsFromTranscript.businessName),
-      email: normalizeWhitespace(leadForm.email || detailsFromTranscript.email),
-      phone: normalizeWhitespace(leadForm.phone || detailsFromTranscript.phone),
-      packageChoice: normalizeWhitespace(leadForm.packageChoice),
-      source,
-      page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
-      submittedAt: new Date().toISOString(),
-      submissionMode,
-      userMessageCount: messages.filter((message) => message.role === "user").length,
-      sessionId: conversationSessionIdRef.current,
-      summary: normalizeWhitespace(leadForm.summary || suggestedSummary),
-      transcript,
-    }
-
-    try {
-      const response = await fetch("/api/george-lead", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      })
-
-      const data = await response.json().catch(() => null)
-      if (!response.ok) {
-        throw new Error(typeof data?.error === "string" ? data.error : "Could not send the enquiry.")
-      }
-
-      setLeadSubmissionState("success")
-      setLeadSubmissionError(null)
-    } catch (error) {
-      autoSubmissionTriggeredRef.current = false
-      setLeadSubmissionState("error")
-      setLeadSubmissionError(error instanceof Error ? error.message : "Could not send the enquiry.")
-    }
-  }
 
   async function cleanupConversation() {
 
@@ -432,10 +339,7 @@ export function GeorgeLiveAssistant() {
     setStatusText("Connecting George…")
     setMessages(INITIAL_MESSAGES)
     messagesRef.current = INITIAL_MESSAGES
-    autoSubmissionTriggeredRef.current = false
-    setLeadSubmissionState("idle")
-    setLeadSubmissionError(null)
-    setLeadForm({ name: "", businessName: "", email: "", phone: "", packageChoice: "George (£49/month)", summary: "" })
+    setLeadForm({ name: "", businessName: "", email: "", phone: "", summary: "" })
 
     try {
       const tokenResponse = await fetch("/api/george-session", {
@@ -460,7 +364,7 @@ export function GeorgeLiveAssistant() {
 
       const audio = document.createElement("audio")
       audio.autoplay = true
-      audio.setAttribute("playsinline", "true")
+      audio.playsInline = true
       audioRef.current = audio
 
       pc.ontrack = (event) => {
@@ -543,17 +447,6 @@ export function GeorgeLiveAssistant() {
     setConnectionState("idle")
     setStatusText("Ready when you are")
   }
-
-  useEffect(() => {
-    if (autoSubmissionTriggeredRef.current) return
-    if (!shouldAutoSubmitLead(messages, detailsFromTranscript, leadForm)) return
-
-    autoSubmissionTriggeredRef.current = true
-    void submitLead({
-      source: "Meet George voice consented auto-submit",
-      submissionMode: "voice_confirmed_auto_submit",
-    })
-  }, [messages, detailsFromTranscript, leadForm])
 
   return (
     <section className="mx-auto flex min-h-[calc(100vh-88px)] w-full max-w-6xl flex-col px-4 pb-10 pt-8 sm:px-6 lg:px-8 lg:pt-10">
@@ -644,20 +537,21 @@ export function GeorgeLiveAssistant() {
         {canShowLeadForm && (
           <div className="border-t border-[#E8EAED] bg-[#F8FAFD] px-4 py-5 sm:px-6">
             <div className="mx-auto w-full max-w-4xl rounded-[28px] border border-[#DADCE0] bg-white p-5 shadow-sm sm:p-6">
-              <h2 className="text-lg font-semibold text-[#202124]">Your enquiry details</h2>
+              <h2 className="text-lg font-semibold text-[#202124]">Ready to send your details?</h2>
               <p className="mt-2 text-sm leading-6 text-[#5F6368]">
-                George can fill this in from the conversation as you talk. This form is only here so the visitor can see or edit their details. George should send it automatically only after the visitor clearly agrees.
+                George can fill this in from the conversation as you talk. Just check it, make any changes you want, then press submit yourself.
               </p>
-              <form className="mt-4 space-y-3" onSubmit={(event) => event.preventDefault()}>
-                <input type="hidden" name="source" value="Meet George checked form" />
+              <form action="https://formspree.io/f/mrbypyzv" method="POST" className="mt-4 space-y-3">
+                <input type="hidden" name="source" value="Meet George manual form" />
                 <input type="hidden" name="page" value={typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george"} />
-                <input type="hidden" name="submissionMode" value="manual_checked_submit" />
+                <input type="hidden" name="submissionMode" value="manual_submit" />
                 <input type="hidden" name="userMessageCount" value={String(messages.filter((message) => message.role === "user").length)} />
                 <input type="hidden" name="sessionId" value={conversationSessionIdRef.current} />
                 <input type="hidden" name="submittedAt" value={new Date().toISOString()} />
                 <input type="hidden" name="transcript" value={transcript} />
                 <input type="hidden" name="summary" value={leadForm.summary || suggestedSummary} />
-                
+                <input type="hidden" name="_subject" value="New George enquiry" />
+                <input type="hidden" name="_replyto" value={leadForm.email} />
                 <div className="grid gap-3 sm:grid-cols-2">
                   <input
                     type="text"
@@ -715,22 +609,17 @@ export function GeorgeLiveAssistant() {
                       Choose package
                     </option>
                     <option value="George (£49/month)">George (£49/month)</option>
+                    <option value="George (£49/month)">George (£49/month)</option>
                   </select>
                 </div>
                 <input type="hidden" name="message" value={leadForm.summary || suggestedSummary} />
-                <div className="flex flex-col items-end gap-3">
-                  {leadSubmissionState === "success" ? (
-                    <p className="text-sm font-medium text-[#1E8E3E]">Great — George has sent the enquiry through.</p>
-                  ) : null}
-                  {leadSubmissionState === "submitting" ? (
-                    <p className="inline-flex items-center gap-2 text-sm font-medium text-[#1A73E8]"><Loader2 className="h-4 w-4 animate-spin" /> George is sending the enquiry...</p>
-                  ) : null}
-                  {leadSubmissionState === "idle" ? (
-                    <p className="text-sm font-medium text-[#5F6368]">George will submit this automatically once the visitor clearly says yes.</p>
-                  ) : null}
-                  {leadSubmissionState === "error" && leadSubmissionError ? (
-                    <p className="text-sm font-medium text-[#B3261E]">{leadSubmissionError}</p>
-                  ) : null}
+                <div className="flex justify-end">
+                  <button
+                    type="submit"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1A73E8] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1558b0]"
+                  >
+                    Submit enquiry
+                  </button>
                 </div>
               </form>
             </div>
@@ -740,7 +629,7 @@ export function GeorgeLiveAssistant() {
           <div className="mx-auto flex w-full max-w-4xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-[#5F6368]">
               {connectionState === "connected"
-                ? "You’re in a live conversation. Just speak naturally and George should reply automatically. George can fill in the enquiry form below as you talk. Once you clearly agree, George will send it through automatically."
+                ? "You’re in a live conversation. Just speak naturally and George should reply automatically. George can fill in the enquiry form below as you talk, then you can check it and press submit yourself."
                 : "Start the live conversation and George will greet you, listen, and reply automatically without push-to-talk."}
             </p>
             <div className="flex items-center gap-3">
