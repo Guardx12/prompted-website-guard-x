@@ -6,7 +6,7 @@ const faqs = [
   {
     question: "What is George?",
     answer:
-      "George is a trained digital member of staff for your website. He can answer customer questions, explain your services, give contact details, give rough pricing guidance, and help capture enquiries automatically.",
+      "George is a conversational digital member of staff for your website. He can answer customer questions, explain your services, give contact details, give rough pricing guidance, and help capture enquiries automatically.",
   },
   {
     question: "What can visitors ask George?",
@@ -26,7 +26,7 @@ const faqs = [
   {
     question: "How much is George?",
     answer:
-      "George is a trained digital member of staff for your website. He is £49 per month and is trained on your business so he can answer questions, explain services, and capture enquiries.",
+      "George is a conversational digital member of staff for your website. He is £49 per month and is trained on your business so he can answer questions, explain services, and capture enquiries.",
   },
   {
     question: "Do you have an early adopter offer?",

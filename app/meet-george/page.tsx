@@ -5,12 +5,12 @@ import { GeorgeLiveAssistant } from "@/components/george-live-assistant"
 import { Navigation } from "@/components/navigation"
 
 export const metadata: Metadata = {
-  title: "Meet George | 24/7 AI Receptionist for Business Websites",
-  description: "Meet George, the AI receptionist that answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
+  title: "Meet George | Conversational Digital Member of Staff for Your Website",
+  description: "Meet George — your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.",
   alternates: { canonical: "https://guardxnetwork.com/meet-george" },
   openGraph: {
-    title: "Meet George | 24/7 AI Receptionist for Business Websites",
-    description: "Meet George, the AI receptionist that answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
+    title: "Meet George | Conversational Digital Member of Staff for Your Website",
+    description: "Meet George — your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.",
     url: "https://guardxnetwork.com/meet-george",
     type: "website",
     images: [
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Meet George | 24/7 AI Receptionist for Business Websites",
-    description: "Meet George, the AI receptionist that answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
+    title: "Meet George | Conversational Digital Member of Staff for Your Website",
+    description: "Meet George — your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.",
     images: ["https://guardxnetwork.com/george-preview.png?v=8"],
   },
 }

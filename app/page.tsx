@@ -6,14 +6,14 @@ import { Footer } from "@/components/footer"
 import { ArrowRight, Bot, Clock3, MessageSquare, PhoneCall, Sparkles, Zap } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Meet George | 24/7 AI Receptionist for Business Websites",
+  title: "Meet George | Conversational Digital Member of Staff for Your Website",
   description:
-    "Meet George, your 24/7 AI receptionist for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
+    "Meet George — your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.",
   alternates: { canonical: "https://guardxnetwork.com" },
   openGraph: {
-    title: "Meet George | 24/7 AI Receptionist for Business Websites",
+    title: "Meet George | Conversational Digital Member of Staff for Your Website",
     description:
-      "Meet George, your 24/7 AI receptionist for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
+      "Meet George — your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.",
     url: "https://guardxnetwork.com",
     type: "website",
     images: [
@@ -21,15 +21,15 @@ export const metadata: Metadata = {
         url: "https://guardxnetwork.com/george-preview.png?v=8",
         width: 1200,
         height: 630,
-        alt: "Meet George, your AI receptionist",
+        alt: "Meet George, your conversational digital member of staff for your website",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Meet George | 24/7 AI Receptionist for Business Websites",
+    title: "Meet George | Conversational Digital Member of Staff for Your Website",
     description:
-      "Meet George, your 24/7 AI receptionist for business websites. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn visitors into customers.",
+      "Meet George — your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.",
     images: ["https://guardxnetwork.com/george-preview.png?v=8"],
   },
 }
@@ -71,7 +71,7 @@ export default function HomePage() {
             </div>
 
             <h1 className="mx-auto max-w-5xl text-balance text-4xl font-extrabold tracking-tight text-[#0F172A] sm:text-5xl lg:text-6xl">
-              Turn your website into a 24/7 digital member of staff that helps turn visitors into customers.
+              Meet George — your conversational digital member of staff for your website.
             </h1>
 
             <div className="mt-8 flex justify-center">
@@ -86,34 +86,33 @@ export default function HomePage() {
             </div>
 
             <p className="mx-auto mt-8 max-w-4xl text-lg leading-8 text-[#475569] sm:text-xl">
-              Meet George — a trained digital member of staff for your website. He answers questions, explains services, gives pricing guidance, captures enquiries, and helps people know what to do next.
+              Meet George — your conversational digital member of staff for your website. George talks to website visitors, answers questions about your services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.
             </p>
 
             <p className="mx-auto mt-4 max-w-4xl text-base leading-7 text-[#475569] sm:text-lg">
-              Ask George about {questions.join(", ")}. He helps people understand what you do, what it costs, how it
-              works, and how to take the next step — even while you sleep.
+              Ask George about {questions.join(", ")}. He speaks with visitors out loud, helps them understand what you do, what it costs, what options are available, and how to take the next step — even while you sleep.
             </p>
 
             <div className="mx-auto mt-8 grid max-w-5xl gap-4 md:grid-cols-3">
               <div className="rounded-2xl bg-[#F8FAFC] p-5 text-left">
                 <MessageSquare className="h-8 w-8 text-[#1D4ED8]" />
-                <h3 className="mt-4 text-lg font-bold text-[#0F172A]">Answers questions instantly</h3>
+                <h3 className="mt-4 text-lg font-bold text-[#0F172A]">Talks to visitors instantly</h3>
                 <p className="mt-2 text-sm leading-6 text-[#475569]">
-                  George can answer everyday questions about your services, pricing, FAQs, and contact details 24/7.
+                  George talks to website visitors, answers questions about your services, facilities, pricing, FAQs, and contact details 24/7.
                 </p>
               </div>
               <div className="rounded-2xl bg-[#F8FAFC] p-5 text-left">
                 <Bot className="h-8 w-8 text-[#1D4ED8]" />
-                <h3 className="mt-4 text-lg font-bold text-[#0F172A]">Explains how your business works</h3>
+                <h3 className="mt-4 text-lg font-bold text-[#0F172A]">Explains services and options</h3>
                 <p className="mt-2 text-sm leading-6 text-[#475569]">
-                  He helps visitors understand what you do, how it works, what it costs, and what to do next.
+                  He explains your services, pricing, facilities, and available options so visitors know what to do next.
                 </p>
               </div>
               <div className="rounded-2xl bg-[#F8FAFC] p-5 text-left">
                 <Clock3 className="h-8 w-8 text-[#1D4ED8]" />
-                <h3 className="mt-4 text-lg font-bold text-[#0F172A]">Works while you sleep</h3>
+                <h3 className="mt-4 text-lg font-bold text-[#0F172A]">Guides visitors to enquire</h3>
                 <p className="mt-2 text-sm leading-6 text-[#475569]">
-                  George keeps helping visitors in the evenings, out of hours, at weekends, and whenever you are busy.
+                  George helps guide visitors toward becoming enquiries and can capture their details automatically when they are ready.
                 </p>
               </div>
             </div>
@@ -245,7 +244,7 @@ export default function HomePage() {
 
           <div className="mt-8 grid gap-6 lg:grid-cols-2">
             <div className="rounded-[28px] border border-[#DBEAFE] bg-[linear-gradient(135deg,#0f172a_0%,#111827_42%,#1d4ed8_100%)] p-6 text-white sm:p-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#BFDBFE]">George AI assistant</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#BFDBFE]">George AI Assistant</p>
               <div className="mt-3 flex items-end gap-2">
                 <span className="text-5xl font-extrabold">£49</span>
                 <span className="pb-1 text-lg text-[#DBEAFE]">/ month</span>

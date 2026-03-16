@@ -50,7 +50,7 @@ const openingMessage: ChatMessage = {
   id: "george-opening",
   role: "assistant",
   content:
-    "Hi — I’m George. I’m a trained digital member of staff for your website. I answer questions, explain how things work, and help guide visitors toward becoming customers — without sounding stiff or pushy. I can be trained on the business I’m working for, so I can talk through services, pricing, and the usual questions customers ask. Ask me anything.",
+    "Hi — I’m George. I’m a conversational digital member of staff for your website. I answer questions, explain how things work, and help guide visitors toward becoming customers — without sounding stiff or pushy. I can be trained on the business I’m working for, so I can talk through services, pricing, and the usual questions customers ask. Ask me anything.",
 }
 
 function buildTranscript(messages: ChatMessage[]) {
@@ -244,7 +244,7 @@ export function GeorgeAssistant() {
       const data = await response.json()
       const reply = typeof data.reply === "string" && data.reply.trim()
         ? data.reply.trim()
-        : "That’s a good question. I’m George, a trained digital member of staff for your website, and my job is to answer questions clearly and help visitors understand how a website like this can turn more visitors into real enquiries."
+        : "That’s a good question. I’m George, a conversational digital member of staff for your website, and my job is to answer questions clearly and help visitors understand how a website like this can turn more visitors into real enquiries."
 
       const assistantMessage: ChatMessage = {
         id: crypto.randomUUID(),
@@ -437,7 +437,7 @@ export function GeorgeAssistant() {
         </h1>
         <p className="mt-4 text-xl font-medium text-[#202124] sm:text-2xl">Meet George.</p>
         <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-[#5F6368] sm:text-lg sm:leading-8">
-          George is a trained digital member of staff for the website. He answers
+          George is a conversational digital member of staff for your website. He answers
           questions, explains how things work, deals with customer interactions, and helps turn visitors into
           customers.
         </p>
@@ -453,7 +453,7 @@ export function GeorgeAssistant() {
           </div>
           <div className="min-w-0 flex-1">
             <p className="text-base font-semibold text-[#202124] sm:text-lg">George</p>
-            <p className="text-sm text-[#5F6368]">Digital receptionist and sales assistant by GuardX</p>
+            <p className="text-sm text-[#5F6368]">Your conversational digital member of staff for your website</p>
           </div>
           <div className="flex items-center gap-2 text-xs font-medium text-[#5F6368] sm:text-sm">
             <span className={`inline-flex items-center gap-2 rounded-full px-3 py-2 ${isRecording ? "bg-[#FDECEA] text-[#B3261E]" : voiceEnabled ? "bg-[#EAF6EE] text-[#1E8E3E]" : "bg-[#F1F3F4] text-[#5F6368]"}`}>
