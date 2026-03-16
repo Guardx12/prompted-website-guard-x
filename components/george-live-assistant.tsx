@@ -644,21 +644,11 @@ export function GeorgeLiveAssistant() {
         {canShowLeadForm && (
           <div className="border-t border-[#E8EAED] bg-[#F8FAFD] px-4 py-5 sm:px-6">
             <div className="mx-auto w-full max-w-4xl rounded-[28px] border border-[#DADCE0] bg-white p-5 shadow-sm sm:p-6">
-              <h2 className="text-lg font-semibold text-[#202124]">Ready to send your details?</h2>
+              <h2 className="text-lg font-semibold text-[#202124]">Your enquiry details</h2>
               <p className="mt-2 text-sm leading-6 text-[#5F6368]">
-                George can fill this in from the conversation as you talk. He should only send it once you clearly say yes to submitting it. You can still check or edit any details here first.
+                George can fill this in from the conversation as you talk. This form is only here so the visitor can see or edit their details. George should send it automatically only after the visitor clearly agrees.
               </p>
-              <form
-                className="mt-4 space-y-3"
-                onSubmit={(event) => {
-                  event.preventDefault()
-                  autoSubmissionTriggeredRef.current = true
-                  void submitLead({
-                    source: "Meet George checked form",
-                    submissionMode: "manual_checked_submit",
-                  })
-                }}
-              >
+              <form className="mt-4 space-y-3" onSubmit={(event) => event.preventDefault()}>
                 <input type="hidden" name="source" value="Meet George checked form" />
                 <input type="hidden" name="page" value={typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george"} />
                 <input type="hidden" name="submissionMode" value="manual_checked_submit" />
@@ -730,19 +720,17 @@ export function GeorgeLiveAssistant() {
                 <input type="hidden" name="message" value={leadForm.summary || suggestedSummary} />
                 <div className="flex flex-col items-end gap-3">
                   {leadSubmissionState === "success" ? (
-                    <p className="text-sm font-medium text-[#1E8E3E]">Great — the enquiry has been sent through.</p>
+                    <p className="text-sm font-medium text-[#1E8E3E]">Great — George has sent the enquiry through.</p>
+                  ) : null}
+                  {leadSubmissionState === "submitting" ? (
+                    <p className="inline-flex items-center gap-2 text-sm font-medium text-[#1A73E8]"><Loader2 className="h-4 w-4 animate-spin" /> George is sending the enquiry...</p>
+                  ) : null}
+                  {leadSubmissionState === "idle" ? (
+                    <p className="text-sm font-medium text-[#5F6368]">George will submit this automatically once the visitor clearly says yes.</p>
                   ) : null}
                   {leadSubmissionState === "error" && leadSubmissionError ? (
                     <p className="text-sm font-medium text-[#B3261E]">{leadSubmissionError}</p>
                   ) : null}
-                  <button
-                    type="submit"
-                    disabled={leadSubmissionState === "submitting" || leadSubmissionState === "success"}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1A73E8] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1558b0] disabled:cursor-not-allowed disabled:opacity-60"
-                  >
-                    {leadSubmissionState === "submitting" ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-                    {leadSubmissionState === "success" ? "Enquiry sent" : leadSubmissionState === "submitting" ? "Sending enquiry..." : "Submit enquiry"}
-                  </button>
                 </div>
               </form>
             </div>
@@ -752,7 +740,7 @@ export function GeorgeLiveAssistant() {
           <div className="mx-auto flex w-full max-w-4xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-[#5F6368]">
               {connectionState === "connected"
-                ? "You’re in a live conversation. Just speak naturally and George should reply automatically. George can fill in the enquiry form below as you talk. Once you clearly agree, he can send it through automatically, and you can still submit it yourself here if you prefer."
+                ? "You’re in a live conversation. Just speak naturally and George should reply automatically. George can fill in the enquiry form below as you talk. Once you clearly agree, George will send it through automatically."
                 : "Start the live conversation and George will greet you, listen, and reply automatically without push-to-talk."}
             </p>
             <div className="flex items-center gap-3">
