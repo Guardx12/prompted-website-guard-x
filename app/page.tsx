@@ -296,23 +296,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="px-4 pb-16 pt-6 sm:px-6 lg:px-8 lg:pb-20">
-        <div className="mx-auto max-w-6xl rounded-[26px] border border-[#E5E7EB] bg-[#F8FAFC] p-6 shadow-sm">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">Also available</p>
-          <h3 className="mt-3 text-2xl font-bold text-[#0F172A]">Need more Google reviews?</h3>
-          <p className="mt-3 max-w-3xl text-base leading-7 text-[#475569]">
-            Review generation is still available as a separate service. We have just kept it lower down here so the main website stays focused on George.
-          </p>
-          <div className="mt-5">
-            <Link
-              href="/review-generation"
-              className="inline-flex items-center justify-center rounded-2xl border border-[#CBD5E1] bg-white px-5 py-3 font-semibold text-[#0F172A] transition hover:border-[#BFDBFE] hover:bg-white"
-            >
-              Learn about review generation
-            </Link>
-          </div>
-        </div>
-      </section>
 
       <Footer />
 
