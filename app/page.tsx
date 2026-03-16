@@ -235,41 +235,53 @@ export default function HomePage() {
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">Pricing</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">
-              Simple monthly pricing for George on his own, or a full website with George built in.
+              Simple monthly pricing for George.
             </h2>
             <p className="mt-4 text-lg leading-8 text-[#475569]">
-              Keep your existing website and add George, or let us build you a modern website with George, hosting, and SEO foundations included.
+              George is your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.
             </p>
           </div>
 
-          <div className="mt-8 grid gap-6 lg:grid-cols-2">
-            <div className="rounded-[28px] border border-[#DBEAFE] bg-[linear-gradient(135deg,#0f172a_0%,#111827_42%,#1d4ed8_100%)] p-6 text-white sm:p-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#BFDBFE]">George AI Assistant</p>
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            <div className="rounded-[28px] border border-[#DADCE0] bg-white p-6 sm:p-8">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">George Starter</p>
               <div className="mt-3 flex items-end gap-2">
-                <span className="text-5xl font-extrabold">£49</span>
-                <span className="pb-1 text-lg text-[#DBEAFE]">/ month</span>
+                <span className="text-5xl font-extrabold text-[#0F172A]">£49</span>
+                <span className="pb-1 text-lg text-[#475569]">/ month per location</span>
+              </div>
+              <p className="mt-4 text-sm leading-6 text-[#475569]">
+                Designed for smaller businesses with lighter website traffic.
+              </p>
+            </div>
+            <div className="relative rounded-[28px] border-2 border-[#1D4ED8] bg-[linear-gradient(135deg,#0f172a_0%,#111827_42%,#1d4ed8_100%)] p-6 text-white sm:p-8">
+              <div className="absolute -top-3 left-6 inline-flex rounded-full bg-[#FBBF24] px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-[#0F172A]">
+                Most Popular
+              </div>
+              <p className="pt-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#BFDBFE]">George Standard</p>
+              <div className="mt-3 flex items-end gap-2">
+                <span className="text-5xl font-extrabold">£99</span>
+                <span className="pb-1 text-lg text-[#DBEAFE]">/ month per location</span>
               </div>
               <p className="mt-4 text-sm leading-6 text-[#DBEAFE]">
-                Add George to your website as a trained digital member of staff that answers questions, explains services, gives pricing guidance, and captures enquiries.
+                Ideal for most small to medium businesses.
               </p>
             </div>
             <div className="rounded-[28px] border border-[#DADCE0] bg-[#F8FAFC] p-6 sm:p-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">George</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">George Growth</p>
               <div className="mt-3 flex items-end gap-2">
-                <span className="text-5xl font-extrabold text-[#0F172A]">£49</span>
-                <span className="pb-1 text-lg text-[#475569]">/ month</span>
+                <span className="text-5xl font-extrabold text-[#0F172A]">£149</span>
+                <span className="pb-1 text-lg text-[#475569]">/ month per location</span>
               </div>
               <p className="mt-4 text-sm leading-6 text-[#475569]">
-                We set George up, train him on your business, and get him ready to start helping your website visitors straight away.
+                For busier businesses with higher enquiry potential.
               </p>
             </div>
           </div>
 
           <div className="mt-6 rounded-2xl border border-[#DBEAFE] bg-[#F8FBFF] p-5">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">Early adopter offer</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">Custom plans</p>
             <p className="mt-2 text-base leading-7 text-[#475569]">
-              George is available for a simple monthly price of <strong>£49/month</strong>.
-              Early adopter pricing stays locked in for those first clients.
+              Businesses with multiple locations or requiring more than 1,500 conversations per month should request a custom quote.
             </p>
           </div>
 

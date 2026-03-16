@@ -21,17 +21,17 @@ const faqs = [
   {
     question: "How much is George?",
     answer:
-      "George is £49 per month. We set George up and train him on your business so he can start helping your website visitors straight away.",
+      "George has three plans: Starter at £49/month per location, Standard at £99/month per location, and Growth at £149/month per location. We set George up and train him on your business so he can start helping your website visitors straight away.",
   },
   {
     question: "How much is George?",
     answer:
-      "George is a conversational digital member of staff for your website. He is £49 per month and is trained on your business so he can answer questions, explain services, and capture enquiries.",
+      "George is your conversational digital member of staff for your website. Plans start at £49/month per location, with Standard at £99/month per location and Growth at £149/month per location depending on conversation volume.",
   },
   {
     question: "Do you have an early adopter offer?",
     answer:
-      "George is available for a simple monthly price of £49 per month.",
+      "George has Starter, Standard, and Growth plans, starting from £49/month per location. If you need multiple locations or more than 1,500 conversations per month, you can request a custom quote.",
   },
   {
     question: "Do I still need loads of pages on my website?",

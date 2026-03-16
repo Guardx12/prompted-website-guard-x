@@ -608,7 +608,10 @@ export function GeorgeLiveAssistant() {
                     <option value="" disabled>
                       Choose package
                     </option>
-                    <option value="George (£49/month)">George (£49/month)</option>
+                    <option value="George Starter (£49/month per location)">George Starter (£49/month per location)</option>
+                    <option value="George Standard (£99/month per location)">George Standard (£99/month per location)</option>
+                    <option value="George Growth (£149/month per location)">George Growth (£149/month per location)</option>
+                    <option value="Custom Quote">Custom Quote</option>
                   </select>
                 </div>
                 <input type="hidden" name="message" value={leadForm.summary || suggestedSummary} />
