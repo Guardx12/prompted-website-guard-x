@@ -2,7 +2,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { ArrowRight, CheckCircle2, MessageSquare } from "lucide-react"
+import { ArrowRight, CheckCircle2, MessageSquare, Sparkles } from "lucide-react"
+import { ValueCallout } from "@/components/value-callout"
 
 const starterIncluded = [
   "George trained on your business",
@@ -24,6 +25,14 @@ const growthIncluded = [
   "Built for busier businesses with higher enquiry potential",
 ]
 
+const attractionsIncluded = [
+  "Higher conversation capacity",
+  "Custom training on your business, venue, or attraction",
+  "Visitor-focused conversation flows",
+  "Optimised enquiry and booking capture",
+  "Ongoing improvements as your site and offer evolve",
+]
+
 export default function PricingPage() {
   return (
     <main className="min-h-screen bg-white text-[#0F172A]">
@@ -32,90 +41,202 @@ export default function PricingPage() {
       <section className="px-4 pb-12 pt-10 sm:px-6 lg:px-8 lg:pb-16 lg:pt-16">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-3xl">
-            <div className="inline-flex rounded-full border border-[#BFDBFE] bg-[#EFF6FF] px-4 py-2 text-sm font-semibold text-[#1D4ED8]">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#BFDBFE] bg-[#EFF6FF] px-4 py-2 text-sm font-semibold text-[#1D4ED8]">
+              <Sparkles className="h-4 w-4" />
               George pricing
             </div>
             <h1 className="mt-5 text-4xl font-extrabold tracking-tight sm:text-5xl">
-              Simple monthly pricing for George.
+              Simple monthly pricing for George
             </h1>
             <p className="mt-6 text-lg leading-8 text-[#475569] sm:text-xl">
-              George is your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.
+              George is your conversational digital member of staff for your website — answering questions, explaining services,
+              and helping turn more of your existing website traffic into enquiries or bookings.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            <div className="rounded-[30px] border border-[#DADCE0] bg-white p-6 shadow-sm sm:p-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">George Starter</p>
-              <div className="mt-3 flex items-end gap-2">
-                <span className="text-5xl font-extrabold">£49</span>
-                <span className="pb-1 text-lg text-[#475569]">/ month per location</span>
+          <div className="mt-10 grid gap-4 lg:grid-cols-3">
+            <ValueCallout
+              tone="dark"
+              eyebrow="Value"
+              title="Less than a part-time staff member for a single day — and George works 24/7."
+              body="George handles the early questions, keeps visitors engaged, and helps them move toward an enquiry even when you are busy or closed."
+            />
+            <ValueCallout
+              tone="blue"
+              eyebrow="Revenue"
+              title="One extra customer can often pay for George."
+              body="For many local businesses, recovering just one missed opportunity in a month can cover the cost."
+            />
+            <ValueCallout
+              tone="gold"
+              eyebrow="High-traffic sites"
+              title="One missed booking can cover this."
+              body="For attractions, venues, and visitor-focused websites, a small lift in conversions can make the monthly cost look tiny."
+            />
+          </div>
+
+          <div className="mt-10 rounded-[28px] border border-[#E5E7EB] bg-[#F8FAFC] p-6 shadow-sm sm:p-8">
+            <h2 className="text-2xl font-bold text-[#0F172A]">For small to medium businesses</h2>
+            <p className="mt-3 max-w-3xl text-base leading-7 text-[#475569]">
+              For businesses that want George handling customer questions, explaining services and pricing, and helping turn visitors into enquiries.
+            </p>
+
+            <div className="mt-8 grid gap-6 lg:grid-cols-3">
+              <div className="rounded-[30px] border border-[#DADCE0] bg-white p-6 shadow-sm sm:p-8">
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">George Starter</p>
+                <div className="mt-3 flex items-end gap-2">
+                  <span className="text-5xl font-extrabold">£49</span>
+                  <span className="pb-1 text-lg text-[#475569]">/ month per location</span>
+                </div>
+                <p className="mt-4 text-base leading-7 text-[#475569]">Designed for smaller businesses with lighter website traffic.</p>
+                <div className="mt-5 rounded-3xl border border-[#DBEAFE] bg-[linear-gradient(135deg,#EFF6FF_0%,#FFFFFF_100%)] p-4 shadow-sm">
+                  <p className="text-sm font-black uppercase tracking-[0.2em] text-[#1D4ED8]">Why it is easy to justify</p>
+                  <p className="mt-2 text-base font-bold leading-7 text-[#0F172A]">Less than many businesses lose from one missed lead.</p>
+                </div>
+                <ul className="mt-6 space-y-3">
+                  {starterIncluded.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" />
+                      <span className="text-sm leading-6 text-[#475569]">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <p className="mt-4 text-base leading-7 text-[#475569]">
-                Designed for smaller businesses with lighter website traffic.
-              </p>
-              <ul className="mt-6 space-y-3">
-                {starterIncluded.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" />
-                    <span className="text-sm leading-6 text-[#475569]">{item}</span>
-                  </li>
-                ))}
-              </ul>
+
+              <div className="relative rounded-[30px] border-2 border-[#1D4ED8] bg-[linear-gradient(135deg,#0f172a_0%,#111827_42%,#1d4ed8_100%)] p-6 text-white shadow-[0_24px_80px_rgba(17,24,39,0.24)] sm:p-8">
+                <div className="absolute -top-3 left-6 inline-flex rounded-full bg-[#FBBF24] px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-[#0F172A]">
+                  Most Popular
+                </div>
+                <p className="pt-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#BFDBFE]">George Standard</p>
+                <div className="mt-3 flex items-end gap-2">
+                  <span className="text-5xl font-extrabold">£99</span>
+                  <span className="pb-1 text-lg text-[#DBEAFE]">/ month per location</span>
+                </div>
+                <p className="mt-4 text-base leading-7 text-[#DBEAFE]">Ideal for most small to medium businesses.</p>
+                <div className="mt-5 rounded-3xl border border-white/20 bg-white/10 p-4 backdrop-blur">
+                  <p className="text-sm font-black uppercase tracking-[0.2em] text-[#BFDBFE]">Most businesses</p>
+                  <p className="mt-2 text-base font-bold leading-7 text-white">This is often cheaper than the value of one extra customer.</p>
+                </div>
+                <ul className="mt-6 space-y-3">
+                  {standardIncluded.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#BFDBFE]" />
+                      <span className="text-sm leading-6 text-[#DBEAFE]">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="rounded-[30px] border border-[#DADCE0] bg-white p-6 shadow-sm sm:p-8">
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">George Growth</p>
+                <div className="mt-3 flex items-end gap-2">
+                  <span className="text-5xl font-extrabold">£149</span>
+                  <span className="pb-1 text-lg text-[#475569]">/ month per location</span>
+                </div>
+                <p className="mt-4 text-base leading-7 text-[#475569]">For busier businesses with higher enquiry potential.</p>
+                <div className="mt-5 rounded-3xl border border-[#DBEAFE] bg-[linear-gradient(135deg,#EFF6FF_0%,#FFFFFF_100%)] p-4 shadow-sm">
+                  <p className="text-sm font-black uppercase tracking-[0.2em] text-[#1D4ED8]">More traffic</p>
+                  <p className="mt-2 text-base font-bold leading-7 text-[#0F172A]">When more visitors are asking questions, George earns his keep quickly.</p>
+                </div>
+                <ul className="mt-6 space-y-3">
+                  {growthIncluded.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" />
+                      <span className="text-sm leading-6 text-[#475569]">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 rounded-[28px] border border-[#DBEAFE] bg-[linear-gradient(180deg,#EFF6FF_0%,#FFFFFF_100%)] p-6 shadow-sm sm:p-8">
+            <h2 className="text-2xl font-bold text-[#0F172A]">For attractions and high-traffic websites</h2>
+            <p className="mt-3 max-w-3xl text-base leading-7 text-[#475569]">
+              For businesses with higher visitor numbers, where even a small increase in conversions can result in significant additional revenue.
+            </p>
+
+            <div className="mt-6 rounded-[30px] border border-[#BFDBFE] bg-white p-6 shadow-sm sm:p-8">
+              <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">George Pro</p>
+                  <h3 className="mt-3 text-3xl font-bold text-[#0F172A]">Attractions and high-traffic setups</h3>
+                  <div className="mt-4 flex items-end gap-2">
+                    <span className="text-5xl font-extrabold">£149–£299</span>
+                    <span className="pb-1 text-lg text-[#475569]">/ month depending on setup</span>
+                  </div>
+                  <p className="mt-4 text-base leading-7 text-[#475569]">
+                    Suitable for farm parks, family attractions, venues, and businesses where a small lift in conversions can lead to meaningful extra revenue.
+                  </p>
+                  <div className="mt-5 rounded-3xl border border-[#BFDBFE] bg-[linear-gradient(135deg,#EFF6FF_0%,#FFFFFF_100%)] p-4 shadow-sm">
+                    <p className="text-sm font-black uppercase tracking-[0.2em] text-[#1D4ED8]">Why attractions pay attention</p>
+                    <p className="mt-2 text-lg font-extrabold leading-7 text-[#0F172A]">One missed booking can cover this.</p>
+                  </div>
+                </div>
+                <div>
+                  <ul className="space-y-3">
+                    {attractionsIncluded.map((item) => (
+                      <li key={item} className="flex items-start gap-3 rounded-2xl bg-[#F8FAFC] p-4">
+                        <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" />
+                        <span className="text-sm leading-6 text-[#475569]">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="mt-6 flex flex-col gap-4 sm:flex-row">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center rounded-2xl bg-[#1D4ED8] px-6 py-3 font-bold text-white transition hover:bg-[#1E40AF]"
+                >
+                  Request a tailored demo
+                </Link>
+                <Link
+                  href="/meet-george"
+                  className="inline-flex items-center justify-center rounded-2xl border border-[#D1D5DB] bg-white px-6 py-3 font-bold text-[#0F172A] transition hover:border-[#BFDBFE] hover:bg-[#F8FAFC]"
+                >
+                  See George in action
+                </Link>
+              </div>
             </div>
 
-            <div className="relative rounded-[30px] border-2 border-[#1D4ED8] bg-[linear-gradient(135deg,#0f172a_0%,#111827_42%,#1d4ed8_100%)] p-6 text-white shadow-[0_24px_80px_rgba(17,24,39,0.24)] sm:p-8">
-              <div className="absolute -top-3 left-6 inline-flex rounded-full bg-[#FBBF24] px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-[#0F172A]">
-                Most Popular
-              </div>
-              <p className="pt-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#BFDBFE]">George Standard</p>
-              <div className="mt-3 flex items-end gap-2">
-                <span className="text-5xl font-extrabold">£99</span>
-                <span className="pb-1 text-lg text-[#DBEAFE]">/ month per location</span>
-              </div>
-              <p className="mt-4 text-base leading-7 text-[#DBEAFE]">
-                Ideal for most small to medium businesses.
-              </p>
-              <ul className="mt-6 space-y-3">
-                {standardIncluded.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#BFDBFE]" />
-                    <span className="text-sm leading-6 text-[#DBEAFE]">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <p className="mt-5 text-sm leading-6 text-[#475569]">
+              Pricing is based on usage and setup requirements. Most businesses fall within the ranges above.
+            </p>
+          </div>
 
-            <div className="rounded-[30px] border border-[#DADCE0] bg-white p-6 shadow-sm sm:p-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">George Growth</p>
-              <div className="mt-3 flex items-end gap-2">
-                <span className="text-5xl font-extrabold">£149</span>
-                <span className="pb-1 text-lg text-[#475569]">/ month per location</span>
+          <div className="mt-8 rounded-[26px] border border-[#E5E7EB] bg-[#F8FAFC] p-6 shadow-sm">
+            <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+              <div>
+                <MessageSquare className="h-9 w-9 text-[#1D4ED8]" />
+                <h2 className="mt-4 text-2xl font-bold">What George does</h2>
+                <p className="mt-4 text-sm leading-7 text-[#475569]">
+                  George talks to website visitors, answers questions about services, pricing, facilities, and FAQs, guides visitors toward becoming enquiries or bookings, and captures details automatically.
+                </p>
               </div>
-              <p className="mt-4 text-base leading-7 text-[#475569]">
-                For busier businesses with higher enquiry potential.
-              </p>
-              <ul className="mt-6 space-y-3">
-                {growthIncluded.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" />
-                    <span className="text-sm leading-6 text-[#475569]">{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="rounded-2xl bg-white p-5 shadow-sm">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#1D4ED8]">George</p>
+                <p className="mt-3 text-base leading-7 text-[#475569]">
+                  Your conversational digital member of staff for businesses, attractions, and visitor-focused websites.
+                </p>
+              </div>
             </div>
           </div>
 
           <div className="mt-8 rounded-[26px] border border-[#DBEAFE] bg-[#F8FBFF] p-6 shadow-sm">
-            <h2 className="text-2xl font-bold text-[#0F172A]">Custom plans</h2>
+            <h2 className="text-2xl font-bold text-[#0F172A]">Need something custom?</h2>
             <p className="mt-3 text-base leading-7 text-[#475569]">
-              Businesses with multiple locations or requiring more than 1,500 conversations per month should request a custom quote.
+              Businesses with multiple locations, higher usage requirements, or more complex setups can request a tailored quote.
             </p>
             <div className="mt-5 flex flex-col gap-4 sm:flex-row">
               <Link
                 href="/meet-george"
                 className="inline-flex items-center justify-center gap-3 rounded-2xl bg-[#1D4ED8] px-6 py-3 font-bold text-white transition hover:bg-[#1E40AF]"
               >
-                <Image src="/george-logo.png" alt="George" width={38} height={38} className="h-8 w-8 rounded-md" /> <span>Meet George</span> <ArrowRight className="h-5 w-5" />
+                <Image src="/george-logo.png" alt="George" width={38} height={38} className="h-8 w-8 rounded-md" />
+                <span>Meet George</span>
+                <ArrowRight className="h-5 w-5" />
               </Link>
               <Link
                 href="/contact"
@@ -125,24 +246,6 @@ export default function PricingPage() {
               </Link>
             </div>
           </div>
-
-          <div className="mt-10 rounded-[26px] border border-[#E5E7EB] bg-[#F8FAFC] p-6 shadow-sm">
-            <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-              <div>
-                <MessageSquare className="h-9 w-9 text-[#1D4ED8]" />
-                <h2 className="mt-4 text-2xl font-bold">What George does</h2>
-                <p className="mt-4 text-sm leading-7 text-[#475569]">
-                  George talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.
-                </p>
-              </div>
-              <div className="rounded-2xl bg-white p-5 shadow-sm">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#1D4ED8]">George AI Assistant</p>
-                <p className="mt-3 text-base leading-7 text-[#475569]">
-                  Your conversational digital member of staff for your website.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -150,20 +253,3 @@ export default function PricingPage() {
     </main>
   )
 }
-
-<section className="py-16">
-  <h2 className="text-2xl font-semibold mb-4 text-center">For attractions and high-traffic websites</h2>
-  <p className="text-center text-muted-foreground mb-6">
-    For businesses with higher visitor numbers, where even a small increase in conversions can result in significant additional revenue.
-  </p>
-  <div className="text-center">
-    <h3 className="text-xl font-semibold">George Pro (Attractions)</h3>
-    <p className="mt-2">£149–£299/month depending on setup</p>
-    <ul className="mt-4 space-y-2 text-muted-foreground">
-      <li>Higher conversation capacity</li>
-      <li>Custom training on your business</li>
-      <li>Optimised enquiry capture</li>
-      <li>Ongoing improvements</li>
-    </ul>
-  </div>
-</section>

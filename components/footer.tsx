@@ -11,9 +11,10 @@ export function Footer() {
               <Image src="/guardx-logo.png" alt="GuardX Logo" width={220} height={70} className="h-16 w-auto sm:h-20" />
             </div>
             <p className="mb-4 text-[#475569]">
-              GuardX builds fast, modern websites with George — a conversational digital member of staff that answers customer questions, explains services, and captures enquiries for your business 24/7.
+              GuardX builds fast, modern websites with George — a conversational digital member of staff that answers visitor questions,
+              explains services and pricing, and captures enquiries or bookings 24/7.
             </p>
-            <p className="mb-4 text-[#475569]">GuardX Limited — websites powered by George for UK businesses.</p>
+            <p className="mb-4 text-[#475569]">GuardX Limited — websites powered by George for UK businesses and attractions.</p>
             <p className="text-sm text-[#64748B]">&copy; {new Date().getFullYear()} GuardX. All rights reserved.</p>
           </div>
 
@@ -31,9 +32,9 @@ export function Footer() {
           <div>
             <h3 className="mb-4 font-semibold text-[#0F172A]">What George does</h3>
             <ul className="space-y-2 text-[#475569]">
-              <li>Answers customer questions</li>
+              <li>Answers visitor questions</li>
               <li>Explains services and pricing</li>
-              <li>Captures enquiries</li>
+              <li>Captures enquiries and bookings</li>
               <li>Helps guide visitors</li>
               <li>Works day and night</li>
             </ul>
