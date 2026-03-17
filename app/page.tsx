@@ -8,12 +8,12 @@ import { ArrowRight, Bot, Clock3, MessageSquare, PhoneCall, Sparkles, Zap } from
 export const metadata: Metadata = {
   title: "Meet George | Conversational Digital Member of Staff for Your Website",
   description:
-    "Meet George — your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.",
+    "Turn your website into a 24/7 member of staff that converts visitors into customers Meet George — a trained digital member of staff that speaks with your visitors, answers their questions instantly, explains your services and pricing, and guides them towards becoming enquiries or bookings.",
   alternates: { canonical: "https://guardxnetwork.com" },
   openGraph: {
     title: "Meet George | Conversational Digital Member of Staff for Your Website",
     description:
-      "Meet George — your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.",
+      "Turn your website into a 24/7 member of staff that converts visitors into customers Meet George — a trained digital member of staff that speaks with your visitors, answers their questions instantly, explains your services and pricing, and guides them towards becoming enquiries or bookings.",
     url: "https://guardxnetwork.com",
     type: "website",
     images: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Meet George | Conversational Digital Member of Staff for Your Website",
     description:
-      "Meet George — your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.",
+      "Turn your website into a 24/7 member of staff that converts visitors into customers Meet George — a trained digital member of staff that speaks with your visitors, answers their questions instantly, explains your services and pricing, and guides them towards becoming enquiries or bookings.",
     images: ["https://guardxnetwork.com/george-preview.png?v=8"],
   },
 }
@@ -71,7 +71,7 @@ export default function HomePage() {
             </div>
 
             <h1 className="mx-auto max-w-5xl text-balance text-4xl font-extrabold tracking-tight text-[#0F172A] sm:text-5xl lg:text-6xl">
-              Meet George — your conversational digital member of staff for your website.
+              Turn your website into a 24/7 member of staff that converts visitors into customers
             </h1>
 
             <div className="mt-8 flex justify-center">
@@ -86,7 +86,7 @@ export default function HomePage() {
             </div>
 
             <p className="mx-auto mt-8 max-w-4xl text-lg leading-8 text-[#475569] sm:text-xl">
-              Meet George — your conversational digital member of staff for your website. George talks to website visitors, answers questions about your services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.
+              Turn your website into a 24/7 member of staff that converts visitors into customers George talks to website visitors, answers questions about your services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.
             </p>
 
             <p className="mx-auto mt-4 max-w-4xl text-base leading-7 text-[#475569] sm:text-lg">
@@ -135,6 +135,26 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+<section className="py-16">
+  <div className="max-w-4xl mx-auto text-center">
+    <h2 className="text-3xl font-semibold mb-6">Most websites lose potential customers</h2>
+    <p className="text-muted-foreground mb-6">
+      When visitors can’t quickly find answers, they leave. They check another website, get distracted, or never come back.
+    </p>
+    <p className="font-medium mb-8">George changes that.</p>
+    <ul className="space-y-3 text-muted-foreground">
+      <li>Visitors get instant answers instead of leaving</li>
+      <li>More people stay on your site longer</li>
+      <li>More visitors turn into enquiries</li>
+      <li>More enquiries turn into paying customers</li>
+    </ul>
+    <p className="mt-8 font-medium">
+      Even a small increase in conversions from your existing traffic can make a noticeable difference to your revenue.
+    </p>
+  </div>
+</section>
+
 
       <section className="px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         <div className="mx-auto max-w-6xl rounded-[30px] border border-[#DADCE0] bg-white p-6 shadow-sm sm:p-8">
@@ -238,7 +258,7 @@ export default function HomePage() {
               Simple monthly pricing for George.
             </h2>
             <p className="mt-4 text-lg leading-8 text-[#475569]">
-              George is your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.
+              George is your conversational digital member of staff for your website. Meet George — a trained digital member of staff that speaks with your visitors, answers their questions instantly, explains your services and pricing, and guides them towards becoming enquiries or bookings.
             </p>
           </div>
 

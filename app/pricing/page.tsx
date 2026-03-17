@@ -150,3 +150,20 @@ export default function PricingPage() {
     </main>
   )
 }
+
+<section className="py-16">
+  <h2 className="text-2xl font-semibold mb-4 text-center">For attractions and high-traffic websites</h2>
+  <p className="text-center text-muted-foreground mb-6">
+    For businesses with higher visitor numbers, where even a small increase in conversions can result in significant additional revenue.
+  </p>
+  <div className="text-center">
+    <h3 className="text-xl font-semibold">George Pro (Attractions)</h3>
+    <p className="mt-2">£149–£299/month depending on setup</p>
+    <ul className="mt-4 space-y-2 text-muted-foreground">
+      <li>Higher conversation capacity</li>
+      <li>Custom training on your business</li>
+      <li>Optimised enquiry capture</li>
+      <li>Ongoing improvements</li>
+    </ul>
+  </div>
+</section>
