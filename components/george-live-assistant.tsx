@@ -608,9 +608,10 @@ export function GeorgeLiveAssistant() {
                     <option value="" disabled>
                       Choose package
                     </option>
-                    <option value="George Starter (£49/month per location)">George Starter (£49/month per location)</option>
                     <option value="George Standard (£99/month per location)">George Standard (£99/month per location)</option>
                     <option value="George Growth (£149/month per location)">George Growth (£149/month per location)</option>
+                    <option value="George Pro (£199/month per location)">George Pro (£199/month per location)</option>
+                    <option value="George Pro+ (Attractions £199–£499/month)">George Pro+ (Attractions £199–£499/month)</option>
                     <option value="Custom Quote">Custom Quote</option>
                   </select>
                 </div>

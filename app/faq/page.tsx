@@ -1,48 +1,47 @@
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { ValueCallout } from "@/components/value-callout"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const faqs = [
   {
     question: "What is George?",
     answer:
-      "George is a conversational digital member of staff built into your website. He can answer visitor questions, explain your services, pricing, opening information or facilities, and help move people towards becoming an enquiry or booking. He is trained on your business so visitors get quick, useful answers instead of leaving the site.",
+      "George is a conversational digital member of staff built into your website. He speaks with visitors, answers questions about your services, pricing, facilities, and FAQs, and helps move people towards becoming an enquiry or booking.",
   },
   {
     question: "How does George help my business?",
     answer:
-      "George keeps visitors engaged, gives them answers instantly, and helps turn more of your existing website traffic into enquiries or bookings instead of losing people who leave without taking action. For many businesses, one extra customer can more than cover the monthly cost.",
+      "George helps by giving visitors instant answers instead of letting them leave your website. He keeps people engaged, explains what you do clearly, and helps turn more of your existing traffic into real enquiries or bookings.",
   },
   {
-    question: "Does this work for attractions and parks?",
+    question: "Can George be trained on my business?",
     answer:
-      "Yes. George is especially useful for attractions, parks, visitor destinations, and venues where people have questions before they visit or book. He can answer questions about opening times, activities, facilities, pricing, rules, and what visitors need to know before coming.",
+      "Yes. George is trained on your business, services, pricing, facilities, common customer questions, and the information visitors usually need before taking the next step.",
   },
   {
-    question: "Can George be trained for my business?",
+    question: "Does this work for attractions as well as businesses?",
     answer:
-      "Yes. George can be trained around your business, your services, your pricing approach, your FAQs, and the type of enquiries or bookings you want him to help capture.",
+      "Yes. George is especially effective for attractions, venues, and visitor-focused websites because visitors often have lots of questions before they book or visit. He can help with pricing, opening information, facilities, events, and planning a visit.",
   },
   {
-    question: "What can visitors ask George?",
+    question: "What are the business pricing plans?",
     answer:
-      "Visitors can ask George about pricing, FAQs, contact details, how your business works, what services you offer, opening information, facilities, and anything else you train him on.",
+      "Business pricing starts at £99 per month per location for George Standard. George Growth is £149 per month per location, and George Pro is £199 per month per location depending on how much usage and enquiry potential you need.",
   },
   {
-    question: "How much is George for small businesses?",
+    question: "What is the pricing for attractions or higher-traffic websites?",
     answer:
-      "George Starter is £49 per month per location, George Standard is £99 per month per location, and George Growth is £149 per month per location depending on conversation volume and how much usage you need.",
+      "For attractions and higher-traffic websites, George Pro+ typically sits between £199 and £499 per month depending on setup, traffic, and how tailored the conversation flows need to be.",
   },
   {
-    question: "How much is George for attractions or higher-traffic websites?",
+    question: "Why does George cost more for attractions or higher-traffic setups?",
     answer:
-      "For attractions and higher-traffic websites, George Pro typically sits between £149 and £299 per month depending on setup, usage, and how tailored the conversation flows need to be.",
+      "Because those websites usually need higher usage capacity, more tailored visitor flows, and more detailed training on pricing, facilities, events, bookings, and visitor questions. The value is also higher because even a small lift in conversions can make a noticeable difference to revenue.",
   },
   {
     question: "Will George replace me or my team?",
     answer:
-      "No. George handles the first layer of conversation so your visitors get instant answers and you do not lose opportunities when you are busy, closed, or dealing with other work.",
+      "No. George handles the first layer of conversation so your visitors get instant answers and you do not lose opportunities when you are busy, closed, or dealing with other work. He supports your team rather than replacing it.",
   },
   {
     question: "What happens when someone leaves their details?",
@@ -52,7 +51,7 @@ const faqs = [
   {
     question: "Do I still need website pages if I have George?",
     answer:
-      "Yes, but not in the same way as a traditional website. You still want your key information on the page, while George handles a lot of the repetitive questions and helps visitors get answers faster.",
+      "Yes. You still want the key information on the page, while George handles the repetitive questions and helps visitors get answers faster. The best setup is strong website pages with George built in to guide people.",
   },
   {
     question: "How quickly can this be set up?",
@@ -67,7 +66,7 @@ export default function FAQPage() {
       <Navigation />
       <section className="px-4 pb-16 pt-10 sm:px-6 lg:px-8 lg:pb-20 lg:pt-16">
         <div className="mx-auto max-w-4xl">
-          <div className="rounded-[28px] border border-[#DADCE0] bg-[linear-gradient(135deg,#0f172a_0%,#111827_42%,#1d4ed8_100%)] px-6 py-7 text-left shadow-[0_24px_80px_rgba(17,24,39,0.18)] sm:px-8">
+          <div className="rounded-[30px] border border-[#DCE6F8] bg-[linear-gradient(135deg,#0f172a_0%,#111827_42%,#1d4ed8_100%)] px-6 py-7 text-left shadow-[0_24px_80px_rgba(17,24,39,0.18)] sm:px-8">
             <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#BFDBFE] sm:text-sm">FAQ</p>
             <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Questions about George</h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
@@ -75,7 +74,7 @@ export default function FAQPage() {
             </p>
           </div>
 
-          <div className="mt-8 rounded-[28px] border border-[#E5E7EB] bg-white p-4 shadow-sm sm:p-6">
+          <div className="mt-8 rounded-[30px] border border-[#E5E7EB] bg-white p-4 shadow-sm sm:p-6">
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`} className="border-b border-[#E5E7EB]">
