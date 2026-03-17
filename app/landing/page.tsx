@@ -17,7 +17,7 @@ export default function LandingPage() {
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6">
               Protect Your Reputation. <br />
-              <span className="text-primary">Grow Your Business.</span>
+              <span className="text-primary">Grow Your Growth.</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8">
               Get real-time alerts, actionable insights, and professional support to safeguard your brand's reputation.
@@ -83,33 +83,33 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-lg text-muted-foreground">Choose the plan that fits your business size</p>
+            <p className="text-lg text-muted-foreground">Choose the plan that fits your business and traffic level</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {/* Starter */}
+            {/* Standard */}
             <Card className="bg-card border-border text-center">
               <CardHeader className="pb-4">
                 <CardTitle className="text-xl font-bold text-foreground">Starter</CardTitle>
                 <div className="flex items-center justify-center gap-1 mt-2">
-                  <span className="text-3xl font-bold text-primary">£49</span>
+                  <span className="text-3xl font-bold text-primary">£99</span>
                   <span className="text-muted-foreground">/month</span>
                 </div>
               </CardHeader>
               <CardContent className="pt-0">
-                <p className="text-muted-foreground mb-4">Perfect for small businesses</p>
+                <p className="text-muted-foreground mb-4">A strong starting point for serious businesses</p>
                 <ul className="space-y-2 text-sm text-left">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Basic monitoring</span>
+                    <span>George trained on your business</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Monthly reports</span>
+                    <span>Answers visitor questions instantly</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Email support</span>
+                    <span>Captures enquiries automatically</span>
                   </li>
                 </ul>
               </CardContent>
@@ -126,7 +126,7 @@ export default function LandingPage() {
                 <CardHeader className="pb-4 pt-8">
                   <CardTitle className="text-xl font-bold text-foreground">Business</CardTitle>
                   <div className="flex items-center justify-center gap-1 mt-2">
-                    <span className="text-3xl font-bold text-primary">£299</span>
+                    <span className="text-3xl font-bold text-primary">£149</span>
                     <span className="text-muted-foreground">/month</span>
                   </div>
                 </CardHeader>
