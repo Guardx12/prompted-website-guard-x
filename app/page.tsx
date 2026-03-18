@@ -80,7 +80,7 @@ export default function HomePage() {
             </div>
 
             <h1 className="mx-auto max-w-5xl text-balance text-4xl font-extrabold tracking-tight text-[#0F172A] sm:text-5xl lg:text-6xl">
-              Turn your website into a 24/7 guide for your visitors — and get more people through the gate, improve their experience, and increase on-site spend
+              Turn your website into a 24/7 voice conversation guide for your visitors. More people through your gate, better experience, higher on-site spend.
             </h1>
 
             <div className="mt-8 flex justify-center">

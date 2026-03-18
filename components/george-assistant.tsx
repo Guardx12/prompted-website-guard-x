@@ -433,14 +433,14 @@ export function GeorgeAssistant() {
     <section className="mx-auto flex min-h-[calc(100vh-88px)] w-full max-w-6xl flex-col px-4 pb-10 pt-8 sm:px-6 lg:px-8 lg:pt-10">
       <div className="mx-auto mb-6 max-w-4xl text-center">
         <h1 className="guardx-hero-title text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight animate-[pulse_6s_ease-in-out_infinite]">
-          Turn your website into a 24/7 guide for your visitors.
+          Turn your website into a 24/7 voice conversation guide for your visitors. More people through your gate, better experience, higher on-site spend.
         </h1>
         <p className="mt-4 text-xl font-medium text-[#202124] sm:text-2xl">Meet George.</p>
         <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-[#5F6368] sm:text-lg sm:leading-8">
           George is a digital guide and member of staff for your website. He answers questions, explains what you offer, guides visitors toward the right next step, and helps turn more of your traffic into bookings, enquiries, and revenue.
         </p>
         <p className="mt-3 text-sm font-medium uppercase tracking-[0.18em] text-[#5F6368] sm:text-base">
-          Guides visitors · Increases bookings · Helps create more revenue
+          More people through your gate · Better experience · Higher on-site spend
         </p>
       </div>
 

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s | GuardX",
   },
   description:
-    "Meet George — a digital guide and member of staff for visitor-focused websites. He helps visitors plan their visit, find their way around, discover more, and take the right next step — leading to more bookings, better experiences, and higher spend per visitor.",
+    "Meet George — a digital guide and member of staff for visitor-focused websites. Turn your website into a 24/7 voice conversation guide for your visitors. More people through your gate, better experience, higher on-site spend..",
   generator: "v0.app",
   icons: {
     icon: "/favicon.ico",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Meet George | Conversational Digital Member of Staff for Your Website | GuardX",
     description:
-      "Meet George — a digital guide and member of staff for visitor-focused websites. He helps visitors plan their visit, find their way around, discover more, and take the right next step — leading to more bookings, better experiences, and higher spend per visitor.",
+      "Meet George — a digital guide and member of staff for visitor-focused websites. Turn your website into a 24/7 voice conversation guide for your visitors. More people through your gate, better experience, higher on-site spend..",
     images: ["/george-preview.png?v=8"],
   },
   alternates: { canonical: "https://guardxnetwork.com" },
@@ -104,7 +104,7 @@ export default function RootLayout({
             "url": "https://www.guardxnetwork.com",
             "logo": "https://www.guardxnetwork.com/images/guardx-logo.png",
             "image": "https://www.guardxnetwork.com/images/guardx-logo.png",
-            "description": "Meet George — a digital guide and member of staff for visitor-focused websites. He helps visitors plan their visit, find their way around, discover more, and take the right next step — leading to more bookings, better experiences, and higher spend per visitor.",
+            "description": "Meet George — a digital guide and member of staff for visitor-focused websites. Turn your website into a 24/7 voice conversation guide for your visitors. More people through your gate, better experience, higher on-site spend..",
             "areaServed": {
               "@type": "Country",
               "name": "United Kingdom"

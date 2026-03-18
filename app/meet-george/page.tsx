@@ -35,7 +35,7 @@ export default function MeetGeorgePage() {
               <Image src="/george-logo.png" alt="George" width={420} height={140} className="h-28 w-auto sm:h-32 premium-floating-card" priority />
             </div>
             <h1 className="mx-auto mt-6 max-w-4xl text-balance text-4xl font-extrabold tracking-tight text-[#0F172A] sm:text-5xl lg:text-6xl">
-              Turn your website into a 24/7 guide for your visitors — before they arrive, on the way, and on site
+              Turn your website into a 24/7 voice conversation guide for your visitors. More people through your gate, better experience, higher on-site spend.
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[#475569] sm:text-xl">
               Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. He helps visitors plan their visit, get website directions, get directions to your location, find their way around once they are there, discover more of what you offer, and take the right next step.
