@@ -68,50 +68,37 @@ export default function PricingPage() {
           </div>
 
           <div className="mt-10 rounded-[28px] border border-[#E5E7EB] bg-[#F8FAFC] p-6 shadow-sm sm:p-8">
-            <h2 className="text-2xl font-bold text-[#0F172A]">For small to medium businesses</h2>
+            <h2 className="text-2xl font-bold text-[#0F172A]">George for businesses</h2>
             <p className="mt-3 max-w-3xl text-base leading-7 text-[#475569]">
-              George works best when businesses want answers delivered instantly, enquiries captured automatically, and more visitors moved toward becoming real opportunities.
+              George works best for businesses that want answers delivered instantly, enquiries captured automatically, and more visitors moved toward becoming real opportunities.
             </p>
 
-            <div className="mt-8 grid gap-6 lg:grid-cols-2">
-              <div className="rounded-[30px] border border-[#DADCE0] bg-white p-6 shadow-sm sm:p-8">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">Built for everyday business enquiries</p>
-                <h3 className="mt-3 text-3xl font-bold text-[#0F172A]">George for businesses</h3>
-                <p className="mt-4 text-base leading-7 text-[#475569]">For businesses that want to capture more enquiries and respond instantly to visitors.</p>
-                <div className="mt-5 rounded-3xl border border-[#DBEAFE] bg-[linear-gradient(135deg,#EFF6FF_0%,#FFFFFF_100%)] p-4 shadow-sm">
-                  <p className="text-sm font-black uppercase tracking-[0.2em] text-[#1D4ED8]">Strong starting point</p>
-                  <p className="mt-2 text-base font-bold leading-7 text-[#0F172A]">This is for serious businesses that want George working properly and proving his value on real traffic.</p>
+            <div className="mt-8 rounded-[30px] border-2 border-[#1D4ED8] bg-[linear-gradient(135deg,#ffffff_0%,#f8fbff_42%,#eff6ff_100%)] p-6 shadow-[0_24px_80px_rgba(29,78,216,0.10)] sm:p-8">
+              <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">Built for everyday business enquiries</p>
+                  <h3 className="mt-3 text-3xl font-bold text-[#0F172A]">One strong setup that proves its value fast</h3>
+                  <p className="mt-4 text-base leading-7 text-[#475569]">George is designed for serious businesses that want a website that answers faster, feels more useful, and captures more opportunities before visitors disappear.</p>
+                  <div className="mt-5 rounded-3xl border border-[#DBEAFE] bg-white p-4 shadow-sm">
+                    <p className="text-sm font-black uppercase tracking-[0.2em] text-[#1D4ED8]">Why this matters</p>
+                    <p className="mt-2 text-base font-bold leading-7 text-[#0F172A]">This is for businesses that want George working properly on real traffic and proving his value quickly.</p>
+                  </div>
                 </div>
-                <ul className="mt-6 space-y-3">
-                  {businessIncluded.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" />
-                      <span className="text-sm leading-6 text-[#475569]">{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="rounded-[28px] bg-[linear-gradient(135deg,#0f172a_0%,#111827_42%,#1d4ed8_100%)] p-5 text-white shadow-[0_20px_60px_rgba(15,23,42,0.22)]">
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#BFDBFE]">What makes George worth it</p>
+                  <h4 className="mt-3 text-2xl font-bold">George pays attention to the visitors you are losing</h4>
+                  <p className="mt-3 text-sm leading-6 text-[#DBEAFE]">For businesses where missed enquiries mean missed revenue, even a small lift in conversion can make George very easy to justify.</p>
+                  <p className="mt-4 text-sm font-bold leading-6 text-white">You are paying for a website that keeps visitors engaged, answers faster, and moves more of them toward becoming customers.</p>
+                </div>
               </div>
-
-              <div className="relative rounded-[30px] border-2 border-[#1D4ED8] bg-[linear-gradient(135deg,#0f172a_0%,#111827_42%,#1d4ed8_100%)] p-6 text-white shadow-[0_24px_80px_rgba(17,24,39,0.24)] sm:p-8">
-                <div className="absolute -top-3 left-6 inline-flex rounded-full bg-[#FBBF24] px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-[#0F172A]">
-                  Most businesses fit here
-                </div>
-                <p className="pt-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#BFDBFE]">What makes George worth it</p>
-                <h3 className="mt-3 text-3xl font-bold text-white">George pays attention to the visitors you are losing</h3>
-                <p className="mt-4 text-base leading-7 text-[#DBEAFE]">For busier businesses where missed enquiries mean missed revenue, even a small lift in conversion can make George easy to justify.</p>
-                <div className="mt-5 rounded-3xl border border-white/20 bg-white/10 p-4 backdrop-blur">
-                  <p className="text-sm font-black uppercase tracking-[0.2em] text-[#BFDBFE]">What you are really paying for</p>
-                  <p className="mt-2 text-base font-bold leading-7 text-white">A website that answers faster, feels more useful, and captures more opportunities before visitors disappear.</p>
-                </div>
-                <ul className="mt-6 space-y-3">
-                  {growthIncluded.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#BFDBFE]" />
-                      <span className="text-sm leading-6 text-[#DBEAFE]">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="mt-7 grid gap-3 sm:grid-cols-2">
+                {businessIncluded.concat(growthIncluded).map((item) => (
+                  <li key={item} className="flex items-start gap-3 rounded-2xl border border-[#E5E7EB] bg-white p-4 shadow-sm">
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" />
+                    <span className="text-sm leading-6 text-[#475569]">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
@@ -157,7 +144,7 @@ export default function PricingPage() {
             </div>
 
             <p className="mt-5 text-sm leading-6 text-[#475569]">
-              George is designed to be very affordable and to pay for itself quickly by helping you capture more enquiries and customers. Exact setup depends on your business, traffic, and how much you want George to handle.
+              George is designed to pay for itself quickly by helping you capture more enquiries and customers. Exact setup depends on your business, traffic, and how much you want George to handle, but the first step is simply to try it free for 7 days.
             </p>
           </div>
 

@@ -146,7 +146,7 @@ export function GeorgeLiveAssistant() {
     businessName: "",
     email: "",
     phone: "",
-    packageChoice: "",
+    packageChoice: "Custom Quote",
     summary: "",
   })
 
@@ -449,7 +449,7 @@ export function GeorgeLiveAssistant() {
   }
 
   return (
-    <section className="mx-auto flex min-h-[calc(100vh-88px)] w-full max-w-6xl flex-col px-4 pb-10 pt-8 sm:px-6 lg:px-8 lg:pt-10">
+    <section id="live-george" className="mx-auto flex min-h-[calc(100vh-88px)] scroll-mt-28 w-full max-w-6xl flex-col px-4 pb-10 pt-8 sm:px-6 lg:px-8 lg:pt-10">
       <div className="mx-auto mb-6 max-w-4xl text-center">
         <div className="mx-auto mb-5 flex max-w-4xl items-center justify-center overflow-hidden rounded-[28px] border border-[#DADCE0] bg-[linear-gradient(135deg,#0f172a_0%,#111827_42%,#1d4ed8_100%)] px-6 py-7 text-left shadow-[0_24px_80px_rgba(17,24,39,0.24)] sm:px-8">
           <div className="max-w-3xl">
@@ -458,7 +458,7 @@ export function GeorgeLiveAssistant() {
               Your conversational digital member of staff for your website.
             </h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
-              George answers questions, explains services, gives pricing guidance, captures enquiries, and helps turn website visitors into customers — day or night.
+              George answers questions, explains services, captures enquiries, and helps turn website visitors into customers — day or night.
             </p>
             <p className="mt-4 text-sm font-semibold text-[#93C5FD] sm:text-base">
               Answers questions • Explains services • Captures leads • Works 24/7
@@ -468,10 +468,10 @@ export function GeorgeLiveAssistant() {
 
         <p className="mt-4 text-xl font-medium text-[#202124] sm:text-2xl">Meet George.</p>
         <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-[#5F6368] sm:text-lg sm:leading-8">
-          George is a conversational digital member of staff for your website. He answers visitor questions, explains services, gives pricing guidance, and helps turn more of your website traffic into real enquiries.
+          George is a conversational digital member of staff for your website. He answers visitor questions, explains services, helps visitors take the next step, and turns more of your website traffic into real enquiries.
         </p>
         <p className="mt-4 text-sm font-semibold text-[#1A73E8] sm:text-base">
-          Try asking George how he could help your business handle customer enquiries.
+          Try asking George how he could help your business capture more enquiries and customers.
         </p>
         <p className="mt-3 text-sm text-[#5F6368]">
           This page shows George in demo mode. On most websites George appears as a smaller assistant in the corner.
@@ -605,13 +605,6 @@ export function GeorgeLiveAssistant() {
                     required
                     className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
                   >
-                    <option value="" disabled>
-                      Choose setup type
-                    </option>
-                    <option value="George for businesses">George for businesses</option>
-                    <option value="George for busier businesses">George for busier businesses</option>
-                    <option value="George for higher-traffic websites">George for higher-traffic websites</option>
-                    <option value="George for attractions and venues">George for attractions and venues</option>
                     <option value="Custom Quote">Custom Quote</option>
                   </select>
                 </div>
