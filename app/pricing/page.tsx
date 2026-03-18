@@ -42,7 +42,7 @@ export default function PricingPage() {
             </div>
             <h1 className="mt-5 text-4xl font-extrabold tracking-tight sm:text-5xl">Start with a 7-day free trial</h1>
             <p className="mt-6 text-lg leading-8 text-[#475569] sm:text-xl">
-              George is your digital guide and member of staff for your website — helping visitors plan, get answers instantly, find the right next step, and move towards booking or buying.
+              George is your digital guide and member of staff for your website — helping visitors plan, get answers instantly, find the right page, get directions to your location, find their way on site, and move towards booking or buying. He helps you get more people through the gate, improves their experience while they’re there, and increases how much they spend on site.
             </p>
           </div>
 
@@ -154,7 +154,7 @@ export default function PricingPage() {
                 <MessageSquare className="h-9 w-9 text-[#1D4ED8]" />
                 <h2 className="mt-4 text-2xl font-bold">What George does</h2>
                 <p className="mt-4 text-sm leading-7 text-[#475569]">
-                  George talks to website visitors, answers questions about services, pricing, facilities, and FAQs, guides visitors toward becoming enquiries or bookings, and captures details automatically.
+                  George talks to website visitors, answers questions about services, pricing, facilities, FAQs, and directions, guides visitors toward becoming enquiries or bookings, and captures details automatically.
                 </p>
               </div>
               <div className="rounded-2xl bg-white p-5 shadow-sm">

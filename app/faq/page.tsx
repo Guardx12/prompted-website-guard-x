@@ -7,12 +7,12 @@ const faqs = [
   {
     question: "What is George?",
     answer:
-      "George is a trained digital guide and member of staff built into your website. He helps visitors plan their visit, get answers instantly, find the right next step, and move more of your existing traffic towards becoming bookings, enquiries, or on-site spend.",
+      "George is a trained digital guide and member of staff built into your website. He helps visitors with three different kinds of directions — directions on your website, directions to your location, and directions around your site once they are there — while also helping them plan their visit, get answers instantly, move more of your existing traffic towards becoming bookings, enquiries, or on-site spend, and get more people through the gate while improving their experience on site.",
   },
   {
     question: "How does George help my business?",
     answer:
-      "George helps by giving visitors instant answers instead of letting them drift away. That means more people stay engaged on your site, understand what you do faster, and are more likely to enquire or book.",
+      "George helps by giving visitors instant answers and clear guidance instead of letting them drift away. That means more people stay engaged on your site, find the right page faster, arrive with more confidence, and are more likely to enquire or book.",
   },
   {
     question: "Does this only work for local businesses?",

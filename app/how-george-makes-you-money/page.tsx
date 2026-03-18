@@ -41,7 +41,7 @@ export default function HowGeorgeMakesYouMoneyPage() {
         <div className="mx-auto max-w-4xl rounded-[30px] border border-[#DADCE0] bg-white p-6 shadow-[0_20px_70px_rgba(15,23,42,0.08)] sm:p-8 lg:p-10">
           <h1 className="text-4xl font-extrabold tracking-tight text-[#0F172A] sm:text-5xl">How George Makes You Money</h1>
           <p className="mt-5 text-lg leading-8 text-[#475569]">
-            George isn’t just a feature — he actively improves visitor experience, increases engagement, and drives more revenue across your location.
+            George isn’t just a feature — he actively improves visitor experience, helps people find the right direction at every stage, increases engagement, and drives more revenue across your location.
           </p>
           <ul className="mt-8 space-y-4 text-lg leading-8 text-[#0F172A]">
             {bullets.map((bullet) => (

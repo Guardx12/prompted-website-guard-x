@@ -21,21 +21,31 @@ type LeadFormState = {
 }
 
 
+const STORAGE_KEY = "george-site-session-v1"
+
+type StoredSession = {
+  messages: LiveMessage[]
+  leadForm: LeadFormState
+}
+
 const INITIAL_MESSAGES: LiveMessage[] = [
   {
     id: "intro",
     role: "system",
     content:
-      "Hi — I’m George, a digital guide and member of staff for your website. Try asking me how I could help your business increase bookings, improve visitor experience, and guide more people toward the right next step.",
+      "Hi — I’m George, a digital guide and member of staff for your website. I help businesses with three different kinds of directions: directions on your website, directions to your location, and directions around your site once people are there. I help you get more people through the gate, improve their experience while they’re there, and increase how much they spend on site. Ask me anything.",
   },
 ]
 
-const FIRST_RESPONSE_EVENT = {
-  type: "response.create",
-  response: {
-    instructions:
-      "Briefly introduce yourself as George, a digital guide and member of staff for the website, explain that you help businesses improve visitor experience, bookings, and revenue, then ask in a warm natural way: 'Out of curiosity, what type of place or business do you run?'",
-  },
+function buildFirstResponseEvent(hasStoredContext: boolean, storedName?: string) {
+  return {
+    type: "response.create",
+    response: {
+      instructions: hasStoredContext
+        ? `Briefly welcome the visitor back as George. Mention that you can still help with website directions, directions to the location, and on-site directions, while also helping get more people through the gate, improve visitor experience, and increase on-site spend. ${storedName ? `Use the name ${storedName} naturally once.` : ""} Then ask what they want help with now.`
+        : "Briefly introduce yourself as George, a digital guide and member of staff for the website. Explain that you help businesses with three kinds of directions: directions on the website, directions to the location, and directions around the site once visitors are there. Also explain that you help get more people through the gate, improve visitor experience, and increase on-site spend. Then ask warmly: 'What’s your name, and what type of place or business do you run?'",
+    },
+  }
 }
 
 function makeMessage(role: LiveMessage["role"], content: string): LiveMessage {
@@ -149,6 +159,7 @@ export function GeorgeLiveAssistant() {
     packageChoice: "Custom Quote",
     summary: "",
   })
+  const [hasStoredSession, setHasStoredSession] = useState(false)
 
   const pcRef = useRef<RTCPeerConnection | null>(null)
   const dcRef = useRef<RTCDataChannel | null>(null)
@@ -166,6 +177,29 @@ export function GeorgeLiveAssistant() {
         ? crypto.randomUUID()
         : `george-${Date.now()}-${Math.random()}`
     conversationSessionIdRef.current = sessionId
+  }, [])
+
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    try {
+      const raw = window.localStorage.getItem(STORAGE_KEY)
+      if (!raw) return
+      const parsed = JSON.parse(raw) as StoredSession
+      if (Array.isArray(parsed?.messages) && parsed.messages.length) {
+        setMessages(parsed.messages)
+        messagesRef.current = parsed.messages
+      }
+      if (parsed?.leadForm) {
+        setLeadForm((prev) => ({ ...prev, ...parsed.leadForm }))
+      }
+      if (parsed?.messages?.length > 1 || parsed?.leadForm?.name) {
+        setHasStoredSession(true)
+        setStatusText(parsed?.leadForm?.name ? `Welcome back, ${parsed.leadForm.name}` : "Welcome back")
+      }
+    } catch (error) {
+      console.error("Could not restore George session", error)
+    }
   }, [])
 
   useEffect(() => {
@@ -187,6 +221,17 @@ export function GeorgeLiveAssistant() {
       summary: summary || prev.summary,
     }))
   }, [messages, statusText])
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    try {
+      const payload: StoredSession = { messages, leadForm }
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload))
+      setHasStoredSession(messages.length > 1 || Boolean(leadForm.name))
+    } catch (error) {
+      console.error("Could not persist George session", error)
+    }
+  }, [messages, leadForm])
 
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
 
@@ -337,9 +382,11 @@ export function GeorgeLiveAssistant() {
     setConnectionState("connecting")
     setError(null)
     setStatusText("Connecting George…")
-    setMessages(INITIAL_MESSAGES)
-    messagesRef.current = INITIAL_MESSAGES
-    setLeadForm({ name: "", businessName: "", email: "", phone: "", summary: "" })
+    if (!hasStoredSession) {
+      setMessages(INITIAL_MESSAGES)
+      messagesRef.current = INITIAL_MESSAGES
+      setLeadForm({ name: "", businessName: "", email: "", phone: "", packageChoice: "Custom Quote", summary: "" })
+    }
 
     try {
       const tokenResponse = await fetch("/api/george-session", {
@@ -383,9 +430,9 @@ export function GeorgeLiveAssistant() {
 
       dc.addEventListener("open", () => {
         setConnectionState("connected")
-        setStatusText("Listening…")
+        setStatusText(hasStoredSession ? (leadForm.name ? `Welcome back, ${leadForm.name}` : "Welcome back") : "Listening…")
         window.setTimeout(() => {
-          dc.send(JSON.stringify(FIRST_RESPONSE_EVENT))
+          dc.send(JSON.stringify(buildFirstResponseEvent(hasStoredSession, leadForm.name)))
         }, 150)
       })
 
@@ -445,7 +492,27 @@ export function GeorgeLiveAssistant() {
     await cleanupConversation()
     setError(null)
     setConnectionState("idle")
+    setStatusText(hasStoredSession ? (leadForm.name ? `Welcome back, ${leadForm.name}` : "Welcome back") : "Ready when you are")
+  }
+
+  function startFresh() {
+    if (typeof window !== "undefined") {
+      window.localStorage.removeItem(STORAGE_KEY)
+    }
+    const resetLeadForm: LeadFormState = {
+      name: "",
+      businessName: "",
+      email: "",
+      phone: "",
+      packageChoice: "Custom Quote",
+      summary: "",
+    }
+    setMessages(INITIAL_MESSAGES)
+    messagesRef.current = INITIAL_MESSAGES
+    setLeadForm(resetLeadForm)
+    setHasStoredSession(false)
     setStatusText("Ready when you are")
+    setError(null)
   }
 
   return (
@@ -458,7 +525,7 @@ export function GeorgeLiveAssistant() {
               Your digital guide and member of staff for your website.
             </h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
-              George helps visitors get answers quickly, understand what you offer, and move toward the right next step — increasing bookings, spend, and experience day or night.
+              George helps visitors get answers quickly, understand what you offer, and move toward the right next step — including directions on your website, directions to your location, and directions around your site once they are there. He helps you get more people through the gate, improves their experience while they’re there, and increases how much they spend on site.
             </p>
             <p className="mt-4 text-sm font-semibold text-[#93C5FD] sm:text-base">
               Guides visitors • Increases bookings • Supports spend • Works 24/7
@@ -468,10 +535,10 @@ export function GeorgeLiveAssistant() {
 
         <p className="mt-4 text-xl font-medium text-[#202124] sm:text-2xl">Meet George.</p>
         <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-[#5F6368] sm:text-lg sm:leading-8">
-          George is a digital guide and member of staff for your website. He helps visitors get answers quickly, find the right next step, and understand how your website can turn more traffic into real bookings, enquiries, and revenue.
+          George is a digital guide and member of staff for your website. He helps visitors get answers quickly, find the right next step, and handle three different kinds of directions: directions on your website, directions to your location, and directions around your site once they are there. He also helps you get more people through the gate, improve their experience while they’re there, and increase how much they spend on site.
         </p>
         <p className="mt-4 text-sm font-semibold text-[#1A73E8] sm:text-base">
-          Try asking George how he could help your business improve visitor experience, increase bookings, and make more money from the traffic you already have.
+          Try asking George how he could help with website directions, directions to your location, on-site directions, bookings, and making more money from the traffic you already have.
         </p>
         <p className="mt-3 text-sm text-[#5F6368]">
           This page shows George in demo mode. On most websites George appears as a smaller guide in the corner.
@@ -625,8 +692,10 @@ export function GeorgeLiveAssistant() {
           <div className="mx-auto flex w-full max-w-4xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-[#5F6368]">
               {connectionState === "connected"
-                ? "You’re in a live conversation. Just speak naturally and George should reply automatically. George can fill in the enquiry form below as you talk, then you can check it and press submit yourself."
-                : "Start the live conversation and George will greet you, listen, and reply automatically without push-to-talk."}
+                ? "You’re in a live conversation. Just speak naturally and George should reply automatically. He will remember the conversation on this device and can pick it back up when you come back."
+                : hasStoredSession
+                  ? "George remembers returning visitors on this device, so you can continue where you left off or start fresh."
+                  : "Start the live conversation and George will greet you, take your name naturally, and reply automatically without push-to-talk."}
             </p>
             <div className="flex items-center gap-3">
               <button
@@ -636,9 +705,9 @@ export function GeorgeLiveAssistant() {
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1A73E8] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1558b0] disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <Mic className="h-4 w-4" />
-                {connectionState === "connected" ? "Live conversation on" : "Start live conversation"}
+                {connectionState === "connected" ? "Live conversation on" : hasStoredSession ? "Continue with George" : "Start live conversation"}
               </button>
-              {connectionState === "connected" && (
+              {connectionState === "connected" ? (
                 <button
                   type="button"
                   onClick={stopConversation}
@@ -646,7 +715,15 @@ export function GeorgeLiveAssistant() {
                 >
                   <PhoneOff className="h-4 w-4" /> End conversation
                 </button>
-              )}
+              ) : hasStoredSession ? (
+                <button
+                  type="button"
+                  onClick={startFresh}
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-[#DADCE0] bg-white px-5 py-3 text-sm font-semibold text-[#202124] transition hover:bg-[#F8FAFD]"
+                >
+                  Start fresh
+                </button>
+              ) : null}
             </div>
           </div>
           {error ? <p className="mx-auto mt-3 w-full max-w-4xl text-sm text-[#B3261E]">{error}</p> : null}

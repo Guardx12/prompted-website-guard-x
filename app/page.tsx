@@ -8,13 +8,13 @@ import { ArrowRight, Building2, Clock3, MapPinned, Sparkles, TrendingUp, Zap } f
 export const metadata: Metadata = {
   title: "GuardX | Turn Your Website Into a 24/7 Guide for Your Visitors",
   description:
-    "Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. He helps visitors plan their visit, find their way around, discover more of what you offer, and take the right next step.",
+    "Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. He helps visitors with three different types of directions: directions on your website, directions to your location, and directions around your site once they are there — as well as helping them plan their visit, discover more of what you offer, and take the right next step.",
   alternates: { canonical: "https://guardxnetwork.com" },
 }
 
 const heroPoints = [
-  "Helps visitors plan before they arrive and while they are on site.",
-  "Guides people around, helps them know what to do next, and keeps them engaged.",
+  "Helps visitors with three kinds of directions: on your website, to your location, and around your site once they are there.",
+  "Guides people before they arrive, while they are on site, and when they need to know what to do next.",
   "Supports more bookings, more spend, and less pressure on your staff.",
 ]
 
@@ -28,7 +28,7 @@ const resultPoints = [
 const howItWorks = [
   "We tailor George to your site, your layout, your attractions, and your most common visitor questions.",
   "Visitors can use George before they arrive for tickets, planning, FAQs, and key information.",
-  "Once they are there, George can guide them around, explain what is nearby, and help them decide what to do next.",
+  "Once they are there, George can guide them around, explain what is nearby, share useful facts, and help them decide what to do next.",
   "George also nudges visitors toward food, experiences, and key pages that help increase bookings and on-site spend.",
 ]
 
@@ -38,7 +38,7 @@ const useCases = [
     description:
       "Farm parks, family attractions, wildlife centres, venues, and destinations where visitors need help before they arrive and while they are on site.",
     points: [
-      "Helps visitors with tickets, timings, facilities, and what to expect",
+      "Helps visitors with tickets, timings, facilities, what to expect, and how to get to you",
       "Guides people around the site and helps them know what to do next",
       "Keeps visitors engaged with animals, experiences, food, and key areas",
       "Supports more bookings, happier visitors, and more spend on site",
@@ -50,7 +50,7 @@ const useCases = [
     description:
       "Holiday parks, caravan parks, campsites, and glamping sites where guests need clear answers, better guidance, and a smoother experience from booking to arrival.",
     points: [
-      "Answers practical questions before guests book or arrive",
+      "Answers practical questions before guests book or arrive, including how to find you and where to go",
       "Guides guests toward the right pages, facilities, and next steps",
       "Helps reduce repetitive questions for owners and reception teams",
       "Creates a more modern, premium guest experience",
@@ -62,7 +62,7 @@ const useCases = [
 const georgeFeatures = [
   "Guide visitors before they arrive and while they are on site",
   "Answer questions about tickets, facilities, attractions, food, and stays",
-  "Help people find their way around and decide what to do next",
+  "Help people with website directions, directions to your location, on-site directions, and what to do next",
   "Support more bookings, more spend, and less pressure on staff",
 ]
 
@@ -80,7 +80,7 @@ export default function HomePage() {
             </div>
 
             <h1 className="mx-auto max-w-5xl text-balance text-4xl font-extrabold tracking-tight text-[#0F172A] sm:text-5xl lg:text-6xl">
-              Turn your website into a 24/7 guide for your visitors — and increase bookings, spend, and experience
+              Turn your website into a 24/7 guide for your visitors — and get more people through the gate, improve their experience, and increase on-site spend
             </h1>
 
             <div className="mt-8 flex justify-center">
@@ -88,11 +88,11 @@ export default function HomePage() {
             </div>
 
             <p className="mx-auto mt-8 max-w-4xl text-lg leading-8 text-[#475569] sm:text-xl">
-              Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. He helps visitors plan their visit, find their way around, discover more of what you offer, and take the right next step.
+              Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. He helps visitors with three different types of directions: directions on your website, directions to your location, and directions around your site once they are there — as well as helping them plan their visit, discover more of what you offer, and take the right next step.
             </p>
 
             <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#0F172A] sm:text-lg">
-              George doesn’t just answer questions — he actively guides visitors towards booking, exploring more, and getting more from their visit.
+              George doesn’t just answer questions — he actively guides visitors towards booking, arriving with confidence, finding their way, exploring more, and getting more from their visit. George helps you get more people through the gate, improves their experience while they’re there, and increases how much they spend on site.
             </p>
 
             <div className="mx-auto mt-8 grid max-w-4xl gap-4">
@@ -125,10 +125,10 @@ export default function HomePage() {
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#BFDBFE]">Why this matters</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">Most visitor websites leave money on the table</h2>
             <p className="mt-5 text-lg leading-8 text-[#DBEAFE]">
-              Visitors arrive with questions, get lost, miss things, or never make it to booking. George gives them instant help before they arrive and while they are there — improving the experience and increasing the value of every visitor.
+              Visitors arrive with questions, struggle to find the right page, need help getting to your location, get lost on site, miss things, or never make it to booking. George gives them instant help before they arrive, on the way, and while they are there — improving the experience and increasing the value of every visitor.
             </p>
             <p className="mt-5 text-base font-semibold leading-7 text-white sm:text-lg">
-              If George improves bookings, visitor flow, food spend, or staff time even slightly, it can make a noticeable difference to your revenue.
+              If George improves bookings, visitor flow, food spend, or staff time even slightly, it can make a noticeable difference to your revenue. George helps you get more people through the gate, improves their experience while they’re there, and increases how much they spend on site.
             </p>
             <p className="mt-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#BFDBFE]">Most websites leave visitors to figure things out on their own. George guides them.</p>
           </div>
@@ -141,7 +141,7 @@ export default function HomePage() {
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">How George makes you more money</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">George helps turn more visitors into revenue</h2>
             <p className="mt-5 text-lg leading-8 text-[#475569]">
-              When visitors cannot quickly find answers, they hesitate, leave, miss things, or interrupt staff for help. George reduces that friction before and during the visit.
+              When visitors cannot quickly find answers, directions, or the right next step, they hesitate, leave, miss things, or interrupt staff for help. George reduces that friction before, during, and on the way to the visit.
             </p>
             <p className="mt-4 text-lg font-semibold text-[#0F172A]">George changes that.</p>
             <div className="mt-8 grid gap-4 text-left sm:grid-cols-2">
@@ -213,7 +213,7 @@ export default function HomePage() {
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">How George works</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">Simple to add. Easy to use. Valuable immediately.</h2>
             <p className="mt-5 text-lg leading-8 text-[#475569]">
-              George is tailored to your destination, speaks naturally with visitors, and helps more people move towards booking, arriving confidently, and getting more from their day.
+              George is tailored to your destination, speaks naturally with visitors, and helps more people move towards booking, arriving confidently, getting where they need to go, and getting more from their day.
             </p>
           </div>
 

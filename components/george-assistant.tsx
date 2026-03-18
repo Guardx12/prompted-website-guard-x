@@ -50,7 +50,7 @@ const openingMessage: ChatMessage = {
   id: "george-opening",
   role: "assistant",
   content:
-    "Hi — I’m George. I’m a digital guide and member of staff for your website. I help visitors get answers quickly, understand what you offer, find the right next step, and move towards booking or buying — without sounding stiff or pushy. I can be trained on the business I’m working for, so I can talk through services, pricing, directions, visitor questions, and the usual things people ask. Ask me anything.",
+    "Hi — I’m George. I’m a digital guide and member of staff for your website. I help with three kinds of directions: directions on your website, directions to your location, and directions around your site once people are there. I help you get more people through the gate, improve their experience while they’re there, and increase how much they spend on site. I can also help visitors understand what you offer, find the right next step, and move towards booking or buying. What’s your name, and what kind of place or business do you run?",
 }
 
 function buildTranscript(messages: ChatMessage[]) {
@@ -244,7 +244,7 @@ export function GeorgeAssistant() {
       const data = await response.json()
       const reply = typeof data.reply === "string" && data.reply.trim()
         ? data.reply.trim()
-        : "That’s a good question. I’m George, a digital guide and member of staff for your website, and my job is to help visitors get answers quickly, take the right next step, and understand how a website like this can turn more visitors into real enquiries, bookings, and revenue."
+        : "That’s a good question. I’m George, a digital guide and member of staff for your website. I help with website directions, directions to your location, and on-site directions, while also helping you get more people through the gate, improve their experience while they’re there, and increase how much they spend on site."
 
       const assistantMessage: ChatMessage = {
         id: crypto.randomUUID(),

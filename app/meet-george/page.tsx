@@ -9,13 +9,13 @@ import { Navigation } from "@/components/navigation"
 export const metadata: Metadata = {
   title: "Meet George | Digital Guide for Visitor-Focused Websites",
   description:
-    "Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. He helps visitors plan their visit, find their way around, discover more of what you offer, and take the right next step.",
+    "Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. He helps visitors plan their visit, get website directions, get directions to your location, find their way around once they are there, discover more of what you offer, and take the right next step.",
   alternates: { canonical: "https://guardxnetwork.com/meet-george" },
 }
 
 const proofPoints = [
-  "Guides visitors before they arrive and while they are on site",
-  "Helps people know where to go and what to do next",
+  "Helps with website directions, directions to your location, and on-site directions",
+  "Guides visitors before they arrive, while they are on site, and when they need to know what to do next",
   "Supports more bookings, more spend, and less pressure on staff",
 ]
 
@@ -35,13 +35,13 @@ export default function MeetGeorgePage() {
               <Image src="/george-logo.png" alt="George" width={420} height={140} className="h-28 w-auto sm:h-32 premium-floating-card" priority />
             </div>
             <h1 className="mx-auto mt-6 max-w-4xl text-balance text-4xl font-extrabold tracking-tight text-[#0F172A] sm:text-5xl lg:text-6xl">
-              Turn your website into a 24/7 guide for your visitors
+              Turn your website into a 24/7 guide for your visitors — before they arrive, on the way, and on site
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[#475569] sm:text-xl">
-              Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. He helps visitors plan their visit, find their way around, discover more of what you offer, and take the right next step.
+              Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. He helps visitors plan their visit, get website directions, get directions to your location, find their way around once they are there, discover more of what you offer, and take the right next step.
             </p>
             <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#0F172A] sm:text-lg">
-              George is not just answering questions — he is helping visitors book, arrive with confidence, enjoy more of their day, and spend more while they are there.
+              George doesn’t just answer questions — he helps you get more people through the gate, improves their experience while they’re there, and increases how much they spend on site.
             </p>
 
             <div className="mx-auto mt-8 grid max-w-4xl gap-4 md:grid-cols-3">
