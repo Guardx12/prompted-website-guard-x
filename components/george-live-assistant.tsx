@@ -26,7 +26,7 @@ const INITIAL_MESSAGES: LiveMessage[] = [
     id: "intro",
     role: "system",
     content:
-      "Hi — I’m George, a conversational digital member of staff for your website. Try asking me how I could help your business handle customer enquiries.",
+      "Hi — I’m George, a digital guide and member of staff for your website. Try asking me how I could help your business increase bookings, improve visitor experience, and guide more people toward the right next step.",
   },
 ]
 
@@ -34,7 +34,7 @@ const FIRST_RESPONSE_EVENT = {
   type: "response.create",
   response: {
     instructions:
-      "Briefly introduce yourself as George, a conversational digital member of staff for your website, then ask in a warm natural way: 'Out of curiosity, what type of business do you run?'",
+      "Briefly introduce yourself as George, a digital guide and member of staff for the website, explain that you help businesses improve visitor experience, bookings, and revenue, then ask in a warm natural way: 'Out of curiosity, what type of place or business do you run?'",
   },
 }
 
@@ -455,26 +455,26 @@ export function GeorgeLiveAssistant() {
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#BFDBFE] sm:text-sm">Meet George</p>
             <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
-              Your conversational digital member of staff for your website.
+              Your digital guide and member of staff for your website.
             </h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
-              George answers questions, explains services, captures enquiries, and helps turn website visitors into customers — day or night.
+              George helps visitors get answers quickly, understand what you offer, and move toward the right next step — increasing bookings, spend, and experience day or night.
             </p>
             <p className="mt-4 text-sm font-semibold text-[#93C5FD] sm:text-base">
-              Answers questions • Explains services • Captures leads • Works 24/7
+              Guides visitors • Increases bookings • Supports spend • Works 24/7
             </p>
           </div>
         </div>
 
         <p className="mt-4 text-xl font-medium text-[#202124] sm:text-2xl">Meet George.</p>
         <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-[#5F6368] sm:text-lg sm:leading-8">
-          George is a conversational digital member of staff for your website. He answers visitor questions, explains services, helps visitors take the next step, and turns more of your website traffic into real enquiries.
+          George is a digital guide and member of staff for your website. He helps visitors get answers quickly, find the right next step, and understand how your website can turn more traffic into real bookings, enquiries, and revenue.
         </p>
         <p className="mt-4 text-sm font-semibold text-[#1A73E8] sm:text-base">
-          Try asking George how he could help your business capture more enquiries and customers.
+          Try asking George how he could help your business improve visitor experience, increase bookings, and make more money from the traffic you already have.
         </p>
         <p className="mt-3 text-sm text-[#5F6368]">
-          This page shows George in demo mode. On most websites George appears as a smaller assistant in the corner.
+          This page shows George in demo mode. On most websites George appears as a smaller guide in the corner.
         </p>
       </div>
 

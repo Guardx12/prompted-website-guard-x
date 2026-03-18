@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s | GuardX",
   },
   description:
-    "Meet George — your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.",
+    "Meet George — a digital guide and member of staff for visitor-focused websites. He helps visitors plan their visit, find their way around, discover more, and take the right next step — leading to more bookings, better experiences, and higher spend per visitor.",
   generator: "v0.app",
   icons: {
     icon: "/favicon.ico",
@@ -29,13 +29,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     url: "https://guardxnetwork.com",
-    images: [{ url: "/george-preview.png?v=8", width: 1200, height: 630, alt: "Meet George, your conversational digital member of staff for your website" }],
+    images: [{ url: "/george-preview.png?v=8", width: 1200, height: 630, alt: "Meet George, your digital guide and member of staff for visitor-focused websites" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Meet George | Conversational Digital Member of Staff for Your Website | GuardX",
     description:
-      "Meet George — your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.",
+      "Meet George — a digital guide and member of staff for visitor-focused websites. He helps visitors plan their visit, find their way around, discover more, and take the right next step — leading to more bookings, better experiences, and higher spend per visitor.",
     images: ["/george-preview.png?v=8"],
   },
   alternates: { canonical: "https://guardxnetwork.com" },
@@ -104,7 +104,7 @@ export default function RootLayout({
             "url": "https://www.guardxnetwork.com",
             "logo": "https://www.guardxnetwork.com/images/guardx-logo.png",
             "image": "https://www.guardxnetwork.com/images/guardx-logo.png",
-            "description": "Meet George — your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.",
+            "description": "Meet George — a digital guide and member of staff for visitor-focused websites. He helps visitors plan their visit, find their way around, discover more, and take the right next step — leading to more bookings, better experiences, and higher spend per visitor.",
             "areaServed": {
               "@type": "Country",
               "name": "United Kingdom"

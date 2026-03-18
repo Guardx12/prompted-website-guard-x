@@ -50,7 +50,7 @@ const openingMessage: ChatMessage = {
   id: "george-opening",
   role: "assistant",
   content:
-    "Hi — I’m George. I’m a conversational digital member of staff for your website. I answer questions, explain how things work, and help guide visitors toward becoming customers — without sounding stiff or pushy. I can be trained on the business I’m working for, so I can talk through services, pricing, and the usual questions customers ask. Ask me anything.",
+    "Hi — I’m George. I’m a digital guide and member of staff for your website. I help visitors get answers quickly, understand what you offer, find the right next step, and move towards booking or buying — without sounding stiff or pushy. I can be trained on the business I’m working for, so I can talk through services, pricing, directions, visitor questions, and the usual things people ask. Ask me anything.",
 }
 
 function buildTranscript(messages: ChatMessage[]) {
@@ -244,7 +244,7 @@ export function GeorgeAssistant() {
       const data = await response.json()
       const reply = typeof data.reply === "string" && data.reply.trim()
         ? data.reply.trim()
-        : "That’s a good question. I’m George, a conversational digital member of staff for your website, and my job is to answer questions clearly and help visitors understand how a website like this can turn more visitors into real enquiries."
+        : "That’s a good question. I’m George, a digital guide and member of staff for your website, and my job is to help visitors get answers quickly, take the right next step, and understand how a website like this can turn more visitors into real enquiries, bookings, and revenue."
 
       const assistantMessage: ChatMessage = {
         id: crypto.randomUUID(),
@@ -433,16 +433,14 @@ export function GeorgeAssistant() {
     <section className="mx-auto flex min-h-[calc(100vh-88px)] w-full max-w-6xl flex-col px-4 pb-10 pt-8 sm:px-6 lg:px-8 lg:pt-10">
       <div className="mx-auto mb-6 max-w-4xl text-center">
         <h1 className="guardx-hero-title text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight animate-[pulse_6s_ease-in-out_infinite]">
-          Turn your website into a 24/7 salesperson.
+          Turn your website into a 24/7 guide for your visitors.
         </h1>
         <p className="mt-4 text-xl font-medium text-[#202124] sm:text-2xl">Meet George.</p>
         <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-[#5F6368] sm:text-lg sm:leading-8">
-          George is a conversational digital member of staff for your website. He answers
-          questions, explains how things work, deals with customer interactions, and helps turn visitors into
-          customers.
+          George is a digital guide and member of staff for your website. He answers questions, explains what you offer, guides visitors toward the right next step, and helps turn more of your traffic into bookings, enquiries, and revenue.
         </p>
         <p className="mt-3 text-sm font-medium uppercase tracking-[0.18em] text-[#5F6368] sm:text-base">
-          Saves time · Saves money · Helps create more revenue
+          Guides visitors · Increases bookings · Helps create more revenue
         </p>
       </div>
 
@@ -453,7 +451,7 @@ export function GeorgeAssistant() {
           </div>
           <div className="min-w-0 flex-1">
             <p className="text-base font-semibold text-[#202124] sm:text-lg">George</p>
-            <p className="text-sm text-[#5F6368]">Your conversational digital member of staff for your website</p>
+            <p className="text-sm text-[#5F6368]">Your digital guide and member of staff for your website</p>
           </div>
           <div className="flex items-center gap-2 text-xs font-medium text-[#5F6368] sm:text-sm">
             <span className={`inline-flex items-center gap-2 rounded-full px-3 py-2 ${isRecording ? "bg-[#FDECEA] text-[#B3261E]" : voiceEnabled ? "bg-[#EAF6EE] text-[#1E8E3E]" : "bg-[#F1F3F4] text-[#5F6368]"}`}>

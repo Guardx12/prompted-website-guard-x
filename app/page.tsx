@@ -8,7 +8,7 @@ import { ArrowRight, Building2, Clock3, MapPinned, Sparkles, TrendingUp, Zap } f
 export const metadata: Metadata = {
   title: "GuardX | Turn Your Website Into a 24/7 Guide for Your Visitors",
   description:
-    "Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. George helps visitors plan their day, find their way around, discover more, and turn more website traffic into bookings.",
+    "Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. He helps visitors plan their visit, find their way around, discover more of what you offer, and take the right next step.",
   alternates: { canonical: "https://guardxnetwork.com" },
 }
 
@@ -80,7 +80,7 @@ export default function HomePage() {
             </div>
 
             <h1 className="mx-auto max-w-5xl text-balance text-4xl font-extrabold tracking-tight text-[#0F172A] sm:text-5xl lg:text-6xl">
-              Turn your website into a 24/7 guide for your visitors
+              Turn your website into a 24/7 guide for your visitors — and increase bookings, spend, and experience
             </h1>
 
             <div className="mt-8 flex justify-center">
@@ -92,7 +92,7 @@ export default function HomePage() {
             </p>
 
             <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#0F172A] sm:text-lg">
-              George is not just answering questions — he is helping visitors book, arrive with confidence, enjoy more of their day, and spend more while they are there.
+              George doesn’t just answer questions — he actively guides visitors towards booking, exploring more, and getting more from their visit.
             </p>
 
             <div className="mx-auto mt-8 grid max-w-4xl gap-4">
@@ -109,7 +109,7 @@ export default function HomePage() {
 
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link href="/contact" className="cta-button-primary inline-flex items-center justify-center gap-3 rounded-2xl px-7 py-4 text-base font-bold text-white">
-                <span>Try George free for 7 days</span> <ArrowRight className="h-5 w-5" />
+                <span>Try George on your website — free for 7 days</span> <ArrowRight className="h-5 w-5" />
               </Link>
               <Link href="/meet-george" className="cta-button-secondary inline-flex items-center justify-center rounded-2xl px-7 py-4 text-base font-semibold text-[#0F172A]">
                 See George in action
@@ -130,6 +130,7 @@ export default function HomePage() {
             <p className="mt-5 text-base font-semibold leading-7 text-white sm:text-lg">
               If George improves bookings, visitor flow, food spend, or staff time even slightly, it can make a noticeable difference to your revenue.
             </p>
+            <p className="mt-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#BFDBFE]">Most websites leave visitors to figure things out on their own. George guides them.</p>
           </div>
         </div>
       </section>
@@ -156,8 +157,13 @@ export default function HomePage() {
               ))}
             </div>
             <p className="mt-8 text-base font-semibold leading-7 text-[#0F172A]">
-              Even a small increase in bookings, on-site spend, or visitor satisfaction can make a noticeable difference to your business.
+              George removes the small points of friction that quietly cost you bookings, time, and revenue every day.
             </p>
+            <div className="mt-6 flex justify-center">
+              <Link href="/how-george-makes-you-money" className="cta-button-secondary inline-flex items-center justify-center rounded-2xl px-6 py-3 text-base font-semibold text-[#0F172A]">
+                How George makes you money
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -174,13 +180,13 @@ export default function HomePage() {
               <p className="mt-4 text-base leading-7 text-[#475569]">
                 This is what makes George different from a normal chatbot or static FAQ page — he feels like a real guide that helps visitors throughout the journey.
               </p>
-              <p className="mt-4 text-base font-semibold leading-7 text-[#0F172A]">See the live example, then imagine the same experience tailored to your destination.</p>
+              <p className="mt-4 text-base font-semibold leading-7 text-[#0F172A]">Once you see it, it’s obvious — visitors use George because it’s easier than figuring things out themselves.</p>
               <div className="mt-6 flex flex-wrap gap-4">
                 <Link href="/meet-george" className="cta-button-primary inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-bold text-white">
                   See George in action <ArrowRight className="h-5 w-5" />
                 </Link>
-                <Link href="/how-george-makes-you-money" className="cta-button-secondary inline-flex items-center justify-center rounded-2xl px-6 py-3 font-bold text-[#0F172A]">
-                  How George makes you money
+                <Link href="/contact" className="cta-button-secondary inline-flex items-center justify-center rounded-2xl px-6 py-3 font-bold text-[#0F172A]">
+                  Try George on your website — free for 7 days
                 </Link>
               </div>
             </div>
@@ -205,7 +211,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl rounded-[30px] border border-[#DADCE0] bg-white p-6 shadow-[0_20px_70px_rgba(15,23,42,0.08)] sm:p-8">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">How George works</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">Simple to add. Easy to understand. Valuable fast.</h2>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">Simple to add. Easy to use. Valuable immediately.</h2>
             <p className="mt-5 text-lg leading-8 text-[#475569]">
               George is tailored to your destination, speaks naturally with visitors, and helps more people move towards booking, arriving confidently, and getting more from their day.
             </p>
@@ -232,7 +238,7 @@ export default function HomePage() {
             </p>
             <div className="mt-5 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link href="/contact" className="cta-button-primary inline-flex items-center justify-center gap-3 rounded-2xl px-7 py-4 text-base font-bold text-white">
-                Try George free for 7 days <ArrowRight className="h-5 w-5" />
+                Try George on your website — free for 7 days <ArrowRight className="h-5 w-5" />
               </Link>
               <Link href="/meet-george" className="cta-button-secondary inline-flex items-center justify-center rounded-2xl px-7 py-4 text-base font-semibold text-[#0F172A]">
                 See George in action

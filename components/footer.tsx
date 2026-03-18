@@ -11,8 +11,7 @@ export function Footer() {
               <Image src="/guardx-logo.png" alt="GuardX Logo" width={220} height={70} className="h-16 w-auto sm:h-20" />
             </div>
             <p className="mb-4 text-[#475569]">
-              GuardX builds fast, modern websites with George — a conversational digital member of staff that answers visitor questions,
-              explains services, answers visitor questions, and captures enquiries or bookings 24/7.
+              GuardX builds fast, modern websites with George — a digital member of staff that answers questions, explains what you offer, guides visitors, and helps turn more visitors into bookings and revenue.
             </p>
             <p className="mb-4 text-[#475569]">GuardX Limited — websites powered by George for UK businesses and attractions.</p>
             <p className="text-sm text-[#64748B]">&copy; {new Date().getFullYear()} GuardX. All rights reserved.</p>
@@ -23,6 +22,7 @@ export function Footer() {
             <ul className="space-y-2">
               <li><Link href="/" className="text-[#475569] transition-colors hover:text-[#1D4ED8]">Home</Link></li>
               <li><Link href="/meet-george" className="text-[#475569] transition-colors hover:text-[#1D4ED8]">Meet George</Link></li>
+              <li><Link href="/how-george-makes-you-money" className="text-[#475569] transition-colors hover:text-[#1D4ED8]">How George Makes You Money</Link></li>
               <li><Link href="/pricing" className="text-[#475569] transition-colors hover:text-[#1D4ED8]">Pricing</Link></li>
               <li><Link href="/faq" className="text-[#475569] transition-colors hover:text-[#1D4ED8]">FAQ</Link></li>
               <li><Link href="/contact" className="text-[#475569] transition-colors hover:text-[#1D4ED8]">Contact</Link></li>
@@ -32,11 +32,11 @@ export function Footer() {
           <div>
             <h3 className="mb-4 font-semibold text-[#0F172A]">What George does</h3>
             <ul className="space-y-2 text-[#475569]">
-              <li>Answers visitor questions</li>
-              <li>Explains services and pricing</li>
-              <li>Captures enquiries and bookings</li>
-              <li>Helps guide visitors</li>
-              <li>Works day and night</li>
+              <li>Guides visitors before and during their visit</li>
+              <li>Helps people know where to go and what to do next</li>
+              <li>Supports more bookings, spend, and engagement</li>
+              <li>Reduces pressure on staff</li>
+              <li>Works 24/7 on your website</li>
             </ul>
           </div>
 

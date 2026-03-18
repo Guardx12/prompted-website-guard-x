@@ -7,16 +7,16 @@ import { GeorgeLiveAssistant } from "@/components/george-live-assistant"
 import { Navigation } from "@/components/navigation"
 
 export const metadata: Metadata = {
-  title: "Meet George | Conversational Digital Member of Staff for Your Website",
+  title: "Meet George | Digital Guide for Visitor-Focused Websites",
   description:
-    "Meet George — your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.",
+    "Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. He helps visitors plan their visit, find their way around, discover more of what you offer, and take the right next step.",
   alternates: { canonical: "https://guardxnetwork.com/meet-george" },
 }
 
 const proofPoints = [
-  "Answers questions before visitors leave your site",
-  "Makes the value obvious fast by responding instantly",
-  "Helps turn more of your existing traffic into real opportunities",
+  "Guides visitors before they arrive and while they are on site",
+  "Helps people know where to go and what to do next",
+  "Supports more bookings, more spend, and less pressure on staff",
 ]
 
 export default function MeetGeorgePage() {
@@ -35,13 +35,13 @@ export default function MeetGeorgePage() {
               <Image src="/george-logo.png" alt="George" width={420} height={140} className="h-28 w-auto sm:h-32 premium-floating-card" priority />
             </div>
             <h1 className="mx-auto mt-6 max-w-4xl text-balance text-4xl font-extrabold tracking-tight text-[#0F172A] sm:text-5xl lg:text-6xl">
-              George speaks to your visitors before they leave
+              Turn your website into a 24/7 guide for your visitors
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[#475569] sm:text-xl">
-              This is where the value clicks. George answers questions instantly, explains your services, helps with pricing, and guides visitors toward becoming enquiries or bookings.
+              Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. He helps visitors plan their visit, find their way around, discover more of what you offer, and take the right next step.
             </p>
             <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#0F172A] sm:text-lg">
-              This is exactly what George would be doing on your website.
+              George is not just answering questions — he is helping visitors book, arrive with confidence, enjoy more of their day, and spend more while they are there.
             </p>
 
             <div className="mx-auto mt-8 grid max-w-4xl gap-4 md:grid-cols-3">
@@ -55,10 +55,10 @@ export default function MeetGeorgePage() {
 
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link href="/contact" className="cta-button-primary inline-flex items-center justify-center gap-3 rounded-2xl px-7 py-4 text-base font-bold text-white">
-                Try George free for 7 days <ArrowRight className="h-5 w-5" />
+                Try George on your website — free for 7 days <ArrowRight className="h-5 w-5" />
               </Link>
               <Link href="https://alderwoodponds.fish" target="_blank" rel="noopener noreferrer" className="cta-button-secondary inline-flex items-center justify-center rounded-2xl px-7 py-4 text-base font-semibold text-[#0F172A]">
-                See George live on a site
+                See George in action
               </Link>
             </div>
           </div>

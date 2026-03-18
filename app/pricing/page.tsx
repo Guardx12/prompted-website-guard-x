@@ -42,7 +42,7 @@ export default function PricingPage() {
             </div>
             <h1 className="mt-5 text-4xl font-extrabold tracking-tight sm:text-5xl">Start with a 7-day free trial</h1>
             <p className="mt-6 text-lg leading-8 text-[#475569] sm:text-xl">
-              George is your conversational digital member of staff for your website — answering questions, explaining services, and helping turn more of your existing website traffic into enquiries or bookings.
+              George is your digital guide and member of staff for your website — helping visitors plan, get answers instantly, find the right next step, and move towards booking or buying.
             </p>
           </div>
 
@@ -135,7 +135,7 @@ export default function PricingPage() {
 
               <div className="mt-6 flex flex-col gap-4 sm:flex-row">
                 <Link href="/contact" className="cta-button-primary inline-flex items-center justify-center rounded-2xl px-6 py-3 font-bold text-white">
-                  Try George free for 7 days
+                  Try George on your website — free for 7 days
                 </Link>
                 <Link href="/meet-george" className="cta-button-secondary inline-flex items-center justify-center rounded-2xl px-6 py-3 font-bold text-[#0F172A]">
                   See George in action
@@ -159,7 +159,7 @@ export default function PricingPage() {
               </div>
               <div className="rounded-2xl bg-white p-5 shadow-sm">
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#1D4ED8]">George</p>
-                <p className="mt-3 text-base leading-7 text-[#475569]">Your conversational digital member of staff for businesses, attractions, and visitor-focused websites.</p>
+                <p className="mt-3 text-base leading-7 text-[#475569]">Your digital guide for attractions, holiday parks, campsites, and visitor-focused websites.</p>
               </div>
             </div>
           </div>

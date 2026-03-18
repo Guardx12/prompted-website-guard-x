@@ -7,7 +7,7 @@ const faqs = [
   {
     question: "What is George?",
     answer:
-      "George is a trained digital member of staff built into your website. He talks to visitors, answers questions, explains services and pricing, and helps move more of your existing traffic towards becoming enquiries or bookings.",
+      "George is a trained digital guide and member of staff built into your website. He helps visitors plan their visit, get answers instantly, find the right next step, and move more of your existing traffic towards becoming bookings, enquiries, or on-site spend.",
   },
   {
     question: "How does George help my business?",
@@ -66,7 +66,7 @@ export default function FAQPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#BFDBFE] sm:text-sm">FAQ</p>
             <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Questions about George</h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
-              George helps answer the questions visitors normally click around the site looking for, and helps move them towards becoming an enquiry or booking.
+              George helps visitors get answers quickly, feel guided instead of lost, and move towards booking, arriving confidently, and getting more from their visit.
             </p>
           </div>
 
