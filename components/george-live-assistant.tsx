@@ -606,12 +606,12 @@ export function GeorgeLiveAssistant() {
                     className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#202124] outline-none focus:border-[#AECBFA]"
                   >
                     <option value="" disabled>
-                      Choose package
+                      Choose setup type
                     </option>
-                    <option value="George Standard (£99/month per location)">George Standard (£99/month per location)</option>
-                    <option value="George Growth (£149/month per location)">George Growth (£149/month per location)</option>
-                    <option value="George Pro (£199/month per location)">George Pro (£199/month per location)</option>
-                    <option value="George Pro+ for Attractions (£199–£499/month)">George Pro+ for Attractions (£199–£499/month)</option>
+                    <option value="George for businesses">George for businesses</option>
+                    <option value="George for busier businesses">George for busier businesses</option>
+                    <option value="George for higher-traffic websites">George for higher-traffic websites</option>
+                    <option value="George for attractions and venues">George for attractions and venues</option>
                     <option value="Custom Quote">Custom Quote</option>
                   </select>
                 </div>

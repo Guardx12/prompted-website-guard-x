@@ -12,7 +12,7 @@ export function Footer() {
             </div>
             <p className="mb-4 text-[#475569]">
               GuardX builds fast, modern websites with George — a conversational digital member of staff that answers visitor questions,
-              explains services and pricing, and captures enquiries or bookings 24/7.
+              explains services, answers visitor questions, and captures enquiries or bookings 24/7.
             </p>
             <p className="mb-4 text-[#475569]">GuardX Limited — websites powered by George for UK businesses and attractions.</p>
             <p className="text-sm text-[#64748B]">&copy; {new Date().getFullYear()} GuardX. All rights reserved.</p>
