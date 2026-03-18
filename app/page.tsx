@@ -6,64 +6,64 @@ import { Footer } from "@/components/footer"
 import { ArrowRight, Building2, Clock3, MapPinned, Sparkles, TrendingUp, Zap } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "GuardX | Turn Your Website Into a 24/7 Member of Staff",
+  title: "GuardX | Turn Your Website Into a 24/7 Guide for Your Visitors",
   description:
-    "Meet George — a trained digital member of staff that speaks with your visitors, answers questions instantly, explains your services, and helps turn more of your website traffic into enquiries or bookings.",
+    "Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. George helps visitors plan their day, find their way around, discover more, and turn more website traffic into bookings.",
   alternates: { canonical: "https://guardxnetwork.com" },
 }
 
 const heroPoints = [
-  "Answers questions instantly so visitors do not drift away waiting.",
-  "Keeps visitors engaged instead of quietly leaving your site.",
-  "Captures enquiries and bookings even when you are busy or closed.",
+  "Helps visitors plan before they arrive and while they are on site.",
+  "Guides people around, helps them know what to do next, and keeps them engaged.",
+  "Supports more bookings, more spend, and less pressure on your staff.",
 ]
 
 const resultPoints = [
-  "Visitors get instant answers instead of leaving",
-  "More people stay on your site longer",
-  "More visitors turn into enquiries or bookings",
-  "More enquiries turn into paying customers",
+  "More visitors book instead of drifting away",
+  "More visitors get answers without needing staff",
+  "More people stay engaged before and during their visit",
+  "More visitors discover food, experiences, and key areas of your site",
 ]
 
 const howItWorks = [
-  "We train George on your business, services, pricing, and FAQs.",
-  "George speaks with visitors naturally and gives clear answers straight away.",
-  "He guides people toward the right next step instead of letting them leave unsure.",
-  "When someone is ready, George helps capture the enquiry or booking details.",
+  "We tailor George to your site, your layout, your attractions, and your most common visitor questions.",
+  "Visitors can use George before they arrive for tickets, planning, FAQs, and key information.",
+  "Once they are there, George can guide them around, explain what is nearby, and help them decide what to do next.",
+  "George also nudges visitors toward food, experiences, and key pages that help increase bookings and on-site spend.",
 ]
 
 const useCases = [
   {
-    title: "For local businesses",
-    description:
-      "Builders, flooring shops, salons, clinics, trades, and service businesses that want more enquiries from the traffic they already have.",
-    points: [
-      "Explains services and pricing clearly",
-      "Answers the same questions owners get asked again and again",
-      "Helps turn visitors into quote requests or enquiries",
-      "Helps turn more of your existing website traffic into real enquiries",
-    ],
-    icon: Building2,
-  },
-  {
     title: "For attractions and visitor destinations",
     description:
-      "Farm parks, family attractions, wildlife centres, venues, and visitor-focused websites where people often have questions before they book or visit.",
+      "Farm parks, family attractions, wildlife centres, venues, and destinations where visitors need help before they arrive and while they are on site.",
     points: [
-      "Helps visitors plan their visit with less friction",
-      "Answers questions about facilities, opening times, and what is on",
-      "Supports more bookings and more footfall from existing traffic",
-      "Helps turn more visitors into actual bookings and footfall",
+      "Helps visitors with tickets, timings, facilities, and what to expect",
+      "Guides people around the site and helps them know what to do next",
+      "Keeps visitors engaged with animals, experiences, food, and key areas",
+      "Supports more bookings, happier visitors, and more spend on site",
     ],
     icon: MapPinned,
+  },
+  {
+    title: "For holiday parks and campsites",
+    description:
+      "Holiday parks, caravan parks, campsites, and glamping sites where guests need clear answers, better guidance, and a smoother experience from booking to arrival.",
+    points: [
+      "Answers practical questions before guests book or arrive",
+      "Guides guests toward the right pages, facilities, and next steps",
+      "Helps reduce repetitive questions for owners and reception teams",
+      "Creates a more modern, premium guest experience",
+    ],
+    icon: Building2,
   },
 ]
 
 const georgeFeatures = [
-  "Answer everyday customer questions instantly",
-  "Explain services, pricing, FAQs, and contact details clearly",
-  "Give useful guidance and point visitors to the right next step",
-  "Capture enquiries automatically when people are ready",
+  "Guide visitors before they arrive and while they are on site",
+  "Answer questions about tickets, facilities, attractions, food, and stays",
+  "Help people find their way around and decide what to do next",
+  "Support more bookings, more spend, and less pressure on staff",
 ]
 
 export default function HomePage() {
@@ -80,7 +80,7 @@ export default function HomePage() {
             </div>
 
             <h1 className="mx-auto max-w-5xl text-balance text-4xl font-extrabold tracking-tight text-[#0F172A] sm:text-5xl lg:text-6xl">
-              Turn your website into a 24/7 member of staff that converts visitors into customers
+              Turn your website into a 24/7 guide for your visitors
             </h1>
 
             <div className="mt-8 flex justify-center">
@@ -88,11 +88,11 @@ export default function HomePage() {
             </div>
 
             <p className="mx-auto mt-8 max-w-4xl text-lg leading-8 text-[#475569] sm:text-xl">
-              Meet George — a trained digital member of staff that speaks with your visitors, answers their questions instantly, explains your services and pricing, and guides them towards becoming enquiries or bookings.
+              Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. He helps visitors plan their visit, find their way around, discover more of what you offer, and take the right next step.
             </p>
 
             <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#0F172A] sm:text-lg">
-              George is not just answering questions — he is helping turn your website traffic into real customers.
+              George is not just answering questions — he is helping visitors book, arrive with confidence, enjoy more of their day, and spend more while they are there.
             </p>
 
             <div className="mx-auto mt-8 grid max-w-4xl gap-4">
@@ -123,12 +123,12 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl rounded-[30px] border border-[#DBEAFE] bg-[linear-gradient(135deg,#0f172a_0%,#111827_38%,#1d4ed8_100%)] p-6 text-white shadow-[0_20px_70px_rgba(29,78,216,0.18)] sm:p-8 lg:p-10">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#BFDBFE]">Why this matters</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">Most websites lose visitors who never become customers</h2>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">Most visitor websites leave money on the table</h2>
             <p className="mt-5 text-lg leading-8 text-[#DBEAFE]">
-              George speaks to them before they leave — giving them answers, helping them take the next step, and turning more of them into real enquiries or bookings.
+              Visitors arrive with questions, get lost, miss things, or never make it to booking. George gives them instant help before they arrive and while they are there — improving the experience and increasing the value of every visitor.
             </p>
             <p className="mt-5 text-base font-semibold leading-7 text-white sm:text-lg">
-              If this brings you even a small increase in customers, it can make a noticeable difference to your revenue.
+              If George improves bookings, visitor flow, food spend, or staff time even slightly, it can make a noticeable difference to your revenue.
             </p>
           </div>
         </div>
@@ -138,9 +138,9 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl rounded-[30px] border border-[#DBEAFE] bg-[linear-gradient(180deg,#EFF6FF_0%,#FFFFFF_100%)] p-6 shadow-[0_20px_70px_rgba(29,78,216,0.08)] sm:p-8 lg:p-10">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">How George makes you more money</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">Most websites lose potential customers</h2>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">George helps turn more visitors into revenue</h2>
             <p className="mt-5 text-lg leading-8 text-[#475569]">
-              When visitors cannot quickly find answers, they leave. They check another website, get distracted, or never come back.
+              When visitors cannot quickly find answers, they hesitate, leave, miss things, or interrupt staff for help. George reduces that friction before and during the visit.
             </p>
             <p className="mt-4 text-lg font-semibold text-[#0F172A]">George changes that.</p>
             <div className="mt-8 grid gap-4 text-left sm:grid-cols-2">
@@ -156,7 +156,7 @@ export default function HomePage() {
               ))}
             </div>
             <p className="mt-8 text-base font-semibold leading-7 text-[#0F172A]">
-              Even a small increase in conversions from your existing website traffic can make a noticeable difference to your revenue.
+              Even a small increase in bookings, on-site spend, or visitor satisfaction can make a noticeable difference to your business.
             </p>
           </div>
         </div>
@@ -167,25 +167,20 @@ export default function HomePage() {
           <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">George in action</p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">Alderwood Ponds</h2>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">Let people see George working in real life</h2>
               <p className="mt-4 text-lg leading-8 text-[#475569]">
-                On Alderwood Ponds, George can answer questions about fishing prices, camping, facilities, rules, and bookings — the kind of everyday questions that normally take up the owner’s time.
+                The fastest way to understand George is to see him in action. He can answer questions, guide visitors, explain what is nearby, and help people take the right next step naturally.
               </p>
               <p className="mt-4 text-base leading-7 text-[#475569]">
-                This is where George makes the difference: instead of visitors leaving to find answers elsewhere, George keeps them engaged, gives them what they need instantly, and moves them closer to booking or getting in touch.
+                This is what makes George different from a normal chatbot or static FAQ page — he feels like a real guide that helps visitors throughout the journey.
               </p>
-              <p className="mt-4 text-base font-semibold leading-7 text-[#0F172A]">This is exactly what George would be doing on your website.</p>
+              <p className="mt-4 text-base font-semibold leading-7 text-[#0F172A]">See the live example, then imagine the same experience tailored to your destination.</p>
               <div className="mt-6 flex flex-wrap gap-4">
-                <Link
-                  href="https://alderwoodponds.fish"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cta-button-primary inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-bold text-white"
-                >
-                  Visit Alderwood Ponds <ArrowRight className="h-5 w-5" />
+                <Link href="/meet-george" className="cta-button-primary inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-bold text-white">
+                  See George in action <ArrowRight className="h-5 w-5" />
                 </Link>
-                <Link href="/contact" className="cta-button-secondary inline-flex items-center justify-center rounded-2xl px-6 py-3 font-bold text-[#0F172A]">
-                  Try George free for 7 days
+                <Link href="/how-george-makes-you-money" className="cta-button-secondary inline-flex items-center justify-center rounded-2xl px-6 py-3 font-bold text-[#0F172A]">
+                  How George makes you money
                 </Link>
               </div>
             </div>
@@ -200,7 +195,7 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-              <p className="mt-5 text-sm font-semibold leading-6 text-[#0F172A]">All of this happens instantly, without you needing to respond.</p>
+              <p className="mt-5 text-sm font-semibold leading-6 text-[#0F172A]">All of this happens instantly, without your team needing to answer the same questions again and again.</p>
             </div>
           </div>
         </div>
@@ -209,10 +204,10 @@ export default function HomePage() {
       <section className="px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         <div className="mx-auto max-w-6xl rounded-[30px] border border-[#DADCE0] bg-white p-6 shadow-[0_20px_70px_rgba(15,23,42,0.08)] sm:p-8">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">How George works on your website</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">George makes the value obvious fast</h2>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">How George works</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">Simple to add. Easy to understand. Valuable fast.</h2>
             <p className="mt-5 text-lg leading-8 text-[#475569]">
-              He is trained on the business, gives instant answers, and helps move more of your existing traffic towards becoming a real opportunity.
+              George is tailored to your destination, speaks naturally with visitors, and helps more people move towards booking, arriving confidently, and getting more from their day.
             </p>
           </div>
 
@@ -233,7 +228,7 @@ export default function HomePage() {
 
           <div className="mt-8 rounded-[26px] border border-[#BFDBFE] bg-[linear-gradient(135deg,#EFF6FF_0%,#FFFFFF_100%)] p-6 text-center shadow-sm">
             <p className="text-lg font-bold leading-8 text-[#0F172A]">
-              I can set this up on your website and let you run it free for 7 days — just see how it performs.
+              I can set George up for your destination and let you run it free for 7 days — just see how visitors respond.
             </p>
             <div className="mt-5 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link href="/contact" className="cta-button-primary inline-flex items-center justify-center gap-3 rounded-2xl px-7 py-4 text-base font-bold text-white">
@@ -251,9 +246,9 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl rounded-[30px] border border-[#DADCE0] bg-white p-6 shadow-[0_20px_70px_rgba(15,23,42,0.08)] sm:p-8">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">Who it is for</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">Built for businesses and attractions</h2>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">Built for places people visit</h2>
             <p className="mt-5 text-lg leading-8 text-[#475569]">
-              George works across a wide range of industries where customers or visitors have questions before taking the next step.
+              George works best in places where visitors need guidance, quick answers, and help deciding what to do next.
             </p>
           </div>
 
