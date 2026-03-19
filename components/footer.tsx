@@ -11,9 +11,9 @@ export function Footer() {
               <Image src="/guardx-logo.png" alt="GuardX Logo" width={220} height={70} className="h-16 w-auto sm:h-20" />
             </div>
             <p className="mb-4 text-[#475569]">
-              GuardX builds fast, modern websites with George — a digital member of staff that answers questions, helps with directions on your website, directions to your location, and directions around your site, gets more people through the gate, improves their experience while they’re there, and helps increase how much they spend on site.
+              GuardX builds fast, modern websites with George — a digital guide and member of staff that helps visitors plan, get answers instantly, find the right page, get directions, decide what to do next, and get more from their visit.
             </p>
-            <p className="mb-4 text-[#475569]">GuardX Limited — websites powered by George for UK businesses and attractions.</p>
+            <p className="mb-4 text-[#475569]">GuardX Limited — websites powered by George for attractions, holiday parks, visitor destinations, and UK businesses.</p>
             <p className="text-sm text-[#64748B]">&copy; {new Date().getFullYear()} GuardX. All rights reserved.</p>
           </div>
 
@@ -34,8 +34,8 @@ export function Footer() {
             <ul className="space-y-2 text-[#475569]">
               <li>Guides visitors before they arrive and while they are there</li>
               <li>Handles website, travel, and on-site directions</li>
+              <li>Explains attractions and helps families know what to do next</li>
               <li>Supports more bookings, spend, and engagement</li>
-              <li>Reduces pressure on staff</li>
               <li>Works 24/7 on your website</li>
             </ul>
           </div>

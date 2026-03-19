@@ -70,7 +70,7 @@ export default function PricingPage() {
           <div className="mt-10 rounded-[28px] border border-[#E5E7EB] bg-[#F8FAFC] p-6 shadow-sm sm:p-8">
             <h2 className="text-2xl font-bold text-[#0F172A]">George for businesses</h2>
             <p className="mt-3 max-w-3xl text-base leading-7 text-[#475569]">
-              George works best for businesses that want answers delivered instantly, enquiries captured automatically, and more visitors moved toward becoming real opportunities.
+              George works best for businesses that want answers delivered instantly, enquiries captured automatically, and more visitors moved toward becoming real opportunities. For attractions and visitor destinations, he also improves guidance, family experience, and on-site spend.
             </p>
 
             <div className="mt-8 rounded-[30px] border-2 border-[#1D4ED8] bg-[linear-gradient(135deg,#ffffff_0%,#f8fbff_42%,#eff6ff_100%)] p-6 shadow-[0_24px_80px_rgba(29,78,216,0.10)] sm:p-8">
@@ -154,7 +154,7 @@ export default function PricingPage() {
                 <MessageSquare className="h-9 w-9 text-[#1D4ED8]" />
                 <h2 className="mt-4 text-2xl font-bold">What George does</h2>
                 <p className="mt-4 text-sm leading-7 text-[#475569]">
-                  George talks to website visitors, answers questions about services, pricing, facilities, FAQs, and directions, guides visitors toward becoming enquiries or bookings, and captures details automatically.
+                  George talks to website visitors, answers questions about services, pricing, facilities, FAQs, and directions, guides visitors toward becoming enquiries or bookings, captures details automatically, and for attractions can help visitors know what to do next.
                 </p>
               </div>
               <div className="rounded-2xl bg-white p-5 shadow-sm">

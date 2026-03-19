@@ -7,52 +7,52 @@ const faqs = [
   {
     question: "What is George?",
     answer:
-      "George is a trained digital guide and member of staff built into your website. He helps visitors with three different kinds of directions — directions on your website, directions to your location, and directions around your site once they are there — while also helping them plan their visit, get answers instantly, move more of your existing traffic towards becoming bookings, enquiries, or on-site spend, and get more people through the gate while improving their experience on site.",
+      "George is a trained digital guide and digital member of staff built into your website. He helps visitors plan their visit, get answers instantly, find the right page, get directions to your location, find their way around once they are there, and decide what to do next.",
+  },
+  {
+    question: "What makes George different from a normal chatbot?",
+    answer:
+      "George is designed to guide people, not just answer questions. He can help with website directions, travel directions, and on-site directions, while also explaining what is available, suggesting next steps, and helping families get more out of their day.",
+  },
+  {
+    question: "Can George help families and children?",
+    answer:
+      "Yes. George can be trained to speak in a more family-friendly way, make things easier for parents, and make the experience more fun for children. For attractions, parks, and family venues, that is one of the biggest opportunities.",
   },
   {
     question: "How does George help my business?",
     answer:
-      "George helps by giving visitors instant answers and clear guidance instead of letting them drift away. That means more people stay engaged on your site, find the right page faster, arrive with more confidence, and are more likely to enquire or book.",
+      "George helps by giving visitors instant answers and clear guidance instead of letting them drift away. That means more people stay engaged on your site, find the right page faster, arrive with more confidence, and are more likely to enquire, book, or spend more while they are there.",
   },
   {
-    question: "Does this only work for local businesses?",
+    question: "Can George be used for attractions, holiday parks, and visitor destinations?",
     answer:
-      "No. George works well for local businesses, service businesses, trades, and also attractions, venues, and visitor-focused websites where customers usually have questions before taking the next step.",
+      "Yes. George is especially strong for attractions, holiday parks, campsites, venues, museums, and other visitor-focused businesses where people often need help before they arrive and while they are on site.",
   },
   {
-    question: "How does pricing work for businesses?",
+    question: "Can George be trained on my business?",
     answer:
-      "George is designed to be very affordable and to pay for itself quickly by helping you capture more enquiries and customers. The exact setup depends on your business, traffic, and how much you want George to handle, but the easiest way to judge it is to try it first.",
+      "Yes. George can be trained on your services, pricing, layout, facilities, FAQs, attractions, and the sort of questions visitors ask all the time. He can also use selected pages on your website as a source of truth.",
+  },
+  {
+    question: "Can George use live information like today’s events or timings?",
+    answer:
+      "Yes, when that information is provided clearly. A simple hidden update page on your website can be enough for George to use things like timings, daily notes, and key visitor updates without needing a full app.",
+  },
+  {
+    question: "Will George replace me or my team?",
+    answer:
+      "No. George handles the first layer of guidance and conversation so visitors get help instantly and your staff are freed up from answering the same questions repeatedly.",
   },
   {
     question: "How does pricing work for attractions or higher-traffic websites?",
     answer:
-      "For attractions and higher-traffic websites, George is set up around your visitor flow, traffic, and the amount of guidance or booking support you want him to handle. Because a small lift in bookings can make a noticeable difference, the best first step is a live trial rather than comparing numbers before you have seen him working on your site.",
+      "For attractions and higher-traffic websites, George is set up around your visitor flow, traffic, and the amount of guidance you want him to handle. Because even a small lift in bookings or spend can make a noticeable difference, the best first step is usually a live trial.",
   },
   {
     question: "Can I try George before deciding?",
     answer:
       "Yes. You can try George on your website for 7 days free so you can see how he performs with your real visitors, your real questions, and your real enquiry flow.",
-  },
-  {
-    question: "Will George replace me or my team?",
-    answer:
-      "No. George handles the first layer of conversation so visitors get instant answers and you do not lose opportunities when you are busy, closed, or dealing with other work.",
-  },
-  {
-    question: "What happens when someone leaves their details?",
-    answer:
-      "George can collect enquiry details and pass the conversation through so you know who engaged, what they asked about, and what next step they were interested in.",
-  },
-  {
-    question: "Can George be trained on my business?",
-    answer:
-      "Yes. George can be trained on your services, pricing, areas covered, facilities, FAQs, and the sort of questions customers or visitors ask all the time.",
-  },
-  {
-    question: "How quickly can this be set up?",
-    answer:
-      "Usually within a few days depending on the setup, how much information needs to be trained into George, and whether he is being added to an existing website or part of a new build.",
   },
 ]
 

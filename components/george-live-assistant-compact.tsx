@@ -25,7 +25,7 @@ const INITIAL_MESSAGES: LiveMessage[] = [
     id: "intro",
     role: "system",
     content:
-      "Hi — I’m George, a digital guide and member of staff for your website. I help with website directions, directions to your location, and directions around your site once visitors are there. I also help you get more people through the gate, improve visitor experience, and increase on-site spend.",
+      "Hi — I’m George, a digital guide and member of staff for your website. I help visitors plan, get answers instantly, find the right direction, know what to do next, and get more from their visit. I also help you get more people through the gate, improve visitor experience, and increase on-site spend.",
   },
 ]
 
@@ -69,7 +69,7 @@ function detectVisitorName(messages: LiveMessage[]) {
 function buildFirstResponseEvent(visitorName: string | null, hasStoredSession: boolean, lastUserMessage: string | null) {
   const instructions = hasStoredSession
     ? `Introduce yourself as George in warm, natural British English only. Keep it short. This visitor already has an ongoing conversation with you on this device. Do not restart from scratch. ${visitorName ? `Their name is ${visitorName}. Use it naturally once.` : ""} ${lastUserMessage ? `The last thing they said before returning was: ${lastUserMessage}` : ""} Briefly welcome them back and ask one short forward-moving question about what they want help with now.`
-    : "Introduce yourself as George in warm, natural British English only. Keep it short and clear. Explain that you help businesses with website directions, directions to their location, and directions around the site once people are there. Also mention that you help get more people through the gate, improve visitor experience, and increase on-site spend. Then ask naturally: 'What’s your name, and what type of place or business do you run?'"
+    : "Introduce yourself as George in warm, upbeat, natural British English only. Keep it short and clear. Explain that you help attractions and businesses guide visitors, answer questions instantly, give directions, and help people know what to do next. Also mention that you help get more people through the gate, improve visitor experience, and increase on-site spend. Then ask naturally: 'What’s your name, and what type of place or business do you run?'"
 
   return {
     type: "response.create",

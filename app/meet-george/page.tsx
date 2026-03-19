@@ -4,9 +4,9 @@ import { GeorgeLiveAssistantCompact } from "@/components/george-live-assistant-c
 import { Navigation } from "@/components/navigation"
 
 export const metadata: Metadata = {
-  title: "Meet George | Digital Guide for Visitor-Focused Websites",
+  title: "Meet George | 24/7 Digital Guide for Attractions, Holiday Parks, and Visitor Websites",
   description:
-    "Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. He helps visitors plan their visit, get website directions, get directions to your location, find their way around once they are there, discover more of what you offer, and take the right next step.",
+    "Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. He helps visitors plan, get answers instantly, find directions, know what to do next, and get more from their visit.",
   alternates: { canonical: "https://guardxnetwork.com/meet-george" },
 }
 

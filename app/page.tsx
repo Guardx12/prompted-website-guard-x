@@ -21,7 +21,7 @@ const heroPoints = [
 const resultPoints = [
   "More visitors book instead of drifting away",
   "More visitors get answers without needing staff",
-  "More people stay engaged before and during their visit",
+  "More families feel guided instead of unsure what to do",
   "More visitors discover food, experiences, and key areas of your site",
 ]
 
@@ -62,7 +62,7 @@ const useCases = [
 const georgeFeatures = [
   "Guide visitors before they arrive and while they are on site",
   "Answer questions about tickets, facilities, attractions, food, and stays",
-  "Help people with website directions, directions to your location, on-site directions, and what to do next",
+  "Help families feel looked after with clearer next steps and child-friendly guidance",
   "Support more bookings, more spend, and less pressure on staff",
 ]
 
@@ -88,11 +88,11 @@ export default function HomePage() {
             </div>
 
             <p className="mx-auto mt-8 max-w-4xl text-lg leading-8 text-[#475569] sm:text-xl">
-              Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. He helps visitors with three different types of directions: directions on your website, directions to your location, and directions around your site once they are there — as well as helping them plan their visit, discover more of what you offer, and take the right next step.
+              Meet George — a trained digital guide and member of staff for attractions, holiday parks, campsites, and visitor destinations. He helps visitors plan their visit, get answers instantly, find the right direction, discover more of what you offer, and know what to do next before they arrive and while they are on site.
             </p>
 
             <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#0F172A] sm:text-lg">
-              George doesn’t just answer questions — he actively guides visitors towards booking, arriving with confidence, finding their way, exploring more, and getting more from their visit. George helps you get more people through the gate, improves their experience while they’re there, and increases how much they spend on site.
+              George doesn’t just answer questions — he actively guides visitors towards booking, arriving with confidence, finding their way, exploring more, and getting more from their visit. He can also support a more family-friendly experience, help children stay engaged, and make the day feel smoother for parents.
             </p>
 
             <div className="mx-auto mt-8 grid max-w-4xl gap-4">
@@ -141,7 +141,7 @@ export default function HomePage() {
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">How George makes you more money</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">George helps turn more visitors into revenue</h2>
             <p className="mt-5 text-lg leading-8 text-[#475569]">
-              When visitors cannot quickly find answers, directions, or the right next step, they hesitate, leave, miss things, or interrupt staff for help. George reduces that friction before, during, and on the way to the visit.
+              When visitors cannot quickly find answers, directions, or the right next step, they hesitate, leave, miss things, or interrupt staff for help. George reduces that friction before, during, and on the way to the visit — especially for families who need quick, confident guidance.
             </p>
             <p className="mt-4 text-lg font-semibold text-[#0F172A]">George changes that.</p>
             <div className="mt-8 grid gap-4 text-left sm:grid-cols-2">
