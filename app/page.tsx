@@ -16,6 +16,7 @@ const heroPoints = [
   "Helps visitors with three kinds of directions: on your website, to your location, and around your site once they are there.",
   "Guides people before they arrive, while they are on site, and when they need to know what to do next.",
   "Supports more bookings, more spend, and less pressure on your staff.",
+  "Even 10 extra £5 purchases a day is roughly £1,500 a month in extra revenue.",
 ]
 
 const resultPoints = [
@@ -92,7 +93,7 @@ export default function HomePage() {
             </p>
 
             <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#0F172A] sm:text-lg">
-              George doesn’t just answer questions — he actively guides visitors towards booking, arriving with confidence, finding their way, exploring more, and getting more from their visit. He can also support a more family-friendly experience, help children stay engaged, and make the day feel smoother for parents.
+              George doesn’t just answer questions — he actively guides visitors towards booking, arriving with confidence, finding their way, exploring more, and getting more from their visit. He can also support a more family-friendly experience, help children stay engaged, and make the day feel smoother for parents. Most importantly, George helps turn more of the traffic you already have into revenue.
             </p>
 
             <div className="mx-auto mt-8 grid max-w-4xl gap-4">
@@ -128,7 +129,7 @@ export default function HomePage() {
               Visitors arrive with questions, struggle to find the right page, need help getting to your location, get lost on site, miss things, or never make it to booking. George gives them instant help before they arrive, on the way, and while they are there — improving the experience and increasing the value of every visitor.
             </p>
             <p className="mt-5 text-base font-semibold leading-7 text-white sm:text-lg">
-              If George improves bookings, visitor flow, food spend, or staff time even slightly, it can make a noticeable difference to your revenue. George helps you get more people through the gate, improves their experience while they’re there, and increases how much they spend on site.
+              If George improves bookings, visitor flow, food spend, or staff time even slightly, it can make a noticeable difference to your revenue. For example, if George helps generate just 10 extra purchases a day at £5 each, that is about £50 a day or roughly £1,500 a month in extra revenue before you even count repeat visits, longer stays, or bigger purchases.
             </p>
             <p className="mt-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#BFDBFE]">Most websites leave visitors to figure things out on their own. George guides them.</p>
           </div>
@@ -157,7 +158,7 @@ export default function HomePage() {
               ))}
             </div>
             <p className="mt-8 text-base font-semibold leading-7 text-[#0F172A]">
-              George removes the small points of friction that quietly cost you bookings, time, and revenue every day.
+              George removes the small points of friction that quietly cost you bookings, time, and revenue every day. George does not just cost money — he helps you make more of it.
             </p>
             <div className="mt-6 flex justify-center">
               <Link href="/how-george-makes-you-money" className="cta-button-secondary inline-flex items-center justify-center rounded-2xl px-6 py-3 text-base font-semibold text-[#0F172A]">

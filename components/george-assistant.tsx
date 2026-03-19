@@ -50,7 +50,7 @@ const openingMessage: ChatMessage = {
   id: "george-opening",
   role: "assistant",
   content:
-    "Hi — I’m George. I’m a digital guide and member of staff for your website. I help with three kinds of directions: directions on your website, directions to your location, and directions around your site once people are there. I help you get more people through the gate, improve their experience while they’re there, and increase how much they spend on site. I can also help visitors understand what you offer, find the right next step, and move towards booking or buying. What’s your name, and what kind of place or business do you run?",
+    "Hi — I’m George. I’m a digital guide and member of staff for your website. I help attractions, holiday parks, and visitor businesses guide visitors, answer questions instantly, and turn more of their existing traffic into bookings, spend, and enquiries. I help with directions on your website, directions to your location, and directions around your site once people are there. For example, if I help generate just 10 extra £5 purchases a day, that is roughly £1,500 a month in extra revenue before counting repeat visits or longer stays. What’s your name, and what kind of place or business do you run?",
 }
 
 function buildTranscript(messages: ChatMessage[]) {

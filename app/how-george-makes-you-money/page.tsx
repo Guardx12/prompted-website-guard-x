@@ -66,6 +66,24 @@ export default function HowGeorgeMakesYouMoneyPage() {
             </p>
           </div>
 
+
+          <div className="mt-10 grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="rounded-[28px] border border-[#BFDBFE] bg-[linear-gradient(135deg,#EFF6FF_0%,#FFFFFF_100%)] p-6 shadow-sm">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#1D4ED8]">The simple commercial example</p>
+              <h2 className="mt-3 text-2xl font-bold tracking-tight text-[#0F172A] sm:text-3xl">George does not just cost you money — he helps you make more of it.</h2>
+              <p className="mt-4 text-base leading-7 text-[#475569]">If George helps generate just 10 extra purchases a day at £5 each, that is about £50 a day or roughly <span className="font-bold text-[#0F172A]">£1,500 a month</span> in extra revenue.</p>
+              <p className="mt-4 text-base leading-7 text-[#475569]">And that is before you factor in longer visits, repeat customers, stronger conversion from the traffic you already have, or higher-value purchases on site.</p>
+            </div>
+            <div className="rounded-[28px] border border-[#DBEAFE] bg-white p-6 shadow-sm">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#1D4ED8]">What George is really doing</p>
+              <ul className="mt-4 space-y-3">
+                <li className="flex items-start gap-3 text-sm leading-6 text-[#475569] sm:text-base"><CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" /><span>Answering the first questions quickly so fewer visitors drop off</span></li>
+                <li className="flex items-start gap-3 text-sm leading-6 text-[#475569] sm:text-base"><CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" /><span>Guiding people towards tickets, bookings, food, activities, and key pages</span></li>
+                <li className="flex items-start gap-3 text-sm leading-6 text-[#475569] sm:text-base"><CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" /><span>Making the visit feel easier and more organised, especially for families</span></li>
+                <li className="flex items-start gap-3 text-sm leading-6 text-[#475569] sm:text-base"><CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" /><span>Helping you make more from the traffic you already have</span></li>
+              </ul>
+            </div>
+          </div>
           <div className="mt-10 overflow-hidden rounded-[28px] border border-[#DBEAFE] bg-white p-4 shadow-[0_18px_50px_rgba(29,78,216,0.08)] sm:p-6">
             <Image
               src="/george-capabilities-poster.png"
@@ -121,7 +139,7 @@ export default function HowGeorgeMakesYouMoneyPage() {
             <div className="rounded-[28px] border border-white/15 bg-white/10 p-6 backdrop-blur-sm">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#BFDBFE]">Simple summary</p>
               <p className="mt-4 text-2xl font-extrabold leading-tight text-white">
-                George helps you get more people through the gate, improves their experience while they are there, and increases how much they spend on site.
+                George helps you get more people through the gate, improves their experience while they are there, increases how much they spend on site, and helps convert more of your existing traffic into revenue.
               </p>
               <div className="mt-6 flex flex-col gap-4 sm:flex-row">
                 <Link href="/contact" className="cta-button-primary inline-flex items-center justify-center gap-3 rounded-2xl px-6 py-3 font-bold text-white">
