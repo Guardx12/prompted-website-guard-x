@@ -3,7 +3,7 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
-import { MapPin, Mail, Phone, MessageSquare } from "lucide-react"
+import { MapPin, Mail, MessageSquare } from "lucide-react"
 
 export default function ContactPage() {
   const location = "West Sussex, United Kingdom"
@@ -23,7 +23,7 @@ export default function ContactPage() {
                 Want George on your website?
               </h1>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
-                Get in touch if you want George on his own, or if you want a full website with George built in. We can help with both.
+                Whether you want George added to your current site or built into a new one, the first step is understanding your setup, your customer journey, and where George will create the most value.
               </p>
             </div>
           </div>
@@ -56,7 +56,6 @@ export default function ContactPage() {
                     <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer" className="mt-1 block text-[#475569] hover:text-[#1D4ED8]">
                       {location}
                     </a>
-                    <p className="mt-1 text-sm text-[#64748B]">Serving businesses nationwide</p>
                   </div>
                 </div>
 
@@ -65,22 +64,30 @@ export default function ContactPage() {
                     <MessageSquare className="h-6 w-6 text-[#1D4ED8]" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-[#0F172A]">Try George first</h3>
-                    <p className="mt-1 text-[#475569]">You can also speak to George directly on the Meet George page.</p>
+                    <h3 className="text-lg font-semibold text-[#0F172A]">What to send</h3>
+                    <p className="mt-1 text-[#475569]">A link to your website, what kind of business you run, and what you want George to help with.</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="border-[#E5E7EB] bg-[#F8FAFC] shadow-sm">
+            <Card className="border-[#DBEAFE] bg-[linear-gradient(135deg,#EFF6FF_0%,#FFFFFF_100%)] shadow-sm">
               <CardContent className="p-8">
-                <h2 className="mb-6 text-2xl font-bold text-[#0F172A]">What to ask about</h2>
-                <ul className="space-y-4 text-[#475569]">
-                  <li className="flex items-start gap-3"><Phone className="mt-0.5 h-5 w-5 text-[#1D4ED8]" /><span>How George would work for your business</span></li>
-                  <li className="flex items-start gap-3"><Phone className="mt-0.5 h-5 w-5 text-[#1D4ED8]" /><span>What is included in the website package</span></li>
-                  <li className="flex items-start gap-3"><Phone className="mt-0.5 h-5 w-5 text-[#1D4ED8]" /><span>Pricing and what George can answer on the site</span></li>
-                  <li className="flex items-start gap-3"><Phone className="mt-0.5 h-5 w-5 text-[#1D4ED8]" /><span>Whether the website is right for your business</span></li>
-                </ul>
+                <h2 className="text-2xl font-bold text-[#0F172A]">How the process works</h2>
+                <div className="mt-6 space-y-4">
+                  <div className="rounded-2xl bg-white p-4 shadow-sm">
+                    <p className="text-sm font-bold text-[#0F172A]">1. We look at your setup</p>
+                    <p className="mt-2 text-sm leading-6 text-[#475569]">We review your website, what your visitors need help with, and where George could improve conversions or experience.</p>
+                  </div>
+                  <div className="rounded-2xl bg-white p-4 shadow-sm">
+                    <p className="text-sm font-bold text-[#0F172A]">2. We tailor George to your business</p>
+                    <p className="mt-2 text-sm leading-6 text-[#475569]">That could mean service guidance, product help, lead capture, booking support, or visitor guidance depending on your niche.</p>
+                  </div>
+                  <div className="rounded-2xl bg-white p-4 shadow-sm">
+                    <p className="text-sm font-bold text-[#0F172A]">3. We show you the right version</p>
+                    <p className="mt-2 text-sm leading-6 text-[#475569]">The goal is not a generic demo. The goal is to show you how George would actually create value on your site.</p>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>

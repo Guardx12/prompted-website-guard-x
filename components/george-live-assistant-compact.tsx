@@ -25,7 +25,7 @@ const INITIAL_MESSAGES: LiveMessage[] = [
     id: "intro",
     role: "system",
     content:
-      "Hi — I’m George, a digital guide and member of staff for your website. I help attractions and visitor businesses guide visitors, answer questions instantly, reduce friction, and help more people book, buy, and spend more while they are there.",
+      "Hi — I’m George, a digital member of staff for your website. I help businesses answer questions instantly, guide visitors, reduce friction, and turn more of their website traffic into enquiries, bookings, and sales.",
   },
 ]
 
@@ -69,7 +69,7 @@ function detectVisitorName(messages: LiveMessage[]) {
 function buildFirstResponseEvent(visitorName: string | null, hasStoredSession: boolean, lastUserMessage: string | null) {
   const instructions = hasStoredSession
     ? `Introduce yourself as George in warm, natural British English only. Keep it short. This visitor already has an ongoing conversation with you on this device. Do not restart from scratch. ${visitorName ? `Their name is ${visitorName}. Use it naturally once.` : ""} ${lastUserMessage ? `The last thing they said before returning was: ${lastUserMessage}` : ""} Briefly welcome them back and ask one short forward-moving question about what they want help with now.`
-    : "Introduce yourself as George in warm, upbeat, natural British English only. Keep it short and clear. Explain that you help attractions and businesses guide visitors, answer questions instantly, give directions, and help people know what to do next. Also mention that you help turn more existing traffic into bookings, enquiries, and spend by improving visitor experience and reducing friction. If it fits naturally, mention the simple example that 10 extra £5 purchases a day is around £1,500 a month. Then ask naturally: 'What’s your name, and what type of place or business do you run?'"
+    : "Introduce yourself as George in warm, upbeat, natural British English only. Keep it short and clear. Explain that you help businesses answer questions instantly, guide visitors, capture opportunities, and help turn more website traffic into enquiries, bookings, or sales. Keep it simple and natural. Then ask naturally: 'What’s your name, and what type of business do you run?'"
 
   return {
     type: "response.create",
