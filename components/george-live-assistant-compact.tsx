@@ -25,7 +25,7 @@ const INITIAL_MESSAGES: LiveMessage[] = [
     id: "intro",
     role: "system",
     content:
-      "Hi — I’m George, a digital member of staff for your website. I help businesses answer questions instantly, guide visitors, reduce friction, and turn more of their website traffic into enquiries, bookings, and sales.",
+      "Hi — I’m George, a digital member of staff for your website. I help businesses answer questions instantly, guide visitors, capture opportunities, and turn more of their website traffic into enquiries, bookings, and sales. Where it suits the business, I can also act as a digital guide, family-friendly helper, or on-site mascot-style assistant.",
   },
 ]
 
@@ -69,7 +69,7 @@ function detectVisitorName(messages: LiveMessage[]) {
 function buildFirstResponseEvent(visitorName: string | null, hasStoredSession: boolean, lastUserMessage: string | null) {
   const instructions = hasStoredSession
     ? `Introduce yourself as George in warm, natural British English only. Keep it short. This visitor already has an ongoing conversation with you on this device. Do not restart from scratch. ${visitorName ? `Their name is ${visitorName}. Use it naturally once.` : ""} ${lastUserMessage ? `The last thing they said before returning was: ${lastUserMessage}` : ""} Briefly welcome them back and ask one short forward-moving question about what they want help with now.`
-    : "Introduce yourself as George in warm, upbeat, natural British English only. Keep it short and clear. Explain that you help businesses answer questions instantly, guide visitors, capture opportunities, and help turn more website traffic into enquiries, bookings, or sales. Keep it simple and natural. Then ask naturally: 'What’s your name, and what type of business do you run?'"
+    : "Introduce yourself as George in warm, upbeat, natural British English only. Keep it short and clear. Explain that you help businesses answer questions instantly, guide visitors, capture opportunities, and help turn more website traffic into enquiries, bookings, or sales. Make it clear that, where it suits the business, you can also act like a digital guide, family-friendly helper, or mascot-style assistant. Keep it simple and natural. Then ask naturally: 'What’s your name, and what type of business do you run?'"
 
   return {
     type: "response.create",
@@ -403,6 +403,20 @@ export function GeorgeLiveAssistantCompact() {
 
   return (
     <section id="live-george" className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+      <style jsx>{`
+        @keyframes georgeTalk {
+          0%, 100% { transform: translateX(-50%) scaleX(0.96) scaleY(0.72); }
+          50% { transform: translateX(-50%) scaleX(1.04) scaleY(1.18); }
+        }
+        @keyframes georgeWave {
+          0%, 100% { transform: scaleY(0.52); opacity: 0.75; }
+          50% { transform: scaleY(1.18); opacity: 1; }
+        }
+        @keyframes georgeFloat {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-3px); }
+        }
+      `}</style>
       <div className="overflow-hidden rounded-[36px] border border-[#DADCE0] bg-white shadow-[0_24px_80px_rgba(15,23,42,0.10)]">
         <div className="px-5 py-8 text-center sm:px-8 sm:py-10">
           <h1 className="text-4xl font-black tracking-tight text-[#0F172A] sm:text-5xl">Meet George</h1>
@@ -422,27 +436,55 @@ export function GeorgeLiveAssistantCompact() {
               }`}
               style={{
                 background:
-                  "radial-gradient(circle at 30% 25%, #5B7BFF 0%, #1D4ED8 24%, #0F172A 62%, #020617 100%)",
+                  "radial-gradient(circle at 32% 22%, #94A3B8 0%, #475569 18%, #0F172A 52%, #020617 100%)",
                 boxShadow:
                   connectionState === "connected" || connectionState === "connecting"
-                    ? "0 0 0 10px rgba(29,78,216,0.10), 0 28px 60px rgba(15,23,42,0.34), inset 0 3px 18px rgba(255,255,255,0.24), inset 0 -14px 28px rgba(2,6,23,0.55)"
-                    : "0 24px 54px rgba(15,23,42,0.22), inset 0 3px 18px rgba(255,255,255,0.22), inset 0 -14px 28px rgba(2,6,23,0.52)",
+                    ? "0 0 0 10px rgba(148,163,184,0.12), 0 30px 70px rgba(15,23,42,0.38), inset 0 4px 18px rgba(255,255,255,0.26), inset 0 -16px 32px rgba(2,6,23,0.52)"
+                    : "0 24px 54px rgba(15,23,42,0.24), inset 0 3px 16px rgba(255,255,255,0.2), inset 0 -14px 28px rgba(2,6,23,0.48)",
               }}
             >
-              <span className="pointer-events-none absolute inset-[8px] rounded-full border border-white/15" />
-              <span className="pointer-events-none absolute left-[12%] top-[10%] h-[22%] w-[52%] rounded-full bg-white/28 blur-[10px]" />
-              <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0)_45%,rgba(255,255,255,0.13)_75%,rgba(255,255,255,0.22)_100%)]" />
-              <div className="relative z-10 flex h-[80%] w-[80%] items-center justify-center rounded-full">
-                <Image
-                  src="/george-logo.png"
-                  alt="George"
-                  width={260}
-                  height={260}
-                  className={`h-[74%] w-[74%] object-contain drop-shadow-[0_18px_30px_rgba(0,0,0,0.22)] transition ${
-                    connectionState === "connected" || connectionState === "connecting" ? "scale-[1.02]" : "scale-100"
-                  }`}
-                  priority
-                />
+              <span className="pointer-events-none absolute inset-[7px] rounded-full border border-white/15" />
+              <span className="pointer-events-none absolute inset-[18px] rounded-full border border-white/10" />
+              <span className="pointer-events-none absolute left-[14%] top-[11%] h-[18%] w-[46%] rounded-full bg-white/25 blur-[12px]" />
+              <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_118%,rgba(255,255,255,0)_46%,rgba(255,255,255,0.12)_76%,rgba(255,255,255,0.2)_100%)]" />
+
+              <div className="pointer-events-none absolute top-[16%] z-20 flex items-end gap-[6px] sm:gap-[7px]" aria-hidden="true">
+                {[0, 1, 2, 3, 4].map((bar) => (
+                  <span
+                    key={bar}
+                    className={`w-[7px] rounded-full bg-gradient-to-b from-[#60A5FA] via-[#38BDF8] to-[#1D4ED8] shadow-[0_0_12px_rgba(56,189,248,0.35)] transition-all duration-300 sm:w-[8px] ${
+                      isModelSpeaking ? "animate-[georgeWave_0.9s_ease-in-out_infinite]" : "opacity-80"
+                    }`}
+                    style={{
+                      height: isModelSpeaking ? `${18 + (bar % 2 === 0 ? 12 : 24)}px` : `${12 + (bar % 2 === 0 ? 6 : 12)}px`,
+                      animationDelay: `${bar * 0.12}s`,
+                    }}
+                  />
+                ))}
+              </div>
+
+              <div className="relative z-10 flex h-[80%] w-[80%] items-center justify-center rounded-full bg-[radial-gradient(circle_at_50%_38%,#ffffff_0%,#f8fafc_58%,#e2e8f0_100%)] shadow-[inset_0_8px_18px_rgba(255,255,255,0.9),inset_0_-10px_18px_rgba(148,163,184,0.22),0_16px_36px_rgba(15,23,42,0.18)]">
+                <div className={`relative flex h-[80%] w-[80%] items-center justify-center transition ${isModelSpeaking ? "animate-[georgeFloat_1.8s_ease-in-out_infinite]" : ""}`}>
+                  <Image
+                    src="/george-avatar.png"
+                    alt="George"
+                    width={260}
+                    height={246}
+                    className={`h-[82%] w-[82%] object-contain drop-shadow-[0_20px_30px_rgba(15,23,42,0.18)] transition ${
+                      connectionState === "connected" || connectionState === "connecting" ? "scale-[1.02]" : "scale-100"
+                    }`}
+                    priority
+                  />
+                  <span
+                    aria-hidden="true"
+                    className={`absolute left-1/2 top-[66%] z-20 -translate-x-1/2 rounded-full border-[3px] border-[#0F2A6C] bg-white shadow-[0_8px_18px_rgba(15,23,42,0.18)] transition-all duration-150 ${
+                      isModelSpeaking ? "h-[18px] w-[56px] sm:h-[22px] sm:w-[68px] animate-[georgeTalk_0.22s_ease-in-out_infinite]" : "h-[10px] w-[44px] sm:h-[12px] sm:w-[52px]"
+                    }`}
+                    style={{ transform: "translateX(-50%)" }}
+                  >
+                    <span className="absolute inset-x-[18%] bottom-[18%] top-[28%] rounded-full bg-[radial-gradient(circle_at_50%_10%,#FCA5A5_0%,#FB7185_58%,#E11D48_100%)] opacity-90" />
+                  </span>
+                </div>
               </div>
               <span className="sr-only">{connectionState === "connected" ? "George is live" : "Start talking to George"}</span>
             </button>
