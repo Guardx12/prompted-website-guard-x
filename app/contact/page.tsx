@@ -23,7 +23,7 @@ export default function ContactPage() {
                 Want George on your website?
               </h1>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7">
-                Whether you want George added to your current site or built into a new one, the first step is understanding your setup, your customer journey, and where George will create the most value.
+                Whether you want George added to your existing website or are exploring how he could work for your business, the first step is understanding your setup, your customer journey, and where George can create the most value.
               </p>
             </div>
           </div>
