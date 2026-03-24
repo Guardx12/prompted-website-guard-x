@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const heroPoints = [
   "Speaks to visitors naturally and answers questions instantly.",
   "Guides people towards the right product, service, booking, or next step.",
-  "Adapts to the business — from sales assistant to guide, mascot, or family-friendly helper when relevant.",
+  "Captures more enquiries, bookings, and sales from the traffic you already have.",
   "Works 24/7, even when you are busy, closed, or asleep.",
 ]
 
@@ -61,11 +61,11 @@ const useCases = [
   {
     title: "For attractions, parks, and visitor venues",
     description:
-      "George can act as a digital guide before and during the visit — helping with planning, questions, directions, upgrades, visitor experience, and family-friendly engagement.",
+      "George can act as a digital guide before and during the visit — helping with planning, questions, directions, upgrades, and visitor experience.",
     points: [
       "Guides visitors before they arrive and while they are there",
       "Answers questions about tickets, facilities, food, timings, and what to do next",
-      "Can support family-friendly journeys, kid-focused engagement, mascot-style experiences, and upsells",
+      "Can support family-friendly journeys, kid-focused engagement, and upsells",
       "Helps improve bookings, spend, and overall visitor experience",
     ],
     icon: Building2,
@@ -76,7 +76,7 @@ const georgeFeatures = [
   "Answers questions instantly",
   "Guides visitors step by step",
   "Captures enquiries automatically",
-  "Can guide, reassure, sell, entertain, or support depending on the business",
+  "Helps more visitors convert into customers",
 ]
 
 export default function HomePage() {
@@ -101,11 +101,11 @@ export default function HomePage() {
             </div>
 
             <p className="mx-auto mt-8 max-w-4xl text-lg leading-8 text-[#475569] sm:text-xl">
-              George speaks to your website visitors, answers questions, guides them to the right product, service, booking, or next step, and helps turn more of your existing traffic into real customers. Depending on the business, he can also become a digital guide, a reassuring front-of-house presence, or a family-friendly mascot-style helper.
+              George speaks to your website visitors, answers questions, guides them to the right product, service, booking, or next step, and helps turn more of your existing traffic into real customers.
             </p>
 
             <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#0F172A] sm:text-lg">
-              He is not just there to chat. George is designed to help visitors feel understood, remove friction, capture interest, and move people towards action — whether that means an enquiry, a booking, a sale, a higher-value visit, or a more engaging on-site experience.
+              He is not just there to chat. George is designed to help visitors feel understood, remove friction, capture interest, and move people towards action — whether that means an enquiry, a booking, a sale, or a higher-value visit.
             </p>
 
             <div className="mx-auto mt-8 grid max-w-4xl gap-4">

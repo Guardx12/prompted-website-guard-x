@@ -25,7 +25,7 @@ const INITIAL_MESSAGES: LiveMessage[] = [
     id: "intro",
     role: "system",
     content:
-      "Hi — I’m George, a digital member of staff for your website. I help businesses answer questions instantly, guide visitors, capture opportunities, and turn more of their website traffic into enquiries, bookings, and sales. Where it suits the business, I can also act as a digital guide, family-friendly helper, or on-site mascot-style assistant.",
+      "Hi — I’m George, a digital member of staff for your website. I help businesses answer questions instantly, guide visitors, reduce friction, and turn more of their website traffic into enquiries, bookings, and sales. Depending on the business, I can also act as a guide, sales assistant, on-site helper, or a family-friendly digital mascot that keeps visitors engaged.",
   },
 ]
 
@@ -69,7 +69,7 @@ function detectVisitorName(messages: LiveMessage[]) {
 function buildFirstResponseEvent(visitorName: string | null, hasStoredSession: boolean, lastUserMessage: string | null) {
   const instructions = hasStoredSession
     ? `Introduce yourself as George in warm, natural British English only. Keep it short. This visitor already has an ongoing conversation with you on this device. Do not restart from scratch. ${visitorName ? `Their name is ${visitorName}. Use it naturally once.` : ""} ${lastUserMessage ? `The last thing they said before returning was: ${lastUserMessage}` : ""} Briefly welcome them back and ask one short forward-moving question about what they want help with now.`
-    : "Introduce yourself as George in warm, upbeat, natural British English only. Keep it short and clear. Explain that you help businesses answer questions instantly, guide visitors, capture opportunities, and help turn more website traffic into enquiries, bookings, or sales. Make it clear that, where it suits the business, you can also act like a digital guide, family-friendly helper, or mascot-style assistant. Keep it simple and natural. Then ask naturally: 'What’s your name, and what type of business do you run?'"
+    : "Introduce yourself as George in warm, upbeat, natural British English only. Keep it short and clear. Explain that you help businesses answer questions instantly, guide visitors, capture opportunities, and help turn more website traffic into enquiries, bookings, or sales. Make it clear that, depending on the business, you can also act as a guide, sales assistant, on-site helper, or a family-friendly digital mascot that entertains and assists visitors. Keep it simple and natural. Then ask naturally: 'What’s your name, and what type of business do you run?'"
 
   return {
     type: "response.create",
@@ -403,20 +403,6 @@ export function GeorgeLiveAssistantCompact() {
 
   return (
     <section id="live-george" className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
-      <style jsx>{`
-        @keyframes georgeTalk {
-          0%, 100% { transform: translateX(-50%) scaleX(0.96) scaleY(0.72); }
-          50% { transform: translateX(-50%) scaleX(1.04) scaleY(1.18); }
-        }
-        @keyframes georgeWave {
-          0%, 100% { transform: scaleY(0.52); opacity: 0.75; }
-          50% { transform: scaleY(1.18); opacity: 1; }
-        }
-        @keyframes georgeFloat {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-3px); }
-        }
-      `}</style>
       <div className="overflow-hidden rounded-[36px] border border-[#DADCE0] bg-white shadow-[0_24px_80px_rgba(15,23,42,0.10)]">
         <div className="px-5 py-8 text-center sm:px-8 sm:py-10">
           <h1 className="text-4xl font-black tracking-tight text-[#0F172A] sm:text-5xl">Meet George</h1>
@@ -436,54 +422,42 @@ export function GeorgeLiveAssistantCompact() {
               }`}
               style={{
                 background:
-                  "radial-gradient(circle at 32% 22%, #94A3B8 0%, #475569 18%, #0F172A 52%, #020617 100%)",
+                  "radial-gradient(circle at 30% 24%, #8091B7 0%, #41567F 20%, #172554 56%, #020617 100%)",
                 boxShadow:
                   connectionState === "connected" || connectionState === "connecting"
-                    ? "0 0 0 10px rgba(148,163,184,0.12), 0 30px 70px rgba(15,23,42,0.38), inset 0 4px 18px rgba(255,255,255,0.26), inset 0 -16px 32px rgba(2,6,23,0.52)"
-                    : "0 24px 54px rgba(15,23,42,0.24), inset 0 3px 16px rgba(255,255,255,0.2), inset 0 -14px 28px rgba(2,6,23,0.48)",
+                    ? "0 0 0 12px rgba(71,85,105,0.10), 0 30px 70px rgba(15,23,42,0.34), inset 0 5px 22px rgba(255,255,255,0.28), inset 0 -18px 30px rgba(2,6,23,0.58)"
+                    : "0 26px 58px rgba(15,23,42,0.24), inset 0 5px 20px rgba(255,255,255,0.24), inset 0 -16px 28px rgba(2,6,23,0.54)",
               }}
             >
-              <span className="pointer-events-none absolute inset-[7px] rounded-full border border-white/15" />
-              <span className="pointer-events-none absolute inset-[18px] rounded-full border border-white/10" />
-              <span className="pointer-events-none absolute left-[14%] top-[11%] h-[18%] w-[46%] rounded-full bg-white/25 blur-[12px]" />
-              <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_118%,rgba(255,255,255,0)_46%,rgba(255,255,255,0.12)_76%,rgba(255,255,255,0.2)_100%)]" />
+              <span className="pointer-events-none absolute inset-[8px] rounded-full border border-white/18" />
+              <span className="pointer-events-none absolute left-[11%] top-[9%] h-[22%] w-[54%] rounded-full bg-white/32 blur-[12px]" />
+              <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0)_45%,rgba(255,255,255,0.14)_75%,rgba(255,255,255,0.24)_100%)]" />
 
-              <div className="pointer-events-none absolute top-[16%] z-20 flex items-end gap-[6px] sm:gap-[7px]" aria-hidden="true">
-                {[0, 1, 2, 3, 4].map((bar) => (
-                  <span
-                    key={bar}
-                    className={`w-[7px] rounded-full bg-gradient-to-b from-[#60A5FA] via-[#38BDF8] to-[#1D4ED8] shadow-[0_0_12px_rgba(56,189,248,0.35)] transition-all duration-300 sm:w-[8px] ${
-                      isModelSpeaking ? "animate-[georgeWave_0.9s_ease-in-out_infinite]" : "opacity-80"
-                    }`}
-                    style={{
-                      height: isModelSpeaking ? `${18 + (bar % 2 === 0 ? 12 : 24)}px` : `${12 + (bar % 2 === 0 ? 6 : 12)}px`,
-                      animationDelay: `${bar * 0.12}s`,
-                    }}
-                  />
-                ))}
-              </div>
+              <div className="relative z-10 flex h-[78%] w-[78%] items-center justify-center rounded-full bg-white shadow-[inset_0_2px_12px_rgba(148,163,184,0.32)]">
+                <div className={`george-avatar-shell ${isModelSpeaking ? "is-talking" : ""}`} aria-hidden="true">
+                  <div className="george-wave-bars">
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                  </div>
 
-              <div className="relative z-10 flex h-[80%] w-[80%] items-center justify-center rounded-full bg-[radial-gradient(circle_at_50%_38%,#ffffff_0%,#f8fafc_58%,#e2e8f0_100%)] shadow-[inset_0_8px_18px_rgba(255,255,255,0.9),inset_0_-10px_18px_rgba(148,163,184,0.22),0_16px_36px_rgba(15,23,42,0.18)]">
-                <div className={`relative flex h-[80%] w-[80%] items-center justify-center transition ${isModelSpeaking ? "animate-[georgeFloat_1.8s_ease-in-out_infinite]" : ""}`}>
                   <Image
-                    src="/george-avatar.png"
+                    src="/george-avatar-head.png"
                     alt="George"
                     width={260}
-                    height={246}
-                    className={`h-[82%] w-[82%] object-contain drop-shadow-[0_20px_30px_rgba(15,23,42,0.18)] transition ${
-                      connectionState === "connected" || connectionState === "connecting" ? "scale-[1.02]" : "scale-100"
-                    }`}
+                    height={260}
+                    className="george-avatar-image"
                     priority
                   />
-                  <span
-                    aria-hidden="true"
-                    className={`absolute left-1/2 top-[66%] z-20 -translate-x-1/2 rounded-full border-[3px] border-[#0F2A6C] bg-white shadow-[0_8px_18px_rgba(15,23,42,0.18)] transition-all duration-150 ${
-                      isModelSpeaking ? "h-[18px] w-[56px] sm:h-[22px] sm:w-[68px] animate-[georgeTalk_0.22s_ease-in-out_infinite]" : "h-[10px] w-[44px] sm:h-[12px] sm:w-[52px]"
-                    }`}
-                    style={{ transform: "translateX(-50%)" }}
-                  >
-                    <span className="absolute inset-x-[18%] bottom-[18%] top-[28%] rounded-full bg-[radial-gradient(circle_at_50%_10%,#FCA5A5_0%,#FB7185_58%,#E11D48_100%)] opacity-90" />
-                  </span>
+
+                  <div className="george-mouth-mask" />
+                  <div className="george-mouth-shadow" />
+                  <div className="george-mouth-inner">
+                    <span className="george-mouth-teeth" />
+                    <span className="george-mouth-tongue" />
+                  </div>
                 </div>
               </div>
               <span className="sr-only">{connectionState === "connected" ? "George is live" : "Start talking to George"}</span>
@@ -569,6 +543,156 @@ export function GeorgeLiveAssistantCompact() {
           </div>
         ) : null}
       </div>
+
+      <style jsx>{`
+        .george-avatar-shell {
+          position: relative;
+          width: 86%;
+          height: 86%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          filter: drop-shadow(0 18px 26px rgba(15, 23, 42, 0.16));
+        }
+
+        .george-avatar-image {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          transform: translateY(2px);
+          transition: transform 220ms ease;
+        }
+
+        .george-wave-bars {
+          position: absolute;
+          top: -2%;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          align-items: flex-end;
+          gap: 5px;
+          height: 18%;
+          width: 28%;
+          opacity: 0.96;
+        }
+
+        .george-wave-bars span {
+          flex: 1;
+          border-radius: 999px;
+          background: linear-gradient(180deg, #3b82f6 0%, #38bdf8 100%);
+          height: 28%;
+          transform-origin: center bottom;
+          opacity: 0.92;
+        }
+
+        .george-avatar-shell.is-talking .george-wave-bars span:nth-child(1) { animation: waveBounce 0.72s ease-in-out infinite; }
+        .george-avatar-shell.is-talking .george-wave-bars span:nth-child(2) { animation: waveBounce 0.72s ease-in-out 0.1s infinite; }
+        .george-avatar-shell.is-talking .george-wave-bars span:nth-child(3) { animation: waveBounce 0.72s ease-in-out 0.18s infinite; }
+        .george-avatar-shell.is-talking .george-wave-bars span:nth-child(4) { animation: waveBounce 0.72s ease-in-out 0.08s infinite; }
+        .george-avatar-shell.is-talking .george-wave-bars span:nth-child(5) { animation: waveBounce 0.72s ease-in-out 0.16s infinite; }
+
+        .george-mouth-mask {
+          position: absolute;
+          left: 50%;
+          top: 66.4%;
+          width: 23.5%;
+          height: 10.8%;
+          transform: translateX(-50%);
+          border-radius: 999px;
+          background: linear-gradient(180deg, #0b52b8 0%, #08439d 100%);
+          box-shadow: inset 0 1px 2px rgba(255,255,255,0.08);
+        }
+
+        .george-mouth-shadow {
+          position: absolute;
+          left: 50%;
+          top: 69.6%;
+          width: 18%;
+          height: 8.8%;
+          transform: translateX(-50%);
+          border-radius: 999px;
+          background: #0a246a;
+          transition: all 180ms ease;
+        }
+
+        .george-mouth-inner {
+          position: absolute;
+          left: 50%;
+          top: 67.6%;
+          width: 17.4%;
+          height: 6.8%;
+          transform: translateX(-50%);
+          border-radius: 0 0 999px 999px;
+          background: #ffffff;
+          overflow: hidden;
+          transition: all 180ms ease;
+          transform-origin: center top;
+        }
+
+        .george-mouth-teeth {
+          position: absolute;
+          inset: 0;
+          background: white;
+          border-radius: 0 0 999px 999px;
+        }
+
+        .george-mouth-tongue {
+          position: absolute;
+          left: 50%;
+          bottom: -28%;
+          width: 60%;
+          height: 48%;
+          transform: translateX(-50%);
+          border-radius: 999px 999px 0 0;
+          background: #f472b6;
+          opacity: 0;
+          transition: opacity 140ms ease;
+        }
+
+        .george-avatar-shell.is-talking .george-avatar-image {
+          animation: headBob 0.8s ease-in-out infinite;
+        }
+
+        .george-avatar-shell.is-talking .george-mouth-shadow {
+          top: 70.8%;
+          width: 16.2%;
+          height: 9.6%;
+          animation: mouthShadowTalk 0.5s ease-in-out infinite alternate;
+        }
+
+        .george-avatar-shell.is-talking .george-mouth-inner {
+          top: 67.6%;
+          width: 15.8%;
+          height: 10.8%;
+          border-radius: 0 0 20px 20px;
+          background: linear-gradient(180deg, #ffffff 0 34%, #0f265b 34% 100%);
+          animation: mouthTalk 0.5s ease-in-out infinite alternate;
+        }
+
+        .george-avatar-shell.is-talking .george-mouth-tongue {
+          opacity: 0.9;
+        }
+
+        @keyframes waveBounce {
+          0%, 100% { height: 28%; }
+          50% { height: 100%; }
+        }
+
+        @keyframes headBob {
+          0%, 100% { transform: translateY(2px) scale(1); }
+          50% { transform: translateY(0px) scale(1.01); }
+        }
+
+        @keyframes mouthTalk {
+          0% { height: 7.2%; width: 17.2%; }
+          100% { height: 12.4%; width: 14.6%; }
+        }
+
+        @keyframes mouthShadowTalk {
+          0% { height: 8.8%; width: 18%; }
+          100% { height: 10.4%; width: 15.6%; }
+        }
+      `}</style>
     </section>
   )
 }
