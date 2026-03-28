@@ -28,7 +28,7 @@ type StoredSession = {
   updatedAt: number
 }
 
-const STORAGE_KEY = "guardx-meet-george-compact-v1"
+const STORAGE_KEY = "guardx-meet-george-compact-v2"
 
 const INITIAL_MESSAGES: LiveMessage[] = [
   {
@@ -65,70 +65,106 @@ function buildTranscript(messages: LiveMessage[]) {
     .join("\n\n")
 }
 
-function extractLeadDetailsFromTranscript(transcript: string) {
-  const emailMatch = transcript.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i)
-
-  let fullName = ""
-  let explicitName = ""
-  let explicitSurname = ""
-  const explicitNameMatch = transcript.match(/(?:first name|forename|name) is\s+([A-Za-z][A-Za-z' -]{1,50})/i)
-  const explicitSurnameMatch = transcript.match(/surname is\s+([A-Za-z][A-Za-z' -]{1,50})/i)
-  if (explicitNameMatch?.[1]) explicitName = normalizeWhitespace(explicitNameMatch[1])
-  if (explicitSurnameMatch?.[1]) explicitSurname = normalizeWhitespace(explicitSurnameMatch[1])
-
-  const fullNamePatterns = [
-    /my name is\s+([A-Za-z][A-Za-z' -]{1,50})/i,
-    /i am\s+([A-Za-z][A-Za-z' -]{1,50})/i,
-    /i'm\s+([A-Za-z][A-Za-z' -]{1,50})/i,
-    /this is\s+([A-Za-z][A-Za-z' -]{1,50})/i,
-    /it'?s\s+([A-Za-z][A-Za-z' -]{1,50})/i,
-  ]
-
-  for (const pattern of fullNamePatterns) {
-    const match = transcript.match(pattern)
-    if (match?.[1]) {
-      fullName = normalizeWhitespace(match[1])
-      break
-    }
-  }
-
-  const nameParts = fullName.split(/\s+/).filter(Boolean)
-  const name = explicitName || nameParts[0] || ""
-  const surname = explicitSurname || nameParts.slice(1).join(" ")
-
-  let businessName = ""
-  const businessPatterns = [
-    /business(?: name)? is\s+([A-Za-z0-9&'., -]{2,80})/i,
-    /(?:it'?s|it is|called)\s+([A-Za-z0-9&'., -]{2,80})/i,
-    /(?:i run|we run|i own|we own|i have|we have)\s+(?:a|an)?\s*([A-Za-z0-9&'., -]{2,80})/i,
-  ]
-
-  for (const pattern of businessPatterns) {
-    const match = transcript.match(pattern)
-    if (match?.[1]) {
-      businessName = normalizeWhitespace(match[1]).replace(/[.,;:!?]+$/, "")
-      break
-    }
-  }
-
-  return {
-    name,
-    surname,
-    businessName,
-    email: emailMatch ? normalizeWhitespace(emailMatch[0]) : "",
-  }
-}
-
-function buildLeadMessage(messages: LiveMessage[]) {
-  const userMessages = messages
+function getUserOnlyText(messages: LiveMessage[]) {
+  return messages
     .filter((message) => message.role === "user")
     .map((message) => normalizeWhitespace(message.content))
     .filter(Boolean)
+}
 
-  if (!userMessages.length) return "Interested in George and wants to know how it could help the business."
+function toTitleCase(value: string) {
+  return value
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+    .join(" ")
+}
 
-  const relevant = userMessages.slice(-3).join(" ")
-  return relevant.length > 500 ? `${relevant.slice(0, 497)}...` : relevant
+function cleanNameValue(value: string) {
+  return toTitleCase(normalizeWhitespace(value).replace(/[^A-Za-z' -]/g, " ").trim())
+}
+
+function cleanBusinessValue(value: string) {
+  return normalizeWhitespace(value)
+    .replace(/^(a|an)\s+/i, "")
+    .replace(/[.,;:!?]+$/, "")
+    .trim()
+}
+
+function isValidEmail(value: string) {
+  return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(normalizeWhitespace(value))
+}
+
+function extractLeadDetailsFromMessages(messages: LiveMessage[]) {
+  const userTexts = getUserOnlyText(messages)
+
+  let name = ""
+  let surname = ""
+  let businessName = ""
+  let email = ""
+
+  for (const text of userTexts) {
+    const emailMatches = text.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi)
+    if (emailMatches?.length) {
+      const latestEmail = normalizeWhitespace(emailMatches[emailMatches.length - 1])
+      if (isValidEmail(latestEmail)) email = latestEmail
+    }
+
+    const namePatterns = [
+      /(?:^|\b)(?:my first name is|first name is|forename is)\s+([A-Za-z][A-Za-z' -]{1,50})/i,
+      /(?:^|\b)(?:my name is|i am|i'm|im|it's|it is|this is)\s+([A-Za-z][A-Za-z' -]{1,50})/i,
+    ]
+    for (const pattern of namePatterns) {
+      const match = text.match(pattern)
+      if (match?.[1]) {
+        const candidate = cleanNameValue(match[1].split(/\s+/)[0] || "")
+        if (candidate) {
+          name = candidate
+          break
+        }
+      }
+    }
+
+    const surnameMatch = text.match(/(?:^|\b)(?:my surname is|surname is|last name is|family name is)\s+([A-Za-z][A-Za-z' -]{1,50})/i)
+    if (surnameMatch?.[1]) {
+      const candidate = cleanNameValue(surnameMatch[1])
+      if (candidate) surname = candidate
+    }
+
+    const businessPatterns = [
+      /(?:^|\b)(?:my business(?: name)? is|business(?: name)? is)\s+([A-Za-z0-9&'., -]{2,80})/i,
+      /(?:^|\b)(?:the business is|company(?: name)? is)\s+([A-Za-z0-9&'., -]{2,80})/i,
+      /(?:^|\b)(?:i run|we run|i own|we own)\s+([A-Za-z0-9&'., -]{2,80})/i,
+    ]
+    for (const pattern of businessPatterns) {
+      const match = text.match(pattern)
+      if (match?.[1]) {
+        const candidate = cleanBusinessValue(match[1])
+        if (candidate) {
+          businessName = candidate
+          break
+        }
+      }
+    }
+  }
+
+  return { name, surname, businessName, email }
+}
+
+function buildLeadMessage(messages: LiveMessage[]) {
+  const userMessages = getUserOnlyText(messages)
+  if (!userMessages.length) return ""
+
+  const filtered = userMessages.filter((message) => {
+    const lower = message.toLowerCase()
+    const looksLikeContactCollection =
+      /surname is|last name is|family name is|email address is|business(?: name)? is|@/.test(lower)
+    return !looksLikeContactCollection
+  })
+
+  const candidate = normalizeWhitespace((filtered[filtered.length - 1] || userMessages[userMessages.length - 1] || "").replace(/^(hi|hello|hey)[^a-z0-9]+/i, ""))
+  if (!candidate) return ""
+  return candidate.length > 280 ? `${candidate.slice(0, 277)}...` : candidate
 }
 
 function detectVisitorName(messages: LiveMessage[]) {
@@ -201,7 +237,7 @@ export function GeorgeLiveAssistantCompact() {
     [messages],
   )
   const transcript = useMemo(() => buildTranscript(messages), [messages])
-  const detailsFromTranscript = useMemo(() => extractLeadDetailsFromTranscript(transcript), [transcript])
+  const detailsFromTranscript = useMemo(() => extractLeadDetailsFromMessages(messages), [messages])
   const suggestedMessage = useMemo(() => buildLeadMessage(messages), [messages])
 
   useEffect(() => {
@@ -515,8 +551,15 @@ export function GeorgeLiveAssistantCompact() {
 
   async function handleLeadSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    setSubmitState("submitting")
     setSubmitError(null)
+
+    if (!isValidEmail(leadForm.email)) {
+      setSubmitState("error")
+      setSubmitError("Please enter a full email address before submitting.")
+      return
+    }
+
+    setSubmitState("submitting")
 
     try {
       const response = await fetch("/api/george-lead", {
@@ -663,7 +706,7 @@ export function GeorgeLiveAssistantCompact() {
           <div className="mx-auto w-full max-w-3xl rounded-[28px] border border-[#DADCE0] bg-white p-5 shadow-sm sm:p-6">
             <h2 className="text-lg font-semibold text-[#0F172A]">Ready to go ahead?</h2>
             <p className="mt-2 text-sm leading-6 text-[#475569]">
-              George can fill this in as he learns about the visitor. They can check it, edit anything they want, then press submit at the end. Only these form details are sent through.
+              George fills this in as you chat. Just check it looks right and press submit — it takes 10 seconds.
             </p>
 
             <form onSubmit={handleLeadSubmit} className="mt-5 space-y-4">
