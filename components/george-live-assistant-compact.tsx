@@ -28,14 +28,14 @@ type StoredSession = {
   updatedAt: number
 }
 
-const STORAGE_KEY = "guardx-meet-george-compact-v2"
+const STORAGE_KEY = "guardx-meet-george-compact-v3"
 
 const INITIAL_MESSAGES: LiveMessage[] = [
   {
     id: "intro",
     role: "system",
     content:
-      "Hi — I’m George, a digital member of staff for your website. I help businesses answer questions instantly, guide visitors, reduce friction, and turn more of their website traffic into enquiries, bookings, and sales. Depending on the business, I can also act as a guide, sales assistant, on-site helper, or a family-friendly digital mascot that keeps visitors engaged.",
+      "Hi — I’m George, a digital member of staff for your website. I’m tailored to each business, so I can match the brand, tone, and role you want — whether that’s a salesperson, receptionist, guide, on-site helper, or even a family-friendly mascot for a holiday park or attraction. My job is to answer questions, guide visitors, reduce friction, and help turn more of your website traffic into enquiries, bookings, and sales.",
   },
 ]
 
@@ -192,7 +192,7 @@ function detectVisitorName(messages: LiveMessage[]) {
 function buildFirstResponseEvent(visitorName: string | null, hasStoredSession: boolean, lastUserMessage: string | null) {
   const instructions = hasStoredSession
     ? `Introduce yourself as George in warm, natural British English only. Keep it short. This visitor already has an ongoing conversation with you on this device. Do not restart from scratch. ${visitorName ? `Their name is ${visitorName}. Use it naturally once.` : ""} ${lastUserMessage ? `The last thing they said before returning was: ${lastUserMessage}` : ""} Briefly welcome them back and ask one short forward-moving question about what they want help with now.`
-    : "Introduce yourself as George in warm, upbeat, natural British English only. Keep it short and clear. Explain that you help businesses answer questions instantly, guide visitors, capture opportunities, and help turn more website traffic into enquiries, bookings, or sales. Make it clear that, depending on the business, you can also act as a guide, sales assistant, on-site helper, or a family-friendly digital mascot that entertains and assists visitors. Mention naturally that the form underneath you can fill itself in as you learn their details, and that once everything looks right they can submit it or use the WhatsApp button below. Keep it simple and natural. Then ask naturally: 'What’s your name, and what type of business do you run?'"
+    : "Introduce yourself as George in warm, upbeat, natural British English only. Keep it short and clear. Explain that you help businesses answer questions instantly, guide visitors, capture opportunities, and help turn more website traffic into enquiries, bookings, or sales. Make it clear that you are tailored to each business, so you can match their brand, tone, and role — for example as a salesperson, receptionist, guide, on-site helper, or a family-friendly digital mascot for a holiday park or attraction. Mention naturally that the form underneath you can fill itself in as you learn their details, and that once everything looks right they can submit it or use the WhatsApp button below. Keep it simple and natural. Then ask naturally: 'What’s your name, and what type of business do you run?'"
 
   return {
     type: "response.create",
@@ -596,9 +596,12 @@ export function GeorgeLiveAssistantCompact() {
     <section id="live-george" className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
       <div className="overflow-hidden rounded-[36px] border border-[#DADCE0] bg-white shadow-[0_24px_80px_rgba(15,23,42,0.10)]">
         <div className="px-5 py-8 text-center sm:px-8 sm:py-10">
-          <h1 className="text-4xl font-black tracking-tight text-[#0F172A] sm:text-5xl">Meet George</h1>
+          <h1 className="text-4xl font-black tracking-tight text-[#0F172A] sm:text-5xl">Turn your website into a 24/7 salesperson</h1>
 
           <div className="mx-auto mt-8 flex max-w-3xl flex-col items-center">
+            <p className="mb-3 text-base font-semibold text-[#0F172A] sm:text-lg">Try it now — ask George anything about your business</p>
+            <p className="mb-5 max-w-2xl text-sm leading-6 text-[#475569] sm:text-base">George is tailored to each client, so he can match your brand, tone, and role — from a salesperson or receptionist to a guide or family-friendly mascot.</p>
+            <p className="mb-6 text-sm font-semibold text-[#1D4ED8] sm:text-base">See how it would work on your business in seconds</p>
             <button
               type="button"
               onClick={connectionState === "connected" ? stopConversation : startConversation}
@@ -653,6 +656,15 @@ export function GeorgeLiveAssistantCompact() {
               </div>
               <span className="sr-only">{connectionState === "connected" ? "George is live" : "Start talking to George"}</span>
             </button>
+
+            <a
+              href="https://wa.me/447519166031"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 text-sm font-semibold text-[#0F172A] underline decoration-[#25D366] decoration-2 underline-offset-4 transition hover:text-[#1D4ED8]"
+            >
+              Prefer to speak to a human? Message me on WhatsApp
+            </a>
 
             <div className="mt-6 min-h-[84px] max-w-2xl text-center">
               <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#1D4ED8]">

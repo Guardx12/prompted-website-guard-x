@@ -6,9 +6,9 @@ import { Footer } from "@/components/footer"
 import { ArrowRight, Building2, Briefcase, Headphones, ShoppingBag, Sparkles, TrendingUp, Zap } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "George | Turn Your Website Into a 24/7 Digital Member of Staff",
+  title: "George | Turn Your Website Into a 24/7 Salesperson",
   description:
-    "Meet George — a 24/7 digital member of staff for your website. George speaks to visitors, answers questions, guides them, captures enquiries, and helps turn more of your traffic into customers.",
+    "George turns your website into a 24/7 salesperson and digital member of staff, tailored to your brand, tone, and visitors so more traffic turns into enquiries, bookings, and sales.",
   alternates: { canonical: "https://guardxnetwork.com" },
 }
 
@@ -17,6 +17,7 @@ const heroPoints = [
   "Guides people towards the right product, service, booking, or next step.",
   "Captures more enquiries, bookings, and sales from the traffic you already have.",
   "Works 24/7, even when you are busy, closed, or asleep.",
+  "Can be matched to your brand, tone, and role — from salesperson to guide or mascot.",
 ]
 
 const resultPoints = [
@@ -27,7 +28,7 @@ const resultPoints = [
 ]
 
 const howItWorks = [
-  "We tailor George to your business, your website, and the questions your visitors actually ask.",
+  "We tailor George to your business, your website, your brand, and the questions your visitors actually ask.",
   "George can be trained on your services, products, pricing, FAQs, and key pages.",
   "He then speaks to visitors naturally, guides them, and helps move them towards becoming customers.",
   "For larger setups, George can also be connected to structured data so he stays accurate at scale.",
@@ -108,6 +109,10 @@ export default function HomePage() {
               He is not just there to chat. George is designed to help visitors feel understood, remove friction, capture interest, and move people towards action — whether that means an enquiry, a booking, a sale, or a higher-value visit.
             </p>
 
+            <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-[#475569] sm:text-lg">
+              George is also tailored to each client. He can match your brand, tone, and role — so for one business he might feel like a salesperson or receptionist, and for another he might become a branded guide or family-friendly mascot.
+            </p>
+
             <div className="mx-auto mt-8 grid max-w-4xl gap-4">
               {heroPoints.map((point, index) => (
                 <div
@@ -181,7 +186,7 @@ export default function HomePage() {
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">Where George fits</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">One core product. Multiple powerful use cases.</h2>
             <p className="mt-5 text-lg leading-8 text-[#475569]">
-              George adapts to the role your website is missing. For one business he can feel like a receptionist. For another he can act like a salesperson, buying assistant, or digital guide.
+              George adapts to the role your website is missing. For one business he can feel like a receptionist. For another he can act like a salesperson, buying assistant, digital guide, or even a branded mascot where that suits the experience.
             </p>
           </div>
 

@@ -14,11 +14,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Meet George | Conversational Digital Member of Staff for Your Website | GuardX",
+    default: "George | Turn Your Website Into a 24/7 Salesperson | GuardX",
     template: "%s | GuardX",
   },
   description:
-    "Meet George — a digital guide and member of staff for visitor-focused websites. Turn your website into a 24/7 voice conversation guide for your visitors. More people through your gate, better experience, higher on-site spend..",
+    "George turns your website into a 24/7 salesperson and digital member of staff, tailored to your brand, role, and visitors. Answer questions faster, guide people better, and convert more of your traffic.",
   generator: "v0.app",
   icons: {
     icon: "/favicon.ico",
@@ -29,13 +29,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     url: "https://guardxnetwork.com",
-    images: [{ url: "/george-preview.png?v=8", width: 1200, height: 630, alt: "Meet George, your digital guide and member of staff for visitor-focused websites" }],
+    images: [{ url: "/george-preview.png?v=8", width: 1200, height: 630, alt: "George, your branded digital member of staff for your website" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Meet George | Conversational Digital Member of Staff for Your Website | GuardX",
+    title: "George | Turn Your Website Into a 24/7 Salesperson | GuardX",
     description:
-      "Meet George — a digital guide and member of staff for visitor-focused websites. Turn your website into a 24/7 voice conversation guide for your visitors. More people through your gate, better experience, higher on-site spend..",
+      "George turns your website into a 24/7 salesperson and digital member of staff, tailored to your brand, role, and visitors. Answer questions faster, guide people better, and convert more of your traffic.",
     images: ["/george-preview.png?v=8"],
   },
   alternates: { canonical: "https://guardxnetwork.com" },
@@ -104,7 +104,7 @@ export default function RootLayout({
             "url": "https://www.guardxnetwork.com",
             "logo": "https://www.guardxnetwork.com/images/guardx-logo.png",
             "image": "https://www.guardxnetwork.com/images/guardx-logo.png",
-            "description": "Meet George — a digital guide and member of staff for visitor-focused websites. Turn your website into a 24/7 voice conversation guide for your visitors. More people through your gate, better experience, higher on-site spend..",
+            "description": "George turns your website into a 24/7 salesperson and digital member of staff, tailored to your brand, role, and visitors. Answer questions faster, guide people better, and convert more of your traffic.",
             "areaServed": {
               "@type": "Country",
               "name": "United Kingdom"
