@@ -599,7 +599,7 @@ export function GeorgeLiveAssistantCompact() {
           <h1 className="text-4xl font-black tracking-tight text-[#0F172A] sm:text-5xl">Turn your website into a 24/7 salesperson</h1>
 
           <div className="mx-auto mt-8 flex max-w-3xl flex-col items-center">
-            <p className="mb-3 text-base font-semibold text-[#0F172A] sm:text-lg">Try it now — ask George anything about your business</p>
+            <p className="pulse-highlight mb-3 text-base font-semibold text-[#0F172A] sm:text-lg">Try it now — ask George anything about your business</p>
             <p className="mb-5 max-w-2xl text-sm leading-6 text-[#475569] sm:text-base">George is tailored to each client, so he can match your brand, tone, and role — from a salesperson or receptionist to a guide or family-friendly mascot.</p>
             <p className="mb-6 text-sm font-semibold text-[#1D4ED8] sm:text-base">See how it would work on your business in seconds</p>
             <button
