@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState, type FormEvent } from "react"
 import { ChevronDown, ChevronUp, Loader2, PhoneOff, RotateCcw } from "lucide-react"
 
 type LiveMessage = {
@@ -11,6 +11,16 @@ type LiveMessage = {
 }
 
 type ConnectionState = "idle" | "connecting" | "connected" | "error"
+
+type LeadFormState = {
+  name: string
+  surname: string
+  businessName: string
+  email: string
+  message: string
+}
+
+type SubmitState = "idle" | "submitting" | "success" | "error"
 
 type StoredSession = {
   messages: LiveMessage[]
@@ -44,6 +54,83 @@ function trimMessagesForStorage(messages: LiveMessage[]) {
   return messages.slice(-24)
 }
 
+function normalizeWhitespace(value: string) {
+  return value.replace(/\s+/g, " ").trim()
+}
+
+function buildTranscript(messages: LiveMessage[]) {
+  return messages
+    .filter((message) => message.role === "assistant" || message.role === "user")
+    .map((message) => `${message.role === "assistant" ? "George" : "Visitor"}: ${normalizeWhitespace(message.content)}`)
+    .join("\n\n")
+}
+
+function extractLeadDetailsFromTranscript(transcript: string) {
+  const emailMatch = transcript.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i)
+
+  let fullName = ""
+  let explicitName = ""
+  let explicitSurname = ""
+  const explicitNameMatch = transcript.match(/(?:first name|forename|name) is\s+([A-Za-z][A-Za-z' -]{1,50})/i)
+  const explicitSurnameMatch = transcript.match(/surname is\s+([A-Za-z][A-Za-z' -]{1,50})/i)
+  if (explicitNameMatch?.[1]) explicitName = normalizeWhitespace(explicitNameMatch[1])
+  if (explicitSurnameMatch?.[1]) explicitSurname = normalizeWhitespace(explicitSurnameMatch[1])
+
+  const fullNamePatterns = [
+    /my name is\s+([A-Za-z][A-Za-z' -]{1,50})/i,
+    /i am\s+([A-Za-z][A-Za-z' -]{1,50})/i,
+    /i'm\s+([A-Za-z][A-Za-z' -]{1,50})/i,
+    /this is\s+([A-Za-z][A-Za-z' -]{1,50})/i,
+    /it'?s\s+([A-Za-z][A-Za-z' -]{1,50})/i,
+  ]
+
+  for (const pattern of fullNamePatterns) {
+    const match = transcript.match(pattern)
+    if (match?.[1]) {
+      fullName = normalizeWhitespace(match[1])
+      break
+    }
+  }
+
+  const nameParts = fullName.split(/\s+/).filter(Boolean)
+  const name = explicitName || nameParts[0] || ""
+  const surname = explicitSurname || nameParts.slice(1).join(" ")
+
+  let businessName = ""
+  const businessPatterns = [
+    /business(?: name)? is\s+([A-Za-z0-9&'., -]{2,80})/i,
+    /(?:it'?s|it is|called)\s+([A-Za-z0-9&'., -]{2,80})/i,
+    /(?:i run|we run|i own|we own|i have|we have)\s+(?:a|an)?\s*([A-Za-z0-9&'., -]{2,80})/i,
+  ]
+
+  for (const pattern of businessPatterns) {
+    const match = transcript.match(pattern)
+    if (match?.[1]) {
+      businessName = normalizeWhitespace(match[1]).replace(/[.,;:!?]+$/, "")
+      break
+    }
+  }
+
+  return {
+    name,
+    surname,
+    businessName,
+    email: emailMatch ? normalizeWhitespace(emailMatch[0]) : "",
+  }
+}
+
+function buildLeadMessage(messages: LiveMessage[]) {
+  const userMessages = messages
+    .filter((message) => message.role === "user")
+    .map((message) => normalizeWhitespace(message.content))
+    .filter(Boolean)
+
+  if (!userMessages.length) return "Interested in George and wants to know how it could help the business."
+
+  const relevant = userMessages.slice(-3).join(" ")
+  return relevant.length > 500 ? `${relevant.slice(0, 497)}...` : relevant
+}
+
 function detectVisitorName(messages: LiveMessage[]) {
   for (let i = 1; i < messages.length; i += 1) {
     const previous = messages[i - 1]
@@ -69,7 +156,7 @@ function detectVisitorName(messages: LiveMessage[]) {
 function buildFirstResponseEvent(visitorName: string | null, hasStoredSession: boolean, lastUserMessage: string | null) {
   const instructions = hasStoredSession
     ? `Introduce yourself as George in warm, natural British English only. Keep it short. This visitor already has an ongoing conversation with you on this device. Do not restart from scratch. ${visitorName ? `Their name is ${visitorName}. Use it naturally once.` : ""} ${lastUserMessage ? `The last thing they said before returning was: ${lastUserMessage}` : ""} Briefly welcome them back and ask one short forward-moving question about what they want help with now.`
-    : "Introduce yourself as George in warm, upbeat, natural British English only. Keep it short and clear. Explain that you help businesses answer questions instantly, guide visitors, capture opportunities, and help turn more website traffic into enquiries, bookings, or sales. Make it clear that, depending on the business, you can also act as a guide, sales assistant, on-site helper, or a family-friendly digital mascot that entertains and assists visitors. Keep it simple and natural. Then ask naturally: 'What’s your name, and what type of business do you run?'"
+    : "Introduce yourself as George in warm, upbeat, natural British English only. Keep it short and clear. Explain that you help businesses answer questions instantly, guide visitors, capture opportunities, and help turn more website traffic into enquiries, bookings, or sales. Make it clear that, depending on the business, you can also act as a guide, sales assistant, on-site helper, or a family-friendly digital mascot that entertains and assists visitors. Mention naturally that the form underneath you can fill itself in as you learn their details, and that once everything looks right they can submit it or use the WhatsApp button below. Keep it simple and natural. Then ask naturally: 'What’s your name, and what type of business do you run?'"
 
   return {
     type: "response.create",
@@ -86,6 +173,15 @@ export function GeorgeLiveAssistantCompact() {
   const [hasStoredSession, setHasStoredSession] = useState(false)
   const [visitorName, setVisitorName] = useState<string | null>(null)
   const [showConversation, setShowConversation] = useState(false)
+  const [leadForm, setLeadForm] = useState<LeadFormState>({
+    name: "",
+    surname: "",
+    businessName: "",
+    email: "",
+    message: "",
+  })
+  const [submitState, setSubmitState] = useState<SubmitState>("idle")
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const pcRef = useRef<RTCPeerConnection | null>(null)
   const dcRef = useRef<RTCDataChannel | null>(null)
@@ -104,6 +200,9 @@ export function GeorgeLiveAssistantCompact() {
     () => [...messages].reverse().find((message) => message.role === "user")?.content ?? null,
     [messages],
   )
+  const transcript = useMemo(() => buildTranscript(messages), [messages])
+  const detailsFromTranscript = useMemo(() => extractLeadDetailsFromTranscript(transcript), [transcript])
+  const suggestedMessage = useMemo(() => buildLeadMessage(messages), [messages])
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -145,6 +244,16 @@ export function GeorgeLiveAssistantCompact() {
     } catch {}
   }, [messages, visitorName])
 
+  useEffect(() => {
+    setLeadForm((prev) => ({
+      name: detailsFromTranscript.name || prev.name,
+      surname: detailsFromTranscript.surname || prev.surname,
+      businessName: detailsFromTranscript.businessName || prev.businessName,
+      email: detailsFromTranscript.email || prev.email,
+      message: suggestedMessage || prev.message,
+    }))
+  }, [detailsFromTranscript, suggestedMessage])
+
   async function cleanupConversation() {
     dcRef.current?.close()
     dcRef.current = null
@@ -177,6 +286,9 @@ export function GeorgeLiveAssistantCompact() {
     setMessages(INITIAL_MESSAGES)
     setVisitorName(null)
     setHasStoredSession(false)
+    setLeadForm({ name: "", surname: "", businessName: "", email: "", message: "" })
+    setSubmitState("idle")
+    setSubmitError(null)
     setError(null)
     setConnectionState("idle")
     setStatusText("Ready when you are")
@@ -401,6 +513,42 @@ export function GeorgeLiveAssistantCompact() {
     setStatusText(hasStoredSession ? "Ready to carry on" : "Ready when you are")
   }
 
+  async function handleLeadSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setSubmitState("submitting")
+    setSubmitError(null)
+
+    try {
+      const response = await fetch("/api/george-lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: leadForm.name,
+          surname: leadForm.surname,
+          businessName: leadForm.businessName,
+          email: leadForm.email,
+          message: leadForm.message,
+          source: "Meet George autofill form",
+          page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
+          submittedAt: new Date().toISOString(),
+          submissionMode: "manual_submit_after_autofill",
+        }),
+      })
+
+      const data = await response.json().catch(() => null)
+      if (!response.ok) {
+        throw new Error(typeof data?.error === "string" ? data.error : "Could not send your enquiry.")
+      }
+
+      setSubmitState("success")
+    } catch (error) {
+      setSubmitState("error")
+      setSubmitError(error instanceof Error ? error.message : "Could not send your enquiry.")
+    }
+  }
+
   return (
     <section id="live-george" className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
       <div className="overflow-hidden rounded-[36px] border border-[#DADCE0] bg-white shadow-[0_24px_80px_rgba(15,23,42,0.10)]">
@@ -508,6 +656,88 @@ export function GeorgeLiveAssistantCompact() {
                 {showConversation ? "Hide conversation" : "View conversation"}
               </button>
             </div>
+          </div>
+        </div>
+
+        <div className="border-t border-[#E5E7EB] bg-[#F8FAFC] px-4 py-6 sm:px-6 sm:py-8">
+          <div className="mx-auto w-full max-w-3xl rounded-[28px] border border-[#DADCE0] bg-white p-5 shadow-sm sm:p-6">
+            <h2 className="text-lg font-semibold text-[#0F172A]">Ready to go ahead?</h2>
+            <p className="mt-2 text-sm leading-6 text-[#475569]">
+              George can fill this in as he learns about the visitor. They can check it, edit anything they want, then press submit at the end. Only these form details are sent through.
+            </p>
+
+            <form onSubmit={handleLeadSubmit} className="mt-5 space-y-4">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  value={leadForm.name}
+                  onChange={(event) => setLeadForm((prev) => ({ ...prev, name: event.target.value }))}
+                  required
+                  className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#0F172A] outline-none focus:border-[#1D4ED8]"
+                />
+                <input
+                  type="text"
+                  name="surname"
+                  placeholder="Surname"
+                  value={leadForm.surname}
+                  onChange={(event) => setLeadForm((prev) => ({ ...prev, surname: event.target.value }))}
+                  className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#0F172A] outline-none focus:border-[#1D4ED8]"
+                />
+                <input
+                  type="text"
+                  name="businessName"
+                  placeholder="Business name"
+                  value={leadForm.businessName}
+                  onChange={(event) => setLeadForm((prev) => ({ ...prev, businessName: event.target.value }))}
+                  required
+                  className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#0F172A] outline-none focus:border-[#1D4ED8] sm:col-span-2"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={leadForm.email}
+                  onChange={(event) => setLeadForm((prev) => ({ ...prev, email: event.target.value }))}
+                  required
+                  className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#0F172A] outline-none focus:border-[#1D4ED8] sm:col-span-2"
+                />
+              </div>
+
+              <textarea
+                name="message"
+                placeholder="Short message"
+                value={leadForm.message}
+                onChange={(event) => setLeadForm((prev) => ({ ...prev, message: event.target.value }))}
+                rows={4}
+                className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#0F172A] outline-none focus:border-[#1D4ED8]"
+              />
+
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <button
+                  type="submit"
+                  disabled={submitState === "submitting"}
+                  className="inline-flex items-center justify-center rounded-full bg-[#1D4ED8] px-5 py-3 text-sm font-semibold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  {submitState === "submitting" ? "Sending..." : submitState === "success" ? "Submitted" : "Submit enquiry"}
+                </button>
+
+                <a
+                  href="https://wa.me/447519166031"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-[#25D366] px-5 py-3 text-sm font-semibold text-[#0F172A] transition hover:bg-[#F0FFF4]"
+                >
+                  Contact us on WhatsApp
+                </a>
+              </div>
+
+              {submitState === "success" ? (
+                <p className="text-sm font-medium text-[#15803D]">Thanks — your enquiry has been sent.</p>
+              ) : null}
+              {submitError ? <p className="text-sm font-medium text-[#B91C1C]">{submitError}</p> : null}
+            </form>
           </div>
         </div>
 

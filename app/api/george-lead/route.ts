@@ -20,18 +20,14 @@ export async function POST(request: Request) {
 
     const form = new URLSearchParams()
     form.set("name", asString(body.name))
-    form.set("phone", asString(body.phone))
+    form.set("surname", asString(body.surname))
     form.set("email", asString(body.email))
     form.set("businessName", asString(body.businessName))
+    form.set("message", asString(body.message))
     form.set("source", asString(body.source))
     form.set("page", asString(body.page))
     form.set("submittedAt", asString(body.submittedAt))
     form.set("submissionMode", asString(body.submissionMode))
-    form.set("userMessageCount", String(body.userMessageCount ?? ""))
-    form.set("sessionId", asString(body.sessionId))
-    form.set("summary", asString(body.summary))
-    form.set("message", asString(body.summary) || asString(body.transcript))
-    form.set("transcript", asString(body.transcript))
     form.set("_subject", "New George enquiry")
 
     const response = await fetch(FORMSPREE_ENDPOINT, {
@@ -56,7 +52,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true })
   } catch (error) {
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : "Could not send George transcript." },
+      { error: error instanceof Error ? error.message : "Could not send George enquiry." },
       { status: 500 },
     )
   }

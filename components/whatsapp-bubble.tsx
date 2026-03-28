@@ -1,11 +1,15 @@
 "use client"
 
 import { useState } from "react"
+import { usePathname } from "next/navigation"
 
 export function WhatsAppBubble() {
   const [isHovered, setIsHovered] = useState(false)
+  const pathname = usePathname()
   const whatsappNumber = "447519166031"
   const whatsappUrl = `https://wa.me/${whatsappNumber}`
+
+  if (pathname === "/meet-george") return null
 
   return (
     <a
