@@ -35,7 +35,7 @@ const INITIAL_MESSAGES: LiveMessage[] = [
     id: "intro",
     role: "system",
     content:
-      "Hi — I’m George, a digital member of staff for your website. I’m tailored to each business, so I can match the brand, tone, and role you want — whether that’s a salesperson, receptionist, guide, on-site helper, or even a family-friendly mascot for a holiday park or attraction. My job is to answer questions, guide visitors, reduce friction, and help turn more of your website traffic into enquiries, bookings, and sales.",
+      "Hi — I’m George. Tell me what your business is and I’ll show you exactly how I’d work on your website to get more enquiries, bookings, and sales. I can match your brand, tone, and role — whether that’s a salesperson, receptionist, guide, on-site helper, or even a family-friendly mascot.",
   },
 ]
 
@@ -48,16 +48,6 @@ function makeMessage(role: LiveMessage["role"], content: string) {
     role,
     content,
   }
-}
-
-function countUserMessages(messages: LiveMessage[]) {
-  return messages.filter((message) => message.role === "user").length
-}
-
-function createSessionId() {
-  return typeof crypto !== "undefined" && "randomUUID" in crypto
-    ? crypto.randomUUID()
-    : `george-session-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`
 }
 
 function trimMessagesForStorage(messages: LiveMessage[]) {
@@ -236,9 +226,6 @@ export function GeorgeLiveAssistantCompact() {
   const currentAssistantTextRef = useRef("")
   const currentAssistantMessageIdRef = useRef<string | null>(null)
   const scrollRef = useRef<HTMLDivElement | null>(null)
-  const conversationSessionIdRef = useRef("")
-  const lastSentUserCountRef = useRef(0)
-  const sendConversationTimeoutRef = useRef<ReturnType<typeof window.setTimeout> | null>(null)
 
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
   const latestAssistantMessage = useMemo(
@@ -260,8 +247,6 @@ export function GeorgeLiveAssistantCompact() {
   }, [messages, connectionState, showConversation])
 
   useEffect(() => {
-    conversationSessionIdRef.current = createSessionId()
-
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY)
       if (!raw) return
@@ -271,7 +256,6 @@ export function GeorgeLiveAssistantCompact() {
         setHasStoredSession(true)
         setVisitorName(stored.visitorName || detectVisitorName(stored.messages))
         setStatusText("Ready to carry on")
-        lastSentUserCountRef.current = countUserMessages(stored.messages)
       }
     } catch {}
   }, [])
@@ -306,55 +290,6 @@ export function GeorgeLiveAssistantCompact() {
     }))
   }, [detailsFromTranscript, suggestedMessage])
 
-
-  useEffect(() => {
-    const userMessageCount = countUserMessages(messages)
-    if (!userMessageCount || userMessageCount <= lastSentUserCountRef.current) return
-
-    if (sendConversationTimeoutRef.current) {
-      window.clearTimeout(sendConversationTimeoutRef.current)
-    }
-
-    sendConversationTimeoutRef.current = window.setTimeout(() => {
-      const latestUserOnlyCount = countUserMessages(messages)
-      const latestTranscript = buildTranscript(messages)
-      const latestUserMessageText = [...messages].reverse().find((message) => message.role === "user")?.content ?? ""
-
-      void fetch("/api/george-conversation", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        keepalive: true,
-        body: JSON.stringify({
-          sessionId: conversationSessionIdRef.current || createSessionId(),
-          source: "Meet George live conversation",
-          page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
-          conversationEvent: lastSentUserCountRef.current === 0 ? "conversation_started" : "conversation_updated",
-          userMessageCount: latestUserOnlyCount,
-          visitorName: detailsFromTranscript.name || visitorName || "",
-          surname: detailsFromTranscript.surname || "",
-          businessName: detailsFromTranscript.businessName || "",
-          email: detailsFromTranscript.email || "",
-          shortMessage: suggestedMessage || "",
-          latestUserMessage: latestUserMessageText,
-          transcript: latestTranscript,
-          submittedAt: new Date().toISOString(),
-        }),
-      }).catch(() => undefined)
-
-      lastSentUserCountRef.current = latestUserOnlyCount
-      sendConversationTimeoutRef.current = null
-    }, 1200)
-
-    return () => {
-      if (sendConversationTimeoutRef.current) {
-        window.clearTimeout(sendConversationTimeoutRef.current)
-        sendConversationTimeoutRef.current = null
-      }
-    }
-  }, [messages, detailsFromTranscript.name, detailsFromTranscript.surname, detailsFromTranscript.businessName, detailsFromTranscript.email, suggestedMessage, visitorName])
-
   async function cleanupConversation() {
     dcRef.current?.close()
     dcRef.current = null
@@ -377,11 +312,6 @@ export function GeorgeLiveAssistantCompact() {
       audioRef.current = null
     }
 
-    if (sendConversationTimeoutRef.current) {
-      window.clearTimeout(sendConversationTimeoutRef.current)
-      sendConversationTimeoutRef.current = null
-    }
-
     currentAssistantTextRef.current = ""
     currentAssistantMessageIdRef.current = null
     setIsModelSpeaking(false)
@@ -398,8 +328,6 @@ export function GeorgeLiveAssistantCompact() {
     setError(null)
     setConnectionState("idle")
     setStatusText("Ready when you are")
-    conversationSessionIdRef.current = createSessionId()
-    lastSentUserCountRef.current = 0
     try {
       window.localStorage.removeItem(STORAGE_KEY)
     } catch {}
@@ -671,9 +599,9 @@ export function GeorgeLiveAssistantCompact() {
           <h1 className="text-4xl font-black tracking-tight text-[#0F172A] sm:text-5xl">Turn your website into a 24/7 salesperson</h1>
 
           <div className="mx-auto mt-8 flex max-w-3xl flex-col items-center">
-            <p className="pulse-highlight mb-3 text-base font-semibold text-[#0F172A] sm:text-lg">Try it now — ask George how he can work for your business</p>
-            <p className="mb-5 max-w-2xl text-sm leading-6 text-[#475569] sm:text-base">George is tailored to each client, so he can match your brand, tone, and role — from a salesperson or receptionist to a guide or family-friendly mascot.</p>
-            <p className="mb-6 text-sm font-semibold text-[#1D4ED8] sm:text-base">See how it would work on your business in seconds</p>
+            <p className="pulse-highlight mb-3 text-base font-semibold text-[#0F172A] sm:text-lg">Try it now — tell George what your business is</p>
+            <p className="mb-5 max-w-2xl text-sm leading-6 text-[#475569] sm:text-base">Tell George what your business is and he will show you exactly how he would work for you. George can match your brand, tone, and role — from a salesperson or receptionist to a guide or family-friendly mascot.</p>
+            <p className="mb-6 text-sm font-semibold text-[#1D4ED8] sm:text-base">See exactly how it works on your business in 10 seconds</p>
             <button
               type="button"
               onClick={connectionState === "connected" ? stopConversation : startConversation}
@@ -748,7 +676,7 @@ export function GeorgeLiveAssistantCompact() {
                     ? "Connecting George"
                     : hasStoredSession
                       ? "Ready to carry on"
-                      : "Tap the circle to speak to George"}
+                      : "Tap the circle and tell George what your business is"}
               </p>
               <p className="mt-3 text-base leading-7 text-[#334155] sm:text-lg">{latestAssistantMessage}</p>
               {latestUserMessage ? <p className="mt-2 text-sm text-[#64748B]">You: {latestUserMessage}</p> : null}
@@ -788,7 +716,8 @@ export function GeorgeLiveAssistantCompact() {
 
         <div className="border-t border-[#E5E7EB] bg-[#F8FAFC] px-4 py-6 sm:px-6 sm:py-8">
           <div className="mx-auto w-full max-w-3xl rounded-[28px] border border-[#DADCE0] bg-white p-5 shadow-sm sm:p-6">
-            <h2 className="text-lg font-semibold text-[#0F172A]">Ready to go ahead?</h2>
+            <p className="text-sm font-semibold text-[#1D4ED8]">If this feels useful, you can get your own version of George set up for your business.</p>
+            <h2 className="mt-2 text-lg font-semibold text-[#0F172A]">Ready to go ahead?</h2>
             <p className="mt-2 text-sm leading-6 text-[#475569]">
               George fills this in as you chat. Just check it looks right and press submit — it takes 10 seconds.
             </p>
