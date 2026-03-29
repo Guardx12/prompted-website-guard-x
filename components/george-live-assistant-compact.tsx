@@ -303,6 +303,8 @@ export function GeorgeLiveAssistantCompact() {
   const conversationSessionIdRef = useRef("")
   const hasSentConversationStartRef = useRef(false)
   const conversationStartTimeoutRef = useRef<ReturnType<typeof window.setTimeout> | null>(null)
+  const idleSnapshotTimeoutRef = useRef<ReturnType<typeof window.setTimeout> | null>(null)
+  const lastFinalConversationEventRef = useRef("")
 
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
   const latestAssistantMessage = useMemo(
@@ -330,14 +332,27 @@ export function GeorgeLiveAssistantCompact() {
       const raw = window.localStorage.getItem(STORAGE_KEY)
       if (!raw) return
       const stored = JSON.parse(raw) as StoredSession
-      if (Array.isArray(stored?.messages) && stored.messages.length > 1) {
-        setMessages(stored.messages)
+      const validMessages = Array.isArray(stored?.messages)
+        ? stored.messages.filter(
+            (message): message is LiveMessage =>
+              Boolean(message) &&
+              typeof message.id === "string" &&
+              (message.role === "assistant" || message.role === "user" || message.role === "system") &&
+              typeof message.content === "string",
+          )
+        : []
+      if (validMessages.length > 1) {
+        setMessages(validMessages)
         setHasStoredSession(true)
-        setVisitorName(stored.visitorName || detectVisitorName(stored.messages))
+        setVisitorName(stored.visitorName || detectVisitorName(validMessages))
         setStatusText("Ready to carry on")
-        hasSentConversationStartRef.current = countUserMessages(stored.messages) > 0
+        hasSentConversationStartRef.current = countUserMessages(validMessages) > 0
       }
-    } catch {}
+    } catch {
+      try {
+        window.localStorage.removeItem(STORAGE_KEY)
+      } catch {}
+    }
   }, [])
 
   useEffect(() => {
