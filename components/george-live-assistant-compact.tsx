@@ -259,8 +259,10 @@ export function GeorgeLiveAssistantCompact() {
   const currentAssistantMessageIdRef = useRef<string | null>(null)
   const scrollRef = useRef<HTMLDivElement | null>(null)
   const conversationSessionIdRef = useRef("")
-  const lastSentUserCountRef = useRef(0)
-  const sendConversationTimeoutRef = useRef<ReturnType<typeof window.setTimeout> | null>(null)
+  const hasSentConversationStartRef = useRef(false)
+  const conversationStartTimeoutRef = useRef<ReturnType<typeof window.setTimeout> | null>(null)
+  const idleSnapshotTimeoutRef = useRef<ReturnType<typeof window.setTimeout> | null>(null)
+  const lastSnapshotHashRef = useRef("")
 
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
   const latestAssistantMessage = useMemo(
@@ -293,7 +295,7 @@ export function GeorgeLiveAssistantCompact() {
         setHasStoredSession(true)
         setVisitorName(stored.visitorName || detectVisitorName(stored.messages))
         setStatusText("Ready to carry on")
-        lastSentUserCountRef.current = countUserMessages(stored.messages)
+        hasSentConversationStartRef.current = countUserMessages(stored.messages) > 0
       }
     } catch {}
   }, [])
@@ -331,59 +333,75 @@ export function GeorgeLiveAssistantCompact() {
 
   useEffect(() => {
     const userMessageCount = countUserMessages(messages)
-    if (!userMessageCount || userMessageCount <= lastSentUserCountRef.current) return
+    if (!userMessageCount) return
 
-    if (sendConversationTimeoutRef.current) {
-      window.clearTimeout(sendConversationTimeoutRef.current)
+    const latestTranscript = buildTranscript(messages)
+    const latestUserMessageText = [...messages].reverse().find((message) => message.role === "user")?.content ?? ""
+    const snapshotHash = `${userMessageCount}|${latestTranscript}`
+
+    const buildPayload = (conversationEvent: string) => ({
+      sessionId: conversationSessionIdRef.current || createSessionId(),
+      source: "Meet George live conversation",
+      page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
+      conversationEvent,
+      userMessageCount,
+      visitorName: detailsFromTranscript.name || visitorName || "",
+      surname: detailsFromTranscript.surname || "",
+      businessName: detailsFromTranscript.businessName || "",
+      email: detailsFromTranscript.email || "",
+      shortMessage: suggestedMessage || "",
+      latestUserMessage: latestUserMessageText,
+      transcript: latestTranscript,
+      submittedAt: new Date().toISOString(),
+    })
+
+    if (!hasSentConversationStartRef.current) {
+      if (conversationStartTimeoutRef.current) {
+        window.clearTimeout(conversationStartTimeoutRef.current)
+      }
+
+      conversationStartTimeoutRef.current = window.setTimeout(() => {
+        sendConversationPayload(buildPayload("conversation_started"))
+        hasSentConversationStartRef.current = true
+        conversationStartTimeoutRef.current = null
+      }, 600)
     }
 
-    sendConversationTimeoutRef.current = window.setTimeout(() => {
-      const latestUserOnlyCount = countUserMessages(messages)
-      const latestTranscript = buildTranscript(messages)
-      const latestUserMessageText = [...messages].reverse().find((message) => message.role === "user")?.content ?? ""
+    if (idleSnapshotTimeoutRef.current) {
+      window.clearTimeout(idleSnapshotTimeoutRef.current)
+    }
 
-      sendConversationPayload({
-        sessionId: conversationSessionIdRef.current || createSessionId(),
-        source: "Meet George live conversation",
-        page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
-        conversationEvent: lastSentUserCountRef.current === 0 ? "conversation_started" : "conversation_updated",
-        userMessageCount: latestUserOnlyCount,
-        visitorName: detailsFromTranscript.name || visitorName || "",
-        surname: detailsFromTranscript.surname || "",
-        businessName: detailsFromTranscript.businessName || "",
-        email: detailsFromTranscript.email || "",
-        shortMessage: suggestedMessage || "",
-        latestUserMessage: latestUserMessageText,
-        transcript: latestTranscript,
-        submittedAt: new Date().toISOString(),
-      })
-
-      lastSentUserCountRef.current = latestUserOnlyCount
-      sendConversationTimeoutRef.current = null
-    }, 600)
+    idleSnapshotTimeoutRef.current = window.setTimeout(() => {
+      if (lastSnapshotHashRef.current === snapshotHash) return
+      sendConversationPayload(buildPayload("conversation_snapshot_idle"))
+      lastSnapshotHashRef.current = snapshotHash
+      idleSnapshotTimeoutRef.current = null
+    }, 20000)
 
     return () => {
-      if (sendConversationTimeoutRef.current) {
-        window.clearTimeout(sendConversationTimeoutRef.current)
-        sendConversationTimeoutRef.current = null
+      if (idleSnapshotTimeoutRef.current) {
+        window.clearTimeout(idleSnapshotTimeoutRef.current)
+        idleSnapshotTimeoutRef.current = null
       }
     }
   }, [messages, detailsFromTranscript.name, detailsFromTranscript.surname, detailsFromTranscript.businessName, detailsFromTranscript.email, suggestedMessage, visitorName])
 
   useEffect(() => {
-    const flushConversationSnapshot = () => {
+    const flushConversationSnapshot = (conversationEvent: string) => {
       const userMessageCount = countUserMessages(messages)
       if (!userMessageCount) return
 
       const latestTranscript = buildTranscript(messages)
       const latestUserMessageText = [...messages].reverse().find((message) => message.role === "user")?.content ?? ""
+      const snapshotHash = `${userMessageCount}|${latestTranscript}`
+      if (lastSnapshotHashRef.current === snapshotHash) return
 
       sendConversationPayload(
         {
           sessionId: conversationSessionIdRef.current || createSessionId(),
           source: "Meet George live conversation",
           page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
-          conversationEvent: "conversation_snapshot",
+          conversationEvent,
           userMessageCount,
           visitorName: detailsFromTranscript.name || visitorName || "",
           surname: detailsFromTranscript.surname || "",
@@ -396,19 +414,23 @@ export function GeorgeLiveAssistantCompact() {
         },
         true,
       )
+
+      lastSnapshotHashRef.current = snapshotHash
     }
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === "hidden") {
-        flushConversationSnapshot()
+        flushConversationSnapshot("conversation_snapshot_hidden")
       }
     }
 
-    window.addEventListener("pagehide", flushConversationSnapshot)
+    const handlePageHide = () => flushConversationSnapshot("conversation_snapshot_exit")
+
+    window.addEventListener("pagehide", handlePageHide)
     document.addEventListener("visibilitychange", handleVisibilityChange)
 
     return () => {
-      window.removeEventListener("pagehide", flushConversationSnapshot)
+      window.removeEventListener("pagehide", handlePageHide)
       document.removeEventListener("visibilitychange", handleVisibilityChange)
     }
   }, [messages, detailsFromTranscript.name, detailsFromTranscript.surname, detailsFromTranscript.businessName, detailsFromTranscript.email, suggestedMessage, visitorName])
