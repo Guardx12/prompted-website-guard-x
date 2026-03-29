@@ -50,6 +50,16 @@ function makeMessage(role: LiveMessage["role"], content: string) {
   }
 }
 
+function countUserMessages(messages: LiveMessage[]) {
+  return messages.filter((message) => message.role === "user").length
+}
+
+function createSessionId() {
+  return typeof crypto !== "undefined" && "randomUUID" in crypto
+    ? crypto.randomUUID()
+    : `george-session-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`
+}
+
 function trimMessagesForStorage(messages: LiveMessage[]) {
   return messages.slice(-24)
 }
@@ -226,6 +236,9 @@ export function GeorgeLiveAssistantCompact() {
   const currentAssistantTextRef = useRef("")
   const currentAssistantMessageIdRef = useRef<string | null>(null)
   const scrollRef = useRef<HTMLDivElement | null>(null)
+  const conversationSessionIdRef = useRef("")
+  const lastSentUserCountRef = useRef(0)
+  const sendConversationTimeoutRef = useRef<ReturnType<typeof window.setTimeout> | null>(null)
 
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
   const latestAssistantMessage = useMemo(
@@ -247,6 +260,8 @@ export function GeorgeLiveAssistantCompact() {
   }, [messages, connectionState, showConversation])
 
   useEffect(() => {
+    conversationSessionIdRef.current = createSessionId()
+
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY)
       if (!raw) return
@@ -256,6 +271,7 @@ export function GeorgeLiveAssistantCompact() {
         setHasStoredSession(true)
         setVisitorName(stored.visitorName || detectVisitorName(stored.messages))
         setStatusText("Ready to carry on")
+        lastSentUserCountRef.current = countUserMessages(stored.messages)
       }
     } catch {}
   }, [])
@@ -290,6 +306,55 @@ export function GeorgeLiveAssistantCompact() {
     }))
   }, [detailsFromTranscript, suggestedMessage])
 
+
+  useEffect(() => {
+    const userMessageCount = countUserMessages(messages)
+    if (!userMessageCount || userMessageCount <= lastSentUserCountRef.current) return
+
+    if (sendConversationTimeoutRef.current) {
+      window.clearTimeout(sendConversationTimeoutRef.current)
+    }
+
+    sendConversationTimeoutRef.current = window.setTimeout(() => {
+      const latestUserOnlyCount = countUserMessages(messages)
+      const latestTranscript = buildTranscript(messages)
+      const latestUserMessageText = [...messages].reverse().find((message) => message.role === "user")?.content ?? ""
+
+      void fetch("/api/george-conversation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        keepalive: true,
+        body: JSON.stringify({
+          sessionId: conversationSessionIdRef.current || createSessionId(),
+          source: "Meet George live conversation",
+          page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
+          conversationEvent: lastSentUserCountRef.current === 0 ? "conversation_started" : "conversation_updated",
+          userMessageCount: latestUserOnlyCount,
+          visitorName: detailsFromTranscript.name || visitorName || "",
+          surname: detailsFromTranscript.surname || "",
+          businessName: detailsFromTranscript.businessName || "",
+          email: detailsFromTranscript.email || "",
+          shortMessage: suggestedMessage || "",
+          latestUserMessage: latestUserMessageText,
+          transcript: latestTranscript,
+          submittedAt: new Date().toISOString(),
+        }),
+      }).catch(() => undefined)
+
+      lastSentUserCountRef.current = latestUserOnlyCount
+      sendConversationTimeoutRef.current = null
+    }, 1200)
+
+    return () => {
+      if (sendConversationTimeoutRef.current) {
+        window.clearTimeout(sendConversationTimeoutRef.current)
+        sendConversationTimeoutRef.current = null
+      }
+    }
+  }, [messages, detailsFromTranscript.name, detailsFromTranscript.surname, detailsFromTranscript.businessName, detailsFromTranscript.email, suggestedMessage, visitorName])
+
   async function cleanupConversation() {
     dcRef.current?.close()
     dcRef.current = null
@@ -312,6 +377,11 @@ export function GeorgeLiveAssistantCompact() {
       audioRef.current = null
     }
 
+    if (sendConversationTimeoutRef.current) {
+      window.clearTimeout(sendConversationTimeoutRef.current)
+      sendConversationTimeoutRef.current = null
+    }
+
     currentAssistantTextRef.current = ""
     currentAssistantMessageIdRef.current = null
     setIsModelSpeaking(false)
@@ -328,6 +398,8 @@ export function GeorgeLiveAssistantCompact() {
     setError(null)
     setConnectionState("idle")
     setStatusText("Ready when you are")
+    conversationSessionIdRef.current = createSessionId()
+    lastSentUserCountRef.current = 0
     try {
       window.localStorage.removeItem(STORAGE_KEY)
     } catch {}
