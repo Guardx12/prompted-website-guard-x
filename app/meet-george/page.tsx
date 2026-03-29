@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { Footer } from "@/components/footer"
-import { MeetGeorgeRuntimeGuard } from "@/components/meet-george-runtime-guard"
+import { GeorgeLiveAssistantCompact } from "@/components/george-live-assistant-compact"
 import { Navigation } from "@/components/navigation"
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export default function MeetGeorgePage() {
   return (
     <main className="min-h-screen bg-white text-[#0F172A]">
       <Navigation />
-      <MeetGeorgeRuntimeGuard />
+      <GeorgeLiveAssistantCompact />
       <Footer />
     </main>
   )
