@@ -30,7 +30,29 @@ type StoredSession = {
   updatedAt: number
 }
 
-const STORAGE_KEY = "guardx-meet-george-compact-v3"
+function sanitizeStoredSession(input: unknown): StoredSession | null {
+  if (!input || typeof input !== "object") return null
+
+  const source = input as Record<string, unknown>
+  const rawMessages = Array.isArray(source.messages) ? source.messages : []
+  const messages = rawMessages.filter((message): message is LiveMessage => {
+    if (!message || typeof message !== "object") return false
+    const candidate = message as Record<string, unknown>
+    return (
+      typeof candidate.id === "string" &&
+      (candidate.role === "assistant" || candidate.role === "user" || candidate.role === "system") &&
+      typeof candidate.content === "string"
+    )
+  })
+
+  return {
+    messages,
+    visitorName: typeof source.visitorName === "string" ? source.visitorName : null,
+    updatedAt: typeof source.updatedAt === "number" ? source.updatedAt : Date.now(),
+  }
+}
+
+const STORAGE_KEY = "guardx-meet-george-compact-v4"
 
 const INITIAL_MESSAGES: LiveMessage[] = [
   {
@@ -331,22 +353,17 @@ export function GeorgeLiveAssistantCompact() {
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY)
       if (!raw) return
-      const stored = JSON.parse(raw) as StoredSession
-      const validMessages = Array.isArray(stored?.messages)
-        ? stored.messages.filter(
-            (message): message is LiveMessage =>
-              Boolean(message) &&
-              typeof message.id === "string" &&
-              (message.role === "assistant" || message.role === "user" || message.role === "system") &&
-              typeof message.content === "string",
-          )
-        : []
-      if (validMessages.length > 1) {
-        setMessages(validMessages)
+      const stored = sanitizeStoredSession(JSON.parse(raw))
+      if (!stored) {
+        window.localStorage.removeItem(STORAGE_KEY)
+        return
+      }
+      if (stored.messages.length > 1) {
+        setMessages(stored.messages)
         setHasStoredSession(true)
-        setVisitorName(stored.visitorName || detectVisitorName(validMessages))
+        setVisitorName(stored.visitorName || detectVisitorName(stored.messages))
         setStatusText("Ready to carry on")
-        hasSentConversationStartRef.current = countUserMessages(validMessages) > 0
+        hasSentConversationStartRef.current = countUserMessages(stored.messages) > 0
       }
     } catch {
       try {
