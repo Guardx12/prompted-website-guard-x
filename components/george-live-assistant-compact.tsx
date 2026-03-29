@@ -261,8 +261,6 @@ export function GeorgeLiveAssistantCompact() {
   const conversationSessionIdRef = useRef("")
   const hasSentConversationStartRef = useRef(false)
   const conversationStartTimeoutRef = useRef<ReturnType<typeof window.setTimeout> | null>(null)
-  const idleSnapshotTimeoutRef = useRef<ReturnType<typeof window.setTimeout> | null>(null)
-  const lastSnapshotHashRef = useRef("")
 
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
   const latestAssistantMessage = useMemo(
@@ -333,55 +331,40 @@ export function GeorgeLiveAssistantCompact() {
 
   useEffect(() => {
     const userMessageCount = countUserMessages(messages)
-    if (!userMessageCount) return
+    if (!userMessageCount || hasSentConversationStartRef.current) return
 
-    const latestTranscript = buildTranscript(messages)
-    const latestUserMessageText = [...messages].reverse().find((message) => message.role === "user")?.content ?? ""
-    const snapshotHash = `${userMessageCount}|${latestTranscript}`
-
-    const buildPayload = (conversationEvent: string) => ({
-      sessionId: conversationSessionIdRef.current || createSessionId(),
-      source: "Meet George live conversation",
-      page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
-      conversationEvent,
-      userMessageCount,
-      visitorName: detailsFromTranscript.name || visitorName || "",
-      surname: detailsFromTranscript.surname || "",
-      businessName: detailsFromTranscript.businessName || "",
-      email: detailsFromTranscript.email || "",
-      shortMessage: suggestedMessage || "",
-      latestUserMessage: latestUserMessageText,
-      transcript: latestTranscript,
-      submittedAt: new Date().toISOString(),
-    })
-
-    if (!hasSentConversationStartRef.current) {
-      if (conversationStartTimeoutRef.current) {
-        window.clearTimeout(conversationStartTimeoutRef.current)
-      }
-
-      conversationStartTimeoutRef.current = window.setTimeout(() => {
-        sendConversationPayload(buildPayload("conversation_started"))
-        hasSentConversationStartRef.current = true
-        conversationStartTimeoutRef.current = null
-      }, 600)
+    if (conversationStartTimeoutRef.current) {
+      window.clearTimeout(conversationStartTimeoutRef.current)
     }
 
-    if (idleSnapshotTimeoutRef.current) {
-      window.clearTimeout(idleSnapshotTimeoutRef.current)
-    }
+    conversationStartTimeoutRef.current = window.setTimeout(() => {
+      const latestTranscript = buildTranscript(messages)
+      const latestUserMessageText = [...messages].reverse().find((message) => message.role === "user")?.content ?? ""
 
-    idleSnapshotTimeoutRef.current = window.setTimeout(() => {
-      if (lastSnapshotHashRef.current === snapshotHash) return
-      sendConversationPayload(buildPayload("conversation_snapshot_idle"))
-      lastSnapshotHashRef.current = snapshotHash
-      idleSnapshotTimeoutRef.current = null
-    }, 20000)
+      sendConversationPayload({
+        sessionId: conversationSessionIdRef.current || createSessionId(),
+        source: "Meet George live conversation",
+        page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
+        conversationEvent: "conversation_started",
+        userMessageCount: countUserMessages(messages),
+        visitorName: detailsFromTranscript.name || visitorName || "",
+        surname: detailsFromTranscript.surname || "",
+        businessName: detailsFromTranscript.businessName || "",
+        email: detailsFromTranscript.email || "",
+        shortMessage: suggestedMessage || "",
+        latestUserMessage: latestUserMessageText,
+        transcript: latestTranscript,
+        submittedAt: new Date().toISOString(),
+      })
+
+      hasSentConversationStartRef.current = true
+      conversationStartTimeoutRef.current = null
+    }, 600)
 
     return () => {
-      if (idleSnapshotTimeoutRef.current) {
-        window.clearTimeout(idleSnapshotTimeoutRef.current)
-        idleSnapshotTimeoutRef.current = null
+      if (conversationStartTimeoutRef.current) {
+        window.clearTimeout(conversationStartTimeoutRef.current)
+        conversationStartTimeoutRef.current = null
       }
     }
   }, [messages, detailsFromTranscript.name, detailsFromTranscript.surname, detailsFromTranscript.businessName, detailsFromTranscript.email, suggestedMessage, visitorName])
@@ -393,8 +376,6 @@ export function GeorgeLiveAssistantCompact() {
 
       const latestTranscript = buildTranscript(messages)
       const latestUserMessageText = [...messages].reverse().find((message) => message.role === "user")?.content ?? ""
-      const snapshotHash = `${userMessageCount}|${latestTranscript}`
-      if (lastSnapshotHashRef.current === snapshotHash) return
 
       sendConversationPayload(
         {
@@ -414,8 +395,6 @@ export function GeorgeLiveAssistantCompact() {
         },
         true,
       )
-
-      lastSnapshotHashRef.current = snapshotHash
     }
 
     const handleVisibilityChange = () => {
@@ -457,9 +436,9 @@ export function GeorgeLiveAssistantCompact() {
       audioRef.current = null
     }
 
-    if (sendConversationTimeoutRef.current) {
-      window.clearTimeout(sendConversationTimeoutRef.current)
-      sendConversationTimeoutRef.current = null
+    if (conversationStartTimeoutRef.current) {
+      window.clearTimeout(conversationStartTimeoutRef.current)
+      conversationStartTimeoutRef.current = null
     }
 
     currentAssistantTextRef.current = ""
@@ -479,7 +458,7 @@ export function GeorgeLiveAssistantCompact() {
     setConnectionState("idle")
     setStatusText("Ready when you are")
     conversationSessionIdRef.current = createSessionId()
-    lastSentUserCountRef.current = 0
+    hasSentConversationStartRef.current = false
     try {
       window.localStorage.removeItem(STORAGE_KEY)
     } catch {}
