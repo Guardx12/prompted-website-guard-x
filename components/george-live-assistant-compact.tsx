@@ -35,7 +35,7 @@ const INITIAL_MESSAGES: LiveMessage[] = [
     id: "intro",
     role: "system",
     content:
-      "Hi — I’m George, a digital member of staff for your website. I’m tailored to each business, so I can match the brand, tone, and role you want — whether that’s a salesperson, receptionist, guide, on-site helper, or even a family-friendly mascot for a holiday park or attraction. My job is to answer questions, guide visitors, reduce friction, and help turn more of your website traffic into enquiries, bookings, and sales.",
+      "Hi — I’m George. I turn your website into a 24/7 salesperson that talks to your visitors. I can match your brand completely — whether that’s a salesperson, receptionist, guide, on-site helper, or even a family-friendly mascot for your business. What kind of business do you run?",
   },
 ]
 
@@ -224,7 +224,7 @@ function detectVisitorName(messages: LiveMessage[]) {
 function buildFirstResponseEvent(visitorName: string | null, hasStoredSession: boolean, lastUserMessage: string | null) {
   const instructions = hasStoredSession
     ? `Introduce yourself as George in warm, natural British English only. Keep it short. This visitor already has an ongoing conversation with you on this device. Do not restart from scratch. ${visitorName ? `Their name is ${visitorName}. Use it naturally once.` : ""} ${lastUserMessage ? `The last thing they said before returning was: ${lastUserMessage}` : ""} Briefly welcome them back and ask one short forward-moving question about what they want help with now.`
-    : "Introduce yourself as George in warm, upbeat, natural British English only. Keep it short and clear. Explain that you help businesses answer questions instantly, guide visitors, capture opportunities, and help turn more website traffic into enquiries, bookings, or sales. Make it clear that you are tailored to each business, so you can match their brand, tone, and role — for example as a salesperson, receptionist, guide, on-site helper, or a family-friendly digital mascot for a holiday park or attraction. Do not mention the form, autofill, or WhatsApp in your opener. Keep it simple and natural. Then ask naturally: 'What’s your name, and what type of business do you run?'"
+    : "Introduce yourself as George in warm, confident, natural British English only. Keep it short and commercially sharp. Say that you turn websites into 24/7 salespeople that talk to visitors. Make it clear in one sentence that you can match the business brand and role completely — for example as a salesperson, receptionist, guide, on-site helper, or family-friendly mascot where that suits the business. Do not mention the form, autofill, or WhatsApp in your opener. Then ask naturally: 'What kind of business do you run?'"
 
   return {
     type: "response.create",
