@@ -22,6 +22,8 @@ type LeadFormState = {
 
 type SubmitState = "idle" | "submitting" | "success" | "error"
 
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrbypyzv"
+
 type StoredSession = {
   messages: LiveMessage[]
   visitorName: string | null
@@ -221,6 +223,46 @@ function detectVisitorName(messages: LiveMessage[]) {
   return null
 }
 
+
+function buildLeadPayload(leadForm: LeadFormState) {
+  return {
+    name: leadForm.name,
+    surname: leadForm.surname,
+    businessName: leadForm.businessName,
+    email: normalizeWhitespace(leadForm.email),
+    message: leadForm.message,
+    source: "Meet George autofill form",
+    page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
+    submittedAt: new Date().toISOString(),
+    submissionMode: "manual_submit_after_autofill",
+  }
+}
+
+async function postLeadDirectToFormspree(payload: ReturnType<typeof buildLeadPayload>) {
+  const form = new URLSearchParams()
+  form.set("name", payload.name)
+  form.set("surname", payload.surname)
+  form.set("businessName", payload.businessName)
+  form.set("email", payload.email)
+  form.set("message", payload.message)
+  form.set("source", payload.source)
+  form.set("page", payload.page)
+  form.set("submittedAt", payload.submittedAt)
+  form.set("submissionMode", payload.submissionMode)
+  form.set("_subject", "New George enquiry")
+  form.set("_replyto", payload.email)
+  form.set("_to", "info@guardxnetwork.com")
+
+  return fetch(FORMSPREE_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Accept: "application/json",
+    },
+    body: form.toString(),
+  })
+}
+
 function buildFirstResponseEvent(visitorName: string | null, hasStoredSession: boolean, lastUserMessage: string | null) {
   const instructions = hasStoredSession
     ? `Introduce yourself as George in warm, natural British English only. Keep it short. This visitor already has an ongoing conversation with you on this device. Do not restart from scratch. ${visitorName ? `Their name is ${visitorName}. Use it naturally once.` : ""} ${lastUserMessage ? `The last thing they said before returning was: ${lastUserMessage}` : ""} Briefly welcome them back and ask one short forward-moving question about what they want help with now.`
@@ -411,6 +453,50 @@ export function GeorgeLiveAssistantCompact() {
     return () => {
       window.removeEventListener("pagehide", handlePageHide)
       document.removeEventListener("visibilitychange", handleVisibilityChange)
+    }
+  }, [messages, detailsFromTranscript.name, detailsFromTranscript.surname, detailsFromTranscript.businessName, detailsFromTranscript.email, suggestedMessage, visitorName])
+
+
+  useEffect(() => {
+    const userMessageCount = countUserMessages(messages)
+    if (!userMessageCount) return
+
+    if (idleSnapshotTimeoutRef.current) {
+      window.clearTimeout(idleSnapshotTimeoutRef.current)
+      idleSnapshotTimeoutRef.current = null
+    }
+
+    idleSnapshotTimeoutRef.current = window.setTimeout(() => {
+      const latestTranscript = buildTranscript(messages)
+      const latestUserMessageText = [...messages].reverse().find((message) => message.role === "user")?.content ?? ""
+      const eventKey = `${latestTranscript.length}:${userMessageCount}`
+
+      if (lastFinalConversationEventRef.current === eventKey) return
+
+      sendConversationPayload({
+        sessionId: conversationSessionIdRef.current || createSessionId(),
+        source: "Meet George live conversation",
+        page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
+        conversationEvent: "conversation_snapshot_idle",
+        userMessageCount,
+        visitorName: detailsFromTranscript.name || visitorName || "",
+        surname: detailsFromTranscript.surname || "",
+        businessName: detailsFromTranscript.businessName || "",
+        email: detailsFromTranscript.email || "",
+        shortMessage: suggestedMessage || "",
+        latestUserMessage: latestUserMessageText,
+        transcript: latestTranscript,
+        submittedAt: new Date().toISOString(),
+      }, true)
+
+      lastFinalConversationEventRef.current = eventKey
+    }, 18000)
+
+    return () => {
+      if (idleSnapshotTimeoutRef.current) {
+        window.clearTimeout(idleSnapshotTimeoutRef.current)
+        idleSnapshotTimeoutRef.current = null
+      }
     }
   }, [messages, detailsFromTranscript.name, detailsFromTranscript.surname, detailsFromTranscript.businessName, detailsFromTranscript.email, suggestedMessage, visitorName])
 
@@ -692,24 +778,20 @@ export function GeorgeLiveAssistantCompact() {
 
     setSubmitState("submitting")
 
+    const payload = buildLeadPayload(leadForm)
+
     try {
-      const response = await fetch("/api/george-lead", {
+      let response = await fetch("/api/george-lead", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name: leadForm.name,
-          surname: leadForm.surname,
-          businessName: leadForm.businessName,
-          email: leadForm.email,
-          message: leadForm.message,
-          source: "Meet George autofill form",
-          page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
-          submittedAt: new Date().toISOString(),
-          submissionMode: "manual_submit_after_autofill",
-        }),
+        body: JSON.stringify(payload),
       })
+
+      if (!response.ok) {
+        response = await postLeadDirectToFormspree(payload)
+      }
 
       const data = await response.json().catch(() => null)
       if (!response.ok) {

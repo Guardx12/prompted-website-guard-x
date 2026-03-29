@@ -29,6 +29,8 @@ export async function POST(request: Request) {
     form.set("submittedAt", asString(body.submittedAt))
     form.set("submissionMode", asString(body.submissionMode))
     form.set("_subject", "New George enquiry")
+    form.set("_replyto", asString(body.email))
+    form.set("_to", "info@guardxnetwork.com")
 
     const response = await fetch(FORMSPREE_ENDPOINT, {
       method: "POST",
