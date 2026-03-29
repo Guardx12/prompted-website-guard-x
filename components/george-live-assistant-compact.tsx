@@ -107,35 +107,59 @@ function isValidEmail(value: string) {
   return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(normalizeWhitespace(value))
 }
 
+function buildConversationPayload({
+  messages,
+  details,
+  visitorName,
+  suggestedMessage,
+  sessionId,
+  conversationEvent,
+}: {
+  messages: LiveMessage[]
+  details: { name: string; surname: string; businessName: string; email: string }
+  visitorName: string | null
+  suggestedMessage: string
+  sessionId: string
+  conversationEvent: string
+}) {
+  const latestUserMessage = [...messages].reverse().find((message) => message.role === "user")?.content ?? ""
 
-async function sendConversationPayload(payload: Record<string, unknown>, preferBeacon = false) {
+  return {
+    sessionId,
+    source: "Meet George live conversation",
+    page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
+    conversationEvent,
+    userMessageCount: countUserMessages(messages),
+    visitorName: details.name || visitorName || "",
+    surname: details.surname || "",
+    businessName: details.businessName || "",
+    email: details.email || "",
+    shortMessage: suggestedMessage || "",
+    latestUserMessage,
+    transcript: buildTranscript(messages),
+    submittedAt: new Date().toISOString(),
+  }
+}
+
+function sendConversationPayload(payload: Record<string, unknown>, preferBeacon = false) {
   const body = JSON.stringify(payload)
 
-  if (
-    typeof navigator !== "undefined" &&
-    typeof navigator.sendBeacon === "function" &&
-    (preferBeacon || typeof document === "undefined" || document.visibilityState === "hidden")
-  ) {
+  if (typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function" && (preferBeacon || typeof document === "undefined" || document.visibilityState === "hidden")) {
     try {
       const blob = new Blob([body], { type: "application/json" })
       const sent = navigator.sendBeacon("/api/george-conversation", blob)
-      if (sent) return true
+      if (sent) return
     } catch {}
   }
 
-  try {
-    const response = await fetch("/api/george-conversation", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      keepalive: true,
-      body,
-    })
-    return response.ok
-  } catch {
-    return false
-  }
+  void fetch("/api/george-conversation", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    keepalive: true,
+    body,
+  }).catch(() => undefined)
 }
 
 function extractLeadDetailsFromMessages(messages: LiveMessage[]) {
@@ -310,9 +334,11 @@ export function GeorgeLiveAssistantCompact() {
   const currentAssistantMessageIdRef = useRef<string | null>(null)
   const scrollRef = useRef<HTMLDivElement | null>(null)
   const conversationSessionIdRef = useRef("")
-  const hasSentConversationStartRef = useRef(false)
-  const hasSentConversationEndRef = useRef(false)
-  const lastFinalConversationEventRef = useRef("")
+  const hasSentFinalConversationRef = useRef(false)
+  const latestMessagesRef = useRef<LiveMessage[]>(INITIAL_MESSAGES)
+  const latestVisitorNameRef = useRef<string | null>(null)
+  const latestSuggestedMessageRef = useRef("")
+  const latestDetailsRef = useRef({ name: "", surname: "", businessName: "", email: "" })
 
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
   const latestAssistantMessage = useMemo(
@@ -326,51 +352,6 @@ export function GeorgeLiveAssistantCompact() {
   const transcript = useMemo(() => buildTranscript(messages), [messages])
   const detailsFromTranscript = useMemo(() => extractLeadDetailsFromMessages(messages), [messages])
   const suggestedMessage = useMemo(() => buildLeadMessage(messages), [messages])
-
-  const buildConversationPayload = (conversationEvent: string) => {
-    const userMessageCount = countUserMessages(messages)
-    const latestTranscript = buildTranscript(messages)
-    const latestUserMessageText = [...messages].reverse().find((message) => message.role === "user")?.content ?? ""
-
-    return {
-      sessionId: conversationSessionIdRef.current || createSessionId(),
-      source: "Meet George live conversation",
-      page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
-      conversationEvent,
-      userMessageCount,
-      visitorName: detailsFromTranscript.name || visitorName || "",
-      surname: detailsFromTranscript.surname || "",
-      businessName: detailsFromTranscript.businessName || "",
-      email: detailsFromTranscript.email || "",
-      shortMessage: suggestedMessage || "",
-      latestUserMessage: latestUserMessageText,
-      transcript: latestTranscript,
-      submittedAt: new Date().toISOString(),
-    }
-  }
-
-  const sendConversationStart = () => {
-    if (hasSentConversationStartRef.current) return
-    hasSentConversationStartRef.current = true
-    hasSentConversationEndRef.current = false
-    lastFinalConversationEventRef.current = ""
-  }
-
-  const sendConversationEnd = async (conversationEvent: string, preferBeacon = false) => {
-    const payload = buildConversationPayload(conversationEvent)
-    const userMessageCount = typeof payload.userMessageCount === "number" ? payload.userMessageCount : 0
-    if (!userMessageCount) return false
-
-    const eventKey = `${conversationEvent}:${payload.transcript?.toString().length || 0}:${userMessageCount}`
-    if (hasSentConversationEndRef.current && lastFinalConversationEventRef.current === eventKey) return true
-
-    const sent = await sendConversationPayload(payload, preferBeacon)
-    if (sent) {
-      hasSentConversationEndRef.current = true
-      lastFinalConversationEventRef.current = eventKey
-    }
-    return sent
-  }
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -399,7 +380,6 @@ export function GeorgeLiveAssistantCompact() {
         setHasStoredSession(true)
         setVisitorName(stored.visitorName || detectVisitorName(validMessages))
         setStatusText("Ready to carry on")
-        hasSentConversationStartRef.current = countUserMessages(validMessages) > 0
       }
     } catch {
       try {
@@ -438,28 +418,84 @@ export function GeorgeLiveAssistantCompact() {
     }))
   }, [detailsFromTranscript, suggestedMessage])
 
+  useEffect(() => {
+    latestMessagesRef.current = messages
+    latestVisitorNameRef.current = visitorName
+    latestSuggestedMessageRef.current = suggestedMessage
+    latestDetailsRef.current = detailsFromTranscript
+  }, [messages, visitorName, suggestedMessage, detailsFromTranscript])
+
+  async function sendFinalConversation(conversationEvent: string, preferBeacon = false) {
+    const currentMessages = latestMessagesRef.current
+    if (countUserMessages(currentMessages) === 0) return
+    if (hasSentFinalConversationRef.current && conversationEvent !== "manual_conversation_stop") return
+
+    const payload = buildConversationPayload({
+      messages: currentMessages,
+      details: latestDetailsRef.current,
+      visitorName: latestVisitorNameRef.current,
+      suggestedMessage: latestSuggestedMessageRef.current,
+      sessionId: conversationSessionIdRef.current || createSessionId(),
+      conversationEvent,
+    })
+
+    if (preferBeacon) {
+      sendConversationPayload(payload, true)
+      hasSentFinalConversationRef.current = true
+      return
+    }
+
+    try {
+      const response = await fetch("/api/george-conversation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        keepalive: true,
+        body: JSON.stringify(payload),
+      })
+
+      if (response.ok) {
+        hasSentFinalConversationRef.current = true
+      }
+    } catch {}
+  }
 
 
   useEffect(() => {
     const handleVisibilityChange = () => {
-      if (document.visibilityState === "hidden") {
-        void sendConversationEnd("conversation_ended", true)
+      if (typeof document !== "undefined" && document.visibilityState === "hidden") {
+        void sendFinalConversation("conversation_page_hidden", true)
       }
     }
 
     const handlePageHide = () => {
-      void sendConversationEnd("conversation_ended", true)
+      void sendFinalConversation("conversation_page_exit", true)
     }
 
-    window.addEventListener("pagehide", handlePageHide)
-    document.addEventListener("visibilitychange", handleVisibilityChange)
+    const handleBeforeUnload = () => {
+      void sendFinalConversation("conversation_before_unload", true)
+    }
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("pagehide", handlePageHide)
+      window.addEventListener("beforeunload", handleBeforeUnload)
+    }
+
+    if (typeof document !== "undefined") {
+      document.addEventListener("visibilitychange", handleVisibilityChange)
+    }
 
     return () => {
-      window.removeEventListener("pagehide", handlePageHide)
-      document.removeEventListener("visibilitychange", handleVisibilityChange)
+      if (typeof window !== "undefined") {
+        window.removeEventListener("pagehide", handlePageHide)
+        window.removeEventListener("beforeunload", handleBeforeUnload)
+      }
+      if (typeof document !== "undefined") {
+        document.removeEventListener("visibilitychange", handleVisibilityChange)
+      }
     }
-  }, [messages, detailsFromTranscript.name, detailsFromTranscript.surname, detailsFromTranscript.businessName, detailsFromTranscript.email, suggestedMessage, visitorName])
-
+  }, [])
 
   async function cleanupConversation() {
     dcRef.current?.close()
@@ -500,9 +536,7 @@ export function GeorgeLiveAssistantCompact() {
     setConnectionState("idle")
     setStatusText("Ready when you are")
     conversationSessionIdRef.current = createSessionId()
-    hasSentConversationStartRef.current = false
-    hasSentConversationEndRef.current = false
-    lastFinalConversationEventRef.current = ""
+    hasSentFinalConversationRef.current = false
     try {
       window.localStorage.removeItem(STORAGE_KEY)
     } catch {}
@@ -618,9 +652,7 @@ export function GeorgeLiveAssistantCompact() {
     if (!canStart) return
 
     await cleanupConversation()
-    hasSentConversationStartRef.current = false
-    hasSentConversationEndRef.current = false
-    lastFinalConversationEventRef.current = ""
+    hasSentFinalConversationRef.current = false
     setConnectionState("connecting")
     setError(null)
     setStatusText("Connecting George…")
@@ -708,7 +740,7 @@ export function GeorgeLiveAssistantCompact() {
       await pc.setRemoteDescription({ type: "answer", sdp: answerText })
       pc.addEventListener("connectionstatechange", () => {
         if (["failed", "disconnected", "closed"].includes(pc.connectionState)) {
-          void sendConversationEnd("conversation_ended", true)
+          void sendFinalConversation("conversation_connection_closed", true)
           setConnectionState("error")
           setStatusText("Connection ended")
         }
@@ -722,7 +754,7 @@ export function GeorgeLiveAssistantCompact() {
   }
 
   async function stopConversation() {
-    await sendConversationEnd("conversation_ended")
+    await sendFinalConversation("manual_conversation_stop")
     await cleanupConversation()
     setError(null)
     setConnectionState("idle")

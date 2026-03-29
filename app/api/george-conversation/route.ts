@@ -32,11 +32,17 @@ export async function POST(request: Request) {
     form.set("surname", asString(body.surname))
     form.set("businessName", asString(body.businessName))
     form.set("email", asString(body.email))
-    form.set("message", asString(body.shortMessage))
+    const email = asString(body.email)
+    const shortMessage = asString(body.shortMessage)
+    const transcript = asString(body.transcript)
+
+    form.set("message", shortMessage || transcript || "George conversation captured")
     form.set("latestUserMessage", asString(body.latestUserMessage))
-    form.set("transcript", asString(body.transcript))
+    form.set("transcript", transcript)
     form.set("submittedAt", asString(body.submittedAt))
     form.set("_subject", "George conversation update")
+    form.set("_replyto", email)
+    form.set("_to", "info@guardxnetwork.com")
 
     const response = await fetch(FORMSPREE_ENDPOINT, {
       method: "POST",
