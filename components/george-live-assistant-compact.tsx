@@ -30,7 +30,7 @@ type StoredSession = {
   updatedAt: number
 }
 
-const STORAGE_KEY = "guardx-meet-george-compact-v5"
+const STORAGE_KEY = "guardx-meet-george-compact-v6"
 
 const INITIAL_MESSAGES: LiveMessage[] = [
   {
@@ -108,25 +108,34 @@ function isValidEmail(value: string) {
 }
 
 
-function sendConversationPayload(payload: Record<string, unknown>, preferBeacon = false) {
+async function sendConversationPayload(payload: Record<string, unknown>, preferBeacon = false) {
   const body = JSON.stringify(payload)
 
-  if (typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function" && (preferBeacon || typeof document === "undefined" || document.visibilityState === "hidden")) {
+  if (
+    typeof navigator !== "undefined" &&
+    typeof navigator.sendBeacon === "function" &&
+    (preferBeacon || typeof document === "undefined" || document.visibilityState === "hidden")
+  ) {
     try {
       const blob = new Blob([body], { type: "application/json" })
       const sent = navigator.sendBeacon("/api/george-conversation", blob)
-      if (sent) return
+      if (sent) return true
     } catch {}
   }
 
-  void fetch("/api/george-conversation", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    keepalive: true,
-    body,
-  }).catch(() => undefined)
+  try {
+    const response = await fetch("/api/george-conversation", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      keepalive: true,
+      body,
+    })
+    return response.ok
+  } catch {
+    return false
+  }
 }
 
 function extractLeadDetailsFromMessages(messages: LiveMessage[]) {
@@ -342,22 +351,25 @@ export function GeorgeLiveAssistantCompact() {
 
   const sendConversationStart = () => {
     if (hasSentConversationStartRef.current) return
-    sendConversationPayload(buildConversationPayload("conversation_started"))
     hasSentConversationStartRef.current = true
     hasSentConversationEndRef.current = false
+    lastFinalConversationEventRef.current = ""
   }
 
-  const sendConversationEnd = (conversationEvent: string, preferBeacon = false) => {
+  const sendConversationEnd = async (conversationEvent: string, preferBeacon = false) => {
     const payload = buildConversationPayload(conversationEvent)
     const userMessageCount = typeof payload.userMessageCount === "number" ? payload.userMessageCount : 0
-    if (!userMessageCount) return
+    if (!userMessageCount) return false
 
-    const eventKey = `${payload.transcript?.toString().length || 0}:${userMessageCount}`
-    if (hasSentConversationEndRef.current && lastFinalConversationEventRef.current === eventKey) return
+    const eventKey = `${conversationEvent}:${payload.transcript?.toString().length || 0}:${userMessageCount}`
+    if (hasSentConversationEndRef.current && lastFinalConversationEventRef.current === eventKey) return true
 
-    sendConversationPayload(payload, preferBeacon)
-    hasSentConversationEndRef.current = true
-    lastFinalConversationEventRef.current = eventKey
+    const sent = await sendConversationPayload(payload, preferBeacon)
+    if (sent) {
+      hasSentConversationEndRef.current = true
+      lastFinalConversationEventRef.current = eventKey
+    }
+    return sent
   }
 
   useEffect(() => {
@@ -431,11 +443,13 @@ export function GeorgeLiveAssistantCompact() {
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "hidden") {
-        sendConversationEnd("conversation_ended", true)
+        void sendConversationEnd("conversation_ended", true)
       }
     }
 
-    const handlePageHide = () => sendConversationEnd("conversation_ended", true)
+    const handlePageHide = () => {
+      void sendConversationEnd("conversation_ended", true)
+    }
 
     window.addEventListener("pagehide", handlePageHide)
     document.addEventListener("visibilitychange", handleVisibilityChange)
@@ -541,7 +555,6 @@ export function GeorgeLiveAssistantCompact() {
         break
       case "input_audio_buffer.speech_started":
         setStatusText("Listening…")
-        sendConversationStart()
         break
       case "input_audio_buffer.speech_stopped":
         setStatusText("Thinking…")
@@ -695,7 +708,7 @@ export function GeorgeLiveAssistantCompact() {
       await pc.setRemoteDescription({ type: "answer", sdp: answerText })
       pc.addEventListener("connectionstatechange", () => {
         if (["failed", "disconnected", "closed"].includes(pc.connectionState)) {
-          sendConversationEnd("conversation_ended", true)
+          void sendConversationEnd("conversation_ended", true)
           setConnectionState("error")
           setStatusText("Connection ended")
         }
@@ -709,7 +722,7 @@ export function GeorgeLiveAssistantCompact() {
   }
 
   async function stopConversation() {
-    sendConversationEnd("conversation_ended")
+    await sendConversationEnd("conversation_ended")
     await cleanupConversation()
     setError(null)
     setConnectionState("idle")
