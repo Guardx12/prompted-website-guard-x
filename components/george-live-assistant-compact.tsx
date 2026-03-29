@@ -30,7 +30,7 @@ type StoredSession = {
   updatedAt: number
 }
 
-const STORAGE_KEY = "guardx-meet-george-compact-v6"
+const STORAGE_KEY = "guardx-meet-george-compact-v7"
 
 const INITIAL_MESSAGES: LiveMessage[] = [
   {
@@ -335,6 +335,7 @@ export function GeorgeLiveAssistantCompact() {
   const scrollRef = useRef<HTMLDivElement | null>(null)
   const conversationSessionIdRef = useRef("")
   const hasSentFinalConversationRef = useRef(false)
+  const lastSentUserMessageCountRef = useRef(0)
   const latestMessagesRef = useRef<LiveMessage[]>(INITIAL_MESSAGES)
   const latestVisitorNameRef = useRef<string | null>(null)
   const latestSuggestedMessageRef = useRef("")
@@ -425,10 +426,9 @@ export function GeorgeLiveAssistantCompact() {
     latestDetailsRef.current = detailsFromTranscript
   }, [messages, visitorName, suggestedMessage, detailsFromTranscript])
 
-  async function sendFinalConversation(conversationEvent: string, preferBeacon = false) {
+  async function sendConversationSnapshot(conversationEvent: string, preferBeacon = false) {
     const currentMessages = latestMessagesRef.current
-    if (countUserMessages(currentMessages) === 0) return
-    if (hasSentFinalConversationRef.current && conversationEvent !== "manual_conversation_stop") return
+    if (countUserMessages(currentMessages) === 0) return false
 
     const payload = buildConversationPayload({
       messages: currentMessages,
@@ -441,8 +441,7 @@ export function GeorgeLiveAssistantCompact() {
 
     if (preferBeacon) {
       sendConversationPayload(payload, true)
-      hasSentFinalConversationRef.current = true
-      return
+      return true
     }
 
     try {
@@ -455,12 +454,30 @@ export function GeorgeLiveAssistantCompact() {
         body: JSON.stringify(payload),
       })
 
-      if (response.ok) {
-        hasSentFinalConversationRef.current = true
-      }
-    } catch {}
+      return response.ok
+    } catch {
+      return false
+    }
   }
 
+  async function sendFinalConversation(conversationEvent: string, preferBeacon = false) {
+    if (hasSentFinalConversationRef.current && conversationEvent !== "manual_conversation_stop") return
+    const sent = await sendConversationSnapshot(conversationEvent, preferBeacon)
+    if (sent) {
+      hasSentFinalConversationRef.current = true
+    }
+  }
+
+
+
+  useEffect(() => {
+    const currentUserMessageCount = countUserMessages(messages)
+    if (currentUserMessageCount === 0) return
+    if (currentUserMessageCount <= lastSentUserMessageCountRef.current) return
+
+    lastSentUserMessageCountRef.current = currentUserMessageCount
+    void sendConversationSnapshot(`user_message_${currentUserMessageCount}`)
+  }, [messages])
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -537,6 +554,7 @@ export function GeorgeLiveAssistantCompact() {
     setStatusText("Ready when you are")
     conversationSessionIdRef.current = createSessionId()
     hasSentFinalConversationRef.current = false
+    lastSentUserMessageCountRef.current = 0
     try {
       window.localStorage.removeItem(STORAGE_KEY)
     } catch {}
