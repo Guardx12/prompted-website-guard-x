@@ -30,13 +30,14 @@ type StoredSession = {
   updatedAt: number
 }
 
-const STORAGE_KEY = "guardx-meet-george-compact-v9"
+const STORAGE_KEY = "guardx-meet-george-compact-v8"
 
 const INITIAL_MESSAGES: LiveMessage[] = [
   {
     id: "intro",
-    role: "assistant",
-    content: "Hi — I'm George. What kind of business do you run? I'll show you exactly how I'd work on it.",
+    role: "system",
+    content:
+      "Hi — I’m George. What kind of business do you run? I'll show you exactly how I'd work on it.",
   },
 ]
 
@@ -297,16 +298,14 @@ async function postLeadDirectToFormspree(payload: ReturnType<typeof buildLeadPay
 
 function buildFirstResponseEvent(visitorName: string | null, hasStoredSession: boolean, lastUserMessage: string | null) {
   const instructions = hasStoredSession
-    ? `You are George speaking in warm, natural British English only. Keep it short. This visitor already has an ongoing conversation with you on this device. Do not restart from scratch. ${visitorName ? `Their name is ${visitorName}. Use it naturally once.` : ""} ${lastUserMessage ? `The last thing they said before returning was: ${lastUserMessage}` : ""} Briefly welcome them back in one short sentence, then ask one short forward-moving question about what they want help with now.`
-    : "You are George speaking in warm, natural British English only. Keep it short. Do not pitch yourself, do not explain features, and do not mention the form, autofill, or WhatsApp. Start with exactly this sentence and nothing before it: Hi — I’m George. What kind of business do you run? I'll show you exactly how I'd work on it."
+    ? `Introduce yourself as George in warm, natural British English only. Keep it short. This visitor already has an ongoing conversation with you on this device. Do not restart from scratch. ${visitorName ? `Their name is ${visitorName}. Use it naturally once.` : ""} ${lastUserMessage ? `The last thing they said before returning was: ${lastUserMessage}` : ""} Briefly welcome them back and ask one short forward-moving question about what they want help with now.`
+    : "Introduce yourself as George in warm, confident, natural British English only. Keep it short and commercially sharp. Say that you turn websites into 24/7 salespeople that talk to visitors. Make it clear in one sentence that you can match the business brand and role completely — for example as a salesperson, receptionist, guide, on-site helper, or family-friendly mascot where that suits the business. Do not mention the form, autofill, or WhatsApp in your opener. Start with exactly: 'Hi — I’m George. What kind of business do you run? I'll show you exactly how I'd work on it.'"
 
   return {
     type: "response.create",
     response: { instructions },
   }
 }
-
-
 
 export function GeorgeLiveAssistantCompact() {
   const [messages, setMessages] = useState<LiveMessage[]>(INITIAL_MESSAGES)
@@ -327,6 +326,9 @@ export function GeorgeLiveAssistantCompact() {
   const [submitState, setSubmitState] = useState<SubmitState>("idle")
   const [submitError, setSubmitError] = useState<string | null>(null)
 
+  const [showIntroOverlay, setShowIntroOverlay] = useState(true)
+  const [introSettled, setIntroSettled] = useState(false)
+
   const pcRef = useRef<RTCPeerConnection | null>(null)
   const dcRef = useRef<RTCDataChannel | null>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
@@ -341,7 +343,16 @@ export function GeorgeLiveAssistantCompact() {
   const latestVisitorNameRef = useRef<string | null>(null)
   const latestSuggestedMessageRef = useRef("")
   const latestDetailsRef = useRef({ name: "", surname: "", businessName: "", email: "" })
-  const hasSentStartConversationRef = useRef(false)
+
+  useEffect(() => {
+    const settleTimer = window.setTimeout(() => setIntroSettled(true), 1400)
+    const dismissTimer = window.setTimeout(() => setShowIntroOverlay(false), 2200)
+
+    return () => {
+      window.clearTimeout(settleTimer)
+      window.clearTimeout(dismissTimer)
+    }
+  }, [])
 
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
   const latestAssistantMessage = useMemo(
@@ -428,11 +439,9 @@ export function GeorgeLiveAssistantCompact() {
     latestDetailsRef.current = detailsFromTranscript
   }, [messages, visitorName, suggestedMessage, detailsFromTranscript])
 
-
   async function sendConversationSnapshot(conversationEvent: string, preferBeacon = false) {
     const currentMessages = latestMessagesRef.current
-    const hasMeaningfulTranscript = currentMessages.some((message) => message.role === "assistant" || message.role === "user")
-    if (!hasMeaningfulTranscript) return false
+    if (countUserMessages(currentMessages) === 0) return false
 
     const payload = buildConversationPayload({
       messages: currentMessages,
@@ -476,8 +485,11 @@ export function GeorgeLiveAssistantCompact() {
 
   useEffect(() => {
     const currentUserMessageCount = countUserMessages(messages)
+    if (currentUserMessageCount === 0) return
     if (currentUserMessageCount <= lastSentUserMessageCountRef.current) return
+
     lastSentUserMessageCountRef.current = currentUserMessageCount
+    void sendConversationSnapshot(`user_message_${currentUserMessageCount}`)
   }, [messages])
 
   useEffect(() => {
@@ -555,7 +567,6 @@ export function GeorgeLiveAssistantCompact() {
     setStatusText("Ready when you are")
     conversationSessionIdRef.current = createSessionId()
     hasSentFinalConversationRef.current = false
-    hasSentStartConversationRef.current = false
     lastSentUserMessageCountRef.current = 0
     try {
       window.localStorage.removeItem(STORAGE_KEY)
@@ -673,21 +684,12 @@ export function GeorgeLiveAssistantCompact() {
 
     await cleanupConversation()
     hasSentFinalConversationRef.current = false
-    hasSentStartConversationRef.current = false
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      try { window.speechSynthesis.cancel() } catch {}
-    }
     setConnectionState("connecting")
     setError(null)
     setStatusText("Connecting George…")
 
     if (!hasStoredSession) {
       setMessages(INITIAL_MESSAGES)
-    }
-
-    if (!hasSentStartConversationRef.current) {
-      hasSentStartConversationRef.current = true
-      void sendConversationSnapshot("conversation_started")
     }
 
     try {
@@ -729,11 +731,9 @@ export function GeorgeLiveAssistantCompact() {
       dc.addEventListener("open", () => {
         setConnectionState("connected")
         setStatusText(hasStoredSession ? "Ready to carry on" : "Listening…")
-        if (hasStoredSession) {
-          window.setTimeout(() => {
-            dc.send(JSON.stringify(buildFirstResponseEvent(visitorName, hasStoredSession, latestUserMessage)))
-          }, 150)
-        }
+        window.setTimeout(() => {
+          dc.send(JSON.stringify(buildFirstResponseEvent(visitorName, hasStoredSession, latestUserMessage)))
+        }, 150)
       })
 
       dc.addEventListener("message", (event) => {
@@ -833,6 +833,20 @@ export function GeorgeLiveAssistantCompact() {
 
   return (
     <section id="live-george" className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+      {showIntroOverlay ? (
+        <div className={`fixed inset-0 z-[90] flex items-center justify-center bg-[#020617]/96 px-6 transition-opacity duration-500 ${introSettled ? "opacity-0 pointer-events-none" : "opacity-100"}`} aria-hidden="true">
+          <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
+            <div className="george-intro-spotlight" />
+            <div className={`george-intro-avatar ${introSettled ? "is-settled" : ""}`}>
+              <Image src="/george-avatar-head.png" alt="George intro" width={220} height={220} className="h-[180px] w-[180px] sm:h-[220px] sm:w-[220px]" priority />
+            </div>
+            <div className={`george-intro-copy ${introSettled ? "is-settled" : ""}`}>
+              <p className="text-center text-lg font-semibold text-white sm:text-2xl">Tap the circle and ask George how he can work for your business</p>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
       <div className="overflow-hidden rounded-[36px] border border-[#DADCE0] bg-white shadow-[0_24px_80px_rgba(15,23,42,0.10)]">
         <div className="px-5 py-8 text-center sm:px-8 sm:py-10">
           <h1 className="text-4xl font-black tracking-tight text-[#0F172A] sm:text-5xl">Turn your website into a 24/7 salesperson</h1>
@@ -862,13 +876,11 @@ export function GeorgeLiveAssistantCompact() {
                     : "0 26px 58px rgba(15,23,42,0.24), inset 0 5px 20px rgba(255,255,255,0.24), inset 0 -16px 28px rgba(2,6,23,0.54)",
               }}
             >
+              <span className="pointer-events-none absolute inset-[-14px] rounded-full border border-[#60A5FA]/25 george-orbit-ring" />
+              <span className="pointer-events-none absolute inset-[-28px] rounded-full border border-[#38BDF8]/20 george-orbit-ring george-orbit-ring-delay" />
               <span className="pointer-events-none absolute inset-[8px] rounded-full border border-white/18" />
               <span className="pointer-events-none absolute left-[11%] top-[9%] h-[22%] w-[54%] rounded-full bg-white/32 blur-[12px]" />
               <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0)_45%,rgba(255,255,255,0.14)_75%,rgba(255,255,255,0.24)_100%)]" />
-              <span className="center-orbit-ring center-orbit-ring-one" />
-              <span className="center-orbit-ring center-orbit-ring-two" />
-              <span className="center-orbit-dot center-orbit-dot-one" />
-              <span className="center-orbit-dot center-orbit-dot-two" />
 
               <div className="relative z-10 flex h-[78%] w-[78%] items-center justify-center rounded-full bg-white shadow-[inset_0_2px_12px_rgba(148,163,184,0.32)]">
                 <div className={`george-avatar-shell ${isModelSpeaking ? "is-talking" : ""}`} aria-hidden="true">
@@ -904,17 +916,13 @@ export function GeorgeLiveAssistantCompact() {
               href="https://wa.me/447519166031"
               target="_blank"
               rel="noopener noreferrer"
-              className="pulse-highlight mt-5 inline-block rounded-xl px-4 py-2 text-sm font-semibold text-[#0F172A] underline decoration-[#25D366] decoration-2 underline-offset-4 transition hover:text-[#1D4ED8]"
+              className="mt-5 text-sm font-semibold text-[#0F172A] underline decoration-[#25D366] decoration-2 underline-offset-4 transition hover:text-[#1D4ED8]"
             >
-              Tap the circle and ask George how he can work for your business
+              Prefer to speak to a human? Message me on WhatsApp
             </a>
 
             <div className="mt-6 min-h-[84px] max-w-2xl text-center">
-              <p
-                className={`text-sm font-semibold uppercase tracking-[0.24em] text-[#1D4ED8] ${
-                  connectionState === "idle" ? "pulse-highlight inline-block px-4 py-2 rounded-xl" : ""
-                }`}
-              >
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#1D4ED8]">
                 {connectionState === "connected"
                   ? isModelSpeaking
                     ? "George is talking"
@@ -1108,62 +1116,6 @@ export function GeorgeLiveAssistantCompact() {
           opacity: 0.96;
         }
 
-
-        .center-orbit-ring {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          border-radius: 999px;
-          transform: translate(-50%, -50%);
-          border: 1px solid rgba(255,255,255,0.22);
-          pointer-events: none;
-          z-index: 1;
-        }
-
-        .center-orbit-ring-one {
-          width: 118%;
-          height: 118%;
-          animation: orbitSpin 10s linear infinite;
-          box-shadow: 0 0 0 1px rgba(59,130,246,0.08), 0 0 28px rgba(96,165,250,0.14);
-        }
-
-        .center-orbit-ring-two {
-          width: 132%;
-          height: 132%;
-          animation: orbitSpinReverse 14s linear infinite;
-          border-style: dashed;
-          border-color: rgba(255,255,255,0.16);
-        }
-
-        .center-orbit-dot {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          width: 14px;
-          height: 14px;
-          margin-left: -7px;
-          margin-top: -7px;
-          border-radius: 999px;
-          background: radial-gradient(circle at 30% 30%, #ffffff 0%, #93c5fd 42%, #38bdf8 100%);
-          box-shadow: 0 0 18px rgba(56,189,248,0.6);
-          pointer-events: none;
-          z-index: 1;
-        }
-
-        .center-orbit-dot-one {
-          animation: orbitDotOne 5.8s linear infinite;
-        }
-
-        .center-orbit-dot-two {
-          width: 10px;
-          height: 10px;
-          margin-left: -5px;
-          margin-top: -5px;
-          background: radial-gradient(circle at 30% 30%, #ffffff 0%, #86efac 45%, #22c55e 100%);
-          box-shadow: 0 0 14px rgba(34,197,94,0.55);
-          animation: orbitDotTwo 7.4s linear infinite;
-        }
-
         .george-wave-bars span {
           flex: 1;
           border-radius: 999px;
@@ -1178,26 +1130,6 @@ export function GeorgeLiveAssistantCompact() {
         .george-avatar-shell.is-talking .george-wave-bars span:nth-child(3) { animation: waveBounce 0.72s ease-in-out 0.18s infinite; }
         .george-avatar-shell.is-talking .george-wave-bars span:nth-child(4) { animation: waveBounce 0.72s ease-in-out 0.08s infinite; }
         .george-avatar-shell.is-talking .george-wave-bars span:nth-child(5) { animation: waveBounce 0.72s ease-in-out 0.16s infinite; }
-
-        @keyframes orbitSpin {
-          from { transform: translate(-50%, -50%) rotate(0deg); }
-          to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        @keyframes orbitSpinReverse {
-          from { transform: translate(-50%, -50%) rotate(360deg); }
-          to { transform: translate(-50%, -50%) rotate(0deg); }
-        }
-
-        @keyframes orbitDotOne {
-          from { transform: rotate(0deg) translateX(170px) rotate(0deg); }
-          to { transform: rotate(360deg) translateX(170px) rotate(-360deg); }
-        }
-
-        @keyframes orbitDotTwo {
-          from { transform: rotate(180deg) translateX(145px) rotate(-180deg); }
-          to { transform: rotate(540deg) translateX(145px) rotate(-540deg); }
-        }
 
         .george-mouth-mask {
           position: absolute;
