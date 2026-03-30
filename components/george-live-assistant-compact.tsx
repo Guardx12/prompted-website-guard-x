@@ -30,14 +30,13 @@ type StoredSession = {
   updatedAt: number
 }
 
-const STORAGE_KEY = "guardx-meet-george-compact-v7"
+const STORAGE_KEY = "guardx-meet-george-compact-v8"
 
 const INITIAL_MESSAGES: LiveMessage[] = [
   {
     id: "intro",
-    role: "system",
-    content:
-      "Hi — I’m George. I turn your website into a 24/7 salesperson that talks to your visitors. I can match your brand completely — whether that’s a salesperson, receptionist, guide, on-site helper, or even a family-friendly mascot for your business. What kind of business do you run?",
+    role: "assistant",
+    content: "Hi — I’m George. What kind of business do you run? I'll show you exactly how I'd work on it.",
   },
 ]
 
@@ -298,13 +297,28 @@ async function postLeadDirectToFormspree(payload: ReturnType<typeof buildLeadPay
 
 function buildFirstResponseEvent(visitorName: string | null, hasStoredSession: boolean, lastUserMessage: string | null) {
   const instructions = hasStoredSession
-    ? `Introduce yourself as George in warm, natural British English only. Keep it short. This visitor already has an ongoing conversation with you on this device. Do not restart from scratch. ${visitorName ? `Their name is ${visitorName}. Use it naturally once.` : ""} ${lastUserMessage ? `The last thing they said before returning was: ${lastUserMessage}` : ""} Briefly welcome them back and ask one short forward-moving question about what they want help with now.`
-    : "Introduce yourself as George in warm, confident, natural British English only. Keep it short and commercially sharp. Say that you turn websites into 24/7 salespeople that talk to visitors. Make it clear in one sentence that you can match the business brand and role completely — for example as a salesperson, receptionist, guide, on-site helper, or family-friendly mascot where that suits the business. Do not mention the form, autofill, or WhatsApp in your opener. Then ask naturally: 'What kind of business do you run?'"
+    ? `You are George speaking in warm, natural British English only. Keep it short. This visitor already has an ongoing conversation with you on this device. Do not restart from scratch. ${visitorName ? `Their name is ${visitorName}. Use it naturally once.` : ""} ${lastUserMessage ? `The last thing they said before returning was: ${lastUserMessage}` : ""} Briefly welcome them back in one short sentence, then ask one short forward-moving question about what they want help with now.`
+    : "You are George speaking in warm, natural British English only. Keep it short. Do not pitch yourself, do not explain features, and do not mention the form, autofill, or WhatsApp. Start with exactly this sentence and nothing before it: Hi — I’m George. What kind of business do you run? I'll show you exactly how I'd work on it."
 
   return {
     type: "response.create",
     response: { instructions },
   }
+}
+
+
+
+function speakPreviewPrompt(text: string) {
+  if (typeof window === "undefined" || !("speechSynthesis" in window)) return
+
+  try {
+    window.speechSynthesis.cancel()
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.rate = 1
+    utterance.pitch = 1
+    utterance.lang = "en-GB"
+    window.speechSynthesis.speak(utterance)
+  } catch {}
 }
 
 export function GeorgeLiveAssistantCompact() {
@@ -340,6 +354,8 @@ export function GeorgeLiveAssistantCompact() {
   const latestVisitorNameRef = useRef<string | null>(null)
   const latestSuggestedMessageRef = useRef("")
   const latestDetailsRef = useRef({ name: "", surname: "", businessName: "", email: "" })
+  const hasSentStartConversationRef = useRef(false)
+  const hasAutoSpokenIntroRef = useRef(false)
 
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
   const latestAssistantMessage = useMemo(
@@ -426,9 +442,21 @@ export function GeorgeLiveAssistantCompact() {
     latestDetailsRef.current = detailsFromTranscript
   }, [messages, visitorName, suggestedMessage, detailsFromTranscript])
 
+  useEffect(() => {
+    if (hasStoredSession) return
+    if (hasAutoSpokenIntroRef.current) return
+    hasAutoSpokenIntroRef.current = true
+    const timer = window.setTimeout(() => {
+      speakPreviewPrompt("Hi — I’m George. What kind of business do you run? I'll show you exactly how I'd work on it.")
+    }, 500)
+
+    return () => window.clearTimeout(timer)
+  }, [hasStoredSession])
+
   async function sendConversationSnapshot(conversationEvent: string, preferBeacon = false) {
     const currentMessages = latestMessagesRef.current
-    if (countUserMessages(currentMessages) === 0) return false
+    const hasMeaningfulTranscript = currentMessages.some((message) => message.role === "assistant" || message.role === "user")
+    if (!hasMeaningfulTranscript) return false
 
     const payload = buildConversationPayload({
       messages: currentMessages,
@@ -472,11 +500,8 @@ export function GeorgeLiveAssistantCompact() {
 
   useEffect(() => {
     const currentUserMessageCount = countUserMessages(messages)
-    if (currentUserMessageCount === 0) return
     if (currentUserMessageCount <= lastSentUserMessageCountRef.current) return
-
     lastSentUserMessageCountRef.current = currentUserMessageCount
-    void sendConversationSnapshot(`user_message_${currentUserMessageCount}`)
   }, [messages])
 
   useEffect(() => {
@@ -554,6 +579,7 @@ export function GeorgeLiveAssistantCompact() {
     setStatusText("Ready when you are")
     conversationSessionIdRef.current = createSessionId()
     hasSentFinalConversationRef.current = false
+    hasSentStartConversationRef.current = false
     lastSentUserMessageCountRef.current = 0
     try {
       window.localStorage.removeItem(STORAGE_KEY)
@@ -671,12 +697,21 @@ export function GeorgeLiveAssistantCompact() {
 
     await cleanupConversation()
     hasSentFinalConversationRef.current = false
+    hasSentStartConversationRef.current = false
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      try { window.speechSynthesis.cancel() } catch {}
+    }
     setConnectionState("connecting")
     setError(null)
     setStatusText("Connecting George…")
 
     if (!hasStoredSession) {
       setMessages(INITIAL_MESSAGES)
+    }
+
+    if (!hasSentStartConversationRef.current) {
+      hasSentStartConversationRef.current = true
+      void sendConversationSnapshot("conversation_started")
     }
 
     try {
@@ -718,9 +753,11 @@ export function GeorgeLiveAssistantCompact() {
       dc.addEventListener("open", () => {
         setConnectionState("connected")
         setStatusText(hasStoredSession ? "Ready to carry on" : "Listening…")
-        window.setTimeout(() => {
-          dc.send(JSON.stringify(buildFirstResponseEvent(visitorName, hasStoredSession, latestUserMessage)))
-        }, 150)
+        if (hasStoredSession) {
+          window.setTimeout(() => {
+            dc.send(JSON.stringify(buildFirstResponseEvent(visitorName, hasStoredSession, latestUserMessage)))
+          }, 150)
+        }
       })
 
       dc.addEventListener("message", (event) => {
@@ -825,7 +862,7 @@ export function GeorgeLiveAssistantCompact() {
           <h1 className="text-4xl font-black tracking-tight text-[#0F172A] sm:text-5xl">Turn your website into a 24/7 salesperson</h1>
 
           <div className="mx-auto mt-8 flex max-w-3xl flex-col items-center">
-            <p className="pulse-highlight mb-3 text-base font-semibold text-[#0F172A] sm:text-lg">Try it now — ask George how he can work for your business</p>
+            <p className="pulse-highlight mb-3 text-base font-semibold text-[#0F172A] sm:text-lg">Tap the circle now to reply and ask George how he can work for your business</p>
             <p className="mb-5 max-w-2xl text-sm leading-6 text-[#475569] sm:text-base">George is tailored to each client, so he can match your brand, tone, and role — from a salesperson or receptionist to a guide or family-friendly mascot.</p>
             <p className="mb-6 text-sm font-semibold text-[#1D4ED8] sm:text-base">See how it would work on your business in seconds</p>
             <button
@@ -893,7 +930,11 @@ export function GeorgeLiveAssistantCompact() {
             </a>
 
             <div className="mt-6 min-h-[84px] max-w-2xl text-center">
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#1D4ED8]">
+              <p
+                className={`text-sm font-semibold uppercase tracking-[0.24em] text-[#1D4ED8] ${
+                  connectionState === "idle" ? "pulse-highlight inline-block px-4 py-2 rounded-xl" : ""
+                }`}
+              >
                 {connectionState === "connected"
                   ? isModelSpeaking
                     ? "George is talking"
