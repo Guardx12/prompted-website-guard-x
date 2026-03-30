@@ -325,6 +325,7 @@ export function GeorgeLiveAssistantCompact() {
   })
   const [submitState, setSubmitState] = useState<SubmitState>("idle")
   const [submitError, setSubmitError] = useState<string | null>(null)
+  const [showIntroOverlay, setShowIntroOverlay] = useState(true)
 
   const pcRef = useRef<RTCPeerConnection | null>(null)
   const dcRef = useRef<RTCDataChannel | null>(null)
@@ -359,6 +360,14 @@ export function GeorgeLiveAssistantCompact() {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
   }, [messages, connectionState, showConversation])
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setShowIntroOverlay(false)
+    }, 3800)
+
+    return () => window.clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
     conversationSessionIdRef.current = createSessionId()
@@ -819,8 +828,27 @@ export function GeorgeLiveAssistantCompact() {
   }
 
   return (
-    <section id="live-george" className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
-      <div className="overflow-hidden rounded-[36px] border border-[#DADCE0] bg-white shadow-[0_24px_80px_rgba(15,23,42,0.10)]">
+    <>
+      {showIntroOverlay ? (
+        <div className="george-intro-overlay" aria-hidden="true">
+          <div className="george-intro-stage">
+            <div className="george-intro-avatar-track">
+              <Image
+                src="/george-avatar-head.png"
+                alt="George"
+                width={240}
+                height={240}
+                className="george-intro-avatar"
+                priority
+              />
+            </div>
+            <p className="george-intro-copy pulse-highlight">Tap the circle to ask George how he can work for your business</p>
+          </div>
+        </div>
+      ) : null}
+
+      <section id="live-george" className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+        <div className="overflow-hidden rounded-[36px] border border-[#DADCE0] bg-white shadow-[0_24px_80px_rgba(15,23,42,0.10)]">
         <div className="px-5 py-8 text-center sm:px-8 sm:py-10">
           <h1 className="text-4xl font-black tracking-tight text-[#0F172A] sm:text-5xl">Turn your website into a 24/7 salesperson</h1>
 
@@ -893,7 +921,11 @@ export function GeorgeLiveAssistantCompact() {
             </a>
 
             <div className="mt-6 min-h-[84px] max-w-2xl text-center">
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#1D4ED8]">
+              <p
+                className={`text-sm font-semibold uppercase tracking-[0.24em] text-[#1D4ED8] ${
+                  connectionState === "idle" && !hasStoredSession ? "pulse-highlight" : ""
+                }`}
+              >
                 {connectionState === "connected"
                   ? isModelSpeaking
                     ? "George is talking"
@@ -1204,6 +1236,7 @@ export function GeorgeLiveAssistantCompact() {
           100% { height: 10.4%; width: 15.6%; }
         }
       `}</style>
-    </section>
+      </section>
+    </>
   )
 }
