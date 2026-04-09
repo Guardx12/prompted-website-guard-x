@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import Script from "next/script"
-import { WhatsAppBubble } from "@/components/whatsapp-bubble"
 import { BottomGeorgeBar } from "@/components/bottom-george-bar"
 
 const inter = Inter({
@@ -83,7 +82,6 @@ export default function RootLayout({
         {children}
 
         <BottomGeorgeBar />
-        <WhatsAppBubble />
 
         {/* Facebook Pixel noscript */}
         <noscript>

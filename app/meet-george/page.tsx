@@ -1,7 +1,4 @@
 import type { Metadata } from "next"
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
 import { Footer } from "@/components/footer"
 import { GeorgeLiveAssistantCompact } from "@/components/george-live-assistant-compact"
 import { Navigation } from "@/components/navigation"
@@ -25,7 +22,7 @@ export default function MeetGeorgePage() {
       <Navigation />
 
       <section className="px-4 pb-8 pt-8 sm:px-6 lg:px-8 lg:pb-10 lg:pt-14">
-        <div className="premium-hero-grid mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+        <div className="mx-auto max-w-5xl">
           <div className="premium-glass rounded-[36px] p-8 sm:p-10 lg:p-14">
             <p className="premium-kicker">Meet George</p>
             <h1 className="premium-heading mt-5 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
@@ -37,18 +34,6 @@ export default function MeetGeorgePage() {
             <p className="premium-body mt-4 max-w-2xl text-base leading-7">
               The logic stays the same. The conversion flow stays the same. We have just given the experience a more premium, product-level presentation.
             </p>
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <a href="#live-george" className="premium-button-primary inline-flex items-center justify-center gap-3 rounded-full px-7 py-4 text-sm font-semibold transition">
-                Try George now <ArrowRight className="h-4 w-4" />
-              </a>
-              <Link href="/contact" className="premium-button-secondary inline-flex items-center justify-center rounded-full px-7 py-4 text-sm font-semibold transition">
-                Put George on your website
-              </Link>
-            </div>
-          </div>
-
-          <div className="premium-orb-wrap flex items-center justify-center">
-            <Image src="/george-orb-premium.jpeg" alt="George orb logo" width={760} height={760} className="premium-orb-image h-auto w-full max-w-[520px] object-contain" priority />
           </div>
         </div>
       </section>

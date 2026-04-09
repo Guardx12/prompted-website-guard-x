@@ -834,8 +834,8 @@ export function GeorgeLiveAssistantCompact() {
           <div className="george-intro-stage">
             <div className="george-intro-avatar-track">
               <Image
-                src="/george-orb-premium.jpeg"
-                alt="George"
+                src="/george-logo-premium-purple.png"
+                alt="George logo"
                 width={240}
                 height={240}
                 className="george-intro-avatar george-intro-orb"
@@ -853,9 +853,8 @@ export function GeorgeLiveAssistantCompact() {
           <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl">Turn your website into a 24/7 salesperson</h1>
 
           <div className="mx-auto mt-8 flex max-w-3xl flex-col items-center">
-            <p className="pulse-highlight mb-3 text-base font-semibold text-white sm:text-lg">Try it now — ask George how he can work for your business</p>
-            <p className="mb-5 max-w-2xl text-sm leading-6 text-white/70 sm:text-base">George is tailored to each client, so he can match your brand, tone, and role — from a salesperson or receptionist to a guide or family-friendly mascot.</p>
-            <p className="mb-6 text-sm font-semibold text-emerald-300 sm:text-base">See how it would work on your business in seconds</p>
+            <p className="mb-5 max-w-2xl text-sm leading-6 text-white/72 sm:text-base">George is tailored to each client, so he can match your brand, tone, and role — from a salesperson or receptionist to a guide or family-friendly mascot.</p>
+            <p className="mb-6 text-sm font-semibold text-emerald-300 sm:text-base">Start talking to George</p>
             <button
               type="button"
               onClick={connectionState === "connected" ? stopConversation : startConversation}
@@ -881,44 +880,18 @@ export function GeorgeLiveAssistantCompact() {
               <span className="pointer-events-none absolute left-[11%] top-[9%] h-[22%] w-[54%] rounded-full bg-white/32 blur-[12px]" />
               <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0)_45%,rgba(255,255,255,0.14)_75%,rgba(255,255,255,0.24)_100%)]" />
 
-              <div className="relative z-10 flex h-[78%] w-[78%] items-center justify-center rounded-full bg-white shadow-[inset_0_2px_12px_rgba(148,163,184,0.32)]">
-                <div className={`george-avatar-shell ${isModelSpeaking ? "is-talking" : ""}`} aria-hidden="true">
-                  <div className="george-wave-bars">
-                    <span />
-                    <span />
-                    <span />
-                    <span />
-                    <span />
-                  </div>
-
-                  <Image
-                    src="/george-avatar-head.png"
-                    alt="George"
-                    width={260}
-                    height={260}
-                    className="george-avatar-image"
-                    priority
-                  />
-
-                  <div className="george-mouth-mask" />
-                  <div className="george-mouth-shadow" />
-                  <div className="george-mouth-inner">
-                    <span className="george-mouth-teeth" />
-                    <span className="george-mouth-tongue" />
-                  </div>
-                </div>
+              <div className="relative z-10 flex h-[78%] w-[78%] items-center justify-center rounded-full bg-[radial-gradient(circle_at_50%_40%,rgba(85,32,173,0.85),rgba(18,8,43,0.98))] shadow-[inset_0_2px_12px_rgba(148,163,184,0.12)]">
+                <Image
+                  src="/george-logo-premium-purple.png"
+                  alt="George logo"
+                  width={320}
+                  height={320}
+                  className="h-[88%] w-[88%] rounded-full object-cover drop-shadow-[0_20px_30px_rgba(8,14,40,0.25)]"
+                  priority
+                />
               </div>
               <span className="sr-only">{connectionState === "connected" ? "George is live" : "Start talking to George"}</span>
             </button>
-
-            <a
-              href="https://wa.me/447519166031"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 text-sm font-semibold text-white underline decoration-emerald-400 decoration-2 underline-offset-4 transition hover:text-emerald-300"
-            >
-              Prefer to speak to a human? Message me on WhatsApp
-            </a>
 
             <div className="mt-6 min-h-[84px] max-w-2xl text-center">
               <p
@@ -1035,15 +1008,6 @@ export function GeorgeLiveAssistantCompact() {
                 >
                   {submitState === "submitting" ? "Sending..." : submitState === "success" ? "Submitted" : "Submit enquiry"}
                 </button>
-
-                <a
-                  href="https://wa.me/447519166031"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border border-emerald-400/40 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
-                >
-                  Contact us on WhatsApp
-                </a>
               </div>
 
               {submitState === "success" ? (
@@ -1086,161 +1050,6 @@ export function GeorgeLiveAssistantCompact() {
           </div>
         ) : null}
       </div>
-
-      <style jsx>{`
-        .george-avatar-shell {
-          position: relative;
-          width: 86%;
-          height: 86%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          filter: drop-shadow(0 18px 26px rgba(15, 23, 42, 0.16));
-        }
-
-        .george-avatar-image {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          transform: translateY(2px);
-          transition: transform 220ms ease;
-        }
-
-        .george-wave-bars {
-          position: absolute;
-          top: -2%;
-          left: 50%;
-          transform: translateX(-50%);
-          display: flex;
-          align-items: flex-end;
-          gap: 5px;
-          height: 18%;
-          width: 28%;
-          opacity: 0.96;
-        }
-
-        .george-wave-bars span {
-          flex: 1;
-          border-radius: 999px;
-          background: linear-gradient(180deg, #3b82f6 0%, #38bdf8 100%);
-          height: 28%;
-          transform-origin: center bottom;
-          opacity: 0.92;
-        }
-
-        .george-avatar-shell.is-talking .george-wave-bars span:nth-child(1) { animation: waveBounce 0.72s ease-in-out infinite; }
-        .george-avatar-shell.is-talking .george-wave-bars span:nth-child(2) { animation: waveBounce 0.72s ease-in-out 0.1s infinite; }
-        .george-avatar-shell.is-talking .george-wave-bars span:nth-child(3) { animation: waveBounce 0.72s ease-in-out 0.18s infinite; }
-        .george-avatar-shell.is-talking .george-wave-bars span:nth-child(4) { animation: waveBounce 0.72s ease-in-out 0.08s infinite; }
-        .george-avatar-shell.is-talking .george-wave-bars span:nth-child(5) { animation: waveBounce 0.72s ease-in-out 0.16s infinite; }
-
-        .george-mouth-mask {
-          position: absolute;
-          left: 50%;
-          top: 66.4%;
-          width: 23.5%;
-          height: 10.8%;
-          transform: translateX(-50%);
-          border-radius: 999px;
-          background: linear-gradient(180deg, #0b52b8 0%, #08439d 100%);
-          box-shadow: inset 0 1px 2px rgba(255,255,255,0.08);
-        }
-
-        .george-mouth-shadow {
-          position: absolute;
-          left: 50%;
-          top: 69.6%;
-          width: 18%;
-          height: 8.8%;
-          transform: translateX(-50%);
-          border-radius: 999px;
-          background: #0a246a;
-          transition: all 180ms ease;
-        }
-
-        .george-mouth-inner {
-          position: absolute;
-          left: 50%;
-          top: 67.6%;
-          width: 17.4%;
-          height: 6.8%;
-          transform: translateX(-50%);
-          border-radius: 0 0 999px 999px;
-          background: #ffffff;
-          overflow: hidden;
-          transition: all 180ms ease;
-          transform-origin: center top;
-        }
-
-        .george-mouth-teeth {
-          position: absolute;
-          inset: 0;
-          background: white;
-          border-radius: 0 0 999px 999px;
-        }
-
-        .george-mouth-tongue {
-          position: absolute;
-          left: 50%;
-          bottom: -28%;
-          width: 60%;
-          height: 48%;
-          transform: translateX(-50%);
-          border-radius: 999px 999px 0 0;
-          background: #f472b6;
-          opacity: 0;
-          transition: opacity 140ms ease;
-        }
-
-        .george-avatar-shell.is-talking .george-avatar-image {
-          animation: headBob 0.8s ease-in-out infinite;
-        }
-
-        .george-avatar-shell.is-talking .george-mouth-shadow {
-          top: 70.8%;
-          width: 16.2%;
-          height: 9.6%;
-          animation: mouthShadowTalk 0.5s ease-in-out infinite alternate;
-        }
-
-        .george-avatar-shell.is-talking .george-mouth-inner {
-          top: 67.6%;
-          width: 15.8%;
-          height: 10.8%;
-          border-radius: 0 0 20px 20px;
-          background: linear-gradient(180deg, #ffffff 0 34%, #0f265b 34% 100%);
-          animation: mouthTalk 0.5s ease-in-out infinite alternate;
-        }
-
-        .george-avatar-shell.is-talking .george-mouth-tongue {
-          opacity: 0.9;
-        }
-
-        .george-intro-orb {
-          border-radius: 999px;
-          box-shadow: 0 0 70px rgba(67, 233, 123, 0.22);
-        }
-
-        @keyframes waveBounce {
-          0%, 100% { height: 28%; }
-          50% { height: 100%; }
-        }
-
-        @keyframes headBob {
-          0%, 100% { transform: translateY(2px) scale(1); }
-          50% { transform: translateY(0px) scale(1.01); }
-        }
-
-        @keyframes mouthTalk {
-          0% { height: 7.2%; width: 17.2%; }
-          100% { height: 12.4%; width: 14.6%; }
-        }
-
-        @keyframes mouthShadowTalk {
-          0% { height: 8.8%; width: 18%; }
-          100% { height: 10.4%; width: 15.6%; }
-        }
-      `}</style>
       </section>
     </>
   )

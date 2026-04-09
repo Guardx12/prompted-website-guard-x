@@ -21,8 +21,8 @@ export function Navigation() {
     <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#070b16]/85 backdrop-blur-xl supports-[backdrop-filter]:bg-[#070b16]/72">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="group flex items-center gap-3 transition-opacity hover:opacity-95">
-          <div className="relative h-10 w-10 overflow-hidden rounded-full ring-1 ring-white/15 shadow-[0_0_40px_rgba(67,233,123,0.24)]">
-            <Image src="/george-orb-premium.jpeg" alt="George orb" fill className="object-cover scale-[1.08] transition-transform duration-500 group-hover:scale-[1.14]" priority />
+          <div className="relative h-12 w-12 overflow-hidden rounded-2xl ring-1 ring-white/12 shadow-[0_0_34px_rgba(113,74,255,0.22)]">
+            <Image src="/george-logo-premium-purple.png" alt="George orb" fill className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" priority />
           </div>
           <span className="text-xl font-semibold tracking-[0.04em] text-white">George</span>
         </Link>

@@ -164,6 +164,18 @@ export default function HomePage() {
         </div>
       </section>
 
+
+      <div className="pointer-events-none fixed bottom-0 right-0 z-10 hidden w-[360px] translate-y-[6%] lg:block xl:w-[430px]">
+        <Image
+          src="/why-george-exists-slide.jpeg"
+          alt="Why George Exists"
+          width={860}
+          height={1290}
+          className="h-auto w-full object-contain opacity-92"
+          priority
+        />
+      </div>
+
       <Footer />
     </main>
   )
