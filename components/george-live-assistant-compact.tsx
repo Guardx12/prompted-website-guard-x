@@ -834,7 +834,7 @@ export function GeorgeLiveAssistantCompact() {
           <div className="george-intro-stage">
             <div className="george-intro-avatar-track">
               <Image
-                src="/george-logo.png"
+                src="/george-orb-premium.jpeg"
                 alt="George"
                 width={240}
                 height={240}
@@ -842,20 +842,20 @@ export function GeorgeLiveAssistantCompact() {
                 priority
               />
             </div>
-            <p className="george-intro-copy pulse-highlight">Tap the orb to ask George how he can work for your business</p>
+            <p className="george-intro-copy pulse-highlight">Tap the circle to ask George how he can work for your business</p>
           </div>
         </div>
       ) : null}
 
-      <section id="live-george" className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
-        <div className="overflow-hidden rounded-[36px] border border-[#DADCE0] bg-white shadow-[0_24px_80px_rgba(15,23,42,0.10)]">
+      <section id="live-george" className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+        <div className="overflow-hidden rounded-[36px] border border-white/10 bg-[linear-gradient(180deg,rgba(8,12,22,0.94),rgba(10,15,28,0.9))] shadow-[0_30px_80px_rgba(0,0,0,0.35)]">
         <div className="px-5 py-8 text-center sm:px-8 sm:py-10">
-          <h1 className="text-4xl font-black tracking-tight text-[#0F172A] sm:text-5xl">Turn your website into a 24/7 salesperson</h1>
+          <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl">Turn your website into a 24/7 salesperson</h1>
 
           <div className="mx-auto mt-8 flex max-w-3xl flex-col items-center">
-            <p className="pulse-highlight mb-3 text-base font-semibold text-[#0F172A] sm:text-lg">Try it now — ask George how he can work for your business</p>
-            <p className="mb-5 max-w-2xl text-sm leading-6 text-[#475569] sm:text-base">George is tailored to each client, so he can match your brand, tone, and role — from a salesperson or receptionist to a guide or family-friendly mascot.</p>
-            <p className="mb-6 text-sm font-semibold text-[#1D4ED8] sm:text-base">See how it would work on your business in seconds</p>
+            <p className="pulse-highlight mb-3 text-base font-semibold text-white sm:text-lg">Try it now — ask George how he can work for your business</p>
+            <p className="mb-5 max-w-2xl text-sm leading-6 text-white/70 sm:text-base">George is tailored to each client, so he can match your brand, tone, and role — from a salesperson or receptionist to a guide or family-friendly mascot.</p>
+            <p className="mb-6 text-sm font-semibold text-emerald-300 sm:text-base">See how it would work on your business in seconds</p>
             <button
               type="button"
               onClick={connectionState === "connected" ? stopConversation : startConversation}
@@ -915,14 +915,14 @@ export function GeorgeLiveAssistantCompact() {
               href="https://wa.me/447519166031"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 text-sm font-semibold text-[#0F172A] underline decoration-[#25D366] decoration-2 underline-offset-4 transition hover:text-[#1D4ED8]"
+              className="mt-5 text-sm font-semibold text-white underline decoration-emerald-400 decoration-2 underline-offset-4 transition hover:text-emerald-300"
             >
               Prefer to speak to a human? Message me on WhatsApp
             </a>
 
             <div className="mt-6 min-h-[84px] max-w-2xl text-center">
               <p
-                className={`text-sm font-semibold uppercase tracking-[0.24em] text-[#1D4ED8] ${
+                className={`text-sm font-semibold uppercase tracking-[0.24em] text-emerald-300 ${
                   connectionState === "idle" && !hasStoredSession ? "pulse-highlight" : ""
                 }`}
               >
@@ -936,8 +936,8 @@ export function GeorgeLiveAssistantCompact() {
                       ? "Ready to carry on"
                       : "Tap the circle to speak to George"}
               </p>
-              <p className="mt-3 text-base leading-7 text-[#334155] sm:text-lg">{latestAssistantMessage}</p>
-              {latestUserMessage ? <p className="mt-2 text-sm text-[#64748B]">You: {latestUserMessage}</p> : null}
+              <p className="mt-3 text-base leading-7 text-white/82 sm:text-lg">{latestAssistantMessage}</p>
+              {latestUserMessage ? <p className="mt-2 text-sm text-white/50">You: {latestUserMessage}</p> : null}
               {error ? <p className="mt-3 text-sm font-medium text-[#B91C1C]">{error}</p> : null}
             </div>
 
@@ -954,7 +954,7 @@ export function GeorgeLiveAssistantCompact() {
                 <button
                   type="button"
                   onClick={clearSavedSession}
-                  className="inline-flex items-center gap-2 rounded-full border border-[#CBD5E1] bg-white px-5 py-3 text-sm font-semibold text-[#334155] transition hover:bg-[#F8FAFC]"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-5 py-3 text-sm font-semibold text-white/82 transition hover:bg-white/10"
                 >
                   <RotateCcw className="h-4 w-4" /> Start fresh
                 </button>
@@ -963,7 +963,7 @@ export function GeorgeLiveAssistantCompact() {
               <button
                 type="button"
                 onClick={() => setShowConversation((prev) => !prev)}
-                className="inline-flex items-center gap-2 rounded-full border border-[#CBD5E1] bg-white px-5 py-3 text-sm font-semibold text-[#334155] transition hover:bg-[#F8FAFC]"
+                className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-5 py-3 text-sm font-semibold text-white/82 transition hover:bg-white/10"
               >
                 {showConversation ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                 {showConversation ? "Hide conversation" : "View conversation"}
@@ -972,10 +972,10 @@ export function GeorgeLiveAssistantCompact() {
           </div>
         </div>
 
-        <div className="border-t border-[#E5E7EB] bg-[#F8FAFC] px-4 py-6 sm:px-6 sm:py-8">
-          <div className="mx-auto w-full max-w-3xl rounded-[28px] border border-[#DADCE0] bg-white p-5 shadow-sm sm:p-6">
-            <h2 className="text-lg font-semibold text-[#0F172A]">Ready to go ahead?</h2>
-            <p className="mt-2 text-sm leading-6 text-[#475569]">
+        <div className="border-t border-white/10 bg-white/[0.03] px-4 py-6 sm:px-6 sm:py-8">
+          <div className="mx-auto w-full max-w-3xl rounded-[28px] border border-white/10 bg-white/[0.04] p-5 shadow-sm sm:p-6">
+            <h2 className="text-lg font-semibold text-white">Ready to go ahead?</h2>
+            <p className="mt-2 text-sm leading-6 text-white/68">
               George fills this in as you chat. Just check it looks right and press submit — it takes 10 seconds.
             </p>
 
@@ -988,7 +988,7 @@ export function GeorgeLiveAssistantCompact() {
                   value={leadForm.name}
                   onChange={(event) => setLeadForm((prev) => ({ ...prev, name: event.target.value }))}
                   required
-                  className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#0F172A] outline-none focus:border-[#1D4ED8]"
+                  className="w-full rounded-2xl border border-white/10 bg-[#0a1020] px-4 py-3 text-white outline-none focus:border-emerald-300"
                 />
                 <input
                   type="text"
@@ -996,7 +996,7 @@ export function GeorgeLiveAssistantCompact() {
                   placeholder="Surname"
                   value={leadForm.surname}
                   onChange={(event) => setLeadForm((prev) => ({ ...prev, surname: event.target.value }))}
-                  className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#0F172A] outline-none focus:border-[#1D4ED8]"
+                  className="w-full rounded-2xl border border-white/10 bg-[#0a1020] px-4 py-3 text-white outline-none focus:border-emerald-300"
                 />
                 <input
                   type="text"
@@ -1005,7 +1005,7 @@ export function GeorgeLiveAssistantCompact() {
                   value={leadForm.businessName}
                   onChange={(event) => setLeadForm((prev) => ({ ...prev, businessName: event.target.value }))}
                   required
-                  className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#0F172A] outline-none focus:border-[#1D4ED8] sm:col-span-2"
+                  className="w-full rounded-2xl border border-white/10 bg-[#0a1020] px-4 py-3 text-white outline-none focus:border-emerald-300 sm:col-span-2"
                 />
                 <input
                   type="email"
@@ -1014,7 +1014,7 @@ export function GeorgeLiveAssistantCompact() {
                   value={leadForm.email}
                   onChange={(event) => setLeadForm((prev) => ({ ...prev, email: event.target.value }))}
                   required
-                  className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#0F172A] outline-none focus:border-[#1D4ED8] sm:col-span-2"
+                  className="w-full rounded-2xl border border-white/10 bg-[#0a1020] px-4 py-3 text-white outline-none focus:border-emerald-300 sm:col-span-2"
                 />
               </div>
 
@@ -1024,14 +1024,14 @@ export function GeorgeLiveAssistantCompact() {
                 value={leadForm.message}
                 onChange={(event) => setLeadForm((prev) => ({ ...prev, message: event.target.value }))}
                 rows={4}
-                className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#0F172A] outline-none focus:border-[#1D4ED8]"
+                className="w-full rounded-2xl border border-white/10 bg-[#0a1020] px-4 py-3 text-white outline-none focus:border-emerald-300"
               />
 
               <div className="flex flex-col gap-3 sm:flex-row">
                 <button
                   type="submit"
                   disabled={submitState === "submitting"}
-                  className="inline-flex items-center justify-center rounded-full bg-[#1D4ED8] px-5 py-3 text-sm font-semibold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
+                  className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#4ade80_0%,#14b8a6_100%)] px-5 py-3 text-sm font-semibold text-[#03110a] transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
                 >
                   {submitState === "submitting" ? "Sending..." : submitState === "success" ? "Submitted" : "Submit enquiry"}
                 </button>
@@ -1040,7 +1040,7 @@ export function GeorgeLiveAssistantCompact() {
                   href="https://wa.me/447519166031"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border border-[#25D366] px-5 py-3 text-sm font-semibold text-[#0F172A] transition hover:bg-[#F0FFF4]"
+                  className="inline-flex items-center justify-center rounded-full border border-emerald-400/40 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
                 >
                   Contact us on WhatsApp
                 </a>
@@ -1055,7 +1055,7 @@ export function GeorgeLiveAssistantCompact() {
         </div>
 
         {showConversation ? (
-          <div className="border-t border-[#E5E7EB] bg-[#F8FAFC] px-4 py-6 sm:px-6 sm:py-8">
+          <div className="border-t border-white/10 bg-white/[0.03] px-4 py-6 sm:px-6 sm:py-8">
             <div ref={scrollRef} className="mx-auto max-h-[420px] w-full max-w-3xl overflow-y-auto">
               <div className="flex flex-col gap-4">
                 {messages.map((message) => (
@@ -1063,10 +1063,10 @@ export function GeorgeLiveAssistantCompact() {
                     <div
                       className={`max-w-[92%] whitespace-pre-wrap rounded-[24px] px-5 py-4 text-[15px] leading-7 shadow-sm sm:max-w-[86%] sm:text-[16px] ${
                         message.role === "user"
-                          ? "rounded-br-md bg-[#1D4ED8] text-white"
+                          ? "rounded-br-md bg-[linear-gradient(135deg,#4ade80_0%,#14b8a6_100%)] text-[#03110a]"
                           : message.role === "assistant"
-                            ? "rounded-bl-md border border-[#E2E8F0] bg-white text-[#0F172A]"
-                            : "rounded-bl-md border border-[#DBEAFE] bg-[#EFF6FF] text-[#1D4ED8]"
+                            ? "rounded-bl-md border border-white/10 bg-[#09101d] text-white/90"
+                            : "rounded-bl-md border border-emerald-300/15 bg-emerald-300/10 text-emerald-200"
                       }`}
                     >
                       {message.content}
@@ -1076,7 +1076,7 @@ export function GeorgeLiveAssistantCompact() {
 
                 {connectionState === "connecting" && (
                   <div className="flex justify-start">
-                    <div className="inline-flex items-center gap-3 rounded-[24px] rounded-bl-md border border-[#E2E8F0] bg-white px-5 py-4 text-[#475569] shadow-sm">
+                    <div className="inline-flex items-center gap-3 rounded-[24px] rounded-bl-md border border-white/10 bg-[#09101d] px-5 py-4 text-white/70 shadow-sm">
                       <Loader2 className="h-4 w-4 animate-spin" /> George is joining the conversation…
                     </div>
                   </div>
@@ -1216,6 +1216,11 @@ export function GeorgeLiveAssistantCompact() {
           opacity: 0.9;
         }
 
+        .george-intro-orb {
+          border-radius: 999px;
+          box-shadow: 0 0 70px rgba(67, 233, 123, 0.22);
+        }
+
         @keyframes waveBounce {
           0%, 100% { height: 28%; }
           50% { height: 100%; }
@@ -1240,3 +1245,4 @@ export function GeorgeLiveAssistantCompact() {
     </>
   )
 }
+
