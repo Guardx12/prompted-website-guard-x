@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState, type FormEvent } from "react"
 import { ChevronDown, ChevronUp, Loader2, PhoneOff, RotateCcw } from "lucide-react"
 
 type LiveMessage = {
@@ -12,20 +12,32 @@ type LiveMessage = {
 
 type ConnectionState = "idle" | "connecting" | "connected" | "error"
 
+type LeadFormState = {
+  name: string
+  surname: string
+  businessName: string
+  email: string
+  message: string
+}
+
+type SubmitState = "idle" | "submitting" | "success" | "error"
+
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrbypyzv"
+
 type StoredSession = {
   messages: LiveMessage[]
   visitorName: string | null
   updatedAt: number
 }
 
-const STORAGE_KEY = "guardx-meet-george-compact-v1"
+const STORAGE_KEY = "guardx-meet-george-compact-v8"
 
 const INITIAL_MESSAGES: LiveMessage[] = [
   {
     id: "intro",
     role: "system",
     content:
-      "Hi — I’m George, a digital guide and member of staff for your website. I help visitors plan, get answers instantly, find the right direction, know what to do next, and get more from their visit. I also help you get more people through the gate, improve visitor experience, and increase on-site spend.",
+      "Hi — I’m George. What kind of business do you run? I'll show you exactly how I'd work on it.",
   },
 ]
 
@@ -40,8 +52,186 @@ function makeMessage(role: LiveMessage["role"], content: string) {
   }
 }
 
+function countUserMessages(messages: LiveMessage[]) {
+  return messages.filter((message) => message.role === "user").length
+}
+
+function createSessionId() {
+  return typeof crypto !== "undefined" && "randomUUID" in crypto
+    ? crypto.randomUUID()
+    : `george-session-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`
+}
+
 function trimMessagesForStorage(messages: LiveMessage[]) {
   return messages.slice(-24)
+}
+
+function normalizeWhitespace(value: string) {
+  return value.replace(/\s+/g, " ").trim()
+}
+
+function buildTranscript(messages: LiveMessage[]) {
+  return messages
+    .filter((message) => message.role === "assistant" || message.role === "user")
+    .map((message) => `${message.role === "assistant" ? "George" : "Visitor"}: ${normalizeWhitespace(message.content)}`)
+    .join("\n\n")
+}
+
+function getUserOnlyText(messages: LiveMessage[]) {
+  return messages
+    .filter((message) => message.role === "user")
+    .map((message) => normalizeWhitespace(message.content))
+    .filter(Boolean)
+}
+
+function toTitleCase(value: string) {
+  return value
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+    .join(" ")
+}
+
+function cleanNameValue(value: string) {
+  return toTitleCase(normalizeWhitespace(value).replace(/[^A-Za-z' -]/g, " ").trim())
+}
+
+function cleanBusinessValue(value: string) {
+  return normalizeWhitespace(value)
+    .replace(/^(a|an)\s+/i, "")
+    .replace(/[.,;:!?]+$/, "")
+    .trim()
+}
+
+function isValidEmail(value: string) {
+  return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(normalizeWhitespace(value))
+}
+
+function buildConversationPayload({
+  messages,
+  details,
+  visitorName,
+  suggestedMessage,
+  sessionId,
+  conversationEvent,
+}: {
+  messages: LiveMessage[]
+  details: { name: string; surname: string; businessName: string; email: string }
+  visitorName: string | null
+  suggestedMessage: string
+  sessionId: string
+  conversationEvent: string
+}) {
+  const latestUserMessage = [...messages].reverse().find((message) => message.role === "user")?.content ?? ""
+
+  return {
+    sessionId,
+    source: "Meet George live conversation",
+    page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
+    conversationEvent,
+    userMessageCount: countUserMessages(messages),
+    visitorName: details.name || visitorName || "",
+    surname: details.surname || "",
+    businessName: details.businessName || "",
+    email: details.email || "",
+    shortMessage: suggestedMessage || "",
+    latestUserMessage,
+    transcript: buildTranscript(messages),
+    submittedAt: new Date().toISOString(),
+  }
+}
+
+function sendConversationPayload(payload: Record<string, unknown>, preferBeacon = false) {
+  const body = JSON.stringify(payload)
+
+  if (typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function" && (preferBeacon || typeof document === "undefined" || document.visibilityState === "hidden")) {
+    try {
+      const blob = new Blob([body], { type: "application/json" })
+      const sent = navigator.sendBeacon("/api/george-conversation", blob)
+      if (sent) return
+    } catch {}
+  }
+
+  void fetch("/api/george-conversation", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    keepalive: true,
+    body,
+  }).catch(() => undefined)
+}
+
+function extractLeadDetailsFromMessages(messages: LiveMessage[]) {
+  const userTexts = getUserOnlyText(messages)
+
+  let name = ""
+  let surname = ""
+  let businessName = ""
+  let email = ""
+
+  for (const text of userTexts) {
+    const emailMatches = text.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi)
+    if (emailMatches?.length) {
+      const latestEmail = normalizeWhitespace(emailMatches[emailMatches.length - 1])
+      if (isValidEmail(latestEmail)) email = latestEmail
+    }
+
+    const namePatterns = [
+      /(?:^|\b)(?:my first name is|first name is|forename is)\s+([A-Za-z][A-Za-z' -]{1,50})/i,
+      /(?:^|\b)(?:my name is|i am|i'm|im|it's|it is|this is)\s+([A-Za-z][A-Za-z' -]{1,50})/i,
+    ]
+    for (const pattern of namePatterns) {
+      const match = text.match(pattern)
+      if (match?.[1]) {
+        const candidate = cleanNameValue(match[1].split(/\s+/)[0] || "")
+        if (candidate) {
+          name = candidate
+          break
+        }
+      }
+    }
+
+    const surnameMatch = text.match(/(?:^|\b)(?:my surname is|surname is|last name is|family name is)\s+([A-Za-z][A-Za-z' -]{1,50})/i)
+    if (surnameMatch?.[1]) {
+      const candidate = cleanNameValue(surnameMatch[1])
+      if (candidate) surname = candidate
+    }
+
+    const businessPatterns = [
+      /(?:^|\b)(?:my business(?: name)? is|business(?: name)? is)\s+([A-Za-z0-9&'., -]{2,80})/i,
+      /(?:^|\b)(?:the business is|company(?: name)? is)\s+([A-Za-z0-9&'., -]{2,80})/i,
+      /(?:^|\b)(?:i run|we run|i own|we own)\s+([A-Za-z0-9&'., -]{2,80})/i,
+    ]
+    for (const pattern of businessPatterns) {
+      const match = text.match(pattern)
+      if (match?.[1]) {
+        const candidate = cleanBusinessValue(match[1])
+        if (candidate) {
+          businessName = candidate
+          break
+        }
+      }
+    }
+  }
+
+  return { name, surname, businessName, email }
+}
+
+function buildLeadMessage(messages: LiveMessage[]) {
+  const userMessages = getUserOnlyText(messages)
+  if (!userMessages.length) return ""
+
+  const filtered = userMessages.filter((message) => {
+    const lower = message.toLowerCase()
+    const looksLikeContactCollection =
+      /surname is|last name is|family name is|email address is|business(?: name)? is|@/.test(lower)
+    return !looksLikeContactCollection
+  })
+
+  const candidate = normalizeWhitespace((filtered[filtered.length - 1] || userMessages[userMessages.length - 1] || "").replace(/^(hi|hello|hey)[^a-z0-9]+/i, ""))
+  if (!candidate) return ""
+  return candidate.length > 280 ? `${candidate.slice(0, 277)}...` : candidate
 }
 
 function detectVisitorName(messages: LiveMessage[]) {
@@ -66,10 +256,50 @@ function detectVisitorName(messages: LiveMessage[]) {
   return null
 }
 
+
+function buildLeadPayload(leadForm: LeadFormState) {
+  return {
+    name: leadForm.name,
+    surname: leadForm.surname,
+    businessName: leadForm.businessName,
+    email: normalizeWhitespace(leadForm.email),
+    message: leadForm.message,
+    source: "Meet George autofill form",
+    page: typeof window !== "undefined" ? window.location.href : "https://guardxnetwork.com/meet-george",
+    submittedAt: new Date().toISOString(),
+    submissionMode: "manual_submit_after_autofill",
+  }
+}
+
+async function postLeadDirectToFormspree(payload: ReturnType<typeof buildLeadPayload>) {
+  const form = new URLSearchParams()
+  form.set("name", payload.name)
+  form.set("surname", payload.surname)
+  form.set("businessName", payload.businessName)
+  form.set("email", payload.email)
+  form.set("message", payload.message)
+  form.set("source", payload.source)
+  form.set("page", payload.page)
+  form.set("submittedAt", payload.submittedAt)
+  form.set("submissionMode", payload.submissionMode)
+  form.set("_subject", "New George enquiry")
+  form.set("_replyto", payload.email)
+  form.set("_to", "info@guardxnetwork.com")
+
+  return fetch(FORMSPREE_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Accept: "application/json",
+    },
+    body: form.toString(),
+  })
+}
+
 function buildFirstResponseEvent(visitorName: string | null, hasStoredSession: boolean, lastUserMessage: string | null) {
   const instructions = hasStoredSession
-    ? `Introduce yourself as George in warm, natural British English only. Keep it short. This visitor already has an ongoing conversation with you on this device. Do not restart from scratch. ${visitorName ? `Their name is ${visitorName}. Use it naturally once.` : ""} ${lastUserMessage ? `The last thing they said before returning was: ${lastUserMessage}` : ""} Briefly welcome them back and ask one short forward-moving question about what they want help with now.`
-    : "Introduce yourself as George in warm, upbeat, natural British English only. Keep it short and clear. Explain that you help attractions and businesses guide visitors, answer questions instantly, give directions, and help people know what to do next. Also mention that you help get more people through the gate, improve visitor experience, and increase on-site spend. Then ask naturally: 'What’s your name, and what type of place or business do you run?'"
+    ? `Introduce yourself as George in warm, natural British English only. Keep it short. This visitor already has an ongoing conversation with you on this device. Do not restart from scratch. ${visitorName ? `Their name is ${visitorName}. Use it naturally once.` : ""} ${lastUserMessage ? `The last thing they said before returning was: ${lastUserMessage}` : ""} Briefly welcome them back and move the conversation forward naturally from where it left off.`
+    : "Introduce yourself as George in warm, confident, natural British English only. Keep it short, direct, and easy to answer. Say exactly: 'Hi — I'm George. What kind of business do you run? I'll show you exactly how I'd work on it.' Do not add anything else before or after that opener. Do not mention the form, autofill, WhatsApp, pricing, or extra features in your first message."
 
   return {
     type: "response.create",
@@ -86,6 +316,16 @@ export function GeorgeLiveAssistantCompact() {
   const [hasStoredSession, setHasStoredSession] = useState(false)
   const [visitorName, setVisitorName] = useState<string | null>(null)
   const [showConversation, setShowConversation] = useState(false)
+  const [leadForm, setLeadForm] = useState<LeadFormState>({
+    name: "",
+    surname: "",
+    businessName: "",
+    email: "",
+    message: "",
+  })
+  const [submitState, setSubmitState] = useState<SubmitState>("idle")
+  const [submitError, setSubmitError] = useState<string | null>(null)
+  const [showIntroOverlay, setShowIntroOverlay] = useState(true)
 
   const pcRef = useRef<RTCPeerConnection | null>(null)
   const dcRef = useRef<RTCDataChannel | null>(null)
@@ -94,6 +334,13 @@ export function GeorgeLiveAssistantCompact() {
   const currentAssistantTextRef = useRef("")
   const currentAssistantMessageIdRef = useRef<string | null>(null)
   const scrollRef = useRef<HTMLDivElement | null>(null)
+  const conversationSessionIdRef = useRef("")
+  const hasSentFinalConversationRef = useRef(false)
+  const lastSentUserMessageCountRef = useRef(0)
+  const latestMessagesRef = useRef<LiveMessage[]>(INITIAL_MESSAGES)
+  const latestVisitorNameRef = useRef<string | null>(null)
+  const latestSuggestedMessageRef = useRef("")
+  const latestDetailsRef = useRef({ name: "", surname: "", businessName: "", email: "" })
 
   const canStart = useMemo(() => connectionState === "idle" || connectionState === "error", [connectionState])
   const latestAssistantMessage = useMemo(
@@ -104,6 +351,9 @@ export function GeorgeLiveAssistantCompact() {
     () => [...messages].reverse().find((message) => message.role === "user")?.content ?? null,
     [messages],
   )
+  const transcript = useMemo(() => buildTranscript(messages), [messages])
+  const detailsFromTranscript = useMemo(() => extractLeadDetailsFromMessages(messages), [messages])
+  const suggestedMessage = useMemo(() => buildLeadMessage(messages), [messages])
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -112,17 +362,40 @@ export function GeorgeLiveAssistantCompact() {
   }, [messages, connectionState, showConversation])
 
   useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setShowIntroOverlay(false)
+    }, 3800)
+
+    return () => window.clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    conversationSessionIdRef.current = createSessionId()
+
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY)
       if (!raw) return
       const stored = JSON.parse(raw) as StoredSession
-      if (Array.isArray(stored?.messages) && stored.messages.length > 1) {
-        setMessages(stored.messages)
+      const validMessages = Array.isArray(stored?.messages)
+        ? stored.messages.filter(
+            (message): message is LiveMessage =>
+              Boolean(message) &&
+              typeof message.id === "string" &&
+              (message.role === "assistant" || message.role === "user" || message.role === "system") &&
+              typeof message.content === "string",
+          )
+        : []
+      if (validMessages.length > 1) {
+        setMessages(validMessages)
         setHasStoredSession(true)
-        setVisitorName(stored.visitorName || detectVisitorName(stored.messages))
+        setVisitorName(stored.visitorName || detectVisitorName(validMessages))
         setStatusText("Ready to carry on")
       }
-    } catch {}
+    } catch {
+      try {
+        window.localStorage.removeItem(STORAGE_KEY)
+      } catch {}
+    }
   }, [])
 
   useEffect(() => {
@@ -144,6 +417,111 @@ export function GeorgeLiveAssistantCompact() {
       setHasStoredSession(true)
     } catch {}
   }, [messages, visitorName])
+
+  useEffect(() => {
+    setLeadForm((prev) => ({
+      name: detailsFromTranscript.name || prev.name,
+      surname: detailsFromTranscript.surname || prev.surname,
+      businessName: detailsFromTranscript.businessName || prev.businessName,
+      email: detailsFromTranscript.email || prev.email,
+      message: suggestedMessage || prev.message,
+    }))
+  }, [detailsFromTranscript, suggestedMessage])
+
+  useEffect(() => {
+    latestMessagesRef.current = messages
+    latestVisitorNameRef.current = visitorName
+    latestSuggestedMessageRef.current = suggestedMessage
+    latestDetailsRef.current = detailsFromTranscript
+  }, [messages, visitorName, suggestedMessage, detailsFromTranscript])
+
+  async function sendConversationSnapshot(conversationEvent: string, preferBeacon = false) {
+    const currentMessages = latestMessagesRef.current
+    if (countUserMessages(currentMessages) === 0) return false
+
+    const payload = buildConversationPayload({
+      messages: currentMessages,
+      details: latestDetailsRef.current,
+      visitorName: latestVisitorNameRef.current,
+      suggestedMessage: latestSuggestedMessageRef.current,
+      sessionId: conversationSessionIdRef.current || createSessionId(),
+      conversationEvent,
+    })
+
+    if (preferBeacon) {
+      sendConversationPayload(payload, true)
+      return true
+    }
+
+    try {
+      const response = await fetch("/api/george-conversation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        keepalive: true,
+        body: JSON.stringify(payload),
+      })
+
+      return response.ok
+    } catch {
+      return false
+    }
+  }
+
+  async function sendFinalConversation(conversationEvent: string, preferBeacon = false) {
+    if (hasSentFinalConversationRef.current && conversationEvent !== "manual_conversation_stop") return
+    const sent = await sendConversationSnapshot(conversationEvent, preferBeacon)
+    if (sent) {
+      hasSentFinalConversationRef.current = true
+    }
+  }
+
+
+
+  useEffect(() => {
+    const currentUserMessageCount = countUserMessages(messages)
+    if (currentUserMessageCount === 0) return
+    if (currentUserMessageCount <= lastSentUserMessageCountRef.current) return
+
+    lastSentUserMessageCountRef.current = currentUserMessageCount
+    void sendConversationSnapshot(`user_message_${currentUserMessageCount}`)
+  }, [messages])
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (typeof document !== "undefined" && document.visibilityState === "hidden") {
+        void sendFinalConversation("conversation_page_hidden", true)
+      }
+    }
+
+    const handlePageHide = () => {
+      void sendFinalConversation("conversation_page_exit", true)
+    }
+
+    const handleBeforeUnload = () => {
+      void sendFinalConversation("conversation_before_unload", true)
+    }
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("pagehide", handlePageHide)
+      window.addEventListener("beforeunload", handleBeforeUnload)
+    }
+
+    if (typeof document !== "undefined") {
+      document.addEventListener("visibilitychange", handleVisibilityChange)
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("pagehide", handlePageHide)
+        window.removeEventListener("beforeunload", handleBeforeUnload)
+      }
+      if (typeof document !== "undefined") {
+        document.removeEventListener("visibilitychange", handleVisibilityChange)
+      }
+    }
+  }, [])
 
   async function cleanupConversation() {
     dcRef.current?.close()
@@ -177,9 +555,15 @@ export function GeorgeLiveAssistantCompact() {
     setMessages(INITIAL_MESSAGES)
     setVisitorName(null)
     setHasStoredSession(false)
+    setLeadForm({ name: "", surname: "", businessName: "", email: "", message: "" })
+    setSubmitState("idle")
+    setSubmitError(null)
     setError(null)
     setConnectionState("idle")
     setStatusText("Ready when you are")
+    conversationSessionIdRef.current = createSessionId()
+    hasSentFinalConversationRef.current = false
+    lastSentUserMessageCountRef.current = 0
     try {
       window.localStorage.removeItem(STORAGE_KEY)
     } catch {}
@@ -295,6 +679,7 @@ export function GeorgeLiveAssistantCompact() {
     if (!canStart) return
 
     await cleanupConversation()
+    hasSentFinalConversationRef.current = false
     setConnectionState("connecting")
     setError(null)
     setStatusText("Connecting George…")
@@ -382,6 +767,7 @@ export function GeorgeLiveAssistantCompact() {
       await pc.setRemoteDescription({ type: "answer", sdp: answerText })
       pc.addEventListener("connectionstatechange", () => {
         if (["failed", "disconnected", "closed"].includes(pc.connectionState)) {
+          void sendFinalConversation("conversation_connection_closed", true)
           setConnectionState("error")
           setStatusText("Connection ended")
         }
@@ -395,19 +781,81 @@ export function GeorgeLiveAssistantCompact() {
   }
 
   async function stopConversation() {
+    await sendFinalConversation("manual_conversation_stop")
     await cleanupConversation()
     setError(null)
     setConnectionState("idle")
     setStatusText(hasStoredSession ? "Ready to carry on" : "Ready when you are")
   }
 
+  async function handleLeadSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setSubmitError(null)
+
+    if (!isValidEmail(leadForm.email)) {
+      setSubmitState("error")
+      setSubmitError("Please enter a full email address before submitting.")
+      return
+    }
+
+    setSubmitState("submitting")
+
+    const payload = buildLeadPayload(leadForm)
+
+    try {
+      let response = await fetch("/api/george-lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      })
+
+      if (!response.ok) {
+        response = await postLeadDirectToFormspree(payload)
+      }
+
+      const data = await response.json().catch(() => null)
+      if (!response.ok) {
+        throw new Error(typeof data?.error === "string" ? data.error : "Could not send your enquiry.")
+      }
+
+      setSubmitState("success")
+    } catch (error) {
+      setSubmitState("error")
+      setSubmitError(error instanceof Error ? error.message : "Could not send your enquiry.")
+    }
+  }
+
   return (
-    <section id="live-george" className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
-      <div className="overflow-hidden rounded-[36px] border border-[#DADCE0] bg-white shadow-[0_24px_80px_rgba(15,23,42,0.10)]">
+    <>
+      {showIntroOverlay ? (
+        <div className="george-intro-overlay" aria-hidden="true">
+          <div className="george-intro-stage">
+            <div className="george-intro-avatar-track">
+              <Image
+                src="/george-avatar-head.png"
+                alt="George"
+                width={240}
+                height={240}
+                className="george-intro-avatar"
+                priority
+              />
+            </div>
+            <p className="george-intro-copy pulse-highlight">Tap the circle to ask George how he can work for your business</p>
+          </div>
+        </div>
+      ) : null}
+
+      <section id="live-george" className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+        <div className="overflow-hidden rounded-[36px] border border-[#DADCE0] bg-white shadow-[0_24px_80px_rgba(15,23,42,0.10)]">
         <div className="px-5 py-8 text-center sm:px-8 sm:py-10">
-          <h1 className="text-4xl font-black tracking-tight text-[#0F172A] sm:text-5xl">Meet George</h1>
+          <h1 className="text-4xl font-black tracking-tight text-[#0F172A] sm:text-5xl">Turn your website into a 24/7 salesperson</h1>
 
           <div className="mx-auto mt-8 flex max-w-3xl flex-col items-center">
+            <p className="pulse-highlight mb-3 text-base font-semibold text-[#0F172A] sm:text-lg">Try it now — ask George how he can work for your business</p>
+            <p className="mb-5 max-w-2xl text-sm leading-6 text-[#475569] sm:text-base">George is tailored to each client, so he can match your brand, tone, and role — from a salesperson or receptionist to a guide or family-friendly mascot.</p>
+            <p className="mb-6 text-sm font-semibold text-[#1D4ED8] sm:text-base">See how it would work on your business in seconds</p>
             <button
               type="button"
               onClick={connectionState === "connected" ? stopConversation : startConversation}
@@ -422,33 +870,62 @@ export function GeorgeLiveAssistantCompact() {
               }`}
               style={{
                 background:
-                  "radial-gradient(circle at 30% 25%, #5B7BFF 0%, #1D4ED8 24%, #0F172A 62%, #020617 100%)",
+                  "radial-gradient(circle at 30% 24%, #8091B7 0%, #41567F 20%, #172554 56%, #020617 100%)",
                 boxShadow:
                   connectionState === "connected" || connectionState === "connecting"
-                    ? "0 0 0 10px rgba(29,78,216,0.10), 0 28px 60px rgba(15,23,42,0.34), inset 0 3px 18px rgba(255,255,255,0.24), inset 0 -14px 28px rgba(2,6,23,0.55)"
-                    : "0 24px 54px rgba(15,23,42,0.22), inset 0 3px 18px rgba(255,255,255,0.22), inset 0 -14px 28px rgba(2,6,23,0.52)",
+                    ? "0 0 0 12px rgba(71,85,105,0.10), 0 30px 70px rgba(15,23,42,0.34), inset 0 5px 22px rgba(255,255,255,0.28), inset 0 -18px 30px rgba(2,6,23,0.58)"
+                    : "0 26px 58px rgba(15,23,42,0.24), inset 0 5px 20px rgba(255,255,255,0.24), inset 0 -16px 28px rgba(2,6,23,0.54)",
               }}
             >
-              <span className="pointer-events-none absolute inset-[8px] rounded-full border border-white/15" />
-              <span className="pointer-events-none absolute left-[12%] top-[10%] h-[22%] w-[52%] rounded-full bg-white/28 blur-[10px]" />
-              <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0)_45%,rgba(255,255,255,0.13)_75%,rgba(255,255,255,0.22)_100%)]" />
-              <div className="relative z-10 flex h-[80%] w-[80%] items-center justify-center rounded-full">
-                <Image
-                  src="/george-logo.png"
-                  alt="George"
-                  width={260}
-                  height={260}
-                  className={`h-[74%] w-[74%] object-contain drop-shadow-[0_18px_30px_rgba(0,0,0,0.22)] transition ${
-                    connectionState === "connected" || connectionState === "connecting" ? "scale-[1.02]" : "scale-100"
-                  }`}
-                  priority
-                />
+              <span className="pointer-events-none absolute inset-[8px] rounded-full border border-white/18" />
+              <span className="pointer-events-none absolute left-[11%] top-[9%] h-[22%] w-[54%] rounded-full bg-white/32 blur-[12px]" />
+              <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0)_45%,rgba(255,255,255,0.14)_75%,rgba(255,255,255,0.24)_100%)]" />
+
+              <div className="relative z-10 flex h-[78%] w-[78%] items-center justify-center rounded-full bg-white shadow-[inset_0_2px_12px_rgba(148,163,184,0.32)]">
+                <div className={`george-avatar-shell ${isModelSpeaking ? "is-talking" : ""}`} aria-hidden="true">
+                  <div className="george-wave-bars">
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+
+                  <Image
+                    src="/george-avatar-head.png"
+                    alt="George"
+                    width={260}
+                    height={260}
+                    className="george-avatar-image"
+                    priority
+                  />
+
+                  <div className="george-mouth-mask" />
+                  <div className="george-mouth-shadow" />
+                  <div className="george-mouth-inner">
+                    <span className="george-mouth-teeth" />
+                    <span className="george-mouth-tongue" />
+                  </div>
+                </div>
               </div>
               <span className="sr-only">{connectionState === "connected" ? "George is live" : "Start talking to George"}</span>
             </button>
 
+            <a
+              href="https://wa.me/447519166031"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 text-sm font-semibold text-[#0F172A] underline decoration-[#25D366] decoration-2 underline-offset-4 transition hover:text-[#1D4ED8]"
+            >
+              Prefer to speak to a human? Message me on WhatsApp
+            </a>
+
             <div className="mt-6 min-h-[84px] max-w-2xl text-center">
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#1D4ED8]">
+              <p
+                className={`text-sm font-semibold uppercase tracking-[0.24em] text-[#1D4ED8] ${
+                  connectionState === "idle" && !hasStoredSession ? "pulse-highlight" : ""
+                }`}
+              >
                 {connectionState === "connected"
                   ? isModelSpeaking
                     ? "George is talking"
@@ -495,6 +972,88 @@ export function GeorgeLiveAssistantCompact() {
           </div>
         </div>
 
+        <div className="border-t border-[#E5E7EB] bg-[#F8FAFC] px-4 py-6 sm:px-6 sm:py-8">
+          <div className="mx-auto w-full max-w-3xl rounded-[28px] border border-[#DADCE0] bg-white p-5 shadow-sm sm:p-6">
+            <h2 className="text-lg font-semibold text-[#0F172A]">Ready to go ahead?</h2>
+            <p className="mt-2 text-sm leading-6 text-[#475569]">
+              George fills this in as you chat. Just check it looks right and press submit — it takes 10 seconds.
+            </p>
+
+            <form onSubmit={handleLeadSubmit} className="mt-5 space-y-4">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  value={leadForm.name}
+                  onChange={(event) => setLeadForm((prev) => ({ ...prev, name: event.target.value }))}
+                  required
+                  className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#0F172A] outline-none focus:border-[#1D4ED8]"
+                />
+                <input
+                  type="text"
+                  name="surname"
+                  placeholder="Surname"
+                  value={leadForm.surname}
+                  onChange={(event) => setLeadForm((prev) => ({ ...prev, surname: event.target.value }))}
+                  className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#0F172A] outline-none focus:border-[#1D4ED8]"
+                />
+                <input
+                  type="text"
+                  name="businessName"
+                  placeholder="Business name"
+                  value={leadForm.businessName}
+                  onChange={(event) => setLeadForm((prev) => ({ ...prev, businessName: event.target.value }))}
+                  required
+                  className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#0F172A] outline-none focus:border-[#1D4ED8] sm:col-span-2"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={leadForm.email}
+                  onChange={(event) => setLeadForm((prev) => ({ ...prev, email: event.target.value }))}
+                  required
+                  className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#0F172A] outline-none focus:border-[#1D4ED8] sm:col-span-2"
+                />
+              </div>
+
+              <textarea
+                name="message"
+                placeholder="Short message"
+                value={leadForm.message}
+                onChange={(event) => setLeadForm((prev) => ({ ...prev, message: event.target.value }))}
+                rows={4}
+                className="w-full rounded-2xl border border-[#DADCE0] bg-white px-4 py-3 text-[#0F172A] outline-none focus:border-[#1D4ED8]"
+              />
+
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <button
+                  type="submit"
+                  disabled={submitState === "submitting"}
+                  className="inline-flex items-center justify-center rounded-full bg-[#1D4ED8] px-5 py-3 text-sm font-semibold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  {submitState === "submitting" ? "Sending..." : submitState === "success" ? "Submitted" : "Submit enquiry"}
+                </button>
+
+                <a
+                  href="https://wa.me/447519166031"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-[#25D366] px-5 py-3 text-sm font-semibold text-[#0F172A] transition hover:bg-[#F0FFF4]"
+                >
+                  Contact us on WhatsApp
+                </a>
+              </div>
+
+              {submitState === "success" ? (
+                <p className="text-sm font-medium text-[#15803D]">Thanks — your enquiry has been sent.</p>
+              ) : null}
+              {submitError ? <p className="text-sm font-medium text-[#B91C1C]">{submitError}</p> : null}
+            </form>
+          </div>
+        </div>
+
         {showConversation ? (
           <div className="border-t border-[#E5E7EB] bg-[#F8FAFC] px-4 py-6 sm:px-6 sm:py-8">
             <div ref={scrollRef} className="mx-auto max-h-[420px] w-full max-w-3xl overflow-y-auto">
@@ -527,6 +1086,157 @@ export function GeorgeLiveAssistantCompact() {
           </div>
         ) : null}
       </div>
-    </section>
+
+      <style jsx>{`
+        .george-avatar-shell {
+          position: relative;
+          width: 86%;
+          height: 86%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          filter: drop-shadow(0 18px 26px rgba(15, 23, 42, 0.16));
+        }
+
+        .george-avatar-image {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          transform: translateY(2px);
+          transition: transform 220ms ease;
+        }
+
+        .george-wave-bars {
+          position: absolute;
+          top: -2%;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          align-items: flex-end;
+          gap: 5px;
+          height: 18%;
+          width: 28%;
+          opacity: 0.96;
+        }
+
+        .george-wave-bars span {
+          flex: 1;
+          border-radius: 999px;
+          background: linear-gradient(180deg, #3b82f6 0%, #38bdf8 100%);
+          height: 28%;
+          transform-origin: center bottom;
+          opacity: 0.92;
+        }
+
+        .george-avatar-shell.is-talking .george-wave-bars span:nth-child(1) { animation: waveBounce 0.72s ease-in-out infinite; }
+        .george-avatar-shell.is-talking .george-wave-bars span:nth-child(2) { animation: waveBounce 0.72s ease-in-out 0.1s infinite; }
+        .george-avatar-shell.is-talking .george-wave-bars span:nth-child(3) { animation: waveBounce 0.72s ease-in-out 0.18s infinite; }
+        .george-avatar-shell.is-talking .george-wave-bars span:nth-child(4) { animation: waveBounce 0.72s ease-in-out 0.08s infinite; }
+        .george-avatar-shell.is-talking .george-wave-bars span:nth-child(5) { animation: waveBounce 0.72s ease-in-out 0.16s infinite; }
+
+        .george-mouth-mask {
+          position: absolute;
+          left: 50%;
+          top: 66.4%;
+          width: 23.5%;
+          height: 10.8%;
+          transform: translateX(-50%);
+          border-radius: 999px;
+          background: linear-gradient(180deg, #0b52b8 0%, #08439d 100%);
+          box-shadow: inset 0 1px 2px rgba(255,255,255,0.08);
+        }
+
+        .george-mouth-shadow {
+          position: absolute;
+          left: 50%;
+          top: 69.6%;
+          width: 18%;
+          height: 8.8%;
+          transform: translateX(-50%);
+          border-radius: 999px;
+          background: #0a246a;
+          transition: all 180ms ease;
+        }
+
+        .george-mouth-inner {
+          position: absolute;
+          left: 50%;
+          top: 67.6%;
+          width: 17.4%;
+          height: 6.8%;
+          transform: translateX(-50%);
+          border-radius: 0 0 999px 999px;
+          background: #ffffff;
+          overflow: hidden;
+          transition: all 180ms ease;
+          transform-origin: center top;
+        }
+
+        .george-mouth-teeth {
+          position: absolute;
+          inset: 0;
+          background: white;
+          border-radius: 0 0 999px 999px;
+        }
+
+        .george-mouth-tongue {
+          position: absolute;
+          left: 50%;
+          bottom: -28%;
+          width: 60%;
+          height: 48%;
+          transform: translateX(-50%);
+          border-radius: 999px 999px 0 0;
+          background: #f472b6;
+          opacity: 0;
+          transition: opacity 140ms ease;
+        }
+
+        .george-avatar-shell.is-talking .george-avatar-image {
+          animation: headBob 0.8s ease-in-out infinite;
+        }
+
+        .george-avatar-shell.is-talking .george-mouth-shadow {
+          top: 70.8%;
+          width: 16.2%;
+          height: 9.6%;
+          animation: mouthShadowTalk 0.5s ease-in-out infinite alternate;
+        }
+
+        .george-avatar-shell.is-talking .george-mouth-inner {
+          top: 67.6%;
+          width: 15.8%;
+          height: 10.8%;
+          border-radius: 0 0 20px 20px;
+          background: linear-gradient(180deg, #ffffff 0 34%, #0f265b 34% 100%);
+          animation: mouthTalk 0.5s ease-in-out infinite alternate;
+        }
+
+        .george-avatar-shell.is-talking .george-mouth-tongue {
+          opacity: 0.9;
+        }
+
+        @keyframes waveBounce {
+          0%, 100% { height: 28%; }
+          50% { height: 100%; }
+        }
+
+        @keyframes headBob {
+          0%, 100% { transform: translateY(2px) scale(1); }
+          50% { transform: translateY(0px) scale(1.01); }
+        }
+
+        @keyframes mouthTalk {
+          0% { height: 7.2%; width: 17.2%; }
+          100% { height: 12.4%; width: 14.6%; }
+        }
+
+        @keyframes mouthShadowTalk {
+          0% { height: 8.8%; width: 18%; }
+          100% { height: 10.4%; width: 15.6%; }
+        }
+      `}</style>
+      </section>
+    </>
   )
 }

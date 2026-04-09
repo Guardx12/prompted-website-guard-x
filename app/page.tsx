@@ -1,348 +1,260 @@
-import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, CheckCircle2, ChevronRight, MessageCircleMore, PhoneCall, Sparkles } from "lucide-react"
-import { GeorgeLiveAssistantCompact } from "@/components/george-live-assistant-compact"
+import type { Metadata } from "next"
+import { Navigation } from "@/components/navigation"
+import { Footer } from "@/components/footer"
+import { ArrowRight, Building2, Briefcase, Headphones, ShoppingBag, Sparkles, TrendingUp, Zap } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "George | Turn your website into a 24/7 salesperson",
+  title: "George | Turn Your Website Into a 24/7 Salesperson",
   description:
-    "George talks to your visitors, answers questions instantly, and turns more of them into real enquiries — even when you're not there.",
-  alternates: { canonical: "https://getgeorge.app/" },
+    "George turns your website into a 24/7 salesperson and digital member of staff, tailored to your brand, tone, and visitors so more traffic turns into enquiries, bookings, and sales.",
+  alternates: { canonical: "https://guardxnetwork.com" },
 }
 
-const primaryLinks = [
-  { href: "/meet-george", label: "Meet George" },
-  { href: "/how-george-makes-you-money", label: "How George makes you money" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/contact", label: "Contact" },
+const heroPoints = [
+  "Speaks to visitors naturally and answers questions instantly.",
+  "Guides people towards the right product, service, booking, or next step.",
+  "Captures more enquiries, bookings, and sales from the traffic you already have.",
+  "Works 24/7, even when you are busy, closed, or asleep.",
+  "Can be matched to your brand, tone, and role — from salesperson to guide or mascot.",
 ]
 
-const outcomeCards = [
+const resultPoints = [
+  "More enquiries from website visitors who would have left",
+  "More bookings and sales from faster answers and clearer guidance",
+  "Less time lost answering the same questions repeatedly",
+  "A more modern, premium experience for your visitors",
+]
+
+const howItWorks = [
+  "We tailor George to your business, your website, your brand, and the questions your visitors actually ask.",
+  "George can be trained on your services, products, pricing, FAQs, and key pages.",
+  "He then speaks to visitors naturally, guides them, and helps move them towards becoming customers.",
+  "For larger setups, George can also be connected to structured data so he stays accurate at scale.",
+]
+
+const useCases = [
   {
-    title: "Answers questions instantly",
-    body: "George gives visitors the information they need there and then, so they keep moving instead of dropping off.",
+    title: "For service businesses",
+    description:
+      "George answers common questions, explains what you do, qualifies leads, and helps visitors take the next step.",
+    points: [
+      "Captures enquiries instead of letting visitors drift away",
+      "Explains services, pricing, areas covered, and how you work",
+      "Feels like a receptionist or sales assistant on your site",
+      "Helps turn more traffic into calls, forms, and booked work",
+    ],
+    icon: Briefcase,
   },
   {
-    title: "Guides people properly",
-    body: "He helps visitors figure out what they need, recommends the best option, and moves them towards making contact.",
+    title: "For e-commerce and product-led businesses",
+    description:
+      "George helps customers find the right products, narrows choices, answers buying questions, and moves people towards purchase.",
+    points: [
+      "Reduces overwhelm when customers are browsing large catalogues",
+      "Answers product questions and helps people decide faster",
+      "Can work alongside your product catalogue and structured data",
+      "Improves conversions by guiding customers instead of leaving them to browse alone",
+    ],
+    icon: ShoppingBag,
   },
   {
-    title: "Turns traffic into enquiries",
-    body: "George warms people up before they call, message, or book — making your existing website traffic more valuable.",
+    title: "For attractions, parks, and visitor venues",
+    description:
+      "George can act as a digital guide before and during the visit — helping with planning, questions, directions, upgrades, and visitor experience.",
+    points: [
+      "Guides visitors before they arrive and while they are there",
+      "Answers questions about tickets, facilities, food, timings, and what to do next",
+      "Can support family-friendly journeys, kid-focused engagement, and upsells",
+      "Helps improve bookings, spend, and overall visitor experience",
+    ],
+    icon: Building2,
   },
 ]
 
-const reasonPoints = [
-  "People want answers instantly",
-  "Businesses miss opportunities every day",
-  "Most websites don’t guide visitors properly",
+const georgeFeatures = [
+  "Answers questions instantly",
+  "Guides visitors step by step",
+  "Captures enquiries automatically",
+  "Helps more visitors convert into customers",
 ]
-
-const conversionPoints = [
-  "Stops people leaving your site without taking action",
-  "Warms up leads before they contact you",
-  "Drives more bookings, calls and messages",
-  "Makes your existing traffic more valuable",
-]
-
-const experiencePoints = [
-  "Instant help when visitors need it",
-  "No waiting or confusion",
-  "Smooth, natural interaction",
-  "Feels modern and professional",
-]
-
-const reliabilityPoints = [
-  "Consistent answers",
-  "Never forgets key information",
-  "No missed opportunities",
-  "Represents your business properly",
-]
-
-function SectionHeading({ eyebrow, title, body }: { eyebrow: string; title: string; body: string }) {
-  return (
-    <div className="mx-auto max-w-3xl text-center">
-      <p className="mb-4 text-xs font-semibold uppercase tracking-[0.32em] text-[#A78BFA]">{eyebrow}</p>
-      <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">{title}</h2>
-      <p className="mt-5 text-base leading-7 text-[#C4B5FD] sm:text-lg">{body}</p>
-    </div>
-  )
-}
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#06010E] text-white">
-      <style>{`
-        @keyframes georgeIntroFade {
-          0% { opacity: 1; visibility: visible; }
-          70% { opacity: 1; visibility: visible; }
-          100% { opacity: 0; visibility: hidden; }
-        }
-        @keyframes georgePulse {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.04); }
-        }
-      `}</style>
+    <main className="min-h-screen bg-white text-[#0F172A]">
+      <Navigation />
 
-      <div
-        className="pointer-events-none fixed inset-0 z-[120] flex items-center justify-center bg-[#05010B]"
-        style={{ animation: "georgeIntroFade 1.9s ease forwards" }}
-      >
-        <div className="relative flex flex-col items-center gap-5">
-          <div className="absolute h-40 w-40 rounded-full bg-emerald-400/12 blur-3xl" />
-          <div
-            className="relative flex h-24 w-24 items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-[0_0_70px_rgba(52,211,153,0.18)]"
-            style={{ animation: "georgePulse 1.8s ease-in-out infinite" }}
-          >
-            <div className="absolute inset-[-14px] rounded-full border border-emerald-300/20 border-t-emerald-300/70 animate-spin" />
-            <div className="relative h-16 w-16 overflow-hidden rounded-full">
-              <Image src="/george-logo.png" alt="George logo" fill className="object-cover" priority />
+      <section className="px-4 pb-10 pt-10 sm:px-6 lg:px-8 lg:pb-12 lg:pt-16">
+        <div className="mx-auto max-w-6xl overflow-hidden rounded-[32px] border border-[#DADCE0] bg-[radial-gradient(circle_at_top,rgba(191,219,254,0.35),rgba(255,255,255,1)_38%),linear-gradient(135deg,#ffffff_0%,#f8fbff_100%)] p-6 shadow-[0_24px_90px_rgba(15,23,42,0.08)] sm:p-8 lg:p-12">
+          <div className="text-center">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#BFDBFE] bg-[#EFF6FF] px-4 py-2 text-sm font-semibold text-[#1D4ED8] shadow-sm">
+              <Sparkles className="h-4 w-4" />
+              Meet George
+            </div>
+
+            <h1 className="mx-auto max-w-5xl text-balance text-4xl font-extrabold tracking-tight text-[#0F172A] sm:text-5xl lg:text-6xl">
+              Turn your website into a 24/7 digital member of staff.
+            </h1>
+
+            <div className="mt-8 flex justify-center">
+              <Image src="/george-logo.png" alt="George" width={760} height={280} className="h-auto w-full max-w-[720px] premium-floating-card" priority />
+            </div>
+
+            <p className="mx-auto mt-8 max-w-4xl text-lg leading-8 text-[#475569] sm:text-xl">
+              George speaks to your website visitors, answers questions, guides them to the right product, service, booking, or next step, and helps turn more of your existing traffic into real customers.
+            </p>
+
+            <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#0F172A] sm:text-lg">
+              He is not just there to chat. George is designed to help visitors feel understood, remove friction, capture interest, and move people towards action — whether that means an enquiry, a booking, a sale, or a higher-value visit.
+            </p>
+
+            <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-[#475569] sm:text-lg">
+              George is also tailored to each client. He can match your brand, tone, and role — so for one business he might feel like a salesperson or receptionist, and for another he might become a branded guide or family-friendly mascot.
+            </p>
+
+            <div className="mx-auto mt-8 grid max-w-4xl gap-4">
+              {heroPoints.map((point, index) => (
+                <div
+                  key={point}
+                  className="premium-pulse-text rounded-2xl border border-[#DBEAFE] bg-[linear-gradient(135deg,rgba(239,246,255,0.95)_0%,rgba(255,255,255,1)_100%)] px-5 py-4 text-left text-base font-extrabold leading-7 text-[#1D4ED8] shadow-[0_14px_40px_rgba(29,78,216,0.08)] sm:text-lg"
+                  style={{ animationDelay: `${index * 0.2}s` }}
+                >
+                  {point}
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Link href="/contact" className="cta-button-primary inline-flex items-center justify-center gap-3 rounded-2xl px-7 py-4 text-base font-bold text-white">
+                <span>Try George on your website</span> <ArrowRight className="h-5 w-5" />
+              </Link>
+              <Link href="/meet-george" className="cta-button-secondary inline-flex items-center justify-center rounded-2xl px-7 py-4 text-base font-semibold text-[#0F172A]">
+                See George in action
+              </Link>
             </div>
           </div>
-          <p className="text-xs uppercase tracking-[0.38em] text-white/60">George</p>
         </div>
-      </div>
+      </section>
 
-      <div className="relative isolate overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(124,58,237,0.28),_transparent_36%),radial-gradient(circle_at_bottom_right,_rgba(59,130,246,0.18),_transparent_30%),linear-gradient(180deg,#120422_0%,#08020F_52%,#06010E_100%)]" />
-        <div className="absolute left-1/2 top-[-180px] h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#7C3AED]/20 blur-3xl" />
-        <div className="absolute right-[-140px] top-[140px] h-[360px] w-[360px] rounded-full bg-[#2563EB]/10 blur-3xl" />
-
-        <header className="relative z-10 border-b border-white/10 bg-black/10 backdrop-blur-xl">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-            <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
-              <div className="relative h-12 w-12 overflow-hidden rounded-full border border-white/15 bg-white/5 shadow-[0_0_40px_rgba(139,92,246,0.32)]">
-                <Image src="/george-logo.png" alt="George" fill className="object-cover" priority />
-              </div>
-              <div>
-                <div className="text-sm font-medium uppercase tracking-[0.28em] text-[#C4B5FD]">George</div>
-                <div className="text-sm text-white/70">Digital staff for your website</div>
-              </div>
-            </Link>
-
-            <nav className="hidden items-center gap-7 md:flex">
-              {primaryLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="text-sm text-white/72 transition hover:text-white">
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-
-            <Link
-              href="/contact"
-              className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-white transition hover:border-white/30 hover:bg-white/15"
-            >
-              Get George
-            </Link>
+      <section className="px-4 py-4 sm:px-6 lg:px-8 lg:py-6">
+        <div className="mx-auto max-w-6xl rounded-[30px] border border-[#DBEAFE] bg-[linear-gradient(135deg,#0f172a_0%,#111827_38%,#1d4ed8_100%)] p-6 text-white shadow-[0_20px_70px_rgba(29,78,216,0.18)] sm:p-8 lg:p-10">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#BFDBFE]">Why this matters</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">Most websites lose opportunities every day</h2>
+            <p className="mt-5 text-lg leading-8 text-[#DBEAFE]">
+              Visitors arrive with questions, hesitate, get distracted, cannot find what they need, or leave without taking action. George gives them instant help, keeps them engaged, and guides them towards becoming a customer instead of letting that opportunity disappear.
+            </p>
+            <p className="mt-5 text-base font-semibold leading-7 text-white sm:text-lg">
+              If George helps recover even a small number of missed enquiries, bookings, or sales each month, he can very quickly justify himself. That is why George should be viewed as a conversion tool, not just another website feature.
+            </p>
+            <p className="mt-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#BFDBFE]">George helps your website answer faster, guide better, and convert more.</p>
           </div>
-        </header>
+        </div>
+      </section>
 
-        <section className="relative z-10">
-          <div className="mx-auto grid min-h-[calc(100vh-88px)] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-28">
-            <div className="max-w-3xl">
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-xs font-medium uppercase tracking-[0.26em] text-[#DDD6FE] shadow-[0_10px_60px_rgba(15,23,42,0.35)]">
-                <Sparkles className="h-3.5 w-3.5" />
-                Premium voice-led website assistant
-              </div>
+      <section className="px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
+        <div className="mx-auto max-w-6xl rounded-[30px] border border-[#DBEAFE] bg-[linear-gradient(180deg,#EFF6FF_0%,#FFFFFF_100%)] p-6 shadow-[0_20px_70px_rgba(29,78,216,0.08)] sm:p-8 lg:p-10">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">How George makes you money</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">George helps turn more visitors into revenue</h2>
+            <p className="mt-5 text-lg leading-8 text-[#475569]">
+              When visitors cannot get answers quickly or do not know what to do next, you lose them. George removes that friction by answering instantly, guiding the conversation, and helping visitors move towards the right action.
+            </p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {resultPoints.map((point) => (
+                <div key={point} className="rounded-2xl border border-[#BFDBFE] bg-white p-4 text-left shadow-sm">
+                  <div className="flex items-start gap-3">
+                    <TrendingUp className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" />
+                    <p className="text-sm font-semibold leading-6 text-[#0F172A]">{point}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8">
+              <Link href="/how-george-makes-you-money" className="cta-button-primary inline-flex items-center justify-center gap-3 rounded-2xl px-6 py-3 font-bold text-white">
+                See how George creates value <ArrowRight className="h-5 w-5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <h1 className="max-w-4xl text-5xl font-semibold leading-[0.95] tracking-tight text-white sm:text-6xl md:text-7xl">
-                Turn your website into a <span className="text-[#C4B5FD]">24/7 salesperson</span>
-              </h1>
+      <section className="px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
+        <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">Where George fits</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">One core product. Multiple powerful use cases.</h2>
+            <p className="mt-5 text-lg leading-8 text-[#475569]">
+              George adapts to the role your website is missing. For one business he can feel like a receptionist. For another he can act like a salesperson, buying assistant, digital guide, or even a branded mascot where that suits the experience.
+            </p>
+          </div>
 
-              <p className="mt-7 max-w-2xl text-lg leading-8 text-[#DDD6FE] sm:text-xl">
-                George talks to your visitors, answers questions instantly, and turns more of them into real enquiries — even when you’re not there.
-              </p>
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {useCases.map((useCase) => {
+              const Icon = useCase.icon
+              return (
+                <div key={useCase.title} className="rounded-[28px] border border-[#E5E7EB] bg-white p-6 shadow-sm">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EFF6FF]">
+                    <Icon className="h-6 w-6 text-[#1D4ED8]" />
+                  </div>
+                  <h3 className="mt-5 text-2xl font-bold text-[#0F172A]">{useCase.title}</h3>
+                  <p className="mt-3 text-base leading-7 text-[#475569]">{useCase.description}</p>
+                  <ul className="mt-5 space-y-3">
+                    {useCase.points.map((point) => (
+                      <li key={point} className="flex items-start gap-3 rounded-2xl bg-[#F8FAFC] p-4 text-sm leading-6 text-[#475569]">
+                        <Zap className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#1D4ED8]" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
 
-              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                <Link
-                  href="#live-demo"
-                  className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#120422] transition hover:scale-[1.01] hover:bg-[#F5F3FF]"
-                >
-                  Try George live
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-                <Link
-                  href="/how-george-makes-you-money"
-                  className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/8 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/25 hover:bg-white/12"
-                >
-                  See how it works
-                </Link>
-              </div>
-
-              <div className="mt-12 grid gap-4 sm:grid-cols-3">
-                {outcomeCards.map((card) => (
-                  <div key={card.title} className="rounded-3xl border border-white/10 bg-white/6 p-5 shadow-[0_20px_80px_rgba(15,23,42,0.28)] backdrop-blur">
-                    <h3 className="text-sm font-semibold text-white">{card.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-white/68">{card.body}</p>
+      <section className="px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
+        <div className="mx-auto max-w-6xl rounded-[30px] border border-[#E5E7EB] bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#1D4ED8]">How it works</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">George is tailored to your business</h2>
+              <div className="mt-6 space-y-4">
+                {howItWorks.map((point) => (
+                  <div key={point} className="flex items-start gap-3 rounded-2xl bg-[#F8FAFC] p-4">
+                    <Headphones className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1D4ED8]" />
+                    <p className="text-base leading-7 text-[#475569]">{point}</p>
                   </div>
                 ))}
               </div>
             </div>
-
-            <div className="relative mx-auto flex w-full max-w-[540px] items-center justify-center">
-              <div className="absolute inset-0 rounded-[40px] bg-[radial-gradient(circle_at_center,_rgba(139,92,246,0.3),_transparent_58%)] blur-2xl" />
-              <div className="relative w-full overflow-hidden rounded-[36px] border border-white/12 bg-white/[0.08] p-6 shadow-[0_40px_120px_rgba(2,6,23,0.6)] backdrop-blur-xl sm:p-8">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#C4B5FD]">George live</p>
-                    <h2 className="mt-2 text-2xl font-semibold text-white">A digital member of staff for your website</h2>
-                  </div>
-                  <div className="relative h-16 w-16 overflow-hidden rounded-full border border-white/12 bg-black/20 shadow-[0_0_40px_rgba(139,92,246,0.28)] sm:h-20 sm:w-20">
-                    <Image src="/george-logo.png" alt="George orb" fill className="object-cover" sizes="80px" />
-                  </div>
-                </div>
-
-                <div className="mt-6 rounded-[28px] border border-white/10 bg-[#0B0416]/90 p-4 sm:p-5">
-                  <div className="mb-4 flex items-center justify-between text-sm text-white/60">
-                    <span>Voice-led live demo</span>
-                    <span className="inline-flex items-center gap-2 text-[#C4B5FD]">
-                      <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                      Ready
-                    </span>
-                  </div>
-                  <div className="rounded-[24px] border border-white/10 bg-[#140725] p-2 sm:p-3">
-                    <GeorgeLiveAssistantCompact />
-                  </div>
-                </div>
+            <div className="rounded-[28px] border border-[#DBEAFE] bg-[linear-gradient(135deg,#0f172a_0%,#111827_42%,#1d4ed8_100%)] p-6 text-white shadow-[0_24px_80px_rgba(17,24,39,0.18)] sm:p-8">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#BFDBFE]">What George does best</p>
+              <h3 className="mt-3 text-2xl font-bold">He helps people move forward</h3>
+              <ul className="mt-6 space-y-3">
+                {georgeFeatures.map((feature) => (
+                  <li key={feature} className="flex items-start gap-3 rounded-2xl bg-white/10 p-4 text-sm leading-6 text-[#E2E8F0]">
+                    <Zap className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#BFDBFE]" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 flex flex-col gap-4 sm:flex-row">
+                <Link href="/faq" className="cta-button-secondary inline-flex items-center justify-center rounded-2xl px-6 py-3 font-bold text-white">
+                  Read the FAQ
+                </Link>
+                <Link href="/contact" className="inline-flex items-center justify-center rounded-2xl border border-white/20 px-6 py-3 font-bold text-white transition hover:bg-white/10">
+                  Talk about your setup
+                </Link>
               </div>
             </div>
           </div>
-        </section>
-      </div>
-
-      <section className="border-y border-white/8 bg-[#0B0315] py-24 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Why George exists"
-            title="Websites shouldn’t lose customers"
-            body="The problem usually isn’t traffic. It’s what happens after someone lands on your site and still has questions."
-          />
-          <div className="mx-auto mt-14 grid max-w-5xl gap-5 md:grid-cols-3">
-            {reasonPoints.map((point) => (
-              <div key={point} className="rounded-[28px] border border-white/8 bg-white/[0.04] p-6 shadow-[0_20px_60px_rgba(2,6,23,0.35)]">
-                <CheckCircle2 className="h-5 w-5 text-[#A78BFA]" />
-                <p className="mt-4 text-lg font-medium text-white">{point}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
-      <section className="bg-[#070111] py-24 sm:py-28">
-        <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
-          <div className="max-w-2xl">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.32em] text-[#A78BFA]">What George does</p>
-            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">George talks to your visitors</h2>
-            <p className="mt-5 text-base leading-7 text-[#C4B5FD] sm:text-lg">
-              He answers questions, helps people figure out what they need, recommends the best option, and moves them towards making contact.
-            </p>
-            <p className="mt-6 inline-flex rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-sm font-medium text-white/80">
-              Feels like a real member of staff on your website
-            </p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            {[
-              { icon: MessageCircleMore, title: "Answers questions instantly" },
-              { icon: ChevronRight, title: "Helps visitors figure out what they need" },
-              { icon: PhoneCall, title: "Moves people towards calling or enquiring" },
-              { icon: Sparkles, title: "Feels modern, smooth and impressive" },
-            ].map((item) => (
-              <div key={item.title} className="rounded-[28px] border border-white/10 bg-white/[0.05] p-6 backdrop-blur">
-                <item.icon className="h-5 w-5 text-[#A78BFA]" />
-                <p className="mt-4 text-base font-medium text-white">{item.title}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-white/8 bg-[#0B0315] py-24 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Conversions"
-            title="Turns more visitors into enquiries"
-            body="George doesn’t just sit on the page. He helps visitors move from interest to action."
-          />
-          <div className="mx-auto mt-14 grid max-w-5xl gap-4 md:grid-cols-2">
-            {conversionPoints.map((point) => (
-              <div key={point} className="rounded-[26px] border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.03] p-6 shadow-[0_20px_70px_rgba(2,6,23,0.28)]">
-                <p className="text-base font-medium text-white">{point}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#070111] py-24 sm:py-28">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <div className="rounded-[32px] border border-white/10 bg-white/[0.05] p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#A78BFA]">Experience</p>
-            <h2 className="mt-4 text-3xl font-semibold text-white">Better experience for every visitor</h2>
-            <div className="mt-8 space-y-4">
-              {experiencePoints.map((point) => (
-                <div key={point} className="rounded-2xl border border-white/8 bg-black/20 px-4 py-4 text-white/80">
-                  {point}
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="rounded-[32px] border border-white/10 bg-white/[0.05] p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#A78BFA]">Reliability</p>
-            <h2 className="mt-4 text-3xl font-semibold text-white">Works properly, every time</h2>
-            <div className="mt-8 space-y-4">
-              {reliabilityPoints.map((point) => (
-                <div key={point} className="rounded-2xl border border-white/8 bg-black/20 px-4 py-4 text-white/80">
-                  {point}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="live-demo" className="border-y border-white/8 bg-[#090212] py-24 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Live demo"
-            title="Try George yourself"
-            body="See how George speaks, answers questions, and guides visitors in a natural way."
-          />
-          <div className="mx-auto mt-14 max-w-4xl rounded-[36px] border border-white/12 bg-white/[0.07] p-4 shadow-[0_50px_140px_rgba(2,6,23,0.5)] sm:p-6">
-            <div className="rounded-[28px] border border-white/10 bg-[#130620] p-3 sm:p-5">
-              <GeorgeLiveAssistantCompact />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden bg-[#05010B] py-24 sm:py-28">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(139,92,246,0.18),_transparent_38%)]" />
-        <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#A78BFA]">Get started</p>
-          <h2 className="mt-5 text-4xl font-semibold tracking-tight text-white sm:text-5xl">Test George on your own website</h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#DDD6FE]">
-            We set it up for your business, you test it properly, and you only go live when you’re happy.
-          </p>
-          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#120422] transition hover:bg-[#F5F3FF]"
-            >
-              Get George on your site
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-            <Link
-              href="/meet-george"
-              className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/8 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/25 hover:bg-white/12"
-            >
-              Meet George
-            </Link>
-          </div>
-        </div>
-      </section>
+      <Footer />
     </main>
   )
 }

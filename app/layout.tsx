@@ -1,9 +1,11 @@
 import type React from "react"
 import type { Metadata } from "next"
-import Image from "next/image"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import Script from "next/script"
+import { WhatsAppBubble } from "@/components/whatsapp-bubble"
+import { BottomGeorgeBar } from "@/components/bottom-george-bar"
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -12,31 +14,31 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: " | Conversational Digital Member of Staff for Your Website",
-    template: "%s",
+    default: "George | Turn Your Website Into a 24/7 Salesperson | GuardX",
+    template: "%s | GuardX",
   },
   description:
-    " — your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.",
+    "George turns your website into a 24/7 salesperson and digital member of staff, tailored to your brand, role, and visitors. Answer questions faster, guide people better, and convert more of your traffic.",
   generator: "v0.app",
   icons: {
     icon: "/favicon.ico",
   },
-  metadataBase: new URL("https://askgeorge.app"),
+  metadataBase: new URL("https://guardxnetwork.com"),
   openGraph: {
-    siteName: "George",
+    siteName: "GuardX",
     type: "website",
     locale: "en_GB",
-    url: "https://askgeorge.app",
-    images: [{ url: "/george-preview.png?v=8", width: 1200, height: 630, alt: ", your conversational digital member of staff for your website" }],
+    url: "https://guardxnetwork.com",
+    images: [{ url: "/george-preview.png?v=8", width: 1200, height: 630, alt: "George, your branded digital member of staff for your website" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: " | Conversational Digital Member of Staff for Your Website | GuardX",
+    title: "George | Turn Your Website Into a 24/7 Salesperson | GuardX",
     description:
-      " — your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.",
+      "George turns your website into a 24/7 salesperson and digital member of staff, tailored to your brand, role, and visitors. Answer questions faster, guide people better, and convert more of your traffic.",
     images: ["/george-preview.png?v=8"],
   },
-  alternates: { canonical: "https://askgeorge.app" },
+  alternates: { canonical: "https://guardxnetwork.com" },
   robots: {
     index: true,
     follow: true,
@@ -79,7 +81,11 @@ export default function RootLayout({
 
       <body className="min-h-screen bg-background pb-28 text-foreground antialiased sm:pb-32">
         {children}
-{/* Facebook Pixel noscript */}
+
+        <BottomGeorgeBar />
+        <WhatsAppBubble />
+
+        {/* Facebook Pixel noscript */}
         <noscript>
           <img
             height="1"
@@ -98,7 +104,7 @@ export default function RootLayout({
             "url": "https://www.guardxnetwork.com",
             "logo": "https://www.guardxnetwork.com/images/guardx-logo.png",
             "image": "https://www.guardxnetwork.com/images/guardx-logo.png",
-            "description": " — your conversational digital member of staff for your website. He talks to website visitors, answers questions about services and facilities, explains pricing and options, guides visitors toward becoming enquiries, and captures enquiry details automatically.",
+            "description": "George turns your website into a 24/7 salesperson and digital member of staff, tailored to your brand, role, and visitors. Answer questions faster, guide people better, and convert more of your traffic.",
             "areaServed": {
               "@type": "Country",
               "name": "United Kingdom"
@@ -114,9 +120,6 @@ export default function RootLayout({
           }
           `}
         </Script>
-
-        
-
 
       </body>
     </html>
