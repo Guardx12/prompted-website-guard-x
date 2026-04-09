@@ -325,7 +325,7 @@ export function GeorgeLiveAssistantCompact() {
   })
   const [submitState, setSubmitState] = useState<SubmitState>("idle")
   const [submitError, setSubmitError] = useState<string | null>(null)
-  const [showIntroOverlay, setShowIntroOverlay] = useState(true)
+  const [showIntroOverlay, setShowIntroOverlay] = useState(false)
 
   const pcRef = useRef<RTCPeerConnection | null>(null)
   const dcRef = useRef<RTCDataChannel | null>(null)
@@ -829,24 +829,6 @@ export function GeorgeLiveAssistantCompact() {
 
   return (
     <>
-      {showIntroOverlay ? (
-        <div className="george-intro-overlay" aria-hidden="true">
-          <div className="george-intro-stage">
-            <div className="george-intro-avatar-track">
-              <Image
-                src="/george-orb-site-logo.png"
-                alt="George logo"
-                width={240}
-                height={240}
-                className="george-intro-avatar george-intro-orb"
-                priority
-              />
-            </div>
-            <p className="george-intro-copy pulse-highlight">Tap the green George circle to ask how he would work on your website</p>
-          </div>
-        </div>
-      ) : null}
-
       <section id="live-george" className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
         <div className="overflow-hidden rounded-[36px] border border-white/10 bg-[linear-gradient(180deg,rgba(8,12,22,0.94),rgba(10,15,28,0.9))] shadow-[0_30px_80px_rgba(0,0,0,0.35)]">
         <div className="px-5 py-8 text-center sm:px-8 sm:py-10">
