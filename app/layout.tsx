@@ -13,8 +13,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "George | Turn Your Website Into a 24/7 Salesperson | GuardX",
-    template: "%s | GuardX",
+    default: "George | Turn Your Website Into a 24/7 Salesperson",
+    template: "%s | George",
   },
   description:
     "George turns your website into a 24/7 salesperson and digital member of staff, tailored to your brand, role, and visitors. Answer questions faster, guide people better, and convert more of your traffic.",
@@ -22,22 +22,22 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-  metadataBase: new URL("https://guardxnetwork.com"),
+  metadataBase: new URL("https://getgeorge.app"),
   openGraph: {
-    siteName: "GuardX",
+    siteName: "George",
     type: "website",
     locale: "en_GB",
-    url: "https://guardxnetwork.com",
-    images: [{ url: "/george-preview.png?v=8", width: 1200, height: 630, alt: "George, your branded digital member of staff for your website" }],
+    url: "https://getgeorge.app",
+    images: [{ url: "/george-social-preview.png?v=1", width: 1200, height: 630, alt: "George — turn your website into a 24/7 salesperson" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "George | Turn Your Website Into a 24/7 Salesperson | GuardX",
+    title: "George | Turn Your Website Into a 24/7 Salesperson",
     description:
       "George turns your website into a 24/7 salesperson and digital member of staff, tailored to your brand, role, and visitors. Answer questions faster, guide people better, and convert more of your traffic.",
-    images: ["/george-preview.png?v=8"],
+    images: ["/george-social-preview.png?v=1"],
   },
-  alternates: { canonical: "https://guardxnetwork.com" },
+  alternates: { canonical: "https://getgeorge.app" },
   robots: {
     index: true,
     follow: true,
@@ -99,9 +99,9 @@ export default function RootLayout({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": "GuardX Limited",
-            "url": "https://www.guardxnetwork.com",
-            "logo": "https://www.guardxnetwork.com/images/guardx-logo.png",
-            "image": "https://www.guardxnetwork.com/images/guardx-logo.png",
+            "url": "https://getgeorge.app",
+            "logo": "https://getgeorge.app/george-orb-site-logo.png",
+            "image": "https://getgeorge.app/george-social-preview.png",
             "description": "George turns your website into a 24/7 salesperson and digital member of staff, tailored to your brand, role, and visitors. Answer questions faster, guide people better, and convert more of your traffic.",
             "areaServed": {
               "@type": "Country",
@@ -113,7 +113,7 @@ export default function RootLayout({
               "addressRegion": "West Sussex"
             },
             "sameAs": [
-              "https://www.guardxnetwork.com"
+              "https://getgeorge.app"
             ]
           }
           `}
