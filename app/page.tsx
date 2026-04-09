@@ -74,6 +74,37 @@ function SectionHeading({ eyebrow, title, body }: { eyebrow: string; title: stri
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-[#06010E] text-white">
+      <style>{`
+        @keyframes georgeIntroFade {
+          0% { opacity: 1; visibility: visible; }
+          70% { opacity: 1; visibility: visible; }
+          100% { opacity: 0; visibility: hidden; }
+        }
+        @keyframes georgePulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.04); }
+        }
+      `}</style>
+
+      <div
+        className="pointer-events-none fixed inset-0 z-[120] flex items-center justify-center bg-[#05010B]"
+        style={{ animation: "georgeIntroFade 1.9s ease forwards" }}
+      >
+        <div className="relative flex flex-col items-center gap-5">
+          <div className="absolute h-40 w-40 rounded-full bg-emerald-400/12 blur-3xl" />
+          <div
+            className="relative flex h-24 w-24 items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-[0_0_70px_rgba(52,211,153,0.18)]"
+            style={{ animation: "georgePulse 1.8s ease-in-out infinite" }}
+          >
+            <div className="absolute inset-[-14px] rounded-full border border-emerald-300/20 border-t-emerald-300/70 animate-spin" />
+            <div className="relative h-16 w-16 overflow-hidden rounded-full">
+              <Image src="/george-logo.png" alt="George logo" fill className="object-cover" priority />
+            </div>
+          </div>
+          <p className="text-xs uppercase tracking-[0.38em] text-white/60">George</p>
+        </div>
+      </div>
+
       <div className="relative isolate overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(124,58,237,0.28),_transparent_36%),radial-gradient(circle_at_bottom_right,_rgba(59,130,246,0.18),_transparent_30%),linear-gradient(180deg,#120422_0%,#08020F_52%,#06010E_100%)]" />
         <div className="absolute left-1/2 top-[-180px] h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#7C3AED]/20 blur-3xl" />
@@ -86,7 +117,7 @@ export default function HomePage() {
                 <Image src="/george-logo.png" alt="George" fill className="object-cover" priority />
               </div>
               <div>
-                <div className="text-sm font-medium tracking-[0.28em] text-[#C4B5FD] uppercase">George</div>
+                <div className="text-sm font-medium uppercase tracking-[0.28em] text-[#C4B5FD]">George</div>
                 <div className="text-sm text-white/70">Digital staff for your website</div>
               </div>
             </Link>
@@ -196,36 +227,34 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <p className="mt-10 text-center text-2xl font-semibold text-[#DDD6FE]">George fixes that.</p>
         </div>
       </section>
 
-      <section className="py-24 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#A78BFA]">What George does</p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">
-                George talks to your visitors
-              </h2>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-[#C4B5FD]">
-                He answers questions, helps people figure out what they need, recommends the best option, and gets them to actually enquire.
-              </p>
-              <p className="mt-5 text-base font-medium text-white/80">Feels like a real member of staff on your website.</p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {[
-                { icon: MessageCircleMore, title: "Answers questions instantly" },
-                { icon: ChevronRight, title: "Helps visitors figure out what they need" },
-                { icon: PhoneCall, title: "Moves people towards making contact" },
-                { icon: Sparkles, title: "Feels smooth, modern and premium" },
-              ].map((item) => (
-                <div key={item.title} className="rounded-[28px] border border-white/10 bg-white/[0.05] p-6 backdrop-blur">
-                  <item.icon className="h-5 w-5 text-[#A78BFA]" />
-                  <p className="mt-4 text-base font-medium text-white">{item.title}</p>
-                </div>
-              ))}
-            </div>
+      <section className="bg-[#070111] py-24 sm:py-28">
+        <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+          <div className="max-w-2xl">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.32em] text-[#A78BFA]">What George does</p>
+            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">George talks to your visitors</h2>
+            <p className="mt-5 text-base leading-7 text-[#C4B5FD] sm:text-lg">
+              He answers questions, helps people figure out what they need, recommends the best option, and moves them towards making contact.
+            </p>
+            <p className="mt-6 inline-flex rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-sm font-medium text-white/80">
+              Feels like a real member of staff on your website
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {[
+              { icon: MessageCircleMore, title: "Answers questions instantly" },
+              { icon: ChevronRight, title: "Helps visitors figure out what they need" },
+              { icon: PhoneCall, title: "Moves people towards calling or enquiring" },
+              { icon: Sparkles, title: "Feels modern, smooth and impressive" },
+            ].map((item) => (
+              <div key={item.title} className="rounded-[28px] border border-white/10 bg-white/[0.05] p-6 backdrop-blur">
+                <item.icon className="h-5 w-5 text-[#A78BFA]" />
+                <p className="mt-4 text-base font-medium text-white">{item.title}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -239,102 +268,81 @@ export default function HomePage() {
           />
           <div className="mx-auto mt-14 grid max-w-5xl gap-4 md:grid-cols-2">
             {conversionPoints.map((point) => (
-              <div key={point} className="rounded-[28px] border border-white/10 bg-white/[0.04] px-6 py-5 text-base text-white/85">
-                {point}
+              <div key={point} className="rounded-[26px] border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.03] p-6 shadow-[0_20px_70px_rgba(2,6,23,0.28)]">
+                <p className="text-base font-medium text-white">{point}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-24 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-2">
-            <div className="rounded-[32px] border border-white/10 bg-white/[0.05] p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#A78BFA]">Experience</p>
-              <h3 className="mt-4 text-3xl font-semibold text-white">Better experience for every visitor</h3>
-              <div className="mt-8 space-y-4">
-                {experiencePoints.map((point) => (
-                  <div key={point} className="rounded-2xl border border-white/8 bg-black/10 px-4 py-4 text-white/85">
-                    {point}
-                  </div>
-                ))}
-              </div>
+      <section className="bg-[#070111] py-24 sm:py-28">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <div className="rounded-[32px] border border-white/10 bg-white/[0.05] p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#A78BFA]">Experience</p>
+            <h2 className="mt-4 text-3xl font-semibold text-white">Better experience for every visitor</h2>
+            <div className="mt-8 space-y-4">
+              {experiencePoints.map((point) => (
+                <div key={point} className="rounded-2xl border border-white/8 bg-black/20 px-4 py-4 text-white/80">
+                  {point}
+                </div>
+              ))}
             </div>
-            <div className="rounded-[32px] border border-white/10 bg-white/[0.05] p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#A78BFA]">Reliability</p>
-              <h3 className="mt-4 text-3xl font-semibold text-white">Works properly, every time</h3>
-              <div className="mt-8 space-y-4">
-                {reliabilityPoints.map((point) => (
-                  <div key={point} className="rounded-2xl border border-white/8 bg-black/10 px-4 py-4 text-white/85">
-                    {point}
-                  </div>
-                ))}
-              </div>
+          </div>
+          <div className="rounded-[32px] border border-white/10 bg-white/[0.05] p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#A78BFA]">Reliability</p>
+            <h2 className="mt-4 text-3xl font-semibold text-white">Works properly, every time</h2>
+            <div className="mt-8 space-y-4">
+              {reliabilityPoints.map((point) => (
+                <div key={point} className="rounded-2xl border border-white/8 bg-black/20 px-4 py-4 text-white/80">
+                  {point}
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section id="live-demo" className="border-t border-white/8 bg-[#0B0315] py-24 sm:py-28">
+      <section id="live-demo" className="border-y border-white/8 bg-[#090212] py-24 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Try George yourself"
-            title="See how George speaks, answers questions, and guides visitors"
-            body="Try the live demo, hear how George responds, and get a feel for what he would be like on your own site."
+            eyebrow="Live demo"
+            title="Try George yourself"
+            body="See how George speaks, answers questions, and guides visitors in a natural way."
           />
-          <div className="mx-auto mt-14 max-w-5xl rounded-[36px] border border-white/10 bg-white/[0.05] p-4 shadow-[0_30px_120px_rgba(2,6,23,0.45)] sm:p-6 lg:p-8">
-            <GeorgeLiveAssistantCompact />
+          <div className="mx-auto mt-14 max-w-4xl rounded-[36px] border border-white/12 bg-white/[0.07] p-4 shadow-[0_50px_140px_rgba(2,6,23,0.5)] sm:p-6">
+            <div className="rounded-[28px] border border-white/10 bg-[#130620] p-3 sm:p-5">
+              <GeorgeLiveAssistantCompact />
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 sm:py-28">
-        <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#A78BFA]">Final step</p>
-          <h2 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl">
-            Test George on your own website
-          </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#C4B5FD]">
-            We set George up for your business, you test it properly, and you only go live when you’re happy.
+      <section className="relative overflow-hidden bg-[#05010B] py-24 sm:py-28">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(139,92,246,0.18),_transparent_38%)]" />
+        <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#A78BFA]">Get started</p>
+          <h2 className="mt-5 text-4xl font-semibold tracking-tight text-white sm:text-5xl">Test George on your own website</h2>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#DDD6FE]">
+            We set it up for your business, you test it properly, and you only go live when you’re happy.
           </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
             <Link
               href="/contact"
               className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#120422] transition hover:bg-[#F5F3FF]"
             >
               Get George on your site
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
             <Link
-              href="/pricing"
+              href="/meet-george"
               className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/8 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/25 hover:bg-white/12"
             >
-              View pricing approach
+              Meet George
             </Link>
           </div>
         </div>
       </section>
-
-      <footer className="border-t border-white/8 bg-[#06010E]">
-        <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-10 text-sm text-white/60 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-          <div className="flex items-center gap-3">
-            <div className="relative h-10 w-10 overflow-hidden rounded-full border border-white/12 bg-white/5">
-              <Image src="/george-logo.png" alt="George" fill className="object-cover" sizes="40px" />
-            </div>
-            <div>
-              <p className="font-medium text-white">George</p>
-              <p>Digital staff for your website</p>
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-x-6 gap-y-3">
-            {primaryLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="transition hover:text-white">
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </footer>
     </main>
   )
 }
