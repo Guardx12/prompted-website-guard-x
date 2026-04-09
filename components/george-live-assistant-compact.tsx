@@ -842,7 +842,7 @@ export function GeorgeLiveAssistantCompact() {
                 priority
               />
             </div>
-            <p className="george-intro-copy pulse-highlight">Tap the circle to ask George how he can work for your business</p>
+            <p className="george-intro-copy pulse-highlight">Tap the green George circle to ask how he would work on your website</p>
           </div>
         </div>
       ) : null}
@@ -869,27 +869,25 @@ export function GeorgeLiveAssistantCompact() {
               }`}
               style={{
                 background:
-                  "radial-gradient(circle at 30% 24%, #8091B7 0%, #41567F 20%, #172554 56%, #020617 100%)",
+                  "radial-gradient(circle at 35% 28%, rgba(198,255,229,0.95) 0%, rgba(110,231,183,0.85) 14%, rgba(20,184,166,0.82) 32%, rgba(9,55,72,0.95) 66%, rgba(3,12,18,0.98) 100%)",
                 boxShadow:
                   connectionState === "connected" || connectionState === "connecting"
-                    ? "0 0 0 12px rgba(71,85,105,0.10), 0 30px 70px rgba(15,23,42,0.34), inset 0 5px 22px rgba(255,255,255,0.28), inset 0 -18px 30px rgba(2,6,23,0.58)"
-                    : "0 26px 58px rgba(15,23,42,0.24), inset 0 5px 20px rgba(255,255,255,0.24), inset 0 -16px 28px rgba(2,6,23,0.54)",
+                    ? "0 0 0 10px rgba(20,184,166,0.10), 0 26px 70px rgba(8,145,178,0.28), inset 0 8px 24px rgba(255,255,255,0.34), inset 0 -18px 28px rgba(5,16,22,0.48)"
+                    : "0 22px 56px rgba(8,145,178,0.22), inset 0 8px 22px rgba(255,255,255,0.28), inset 0 -16px 26px rgba(5,16,22,0.42)",
               }}
             >
-              <span className="pointer-events-none absolute inset-[8px] rounded-full border border-white/18" />
-              <span className="pointer-events-none absolute left-[11%] top-[9%] h-[22%] w-[54%] rounded-full bg-white/32 blur-[12px]" />
-              <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0)_45%,rgba(255,255,255,0.14)_75%,rgba(255,255,255,0.24)_100%)]" />
+              <span className="pointer-events-none absolute inset-[6px] rounded-full border border-white/18" />
+              <span className="pointer-events-none absolute left-[12%] top-[10%] h-[20%] w-[50%] rounded-full bg-white/28 blur-[14px]" />
+              <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0)_42%,rgba(255,255,255,0.12)_74%,rgba(255,255,255,0.2)_100%)]" />
 
-              <div className="relative z-10 flex h-[78%] w-[78%] items-center justify-center rounded-full bg-[radial-gradient(circle_at_50%_40%,rgba(85,32,173,0.85),rgba(18,8,43,0.98))] shadow-[inset_0_2px_12px_rgba(148,163,184,0.12)]">
-                <Image
-                  src="/george-logo-premium-purple.png"
-                  alt="George logo"
-                  width={320}
-                  height={320}
-                  className="h-[88%] w-[88%] rounded-full object-cover drop-shadow-[0_20px_30px_rgba(8,14,40,0.25)]"
-                  priority
-                />
-              </div>
+              <Image
+                src="/george-logo-premium-purple.png"
+                alt="George logo"
+                width={320}
+                height={320}
+                className="relative z-10 h-[94%] w-[94%] rounded-full object-cover drop-shadow-[0_20px_34px_rgba(8,14,40,0.22)]"
+                priority
+              />
               <span className="sr-only">{connectionState === "connected" ? "George is live" : "Start talking to George"}</span>
             </button>
 
@@ -907,7 +905,7 @@ export function GeorgeLiveAssistantCompact() {
                     ? "Connecting George"
                     : hasStoredSession
                       ? "Ready to carry on"
-                      : "Tap the circle to speak to George"}
+                      : "Tap the green George circle to speak to George"}
               </p>
               <p className="mt-3 text-base leading-7 text-white/82 sm:text-lg">{latestAssistantMessage}</p>
               {latestUserMessage ? <p className="mt-2 text-sm text-white/50">You: {latestUserMessage}</p> : null}
