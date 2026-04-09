@@ -834,15 +834,15 @@ export function GeorgeLiveAssistantCompact() {
           <div className="george-intro-stage">
             <div className="george-intro-avatar-track">
               <Image
-                src="/george-avatar-head.png"
+                src="/george-logo.png"
                 alt="George"
                 width={240}
                 height={240}
-                className="george-intro-avatar"
+                className="george-intro-avatar george-intro-orb"
                 priority
               />
             </div>
-            <p className="george-intro-copy pulse-highlight">Tap the circle to ask George how he can work for your business</p>
+            <p className="george-intro-copy pulse-highlight">Tap the orb to ask George how he can work for your business</p>
           </div>
         </div>
       ) : null}
