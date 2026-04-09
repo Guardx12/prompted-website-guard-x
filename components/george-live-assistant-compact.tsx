@@ -834,7 +834,7 @@ export function GeorgeLiveAssistantCompact() {
           <div className="george-intro-stage">
             <div className="george-intro-avatar-track">
               <Image
-                src="/george-logo-premium-purple.png"
+                src="/george-orb-site-logo.png"
                 alt="George logo"
                 width={240}
                 height={240}
